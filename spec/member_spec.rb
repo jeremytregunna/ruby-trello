@@ -2,30 +2,48 @@
 
 require 'spec_helper'
 
-describe Trello::Member do
-  context "actions" do
-    # This spec needs a better name
-    it "retrieves a list of actions"
-  end
+module Trello
+  describe Member do
+    before(:all) do
+      Client.public_key = TEST_PUBLIC_KEY
+      Client.secret     = TEST_SECRET
+      @member = Member.find('jer')
+    end
 
-  context "boards" do
-  end
+    context "actions" do
+      # This spec needs a better name
+      it "retrieves a list of actions"
+    end
 
-  context "cards" do
-  end
+    context "boards" do
+    end
 
-  context "organizations" do
-  end
+    context "cards" do
+    end
 
-  context "personal" do
-    it "gets the members bio"
+    context "organizations" do
+    end
 
-    it "gets the full name"
+    context "personal" do
+      it "gets the members bio" do
+        @member.bio.should_not be_nil
+      end
 
-    it "gets the gravatar id"
+      it "gets the full name" do
+        @member.full_name.should_not be_nil
+      end
 
-    it "gets the url"
+      it "gets the gravatar id" do
+        @member.gravatar_id.should_not be_nil
+      end
 
-    it "gets the username"
+      it "gets the url" do
+        @member.url.should_not be_nil
+      end
+
+      it "gets the username" do
+        @member.username.should_not be_nil
+      end
+    end
   end
 end

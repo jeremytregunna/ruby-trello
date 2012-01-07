@@ -14,3 +14,8 @@ end
 Bundler.require(:spec)
 
 require 'trello'
+
+module Trello
+  TEST_PUBLIC_KEY = 'YourPublicKeyHere'
+  TEST_SECRET     = 'YourSecretHere'
+end
