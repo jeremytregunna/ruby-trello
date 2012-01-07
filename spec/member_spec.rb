@@ -6,9 +6,12 @@ module Trello
   describe Member do
     include Helpers
 
-    before(:each) do
+    before(:all) do
       Client.public_key = 'dummy'
       Client.secret     = 'dummy'
+    end
+
+    before(:each) do
       stub_oauth!
     end
 
