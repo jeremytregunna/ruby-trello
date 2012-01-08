@@ -2,37 +2,39 @@
 # Copyright (c) 2012, Jeremy Tregunna
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
-class Trello::Organization
-  class << self
-    def find(id)
-      response = Client.query("/1/organizations/#{id}")
-      new(Yajl::Parser.parse(response.read_body))
+module Trello
+  class Organization
+    class << self
+      def find(id)
+        response = Client.query("/1/organizations/#{id}")
+        new(Yajl::Parser.parse(response.read_body))
+      end
     end
-  end
 
-  def initialize(fields = {})
-    @fields = fields
-  end
+    def initialize(fields = {})
+      @fields = fields
+    end
 
-  # Fields
+    # Fields
 
-  def id
-    @fields['id']
-  end
+    def id
+      @fields['id']
+    end
 
-  def name
-    @fields['name']
-  end
+    def name
+      @fields['name']
+    end
 
-  def display_name
-    @fields['display_name']
-  end
+    def display_name
+      @fields['display_name']
+    end
 
-  def description
-    @fields['desc']
-  end
+    def description
+      @fields['desc']
+    end
 
-  def url
-    @fields['url']
+    def url
+      @fields['url']
+    end
   end
 end
