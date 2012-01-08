@@ -26,6 +26,13 @@ module Trello
 
     # Links to other data structures
 
+    def actions
+      response = Client.query("/1/lists/#{id}/actions")
+      JSON.parse(response.read_body).map do |action_fields|
+        Action.new(action_fields)
+      end
+    end
+
     def board
       Board.find(fields['idBoard'])
     end

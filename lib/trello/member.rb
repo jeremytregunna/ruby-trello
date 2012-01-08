@@ -42,6 +42,13 @@ module Trello
 
     # Links to other data structures
 
+    def actions
+      response = Client.query("/1/members/#{username}/actions")
+      JSON.parse(response.read_body).map do |action_fields|
+        Action.new(action_fields)
+      end
+    end
+
     def boards
       response = Client.query("/1/members/#{username}/boards/all")
       JSON.parse(response.read_body).map do |board_fields|

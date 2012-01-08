@@ -20,8 +20,13 @@ module Trello
     end
 
     context "actions" do
-      # This spec needs a better name
-      it "retrieves a list of actions"
+      it "retrieves a list of actions" do
+        stub_request(:get, "https://api.trello.com/1/members/me/actions?").
+          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
+          to_return(:status => 200, :headers => {}, :body => actions_payload)
+
+        @member.actions.count.should be > 0
+      end
     end
 
     context "boards" do

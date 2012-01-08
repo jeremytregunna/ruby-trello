@@ -6,6 +6,7 @@ require 'oauth'
 require 'json'
 
 module Trello
+  autoload :Action,       'trello/action'
   autoload :BasicData,    'trello/basic_data'
   autoload :Board,        'trello/board'
   autoload :Card,         'trello/card'

@@ -91,4 +91,30 @@ module Helpers
   def orgs_payload
     JSON.generate(orgs_details)
   end
+
+  def actions_details
+    [{
+      "id"              => "4ee2482134a81a757a08af47",
+      "idMemberCreator" => "4ec33ef93a7537000010676d",
+      "data"=> {
+        "card"          => {
+          "id"          => "4ee2482134a81a757a08af45",
+          "name"        => "Bytecode outputter"
+        },
+        "board"         => {
+          "id"          => "4ec54f2f73820a0dea0d1f0e",
+          "name"        => "Caribou VM"
+        },
+        "list"          => {
+          "id"          => "4ee238b034a81a757a05cda0",
+          "name"        => "Assembler"
+        }
+      },
+      "type"            => "createCard"
+    }]
+  end
+
+  def actions_payload
+    JSON.generate(actions_details)
+  end
 end
