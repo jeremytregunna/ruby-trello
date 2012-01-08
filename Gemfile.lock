@@ -24,6 +24,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable
+  jruby-openssl
   json
   oauth
   rake
