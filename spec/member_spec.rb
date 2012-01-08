@@ -45,23 +45,23 @@ module Trello
 
     context "personal" do
       it "gets the members bio" do
-        @member.bio.should_not be_nil
+        @member.bio.should == user_details['bio']
       end
 
       it "gets the full name" do
-        @member.full_name.should_not be_nil
+        @member.full_name.should == user_details['fullName']
       end
 
       it "gets the gravatar id" do
-        @member.gravatar_id.should_not be_nil
+        @member.gravatar_id.should == user_details['gravatar']
       end
 
       it "gets the url" do
-        @member.url.should_not be_nil
+        @member.url.should == user_details['url']
       end
 
       it "gets the username" do
-        @member.username.should_not be_nil
+        @member.username.should == user_details['username']
       end
     end
   end
