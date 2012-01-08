@@ -9,10 +9,11 @@ Seriously, [check it out](http://www.trello.com/).
 
 ## Installation
 
-Full disclosure: It doesn't presently work. I'm in the process of implementing
-the specs and the functionality. But if you want to check it out, clone the
-repo for now. I will produce a gem when it's at least minimally usable. When
-that is the case, I'll post that information here.
+```
+# gem install ruby-trello
+```
+
+Full Disclosure: This library is not complete, but it does function enough to be useful.
 
 ## Contributing
 
