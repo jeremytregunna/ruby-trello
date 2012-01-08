@@ -47,6 +47,23 @@ module Helpers
     Yajl::Encoder.encode(boards_details)
   end
 
+  def cards_details
+    [{
+      "id"        => "abcdef123456789123456789",
+      "name"      => "Do something awesome",
+      "desc"      => "Awesome things are awesome.",
+      "closed"    => false,
+      "idList"    => "abcdef123456789123456789",
+      "idBoard"   => "abcdef123456789123456789",
+      "idMembers" => ["abcdef123456789123456789"],
+      "url"       => "https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789"
+    }]
+  end
+
+  def cards_payload
+    Yajl::Encoder.encode(cards_details)
+  end
+
   def orgs_details
     [{
       "id"          => "abcdef123456789123456789",

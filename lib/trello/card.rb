@@ -3,15 +3,15 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 module Trello
-  class Board
+  class Card
     class << self
       def find(id)
-        response = Client.query("/1/boards/#{id}")
+        response = Client.query("/1/cards/#{id}")
         new(Yajl::Parser.parse(response.read_body))
       end
     end
 
-   def initialize(fields = {})
+    def initialize(fields = {})
       @fields = fields
     end
 
@@ -39,16 +39,15 @@ module Trello
 
     # Links to other data structures
 
-    def cards
-      response  = Client.query("/1/boards/#{id}/cards/all")
-      all_cards = Yajl::Parser.parse(response.read_body)
-      all_cards.map do |card_fields|
-        Card.new(card_fields)
-      end
+    def board
+      Board.find(@fields['idBoard'])
     end
 
-    def organization
-      Organization.find(@fields['idOrganization'])
+    def members
+      @fields['idMembers'].map do |member_id|
+        response  = Client.query("/1/members/#{member_id}")
+        Member.new(Yajl::Parser.parse(response.read_body))
+      end
     end
   end
 end

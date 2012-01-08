@@ -38,5 +38,15 @@ module Trello
         @board.url.should_not be_nil
       end
     end
+
+    context "cards" do
+      it "gets its list of cards" do
+        stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789/cards/all?").
+          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
+          to_return(:status => 200, :headers => {}, :body => cards_payload)
+
+        @board.cards.count.should be > 0
+      end
+    end
   end
 end

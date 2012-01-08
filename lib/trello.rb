@@ -7,6 +7,7 @@ require 'yajl'
 
 module Trello
   autoload :Board,        'trello/board'
+  autoload :Card,         'trello/card'
   autoload :Client,       'trello/client'
   autoload :Member,       'trello/member'
   autoload :Organization, 'trello/organization'
