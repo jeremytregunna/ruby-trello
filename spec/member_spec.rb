@@ -12,7 +12,10 @@ module Trello
     end
 
     before(:each) do
-      stub_oauth!
+      stub_request(:get, "https://api.trello.com/1/members/me?").
+         with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
+         to_return(:status => 200, :headers => {}, :body => user_payload)
+
       @member = Member.find('me')
     end
 
