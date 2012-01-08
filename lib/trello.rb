@@ -6,7 +6,8 @@ require 'oauth'
 require 'yajl'
 
 module Trello
-  autoload :Board,  'trello/board'
-  autoload :Client, 'trello/client'
-  autoload :Member, 'trello/member'
+  autoload :Board,        'trello/board'
+  autoload :Client,       'trello/client'
+  autoload :Member,       'trello/member'
+  autoload :Organization, 'trello/organization'
 end

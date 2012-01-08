@@ -4,12 +4,10 @@
 
 module Trello
   class Member
-    attr_reader :fields
-
     class << self
       def find(id_or_username)
         response = Client.query("/1/members/#{id_or_username}")
-        member = new(Yajl::Parser.parse(response.read_body))
+        new(Yajl::Parser.parse(response.read_body))
       end
     end
 
@@ -20,27 +18,45 @@ module Trello
     # Fields of a user
 
     def id
-      fields['id']
+      @fields['id']
     end
 
     def full_name
-      fields['fullName']
+      @fields['fullName']
     end
 
     def username
-      fields['username']
+      @fields['username']
     end
 
     def gravatar_id
-      fields['gravatar']
+      @fields['gravatar']
     end
 
     def bio
-      fields['bio']
+      @fields['bio']
     end
 
     def url
-      fields['url']
+      @fields['url']
+    end
+
+    # Links to other data structures
+
+    def boards
+      response   = Client.query("/1/members/#{username}/boards/all")
+      all_boards = Yajl::Parser.parse(response.read_body)
+      all_boards.map do |board_fields|
+        Board.new(board_fields)
+      end
+    end
+
+    def organizations
+      response = Client.query("/1/members/#{username}/organizations/all")
+      all_orgs = Yajl::Parser.parse(response.read_body)
+      all_orgs.map do |org_fields|
+        Organization.new(org_fields)
+      end
     end
   end
 end
