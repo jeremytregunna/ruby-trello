@@ -1,0 +1,6 @@
+rvm:
+  - 1.9.3
+gemfile: Gemfile
+notifications:
+  recipients:
+    - jeremy@tregunna.ca
