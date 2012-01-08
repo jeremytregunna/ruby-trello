@@ -13,6 +13,7 @@ module Trello
 
     before(:each) do
       stub_oauth!
+      @member = Member.find('me')
     end
 
     context "actions" do
@@ -21,38 +22,46 @@ module Trello
     end
 
     context "boards" do
-    end
+      it "has a list of boards" do
+        stub_request(:get, "https://api.trello.com/1/members/me/boards/all?").
+          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
+          to_return(:status => 200, :headers => {}, :body => boards_payload)
 
-    context "cards" do
+        boards = @member.boards
+        boards.count.should be > 0
+      end
     end
 
     context "organizations" do
+      it "has a list of organizations" do
+        stub_request(:get, "https://api.trello.com/1/members/me/organizations/all?").
+          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
+          to_return(:status => 200, :headers => {}, :body => orgs_payload)
+
+        orgs = @member.organizations
+        orgs.count.should be > 0
+      end
     end
 
     context "personal" do
       it "gets the members bio" do
-        member = Member.find('me')
-        member.bio.should_not be_nil
+        @member.bio.should_not be_nil
       end
 
       it "gets the full name" do
-        member = Member.find('me')
-        member.full_name.should_not be_nil
+        @member.full_name.should_not be_nil
       end
 
       it "gets the gravatar id" do
-        member = Member.find('me')
-        member.gravatar_id.should_not be_nil
+        @member.gravatar_id.should_not be_nil
       end
 
       it "gets the url" do
-        member = Member.find('me')
-        member.url.should_not be_nil
+        @member.url.should_not be_nil
       end
 
       it "gets the username" do
-        member = Member.find('me')
-        member.username.should_not be_nil
+        @member.username.should_not be_nil
       end
     end
   end
