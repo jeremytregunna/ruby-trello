@@ -12,7 +12,7 @@ module Trello
     before(:each) do
       stub_request(:get, "https://api.trello.com/1/cards/abcdef123456789123456789?").
         with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-        to_return(:status => 200, :headers => {}, :body => Yajl::Encoder.encode(cards_details.first))
+        to_return(:status => 200, :headers => {}, :body => JSON.generate(cards_details.first))
 
       @card = Card.find('abcdef123456789123456789')
     end
@@ -43,7 +43,7 @@ module Trello
       it "has a board" do
         stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
           with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => Yajl::Encoder.encode(boards_details.first))
+          to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
 
         @card.board.should_not be_nil
       end
@@ -53,7 +53,7 @@ module Trello
       it "has a list of members" do
         stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
           with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => Yajl::Encoder.encode(boards_details.first))
+          to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
         stub_request(:get, "https://api.trello.com/1/members/abcdef123456789123456789?").
           with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
           to_return(:status => 200, :headers => {}, :body => user_payload)

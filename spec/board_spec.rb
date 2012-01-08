@@ -12,7 +12,7 @@ module Trello
     before(:each) do
       stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
         with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-        to_return(:status => 200, :headers => {}, :body => Yajl::Encoder.encode(boards_details.first))
+        to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
 
       @board = Board.find('abcdef123456789123456789')
     end

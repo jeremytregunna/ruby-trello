@@ -3,7 +3,7 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 require 'oauth'
-require 'yajl'
+require 'json'
 
 module Trello
   autoload :BasicData,    'trello/basic_data'

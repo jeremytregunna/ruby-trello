@@ -9,7 +9,7 @@ module Trello
     class << self
       def find(path, id)
         response = Client.query("/1/#{path}/#{id}")
-        new(Yajl::Parser.parse(response.read_body))
+        new(JSON.parse(response.read_body))
       end
     end
 

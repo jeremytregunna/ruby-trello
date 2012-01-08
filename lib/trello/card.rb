@@ -45,7 +45,7 @@ module Trello
     def members
       fields['idMembers'].map do |member_id|
         response = Client.query("/1/members/#{member_id}")
-        Member.new(Yajl::Parser.parse(response.read_body))
+        Member.new(JSON.parse(response.read_body))
       end
     end
 

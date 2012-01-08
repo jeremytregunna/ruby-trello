@@ -40,14 +40,14 @@ module Trello
 
     def boards
       response = Client.query("/1/organizations/#{id}/boards/all")
-      Yajl::Parser.parse(response.read_body).map do |board_fields|
+      JSON.parse(response.read_body).map do |board_fields|
         Board.new(board_fields)
       end
     end
 
     def members
       response = Client.query("/1/organizations/#{id}/members/all")
-      Yajl::Parser.parse(response.read_body).map do |member_fields|
+      JSON.parse(response.read_body).map do |member_fields|
         Member.new(member_fields)
       end
     end

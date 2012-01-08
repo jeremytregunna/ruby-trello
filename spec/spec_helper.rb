@@ -29,7 +29,7 @@ module Helpers
   end
 
   def user_payload
-    Yajl::Encoder.encode(user_details)
+    JSON.generate(user_details)
   end
 
   def boards_details
@@ -44,7 +44,7 @@ module Helpers
   end
 
   def boards_payload
-    Yajl::Encoder.encode(boards_details)
+    JSON.generate(boards_details)
   end
 
   def lists_details
@@ -58,7 +58,7 @@ module Helpers
   end
 
   def lists_payload
-    Yajl::Encoder.encode(lists_details)
+    JSON.generate(lists_details)
   end
 
   def cards_details
@@ -75,7 +75,7 @@ module Helpers
   end
 
   def cards_payload
-    Yajl::Encoder.encode(cards_details)
+    JSON.generate(cards_details)
   end
 
   def orgs_details
@@ -89,6 +89,6 @@ module Helpers
   end
 
   def orgs_payload
-    Yajl::Encoder.encode(orgs_details)
+    JSON.generate(orgs_details)
   end
 end
