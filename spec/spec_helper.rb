@@ -24,12 +24,41 @@ module Helpers
       "username" => "me",
       "gravatar" => "abcdef1234567890abcdef1234567890",
       "bio"      => "a rather dumb user",
-      "url"      => "https://trello.com/jer"
+      "url"      => "https://trello.com/me"
     }
   end
 
   def user_payload
     Yajl::Encoder.encode(user_details)
+  end
+
+  def boards_details
+    [{
+      "id"             => "abcdef123456789123456789",
+      "name"           => "Test",
+      "desc"           => "This is a test board",
+      "closed"         => false,
+      "idOrganization" => "abcdef123456789123456789",
+      "url"            => "https://trello.com/board/test/abcdef123456789123456789"
+    }]
+  end
+
+  def boards_payload
+    Yajl::Encoder.encode(boards_details)
+  end
+
+  def orgs_details
+    [{
+      "id"          => "abcdef123456789123456789",
+      "name"        => "test",
+      "displayName" => "Test Organization",
+      "desc"        => "This is a test organization",
+      "url"         => "https://trello.com/test"
+    }]
+  end
+
+  def orgs_payload
+    Yajl::Encoder.encode(orgs_details)
   end
 
   def stub_oauth!
