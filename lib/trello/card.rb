@@ -38,11 +38,20 @@ module Trello
       Board.find(fields['idBoard'])
     end
 
+    def list
+      List.find(fields['idList'])
+    end
+
     def members
       fields['idMembers'].map do |member_id|
-        response  = Client.query("/1/members/#{member_id}")
+        response = Client.query("/1/members/#{member_id}")
         Member.new(Yajl::Parser.parse(response.read_body))
       end
+    end
+
+    # Add a comment
+    def comment(text)
+      response = Client.query("/1/cards/#{id}/actions/comments", :method => :put, :params => { :text => text })
     end
   end
 end

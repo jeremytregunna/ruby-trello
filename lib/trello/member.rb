@@ -43,17 +43,22 @@ module Trello
     # Links to other data structures
 
     def boards
-      response   = Client.query("/1/members/#{username}/boards/all")
-      all_boards = Yajl::Parser.parse(response.read_body)
-      all_boards.map do |board_fields|
+      response = Client.query("/1/members/#{username}/boards/all")
+      Yajl::Parser.parse(response.read_body).map do |board_fields|
         Board.new(board_fields)
+      end
+    end
+
+    def cards
+      response = Client.query("/1/members/#{username}/cards/all")
+      Yajl::Parser.parse(response.read_body).map do |card_fields|
+        Card.new(card_fields)
       end
     end
 
     def organizations
       response = Client.query("/1/members/#{username}/organizations/all")
-      all_orgs = Yajl::Parser.parse(response.read_body)
-      all_orgs.map do |org_fields|
+      Yajl::Parser.parse(response.read_body).map do |org_fields|
         Organization.new(org_fields)
       end
     end
