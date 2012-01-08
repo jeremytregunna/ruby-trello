@@ -1,4 +1,5 @@
 source :rubygems
+gem 'rake'
 gem 'oauth'
 gem 'addressable'
 gem 'yajl-ruby'
