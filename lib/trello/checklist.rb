@@ -3,10 +3,10 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 module Trello
-  class Card < BasicData
+  class Checklist < BasicData
     class << self
       def find(id)
-        super(:cards, id)
+        super(:checklists, id)
       end
     end
 
@@ -24,7 +24,7 @@ module Trello
       fields['desc']
     end
 
-    def closed
+    def closed?
       fields['closed']
     end
 
@@ -34,22 +34,14 @@ module Trello
 
     # Links to other data structures
 
-    def actions
-      response = Client.query("/1/cards/#{id}/actions")
-      JSON.parse(response.read_body).map do |action_fields|
-        Action.new(action_fields)
+    def items
+      fields['checkItems'].map do |item_fields|
+        Item.new(item_fields)
       end
     end
 
     def board
       Board.find(fields['idBoard'])
-    end
-
-    def checklists
-      response = Client.query("/1/cards/#{id}/checklists")
-      JSON.parse(response.read_body).map do |checklist_fields|
-        Checklist.new(checklist_fields)
-      end
     end
 
     def list
@@ -58,14 +50,8 @@ module Trello
 
     def members
       fields['idMembers'].map do |member_id|
-        response = Client.query("/1/members/#{member_id}")
-        Member.new(JSON.parse(response.read_body))
+        Member.find(member_id)
       end
-    end
-
-    # Add a comment
-    def comment(text)
-      response = Client.query("/1/cards/#{id}/actions/comments", :method => :put, :params => { :text => text })
     end
   end
 end

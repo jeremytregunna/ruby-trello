@@ -11,6 +11,8 @@ module Trello
   autoload :Board,        'trello/board'
   autoload :Card,         'trello/card'
   autoload :Client,       'trello/client'
+  autoload :Item,         'trello/item'
+  autoload :ItemState,    'trello/item_state'
   autoload :List,         'trello/list'
   autoload :Member,       'trello/member'
   autoload :Organization, 'trello/organization'
