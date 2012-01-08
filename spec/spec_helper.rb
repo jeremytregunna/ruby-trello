@@ -47,6 +47,20 @@ module Helpers
     Yajl::Encoder.encode(boards_details)
   end
 
+  def lists_details
+    [{
+      "id"      => "abcdef123456789123456789",
+      "name"    => "To Do",
+      "closed"  => false,
+      "idBoard" => "abcdef123456789123456789",
+      "cards"   => cards_details
+    }]
+  end
+
+  def lists_payload
+    Yajl::Encoder.encode(lists_details)
+  end
+
   def cards_details
     [{
       "id"        => "abcdef123456789123456789",
