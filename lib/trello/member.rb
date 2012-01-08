@@ -3,11 +3,10 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 module Trello
-  class Member
+  class Member < BasicData
     class << self
       def find(id_or_username)
-        response = Client.query("/1/members/#{id_or_username}")
-        new(Yajl::Parser.parse(response.read_body))
+        super(:members, id_or_username)
       end
     end
 

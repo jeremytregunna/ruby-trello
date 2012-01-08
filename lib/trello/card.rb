@@ -3,48 +3,43 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 module Trello
-  class Card
+  class Card < BasicData
     class << self
       def find(id)
-        response = Client.query("/1/cards/#{id}")
-        new(Yajl::Parser.parse(response.read_body))
+        super(:cards, id)
       end
-    end
-
-    def initialize(fields = {})
-      @fields = fields
     end
 
     # Fields
 
     def id
-      @fields['id']
+      fields['id']
     end
 
     def name
-      @fields['name']
+      fields['name']
     end
 
     def description
-      @fields['desc']
+      fields['desc']
     end
 
     def closed
-      @fields['closed']
+      fields['closed']
     end
 
     def url
-      @fields['url']
+      fields['url']
     end
 
     # Links to other data structures
 
     def board
-      Board.find(@fields['idBoard'])
+      Board.find(fields['idBoard'])
     end
 
     def members
-      @fields['idMembers'].map do |member_id|
+      fields['idMembers'].map do |member_id|
         response  = Client.query("/1/members/#{member_id}")
         Member.new(Yajl::Parser.parse(response.read_body))
       end

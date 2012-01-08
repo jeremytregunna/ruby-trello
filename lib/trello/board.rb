@@ -3,7 +3,7 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 module Trello
-  class Board
+  class Board < BasicData
     class << self
       def find(id)
         response = Client.query("/1/boards/#{id}")
@@ -11,30 +11,26 @@ module Trello
       end
     end
 
-   def initialize(fields = {})
-      @fields = fields
-    end
-
     # Fields
 
     def id
-      @fields['id']
+      fields['id']
     end
 
     def name
-      @fields['name']
+      fields['name']
     end
 
     def description
-      @fields['desc']
+      fields['desc']
     end
 
     def closed
-      @fields['closed']
+      fields['closed']
     end
 
     def url
-      @fields['url']
+      fields['url']
     end
 
     # Links to other data structures
@@ -48,7 +44,7 @@ module Trello
     end
 
     def organization
-      Organization.find(@fields['idOrganization'])
+      Organization.find(fields['idOrganization'])
     end
   end
 end

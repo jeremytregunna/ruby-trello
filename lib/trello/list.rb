@@ -3,37 +3,37 @@
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
 module Trello
-  class Organization < BasicData
+  class List < BasicData
     class << self
       def find(id)
-        super(:organizations, id)
+        super(:lists, id)
       end
-    end
-
-    def initialize(fields = {})
-      @fields = fields
     end
 
     # Fields
 
     def id
-      @fields['id']
+      fields['id']
     end
 
     def name
-      @fields['name']
+      fields['name']
     end
 
-    def display_name
-      @fields['display_name']
+    def closed
+      fields['closed']
     end
 
-    def description
-      @fields['desc']
+    # Links to other data structures
+
+    def board
+      Board.find(fields['idBoard'])
     end
 
-    def url
-      @fields['url']
+    def cards
+      fields['cards'].map do |c|
+        Card.new(c)
+      end
     end
   end
 end

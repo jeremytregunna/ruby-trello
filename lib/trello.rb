@@ -6,9 +6,11 @@ require 'oauth'
 require 'yajl'
 
 module Trello
+  autoload :BasicData,    'trello/basic_data'
   autoload :Board,        'trello/board'
   autoload :Card,         'trello/card'
   autoload :Client,       'trello/client'
+  autoload :List,         'trello/list'
   autoload :Member,       'trello/member'
   autoload :Organization, 'trello/organization'
 end
