@@ -19,6 +19,12 @@ module Trello
         access_token.send(options[:method], uri.to_s)
       end
 
+      %w{get post put delete}.each do |http_method|
+        send(:define_method, http_method) do |path, params = {}|
+          query(path, :method => http_method, :params => params)
+        end
+      end
+
       protected
 
       def consumer
