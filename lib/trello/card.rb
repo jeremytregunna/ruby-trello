@@ -37,7 +37,7 @@ module Trello
     def actions
       return @actions if @actions
 
-      response = Client.query("/1/cards/#{id}/actions")
+      response = Client.get("/1/cards/#{id}/actions")
       @actions = JSON.parse(response.read_body).map do |action_fields|
         Action.new(action_fields)
       end
@@ -52,7 +52,7 @@ module Trello
     def checklists
       return @checklists if @checklists
 
-      response = Client.query("/1/cards/#{id}/checklists")
+      response = Client.get("/1/cards/#{id}/checklists")
       @checklists = JSON.parse(response.read_body).map do |checklist_fields|
         Checklist.new(checklist_fields)
       end
@@ -68,14 +68,14 @@ module Trello
       return @members if @members
 
       @members = fields['idMembers'].map do |member_id|
-        response = Client.query("/1/members/#{member_id}")
+        response = Client.get("/1/members/#{member_id}")
         Member.new(JSON.parse(response.read_body))
       end
     end
 
     # Add a comment
-    def comment(text)
-      response = Client.query("/1/cards/#{id}/actions/comments", :method => :put, :params => { :text => text })
+    def add_comment(text)
+      response = Client.put("/1/cards/#{id}/actions/comments",  :text => text)
     end
   end
 end

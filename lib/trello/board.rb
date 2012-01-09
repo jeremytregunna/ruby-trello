@@ -37,7 +37,7 @@ module Trello
     def actions
       return @actions if @actions
 
-      response = Client.query("/1/boards/#{id}/actions")
+      response = Client.get("/1/boards/#{id}/actions")
       @actions = JSON.parse(response.read_body).map do |action_fields|
         Action.new(action_fields)
       end
@@ -46,7 +46,7 @@ module Trello
     def cards
       return @cards if @cards
 
-      response = Client.query("/1/boards/#{id}/cards/all")
+      response = Client.get("/1/boards/#{id}/cards/all")
       @cards = JSON.parse(response.read_body).map do |card_fields|
         Card.new(card_fields)
       end
@@ -55,7 +55,7 @@ module Trello
     def lists
       return @lists if @lists
 
-      response = Client.query("/1/boards/#{id}/lists/all")
+      response = Client.get("/1/boards/#{id}/lists/all")
       @lists = JSON.parse(response.read_body).map do |list_fields|
         List.new(list_fields)
       end
@@ -64,7 +64,7 @@ module Trello
     def members
       return @members if @members
 
-      response = Client.query("/1/boards/#{id}/members/all")
+      response = Client.get("/1/boards/#{id}/members/all")
       @members = JSON.parse(response.read_body).map do |member_fields|
         Member.new(member_fields)
       end

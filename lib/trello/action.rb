@@ -29,21 +29,21 @@ module Trello
     def board
       return @board if @board
 
-      response = Client.query("/1/actions/#{id}/board")
+      response = Client.get("/1/actions/#{id}/board")
       @board = Board.new(JSON.parse(response.read_body))
     end
 
     def card
       return @card if @card
 
-      response = Client.query("/1/actions/#{id}/card")
+      response = Client.get("/1/actions/#{id}/card")
       @card = Card.new(JSON.parse(response.read_body))
     end
 
     def list
       return @list if @list
 
-      response = Client.query("/1/actions/#{id}/list")
+      response = Client.get("/1/actions/#{id}/list")
       @list = List.new(JSON.parse(response.read_body))
     end
 

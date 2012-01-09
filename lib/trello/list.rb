@@ -29,7 +29,7 @@ module Trello
     def actions
       return @actions if @actions
 
-      response = Client.query("/1/lists/#{id}/actions")
+      response = Client.get("/1/lists/#{id}/actions")
       @actions = JSON.parse(response.read_body).map do |action_fields|
         Action.new(action_fields)
       end
