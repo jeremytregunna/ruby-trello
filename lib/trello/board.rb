@@ -6,8 +6,7 @@ module Trello
   class Board < BasicData
     class << self
       def find(id)
-        response = Client.query("/1/boards/#{id}")
-        new(JSON.parse(response.read_body))
+        super(:boards, id)
       end
     end
 
@@ -36,35 +35,45 @@ module Trello
     # Links to other data structures
 
     def actions
+      return @actions if @actions
+
       response = Client.query("/1/boards/#{id}/actions")
-      JSON.parse(response.read_body).map do |action_fields|
+      @actions = JSON.parse(response.read_body).map do |action_fields|
         Action.new(action_fields)
       end
     end
 
     def cards
+      return @cards if @cards
+
       response = Client.query("/1/boards/#{id}/cards/all")
-      JSON.parse(response.read_body).map do |card_fields|
+      @cards = JSON.parse(response.read_body).map do |card_fields|
         Card.new(card_fields)
       end
     end
 
     def lists
+      return @lists if @lists
+
       response = Client.query("/1/boards/#{id}/lists/all")
-      JSON.parse(response.read_body).map do |list_fields|
+      @lists = JSON.parse(response.read_body).map do |list_fields|
         List.new(list_fields)
       end
     end
 
     def members
+      return @members if @members
+
       response = Client.query("/1/boards/#{id}/members/all")
-      JSON.parse(response.read_body).map do |member_fields|
+      @members = JSON.parse(response.read_body).map do |member_fields|
         Member.new(member_fields)
       end
     end
 
     def organization
-      Organization.find(fields['idOrganization'])
+      return @organization if @organization
+
+      @organization = Organization.find(fields['idOrganization'])
     end
   end
 end

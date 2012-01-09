@@ -35,21 +35,29 @@ module Trello
     # Links to other data structures
 
     def items
-      fields['checkItems'].map do |item_fields|
+     return @items if @items
+
+      @items = fields['checkItems'].map do |item_fields|
         Item.new(item_fields)
       end
     end
 
     def board
-      Board.find(fields['idBoard'])
+      return @board if @board
+
+      @board = Board.find(fields['idBoard'])
     end
 
     def list
-      List.find(fields['idList'])
+      return @list if @list
+
+      @list = List.find(fields['idList'])
     end
 
     def members
-      fields['idMembers'].map do |member_id|
+      return @members if @members
+
+      @members = fields['idMembers'].map do |member_id|
         Member.find(member_id)
       end
     end

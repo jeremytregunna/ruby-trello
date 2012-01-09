@@ -35,29 +35,39 @@ module Trello
     # Links to other data structures
 
     def actions
+      return @actions if @actions
+
       response = Client.query("/1/cards/#{id}/actions")
-      JSON.parse(response.read_body).map do |action_fields|
+      @actions = JSON.parse(response.read_body).map do |action_fields|
         Action.new(action_fields)
       end
     end
 
     def board
-      Board.find(fields['idBoard'])
+      return @board if @board
+
+      @board = Board.find(fields['idBoard'])
     end
 
     def checklists
+      return @checklists if @checklists
+
       response = Client.query("/1/cards/#{id}/checklists")
-      JSON.parse(response.read_body).map do |checklist_fields|
+      @checklists = JSON.parse(response.read_body).map do |checklist_fields|
         Checklist.new(checklist_fields)
       end
     end
 
     def list
-      List.find(fields['idList'])
+      return @list if @list
+
+      @list = List.find(fields['idList'])
     end
 
     def members
-      fields['idMembers'].map do |member_id|
+      return @members if @members
+
+      @members = fields['idMembers'].map do |member_id|
         response = Client.query("/1/members/#{member_id}")
         Member.new(JSON.parse(response.read_body))
       end

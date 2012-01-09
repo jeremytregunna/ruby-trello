@@ -27,22 +27,30 @@ module Trello
     # Links to other data structures
 
     def board
+      return @board if @board
+
       response = Client.query("/1/actions/#{id}/board")
-      Board.new(JSON.parse(response.read_body))
+      @board = Board.new(JSON.parse(response.read_body))
     end
 
     def card
+      return @card if @card
+
       response = Client.query("/1/actions/#{id}/card")
-      Card.new(JSON.parse(response.read_body))
+      @card = Card.new(JSON.parse(response.read_body))
     end
 
     def list
+      return @list if @list
+
       response = Client.query("/1/actions/#{id}/list")
-      List.new(JSON.parse(response.read_body))
+      @list = List.new(JSON.parse(response.read_body))
     end
 
     def member_creator
-      Member.find(fields['idMemberCreator'])
+      return @member_creator if @member_creator
+
+      @member_creator = Member.find(fields['idMemberCreator'])
     end
   end
 end
