@@ -23,6 +23,16 @@ module Trello
         card.should be_valid
       end
 
+      it 'must not be valid if not given a name' do
+        card = Card.new('idList' => lists_details.first['id'])
+        card.should_not be_valid
+      end
+
+      it 'must not be valid if not given a list id' do
+        card = Card.new('name' => lists_details.first['name'])
+        card.should_not be_valid
+      end
+
       it 'creates a new record and saves it on Trello' do
         payload = {
           :name    => 'Test Card',
