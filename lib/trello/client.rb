@@ -20,7 +20,9 @@ module Trello
       end
 
       %w{get post put delete}.each do |http_method|
-        send(:define_method, http_method) do |path, params = {}|
+        send(:define_method, http_method) do |*args|
+          path = args[0]
+          params = args[1] || {}
           query(API_VERSION, path, :method => http_method, :params => params).read_body
         end
       end
