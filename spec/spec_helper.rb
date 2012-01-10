@@ -17,13 +17,13 @@ require 'trello'
 require 'webmock/rspec'
 
 module Helpers
-  def stub_trello_request!(http_method, path, data)
+  def stub_trello_request!(http_method, path, data, returning = '')
     uri = Addressable::URI.parse("https://api.trello.com/#{Trello::API_VERSION}#{path}")
-    uri.query_values = data.kind_of?(String) ? JSON.parse(data) : data
+    uri.query_values = data.kind_of?(String) ? JSON.parse(data) : data if data
 
     stub_request(http_method, uri.to_s).
       with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-      to_return(:status => 200, :headers => {}, :body => '')
+      to_return(:status => 200, :headers => {}, :body => returning)
   end
 
   def user_details
