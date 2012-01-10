@@ -4,11 +4,18 @@
 
 module Trello
   class Card < BasicData
-    attr_reader :id, :name, :description, :closed, :url, :board_id, :member_ids, :list_id
+    attr_reader   :id
+    attr_accessor :name, :description, :closed, :url, :board_id, :member_ids, :list_id
 
     class << self
       def find(id)
         super(:cards, id)
+      end
+
+      def create(options)
+        new('name'   => options[:name],
+            'idList' => options[:list_id],
+            'desc' => options[:description]).save!
       end
     end
 
@@ -50,6 +57,28 @@ module Trello
       @members = member_ids.map do |member_id|
         Client.get("/members/#{member_id}").json_into(Member)
       end
+    end
+
+    # Save a record.
+    def save!
+      return update! if id
+
+      Client.post("/cards", {
+        :name   => @name,
+        :desc   => @description,
+        :idList => @list_id
+      })
+    end
+
+    # Update an existing record.
+    def update!
+      # Trello doesn't support this yet. But Daniel is working on it as I
+      # place this comment here!
+    end
+
+    # Is the record valid?
+    def valid?
+      @name && @list_id
     end
 
     # Add a comment

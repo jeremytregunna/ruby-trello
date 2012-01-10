@@ -17,6 +17,23 @@ module Trello
       @card = Card.find('abcdef123456789123456789')
     end
 
+    context "creating" do
+      it "creates a new record" do
+        card = Card.new(cards_details.first)
+        card.should be_valid
+      end
+
+      it 'creates a new record and saves it on Trello' do
+        payload = {
+          :name    => 'Test Card',
+          :desc    => '',
+        }
+        stub_trello_request!(:post, '/cards', payload.merge(:idList => lists_details.first['id']))
+        card = Card.create(payload.merge(:list_id => lists_details.first['id']))
+        card.should == ''
+      end
+    end
+
     context "fields" do
       it "gets its id" do
         @card.id.should_not be_nil
