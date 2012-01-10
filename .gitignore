@@ -1,4 +1,5 @@
 test-credentials
 *.rbc
+.rbx
 .rvmrc
 *.gem
