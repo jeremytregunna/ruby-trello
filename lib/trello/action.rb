@@ -4,24 +4,19 @@
 
 module Trello
   class Action < BasicData
+    attr_reader :id, :type, :data, :member_creator_id
+
     class << self
       def find(id)
         super(:actions, id)
       end
     end
 
-    # Fields
-
-    def id
-      fields['id']
-    end
-
-    def type
-      fields['type']
-    end
-
-    def data
-      fields['data']
+    def initialize(fields = {})
+      @id                = fields['id']
+      @type              = fields['type']
+      @data              = fields['data']
+      @member_creator_id = fields['idMemberCreator']
     end
 
     # Links to other data structures
@@ -43,7 +38,7 @@ module Trello
 
     def member_creator
       return @member_creator if @member_creator
-      @member_creator = Member.find(fields['idMemberCreator'])
+      @member_creator = Member.find(member_creator_id)
     end
   end
 end

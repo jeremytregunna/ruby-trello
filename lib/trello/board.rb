@@ -4,32 +4,25 @@
 
 module Trello
   class Board < BasicData
+    attr_reader :id, :name, :description, :closed, :url, :organization_id
+
     class << self
       def find(id)
         super(:boards, id)
       end
     end
 
-    # Fields
-
-    def id
-      fields['id']
+    def initialize(fields = {})
+      @id              = fields['id']
+      @name            = fields['name']
+      @description     = fields['desc']
+      @closed          = fields['closed']
+      @url             = fields['url']
+      @organization_id = fields['idOrganization']
     end
 
-    def name
-      fields['name']
-    end
-
-    def description
-      fields['desc']
-    end
-
-    def closed
-      fields['closed']
-    end
-
-    def url
-      fields['url']
+    def closed?
+      closed
     end
 
     # Links to other data structures
@@ -56,7 +49,7 @@ module Trello
 
     def organization
       return @organization if @organization
-      @organization = Organization.find(fields['idOrganization'])
+      @organization = Organization.find(organization_id)
     end
   end
 end

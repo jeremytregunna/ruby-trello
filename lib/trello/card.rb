@@ -4,36 +4,23 @@
 
 module Trello
   class Card < BasicData
+    attr_reader :id, :name, :description, :closed, :url, :board_id, :member_ids, :list_id
+
     class << self
       def find(id)
         super(:cards, id)
       end
-
-      def create(details = {})
-        
-      end
     end
 
-    # Fields
-
-    def id
-      fields['id']
-    end
-
-    def name
-      fields['name']
-    end
-
-    def description
-      fields['desc']
-    end
-
-    def closed
-      fields['closed']
-    end
-
-    def url
-      fields['url']
+    def initialize(fields = {})
+      @id          = fields['id']
+      @name        = fields['name']
+      @description = fields['desc']
+      @closed      = fields['closed']
+      @url         = fields['url']
+      @board_id    = fields['idBoard']
+      @member_ids  = fields['idMembers']
+      @list_id     = fields['idList']
     end
 
     # Links to other data structures
@@ -45,7 +32,7 @@ module Trello
 
     def board
       return @board if @board
-      @board = Board.find(fields['idBoard'])
+      @board = Board.find(board_id)
     end
 
     def checklists
@@ -55,12 +42,12 @@ module Trello
 
     def list
       return @list if @list
-      @list = List.find(fields['idList'])
+      @list = List.find(list_id)
     end
 
     def members
       return @members if @members
-      @members = fields['idMembers'].map do |member_id|
+      @members = member_ids.map do |member_id|
         Client.get("/members/#{member_id}").json_into(Member)
       end
     end

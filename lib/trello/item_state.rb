@@ -4,25 +4,18 @@
 
 module Trello
   class ItemState < BasicData
+    attr_reader :id, :state, :item_id
+
     class << self
       def find(nothing)
         raise 'This operation does not make sense'
       end
     end
 
-    # Fields
-
-    def id
-      fields['id']
-    end
-
-    def state
-      fields['state']
-    end
-
-    # Until #item is implemented, this will do
-    def item_id
-      fields['idItem']
+    def initialize(fields = {})
+      @id      = fields['id']
+      @state   = fields['state']
+      @item_id = fields['idItem']
     end
 
     # Links to other data structures

@@ -4,32 +4,27 @@
 
 module Trello
   class Checklist < BasicData
+    attr_reader :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids
+
     class << self
       def find(id)
         super(:checklists, id)
       end
     end
 
-    # Fields
-
-    def id
-      fields['id']
-    end
-
-    def name
-      fields['name']
-    end
-
-    def description
-      fields['desc']
+    def initialize(fields = {})
+      @id          = fields['id']
+      @name        = fields['name']
+      @description = fields['desc']
+      @closed      = fields['closed']
+      @url         = fields['url']
+      @check_items = fields['checkItems']
+      @board_id    = fields['idBoard']
+      @member_ids  = fields['idMembers']
     end
 
     def closed?
-      fields['closed']
-    end
-
-    def url
-      fields['url']
+      closed
     end
 
     # Links to other data structures
@@ -37,27 +32,25 @@ module Trello
     def items
      return @items if @items
 
-      @items = fields['checkItems'].map do |item_fields|
+      @items = check_items.map do |item_fields|
         Item.new(item_fields)
       end
     end
 
     def board
       return @board if @board
-
-      @board = Board.find(fields['idBoard'])
+      @board = Board.find(board_id)
     end
 
     def list
       return @list if @list
-
-      @list = List.find(fields['idList'])
+      @list = List.find(list_id)
     end
 
     def members
       return @members if @members
 
-      @members = fields['idMembers'].map do |member_id|
+      @members = member_ids.map do |member_id|
         Member.find(member_id)
       end
     end

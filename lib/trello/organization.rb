@@ -4,6 +4,8 @@
 
 module Trello
   class Organization < BasicData
+    attr_reader :id, :name, :display_name, :description, :url
+
     class << self
       def find(id)
         super(:organizations, id)
@@ -11,29 +13,11 @@ module Trello
     end
 
     def initialize(fields = {})
-      @fields = fields
-    end
-
-    # Fields
-
-    def id
-      @fields['id']
-    end
-
-    def name
-      @fields['name']
-    end
-
-    def display_name
-      @fields['display_name']
-    end
-
-    def description
-      @fields['desc']
-    end
-
-    def url
-      @fields['url']
+      @id           = fields['id']
+      @name         = fields['name']
+      @display_name = fields['displayName']
+      @description  = fields['description']
+      @url          = fields['url']
     end
 
     # Links to other data structures

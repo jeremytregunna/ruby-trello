@@ -4,24 +4,24 @@
 
 module Trello
   class List < BasicData
+    attr_reader :id, :name, :closed, :board_id
+
     class << self
       def find(id)
         super(:lists, id)
       end
     end
 
-    # Fields
-
-    def id
-      fields['id']
+    def initialize(fields = {})
+      @id            = fields['id']
+      @name          = fields['name']
+      @closed        = fields['closed']
+      @board_id      = fields['idBoard']
+      @list_of_cards = fields['cards']
     end
 
-    def name
-      fields['name']
-    end
-
-    def closed
-      fields['closed']
+    def closed?
+      closed
     end
 
     # Links to other data structures
@@ -33,12 +33,12 @@ module Trello
 
     def board
       return @board if @board
-      @board = Board.find(fields['idBoard'])
+      @board = Board.find(board_id)
     end
 
     def cards
       return @cards if @cards
-      @cards = fields['cards'].map { |c| Card.new(c) }
+      @cards = @list_of_cards.map { |c| Card.new(c) }
     end
   end
 end

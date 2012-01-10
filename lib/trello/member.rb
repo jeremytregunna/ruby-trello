@@ -4,6 +4,8 @@
 
 module Trello
   class Member < BasicData
+    attr_reader :id, :full_name, :username, :gravatar_id, :bio, :url
+
     class << self
       def find(id_or_username)
         super(:members, id_or_username)
@@ -11,33 +13,12 @@ module Trello
     end
 
     def initialize(fields = {})
-      @fields = fields
-    end
-
-    # Fields of a user
-
-    def id
-      @fields['id']
-    end
-
-    def full_name
-      @fields['fullName']
-    end
-
-    def username
-      @fields['username']
-    end
-
-    def gravatar_id
-      @fields['gravatar']
-    end
-
-    def bio
-      @fields['bio']
-    end
-
-    def url
-      @fields['url']
+      @id          = fields['id']
+      @full_name   = fields['fullName']
+      @username    = fields['username']
+      @gravatar_id = fields['gravatar']
+      @bio         = fields['bio']
+      @url         = fields['url']
     end
 
     # Links to other data structures
@@ -60,6 +41,17 @@ module Trello
     def organizations
       return @organizations if @organizations
       @organizations = Client.get("/members/#{username}/organizations/all").json_into(Organization)
+    end
+
+    def to_hash
+      {
+        'id'       => id,
+        'fullName' => full_name,
+        'username' => username,
+        'gravatar' => gravatar_id,
+        'bio'      => bio,
+        'url'      => url
+      }
     end
   end
 end

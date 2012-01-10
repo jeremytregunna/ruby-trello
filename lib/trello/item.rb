@@ -4,24 +4,18 @@
 
 module Trello
   class Item < BasicData
+    attr_reader :id, :name, :type
+
     class << self
       def find(nothing)
         raise 'This operation does not make sense'
       end
     end
 
-    # Fields
-
-    def id
-      fields['id']
-    end
-
-    def name
-      fields['name']
-    end
-
-    def type
-      fields['type']
+    def initialize(fields = {})
+      @id   = fields['id']
+      @name = fields['name']
+      @type = fields['type']
     end
   end
 end

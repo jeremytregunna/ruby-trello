@@ -6,21 +6,14 @@ require 'trello/string'
 
 module Trello
   class BasicData
-    attr_reader :fields
-
     class << self
       def find(path, id)
         Client.get("/#{path}/#{id}").json_into(self)
       end
     end
 
-    # Fields
-    def initialize(fields = {})
-      @fields = fields
-    end
-
     def ==(other)
-      @fields == other.fields
+      id == other.id
     end
   end
 end
