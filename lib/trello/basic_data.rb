@@ -2,14 +2,15 @@
 # Copyright (c) 2012, Jeremy Tregunna
 # Use and distribution terms may be found in the file LICENSE included in this distribution.
 
+require 'trello/string'
+
 module Trello
   class BasicData
     attr_reader :fields
 
     class << self
       def find(path, id)
-        response = Client.query("/1/#{path}/#{id}")
-        new(JSON.parse(response.read_body))
+        Client.get("/#{path}/#{id}").json_into(self)
       end
     end
 

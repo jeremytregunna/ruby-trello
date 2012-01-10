@@ -8,6 +8,10 @@ module Trello
       def find(id)
         super(:cards, id)
       end
+
+      def create(details = {})
+        
+      end
     end
 
     # Fields
@@ -36,46 +40,34 @@ module Trello
 
     def actions
       return @actions if @actions
-
-      response = Client.get("/1/cards/#{id}/actions")
-      @actions = JSON.parse(response.read_body).map do |action_fields|
-        Action.new(action_fields)
-      end
+      @actions = Client.get("/cards/#{id}/actions").json_into(Action)
     end
 
     def board
       return @board if @board
-
       @board = Board.find(fields['idBoard'])
     end
 
     def checklists
       return @checklists if @checklists
-
-      response = Client.get("/1/cards/#{id}/checklists")
-      @checklists = JSON.parse(response.read_body).map do |checklist_fields|
-        Checklist.new(checklist_fields)
-      end
+      @checklists = Client.get("/cards/#{id}/checklists").json_into(Checklist)
     end
 
     def list
       return @list if @list
-
       @list = List.find(fields['idList'])
     end
 
     def members
       return @members if @members
-
       @members = fields['idMembers'].map do |member_id|
-        response = Client.get("/1/members/#{member_id}")
-        Member.new(JSON.parse(response.read_body))
+        Client.get("/members/#{member_id}").json_into(Member)
       end
     end
 
     # Add a comment
     def add_comment(text)
-      response = Client.put("/1/cards/#{id}/actions/comments",  :text => text)
+      Client.put("/cards/#{id}/actions/comments", :text => text)
     end
   end
 end

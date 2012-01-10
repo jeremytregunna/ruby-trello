@@ -28,28 +28,21 @@ module Trello
 
     def board
       return @board if @board
-
-      response = Client.get("/1/actions/#{id}/board")
-      @board = Board.new(JSON.parse(response.read_body))
+      @board = Client.get("/actions/#{id}/board").json_into(Board)
     end
 
     def card
       return @card if @card
-
-      response = Client.get("/1/actions/#{id}/card")
-      @card = Card.new(JSON.parse(response.read_body))
+      @card = Client.get("/actions/#{id}/card").json_into(Card)
     end
 
     def list
       return @list if @list
-
-      response = Client.get("/1/actions/#{id}/list")
-      @list = List.new(JSON.parse(response.read_body))
+      @list = Client.get("/actions/#{id}/list").json_into(List)
     end
 
     def member_creator
       return @member_creator if @member_creator
-
       @member_creator = Member.find(fields['idMemberCreator'])
     end
   end

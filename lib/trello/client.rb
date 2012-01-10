@@ -12,8 +12,8 @@ module Trello
     class << self
       attr_writer :public_key, :secret, :app_name
 
-      def query(path, options = { :method => :get, :params => {} })
-        uri = Addressable::URI.parse("https://api.trello.com#{path}")
+      def query(api_version, path, options = { :method => :get, :params => {} })
+        uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
         uri.query_values = options[:params]
 
         access_token.send(options[:method], uri.to_s)
@@ -21,7 +21,7 @@ module Trello
 
       %w{get post put delete}.each do |http_method|
         send(:define_method, http_method) do |path, params = {}|
-          query(path, :method => http_method, :params => params)
+          query(API_VERSION, path, :method => http_method, :params => params).read_body
         end
       end
 

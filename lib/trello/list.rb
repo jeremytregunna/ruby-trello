@@ -28,25 +28,17 @@ module Trello
 
     def actions
       return @actions if @actions
-
-      response = Client.get("/1/lists/#{id}/actions")
-      @actions = JSON.parse(response.read_body).map do |action_fields|
-        Action.new(action_fields)
-      end
+      @actions = Client.get("/lists/#{id}/actions").json_into(Actions)
     end
 
     def board
       return @board if @board
-
       @board = Board.find(fields['idBoard'])
     end
 
     def cards
       return @cards if @cards
-
-      @cards = fields['cards'].map do |c|
-        Card.new(c)
-      end
+      @cards = fields['cards'].map { |c| Card.new(c) }
     end
   end
 end

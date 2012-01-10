@@ -16,4 +16,6 @@ module Trello
   autoload :List,         'trello/list'
   autoload :Member,       'trello/member'
   autoload :Organization, 'trello/organization'
+
+  API_VERSION = 1
 end
