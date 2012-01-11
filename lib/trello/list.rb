@@ -30,7 +30,7 @@ module Trello
     # Return a timeline of events related to this list.
     def actions
       return @actions if @actions
-      @actions = Client.get("/lists/#{id}/actions").json_into(Actions)
+      @actions = Client.get("/lists/#{id}/actions").json_into(Action)
     end
 
     # Return the board the list is connected to.
