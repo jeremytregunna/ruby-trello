@@ -11,6 +11,11 @@ module Trello
       end
     end
 
+    # Refresh the contents of our object.
+    def refresh!
+      self.class.find(id)
+    end
+
     # Two objects are equal if their _id_ methods are equal.
     def ==(other)
       id == other.id
