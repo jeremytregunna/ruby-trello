@@ -12,29 +12,21 @@ module Trello
     end
 
     before(:each) do
-      stub_request(:get, "https://api.trello.com/1/members/me?").
-         with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-         to_return(:status => 200, :headers => {}, :body => user_payload)
+      stub_trello_request!(:get, '/members/me?', nil, user_payload)
 
       @member = Member.find('me')
     end
 
     context "actions" do
       it "retrieves a list of actions" do
-        stub_request(:get, "https://api.trello.com/1/members/me/actions?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => actions_payload)
-
+        stub_trello_request!(:get, '/members/me/actions?', nil, actions_payload)
         @member.actions.count.should be > 0
       end
     end
 
     context "boards" do
       it "has a list of boards" do
-        stub_request(:get, "https://api.trello.com/1/members/me/boards/all?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => boards_payload)
-
+        stub_trello_request!(:get, '/members/me/boards/all?', nil, boards_payload)
         boards = @member.boards
         boards.count.should be > 0
       end
@@ -42,10 +34,7 @@ module Trello
 
     context "organizations" do
       it "has a list of organizations" do
-        stub_request(:get, "https://api.trello.com/1/members/me/organizations/all?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => orgs_payload)
-
+        stub_trello_request!(:get, '/members/me/organizations/all?', nil, orgs_payload)
         orgs = @member.organizations
         orgs.count.should be > 0
       end
