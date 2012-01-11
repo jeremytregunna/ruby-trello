@@ -1,17 +1,19 @@
-# Ruby wrapper around the Trello API
-# Copyright (c) 2012, Jeremy Tregunna
-# Use and distribution terms may be found in the file LICENSE included in this distribution.
-
 module Trello
+  # A Checklist holds items which are like a "todo" list. Checklists are linked to a card.
   class Checklist < BasicData
     attr_reader :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids
 
     class << self
+      # Locate a specific checklist by its id.
       def find(id)
         super(:checklists, id)
       end
     end
 
+    # Create a new checklist
+    #
+    # Optionally supply a hash of string keyed data retrieved from the Trello API
+    # representing a checklist.
     def initialize(fields = {})
       @id          = fields['id']
       @name        = fields['name']
@@ -23,12 +25,12 @@ module Trello
       @member_ids  = fields['idMembers']
     end
 
+    # Check if the checklist is currently active.
     def closed?
       closed
     end
 
-    # Links to other data structures
-
+    # Return a list of items on the checklist.
     def items
      return @items if @items
 
@@ -37,16 +39,19 @@ module Trello
       end
     end
 
+    # Return a reference to the board the checklist is on.
     def board
       return @board if @board
       @board = Board.find(board_id)
     end
 
+    # Return a reference to the list the checklist is on.
     def list
       return @list if @list
       @list = List.find(list_id)
     end
 
+    # Return a list of members active in this checklist.
     def members
       return @members if @members
 

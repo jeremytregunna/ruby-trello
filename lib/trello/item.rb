@@ -1,17 +1,12 @@
-# Ruby wrapper around the Trello API
-# Copyright (c) 2012, Jeremy Tregunna
-# Use and distribution terms may be found in the file LICENSE included in this distribution.
-
 module Trello
+  # An Item is a basic task that can be checked off and marked as completed.
   class Item < BasicData
     attr_reader :id, :name, :type
 
-    class << self
-      def find(nothing)
-        raise 'This operation does not make sense'
-      end
-    end
-
+    # Creates a new item.
+    #
+    # Optionally supply a hash of string keyed data retrieved from the Trello API
+    # representing an item.
     def initialize(fields = {})
       @id   = fields['id']
       @name = fields['name']

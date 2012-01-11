@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Class: Trello::Client</title>
+
+	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+	<script src="../js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="../js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="class">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="../lib/trello/client_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/client.rb">lib/trello/client.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+			<div id="parent-class-section" class="section">
+				<h3 class="section-header">Parent</h3>
+				
+				<p class="link">Object</p>
+				
+			</div>
+			
+
+			<!-- Namespace Contents -->
+			
+			<div id="namespace-list-section" class="section">
+				<h3 class="section-header">Namespace</h3>
+				<ul class="link-list">
+					
+					<li><span class="type">CLASS</span> <a href="Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-access_token">::access_token</a></li>
+					
+					<li><a href="#method-c-consumer">::consumer</a></li>
+					
+					<li><a href="#method-c-query">::query</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="../images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="../Trello.html">Trello</a></li>
+				
+					<li><a href="../Trello/Action.html">Trello::Action</a></li>
+				
+					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
+				
+					<li><a href="../Trello/Board.html">Trello::Board</a></li>
+				
+					<li><a href="../Trello/Card.html">Trello::Card</a></li>
+				
+					<li><a href="../Trello/Checklist.html">Trello::Checklist</a></li>
+				
+					<li><a href="../Trello/Client.html">Trello::Client</a></li>
+				
+					<li><a href="../Trello/Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
+				
+					<li><a href="../Trello/Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+				
+					<li><a href="../Trello/Item.html">Trello::Item</a></li>
+				
+					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
+				
+					<li><a href="../Trello/List.html">Trello::List</a></li>
+				
+					<li><a href="../Trello/Member.html">Trello::Member</a></li>
+				
+					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../String.html">String</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="class">Trello::Client</h1>
+
+		<div id="description">
+			<p>
+<a href="Client.html">Client</a> is used to handle the OAuth connection to
+<a href="../Trello.html">Trello</a> as well as send requests over that
+authenticated socket.
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="public-key-attribute-method" class="method-detail">
+				<a name="public_key"></a>
+				
+				<a name="public_key="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">public_key</span><span
+						class="attribute-access-type">[W]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="secret-attribute-method" class="method-detail">
+				<a name="secret"></a>
+				
+				<a name="secret="></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">secret</span><span
+						class="attribute-access-type">[W]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+		
+
+		<!-- Methods -->
+		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="query-method" class="method-detail ">
+				<a name="method-c-query"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-callseq">get(path, params)
+post(path, params)
+put(path, params)
+delete(path, params)
+query(api_version, path, options)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Makes a query to a specific path via one of the four HTTP methods,
+optionally with a hash specifying parameters to pass to <a
+href="../Trello.html">Trello</a>.
+</p>
+<p>
+You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
+<em>.delete</em> instead of this method.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="query-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 23</span>
+23:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">query</span>(<span class="ruby-identifier">api_version</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span> = { <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>, <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> {} })
+24:         <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{api_version}#{path}&quot;</span>)
+25:         <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:params</span>]
+26: 
+27:         <span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:method</span>], <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>)
+28:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="protected-class-method-details" class="method-section section">
+			<h3 class="section-header">Protected Class Methods</h3>
+
+		
+			<div id="access-token-method" class="method-detail ">
+				<a name="method-c-access_token"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">access_token</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="access-token-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 51</span>
+51:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">access_token</span>
+52:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@access_token</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@access_token</span>
+53: 
+54:         <span class="ruby-ivar">@access_token</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer</span>)
+55:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="consumer-method" class="method-detail ">
+				<a name="method-c-consumer"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">consumer</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="consumer-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 40</span>
+40:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">consumer</span>
+41:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourPublicKey</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@public_key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+42:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourSecret</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@secret</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+43: 
+44:         <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@public_key</span>, <span class="ruby-ivar">@secret</span>, <span class="ruby-value">:site</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'https://trello.com'</span>,
+45:                                                   <span class="ruby-value">:request_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetRequestToken'</span>,
+46:                                                   <span class="ruby-value">:authorize_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthAuthorizeToken'</span>,
+47:                                                   <span class="ruby-value">:access_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetAccessToken'</span>,
+48:                                                   <span class="ruby-value">:http_method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>)
+49:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

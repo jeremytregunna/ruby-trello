@@ -1,17 +1,25 @@
-# Ruby wrapper around the Trello API
-# Copyright (c) 2012, Jeremy Tregunna
-# Use and distribution terms may be found in the file LICENSE included in this distribution.
-
 require 'addressable/uri'
 
 module Trello
+  # Client is used to handle the OAuth connection to Trello as well as send requests over that authenticated socket.
   class Client
     class EnterYourPublicKey < StandardError; end
     class EnterYourSecret < StandardError; end
 
     class << self
-      attr_writer :public_key, :secret, :app_name
+      attr_writer :public_key, :secret
 
+      # call-seq:
+      #   get(path, params)
+      #   post(path, params)
+      #   put(path, params)
+      #   delete(path, params)
+      #   query(api_version, path, options)
+      #
+      # Makes a query to a specific path via one of the four HTTP methods, optionally
+      # with a hash specifying parameters to pass to Trello.
+      #
+      # You should use one of _.get_, _.post_, _.put_ or _.delete_ instead of this method.
       def query(api_version, path, options = { :method => :get, :params => {} })
         uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
         uri.query_values = options[:params]
