@@ -33,21 +33,33 @@ module Trello
     end
 
     # Returns a list of the boards a member is a part of.
-    def boards
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #   :filter => [ :none, :members, :organization, :public, :open, :closed, :all ] # default: :all
+    def boards(options = { :filter => :all })
       return @boards if @boards
-      @boards = Client.get("/members/#{username}/boards/all").json_into(Board)
+      @boards = Client.get("/members/#{username}/boards", options).json_into(Board)
     end
 
     # Returns a list of cards the member is assigned to.
-    def cards
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :open, :closed, :all ] # default :open
+    def cards(options = { :filter => :open })
       return @cards if @cards
-      @cards = Client.get("/members/#{username}/cards/all").json_into(Card)
+      @cards = Client.get("/members/#{username}/cards", options).json_into(Card)
     end
 
     # Returns a list of the organizations this member is a part of.
-    def organizations
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #   :filter => [ :none, :members, :public, :all ] # default: all
+    def organizations(options = { :filter => :all })
       return @organizations if @organizations
-      @organizations = Client.get("/members/#{username}/organizations/all").json_into(Organization)
+      @organizations = Client.get("/members/#{username}/organizations", options).json_into(Organization)
     end
 
     # Returns a list of notifications for the user
