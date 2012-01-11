@@ -35,19 +35,31 @@ module Trello
     end
 
     # Return all the cards on this board.
-    def cards
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :open, :closed, :all ] # default :open
+    def cards(options = { :filter => :open })
       return @cards if @cards
       @cards = Client.get("/boards/#{id}/cards/all").json_into(Card)
     end
 
     # Returns all the lists on this board.
-    def lists
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :open, :closed, :all ] # default :open
+    def lists(options = { :filter => :open })
       return @lists if @lists
-      @lists = Client.get("/boards/#{id}/lists/all").json_into(List)
+      @lists = Client.get("/boards/#{id}/lists", options).json_into(List)
     end
 
     # Returns an array of members who are associated with this board.
-    def members
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :normal, :owners, :all ] # default :all
+    def members(options = { :filter => :all })
       return @members if @members
       @members = Client.get("/boards/#{id}/members/all").json_into(Member)
     end
