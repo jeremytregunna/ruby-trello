@@ -25,6 +25,15 @@ module Trello
         uri.query_values = options[:params]
 
         access_token.send(options[:method], uri.to_s)
+      rescue OAuth::Problem => e
+        headers = []
+        e.request.each_header do |k,v|
+          headers << [k, v]
+        end
+
+        logger.error("[#{@access_token}] Disposing of access token.\n#{e.inspect}")
+        logger.info("[#{@access_token}] Headers: #{headers.inspect}\nRequest Body: #{e.request.body}")
+        @access_token = nil
       end
 
       %w{get post put delete}.each do |http_method|
