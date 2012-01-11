@@ -26,7 +26,7 @@ module Trello
 
     context "boards" do
       it "has a list of boards" do
-        stub_trello_request!(:get, '/members/me/boards/all?', nil, boards_payload)
+        stub_trello_request!(:get, '/members/me/boards?', { :filter => :all }, boards_payload)
         boards = @member.boards
         boards.count.should be > 0
       end
@@ -34,7 +34,7 @@ module Trello
 
     context "organizations" do
       it "has a list of organizations" do
-        stub_trello_request!(:get, '/members/me/organizations/all?', nil, orgs_payload)
+        stub_trello_request!(:get, '/members/me/organizations?', { :filter => :all }, orgs_payload)
         orgs = @member.organizations
         orgs.count.should be > 0
       end

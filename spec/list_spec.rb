@@ -10,14 +10,10 @@ module Trello
     end
 
     before(:each) do
-      stub_request(:get, "https://api.trello.com/1/lists/abcdef123456789123456789?").
-        with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-        to_return(:status => 200, :headers => {}, :body => JSON.generate(lists_details.first))
-      stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
-        with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-        to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
+      stub_trello_request!(:get, "/lists/abcdef123456789123456789?", nil, JSON.generate(lists_details.first))
+      stub_trello_request!(:get, "/boards/abcdef123456789123456789?", nil, JSON.generate(boards_details.first))
 
-        @list = List.find("abcdef123456789123456789")
+      @list = List.find("abcdef123456789123456789")
     end
 
     context "fields" do
@@ -40,6 +36,7 @@ module Trello
 
     context "cards" do
       it "has a list of cards" do
+        stub_trello_request!(:get, "/lists/abcdef123456789123456789/cards?", { :filter => :open }, cards_payload)
         @list.cards.count.should be > 0
       end
     end
