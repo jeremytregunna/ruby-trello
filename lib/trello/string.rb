@@ -26,6 +26,8 @@ class String
   rescue JSON::ParserError => json_error
     if json_error.message =~ /model not found/
       raise Trello::RecordNotFound
+    else
+      raise
     end
   end
 end
