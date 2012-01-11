@@ -18,11 +18,11 @@ module Trello
       end
     end
 
-    # Creates a new card
+    # Update the fields of a card.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing a card.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # a card.
+    def update_fields(fields)
       @id          = fields['id']
       @name        = fields['name']
       @description = fields['desc']

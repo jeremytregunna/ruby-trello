@@ -1,6 +1,7 @@
 class String
   # Decodes some JSON text in the receiver, and marshals it into a class specified
-  # in _kls_.
+  # in _obj_. If _obj_ is not a class, then we marshall the data into that instance
+  # via _update_fields_.
   #
   # For instance:
   #
@@ -14,12 +15,17 @@ class String
   #   thing = '{"a":42,"b":"foo"}'.json_into(Stuff)
   #   thing.a == 42
   #   thing.b == "foo"
-  def json_into(kls)
+  def json_into(obj)
     data = JSON.parse(self)
+    action = obj.kind_of?(Class) ? :new : :update_fields
     if data.kind_of? Hash
-      kls.new(JSON.parse(self))
+      obj.send(action, JSON.parse(self))
     else
-      data.map { |element| kls.new(element) }
+      data.map { |element| obj.send(action, element) }
+    end
+  rescue JSON::ParserError => json_error
+    if json_error.message =~ /model not found/
+      raise Trello::RecordNotFound
     end
   end
 end

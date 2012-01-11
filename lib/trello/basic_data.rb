@@ -11,6 +11,14 @@ module Trello
       end
     end
 
+    def initialize(fields = {})
+      update_fields(fields)
+    end
+
+    def update_fields(fields)
+      raise NotImplementedError, "#{self.class} does not implement update_fields."
+    end
+
     # Refresh the contents of our object.
     def refresh!
       self.class.find(id)

@@ -10,11 +10,11 @@ module Trello
       end
     end
 
-    # Creates a new action
+    # Update the attributes of an action
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing an Action.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # an Action.
+    def update_fields(fields)
       @id                = fields['id']
       @type              = fields['type']
       @data              = fields['data']

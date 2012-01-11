@@ -3,11 +3,11 @@ module Trello
   class ItemState < BasicData
     attr_reader :id, :state, :item_id
 
-    # Create a new item state.
+    # Update the fields of an item state.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing an item state.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # an item state.
+    def update_fields(fields)
       @id      = fields['id']
       @state   = fields['state']
       @item_id = fields['idItem']

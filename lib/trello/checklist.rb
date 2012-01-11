@@ -10,11 +10,11 @@ module Trello
       end
     end
 
-    # Create a new checklist
+    # Update the fields of a checklist.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing a checklist.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # a checklist.
+    def update_fields(fields)
       @id          = fields['id']
       @name        = fields['name']
       @description = fields['desc']

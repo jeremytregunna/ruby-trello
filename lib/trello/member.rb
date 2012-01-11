@@ -13,11 +13,11 @@ module Trello
       end
     end
 
-    # Creates a new member.
+    # Update the fields of a member.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing a member.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # an Member.
+    def update_fields(fields)
       @id          = fields['id']
       @full_name   = fields['fullName']
       @username    = fields['username']

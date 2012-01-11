@@ -10,11 +10,11 @@ module Trello
       end
     end
 
-    # Create a new board.
+    # Update the fields of a board.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing a board.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # a board.
+    def update_fields(fields)
       @id              = fields['id']
       @name            = fields['name']
       @description     = fields['desc']

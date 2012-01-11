@@ -3,11 +3,11 @@ module Trello
   class Item < BasicData
     attr_reader :id, :name, :type
 
-    # Creates a new item.
+    # Updates the fields of an item.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing an item.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # an item.
+    def update_fields(fields)
       @id   = fields['id']
       @name = fields['name']
       @type = fields['type']

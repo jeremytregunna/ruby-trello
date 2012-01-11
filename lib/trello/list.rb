@@ -10,11 +10,11 @@ module Trello
       end
     end
 
-    # Creates a new List.
+    # Updates the fields of a list.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing a List.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # a List.
+    def update_fields(fields)
       @id            = fields['id']
       @name          = fields['name']
       @closed        = fields['closed']

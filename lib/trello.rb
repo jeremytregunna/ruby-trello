@@ -38,4 +38,7 @@ module Trello
 
   # Version of the Trello API that we use by default.
   API_VERSION = 1
+
+  # Raise this when we can't find a record.
+  class RecordNotFound < StandardError; end
 end

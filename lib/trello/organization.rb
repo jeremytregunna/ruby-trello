@@ -10,11 +10,11 @@ module Trello
       end
     end
 
-    # Create a new organization.
+    # Update the fields of an organization.
     #
-    # Optionally supply a hash of string keyed data retrieved from the Trello API
-    # representing an organization.
-    def initialize(fields = {})
+    # Supply a hash of string keyed data retrieved from the Trello API representing
+    # an Organization.
+    def update_fields(fields)
       @id           = fields['id']
       @name         = fields['name']
       @display_name = fields['displayName']
