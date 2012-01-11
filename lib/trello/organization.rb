@@ -1,17 +1,19 @@
-# Ruby wrapper around the Trello API
-# Copyright (c) 2012, Jeremy Tregunna
-# Use and distribution terms may be found in the file LICENSE included in this distribution.
-
 module Trello
+  # Organizations are useful for linking members together.
   class Organization < BasicData
     attr_reader :id, :name, :display_name, :description, :url
 
     class << self
+      # Find an organization by its id.
       def find(id)
         super(:organizations, id)
       end
     end
 
+    # Create a new organization.
+    #
+    # Optionally supply a hash of string keyed data retrieved from the Trello API
+    # representing an organization.
     def initialize(fields = {})
       @id           = fields['id']
       @name         = fields['name']
@@ -20,18 +22,19 @@ module Trello
       @url          = fields['url']
     end
 
-    # Links to other data structures
-
+    # Returns a timeline of actions.
     def actions
       return @actions if @actions
       @actions = Client.get("/organizations/#{id}/actions").json_into(Action)
     end
 
+    # Returns a list of boards under this organization.
     def boards
       return @boards if @boards
       @boards = Client.get("/organizations/#{id}/boards/all").json_into(Board)
     end
 
+    # Returns an array of members associated with the organization.
     def members
       return @members if @members
       @members = Client.get("/organizations/#{id}/members/all").json_into(Member)
