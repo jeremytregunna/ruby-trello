@@ -41,7 +41,7 @@ module Trello
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
       return @cards if @cards
-      @cards = Client.get("/boards/#{id}/cards/all").json_into(Card)
+      @cards = Client.get("/boards/#{id}/cards").json_into(Card)
     end
 
     # Returns all the lists on this board.
@@ -61,7 +61,7 @@ module Trello
     #    :filter => [ :none, :normal, :owners, :all ] # default :all
     def members(options = { :filter => :all })
       return @members if @members
-      @members = Client.get("/boards/#{id}/members/all").json_into(Member)
+      @members = Client.get("/boards/#{id}/members").json_into(Member)
     end
 
     # Returns a reference to the organization this board belongs to.
