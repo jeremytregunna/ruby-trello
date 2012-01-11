@@ -33,6 +33,7 @@ module Trello
   autoload :ItemState,    'trello/item_state'
   autoload :List,         'trello/list'
   autoload :Member,       'trello/member'
+  autoload :Notification, 'trello/notification'
   autoload :Organization, 'trello/organization'
 
   # Version of the Trello API that we use by default.

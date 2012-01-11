@@ -50,6 +50,11 @@ module Trello
       @organizations = Client.get("/members/#{username}/organizations/all").json_into(Organization)
     end
 
+    # Returns a list of notifications for the user
+    def notifications
+      Client.get("/members/#{username}/notifications").json_into(Notification)
+    end
+
     # Returns a hash of the items that would be returned by Trello.
     def to_hash
       {
