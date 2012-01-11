@@ -15,11 +15,10 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a List.
     def update_fields(fields)
-      @id            = fields['id']
-      @name          = fields['name']
-      @closed        = fields['closed']
-      @board_id      = fields['idBoard']
-      @list_of_cards = fields['cards']
+      @id       = fields['id']
+      @name     = fields['name']
+      @closed   = fields['closed']
+      @board_id = fields['idBoard']
     end
 
     # Check if the list is not active anymore.
@@ -30,7 +29,7 @@ module Trello
     # Return a timeline of events related to this list.
     def actions
       return @actions if @actions
-      @actions = Client.get("/lists/#{id}/actions").json_into(Actions)
+      @actions = Client.get("/lists/#{id}/actions").json_into(Action)
     end
 
     # Return the board the list is connected to.
@@ -40,9 +39,13 @@ module Trello
     end
 
     # Returns all the cards on this list.
-    def cards
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :open, :closed, :all ] # default :open
+    def cards(options = { :filter => :open })
       return @cards if @cards
-      @cards = @list_of_cards.map { |c| Card.new(c) }
+      @cards = Client.get("/lists/#{id}/cards", options).json_into(Card)
     end
   end
 end

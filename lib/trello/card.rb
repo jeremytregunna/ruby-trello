@@ -46,9 +46,13 @@ module Trello
     end
 
     # Returns a list of checklists associated with the card.
-    def checklists
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :all ] # default :all
+    def checklists(options = { :filter => :all })
       return @checklists if @checklists
-      @checklists = Client.get("/cards/#{id}/checklists").json_into(Checklist)
+      @checklists = Client.get("/cards/#{id}/checklists", options).json_into(Checklist)
     end
 
     # Returns a reference to the list this card is currently in.
