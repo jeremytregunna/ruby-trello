@@ -71,7 +71,13 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
+					<li><a href="#method-c-new">::new</a></li>
+					
 					<li><a href="#method-i-%3D%3D">#==</a></li>
+					
+					<li><a href="#method-i-refresh%21">#refresh!</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 				</ul>
 			</div>
@@ -126,7 +132,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -215,6 +225,40 @@ specific id.
 			</div>
 
 		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(fields = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 14</span>
+14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
+15:       <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+16:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
 		</div>
 	
 		<div id="public-instance-method-details" class="method-section section">
@@ -243,10 +287,80 @@ Two objects are equal if their <em>id</em> methods are equal.
 					<div class="method-source-code"
 						id="--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 15</span>
-15:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
-16:       <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>
-17:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 28</span>
+28:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
+29:       <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>
+30:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="refresh--method" class="method-detail ">
+				<a name="method-i-refresh%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">refresh!</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Refresh the contents of our object.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="refresh--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 23</span>
+23:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refresh!</span>
+24:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+25:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 18</span>
+18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+19:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;#{self.class} does not implement update_fields.&quot;</span>
+20:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

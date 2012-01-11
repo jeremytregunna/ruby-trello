@@ -139,7 +139,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -252,7 +256,16 @@ You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
 25:         <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:params</span>]
 26: 
 27:         <span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:method</span>], <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>)
-28:       <span class="ruby-keyword kw">end</span></pre>
+28:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Problem</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+29:         <span class="ruby-identifier">headers</span> = []
+30:         <span class="ruby-identifier">e</span>.<span class="ruby-identifier">request</span>.<span class="ruby-identifier">each_header</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+31:           <span class="ruby-identifier">headers</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>]
+32:         <span class="ruby-keyword kw">end</span>
+33: 
+34:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span>(<span class="ruby-node">&quot;[#{@access_token}] Disposing of access token.\n#{e.inspect}&quot;</span>)
+35:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;[#{@access_token}] Headers: #{headers.inspect}\nRequest Body: #{e.request.body}&quot;</span>)
+36:         <span class="ruby-ivar">@access_token</span> = <span class="ruby-keyword kw">nil</span>
+37:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -289,12 +302,12 @@ You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
 					<div class="method-source-code"
 						id="access-token-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 51</span>
-51:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">access_token</span>
-52:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@access_token</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@access_token</span>
-53: 
-54:         <span class="ruby-ivar">@access_token</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer</span>)
-55:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 60</span>
+60:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">access_token</span>
+61:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@access_token</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@access_token</span>
+62: 
+63:         <span class="ruby-ivar">@access_token</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer</span>)
+64:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -325,17 +338,17 @@ You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
 					<div class="method-source-code"
 						id="consumer-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 40</span>
-40:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">consumer</span>
-41:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourPublicKey</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@public_key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
-42:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourSecret</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@secret</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
-43: 
-44:         <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@public_key</span>, <span class="ruby-ivar">@secret</span>, <span class="ruby-value">:site</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'https://trello.com'</span>,
-45:                                                   <span class="ruby-value">:request_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetRequestToken'</span>,
-46:                                                   <span class="ruby-value">:authorize_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthAuthorizeToken'</span>,
-47:                                                   <span class="ruby-value">:access_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetAccessToken'</span>,
-48:                                                   <span class="ruby-value">:http_method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>)
-49:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 49</span>
+49:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">consumer</span>
+50:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourPublicKey</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@public_key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+51:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourSecret</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@secret</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+52: 
+53:         <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@public_key</span>, <span class="ruby-ivar">@secret</span>, <span class="ruby-value">:site</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'https://trello.com'</span>,
+54:                                                   <span class="ruby-value">:request_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetRequestToken'</span>,
+55:                                                   <span class="ruby-value">:authorize_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthAuthorizeToken'</span>,
+56:                                                   <span class="ruby-value">:access_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetAccessToken'</span>,
+57:                                                   <span class="ruby-value">:http_method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>)
+58:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

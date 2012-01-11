@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Trello::Item</title>
+	<title>Class: Trello::RecordNotFound</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -38,8 +38,8 @@
 				<div class="section-body">
 					<ul>
 					
-						<li><a href="../lib/trello/item_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/item.rb">lib/trello/item.rb</a></li>
+						<li><a href="../lib/trello_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello.rb">lib/trello.rb</a></li>
 					
 					</ul>
 				</div>
@@ -55,7 +55,7 @@
 			<div id="parent-class-section" class="section">
 				<h3 class="section-header">Parent</h3>
 				
-				<p class="link"><a href="BasicData.html">Trello::BasicData</a></p>
+				<p class="link">StandardError</p>
 				
 			</div>
 			
@@ -64,15 +64,6 @@
 			
 
 			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-i-update_fields">#update_fields</a></li>
-					
-				</ul>
-			</div>
 			
 
 			<!-- Included Modules -->
@@ -141,12 +132,11 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">Trello::Item</h1>
+		<h1 class="class">Trello::RecordNotFound</h1>
 
 		<div id="description">
 			<p>
-An <a href="Item.html">Item</a> is a basic task that can be checked off and
-marked as completed.
+Raise this when we can&#8217;t find a record.
 </p>
 
 		</div>
@@ -156,108 +146,9 @@ marked as completed.
 
 		<!-- Attributes -->
 		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="id-attribute-method" class="method-detail">
-				<a name="id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="name-attribute-method" class="method-detail">
-				<a name="name"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">name</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="type-attribute-method" class="method-detail">
-				<a name="type"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">type</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
-		
 
 		<!-- Methods -->
 		
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
-
-		
-			<div id="update-fields-method" class="method-detail ">
-				<a name="method-i-update_fields"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">update_fields</span><span
-						class="method-args">(fields)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Updates the fields of an item.
-</p>
-<p>
-Supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing an item.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="update-fields-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/item.rb, line 10</span>
-10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-11:       <span class="ruby-ivar">@id</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-12:       <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
-13:       <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
-14:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
 
 	</div>
 

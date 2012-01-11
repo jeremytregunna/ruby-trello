@@ -69,9 +69,9 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#method-c-new">::new</a></li>
-					
 					<li><a href="#method-i-item">#item</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 				</ul>
 			</div>
@@ -126,7 +126,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -207,54 +211,6 @@ Represents the state of an item.
 
 		<!-- Methods -->
 		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
-
-		
-			<div id="new-method" class="method-detail ">
-				<a name="method-c-new"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">(fields = {})</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Create a new item state.
-</p>
-<p>
-Optionally supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing an item state.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/item_state.rb, line 10</span>
-10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
-11:       <span class="ruby-ivar">@id</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-12:       <span class="ruby-ivar">@state</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'state'</span>]
-13:       <span class="ruby-ivar">@item_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idItem'</span>]
-14:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
 		<div id="public-instance-method-details" class="method-section section">
 			<h3 class="section-header">Public Instance Methods</h3>
 
@@ -285,6 +241,48 @@ Return the item this state belongs to.
 17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">item</span>
 18:       <span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@item_id</span>)
 19:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Update the fields of an item state.
+</p>
+<p>
+Supply a hash of string keyed data retrieved from the <a
+href="../Trello.html">Trello</a> API representing an item state.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/item_state.rb, line 10</span>
+10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+11:       <span class="ruby-ivar">@id</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+12:       <span class="ruby-ivar">@state</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'state'</span>]
+13:       <span class="ruby-ivar">@item_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idItem'</span>]
+14:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

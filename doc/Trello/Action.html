@@ -71,8 +71,6 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
-					<li><a href="#method-c-new">::new</a></li>
-					
 					<li><a href="#method-i-board">#board</a></li>
 					
 					<li><a href="#method-i-card">#card</a></li>
@@ -80,6 +78,8 @@
 					<li><a href="#method-i-list">#list</a></li>
 					
 					<li><a href="#method-i-member_creator">#member_creator</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 				</ul>
 			</div>
@@ -134,7 +134,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -262,50 +266,6 @@ object.
  8:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
  9:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:actions</span>, <span class="ruby-identifier">id</span>)
 10:       <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="new-method" class="method-detail ">
-				<a name="method-c-new"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">(fields = {})</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Creates a new action
-</p>
-<p>
-Optionally supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing an <a
-href="Action.html">Action</a>.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 17</span>
-17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
-18:       <span class="ruby-ivar">@id</span>                = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-19:       <span class="ruby-ivar">@type</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
-20:       <span class="ruby-ivar">@data</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'data'</span>]
-21:       <span class="ruby-ivar">@member_creator_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMemberCreator'</span>]
-22:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -460,6 +420,50 @@ Returns the member who created the action.
 44:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@member_creator</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@member_creator</span>
 45:       <span class="ruby-ivar">@member_creator</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">member_creator_id</span>)
 46:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Update the attributes of an action
+</p>
+<p>
+Supply a hash of string keyed data retrieved from the <a
+href="../Trello.html">Trello</a> API representing an <a
+href="Action.html">Action</a>.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+18:       <span class="ruby-ivar">@id</span>                = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+19:       <span class="ruby-ivar">@type</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
+20:       <span class="ruby-ivar">@data</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'data'</span>]
+21:       <span class="ruby-ivar">@member_creator_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMemberCreator'</span>]
+22:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

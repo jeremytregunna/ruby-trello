@@ -73,8 +73,6 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
-					<li><a href="#method-c-new">::new</a></li>
-					
 					<li><a href="#method-i-actions">#actions</a></li>
 					
 					<li><a href="#method-i-add_comment">#add_comment</a></li>
@@ -90,6 +88,8 @@
 					<li><a href="#method-i-save%21">#save!</a></li>
 					
 					<li><a href="#method-i-update%21">#update!</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 					<li><a href="#method-i-valid%3F">#valid?</a></li>
 					
@@ -146,7 +146,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -385,53 +389,6 @@ Find a specific card by its id.
  9:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
 10:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:cards</span>, <span class="ruby-identifier">id</span>)
 11:       <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="new-method" class="method-detail ">
-				<a name="method-c-new"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">(fields = {})</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Creates a new card
-</p>
-<p>
-Optionally supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing a card.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 25</span>
-25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
-26:       <span class="ruby-ivar">@id</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-27:       <span class="ruby-ivar">@name</span>        = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
-28:       <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]
-29:       <span class="ruby-ivar">@closed</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'closed'</span>]
-30:       <span class="ruby-ivar">@url</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
-31:       <span class="ruby-ivar">@board_id</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idBoard'</span>]
-32:       <span class="ruby-ivar">@member_ids</span>  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMembers'</span>]
-33:       <span class="ruby-ivar">@list_id</span>     = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idList'</span>]
-34:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -740,6 +697,53 @@ Update an existing record.
 81:       <span class="ruby-comment cmt"># Trello doesn't support this yet. But Daniel is working on it as I</span>
 82:       <span class="ruby-comment cmt"># place this comment here!</span>
 83:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Update the fields of a card.
+</p>
+<p>
+Supply a hash of string keyed data retrieved from the <a
+href="../Trello.html">Trello</a> API representing a card.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 25</span>
+25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+26:       <span class="ruby-ivar">@id</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+27:       <span class="ruby-ivar">@name</span>        = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
+28:       <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]
+29:       <span class="ruby-ivar">@closed</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'closed'</span>]
+30:       <span class="ruby-ivar">@url</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
+31:       <span class="ruby-ivar">@board_id</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idBoard'</span>]
+32:       <span class="ruby-ivar">@member_ids</span>  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMembers'</span>]
+33:       <span class="ruby-ivar">@list_id</span>     = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idList'</span>]
+34:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

@@ -124,7 +124,11 @@
 				
 					<li><a href="./Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="./Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="./Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="./Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="./String.html">String</a></li>
 				
@@ -161,7 +165,7 @@
 				<div class="method-heading">
 				
 					<span class="method-name">json_into</span><span
-						class="method-args">(kls)</span>
+						class="method-args">(obj)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -170,7 +174,8 @@
 					
 					<p>
 Decodes some JSON text in the receiver, and marshals it into a class
-specified in <em>kls</em>.
+specified in <em>obj</em>. If <em>obj</em> is not a class, then we marshall
+the data into that instance via <em>update_fields</em>.
 </p>
 <p>
 For instance:
@@ -192,15 +197,20 @@ For instance:
 					<div class="method-source-code"
 						id="json-into-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/string.rb, line 17</span>
-17:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">json_into</span>(<span class="ruby-identifier">kls</span>)
-18:     <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>)
-19:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Hash</span>
-20:       <span class="ruby-identifier">kls</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>))
-21:     <span class="ruby-keyword kw">else</span>
-22:       <span class="ruby-identifier">data</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span> <span class="ruby-identifier">kls</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">element</span>) }
-23:     <span class="ruby-keyword kw">end</span>
-24:   <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/string.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">json_into</span>(<span class="ruby-identifier">obj</span>)
+19:     <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>)
+20:     <span class="ruby-identifier">action</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Class</span>) <span class="ruby-operator">?</span> <span class="ruby-value">:new</span> <span class="ruby-operator">:</span> <span class="ruby-value">:update_fields</span>
+21:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Hash</span>
+22:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>, <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>))
+23:     <span class="ruby-keyword kw">else</span>
+24:       <span class="ruby-identifier">data</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">element</span>) }
+25:     <span class="ruby-keyword kw">end</span>
+26:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">ParserError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">json_error</span>
+27:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/model not found/</span>
+28:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordNotFound</span>
+29:     <span class="ruby-keyword kw">end</span>
+30:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

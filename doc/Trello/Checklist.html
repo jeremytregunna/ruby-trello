@@ -71,8 +71,6 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
-					<li><a href="#method-c-new">::new</a></li>
-					
 					<li><a href="#method-i-board">#board</a></li>
 					
 					<li><a href="#method-i-closed%3F">#closed?</a></li>
@@ -82,6 +80,8 @@
 					<li><a href="#method-i-list">#list</a></li>
 					
 					<li><a href="#method-i-members">#members</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 				</ul>
 			</div>
@@ -136,7 +136,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -348,53 +352,6 @@ Locate a specific checklist by its id.
 			</div>
 
 		
-			<div id="new-method" class="method-detail ">
-				<a name="method-c-new"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">(fields = {})</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Create a new checklist
-</p>
-<p>
-Optionally supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing a checklist.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/checklist.rb, line 17</span>
-17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
-18:       <span class="ruby-ivar">@id</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-19:       <span class="ruby-ivar">@name</span>        = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
-20:       <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]
-21:       <span class="ruby-ivar">@closed</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'closed'</span>]
-22:       <span class="ruby-ivar">@url</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
-23:       <span class="ruby-ivar">@check_items</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'checkItems'</span>]
-24:       <span class="ruby-ivar">@board_id</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idBoard'</span>]
-25:       <span class="ruby-ivar">@member_ids</span>  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMembers'</span>]
-26:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
 		</div>
 	
 		<div id="public-instance-method-details" class="method-section section">
@@ -581,6 +538,53 @@ Return a list of members active in this checklist.
 59:         <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">member_id</span>)
 60:       <span class="ruby-keyword kw">end</span>
 61:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Update the fields of a checklist.
+</p>
+<p>
+Supply a hash of string keyed data retrieved from the <a
+href="../Trello.html">Trello</a> API representing a checklist.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/checklist.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+18:       <span class="ruby-ivar">@id</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+19:       <span class="ruby-ivar">@name</span>        = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
+20:       <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]
+21:       <span class="ruby-ivar">@closed</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'closed'</span>]
+22:       <span class="ruby-ivar">@url</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
+23:       <span class="ruby-ivar">@check_items</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'checkItems'</span>]
+24:       <span class="ruby-ivar">@board_id</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idBoard'</span>]
+25:       <span class="ruby-ivar">@member_ids</span>  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMembers'</span>]
+26:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

@@ -71,17 +71,19 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
-					<li><a href="#method-c-new">::new</a></li>
-					
 					<li><a href="#method-i-actions">#actions</a></li>
 					
 					<li><a href="#method-i-boards">#boards</a></li>
 					
 					<li><a href="#method-i-cards">#cards</a></li>
 					
+					<li><a href="#method-i-notifications">#notifications</a></li>
+					
 					<li><a href="#method-i-organizations">#organizations</a></li>
 					
 					<li><a href="#method-i-to_hash">#to_hash</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 				</ul>
 			</div>
@@ -136,7 +138,11 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
+				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
+				
+					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -317,51 +323,6 @@ The argument may be specified as either an <em>id</em> or a
 			</div>
 
 		
-			<div id="new-method" class="method-detail ">
-				<a name="method-c-new"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">new</span><span
-						class="method-args">(fields = {})</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Creates a new member.
-</p>
-<p>
-Optionally supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing a member.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="new-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/member.rb, line 20</span>
-20:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
-21:       <span class="ruby-ivar">@id</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-22:       <span class="ruby-ivar">@full_name</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'fullName'</span>]
-23:       <span class="ruby-ivar">@username</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'username'</span>]
-24:       <span class="ruby-ivar">@gravatar_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'gravatar'</span>]
-25:       <span class="ruby-ivar">@bio</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'bio'</span>]
-26:       <span class="ruby-ivar">@url</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
-27:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
 		</div>
 	
 		<div id="public-instance-method-details" class="method-section section">
@@ -479,6 +440,42 @@ Returns a list of cards the member is assigned to.
 			</div>
 
 		
+			<div id="notifications-method" class="method-detail ">
+				<a name="method-i-notifications"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">notifications</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns a list of notifications for the user
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="notifications-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/member.rb, line 54</span>
+54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notifications</span>
+55:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/members/#{username}/notifications&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Notification</span>)
+56:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
 			<div id="organizations-method" class="method-detail ">
 				<a name="method-i-organizations"></a>
 
@@ -539,17 +536,63 @@ href="../Trello.html">Trello</a>.
 					<div class="method-source-code"
 						id="to-hash-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/member.rb, line 54</span>
-54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>
-55:       {
-56:         <span class="ruby-value str">'id'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>,
-57:         <span class="ruby-value str">'fullName'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">full_name</span>,
-58:         <span class="ruby-value str">'username'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>,
-59:         <span class="ruby-value str">'gravatar'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gravatar_id</span>,
-60:         <span class="ruby-value str">'bio'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">bio</span>,
-61:         <span class="ruby-value str">'url'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>
-62:       }
-63:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/member.rb, line 59</span>
+59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_hash</span>
+60:       {
+61:         <span class="ruby-value str">'id'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>,
+62:         <span class="ruby-value str">'fullName'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">full_name</span>,
+63:         <span class="ruby-value str">'username'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>,
+64:         <span class="ruby-value str">'gravatar'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">gravatar_id</span>,
+65:         <span class="ruby-value str">'bio'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">bio</span>,
+66:         <span class="ruby-value str">'url'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>
+67:       }
+68:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Update the fields of a member.
+</p>
+<p>
+Supply a hash of string keyed data retrieved from the <a
+href="../Trello.html">Trello</a> API representing an <a
+href="Member.html">Member</a>.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/member.rb, line 20</span>
+20:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+21:       <span class="ruby-ivar">@id</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+22:       <span class="ruby-ivar">@full_name</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'fullName'</span>]
+23:       <span class="ruby-ivar">@username</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'username'</span>]
+24:       <span class="ruby-ivar">@gravatar_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'gravatar'</span>]
+25:       <span class="ruby-ivar">@bio</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'bio'</span>]
+26:       <span class="ruby-ivar">@url</span>         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
+27:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
