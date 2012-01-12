@@ -1,6 +1,8 @@
 require 'rubygems'
-require 'simplecov'
-SimpleCov.start
+unless defined? Rubinius
+  require 'simplecov'
+  SimpleCov.start
+end
 
 # Set up gems listed in the Gemfile.
 begin
