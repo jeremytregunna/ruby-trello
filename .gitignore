@@ -3,3 +3,4 @@ test-credentials
 .rbx
 .rvmrc
 *.gem
+coverage
