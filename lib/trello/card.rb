@@ -93,7 +93,7 @@ module Trello
 
     # Add a comment with the supplied text.
     def add_comment(text)
-      Client.put("/cards/#{id}/actions/comments", :text => text)
+      Client.post("/cards/#{id}/actions/comments", :text => text)
     end
   end
 end
