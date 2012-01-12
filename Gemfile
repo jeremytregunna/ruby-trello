@@ -7,6 +7,6 @@ gem 'jruby-openssl', :platforms => :jruby
 
 group :spec do
   gem 'rspec'
-  gem 'simplecov', :require => false
+  gem 'simplecov', :require => false, :platforms => [ :mri, :mri_18, :mri_19, :jruby ]
   gem 'webmock'
 end
