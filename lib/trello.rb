@@ -1,5 +1,6 @@
 require 'oauth'
 require 'json'
+require 'logger'
 
 # Ruby wrapper around the Trello[http://trello.com] API
 #
@@ -42,4 +43,12 @@ module Trello
 
   # Raise this when we can't find a record.
   class RecordNotFound < StandardError; end
+
+  def self.logger
+    @@logger || Logger.new(STDOUT)
+  end
+
+  def self.logger=(logger)
+    @@logger = logger
+  end
 end
