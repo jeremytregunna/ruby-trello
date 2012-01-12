@@ -42,7 +42,7 @@ module Trello
   API_VERSION = 1
 
   # Raise this when we can't find a record.
-  class RecordNotFound < StandardError; end
+  class NotFound < StandardError; end
 
   def self.logger
     @@logger || Logger.new(STDOUT)

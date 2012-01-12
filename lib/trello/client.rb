@@ -24,7 +24,9 @@ module Trello
         uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
         uri.query_values = options[:params]
 
-        access_token.send(options[:method], uri.to_s)
+        response = access_token.send(options[:method], uri.to_s)
+        raise NotFound if response.status != 200
+        response
       rescue OAuth::Problem => e
         headers = []
         e.request.each_header do |k,v|
@@ -32,7 +34,6 @@ module Trello
         end
 
         logger.error("[#{@access_token}] Disposing of access token.\n#{e.inspect}")
-        logger.info("[#{@access_token}] Headers: #{headers.inspect}\nRequest Body: #{e.request.body}")
         @access_token = nil
       end
 
