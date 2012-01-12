@@ -61,7 +61,7 @@ module Trello
     #    :filter => [ :none, :normal, :owners, :all ] # default :all
     def members(options = { :filter => :all })
       return @members if @members
-      @members = Client.get("/boards/#{id}/members").json_into(Member)
+      @members = Client.get("/boards/#{id}/members", options).json_into(Member)
     end
 
     # Returns a reference to the organization this board belongs to.

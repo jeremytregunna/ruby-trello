@@ -32,6 +32,14 @@ module Trello
       end
     end
 
+    context "cards" do
+      it "has a list of cards" do
+        stub_trello_request!(:get, '/members/me/cards?', { :filter => :open }, cards_payload)
+        cards = @member.cards
+        cards.count.should be > 0
+      end
+    end
+
     context "organizations" do
       it "has a list of organizations" do
         stub_trello_request!(:get, '/members/me/organizations?', { :filter => :all }, orgs_payload)

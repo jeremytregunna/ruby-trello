@@ -28,6 +28,7 @@ module Trello
   autoload :BasicData,    'trello/basic_data'
   autoload :Board,        'trello/board'
   autoload :Card,         'trello/card'
+  autoload :Checklist,    'trello/checklist'
   autoload :Client,       'trello/client'
   autoload :Item,         'trello/item'
   autoload :ItemState,    'trello/item_state'

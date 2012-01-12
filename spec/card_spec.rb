@@ -66,6 +66,13 @@ module Trello
       end
     end
 
+    context "actions" do
+      it "has a list of actions" do
+        stub_trello_request!(:get, "/cards/abcdef123456789123456789/actions?", nil, actions_payload)
+        @card.actions.count.should be > 0
+      end
+    end
+
     context "boards" do
       it "has a board" do
         stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
@@ -73,6 +80,20 @@ module Trello
           to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
 
         @card.board.should_not be_nil
+      end
+    end
+
+    context "checklists" do
+      it "has a list of checklists" do
+        stub_trello_request!(:get, "/cards/abcdef123456789123456789/checklists?", { :filter => :all }, checklists_payload)
+        @card.checklists.count.should be > 0
+      end
+    end
+
+    context "list" do
+      it 'has a list' do
+        stub_trello_request!(:get, "/lists/abcdef123456789123456789?", nil, JSON.generate(lists_details.first))
+        @card.list.should_not be_nil
       end
     end
 
@@ -87,6 +108,13 @@ module Trello
 
         @card.board.should_not be_nil
         @card.members.should_not be_nil
+      end
+    end
+
+    context "comments" do
+      it "posts a comment" do
+        stub_trello_request!(:put, "/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' })
+        @card.add_comment("testing").should be_empty
       end
     end
   end

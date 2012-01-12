@@ -34,11 +34,22 @@ module Trello
       end
     end
 
+    context "actions" do
+      it "has a list of actions" do
+        stub_trello_request!(:get, "/lists/abcdef123456789123456789/actions?", nil, actions_payload)
+        @list.actions.count.should be > 0
+      end
+    end
+
     context "cards" do
       it "has a list of cards" do
         stub_trello_request!(:get, "/lists/abcdef123456789123456789/cards?", { :filter => :open }, cards_payload)
         @list.cards.count.should be > 0
       end
+    end
+
+    it "is not closed" do
+      @list.closed?.should_not be_true
     end
   end
 end

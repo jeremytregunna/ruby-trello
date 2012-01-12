@@ -56,6 +56,23 @@ module Helpers
     JSON.generate(boards_details)
   end
 
+  def checklists_details
+    [{
+      "id"         => "abcdef123456789123456789",
+      "name"       => "Test Checklist",
+      "desc"       => "A marvelous little checklist",
+      "closed"     => false,
+      "url"        => "https://trello.com/blah/blah",
+      "idBoard"    => "abcdef123456789123456789",
+      "idMembers"  => ["abcdef123456789123456789"],
+      "checkItems" => {}
+    }]
+  end
+
+  def checklists_payload
+    JSON.generate(checklists_details)
+  end
+
   def lists_details
     [{
       "id"      => "abcdef123456789123456789",
