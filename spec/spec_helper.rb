@@ -1,4 +1,6 @@
 require 'rubygems'
+require 'simplecov'
+SimpleCov.start
 
 # Set up gems listed in the Gemfile.
 begin
