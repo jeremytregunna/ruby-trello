@@ -113,7 +113,7 @@ module Trello
 
     context "comments" do
       it "posts a comment" do
-        stub_trello_request!(:put, "/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' })
+        stub_trello_request!(:post, "/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' })
         @card.add_comment("testing").should be_empty
       end
     end
