@@ -69,6 +69,25 @@ module Trello
       end
     end
 
+    # Change the name of the card
+    def name=(val)
+      Client.put("/card/#{id}/name", :value => val)
+      @name = val
+    end
+
+    # Change the description of the card
+    def description=(val)
+      Client.put("/card/#{id}/desc", :value => val)
+      @description = val
+    end
+
+    # Change the list this card is a part of
+    def list=(other)
+      Client.put("/card/#{id}/idList", :value => other.id)
+      @list_id = other.id
+      other
+    end
+
     # Saves a record.
     def save!
       return update! if id
