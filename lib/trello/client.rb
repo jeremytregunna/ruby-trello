@@ -51,11 +51,12 @@ module Trello
         raise EnterYourPublicKey if @public_key.to_s.empty?
         raise EnterYourSecret if @secret.to_s.empty?
 
-        OAuth::Consumer.new(@public_key, @secret, :site => 'https://trello.com',
+        OAuth::Consumer.new(@public_key, @secret, :site               => 'http://trello.com',
                                                   :request_token_path => '/1/OAuthGetRequestToken',
-                                                  :authorize_path => '/1/OAuthAuthorizeToken',
-                                                  :access_token_path => '/1/OAuthGetAccessToken',
-                                                  :http_method => :get)
+                                                  :authorize_path     => '/1/OAuthAuthorizeToken',
+                                                  :access_token_path  => '/1/OAuthGetAccessToken',
+                                                  :context            => 'read,write',
+                                                  :http_method        => :get)
       end
 
       def access_token
