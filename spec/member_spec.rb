@@ -12,21 +12,21 @@ module Trello
     end
 
     before(:each) do
-      stub_trello_request!(:get, '/members/me?', nil, user_payload)
+      Client.stub(:get).with("/members/me").and_return user_payload
 
       @member = Member.find('me')
     end
 
     context "actions" do
-      it "retrieves a list of actions" do
-        stub_trello_request!(:get, '/members/me/actions?', nil, actions_payload)
+      it "retrieves a list of actions", :refactor => true do
+        Client.stub(:get).with("/members/me/actions").and_return actions_payload
         @member.actions.count.should be > 0
       end
     end
 
     context "boards" do
       it "has a list of boards" do
-        stub_trello_request!(:get, '/members/me/boards?', { :filter => :all }, boards_payload)
+        Client.stub(:get).with("/members/me/boards", { :filter => :all }).and_return boards_payload
         boards = @member.boards
         boards.count.should be > 0
       end
@@ -34,7 +34,7 @@ module Trello
 
     context "cards" do
       it "has a list of cards" do
-        stub_trello_request!(:get, '/members/me/cards?', { :filter => :open }, cards_payload)
+        Client.stub(:get).with("/members/me/cards", { :filter => :open }).and_return cards_payload
         cards = @member.cards
         cards.count.should be > 0
       end
@@ -42,7 +42,7 @@ module Trello
 
     context "organizations" do
       it "has a list of organizations" do
-        stub_trello_request!(:get, '/members/me/organizations?', { :filter => :all }, orgs_payload)
+        Client.stub(:get).with("/members/me/organizations", { :filter => :all }).and_return orgs_payload
         orgs = @member.organizations
         orgs.count.should be > 0
       end
