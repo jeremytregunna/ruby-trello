@@ -96,7 +96,7 @@ module Trello
         :name   => @name,
         :desc   => @description,
         :idList => @list_id
-      })
+      }).json_into(self)
     end
 
     # Update an existing record.
@@ -112,7 +112,7 @@ module Trello
 
     # Add a comment with the supplied text.
     def add_comment(text)
-      Client.post("/cards/#{id}/actions/comments", :text => text)
+      Client.put("/cards/#{id}/actions/comments", :text => text)
     end
   end
 end
