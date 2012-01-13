@@ -14,7 +14,7 @@ module Trello
       def create(options)
         new('name'   => options[:name],
             'idList' => options[:list_id],
-            'desc' => options[:description]).save!
+            'desc'   => options[:description]).save!
       end
     end
 
@@ -31,6 +31,7 @@ module Trello
       @board_id    = fields['idBoard']
       @member_ids  = fields['idMembers']
       @list_id     = fields['idList']
+      self
     end
 
     # Returns a list of the actions associated with this card.
@@ -90,6 +91,7 @@ module Trello
 
     # Saves a record.
     def save!
+      # If we have an id, just update our fields.
       return update! if id
 
       Client.post("/cards", {

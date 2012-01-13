@@ -20,6 +20,7 @@ module Trello
       @display_name = fields['displayName']
       @description  = fields['description']
       @url          = fields['url']
+      self
     end
 
     # Returns a timeline of actions.

@@ -19,6 +19,7 @@ module Trello
       @type              = fields['type']
       @data              = fields['data']
       @member_creator_id = fields['idMemberCreator']
+      self
     end
 
     # Returns the board this action occurred on.

@@ -38,9 +38,9 @@ module Trello
           :name    => 'Test Card',
           :desc    => '',
         }
-        stub_trello_request!(:post, '/cards', payload.merge(:idList => lists_details.first['id']))
-        card = Card.create(payload.merge(:list_id => lists_details.first['id']))
-        card.should == ''
+        stub_trello_request!(:post, '/cards', payload.merge(:idList => lists_details.first['id']), JSON.generate(cards_details.first.merge(payload.merge(:idList => lists_details.first['id']))))
+        card = Card.create(cards_details.first.merge(payload.merge(:list_id => lists_details.first['id'])))
+        card.class.should be Card
       end
     end
 

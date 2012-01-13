@@ -24,6 +24,7 @@ module Trello
       @gravatar_id = fields['gravatar']
       @bio         = fields['bio']
       @url         = fields['url']
+      self
     end
 
     # Returns a list of the users actions.

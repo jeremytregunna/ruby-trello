@@ -19,6 +19,7 @@ module Trello
       @name     = fields['name']
       @closed   = fields['closed']
       @board_id = fields['idBoard']
+      self
     end
 
     # Check if the list is not active anymore.

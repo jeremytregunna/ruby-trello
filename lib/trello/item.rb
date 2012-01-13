@@ -11,6 +11,7 @@ module Trello
       @id   = fields['id']
       @name = fields['name']
       @type = fields['type']
+      self
     end
   end
 end

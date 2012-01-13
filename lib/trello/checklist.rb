@@ -23,6 +23,7 @@ module Trello
       @check_items = fields['checkItems']
       @board_id    = fields['idBoard']
       @member_ids  = fields['idMembers']
+      self
     end
 
     # Check if the checklist is currently active.

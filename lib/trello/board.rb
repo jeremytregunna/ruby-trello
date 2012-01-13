@@ -21,6 +21,7 @@ module Trello
       @closed          = fields['closed']
       @url             = fields['url']
       @organization_id = fields['idOrganization']
+      self
     end
 
     # Check if the board is active.

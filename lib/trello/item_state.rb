@@ -11,6 +11,7 @@ module Trello
       @id      = fields['id']
       @state   = fields['state']
       @item_id = fields['idItem']
+      self
     end
 
     # Return the item this state belongs to.

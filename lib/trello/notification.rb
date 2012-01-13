@@ -5,6 +5,7 @@ module Trello
   class Notification < BasicData
     def update_fields(fields)
       @id = fields['id']
+      self
     end
   end
 end
