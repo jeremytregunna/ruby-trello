@@ -41,8 +41,8 @@ module Trello
   # Version of the Trello API that we use by default.
   API_VERSION = 1
 
-  # Raise this when we can't find a record.
-  class NotFound < StandardError; end
+  # Raise this when we hit a Trello error.
+  class Error < StandardError; end
 
   def self.logger
     @@logger || Logger.new(STDOUT)

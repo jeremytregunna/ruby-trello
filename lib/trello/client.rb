@@ -25,7 +25,7 @@ module Trello
         uri.query_values = options[:params]
 
         response = access_token.send(options[:method], uri.to_s)
-        raise NotFound if response.code.to_i != 200
+        raise Error, response.message if response.code.to_i != 200
         response
       rescue OAuth::Problem => e
         headers = []
