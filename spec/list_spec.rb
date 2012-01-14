@@ -10,8 +10,8 @@ module Trello
     end
 
     before(:each) do
-      stub_trello_request!(:get, "/lists/abcdef123456789123456789?", nil, JSON.generate(lists_details.first))
-      stub_trello_request!(:get, "/boards/abcdef123456789123456789?", nil, JSON.generate(boards_details.first))
+      Client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
+      Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
 
       @list = List.find("abcdef123456789123456789")
     end
@@ -36,14 +36,14 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        stub_trello_request!(:get, "/lists/abcdef123456789123456789/actions?", nil, actions_payload)
+        Client.stub(:get).with("/lists/abcdef123456789123456789/actions").and_return actions_payload
         @list.actions.count.should be > 0
       end
     end
 
     context "cards" do
       it "has a list of cards" do
-        stub_trello_request!(:get, "/lists/abcdef123456789123456789/cards?", { :filter => :open }, cards_payload)
+        Client.stub(:get).with("/lists/abcdef123456789123456789/cards", { :filter => :open }).and_return cards_payload
         @list.cards.count.should be > 0
       end
     end

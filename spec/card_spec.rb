@@ -10,9 +10,8 @@ module Trello
     end
 
     before(:each) do
-      stub_request(:get, "https://api.trello.com/1/cards/abcdef123456789123456789?").
-        with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-        to_return(:status => 200, :headers => {}, :body => JSON.generate(cards_details.first))
+      Client.stub(:get).with("/cards/abcdef123456789123456789").
+        and_return JSON.generate(cards_details.first)
 
       @card = Card.find('abcdef123456789123456789')
     end
@@ -33,13 +32,20 @@ module Trello
         card.should_not be_valid
       end
 
-      it 'creates a new record and saves it on Trello' do
+      it 'creates a new record and saves it on Trello', :refactor => true do
         payload = {
           :name    => 'Test Card',
           :desc    => '',
         }
-        stub_trello_request!(:post, '/cards', payload.merge(:idList => lists_details.first['id']), JSON.generate(cards_details.first.merge(payload.merge(:idList => lists_details.first['id']))))
+ 
+        result = JSON.generate(cards_details.first.merge(payload.merge(:idList => lists_details.first['id'])))
+
+        expected_payload = {:name => "Test Card", :desc => nil, :idList => "abcdef123456789123456789"}
+
+        Client.should_receive(:post).with("/cards", expected_payload).and_return result
+
         card = Card.create(cards_details.first.merge(payload.merge(:list_id => lists_details.first['id'])))
+        
         card.class.should be Card
       end
     end
@@ -68,43 +74,36 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        stub_trello_request!(:get, "/cards/abcdef123456789123456789/actions?", nil, actions_payload)
+        Client.stub(:get).with("/cards/abcdef123456789123456789/actions").and_return actions_payload
         @card.actions.count.should be > 0
       end
     end
 
     context "boards" do
       it "has a board" do
-        stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
-
+        Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
         @card.board.should_not be_nil
       end
     end
 
     context "checklists" do
       it "has a list of checklists" do
-        stub_trello_request!(:get, "/cards/abcdef123456789123456789/checklists?", { :filter => :all }, checklists_payload)
+        Client.stub(:get).with("/cards/abcdef123456789123456789/checklists", { :filter => :all }).and_return checklists_payload
         @card.checklists.count.should be > 0
       end
     end
 
     context "list" do
       it 'has a list' do
-        stub_trello_request!(:get, "/lists/abcdef123456789123456789?", nil, JSON.generate(lists_details.first))
+        Client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
         @card.list.should_not be_nil
       end
     end
 
     context "members" do
       it "has a list of members" do
-        stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
-        stub_request(:get, "https://api.trello.com/1/members/abcdef123456789123456789?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => user_payload)
+        Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+        Client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
 
         @card.board.should_not be_nil
         @card.members.should_not be_nil
@@ -113,8 +112,11 @@ module Trello
 
     context "comments" do
       it "posts a comment" do
-        stub_trello_request!(:put, "/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' })
-        @card.add_comment("testing").should be_empty
+        Client.should_receive(:put).
+          with("/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' }).
+          and_return JSON.generate(boards_details.first)
+        
+        @card.add_comment "testing"
       end
     end
   end

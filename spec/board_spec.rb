@@ -10,9 +10,8 @@ module Trello
     end
 
     before(:each) do
-      stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789?").
-        with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-        to_return(:status => 200, :headers => {}, :body => JSON.generate(boards_details.first))
+      Client.stub(:get).with("/boards/abcdef123456789123456789").
+        and_return JSON.generate(boards_details.first)
 
       @board = Board.find('abcdef123456789123456789')
     end
@@ -41,16 +40,17 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        stub_trello_request!(:get, "/boards/abcdef123456789123456789/actions?", nil, actions_payload)
+        Client.stub(:get).with("/boards/abcdef123456789123456789/actions").
+          and_return actions_payload
+
         @board.actions.count.should be > 0
       end
     end
 
     context "cards" do
       it "gets its list of cards" do
-        stub_request(:get, "https://api.trello.com/1/boards/abcdef123456789123456789/cards?").
-          with(:headers => {'Accept'=>'*/*', 'Authorization'=>/.*/, 'User-Agent' => /.*/}).
-          to_return(:status => 200, :headers => {}, :body => cards_payload)
+        Client.stub(:get).with("/boards/abcdef123456789123456789/cards").
+          and_return cards_payload
 
         @board.cards.count.should be > 0
       end
@@ -58,21 +58,27 @@ module Trello
 
     context "lists" do
       it "has a list of lists" do
-        stub_trello_request!(:get, "/boards/abcdef123456789123456789/lists?", { :filter => :open }, lists_payload)
+        Client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
+          and_return lists_payload
+
         @board.lists.count.should be > 0
       end
     end
 
     context "members" do
       it "has a list of members" do
-        stub_trello_request!(:get, "/boards/abcdef123456789123456789/members?", { :filter => :all }, JSON.generate([user_details]))
+        Client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(:filter => :all)).
+          and_return JSON.generate([user_details])
+
         @board.members.count.should be > 0
       end
     end
 
     context "organization" do
       it "belongs to an organization" do
-        stub_trello_request!(:get, "/organizations/abcdef123456789123456789?", nil, JSON.generate(orgs_details.first))
+        Client.stub(:get).with("/organizations/abcdef123456789123456789").
+          and_return JSON.generate(orgs_details.first)
+
         @board.organization.should_not be_nil
       end
     end
