@@ -9,9 +9,12 @@ GEM
       bouncy-castle-java
     json (1.6.4)
     json (1.6.4-java)
+    mime-types (1.17.2)
     multi_json (1.0.4)
     oauth (0.4.5)
     rake (0.9.2.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
@@ -38,6 +41,7 @@ DEPENDENCIES
   json
   oauth
   rake
+  rest-client
   rspec
   simplecov
   webmock

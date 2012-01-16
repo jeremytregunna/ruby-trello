@@ -9,4 +9,5 @@ group :spec do
   gem 'rspec'
   gem 'simplecov', :require => false, :platforms => [ :mri, :mri_18, :mri_19, :jruby ]
   gem 'webmock'
+  gem 'rest-client'
 end
