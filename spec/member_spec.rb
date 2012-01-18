@@ -6,11 +6,6 @@ module Trello
   describe Member do
     include Helpers
 
-    before(:all) do
-      Client.public_key = 'dummy'
-      Client.secret     = 'dummy'
-    end
-
     before(:each) do
       Client.stub(:get).with("/members/me").and_return user_payload
 

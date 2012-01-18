@@ -4,11 +4,6 @@ module Trello
   describe Action do
     include Helpers
 
-    before(:all) do
-      Client.public_key = 'dummy'
-      Client.secret     = 'dummy'
-    end
-
     before(:each) do
       Client.stub(:get).with("/actions/4ee2482134a81a757a08af47").
         and_return JSON.generate(actions_details.first)
