@@ -45,6 +45,16 @@ module Trello
       end
     end
 
+    context "updating" do
+      it "updating name does a put on the correct resource with the correct value" do
+        expected_new_name = "xxx"
+        expected_resource = "/card/#{@card.id}/name"
+
+        Client.should_receive(:put).once.with expected_resource, :value => expected_new_name
+        @card.name = expected_new_name
+      end
+    end
+
     context "fields" do
       it "gets its id" do
         @card.id.should_not be_nil

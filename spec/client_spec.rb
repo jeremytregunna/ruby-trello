@@ -2,7 +2,7 @@ require "spec_helper"
 
 include Trello
 
-describe Client,"and how it handles authorization" do
+describe Client, "and how it handles authorization" do
   before do
     fake_response = stub "A fake OK response"
     fake_response.stub(:code).and_return 200
