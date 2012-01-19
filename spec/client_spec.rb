@@ -11,12 +11,12 @@ describe Client, "and how it handles authorization" do
       request
     end
   end
-  
-  it "authorizes before it queries the internet" do 
+
+  it "authorizes before it queries the internet" do
     AuthPolicy.should_receive(:authorize).once.ordered
     TInternet.should_receive(:get).once.ordered
-    
-    Client.get 1, "/xxx"
+
+    Client.get "/xxx"
   end
 
   it "queries the internet with expanded earl and query parameters" do
@@ -24,17 +24,17 @@ describe Client, "and how it handles authorization" do
     expected_request = Request.new expected_uri, {}
 
     TInternet.should_receive(:get).once.with expected_request
-    
-    Client.get 1, "/xxx", :a => "1", :b => "2"
+
+    Client.get "/xxx", :a => "1", :b => "2"
   end
 
-  it "encodes parameters" do 
+  it "encodes parameters" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?name=Jazz%20Kang")
     expected_request = Request.new expected_uri, {}
-    
+
     TInternet.should_receive(:get).once.with expected_request
-    
-    Client.get 1, "/xxx", :name => "Jazz Kang"
+
+    Client.get "/xxx", :name => "Jazz Kang"
   end
 
   it "raises an error when response has non-200 status" do
@@ -43,8 +43,6 @@ describe Client, "and how it handles authorization" do
 
     TInternet.stub(:get).and_return response_with_non_200_status
 
-    lambda{Client.get 1, "/xxx"}.should raise_error
+    lambda{Client.get "/xxx"}.should raise_error
   end
-
-  it "you don't need to supply api version"
 end
