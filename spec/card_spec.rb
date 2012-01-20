@@ -4,11 +4,6 @@ module Trello
   describe Card do
     include Helpers
 
-    before(:all) do
-      Client.public_key = 'dummy'
-      Client.secret     = 'dummy'
-    end
-
     before(:each) do
       Client.stub(:get).with("/cards/abcdef123456789123456789").
         and_return JSON.generate(cards_details.first)
@@ -47,6 +42,16 @@ module Trello
         card = Card.create(cards_details.first.merge(payload.merge(:list_id => lists_details.first['id'])))
         
         card.class.should be Card
+      end
+    end
+
+    context "updating" do
+      it "updating name does a put on the correct resource with the correct value" do
+        expected_new_name = "xxx"
+        expected_resource = "/card/#{@card.id}/name"
+
+        Client.should_receive(:put).once.with expected_resource, :value => expected_new_name
+        @card.name = expected_new_name
       end
     end
 
