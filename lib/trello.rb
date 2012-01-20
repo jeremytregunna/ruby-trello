@@ -38,8 +38,7 @@ module Trello
   autoload :Notification, 'trello/notification'
   autoload :Organization, 'trello/organization'
   autoload :Request,      'trello/client'
-  autoload :BasicAuthPolicy,'trello/client'
-  autoload :TInternet     ,'trello/client'
+  autoload :TInternet,    'trello/client'
 
   # Version of the Trello API that we use by default.
   API_VERSION = 1
@@ -53,5 +52,13 @@ module Trello
 
   def self.logger=(logger)
     @@logger = logger
+  end
+end
+
+module Trello
+  module Authorization
+    autoload :AuthPolicy,      'trello/authorization'
+    autoload :BasicAuthPolicy, 'trello/authorization'
+    autoload :OAuthPolicy,     'trello/authorization'
   end
 end

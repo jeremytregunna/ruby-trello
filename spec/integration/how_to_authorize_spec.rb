@@ -48,7 +48,7 @@ describe "Authorizing read-only requests" do
     BasicAuthPolicy.developer_public_key = @developer_public_key
     BasicAuthPolicy.member_token = @member_token
 
-    Container.set Trello, "AuthPolicy", BasicAuthPolicy
+    Container.set Trello::Authorization, "AuthPolicy", BasicAuthPolicy
 
     welcome_board = Board.find @welcome_board
     welcome_board.name.should === "Welcome Board"

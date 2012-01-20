@@ -1,6 +1,6 @@
 require "spec_helper"
 
-include Trello
+include Trello::Authorization
 
 describe BasicAuthPolicy do
   before do
