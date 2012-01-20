@@ -4,11 +4,6 @@ module Trello
   describe List do
     include Helpers
 
-    before(:all) do
-      Client.public_key = 'dummy'
-      Client.secret     = 'dummy'
-    end
-
     before(:each) do
       Client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
       Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
