@@ -37,8 +37,8 @@ module Trello
   autoload :Member,       'trello/member'
   autoload :Notification, 'trello/notification'
   autoload :Organization, 'trello/organization'
-  autoload :Request,      'trello/client'
-  autoload :TInternet,    'trello/client'
+  autoload :Request,      'trello/net'
+  autoload :TInternet,    'trello/net'
 
   # Version of the Trello API that we use by default.
   API_VERSION = 1
