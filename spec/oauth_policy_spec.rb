@@ -55,7 +55,14 @@ describe OAuthPolicy do
     authorized_request.headers["Authorization"].should =~ /oauth_signature="ABL%2FcOSGJSbvvLt1gW2nV9i%2FDyA%3D"/
   end
 
+  it "fails if consumer_credential is unset" do
+    OAuthPolicy.consumer_credential = nil
+
+    request = Request.new Addressable::URI.parse("http://xxx/")
+
+    lambda{OAuthPolicy.authorize request}.should raise_error "The consumer_credential has not been supplied."
+  end
+
   it "adds correct signature for https uri"
   it "adds correct signature for verbs other than get"
-  it "fails if consumer_credential is unset"
 end
