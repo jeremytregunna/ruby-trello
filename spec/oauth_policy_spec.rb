@@ -1,6 +1,8 @@
 require "spec_helper"
+require "cgi"
 
 include Trello::Authorization
+include Trello
 
 describe OAuthPolicy do
   before do
@@ -40,7 +42,19 @@ describe OAuthPolicy do
     authorized_request.headers["Authorization"].should =~ /oauth_signature="u7CmId4WEDUqPdHnWVf1JVChFmg%3D"/
   end
 
-  it "adds correct signature for uri with parameters"
+  it "adds correct signature for uri with parameters" do
+    Clock.stub(:timestamp).and_return "1327351010"
+    Nonce.stub(:next).and_return "f5474aaf44ca84df0b09870044f91c69"
+
+    OAuthPolicy.consumer_credential = OAuthCredential.new "consumer_key", "consumer_secret"
+
+    request = Request.new Addressable::URI.parse("http://xxx/?a=b")
+
+    authorized_request = OAuthPolicy.authorize request
+    
+    authorized_request.headers["Authorization"].should =~ /oauth_signature="ABL%2FcOSGJSbvvLt1gW2nV9i%2FDyA%3D"/
+  end
+
   it "adds correct signature for https uri"
   it "adds correct signature for verbs other than get"
   it "fails if consumer_credential is unset"
