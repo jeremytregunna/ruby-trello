@@ -1,5 +1,4 @@
 require "spec_helper"
-require "cgi"
 
 include Trello::Authorization
 include Trello
