@@ -5,8 +5,9 @@ module Trello
     class << self
       def get(path, params = {})
         api_version = 1
+
         uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
-        uri.query_values = params
+        uri.query_values = params unless params.empty?
 
         request = Request.new :get, uri, {}
 

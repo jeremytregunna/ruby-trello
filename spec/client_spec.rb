@@ -61,4 +61,13 @@ describe Client, "and how it handles authorization" do
 
     Client.get "/"
   end 
+
+  it "omits the \"?\" when no parameters" do
+    TInternet.should_receive(:get).once do |request|
+      request.uri.to_s.should_not =~ /\?$/
+      fake_ok_response
+    end 
+
+    Client.get "/xxx"
+  end
 end
