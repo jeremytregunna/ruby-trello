@@ -4,12 +4,14 @@ include Trello
 include Trello::Authorization
 
 describe Client, "and how it handles authorization" do
-  before do
-    fake_response = stub "A fake OK response",
+  let (:fake_ok_response) {
+    stub "A fake OK response",
       :code => 200,
       :body => "A fake response body"
-
-    TInternet.stub(:get).and_return fake_response
+  }
+  
+  before do
+    TInternet.stub(:get).and_return fake_ok_response
     Authorization::AuthPolicy.stub(:authorize) do |request|
       request
     end
@@ -50,4 +52,13 @@ describe Client, "and how it handles authorization" do
 
     lambda{Client.get "/xxx"}.should raise_error expected_error_message
   end
+
+  it "uses version 1 of the API" do
+    TInternet.should_receive(:get).once do |request|
+      request.uri.to_s.should =~ /1\//
+      fake_ok_response
+    end 
+
+    Client.get "/"
+  end 
 end
