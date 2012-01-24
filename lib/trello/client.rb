@@ -13,7 +13,7 @@ module Trello
 
         response = TInternet.get AuthPolicy.authorize(request)
 
-        raise Error, response.body if response.code.to_i != 200
+        raise Error, response.body unless response.code.to_i == 200
 
         response.body
       end
