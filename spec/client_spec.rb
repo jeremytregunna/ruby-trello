@@ -5,9 +5,9 @@ include Trello::Authorization
 
 describe Client, "and how it handles authorization" do
   before do
-    fake_response = stub "A fake OK response"
-    fake_response.stub(:code).and_return 200
-    fake_response.stub(:body).and_return "A fake response body"
+    fake_response = stub "A fake OK response",
+      :code => 200,
+      :body => "A fake response body"
 
     TInternet.stub(:get).and_return fake_response
     Authorization::AuthPolicy.stub(:authorize) do |request|
