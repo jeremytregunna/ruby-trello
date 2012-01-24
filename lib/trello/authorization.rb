@@ -13,7 +13,7 @@ module Trello
           new_values = { :key => @developer_public_key, :token => @member_token }
           the_uri.query_values = new_values.merge existing_values
 
-          Request.new the_uri, request.headers
+          Request.new request.verb, the_uri, request.headers
         end
       end
     end
@@ -30,19 +30,21 @@ module Trello
 
     class OAuthPolicy
       class << self
-        attr_accessor :consumer_credential
+        attr_accessor :consumer_credential, :token
 
         def authorize(request)
           fail "The consumer_credential has not been supplied." unless consumer_credential
 
-          request.headers = {"Authorization" => get_auth_header(request.uri, :get, consumer_credential)}
+          request.headers = {"Authorization" => get_auth_header(request.uri, :get)}
           request
         end
 
         private
 
-        def get_auth_header(url, verb, consumer_credential)
+        def get_auth_header(url, verb)
           require "oauth"
+
+          self.token ||= OAuthCredential.new 
 
           consumer = OAuth::Consumer.new(
 	    consumer_credential.key,
@@ -60,8 +62,8 @@ module Trello
           consumer.options[:timestamp] 	      = Clock.timestamp
           consumer.options[:uri]              = url
           
-          consumer.sign!(request)
-          
+          consumer.sign!(request, OAuth::Token.new(token.key, token.secret))
+
           request['authorization']
         end
       end

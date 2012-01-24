@@ -8,13 +8,13 @@ module Trello
         uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
         uri.query_values = params
 
-        request = Request.new uri, {}
+        request = Request.new :get, uri, {}
 
         response = TInternet.get AuthPolicy.authorize(request)
 
-        raise Error, response.message if response.code.to_i != 200
+        raise Error, response.body if response.code.to_i != 200
 
-        response
+        response.body
       end
     end
   end

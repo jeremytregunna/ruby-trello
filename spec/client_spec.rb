@@ -7,6 +7,8 @@ describe Client, "and how it handles authorization" do
   before do
     fake_response = stub "A fake OK response"
     fake_response.stub(:code).and_return 200
+    fake_response.stub(:body).and_return "A fake response body"
+
     TInternet.stub(:get).and_return fake_response
     Authorization::AuthPolicy.stub(:authorize) do |request|
       request
@@ -22,7 +24,7 @@ describe Client, "and how it handles authorization" do
 
   it "queries the internet with expanded earl and query parameters" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?a=1&b=2")
-    expected_request = Request.new expected_uri, {}
+    expected_request = Request.new :get, expected_uri, {}
 
     TInternet.should_receive(:get).once.with expected_request
 
@@ -31,7 +33,7 @@ describe Client, "and how it handles authorization" do
 
   it "encodes parameters" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?name=Jazz%20Kang")
-    expected_request = Request.new expected_uri, {}
+    expected_request = Request.new :get, expected_uri, {}
 
     TInternet.should_receive(:get).once.with expected_request
 

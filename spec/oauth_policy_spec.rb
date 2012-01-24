@@ -11,7 +11,7 @@ describe OAuthPolicy do
   it "adds an authorization header" do 
     uri = Addressable::URI.parse("https://xxx/")
 
-    request = Request.new uri
+    request = Request.new :get, uri
 
     authorized_request = OAuthPolicy.authorize request
     
@@ -20,7 +20,7 @@ describe OAuthPolicy do
   
   it "preserves query parameters" do
     uri = Addressable::URI.parse("https://xxx/?name=Riccardo")
-    request = Request.new uri
+    request = Request.new :get, uri
 
     authorized_request = OAuthPolicy.authorize request
     
@@ -34,7 +34,7 @@ describe OAuthPolicy do
 
     OAuthPolicy.consumer_credential = OAuthCredential.new "consumer_key", "consumer_secret"
 
-    request = Request.new Addressable::URI.parse("http://xxx/")
+    request = Request.new :get, Addressable::URI.parse("http://xxx/")
 
     authorized_request = OAuthPolicy.authorize request
     
@@ -47,7 +47,7 @@ describe OAuthPolicy do
 
     OAuthPolicy.consumer_credential = OAuthCredential.new "consumer_key", "consumer_secret"
 
-    request = Request.new Addressable::URI.parse("http://xxx/?a=b")
+    request = Request.new :get, Addressable::URI.parse("http://xxx/?a=b")
 
     authorized_request = OAuthPolicy.authorize request
     
@@ -57,9 +57,23 @@ describe OAuthPolicy do
   it "fails if consumer_credential is unset" do
     OAuthPolicy.consumer_credential = nil
 
-    request = Request.new Addressable::URI.parse("http://xxx/")
+    request = Request.new :get, Addressable::URI.parse("http://xxx/")
 
     lambda{OAuthPolicy.authorize request}.should raise_error "The consumer_credential has not been supplied."
+  end
+
+  it "can sign with token" do
+    Clock.stub(:timestamp).and_return "1327360530"
+    Nonce.stub(:next).and_return "4f610cb28e7aa8711558de5234af1f0e"
+
+    OAuthPolicy.consumer_credential = OAuthCredential.new "consumer_key", "consumer_secret"
+    OAuthPolicy.token  = OAuthCredential.new "token_key", "token_secret"
+
+    request = Request.new :get, Addressable::URI.parse("http://xxx/")
+
+    authorized_request = OAuthPolicy.authorize request
+
+    authorized_request.headers["Authorization"].should =~ /oauth_signature="1Boj4fo6KiXA4xGD%2BKF5QOD36PI%3D"/
   end
 
   it "adds correct signature for https uri"
