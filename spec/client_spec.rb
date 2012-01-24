@@ -41,11 +41,13 @@ describe Client, "and how it handles authorization" do
   end
 
   it "raises an error when response has non-200 status" do
-    response_with_non_200_status = stub "A fake OK response"
-    response_with_non_200_status.stub(:code).and_return 201
+    expected_error_message = "An error response"
+    response_with_non_200_status = stub "A fake OK response", 
+      :code => 201,
+      :body => expected_error_message
 
     TInternet.stub(:get).and_return response_with_non_200_status
 
-    lambda{Client.get "/xxx"}.should raise_error
+    lambda{Client.get "/xxx"}.should raise_error expected_error_message
   end
 end
