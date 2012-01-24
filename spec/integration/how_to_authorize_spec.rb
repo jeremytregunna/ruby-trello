@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 include Trello
+include Trello::Authorization
 
 class Container
   class << self
@@ -19,6 +20,7 @@ describe "Authorizing read-only requests" do
     # See: https://trello.com/board/trello-public-api/4ed7e27fe6abb2517a21383d
 
     @developer_public_key = ENV["DEVELOPER_PUBLIC_KEY"]
+    @developer_secret     = ENV["DEVELOPER_SECRET"]
     @member_token         = ENV["MEMBER_TOKEN"]
     @welcome_board        = ENV["WELCOME_BOARD"]
 
@@ -53,6 +55,28 @@ describe "Authorizing read-only requests" do
     welcome_board = Board.find @welcome_board
     welcome_board.name.should === "Welcome Board"
     welcome_board.id.should === @welcome_board
+  end
+
+  context "About OAuth teokn exchange" do 
+    it "can get a new request token" do
+      OAuthPolicy.consumer_credential = OAuthCredential.new @developer_public_key, @developer_secret
+      OAuthPolicy.token = nil
+
+      Container.set Trello::Authorization, "AuthPolicy", OAuthPolicy
+    
+    # get a request token
+      request = Request.new :get, URI.parse("https://trello.com/1/OAuthGetRequestToken")
+      request_token_response = TInternet.get AuthPolicy.authorize(request)
+      request_token_response.body.should =~ /oauth_token=[^&]+&oauth_token_secret=.+/
+
+      # then send user here and ask them to verify and collect the "verification code"
+      # You'll need "name" to be your appname 
+      #   https://trello.com/1/OAuthAuthorizeToken/?name=[name]&key=[developer_public_key]&scope=read,write
+    
+      # convert to access token using the verification code as oauth_verifier
+      #access_token_request = Request.new :get, URI.parse("https://trello.com/1/OAuthGetAccessToken?oauth_verifier=xxx")
+      #access_token_response = TInternet.get AuthPolicy.authorize(access_token_request)
+    end
   end
 
   private
