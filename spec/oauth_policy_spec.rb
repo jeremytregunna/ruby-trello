@@ -6,6 +6,7 @@ include Trello
 describe OAuthPolicy do
   before do
     OAuthPolicy.consumer_credential = OAuthCredential.new "xxx", "xxx"
+    OAuthPolicy.token = nil
   end
 
   it "adds an authorization header" do 
