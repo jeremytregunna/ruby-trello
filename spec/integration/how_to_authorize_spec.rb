@@ -23,6 +23,8 @@ describe "Authorizing read-only requests" do
     @developer_secret     = ENV["DEVELOPER_SECRET"]
     @member_token         = ENV["MEMBER_TOKEN"]
     @welcome_board        = ENV["WELCOME_BOARD"]
+    @access_token_key     = ENV["ACCESS_TOKEN_KEY"]
+    @access_token_secret  = ENV["ACCESS_TOKEN_SECRET"]
 
     WebMock.disable!
   end
@@ -57,25 +59,45 @@ describe "Authorizing read-only requests" do
     welcome_board.id.should === @welcome_board
   end
 
-  context "About OAuth teokn exchange" do 
-    it "can get a new request token" do
+  context "About OAuth token exchange" do 
+    before :all do 
       OAuthPolicy.consumer_credential = OAuthCredential.new @developer_public_key, @developer_secret
       OAuthPolicy.token = nil
 
       Container.set Trello::Authorization, "AuthPolicy", OAuthPolicy
+    end
     
-    # get a request token
+    it "can get a new request token" do
+      # get a request token
       request = Request.new :get, URI.parse("https://trello.com/1/OAuthGetRequestToken")
       request_token_response = TInternet.get AuthPolicy.authorize(request)
       request_token_response.body.should =~ /oauth_token=[^&]+&oauth_token_secret=.+/
 
       # then send user here and ask them to verify and collect the "verification code"
-      # You'll need "name" to be your appname 
+      # You'll need "name" to be your appname, e.g., RubyTrelloIntegrationTests  
       #   https://trello.com/1/OAuthAuthorizeToken/?name=[name]&key=[developer_public_key]&scope=read,write
     
-      # convert to access token using the verification code as oauth_verifier
+      # convert to access token using the verification code as oauth_verifier, and signing with consumer and request token
       #access_token_request = Request.new :get, URI.parse("https://trello.com/1/OAuthGetAccessToken?oauth_verifier=xxx")
       #access_token_response = TInternet.get AuthPolicy.authorize(access_token_request)
+    end
+  end
+
+  context "given a valid access token" do
+    before :all do
+      OAuthPolicy.consumer_credential = OAuthCredential.new @developer_public_key, @developer_secret
+      OAuthPolicy.token = OAuthCredential.new @access_token_key, @access_token_secret
+      Container.set Trello::Authorization, "AuthPolicy", OAuthPolicy
+    end
+
+    it "can add a board" do
+      Client.post("/boards/", { :name => "An example" })
+    end
+
+    it "can read the welcome board" do
+      welcome_board = Board.find @welcome_board
+      welcome_board.name.should === "Welcome Board"
+      welcome_board.id.should === @welcome_board
     end
   end
 
