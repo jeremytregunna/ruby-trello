@@ -12,22 +12,37 @@ class Container
   end
 end
 
-describe "Authorizing read-only requests" do
-  before :all do
-    # Getting developer/member key
-    # 1. https://trello.com/1/appKey/generate
-    # 2. https://trello.com/1/connect?key=<public_key_here>&name=RubyTrelloIntegrationTests&response_type=token
-    # See: https://trello.com/board/trello-public-api/4ed7e27fe6abb2517a21383d
+module IntegrationTest
+  def self.included(clazz)
+    clazz.class_eval do
+      before :all do
+        # Getting developer/member key
+        # 1. https://trello.com/1/appKey/generate
+        # 2. https://trello.com/1/connect?key=<public_key_here>&name=RubyTrelloIntegrationTests&response_type=token
+        # See: https://trello.com/board/trello-public-api/4ed7e27fe6abb2517a21383d
 
-    @developer_public_key = ENV["DEVELOPER_PUBLIC_KEY"]
-    @developer_secret     = ENV["DEVELOPER_SECRET"]
-    @member_token         = ENV["MEMBER_TOKEN"]
-    @welcome_board        = ENV["WELCOME_BOARD"]
-    @access_token_key     = ENV["ACCESS_TOKEN_KEY"]
-    @access_token_secret  = ENV["ACCESS_TOKEN_SECRET"]
-
-    WebMock.disable!
+        @developer_public_key = ENV["DEVELOPER_PUBLIC_KEY"]
+        @developer_secret     = ENV["DEVELOPER_SECRET"]
+        @member_token         = ENV["MEMBER_TOKEN"]
+        @welcome_board        = ENV["WELCOME_BOARD"]
+        @access_token_key     = ENV["ACCESS_TOKEN_KEY"]
+        @access_token_secret  = ENV["ACCESS_TOKEN_SECRET"]
+        
+        WebMock.disable!
+      end    
+    end
   end
+
+  protected
+
+  def get(uri)
+    require "rest_client"
+    RestClient.get uri.to_s
+  end
+end
+
+describe "Authorizing read-only requests" do
+  include IntegrationTest
 
   it "Reading public resources requires just a developer public key" do
     uri = Addressable::URI.parse("https://api.trello.com/1/boards/4ed7e27fe6abb2517a21383d")
@@ -58,30 +73,10 @@ describe "Authorizing read-only requests" do
     welcome_board.name.should === "Welcome Board"
     welcome_board.id.should === @welcome_board
   end
+end
 
-  context "About OAuth token exchange" do 
-    before :all do 
-      OAuthPolicy.consumer_credential = OAuthCredential.new @developer_public_key, @developer_secret
-      OAuthPolicy.token = nil
-
-      Container.set Trello::Authorization, "AuthPolicy", OAuthPolicy
-    end
-    
-    it "can get a new request token" do
-      # get a request token
-      request = Request.new :get, URI.parse("https://trello.com/1/OAuthGetRequestToken")
-      request_token_response = TInternet.get AuthPolicy.authorize(request)
-      request_token_response.body.should =~ /oauth_token=[^&]+&oauth_token_secret=.+/
-
-      # then send user here and ask them to verify and collect the "verification code"
-      # You'll need "name" to be your appname, e.g., RubyTrelloIntegrationTests  
-      #   https://trello.com/1/OAuthAuthorizeToken/?name=[name]&key=[developer_public_key]&scope=read,write
-    
-      # convert to access token using the verification code as oauth_verifier, and signing with consumer and request token
-      #access_token_request = Request.new :get, URI.parse("https://trello.com/1/OAuthGetAccessToken?oauth_verifier=xxx")
-      #access_token_response = TInternet.get AuthPolicy.authorize(access_token_request)
-    end
-  end
+describe "Authorizing read/write requests" do
+  include IntegrationTest
 
   context "given a valid access token" do
     before :all do
@@ -99,12 +94,5 @@ describe "Authorizing read-only requests" do
       welcome_board.name.should === "Welcome Board"
       welcome_board.id.should === @welcome_board
     end
-  end
-
-  private
-
-  def get(uri)
-    require "rest_client"
-    RestClient.get uri.to_s
   end
 end
