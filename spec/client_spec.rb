@@ -70,4 +70,21 @@ describe Client, "and how it handles authorization" do
 
     Client.get "/xxx"
   end
+
+  it "supports post" do
+    TInternet.should_receive(:post).once.and_return fake_ok_response
+
+    Client.post "/xxx", { :phil => "T' north" }
+  end
+
+  it "supplies the body" do
+    expected_body = { :name => "Phil", :nickname => "The Crack Fox" }
+
+    TInternet.should_receive(:post).once do |request|
+      request.body.should == expected_body
+      fake_ok_response
+    end
+
+    Client.post "/xxx", expected_body
+  end
 end

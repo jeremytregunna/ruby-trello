@@ -5,14 +5,34 @@ module Trello
   class TInternet
     class << self
       def get(request)
-        require "rest_client"
+        try_execute request
+      end
 
+      def post(request)
+        try_execute request
+      end
+
+      private 
+
+      def try_execute(request)
         begin
-          result = RestClient.get request.uri.to_s, request.headers
+          result = execute request
           Response.new(200, {}, result)
         rescue Exception => e
           Response.new(e.http_code, {}, e.http_body)
         end
+      end
+
+      def execute(request)
+        require "rest_client"
+        
+        RestClient::Request.execute(
+          :method => request.verb, 
+          :url => request.uri.to_s, 
+          :headers => request.headers, 
+          :payload => request.body, 
+          :timeout => 10
+        )
       end
     end
   end
