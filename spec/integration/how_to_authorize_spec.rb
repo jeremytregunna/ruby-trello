@@ -71,6 +71,10 @@ describe "Authorizing read/write requests" do
       welcome_board.id.should === @welcome_board
     end
 
-    it "can close a board" 
+    pending "cannot close a board yet (Client#put required)" do
+      new_board = Board.create(:name => "An example")
+
+      puts Client.post "/boards/#{new_board.id}/closed", { :value => true }
+    end
   end
 end
