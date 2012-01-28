@@ -58,7 +58,11 @@ describe "Authorizing read/write requests" do
     end
 
     it "can add a board" do
-      Client.post("/boards/", { :name => "An example" })
+      new_board = Board.create(:name => "An example")
+      new_board.should_not be_nil
+      new_board.id.should_not be_nil
+      new_board.name.should == "An example"
+      new_board.closed.should be_false
     end
 
     it "can read the welcome board" do
@@ -66,5 +70,7 @@ describe "Authorizing read/write requests" do
       welcome_board.name.should === "Welcome Board"
       welcome_board.id.should === @welcome_board
     end
+
+    it "can close a board" 
   end
 end
