@@ -82,4 +82,15 @@ module Trello
       @board.closed?.should_not be_true
     end
   end
+  
+  describe "Repository" do
+    it "creates a new board with whatever attributes are supplied " do
+      expected_attributes = { :name => "Any new board name", :description => "Any new board desription" }
+      Client.should_receive(:post).with(anything, expected_attributes)
+
+      Board.create expected_attributes
+    end
+
+    it "at least name is required"
+  end
 end

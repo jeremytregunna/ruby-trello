@@ -8,6 +8,10 @@ module Trello
       def find(id)
         super(:boards, id)
       end
+
+      def create(attributes = {})
+        Client.post "/boards/", attributes
+      end
     end
 
     # Update the fields of a board.
