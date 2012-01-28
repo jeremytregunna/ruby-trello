@@ -62,7 +62,7 @@ describe "Authorizing read/write requests" do
       new_board.should_not be_nil
       new_board.id.should_not be_nil
       new_board.name.should == "An example"
-      new_board.closed.should be_false
+      new_board.should_not be_closed
     end
 
     it "can read the welcome board" do

@@ -1,10 +1,10 @@
 module Trello
-  # A board is a container which holds lists. This is where everything lives.
+
   class Board < BasicData
-    attr_reader :id, :name, :description, :closed, :url, :organization_id
+    attr_reader :id, :name, :description, :url, :organization_id
 
     class << self
-      # Locate a board given a specific id.
+
       def find(id)
         super(:boards, id)
       end
@@ -30,7 +30,7 @@ module Trello
 
     # Check if the board is active.
     def closed?
-      closed
+      @closed
     end
 
     # Return a timeline of actions related to this board.

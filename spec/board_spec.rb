@@ -25,7 +25,7 @@ module Trello
       end
 
       it "knows if it is closed or open" do
-        @board.closed.should_not be_nil
+        @board.closed?.should_not be_nil
       end
 
       it "gets its url" do
