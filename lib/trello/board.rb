@@ -9,7 +9,7 @@ module Trello
         super(:boards, id)
       end
 
-      def create(attributes = {})
+      def create(attributes)
         Client.post "/boards/", attributes
       end
     end
