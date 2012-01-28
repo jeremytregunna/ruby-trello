@@ -11,7 +11,7 @@ module Trello
 
         request = Request.new :get, uri, {}
 
-        response = TInternet.get AuthPolicy.authorize(request)
+        response = TInternet.execute AuthPolicy.authorize(request)
 
         raise Error, response.body unless response.code.to_i == 200
 
@@ -25,7 +25,7 @@ module Trello
 
         request = Request.new :post, uri, {}, body
 
-        response = TInternet.post AuthPolicy.authorize(request)
+        response = TInternet.execute AuthPolicy.authorize(request)
 
         raise Error, response.body unless response.code.to_i == 200
 

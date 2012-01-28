@@ -11,7 +11,7 @@ describe Client, "and how it handles authorization" do
   }
   
   before do
-    TInternet.stub(:get).and_return fake_ok_response
+    TInternet.stub(:execute).and_return fake_ok_response
     Authorization::AuthPolicy.stub(:authorize) do |request|
       request
     end
@@ -19,7 +19,7 @@ describe Client, "and how it handles authorization" do
 
   it "authorizes before it queries the internet" do
     AuthPolicy.should_receive(:authorize).once.ordered
-    TInternet.should_receive(:get).once.ordered
+    TInternet.should_receive(:execute).once.ordered
 
     Client.get "/xxx"
   end
@@ -28,7 +28,7 @@ describe Client, "and how it handles authorization" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?a=1&b=2")
     expected_request = Request.new :get, expected_uri, {}
 
-    TInternet.should_receive(:get).once.with expected_request
+    TInternet.should_receive(:execute).once.with expected_request
 
     Client.get "/xxx", :a => "1", :b => "2"
   end
@@ -37,7 +37,7 @@ describe Client, "and how it handles authorization" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?name=Jazz%20Kang")
     expected_request = Request.new :get, expected_uri, {}
 
-    TInternet.should_receive(:get).once.with expected_request
+    TInternet.should_receive(:execute).once.with expected_request
 
     Client.get "/xxx", :name => "Jazz Kang"
   end
@@ -48,13 +48,13 @@ describe Client, "and how it handles authorization" do
       :code => 201,
       :body => expected_error_message
 
-    TInternet.stub(:get).and_return response_with_non_200_status
+    TInternet.stub(:execute).and_return response_with_non_200_status
 
     lambda{Client.get "/xxx"}.should raise_error expected_error_message
   end
 
   it "uses version 1 of the API" do
-    TInternet.should_receive(:get).once do |request|
+    TInternet.should_receive(:execute).once do |request|
       request.uri.to_s.should =~ /1\//
       fake_ok_response
     end 
@@ -63,7 +63,7 @@ describe Client, "and how it handles authorization" do
   end 
 
   it "omits the \"?\" when no parameters" do
-    TInternet.should_receive(:get).once do |request|
+    TInternet.should_receive(:execute).once do |request|
       request.uri.to_s.should_not =~ /\?$/
       fake_ok_response
     end 
@@ -72,7 +72,7 @@ describe Client, "and how it handles authorization" do
   end
 
   it "supports post" do
-    TInternet.should_receive(:post).once.and_return fake_ok_response
+    TInternet.should_receive(:execute).once.and_return fake_ok_response
 
     Client.post "/xxx", { :phil => "T' north" }
   end
@@ -80,7 +80,7 @@ describe Client, "and how it handles authorization" do
   it "supplies the body" do
     expected_body = { :name => "Phil", :nickname => "The Crack Fox" }
 
-    TInternet.should_receive(:post).once do |request|
+    TInternet.should_receive(:execute).once do |request|
       request.body.should == expected_body
       fake_ok_response
     end

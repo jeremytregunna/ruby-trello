@@ -4,11 +4,7 @@ module Trello
 
   class TInternet
     class << self
-      def get(request)
-        try_execute request
-      end
-
-      def post(request)
+      def execute(request)
         try_execute request
       end
 
@@ -16,14 +12,14 @@ module Trello
 
       def try_execute(request)
         begin
-          result = execute request
+          result = execute_core request
           Response.new(200, {}, result)
         rescue Exception => e
           Response.new(e.http_code, {}, e.http_body)
         end
       end
 
-      def execute(request)
+      def execute_core(request)
         require "rest_client"
         
         RestClient::Request.execute(
