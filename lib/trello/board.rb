@@ -10,7 +10,7 @@ module Trello
       end
 
       def create(attributes)
-        Client.post "/boards/", attributes
+        Client.post("/boards/", attributes).json_into Board
       end
     end
 
