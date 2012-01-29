@@ -77,7 +77,7 @@ describe Client, "and how it handles authorization" do
     Client.post "/xxx", { :phil => "T' north" }
   end
 
-  it "supplies the body" do
+  it "supplies the body for a post" do
     expected_body = { :name => "Phil", :nickname => "The Crack Fox" }
 
     TInternet.should_receive(:execute).once do |request|
@@ -86,5 +86,46 @@ describe Client, "and how it handles authorization" do
     end
 
     Client.post "/xxx", expected_body
+  end
+
+  it "supplies the path for a post" do
+    expected_path = "/xxx"
+
+    TInternet.should_receive(:execute).once do |request|
+      request.uri.path.should =~ /#{expected_path}$/
+      fake_ok_response
+    end
+
+    Client.post "/xxx", {}
+  end
+
+  it "supports put" do
+    expected_path = "/xxx"
+
+    TInternet.should_receive(:execute).once.and_return fake_ok_response
+
+    Client.put "/xxx", { :phil => "T' north" }
+  end
+
+  it "supplies the body for a put" do
+    expected_body = { :name => "Phil", :nickname => "The Crack Fox" }
+
+    TInternet.should_receive(:execute).once do |request|
+      request.body.should == expected_body
+      fake_ok_response
+    end
+
+    Client.put "/xxx", expected_body
+  end
+
+  it "supplies the path for a put" do
+    expected_path = "/xxx"
+
+    TInternet.should_receive(:execute).once do |request|
+      request.uri.path.should =~ /#{expected_path}$/
+      fake_ok_response
+    end
+
+    Client.put "/xxx", {}
   end
 end
