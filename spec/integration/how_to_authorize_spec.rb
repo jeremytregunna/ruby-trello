@@ -1,18 +1,6 @@
 require 'spec_helper'
 require 'integration/integration_test'
 
-include Trello
-include Trello::Authorization
-
-class Container
-  class << self
-    def set(parent, name, value)
-      parent.send :remove_const, name
-      parent.const_set name, value
-    end
-  end
-end
-
 describe "Authorizing read-only requests" do
   include IntegrationTest
 

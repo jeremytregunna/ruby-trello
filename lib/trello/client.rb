@@ -2,6 +2,8 @@ require 'addressable/uri'
 
 module Trello
   class Client
+    extend Authorization
+
     class << self
       def get(path, params = {})
         api_version = 1

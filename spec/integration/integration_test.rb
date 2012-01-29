@@ -1,4 +1,16 @@
 module IntegrationTest
+  include Trello
+  include Trello::Authorization
+
+  class Container
+    class << self
+      def set(parent, name, value)
+        parent.send :remove_const, name
+        parent.const_set name, value
+      end
+    end
+  end
+
   def self.included(clazz)
     clazz.class_eval do
       before :all do

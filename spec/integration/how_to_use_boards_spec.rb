@@ -1,19 +1,7 @@
 require 'spec_helper'
 require 'integration/integration_test'
 
-include Trello
-include Trello::Authorization
-
-class Container
-  class << self
-    def set(parent, name, value)
-      parent.send :remove_const, name
-      parent.const_set name, value
-    end
-  end
-end
-
-describe "Authorizing read/write requests" do
+describe "how to use boards" do
   include IntegrationTest
 
   context "given a valid access token" do
