@@ -11,12 +11,18 @@ describe "how to use boards" do
       Container.set Trello::Authorization, "AuthPolicy", OAuthPolicy
     end
 
+    after do
+      if @new_board and false == @new_board.closed? 
+        Client.put "/boards/#{@new_board.id }/closed", { :value => true }
+      end
+    end
+
     it "can add a board" do
-      new_board = Board.create(:name => "An example")
-      new_board.should_not be_nil
-      new_board.id.should_not be_nil
-      new_board.name.should == "An example"
-      new_board.should_not be_closed
+      @new_board = Board.create(:name => "An example")
+      @new_board.should_not be_nil
+      @new_board.id.should_not be_nil
+      @new_board.name.should == "An example"
+      @new_board.should_not be_closed
     end
 
     it "can read the welcome board" do
@@ -26,9 +32,9 @@ describe "how to use boards" do
     end
 
     it "can close a board" do
-      new_board = Board.create(:name => "An example")
+      @new_board = Board.create(:name => "An example")
 
-      Client.put "/boards/#{new_board.id}/closed", { :value => true }
+      Client.put "/boards/#{@new_board.id}/closed", { :value => true }
     end
   end
 end
