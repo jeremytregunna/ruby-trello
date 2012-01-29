@@ -11,8 +11,8 @@ module IntegrationTest
     end
   end
 
-  def self.included(clazz)
-    clazz.class_eval do
+  def self.included(klass)
+    klass.class_eval do
       before :all do
         # Getting developer/member key
         # 1. https://trello.com/1/appKey/generate
