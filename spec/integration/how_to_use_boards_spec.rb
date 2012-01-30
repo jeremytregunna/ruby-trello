@@ -13,7 +13,8 @@ describe "how to use boards" do
 
     after do
       if @new_board and false == @new_board.closed? 
-        Client.put "/boards/#{@new_board.id }/closed", { :value => true }
+        @new_board.update_fields 'closed' => true
+        @new_board.save!
       end
     end
 
@@ -32,9 +33,12 @@ describe "how to use boards" do
     end
 
     it "can close a board" do
-      @new_board = Board.create(:name => "An example")
+      @new_board = Board.create(:name => "[#{Time.now}, CLOSED] An example")
 
-      Client.put "/boards/#{@new_board.id}/closed", { :value => true }
+      @new_board.update_fields 'closed' => true
+      @new_board.save!
+      
+      Board.find(@new_board.id).should be_closed
     end
   end
 end

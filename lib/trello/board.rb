@@ -14,21 +14,29 @@ module Trello
       end
     end
 
-    # Update the fields of a board.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # a board.
+    def save!
+      fail "Cannot save new instance." unless self.id
+
+      Client.put("/boards/#{self.id}/", {
+        :name            => @name,
+        :description     => @description,
+        :closed          => @closed,
+        :url             => @url,
+        :organisation_id => @organisation_id
+      }).json_into(self)
+    end
+
     def update_fields(fields)
-      @id              = fields['id']
-      @name            = fields['name']
-      @description     = fields['desc']
-      @closed          = fields['closed']
-      @url             = fields['url']
-      @organization_id = fields['idOrganization']
+      @id              = fields['id']              if fields['id']
+      @name            = fields['name']            if fields['name']
+      @description     = fields['desc']            if fields['desc']
+      @closed          = fields['closed']          if fields.has_key?('closed')
+      @url             = fields['url']             if fields['url']
+      @organization_id = fields['idOrganization']  if fields['idOrganization']
+
       self
     end
 
-    # Check if the board is active.
     def closed?
       @closed
     end
