@@ -40,5 +40,9 @@ describe "how to use boards" do
       
       Board.find(@new_board.id).should be_closed
     end
+
+    it "can list all boards" do
+      Client.get("/members/me/boards/").json_into(Board).should be_an Array
+    end
   end
 end
