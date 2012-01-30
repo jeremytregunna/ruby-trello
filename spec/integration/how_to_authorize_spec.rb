@@ -34,3 +34,20 @@ describe "Authorizing read-only requests" do
     welcome_board.id.should === @welcome_board
   end
 end
+
+describe "OAuth" do
+  include IntegrationTest
+
+  before do
+    Container.set Trello::Authorization, "AuthPolicy", OAuthPolicy
+  end
+
+  it "[!] actually does not enforce signature at all, only the keys are required" do
+    OAuthPolicy.consumer_credential = OAuthCredential.new @developer_public_key, nil
+    OAuthPolicy.token = OAuthCredential.new @access_token_key, nil
+    
+    pending "I would expect this to fail because I have signed with nil secrets" do
+      lambda{Client.get("/boards/#{@welcome_board}/")}.should raise_error
+    end
+  end
+end
