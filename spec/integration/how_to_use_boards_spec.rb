@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'integration/integration_test'
 
-describe "how to use boards" do
+describe "how to use boards", :broken => true do
   include IntegrationTest
 
   context "given a valid access token" do

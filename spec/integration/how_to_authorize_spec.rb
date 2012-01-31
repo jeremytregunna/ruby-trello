@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'integration/integration_test'
 
-describe "Authorizing read-only requests" do
+describe "Authorizing read-only requests", :broken => true do
   include IntegrationTest
 
   it "Reading public resources requires just a developer public key" do
@@ -35,7 +35,7 @@ describe "Authorizing read-only requests" do
   end
 end
 
-describe "OAuth" do
+describe "OAuth", :broken => true do
   include IntegrationTest
 
   before do

@@ -20,6 +20,10 @@ Bundler.require(:spec)
 require 'trello'
 require 'webmock/rspec'
 
+RSpec.configure do |c|
+  c.filter_run_excluding :broken => true
+end
+
 module Helpers
   def user_details
     {
