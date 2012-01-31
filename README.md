@@ -15,6 +15,11 @@ Seriously, [check it out](http://www.trello.com/).
 
 Full Disclosure: This library is not complete, but it does function enough to be useful.
 
+## Special thanks
+
+A special thanks goes out to [Ben Biddington](https://github.com/ben-biddington) who has contributed a significant amount
+of refactoring and functionality to be deserving of a beer and this special thanks.
+
 ## Contributing
 
 Pick up an editor, fix a test! (If you want to, of course.) Send a pull
