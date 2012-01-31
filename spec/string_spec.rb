@@ -7,6 +7,11 @@ describe String, "#json_into" do
   def example_class
     @example_class ||= Class.new do
       attr_accessor :name, :description
+
+      def initialize(options = {})
+        @name = options['name']
+        @description = options['description']
+      end
     end
   end
 
