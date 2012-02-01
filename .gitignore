@@ -4,3 +4,4 @@ test-credentials
 .rvmrc
 *.gem
 coverage
+.*.sw?
