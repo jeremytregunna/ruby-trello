@@ -79,5 +79,4 @@ describe OAuthPolicy do
 
   it "adds correct signature for https uri"
   it "adds correct signature for verbs other than get"
-  it "can sign with access token too"
 end
