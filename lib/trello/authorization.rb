@@ -47,10 +47,10 @@ module Trello
           self.token ||= OAuthCredential.new 
 
           consumer = OAuth::Consumer.new(
-	    consumer_credential.key,
-	    consumer_credential.secret,
+            consumer_credential.key,
+            consumer_credential.secret,
             {
-    	      :scheme	   => :header,
+              :scheme      => :header,
               :http_method => verb
             }
           )
