@@ -1,3 +1,5 @@
+require 'securerandom'
+
 module Trello
   module Authorization
 
@@ -23,7 +25,9 @@ module Trello
     end
 
     class Nonce
-      def self.next; "xxx"; end
+      def self.next
+        SecureRandom.hex()
+      end
     end
 
     OAuthCredential = Struct.new "OAuthCredential", :key, :secret
