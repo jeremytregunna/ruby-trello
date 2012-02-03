@@ -55,6 +55,7 @@ module Trello
             consumer_credential.secret,
             {
               :scheme      => :header,
+              :scope       => 'read,write,account',
               :http_method => verb
             }
           )
