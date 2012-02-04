@@ -117,7 +117,7 @@ module Trello
 
     context "comments" do
       it "posts a comment" do
-        Client.should_receive(:put).
+        Client.should_receive(:post).
           with("/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' }).
           and_return JSON.generate(boards_details.first)
         
