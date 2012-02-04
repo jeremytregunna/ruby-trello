@@ -8,6 +8,11 @@ module Trello
       def find(id)
         super(:lists, id)
       end
+
+      def create(options)
+        new('name'    => options[:name],
+            'idBoard' => options[:board_id]).save!
+      end
     end
 
     # Updates the fields of a list.
@@ -20,6 +25,19 @@ module Trello
       @closed   = fields['closed']
       @board_id = fields['idBoard']
       self
+    end
+
+    def save!
+      return update! if id
+
+      Client.post("/lists", {
+        :name    => @name,
+        :closed  => @closed || false,
+        :idBoard => @board_id
+      }).json_into(self)
+    end
+
+    def update!
     end
 
     # Check if the list is not active anymore.
