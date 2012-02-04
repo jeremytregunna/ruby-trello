@@ -57,6 +57,10 @@ module Trello
       @cards = Client.get("/boards/#{id}/cards").json_into(Card)
     end
 
+    def has_lists?
+      lists.size > 0
+    end
+
     # Returns all the lists on this board.
     #
     # The options hash may have a filter key which can have its value set as any
