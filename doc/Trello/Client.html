@@ -62,17 +62,6 @@
 
 			<!-- Namespace Contents -->
 			
-			<div id="namespace-list-section" class="section">
-				<h3 class="section-header">Namespace</h3>
-				<ul class="link-list">
-					
-					<li><span class="type">CLASS</span> <a href="Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
-					
-				</ul>
-			</div>
-			
 
 			<!-- Method Quickref -->
 			
@@ -80,11 +69,11 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#method-c-access_token">::access_token</a></li>
+					<li><a href="#method-c-get">::get</a></li>
 					
-					<li><a href="#method-c-consumer">::consumer</a></li>
+					<li><a href="#method-c-post">::post</a></li>
 					
-					<li><a href="#method-c-query">::query</a></li>
+					<li><a href="#method-c-put">::put</a></li>
 					
 				</ul>
 			</div>
@@ -117,6 +106,16 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
+				
+					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
+				
+					<li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
+				
+					<li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
+				
+					<li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
+				
 					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
 				
 					<li><a href="../Trello/Board.html">Trello::Board</a></li>
@@ -127,9 +126,7 @@
 				
 					<li><a href="../Trello/Client.html">Trello::Client</a></li>
 				
-					<li><a href="../Trello/Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
-				
-					<li><a href="../Trello/Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
@@ -143,7 +140,7 @@
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
-					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
+					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -159,58 +156,13 @@
 		<h1 class="class">Trello::Client</h1>
 
 		<div id="description">
-			<p>
-<a href="Client.html">Client</a> is used to handle the OAuth connection to
-<a href="../Trello.html">Trello</a> as well as send requests over that
-authenticated socket.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
 		
 
 		<!-- Attributes -->
-		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="public-key-attribute-method" class="method-detail">
-				<a name="public_key"></a>
-				
-				<a name="public_key="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">public_key</span><span
-						class="attribute-access-type">[W]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="secret-attribute-method" class="method-detail">
-				<a name="secret"></a>
-				
-				<a name="secret="></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">secret</span><span
-						class="attribute-access-type">[W]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
 		
 
 		<!-- Methods -->
@@ -219,53 +171,85 @@ authenticated socket.
 			<h3 class="section-header">Public Class Methods</h3>
 
 		
-			<div id="query-method" class="method-detail ">
-				<a name="method-c-query"></a>
+			<div id="get-method" class="method-detail ">
+				<a name="method-c-get"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-callseq">get(path, params)
-post(path, params)
-put(path, params)
-delete(path, params)
-query(api_version, path, options)</span>
+					<span class="method-name">get</span><span
+						class="method-args">(path, params = {})</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-Makes a query to a specific path via one of the four HTTP methods,
-optionally with a hash specifying parameters to pass to <a
-href="../Trello.html">Trello</a>.
-</p>
-<p>
-You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
-<em>.delete</em> instead of this method.
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="query-source">
+						id="get-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 8</span>
+ 8:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">params</span> = {})
+ 9:         <span class="ruby-identifier">api_version</span> = <span class="ruby-value">1</span>
+10: 
+11:         <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{api_version}#{path}&quot;</span>)
+12:         <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">params</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">empty?</span>
+13: 
+14:         <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:get</span>, <span class="ruby-identifier">uri</span>, {}
+15: 
+16:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">TInternet</span>.<span class="ruby-identifier">execute</span> <span class="ruby-constant">AuthPolicy</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
+17: 
+18:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
+19: 
+20:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
+21:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="post-method" class="method-detail ">
+				<a name="method-c-post"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">post</span><span
+						class="method-args">(path, body = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="post-source">
 <pre>
     <span class="ruby-comment cmt"># File lib/trello/client.rb, line 23</span>
-23:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">query</span>(<span class="ruby-identifier">api_version</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span> = { <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>, <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> {} })
-24:         <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{api_version}#{path}&quot;</span>)
-25:         <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:params</span>]
-26: 
-27:         <span class="ruby-identifier">access_token</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:method</span>], <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>)
-28:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Problem</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
-29:         <span class="ruby-identifier">headers</span> = []
-30:         <span class="ruby-identifier">e</span>.<span class="ruby-identifier">request</span>.<span class="ruby-identifier">each_header</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-31:           <span class="ruby-identifier">headers</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>]
-32:         <span class="ruby-keyword kw">end</span>
+23:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span> = {})
+24:         <span class="ruby-identifier">api_version</span> = <span class="ruby-value">1</span>
+25: 
+26:         <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{api_version}#{path}&quot;</span>)
+27: 
+28:         <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:post</span>, <span class="ruby-identifier">uri</span>, {}, <span class="ruby-identifier">body</span>
+29: 
+30:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">TInternet</span>.<span class="ruby-identifier">execute</span> <span class="ruby-constant">AuthPolicy</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
+31: 
+32:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
 33: 
-34:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span>(<span class="ruby-node">&quot;[#{@access_token}] Disposing of access token.\n#{e.inspect}&quot;</span>)
-35:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span>(<span class="ruby-node">&quot;[#{@access_token}] Headers: #{headers.inspect}\nRequest Body: #{e.request.body}&quot;</span>)
-36:         <span class="ruby-ivar">@access_token</span> = <span class="ruby-keyword kw">nil</span>
-37:       <span class="ruby-keyword kw">end</span></pre>
+34:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
+35:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -276,19 +260,13 @@ You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
 			</div>
 
 		
-		</div>
-	
-		<div id="protected-class-method-details" class="method-section section">
-			<h3 class="section-header">Protected Class Methods</h3>
-
-		
-			<div id="access-token-method" class="method-detail ">
-				<a name="method-c-access_token"></a>
+			<div id="put-method" class="method-detail ">
+				<a name="method-c-put"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">access_token</span><span
-						class="method-args">()</span>
+					<span class="method-name">put</span><span
+						class="method-args">(path, body = {})</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -300,55 +278,22 @@ You should use one of <em>.get</em>, <em>.post</em>, <em>.put</em> or
 
 					
 					<div class="method-source-code"
-						id="access-token-source">
+						id="put-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 60</span>
-60:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">access_token</span>
-61:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@access_token</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@access_token</span>
-62: 
-63:         <span class="ruby-ivar">@access_token</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer</span>)
-64:       <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="consumer-method" class="method-detail ">
-				<a name="method-c-consumer"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">consumer</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="consumer-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 49</span>
-49:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">consumer</span>
-50:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourPublicKey</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@public_key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
-51:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">EnterYourSecret</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@secret</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
-52: 
-53:         <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@public_key</span>, <span class="ruby-ivar">@secret</span>, <span class="ruby-value">:site</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'https://trello.com'</span>,
-54:                                                   <span class="ruby-value">:request_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetRequestToken'</span>,
-55:                                                   <span class="ruby-value">:authorize_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthAuthorizeToken'</span>,
-56:                                                   <span class="ruby-value">:access_token_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'/1/OAuthGetAccessToken'</span>,
-57:                                                   <span class="ruby-value">:http_method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>)
-58:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/client.rb, line 37</span>
+37:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span> = {})
+38:         <span class="ruby-identifier">api_version</span> = <span class="ruby-value">1</span>
+39: 
+40:         <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{api_version}#{path}&quot;</span>)
+41: 
+42:         <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:put</span>, <span class="ruby-identifier">uri</span>, {}, <span class="ruby-identifier">body</span>
+43: 
+44:         <span class="ruby-identifier">response</span> = <span class="ruby-constant">TInternet</span>.<span class="ruby-identifier">execute</span> <span class="ruby-constant">AuthPolicy</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
+45: 
+46:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
+47: 
+48:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
+49:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

@@ -81,9 +81,15 @@
 					
 					<li><a href="#method-i-checklists">#checklists</a></li>
 					
+					<li><a href="#method-i-description%3D">#description=</a></li>
+					
 					<li><a href="#method-i-list">#list</a></li>
 					
+					<li><a href="#method-i-list%3D">#list=</a></li>
+					
 					<li><a href="#method-i-members">#members</a></li>
+					
+					<li><a href="#method-i-name%3D">#name=</a></li>
 					
 					<li><a href="#method-i-save%21">#save!</a></li>
 					
@@ -124,6 +130,16 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
+				
+					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
+				
+					<li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
+				
+					<li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
+				
+					<li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
+				
 					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
 				
 					<li><a href="../Trello/Board.html">Trello::Board</a></li>
@@ -134,9 +150,7 @@
 				
 					<li><a href="../Trello/Client.html">Trello::Client</a></li>
 				
-					<li><a href="../Trello/Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
-				
-					<li><a href="../Trello/Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
@@ -150,7 +164,7 @@
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
-					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
+					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -351,7 +365,7 @@ Create a new card and save it on <a href="../Trello.html">Trello</a>.
 14:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">options</span>)
 15:         <span class="ruby-identifier">new</span>(<span class="ruby-value str">'name'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>],
 16:             <span class="ruby-value str">'idList'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:list_id</span>],
-17:             <span class="ruby-value str">'desc'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:description</span>]).<span class="ruby-identifier">save!</span>
+17:             <span class="ruby-value str">'desc'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:description</span>]).<span class="ruby-identifier">save!</span>
 18:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -427,11 +441,11 @@ Returns a list of the actions associated with this card.
 					<div class="method-source-code"
 						id="actions-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 37</span>
-37:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actions</span>
-38:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@actions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@actions</span>
-39:       <span class="ruby-ivar">@actions</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/actions&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Action</span>)
-40:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actions</span>
+39:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@actions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@actions</span>
+40:       <span class="ruby-ivar">@actions</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/actions&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Action</span>)
+41:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -464,10 +478,10 @@ Add a comment with the supplied text.
 					<div class="method-source-code"
 						id="add-comment-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 91</span>
-91:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_comment</span>(<span class="ruby-identifier">text</span>)
-92:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/cards/#{id}/actions/comments&quot;</span>, <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">text</span>)
-93:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/trello/card.rb, line 116</span>
+116:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_comment</span>(<span class="ruby-identifier">text</span>)
+117:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/actions/comments&quot;</span>, <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">text</span>)
+118:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -500,11 +514,11 @@ Returns a reference to the board this card is part of.
 					<div class="method-source-code"
 						id="board-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 43</span>
-43:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
-44:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@board</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@board</span>
-45:       <span class="ruby-ivar">@board</span> = <span class="ruby-constant">Board</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">board_id</span>)
-46:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 44</span>
+44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
+45:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@board</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@board</span>
+46:       <span class="ruby-ivar">@board</span> = <span class="ruby-constant">Board</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">board_id</span>)
+47:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -521,7 +535,7 @@ Returns a reference to the board this card is part of.
 				<div class="method-heading">
 				
 					<span class="method-name">checklists</span><span
-						class="method-args">()</span>
+						class="method-args">(options = { :filter => :all })</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -531,17 +545,60 @@ Returns a reference to the board this card is part of.
 					<p>
 Returns a list of checklists associated with the card.
 </p>
+<p>
+The options hash may have a filter key which can have its value set as any
+of the following values:
+</p>
+<pre>
+   :filter =&gt; [ :none, :all ] # default :all</pre>
 					
 
 					
 					<div class="method-source-code"
 						id="checklists-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 49</span>
-49:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">checklists</span>
-50:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@checklists</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@checklists</span>
-51:       <span class="ruby-ivar">@checklists</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/checklists&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Checklist</span>)
-52:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 54</span>
+54:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">checklists</span>(<span class="ruby-identifier">options</span> = { <span class="ruby-value">:filter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:all</span> })
+55:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@checklists</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@checklists</span>
+56:       <span class="ruby-ivar">@checklists</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/checklists&quot;</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Checklist</span>)
+57:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="description--method" class="method-detail ">
+				<a name="method-i-description%3D"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">description=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Change the description of the card
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="description--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 80</span>
+80:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">description=</span>(<span class="ruby-identifier">val</span>)
+81:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/card/#{id}/desc&quot;</span>, <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">val</span>)
+82:       <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">val</span>
+83:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -574,11 +631,49 @@ Returns a reference to the list this card is currently in.
 					<div class="method-source-code"
 						id="list-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 55</span>
-55:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
-56:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@list</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@list</span>
-57:       <span class="ruby-ivar">@list</span> = <span class="ruby-constant">List</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">list_id</span>)
-58:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 60</span>
+60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
+61:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@list</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@list</span>
+62:       <span class="ruby-ivar">@list</span> = <span class="ruby-constant">List</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">list_id</span>)
+63:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="list--method" class="method-detail ">
+				<a name="method-i-list%3D"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">list=</span><span
+						class="method-args">(other)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Change the list this card is a part of
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="list--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 86</span>
+86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list=</span>(<span class="ruby-identifier">other</span>)
+87:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/card/#{id}/idList&quot;</span>, <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>)
+88:       <span class="ruby-ivar">@list_id</span> = <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>
+89:       <span class="ruby-identifier">other</span>
+90:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -611,13 +706,50 @@ Returns a list of members who are assigned to this card.
 					<div class="method-source-code"
 						id="members-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 61</span>
-61:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>
-62:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@members</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@members</span>
-63:       <span class="ruby-ivar">@members</span> = <span class="ruby-identifier">member_ids</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member_id</span><span class="ruby-operator">|</span>
-64:         <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/members/#{member_id}&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
-65:       <span class="ruby-keyword kw">end</span>
-66:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 66</span>
+66:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>
+67:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@members</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@members</span>
+68:       <span class="ruby-ivar">@members</span> = <span class="ruby-identifier">member_ids</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member_id</span><span class="ruby-operator">|</span>
+69:         <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/members/#{member_id}&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
+70:       <span class="ruby-keyword kw">end</span>
+71:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="name--method" class="method-detail ">
+				<a name="method-i-name%3D"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">name=</span><span
+						class="method-args">(val)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Change the name of the card
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="name--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 74</span>
+74:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">name=</span>(<span class="ruby-identifier">val</span>)
+75:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/card/#{id}/name&quot;</span>, <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">val</span>)
+76:       <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">val</span>
+77:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -650,16 +782,17 @@ Saves a record.
 					<div class="method-source-code"
 						id="save--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 69</span>
-69:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save!</span>
-70:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">update!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>
-71: 
-72:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">&quot;/cards&quot;</span>, {
-73:         <span class="ruby-value">:name</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
-74:         <span class="ruby-value">:desc</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>,
-75:         <span class="ruby-value">:idList</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@list_id</span>
-76:       })
-77:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/trello/card.rb, line 93</span>
+ 93:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save!</span>
+ 94:       <span class="ruby-comment cmt"># If we have an id, just update our fields.</span>
+ 95:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">update!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>
+ 96: 
+ 97:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">&quot;/cards&quot;</span>, {
+ 98:         <span class="ruby-value">:name</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
+ 99:         <span class="ruby-value">:desc</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>,
+100:         <span class="ruby-value">:idList</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@list_id</span>
+101:       }).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword kw">self</span>)
+102:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -692,11 +825,11 @@ Update an existing record.
 					<div class="method-source-code"
 						id="update--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 80</span>
-80:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update!</span>
-81:       <span class="ruby-comment cmt"># Trello doesn't support this yet. But Daniel is working on it as I</span>
-82:       <span class="ruby-comment cmt"># place this comment here!</span>
-83:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/trello/card.rb, line 105</span>
+105:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update!</span>
+106:       <span class="ruby-comment cmt"># Trello doesn't support this yet. But Daniel is working on it as I</span>
+107:       <span class="ruby-comment cmt"># place this comment here!</span>
+108:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -743,7 +876,8 @@ href="../Trello.html">Trello</a> API representing a card.
 31:       <span class="ruby-ivar">@board_id</span>    = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idBoard'</span>]
 32:       <span class="ruby-ivar">@member_ids</span>  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMembers'</span>]
 33:       <span class="ruby-ivar">@list_id</span>     = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idList'</span>]
-34:     <span class="ruby-keyword kw">end</span></pre>
+34:       <span class="ruby-keyword kw">self</span>
+35:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -776,10 +910,10 @@ Is the record valid?
 					<div class="method-source-code"
 						id="valid--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/card.rb, line 86</span>
-86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid?</span>
-87:       <span class="ruby-ivar">@name</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@list_id</span>
-88:     <span class="ruby-keyword kw">end</span></pre>
+     <span class="ruby-comment cmt"># File lib/trello/card.rb, line 111</span>
+111:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid?</span>
+112:       <span class="ruby-ivar">@name</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@list_id</span>
+113:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

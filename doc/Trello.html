@@ -41,6 +41,9 @@
 						<li><a href="./lib/trello/action_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
 							class="thickbox" title="lib/trello/action.rb">lib/trello/action.rb</a></li>
 					
+						<li><a href="./lib/trello/authorization_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/authorization.rb">lib/trello/authorization.rb</a></li>
+					
 						<li><a href="./lib/trello/basic_data_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
 							class="thickbox" title="lib/trello/basic_data.rb">lib/trello/basic_data.rb</a></li>
 					
@@ -67,6 +70,9 @@
 					
 						<li><a href="./lib/trello/member_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
 							class="thickbox" title="lib/trello/member.rb">lib/trello/member.rb</a></li>
+					
+						<li><a href="./lib/trello/net_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/net.rb">lib/trello/net.rb</a></li>
 					
 						<li><a href="./lib/trello/notification_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
 							class="thickbox" title="lib/trello/notification.rb">lib/trello/notification.rb</a></li>
@@ -95,6 +101,8 @@
 				<h3 class="section-header">Namespace</h3>
 				<ul class="link-list">
 					
+					<li><span class="type">MODULE</span> <a href="Trello/Authorization.html">Trello::Authorization</a></li>
+					
 					<li><span class="type">CLASS</span> <a href="Trello/Action.html">Trello::Action</a></li>
 					
 					<li><span class="type">CLASS</span> <a href="Trello/BasicData.html">Trello::BasicData</a></li>
@@ -106,6 +114,8 @@
 					<li><span class="type">CLASS</span> <a href="Trello/Checklist.html">Trello::Checklist</a></li>
 					
 					<li><span class="type">CLASS</span> <a href="Trello/Client.html">Trello::Client</a></li>
+					
+					<li><span class="type">CLASS</span> <a href="Trello/Error.html">Trello::Error</a></li>
 					
 					<li><span class="type">CLASS</span> <a href="Trello/Item.html">Trello::Item</a></li>
 					
@@ -119,13 +129,24 @@
 					
 					<li><span class="type">CLASS</span> <a href="Trello/Organization.html">Trello::Organization</a></li>
 					
-					<li><span class="type">CLASS</span> <a href="Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
+					<li><span class="type">CLASS</span> <a href="Trello/TInternet.html">Trello::TInternet</a></li>
 					
 				</ul>
 			</div>
 			
 
 			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-logger">::logger</a></li>
+					
+					<li><a href="#method-c-logger%3D">::logger=</a></li>
+					
+				</ul>
+			</div>
 			
 
 			<!-- Included Modules -->
@@ -155,6 +176,16 @@
 				
 					<li><a href="./Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="./Trello/Authorization.html">Trello::Authorization</a></li>
+				
+					<li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
+				
+					<li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
+				
+					<li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
+				
+					<li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
+				
 					<li><a href="./Trello/BasicData.html">Trello::BasicData</a></li>
 				
 					<li><a href="./Trello/Board.html">Trello::Board</a></li>
@@ -165,9 +196,7 @@
 				
 					<li><a href="./Trello/Client.html">Trello::Client</a></li>
 				
-					<li><a href="./Trello/Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
-				
-					<li><a href="./Trello/Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+					<li><a href="./Trello/Error.html">Trello::Error</a></li>
 				
 					<li><a href="./Trello/Item.html">Trello::Item</a></li>
 				
@@ -181,7 +210,7 @@
 				
 					<li><a href="./Trello/Organization.html">Trello::Organization</a></li>
 				
-					<li><a href="./Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
+					<li><a href="./Trello/TInternet.html">Trello::TInternet</a></li>
 				
 					<li><a href="./String.html">String</a></li>
 				
@@ -244,6 +273,16 @@ public.
 			<h3 class="section-header">Constants</h3>
 			<dl>
 			
+				<dt><a name="Request">Request</a></dt>
+				
+				<dd class="description"></dd>
+				
+			
+				<dt><a name="Response">Response</a></dt>
+				
+				<dd class="description"></dd>
+				
+			
 				<dt><a name="API_VERSION">API_VERSION</a></dt>
 				
 				<dd class="description"><p>
@@ -260,6 +299,80 @@ Version of the <a href="Trello.html">Trello</a> API that we use by default.
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="logger-method" class="method-detail ">
+				<a name="method-c-logger"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">logger</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="logger-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello.rb, line 49</span>
+49:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logger</span>
+50:     <span class="ruby-identifier">@@logger</span> <span class="ruby-operator">||</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
+51:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="logger--method" class="method-detail ">
+				<a name="method-c-logger%3D"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">logger=</span><span
+						class="method-args">(logger)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="logger--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello.rb, line 53</span>
+53:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logger=</span>(<span class="ruby-identifier">logger</span>)
+54:     <span class="ruby-identifier">@@logger</span> = <span class="ruby-identifier">logger</span>
+55:   <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 
 	</div>
 

@@ -112,6 +112,16 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
+				
+					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
+				
+					<li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
+				
+					<li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
+				
+					<li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
+				
 					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
 				
 					<li><a href="../Trello/Board.html">Trello::Board</a></li>
@@ -122,9 +132,7 @@
 				
 					<li><a href="../Trello/Client.html">Trello::Client</a></li>
 				
-					<li><a href="../Trello/Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
-				
-					<li><a href="../Trello/Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
@@ -138,7 +146,7 @@
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
-					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
+					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -304,11 +312,11 @@ Returns the board this action occurred on.
 					<div class="method-source-code"
 						id="board-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 25</span>
-25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
-26:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@board</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@board</span>
-27:       <span class="ruby-ivar">@board</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/board&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
-28:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 26</span>
+26:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
+27:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@board</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@board</span>
+28:       <span class="ruby-ivar">@board</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/board&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
+29:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -341,11 +349,11 @@ Returns the card the action occurred on.
 					<div class="method-source-code"
 						id="card-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 31</span>
-31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card</span>
-32:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@card</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@card</span>
-33:       <span class="ruby-ivar">@card</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/card&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
-34:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 32</span>
+32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card</span>
+33:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@card</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@card</span>
+34:       <span class="ruby-ivar">@card</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/card&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
+35:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -378,11 +386,11 @@ Returns the list the action occurred on.
 					<div class="method-source-code"
 						id="list-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 37</span>
-37:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
-38:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@list</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@list</span>
-39:       <span class="ruby-ivar">@list</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/list&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
-40:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
+39:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@list</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@list</span>
+40:       <span class="ruby-ivar">@list</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/list&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
+41:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -415,11 +423,11 @@ Returns the member who created the action.
 					<div class="method-source-code"
 						id="member-creator-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 43</span>
-43:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">member_creator</span>
-44:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@member_creator</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@member_creator</span>
-45:       <span class="ruby-ivar">@member_creator</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">member_creator_id</span>)
-46:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 44</span>
+44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">member_creator</span>
+45:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@member_creator</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@member_creator</span>
+46:       <span class="ruby-ivar">@member_creator</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">member_creator_id</span>)
+47:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -463,7 +471,8 @@ href="Action.html">Action</a>.
 19:       <span class="ruby-ivar">@type</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
 20:       <span class="ruby-ivar">@data</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'data'</span>]
 21:       <span class="ruby-ivar">@member_creator_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMemberCreator'</span>]
-22:     <span class="ruby-keyword kw">end</span></pre>
+22:       <span class="ruby-keyword kw">self</span>
+23:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

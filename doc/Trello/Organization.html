@@ -110,6 +110,16 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
+				
+					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
+				
+					<li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
+				
+					<li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
+				
+					<li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
+				
 					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
 				
 					<li><a href="../Trello/Board.html">Trello::Board</a></li>
@@ -120,9 +130,7 @@
 				
 					<li><a href="../Trello/Client.html">Trello::Client</a></li>
 				
-					<li><a href="../Trello/Client/EnterYourPublicKey.html">Trello::Client::EnterYourPublicKey</a></li>
-				
-					<li><a href="../Trello/Client/EnterYourSecret.html">Trello::Client::EnterYourSecret</a></li>
+					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
@@ -136,7 +144,7 @@
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
-					<li><a href="../Trello/RecordNotFound.html">Trello::RecordNotFound</a></li>
+					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -315,11 +323,11 @@ Returns a timeline of actions.
 					<div class="method-source-code"
 						id="actions-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 26</span>
-26:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actions</span>
-27:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@actions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@actions</span>
-28:       <span class="ruby-ivar">@actions</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/actions&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Action</span>)
-29:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 27</span>
+27:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actions</span>
+28:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@actions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@actions</span>
+29:       <span class="ruby-ivar">@actions</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/actions&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Action</span>)
+30:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -352,11 +360,11 @@ Returns a list of boards under this organization.
 					<div class="method-source-code"
 						id="boards-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 32</span>
-32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">boards</span>
-33:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@boards</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@boards</span>
-34:       <span class="ruby-ivar">@boards</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/boards/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
-35:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 33</span>
+33:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">boards</span>
+34:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@boards</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@boards</span>
+35:       <span class="ruby-ivar">@boards</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/boards/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
+36:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -389,11 +397,11 @@ Returns an array of members associated with the organization.
 					<div class="method-source-code"
 						id="members-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 38</span>
-38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>
-39:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@members</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@members</span>
-40:       <span class="ruby-ivar">@members</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/members/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
-41:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 39</span>
+39:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>
+40:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@members</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@members</span>
+41:       <span class="ruby-ivar">@members</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/members/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
+42:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -438,7 +446,8 @@ href="Organization.html">Organization</a>.
 20:       <span class="ruby-ivar">@display_name</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'displayName'</span>]
 21:       <span class="ruby-ivar">@description</span>  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'description'</span>]
 22:       <span class="ruby-ivar">@url</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
-23:     <span class="ruby-keyword kw">end</span></pre>
+23:       <span class="ruby-keyword kw">self</span>
+24:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

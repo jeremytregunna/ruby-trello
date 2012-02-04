@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Trello::ItemState</title>
+	<title>Class: Trello::TInternet</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -38,8 +38,8 @@
 				<div class="section-body">
 					<ul>
 					
-						<li><a href="../lib/trello/item_state_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/item_state.rb">lib/trello/item_state.rb</a></li>
+						<li><a href="../lib/trello/net_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/net.rb">lib/trello/net.rb</a></li>
 					
 					</ul>
 				</div>
@@ -55,7 +55,7 @@
 			<div id="parent-class-section" class="section">
 				<h3 class="section-header">Parent</h3>
 				
-				<p class="link"><a href="BasicData.html">Trello::BasicData</a></p>
+				<p class="link">Object</p>
 				
 			</div>
 			
@@ -69,9 +69,11 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#method-i-item">#item</a></li>
+					<li><a href="#method-c-execute">::execute</a></li>
 					
-					<li><a href="#method-i-update_fields">#update_fields</a></li>
+					<li><a href="#method-c-execute_core">::execute_core</a></li>
+					
+					<li><a href="#method-c-try_execute">::try_execute</a></li>
 					
 				</ul>
 			</div>
@@ -151,13 +153,10 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">Trello::ItemState</h1>
+		<h1 class="class">Trello::TInternet</h1>
 
 		<div id="description">
-			<p>
-Represents the state of an item.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
@@ -165,90 +164,37 @@ Represents the state of an item.
 
 		<!-- Attributes -->
 		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="id-attribute-method" class="method-detail">
-				<a name="id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="state-attribute-method" class="method-detail">
-				<a name="state"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">state</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="item-id-attribute-method" class="method-detail">
-				<a name="item_id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">item_id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
-		
 
 		<!-- Methods -->
 		
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
 
 		
-			<div id="item-method" class="method-detail ">
-				<a name="method-i-item"></a>
+			<div id="execute-method" class="method-detail ">
+				<a name="method-c-execute"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">item</span><span
-						class="method-args">()</span>
+					<span class="method-name">execute</span><span
+						class="method-args">(request)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-Return the item this state belongs to.
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="item-source">
+						id="execute-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/item_state.rb, line 18</span>
-18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">item</span>
-19:       <span class="ruby-constant">Item</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@item_id</span>)
-20:     <span class="ruby-keyword kw">end</span></pre>
+   <span class="ruby-comment cmt"># File lib/trello/net.rb, line 7</span>
+7:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">request</span>)
+8:         <span class="ruby-identifier">try_execute</span> <span class="ruby-identifier">request</span>
+9:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -259,39 +205,83 @@ Return the item this state belongs to.
 			</div>
 
 		
-			<div id="update-fields-method" class="method-detail ">
-				<a name="method-i-update_fields"></a>
+		</div>
+	
+		<div id="private-class-method-details" class="method-section section">
+			<h3 class="section-header">Private Class Methods</h3>
+
+		
+			<div id="execute-core-method" class="method-detail ">
+				<a name="method-c-execute_core"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">update_fields</span><span
-						class="method-args">(fields)</span>
+					<span class="method-name">execute_core</span><span
+						class="method-args">(request)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-Update the fields of an item state.
-</p>
-<p>
-Supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing an item state.
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="update-fields-source">
+						id="execute-core-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/item_state.rb, line 10</span>
-10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-11:       <span class="ruby-ivar">@id</span>      = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-12:       <span class="ruby-ivar">@state</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'state'</span>]
-13:       <span class="ruby-ivar">@item_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idItem'</span>]
-14:       <span class="ruby-keyword kw">self</span>
-15:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/net.rb, line 22</span>
+22:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_core</span>(<span class="ruby-identifier">request</span>)
+23:         <span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;rest_client&quot;</span>
+24:         
+25:         <span class="ruby-constant">RestClient</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">execute</span>(
+26:           <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">verb</span>, 
+27:           <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>, 
+28:           <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">headers</span>, 
+29:           <span class="ruby-value">:payload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>, 
+30:           <span class="ruby-value">:timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>
+31:         )
+32:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="try-execute-method" class="method-detail ">
+				<a name="method-c-try_execute"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">try_execute</span><span
+						class="method-args">(request)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="try-execute-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/net.rb, line 13</span>
+13:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">try_execute</span>(<span class="ruby-identifier">request</span>)
+14:         <span class="ruby-keyword kw">begin</span>
+15:           <span class="ruby-identifier">result</span> = <span class="ruby-identifier">execute_core</span> <span class="ruby-identifier">request</span>
+16:           <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">200</span>, {}, <span class="ruby-identifier">result</span>)
+17:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+18:           <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">http_code</span>, {}, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">http_body</span>)
+19:         <span class="ruby-keyword kw">end</span>
+20:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
