@@ -22,6 +22,10 @@ of refactoring and functionality to be deserving of a beer and this special than
 
 ## Contributing
 
+Several ways you can contribute. Documentation, code, tests, feature requests, bug reports.
+
+We develop ruby-trello using [Trello itself](https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd).
+
 Pick up an editor, fix a test! (If you want to, of course.) Send a pull
 request, and I'll look at it. I only ask a few things:
 
