@@ -24,6 +24,12 @@ module Trello
         invoke_verb(:put, uri, body)
       end
 
+      def delete(path)
+        api_version  =1
+        uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
+        invoke_verb(:delete, uri)
+      end
+
       def invoke_verb(name, uri, body = nil)
         request = Request.new name, uri, {}, body
         response = TInternet.execute AuthPolicy.authorize(request)
