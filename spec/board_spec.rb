@@ -122,11 +122,11 @@ module Trello
       Client.should_not_receive :put
       
       the_new_board = Board.new
-      lambda{the_new_board.save!}.should raise_error "Cannot save new instance."
+      lambda{the_new_board.save!}.should raise_error
     end
 
     it "puts all fields except id" do
-      expected_fields = %w{name description closed url organisation_id}.map{|s| s.to_sym}
+      expected_fields = %w{name description closed}.map{|s| s.to_sym}
         
       Client.should_receive(:put) do |anything, body|
         body.keys.should =~ expected_fields
@@ -171,20 +171,21 @@ module Trello
 
     it "creates a new board with whatever attributes are supplied " do
       expected_attributes = { :name => "Any new board name", :description => "Any new board desription" }
-      
-      Client.should_receive(:post).with(anything, expected_attributes).and_return any_board_json
+      sent_attributes = { :name => expected_attributes[:name], :desc => expected_attributes[:description] }
+
+      Client.should_receive(:post).with("/boards", sent_attributes).and_return any_board_json
 
       Board.create expected_attributes
     end
 
     it "posts to the boards collection" do
-      Client.should_receive(:post).with("/boards/", anything).and_return any_board_json
+      Client.should_receive(:post).with("/boards", anything).and_return any_board_json
 
       Board.create :xxx => ""
     end
 
     it "returns a board" do
-      Client.stub(:post).with("/boards/", anything).and_return any_board_json
+      Client.stub(:post).with("/boards", anything).and_return any_board_json
 
       the_new_board = Board.create :xxx => ""
       the_new_board.should be_a Board

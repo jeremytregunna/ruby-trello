@@ -19,11 +19,11 @@ module Trello
     def save!
       return update! if id
 
-      Client.post("/boards", {
-        :name           => name,
-        :desc           => description,
-        :idOrganization => organization_id
-      }).json_into(self)
+      attributes = { :name => name }
+      attributes.merge!(:desc => description) if description
+      attributes.merge!(:idOrganization => organization_id) if organization_id
+
+      Client.post("/boards", attributes).json_into(self)
     end
 
     def update!
