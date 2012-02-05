@@ -132,5 +132,23 @@ module Trello
         :value => checklist.id
       })
     end
+
+    # Add a label
+    def add_label(colour)
+      if %w{green yellow orange red purple blue}.include? colour
+        Client.post("/cards/#{id}/labels", { :value => colour })
+      else
+        logger.warn "The label colour '#{colour}' does not exist."
+      end
+    end
+
+    # Remove a label
+    def remove_label(colour)
+      if %w{green yellow orange red purple blue}.include? colour
+        Client.delete("/cards/#{id}/labels/#{colour}")
+      else
+        logger.warn "The label colour '#{colour}' does not exist."
+      end
+    end
   end
 end
