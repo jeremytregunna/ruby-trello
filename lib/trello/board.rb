@@ -10,19 +10,29 @@ module Trello
       end
 
       def create(attributes)
-        Client.post("/boards/", attributes).json_into Board
+        new('name'   => attributes[:name],
+            'desc'   => attributes[:description],
+            'closed' => attributes[:closed] || false).save!
       end
     end
 
     def save!
+      return update! if id
+
+      Client.post("/boards", {
+        :name           => name,
+        :desc           => description,
+        :idOrganization => organization_id
+      }).json_into(self)
+    end
+
+    def update!
       fail "Cannot save new instance." unless self.id
 
       Client.put("/boards/#{self.id}/", {
-        :name            => @name,
-        :description     => @description,
-        :closed          => @closed,
-        :url             => @url,
-        :organisation_id => @organisation_id
+        :name        => @name,
+        :description => @description,
+        :closed      => @closed
       }).json_into(self)
     end
 
