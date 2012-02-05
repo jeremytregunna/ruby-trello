@@ -23,14 +23,14 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a card.
     def update_fields(fields)
-      @id          = fields['id']
-      @name        = fields['name']
-      @description = fields['desc']
-      @closed      = fields['closed']
-      @url         = fields['url']
-      @board_id    = fields['idBoard']
-      @member_ids  = fields['idMembers']
-      @list_id     = fields['idList']
+      @id          = fields['id']        if fields['id']
+      @name        = fields['name']      if fields['name']
+      @description = fields['desc']      if fields['desc']
+      @closed      = fields['closed']    if fields['closed']
+      @url         = fields['url']       if fields['url']
+      @board_id    = fields['idBoard']   if fields['idBoard']
+      @member_ids  = fields['idMembers'] if fields['idMembers']
+      @list_id     = fields['idList']    if fields['idList']
       self
     end
 
