@@ -6,27 +6,23 @@ module Trello
 
     class << self
       def get(path, params = {})
-        api_version = 1
-        uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
+        uri = Addressable::URI.parse("https://api.trello.com/#{API_VERSION}#{path}")
         uri.query_values = params unless params.empty?
         invoke_verb(:get, uri)
       end
 
       def post(path, body = {})
-        api_version = 1
-        uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
+        uri = Addressable::URI.parse("https://api.trello.com/#{API_VERSION}#{path}")
         invoke_verb(:post, uri, body)
       end
 
       def put(path, body = {})
-        api_version = 1
-        uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
+        uri = Addressable::URI.parse("https://api.trello.com/#{API_VERSION}#{path}")
         invoke_verb(:put, uri, body)
       end
 
       def delete(path)
-        api_version  =1
-        uri = Addressable::URI.parse("https://api.trello.com/#{api_version}#{path}")
+        uri = Addressable::URI.parse("https://api.trello.com/#{API_VERSION}#{path}")
         invoke_verb(:delete, uri)
       end
 
@@ -35,7 +31,7 @@ module Trello
         response = TInternet.execute AuthPolicy.authorize(request)
 
         unless response.code.to_i == 200
-          logger.error("[#{response.code.to_i} #{name.upcase} #{uri}]: #{response.body}")
+          Trello.logger.error("[#{response.code.to_i} #{name.upcase} #{uri}]: #{response.body}")
           raise Error, response.body
         end
 

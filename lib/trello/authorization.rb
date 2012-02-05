@@ -38,7 +38,7 @@ module Trello
 
         def authorize(request)
           unless consumer_credential
-            logger.error "The consumer_credential has not been supplied."
+            Trello.logger.error "The consumer_credential has not been supplied."
             fail "The consumer_credential has not been supplied."
           end
 
