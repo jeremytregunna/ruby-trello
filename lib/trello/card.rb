@@ -102,9 +102,18 @@ module Trello
     end
 
     # Update an existing record.
+    # Warning, this updates all fields using values already in memory. If
+    # an external resource has updated these fields, you should refresh!
+    # this object before making your changes, and before updating the record.
     def update!
-      # Trello doesn't support this yet. But Daniel is working on it as I
-      # place this comment here!
+      Client.put("/cards/#{@id}", {
+        :name      => @name,
+        :desc      => @description,
+        :closed    => @closed,
+        :idList    => @list_id,
+        :idBoard   => @board_id,
+        :idMembers => @member_ids
+      }).json_into(self)
     end
 
     # Is the record valid?
@@ -115,6 +124,13 @@ module Trello
     # Add a comment with the supplied text.
     def add_comment(text)
       Client.post("/cards/#{id}/actions/comments", :text => text)
+    end
+
+    # Add a checklist to this card
+    def add_checklist(checklist)
+      Client.post("/cards/#{id}/checklists", {
+        :value => checklist.id
+      })
     end
   end
 end

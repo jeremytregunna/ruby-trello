@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{ruby-trello}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
   s.platform    = Gem::Platform::RUBY
 
   s.authors = ["Jeremy Tregunna"]
@@ -21,5 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'yajl-ruby', '>= 1.1.0'
   s.add_dependency 'oauth', '~> 0.4.5'
   s.add_dependency 'addressable', '~> 2.2.6'
+  s.add_dependency 'rest-client', '~> 1.6.7'
   s.add_development_dependency 'bundler', '~> 1.0.0'
 end

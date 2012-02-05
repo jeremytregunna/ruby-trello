@@ -8,6 +8,11 @@ module Trello
       def find(id)
         super(:checklists, id)
       end
+
+      def create(options)
+        new('name'       => options[:name],
+            'idBoard'    => options[:board_id]).save!
+      end
     end
 
     # Update the fields of a checklist.
@@ -29,6 +34,19 @@ module Trello
     # Check if the checklist is currently active.
     def closed?
       closed
+    end
+
+    # Save a record.
+    def save!
+      return update! if id
+
+      Client.post("/checklists", {
+        :name => @name,
+        :idBoard => @board_id
+      })
+    end
+
+    def update!
     end
 
     # Return a list of items on the checklist.
@@ -59,6 +77,11 @@ module Trello
       @members = member_ids.map do |member_id|
         Member.find(member_id)
       end
+    end
+
+    # Add an item to the checklist
+    def add_item(name)
+      Client.post("/checklists/#{id}/checkItems", { :name => name })
     end
   end
 end

@@ -4,10 +4,10 @@ gem 'oauth'
 gem 'addressable'
 gem 'json', :platforms => [ :ruby_18, :jruby ]
 gem 'jruby-openssl', :platforms => :jruby
+gem 'rest-client'
 
 group :spec do
   gem 'rspec'
   gem 'simplecov', :require => false, :platforms => [ :mri, :mri_18, :mri_19, :jruby, :mingw ]
   gem 'webmock'
-  gem 'rest-client'
 end
