@@ -35,8 +35,8 @@ module Trello
         response = TInternet.execute AuthPolicy.authorize(request)
 
         unless response.code.to_i == 200
+          logger.error("[#{response.code.to_i} #{name.upcase} #{uri}]: #{response.body}")
           raise Error, response.body
-          logger.error("[#{response.code.to_i} GET #{uri}]: #{response.body}")
         end
 
         response.body
