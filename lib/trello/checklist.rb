@@ -1,5 +1,5 @@
 module Trello
-  # A Checklist holds items which are like a "todo" list. Checklists are linked to a card.
+  # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
   class Checklist < BasicData
     attr_reader :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids
 

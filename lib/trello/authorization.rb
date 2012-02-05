@@ -37,7 +37,10 @@ module Trello
         attr_accessor :consumer_credential, :token
 
         def authorize(request)
-          fail "The consumer_credential has not been supplied." unless consumer_credential
+          unless consumer_credential
+            logger.error "The consumer_credential has not been supplied."
+            fail "The consumer_credential has not been supplied."
+          end
 
           request.headers = {"Authorization" => get_auth_header(request.uri, :get)}
           request
