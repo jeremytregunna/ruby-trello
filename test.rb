@@ -15,7 +15,7 @@ OAuthPolicy.consumer_credential = OAuthCredential.new 'PUBLIC_KEY', 'SECRET'
 # https://trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never
 # Only request the permissions you need; i.e., scope=read if you only need read, or scope=write if you only need write. Comma separate scopes you need.
 # If you want your token to expire after 30 days, drop the &expiration=never.
-OAuthPolicy.token = OAuthCredential.new 'TOKEN_KEY', nil
+OAuthPolicy.token = OAuthCredential.new 'ACCESS_TOKEN_KEY', nil
 
 me = Member.find("me")
 board = Board.create(:name => "ruby-trello test")
