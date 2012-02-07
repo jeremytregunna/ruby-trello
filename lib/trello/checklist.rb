@@ -43,10 +43,11 @@ module Trello
       Client.post("/checklists", {
         :name => @name,
         :idBoard => @board_id
-      })
+      }).json_into(self)
     end
 
     def update!
+      Client.put("/checklists", { :name => @name }).json_into(self)
     end
 
     # Return a list of items on the checklist.
