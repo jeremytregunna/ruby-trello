@@ -142,4 +142,29 @@ module Helpers
   def actions_payload
     JSON.generate(actions_details)
   end
+
+  def notification_details
+    {
+      "id"              => "4f30d084d5b0f7ab453bee51",
+      "unread"          => false,
+      "type"            => "commentCard",
+      "date"            => "2012-02-07T07:19:32.393Z",
+      "data"            => {
+        "board"         => {
+          "id"          => "abcdef123456789123456789",
+          "name"        => "Test"
+        },
+        "card"=>{
+          "id"          => "abcdef123456789123456789",
+          "name"        => "Do something awesome"
+        },
+        "text"          => "test"
+      },
+      "idMemberCreator" => "abcdef123456789012345678"
+    }
+  end
+
+  def notification_payload
+    JSON.generate(notification_details)
+  end
 end
