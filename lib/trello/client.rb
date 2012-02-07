@@ -32,7 +32,7 @@ module Trello
 
         if response.code.to_i == 401 && response.body =~ /expired token/
           Trello.logger.error("[401 #{name.to_s.upcase} #{uri}]: Your access token has expired.")
-          raise ExpiredAccessToken
+          raise InvalidAccessToken, response.body
         end
 
         unless response.code.to_i == 200
