@@ -40,7 +40,6 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Member.
     def update_fields(fields)
-      attributes
       attributes[:id]          = fields['id']
       attributes[:full_name]   = fields['fullName']
       attributes[:username]    = fields['username']
