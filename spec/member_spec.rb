@@ -43,6 +43,13 @@ module Trello
       end
     end
 
+    context "notifications" do
+      it "has a list of notifications" do
+        Client.stub(:get).with("/members/me/notifications").and_return "[" << notification_payload << "]"
+        @member.notifications.count.should be 1
+      end
+    end
+
     context "personal" do
       it "gets the members bio" do
         @member.bio.should == user_details['bio']
