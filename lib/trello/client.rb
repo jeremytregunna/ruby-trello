@@ -35,7 +35,7 @@ module Trello
           raise InvalidAccessToken, response.body
         end
 
-        unless response.code.to_i == 200
+        unless [200, 201].include? response.code.to_i
           Trello.logger.error("[#{response.code.to_i} #{name.to_s.upcase} #{uri}]: #{response.body}")
           raise Error, response.body
         end
