@@ -51,15 +51,14 @@ module Trello
 
   # Raise this when we hit a Trello error.
   class Error < StandardError; end
+  # This specific error is thrown when your access token has expired. Catch it, and start the process to get a new one.
+  class ExpiredAccessToken < StandardError; end
 
   def self.logger
-    @logger || Logger.new(STDOUT)
+    @logger ||= Logger.new(STDOUT)
   end
 
   def self.logger=(logger)
     @logger = logger
   end
-end
-
-module Trello
 end

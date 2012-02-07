@@ -15,7 +15,6 @@ module Trello
           result = execute_core request
           Response.new(200, {}, result)
         rescue Exception => e
-          logger.warn "[#{e.http_code} RESPONSE]: #{e.http_body}"
           Response.new(e.http_code, {}, e.http_body)
         end
       end
