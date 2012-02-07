@@ -1,8 +1,18 @@
 module Trello
   # A Member is a user of the Trello service.
   class Member < BasicData
-    attr_reader   :id
-    attr_accessor :full_name, :username, :gravatar_id, :bio, :url
+    include ActiveModel::Validations
+    include ActiveModel::Dirty #changed?
+    include ActiveModel::Serializers::JSON
+
+    validates_presence_of :id, :username
+
+    # These are the attributes which are exposed to this model.
+    def self.attribute_names
+      [ :id, :username, :full_name, :gravatar_id, :bio, :url ]
+    end
+
+    define_attribute_methods attribute_names
 
     class << self
       # Finds a user
@@ -13,17 +23,30 @@ module Trello
       end
     end
 
+    # Defines the attribute getter and setters.
+    class_eval do
+      attribute_names.each do |key|
+        define_method(:"#{key}") { @attributes[key] }
+
+        define_method :"#{key}=" do |val|
+          send(:"#{key}_will_change!") unless val == @attributes[key]
+          @attributes[key] = val
+        end
+      end
+    end
+
     # Update the fields of a member.
     #
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Member.
     def update_fields(fields)
-      @id          = fields['id']
-      @full_name   = fields['fullName']
-      @username    = fields['username']
-      @gravatar_id = fields['gravatar']
-      @bio         = fields['bio']
-      @url         = fields['url']
+      attributes
+      attributes[:id]          = fields['id']
+      attributes[:full_name]   = fields['fullName']
+      attributes[:username]    = fields['username']
+      attributes[:gravatar_id] = fields['gravatar']
+      attributes[:bio]         = fields['bio']
+      attributes[:url]         = fields['url']
       self
     end
 
@@ -68,16 +91,22 @@ module Trello
       Client.get("/members/#{username}/notifications").json_into(Notification)
     end
 
-    # Returns a hash of the items that would be returned by Trello.
-    def to_hash
-      {
-        'id'       => id,
-        'fullName' => full_name,
-        'username' => username,
-        'gravatar' => gravatar_id,
-        'bio'      => bio,
-        'url'      => url
+    def attributes
+      @attributes ||= {
+        :id          => @id,
+        :full_name   => @full_name,
+        :username    => @username,
+        :gravatar_id => @gravatar_id,
+        :bio         => @bio,
+        :url         => @url
       }
+    end
+
+    def save
+      @previously_changed = changes
+      @changed_attributes.clear
+
+      # TODO: updating attributes.
     end
   end
 end

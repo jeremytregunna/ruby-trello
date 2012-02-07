@@ -64,5 +64,13 @@ module Trello
         @member.username.should == user_details['username']
       end
     end
+
+    context "modification" do
+      it "lets us know a field has changed without committing it" do
+        @member.changed?.should be_false
+        @member.bio = "New and amazing"
+        @member.changed?.should be_true
+      end
+    end
   end
 end
