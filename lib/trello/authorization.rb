@@ -51,7 +51,7 @@ module Trello
         def get_auth_header(url, verb)
           require "oauth"
 
-          raise InvalidAccessToken, 'No access token.' unless self.token
+          self.token ||= OAuthCredential.new
 
           consumer = OAuth::Consumer.new(
             consumer_credential.key,
