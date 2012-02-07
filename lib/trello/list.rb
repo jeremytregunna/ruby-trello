@@ -38,6 +38,10 @@ module Trello
     end
 
     def update!
+      Client.put("/lists", {
+        :name   => @name,
+        :closed => @closed
+      }).json_into(self)
     end
 
     # Check if the list is not active anymore.
