@@ -1,18 +1,8 @@
 module Trello
   # A Member is a user of the Trello service.
   class Member < BasicData
-    include ActiveModel::Validations
-    include ActiveModel::Dirty #changed?
-    include ActiveModel::Serializers::JSON
-
+    register_attributes :id, :username, :full_name, :gravatar_id, :bio, :url
     validates_presence_of :id, :username
-
-    # These are the attributes which are exposed to this model.
-    def self.attribute_names
-      [ :id, :username, :full_name, :gravatar_id, :bio, :url ]
-    end
-
-    define_attribute_methods attribute_names
 
     class << self
       # Finds a user
@@ -20,18 +10,6 @@ module Trello
       # The argument may be specified as either an _id_ or a _username_.
       def find(id_or_username)
         super(:members, id_or_username)
-      end
-    end
-
-    # Defines the attribute getter and setters.
-    class_eval do
-      attribute_names.each do |key|
-        define_method(:"#{key}") { @attributes[key] }
-
-        define_method :"#{key}=" do |val|
-          send(:"#{key}_will_change!") unless val == @attributes[key]
-          @attributes[key] = val
-        end
       end
     end
 
