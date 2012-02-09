@@ -74,17 +74,6 @@ module Trello
       Client.get("/members/#{username}/notifications").json_into(Notification)
     end
 
-    def attributes
-      @attributes ||= {
-        :id          => @id,
-        :full_name   => @full_name,
-        :username    => @username,
-        :gravatar_id => @gravatar_id,
-        :bio         => @bio,
-        :url         => @url
-      }
-    end
-
     def save
       @previously_changed = changes
       @changed_attributes.clear

@@ -51,17 +51,6 @@ module Trello
       self
     end
 
-    def attributes
-      @attributes ||= {
-        :id              => @id,
-        :name            => @name,
-        :description     => @description,
-        :closed          => @closed,
-        :url             => @url,
-        :organization_id => @organization_id
-      }
-    end
-
     def closed?
       @attributes[:closed]
     end
