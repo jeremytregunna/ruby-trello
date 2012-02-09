@@ -51,14 +51,12 @@ module Trello
 
     # Return a timeline of events related to this list.
     def actions
-      return @actions if @actions
-      @actions = Client.get("/lists/#{id}/actions").json_into(Action)
+      Client.get("/lists/#{id}/actions").json_into(Action)
     end
 
     # Return the board the list is connected to.
     def board
-      return @board if @board
-      @board = Board.find(board_id)
+      Board.find(board_id)
     end
 
     # Returns all the cards on this list.
@@ -67,8 +65,7 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
-      return @cards if @cards
-      @cards = Client.get("/lists/#{id}/cards", options).json_into(Card)
+      Client.get("/lists/#{id}/cards", options).json_into(Card)
     end
   end
 end
