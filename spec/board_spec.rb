@@ -56,7 +56,7 @@ module Trello
         Client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
           and_return lists_payload
 
-        @board.lists.count.should be > 0
+        @board.has_lists?.should be true
       end
     end
 
