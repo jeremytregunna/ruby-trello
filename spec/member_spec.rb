@@ -59,8 +59,13 @@ module Trello
         @member.full_name.should == user_details['fullName']
       end
 
-      it "gets the gravatar id" do
-        @member.gravatar_id.should == user_details['gravatar']
+      it "gets the avatar id" do
+        @member.avatar_id.should == user_details['avatarHash']
+      end
+
+      it "returns a valid url for the avatar" do
+        @member.avatar_url(:size => :large).should == "https://trello-avatars.s3.amazonaws.com/abcdef1234567890abcdef1234567890/170.png"
+        @member.avatar_url(:size => :small).should == "https://trello-avatars.s3.amazonaws.com/abcdef1234567890abcdef1234567890/30.png"
       end
 
       it "gets the url" do

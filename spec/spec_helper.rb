@@ -27,12 +27,12 @@ end
 module Helpers
   def user_details
     {
-      "id"       => "abcdef123456789012345678",
-      "fullName" => "Test User",
-      "username" => "me",
-      "gravatar" => "abcdef1234567890abcdef1234567890",
-      "bio"      => "a rather dumb user",
-      "url"      => "https://trello.com/me"
+      "id"         => "abcdef123456789012345678",
+      "fullName"   => "Test User",
+      "username"   => "me",
+      "avatarHash" => "abcdef1234567890abcdef1234567890",
+      "bio"        => "a rather dumb user",
+      "url"        => "https://trello.com/me"
     }
   end
 

@@ -33,7 +33,7 @@ module Trello
     #   :large (170x170)
     #   :small (30x30)
     def avatar_url(options = { :size => :large })
-      size = options[:size] == :size ? 30 : 170
+      size = options[:size] == :small ? 30 : 170
       "https://trello-avatars.s3.amazonaws.com/#{avatar_id}/#{size}.png"
     end
 
