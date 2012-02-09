@@ -65,8 +65,7 @@ module Trello
 
     # Return a timeline of actions related to this board.
     def actions
-      return @actions if @actions
-      @actions = Client.get("/boards/#{id}/actions").json_into(Action)
+      Client.get("/boards/#{id}/actions").json_into(Action)
     end
 
     # Return all the cards on this board.
@@ -75,8 +74,7 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
-      return @cards if @cards
-      @cards = Client.get("/boards/#{id}/cards").json_into(Card)
+      Client.get("/boards/#{id}/cards").json_into(Card)
     end
 
     def has_lists?
@@ -89,8 +87,7 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def lists(options = { :filter => :open })
-      return @lists if @lists
-      @lists = Client.get("/boards/#{id}/lists", options).json_into(List)
+      Client.get("/boards/#{id}/lists", options).json_into(List)
     end
 
     # Returns an array of members who are associated with this board.
@@ -99,14 +96,12 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :normal, :owners, :all ] # default :all
     def members(options = { :filter => :all })
-      return @members if @members
-      @members = Client.get("/boards/#{id}/members", options).json_into(Member)
+      Client.get("/boards/#{id}/members", options).json_into(Member)
     end
 
     # Returns a reference to the organization this board belongs to.
     def organization
-      return @organization if @organization
-      @organization = Organization.find(organization_id)
+      Organization.find(organization_id)
     end
   end
 end

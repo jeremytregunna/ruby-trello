@@ -25,20 +25,17 @@ module Trello
 
     # Returns a timeline of actions.
     def actions
-      return @actions if @actions
-      @actions = Client.get("/organizations/#{id}/actions").json_into(Action)
+      Client.get("/organizations/#{id}/actions").json_into(Action)
     end
 
     # Returns a list of boards under this organization.
     def boards
-      return @boards if @boards
-      @boards = Client.get("/organizations/#{id}/boards/all").json_into(Board)
+      Client.get("/organizations/#{id}/boards/all").json_into(Board)
     end
 
     # Returns an array of members associated with the organization.
     def members
-      return @members if @members
-      @members = Client.get("/organizations/#{id}/members/all").json_into(Member)
+      Client.get("/organizations/#{id}/members/all").json_into(Member)
     end
   end
 end
