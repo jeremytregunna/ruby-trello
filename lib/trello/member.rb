@@ -1,7 +1,7 @@
 module Trello
   # A Member is a user of the Trello service.
   class Member < BasicData
-    register_attributes :id, :username, :full_name, :gravatar_id, :bio, :url
+    register_attributes :id, :username, :full_name, :avatar_id, :bio, :url
     validates_presence_of :id, :username
 
     class << self
@@ -18,13 +18,23 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Member.
     def update_fields(fields)
-      attributes[:id]          = fields['id']
-      attributes[:full_name]   = fields['fullName']
-      attributes[:username]    = fields['username']
-      attributes[:gravatar_id] = fields['gravatar']
-      attributes[:bio]         = fields['bio']
-      attributes[:url]         = fields['url']
+      attributes[:id]        = fields['id']
+      attributes[:full_name] = fields['fullName']
+      attributes[:username]  = fields['username']
+      attributes[:avatar_id] = fields['avatarHash']
+      attributes[:bio]       = fields['bio']
+      attributes[:url]       = fields['url']
       self
+    end
+
+    # Retrieve a URL to the avatar.
+    # 
+    # Valid values for options are:
+    #   :large (170x170)
+    #   :small (30x30)
+    def avatar_url(options = { :size => :large })
+      size = options[:size] == :size ? 30 : 170
+      "https://trello-avatars.s3.amazonaws.com/#{avatar_id}/#{size}.png"
     end
 
     # Returns a list of the users actions.
