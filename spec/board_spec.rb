@@ -111,7 +111,7 @@ module Trello
     it "sets any attributes supplied in the fields argument"
   end
 
-  describe "#save!" do
+  describe "#save" do
     include Helpers
 
     let(:any_board_json) do
@@ -122,7 +122,7 @@ module Trello
       Client.should_not_receive :put
       
       the_new_board = Board.new
-      lambda{the_new_board.save!}.should raise_error
+      lambda{the_new_board.save}.should raise_error
     end
 
     it "puts all fields except id" do
@@ -134,7 +134,7 @@ module Trello
       end
       
       the_new_board = Board.new 'id' => "xxx"
-      the_new_board.save!
+      the_new_board.save
     end
 
     it "mutates the current instance" do
@@ -142,7 +142,7 @@ module Trello
       
       board = Board.new 'id' => "xxx"
       
-      the_result_of_save = board.save!
+      the_result_of_save = board.save
 
       the_result_of_save.should equal board
     end
@@ -156,7 +156,7 @@ module Trello
       end
       
       the_new_board = Board.new 'id' => expected_resource_id
-      the_new_board.save!
+      the_new_board.save
     end 
 
     it "saves OR updates depending on whether or not it has an id set"

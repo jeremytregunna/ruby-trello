@@ -13,11 +13,11 @@ module Trello
       def create(fields)
         new('name'   => fields[:name],
             'desc'   => fields[:description],
-            'closed' => fields[:closed] || false).save!
+            'closed' => fields[:closed] || false).save
       end
     end
 
-    def save!
+    def save
       return update! if id
 
       fields = { :name => name }
@@ -29,6 +29,9 @@ module Trello
 
     def update!
       fail "Cannot save new instance." unless self.id
+
+      @previously_changed = changes
+      @changed_attributes.clear
 
       Client.put("/boards/#{self.id}/", {
         :name        => @name,
