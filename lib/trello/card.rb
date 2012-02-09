@@ -36,14 +36,12 @@ module Trello
 
     # Returns a list of the actions associated with this card.
     def actions
-      return @actions if @actions
-      @actions = Client.get("/cards/#{id}/actions").json_into(Action)
+      Client.get("/cards/#{id}/actions").json_into(Action)
     end
 
     # Returns a reference to the board this card is part of.
     def board
-      return @board if @board
-      @board = Board.find(board_id)
+      Board.find(board_id)
     end
 
     # Returns a list of checklists associated with the card.
@@ -52,20 +50,17 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :all ] # default :all
     def checklists(options = { :filter => :all })
-      return @checklists if @checklists
-      @checklists = Client.get("/cards/#{id}/checklists", options).json_into(Checklist)
+      Client.get("/cards/#{id}/checklists", options).json_into(Checklist)
     end
 
     # Returns a reference to the list this card is currently in.
     def list
-      return @list if @list
-      @list = List.find(list_id)
+      List.find(list_id)
     end
 
     # Returns a list of members who are assigned to this card.
     def members
-      return @members if @members
-      @members = member_ids.map do |member_id|
+      member_ids.map do |member_id|
         Client.get("/members/#{member_id}").json_into(Member)
       end
     end

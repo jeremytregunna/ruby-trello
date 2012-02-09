@@ -29,8 +29,7 @@ module Trello
 
     # Returns a list of the users actions.
     def actions
-      return @actions if @actions
-      @actions = Client.get("/members/#{username}/actions").json_into(Action)
+      Client.get("/members/#{username}/actions").json_into(Action)
     end
 
     # Returns a list of the boards a member is a part of.
@@ -39,8 +38,7 @@ module Trello
     # of the following values:
     #   :filter => [ :none, :members, :organization, :public, :open, :closed, :all ] # default: :all
     def boards(options = { :filter => :all })
-      return @boards if @boards
-      @boards = Client.get("/members/#{username}/boards", options).json_into(Board)
+      Client.get("/members/#{username}/boards", options).json_into(Board)
     end
 
     # Returns a list of cards the member is assigned to.
@@ -49,8 +47,7 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
-      return @cards if @cards
-      @cards = Client.get("/members/#{username}/cards", options).json_into(Card)
+      Client.get("/members/#{username}/cards", options).json_into(Card)
     end
 
     # Returns a list of the organizations this member is a part of.
@@ -59,8 +56,7 @@ module Trello
     # of the following values:
     #   :filter => [ :none, :members, :public, :all ] # default: all
     def organizations(options = { :filter => :all })
-      return @organizations if @organizations
-      @organizations = Client.get("/members/#{username}/organizations", options).json_into(Organization)
+      Client.get("/members/#{username}/organizations", options).json_into(Organization)
     end
 
     # Returns a list of notifications for the user
