@@ -52,30 +52,24 @@ module Trello
 
     # Return a list of items on the checklist.
     def items
-     return @items if @items
-
-      @items = check_items.map do |item_fields|
+      check_items.map do |item_fields|
         Item.new(item_fields)
       end
     end
 
     # Return a reference to the board the checklist is on.
     def board
-      return @board if @board
-      @board = Board.find(board_id)
+      Board.find(board_id)
     end
 
     # Return a reference to the list the checklist is on.
     def list
-      return @list if @list
-      @list = List.find(list_id)
+      List.find(list_id)
     end
 
     # Return a list of members active in this checklist.
     def members
-      return @members if @members
-
-      @members = member_ids.map do |member_id|
+      member_ids.map do |member_id|
         Member.find(member_id)
       end
     end
