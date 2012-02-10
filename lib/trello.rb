@@ -31,6 +31,7 @@ module Trello
   autoload :Card,         'trello/card'
   autoload :Checklist,    'trello/checklist'
   autoload :Client,       'trello/client'
+  autoload :HasActions,   'trello/has_actions'
   autoload :Item,         'trello/item'
   autoload :ItemState,    'trello/item_state'
   autoload :List,         'trello/list'

@@ -1,5 +1,3 @@
-require File.join(File.dirname(__FILE__), 'has_actions')
-
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData

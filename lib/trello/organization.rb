@@ -1,5 +1,3 @@
-require File.join(File.dirname(__FILE__), 'has_actions')
-
 module Trello
   # Organizations are useful for linking members together.
   class Organization < BasicData

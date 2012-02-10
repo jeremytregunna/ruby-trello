@@ -1,5 +1,3 @@
-require File.join(File.dirname(__FILE__), 'has_actions')
-
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
   class List < BasicData

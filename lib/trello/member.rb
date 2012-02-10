@@ -1,5 +1,3 @@
-require File.join(File.dirname(__FILE__), 'has_actions')
-
 module Trello
   # A Member is a user of the Trello service.
   class Member < BasicData
