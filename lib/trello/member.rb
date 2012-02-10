@@ -4,6 +4,8 @@ module Trello
     attr_reader   :id
     attr_accessor :full_name, :username, :gravatar_id, :bio, :url
 
+    include HasActions
+
     class << self
       # Finds a user
       #
@@ -25,11 +27,6 @@ module Trello
       @bio         = fields['bio']
       @url         = fields['url']
       self
-    end
-
-    # Returns a list of the users actions.
-    def actions
-      Client.get("/members/#{username}/actions").json_into(Action)
     end
 
     # Returns a list of the boards a member is a part of.
@@ -74,6 +71,11 @@ module Trello
         'bio'      => bio,
         'url'      => url
       }
+    end
+
+    # :nodoc:
+    def request_prefix
+      "/members/#{username}"
     end
   end
 end
