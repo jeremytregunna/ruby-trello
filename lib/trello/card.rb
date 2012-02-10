@@ -36,7 +36,7 @@ module Trello
 
     # Returns a list of the actions associated with this card.
     def actions
-      Client.get("/cards/#{id}/actions").json_into(Action)
+      Client.get("/cards/#{id}/actions", { :filter => :all }).json_into(Action)
     end
 
     # Returns a reference to the board this card is part of.

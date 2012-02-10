@@ -78,8 +78,8 @@ module Trello
     end
 
     context "actions" do
-      it "has a list of actions" do
-        Client.stub(:get).with("/cards/abcdef123456789123456789/actions").and_return actions_payload
+      it "asks for all actions by default" do
+        Client.stub(:get).with("/cards/abcdef123456789123456789/actions", { :filter => :all }).and_return actions_payload
         @card.actions.count.should be > 0
       end
     end
