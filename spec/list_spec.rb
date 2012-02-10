@@ -31,7 +31,7 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        Client.stub(:get).with("/lists/abcdef123456789123456789/actions").and_return actions_payload
+        Client.stub(:get).with("/lists/abcdef123456789123456789/actions", { :filter => :all }).and_return actions_payload
         @list.actions.count.should be > 0
       end
     end

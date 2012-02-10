@@ -4,6 +4,8 @@ module Trello
     register_attributes :id, :username, :full_name, :avatar_id, :bio, :url
     validates_presence_of :id, :username
 
+    include HasActions
+
     class << self
       # Finds a user
       #
@@ -35,11 +37,6 @@ module Trello
     def avatar_url(options = { :size => :large })
       size = options[:size] == :small ? 30 : 170
       "https://trello-avatars.s3.amazonaws.com/#{avatar_id}/#{size}.png"
-    end
-
-    # Returns a list of the users actions.
-    def actions
-      Client.get("/members/#{username}/actions").json_into(Action)
     end
 
     # Returns a list of the boards a member is a part of.
@@ -79,6 +76,11 @@ module Trello
       @changed_attributes.clear
 
       # TODO: updating attributes.
+    end
+
+    # :nodoc:
+    def request_prefix
+      "/members/#{username}"
     end
   end
 end

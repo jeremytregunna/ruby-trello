@@ -4,6 +4,8 @@ module Trello
     register_attributes :id, :name, :closed, :board_id
     validates_presence_of :id, :name, :board_id
 
+    include HasActions
+
     class << self
       # Finds a specific list, given an id.
       def find(id)
@@ -50,11 +52,6 @@ module Trello
       closed
     end
 
-    # Return a timeline of events related to this list.
-    def actions
-      Client.get("/lists/#{id}/actions").json_into(Action)
-    end
-
     # Return the board the list is connected to.
     def board
       Board.find(board_id)
@@ -67,6 +64,11 @@ module Trello
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
       Client.get("/lists/#{id}/cards", options).json_into(Card)
+    end
+
+    # :nodoc:
+    def request_prefix
+      "/lists/#{id}"
     end
   end
 end
