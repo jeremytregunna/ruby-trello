@@ -28,7 +28,7 @@ module Trello
       self
     end
 
-    def save!
+    def save
       return update! if id
 
       Client.post("/lists", {
