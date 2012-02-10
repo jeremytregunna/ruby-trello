@@ -14,7 +14,7 @@ module Trello
 
     context "actions" do
       it "retrieves actions" do
-        Client.stub(:get).with("/organizations/4ee7e59ae582acdec8000291/actions").and_return actions_payload
+        Client.stub(:get).with("/organizations/4ee7e59ae582acdec8000291/actions", { :filter => :all }).and_return actions_payload
         @organization.actions.count.should be > 0
       end
 
