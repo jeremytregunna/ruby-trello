@@ -4,6 +4,8 @@ module Trello
     attr_reader   :id
     attr_accessor :name, :description, :closed, :url, :board_id, :member_ids, :list_id
 
+    include HasActions
+
     class << self
       # Find a specific card by its id.
       def find(id)
@@ -32,11 +34,6 @@ module Trello
       @member_ids  = fields['idMembers']
       @list_id     = fields['idList']
       self
-    end
-
-    # Returns a list of the actions associated with this card.
-    def actions
-      Client.get("/cards/#{id}/actions").json_into(Action)
     end
 
     # Returns a reference to the board this card is part of.
@@ -139,5 +136,11 @@ module Trello
       return logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
       Client.delete("/cards/#{id}/labels/#{colour}")
     end
+
+    # :nodoc:
+    def request_prefix
+      "/cards/#{id}"
+    end
+
   end
 end
