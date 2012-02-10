@@ -82,6 +82,11 @@ module Trello
         Client.stub(:get).with("/cards/abcdef123456789123456789/actions", { :filter => :all }).and_return actions_payload
         @card.actions.count.should be > 0
       end
+
+      it "allows overriding the filter" do
+        Client.stub(:get).with("/cards/abcdef123456789123456789/actions", { :filter => :updateCard }).and_return actions_payload
+        @card.actions(:filter => :updateCard).count.should be > 0
+      end
     end
 
     context "boards" do
