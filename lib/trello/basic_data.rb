@@ -15,7 +15,7 @@ module Trello
     def self.register_attributes(*names)
       # Defines the attribute getter and setters.
       class_eval do
-        define_method :attributes, do
+        define_method :attributes do
           @attributes ||= names.inject({}) { |hash,k| hash.merge(k.to_sym => nil) }
         end
 
