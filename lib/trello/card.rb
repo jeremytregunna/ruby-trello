@@ -138,5 +138,11 @@ module Trello
       return logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
       Client.delete("/cards/#{id}/labels/#{colour}")
     end
+
+    # :nodoc:
+    def request_prefix
+      "/cards/#{id}"
+    end
+
   end
 end
