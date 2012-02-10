@@ -27,6 +27,10 @@ module Trello
       it "has the same data" do
         @action.data.should == @detail['data']
       end
+
+      it "gets the date" do
+        @action.date.should == @detail['date']
+      end
     end
 
     context "boards" do
