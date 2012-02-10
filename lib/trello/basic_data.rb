@@ -6,8 +6,6 @@ module Trello
     include ActiveModel::Dirty
     include ActiveModel::Serializers::JSON
 
-    attr_reader :id
-
     class << self
       def find(path, id)
         Client.get("/#{path}/#{id}").json_into(self)
@@ -32,6 +30,8 @@ module Trello
         define_attribute_methods names
       end
     end
+
+    register_attributes :id
 
     def initialize(fields = {})
       update_fields(fields)
