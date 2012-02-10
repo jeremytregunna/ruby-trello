@@ -1,7 +1,11 @@
+require File.join(File.dirname(__FILE__), 'has_actions')
+
 module Trello
 
   class Board < BasicData
     attr_reader :id, :name, :description, :url, :organization_id
+
+    include HasActions
 
     class << self
 
@@ -51,11 +55,6 @@ module Trello
       @closed
     end
 
-    # Return a timeline of actions related to this board.
-    def actions
-      Client.get("/boards/#{id}/actions").json_into(Action)
-    end
-
     # Return all the cards on this board.
     #
     # The options hash may have a filter key which can have its value set as any
@@ -90,6 +89,11 @@ module Trello
     # Returns a reference to the organization this board belongs to.
     def organization
       Organization.find(organization_id)
+    end
+
+    # :nodoc:
+    def request_prefix
+      "/boards/#{id}"
     end
   end
 end
