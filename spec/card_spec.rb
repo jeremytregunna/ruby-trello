@@ -60,6 +60,10 @@ module Trello
         @card.id.should_not be_nil
       end
 
+      it "gets its short id" do
+        @card.short_id.should_not be_nil
+      end
+
       it "gets its name" do
         @card.name.should_not be_nil
       end

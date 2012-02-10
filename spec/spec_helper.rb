@@ -93,6 +93,7 @@ module Helpers
   def cards_details
     [{
       "id"        => "abcdef123456789123456789",
+      "idShort"   => "1",
       "name"      => "Do something awesome",
       "desc"      => "Awesome things are awesome.",
       "closed"    => false,
