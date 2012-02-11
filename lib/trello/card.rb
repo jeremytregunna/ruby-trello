@@ -112,13 +112,19 @@ module Trello
 
     # Add a label
     def add_label(colour)
-      return logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
+      unless %w{green yellow orange red purple blue}.include? colour
+        errors.add(:label, "colour '#{colour}' does not exist")
+        return Trello.logger.warn "The label colour '#{colour}' does not exist."
+      end
       Client.post("/cards/#{id}/labels", { :value => colour })
     end
 
     # Remove a label
     def remove_label(colour)
-      return logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
+      unless %w{green yellow orange red purple blue}.include? colour
+        errors.add(:label, "colour '#{colour}' does not exist")
+        return Trello.logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
+      end
       Client.delete("/cards/#{id}/labels/#{colour}")
     end
 
