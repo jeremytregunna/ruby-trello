@@ -13,6 +13,9 @@ module Trello
     end
 
     def self.register_attributes(*names)
+      options = { :readonly => [] }
+      options.merge!(names.pop) if names.last.kind_of? Hash
+
       # Defines the attribute getter and setters.
       class_eval do
         define_method :attributes do
@@ -22,16 +25,19 @@ module Trello
         names.each do |key|
           define_method(:"#{key}") { @attributes[key] }
 
-          define_method :"#{key}=" do |val|
-            send(:"#{key}_will_change!") unless val == @attributes[key]
-            @attributes[key] = val
+          unless options[:readonly].include?(key.to_sym)
+            define_method :"#{key}=" do |val|
+              send(:"#{key}_will_change!") unless val == @attributes[key]
+              @attributes[key] = val
+            end
           end
         end
+
         define_attribute_methods names
       end
     end
 
-    register_attributes :id
+    register_attributes :id, :readonly => [ :id ]
 
     def initialize(fields = {})
       update_fields(fields)
