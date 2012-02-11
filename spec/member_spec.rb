@@ -83,6 +83,10 @@ module Trello
         @member.bio = "New and amazing"
         @member.changed?.should be_true
       end
+
+      it "doesn't understand the #id= method" do
+        lambda { @member.id = "42" }.should raise_error NoMethodError
+      end
     end
   end
 end
