@@ -133,5 +133,35 @@ module Trello
         @card.add_comment "testing"
       end
     end
+
+    context "labels" do
+      it "can add a label" do
+        Client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => 'green' }).
+          and_return "not important"
+        @card.add_label('green')
+        @card.errors.should be_empty
+      end
+
+      it "can remove a label" do
+        Client.stub(:delete).with("/cards/abcdef123456789123456789/labels/green").
+          and_return "not important"
+        @card.remove_label('green')
+        @card.errors.should be_empty
+      end
+
+      it "throws an error when trying to add a label with an unknown colour" do
+        Client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => 'green' }).
+          and_return "not important"
+        @card.add_label('mauve')
+        @card.errors.full_messages.to_sentence.should == "Label colour 'mauve' does not exist"
+      end
+
+      it "throws an error when trying to remove a label with an unknown colour" do
+        Client.stub(:delete).with("/cards/abcdef123456789123456789/labels/mauve").
+          and_return "not important"
+        @card.remove_label('mauve')
+        @card.errors.full_messages.to_sentence.should == "Label colour 'mauve' does not exist"
+      end
+    end
   end
 end
