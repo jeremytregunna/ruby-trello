@@ -29,7 +29,7 @@ module Trello
       end
 
       it "gets the date" do
-        @action.date.should == @detail['date']
+        @action.date.utc.iso8601.should == @detail['date']
       end
     end
 

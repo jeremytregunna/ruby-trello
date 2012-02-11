@@ -140,7 +140,7 @@ module Helpers
           "name"        => "Assembler"
         }
       },
-      "date"            => "2012-02-10T11:32:17.447Z",
+      "date"            => "2012-02-10T11:32:17Z",
       "type"            => "createCard"
     }]
   end
