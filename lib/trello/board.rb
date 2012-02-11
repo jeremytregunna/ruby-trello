@@ -1,8 +1,10 @@
 module Trello
-
   class Board < BasicData
-    register_attributes :id, :name, :description, :url, :organization_id
+    register_attributes :id, :name, :description, :closed, :url, :organization_id,
+      :readonly => [ :id, :url, :organization_id ]
     validates_presence_of :id, :name
+    validates_length_of   :name,        :in      => 1..16384
+    validates_length_of   :description, :maximum => 16384
 
     include HasActions
 

@@ -1,8 +1,9 @@
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
   class List < BasicData
-    register_attributes :id, :name, :closed, :board_id
+    register_attributes :id, :name, :closed, :board_id, :readonly => [ :id, :board_id ]
     validates_presence_of :id, :name, :board_id
+    validates_length_of   :name, :in => 1..16384
 
     include HasActions
 

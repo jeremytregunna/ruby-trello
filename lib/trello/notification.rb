@@ -1,6 +1,7 @@
 module Trello
   class Notification < BasicData
-    register_attributes :id, :unread, :type, :date, :data, :member_creator_id
+    register_attributes :id, :unread, :type, :date, :data, :member_creator_id,
+      :read_only => [ :id, :unread, :type, :date, :member_creator_id ]
     validates_presence_of :id, :type, :date, :member_creator_id
 
     class << self
