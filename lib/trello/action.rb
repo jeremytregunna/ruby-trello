@@ -19,7 +19,7 @@ module Trello
       attributes[:id]                = fields['id']
       attributes[:type]              = fields['type']
       attributes[:data]              = fields['data']
-      attributes[:date]              = fields['date']
+      attributes[:date]              = Time.iso8601(fields['date'])
       attributes[:member_creator_id] = fields['idMemberCreator']
       self
     end
