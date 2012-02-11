@@ -3,6 +3,8 @@ module Trello
   class Card < BasicData
     register_attributes :id, :short_id, :name, :description, :closed, :url, :board_id, :member_ids, :list_id
     validates_presence_of :id, :name, :list_id
+    validates_length_of   :name,        :in => 1..16384
+    validates_length_of   :description, :in => 0..16384
 
     include HasActions
 
