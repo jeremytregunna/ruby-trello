@@ -1,6 +1,7 @@
 module Trello
   class Notification < BasicData
-    attr_reader :id, :unread, :type, :date, :data, :member_creator_id
+    register_attributes :id, :unread, :type, :date, :data, :member_creator_id
+    validates_presence_of :id, :type, :date, :member_creator_id
 
     class << self
       # Locate a notification by its id
@@ -10,12 +11,12 @@ module Trello
     end
 
     def update_fields(fields)
-      @id                = fields['id']
-      @unread            = fields['unread']
-      @type              = fields['type']
-      @date              = fields['date']
-      @data              = fields['data']
-      @member_creator_id = fields['idMemberCreator']
+      attributes[:id]                = fields['id']
+      attributes[:unread]            = fields['unread']
+      attributes[:type]              = fields['type']
+      attributes[:date]              = fields['date']
+      attributes[:data]              = fields['data']
+      attributes[:member_creator_id] = fields['idMemberCreator']
       self
     end
 

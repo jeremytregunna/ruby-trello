@@ -1,35 +1,39 @@
 module Trello
 
   class Board < BasicData
-    attr_reader :id, :name, :description, :url, :organization_id
+    register_attributes :id, :name, :description, :url, :organization_id
+    validates_presence_of :id, :name
 
     include HasActions
 
     class << self
-
+      # Finds a board.
       def find(id)
         super(:boards, id)
       end
 
-      def create(attributes)
-        new('name'   => attributes[:name],
-            'desc'   => attributes[:description],
-            'closed' => attributes[:closed] || false).save!
+      def create(fields)
+        new('name'   => fields[:name],
+            'desc'   => fields[:description],
+            'closed' => fields[:closed] || false).save
       end
     end
 
-    def save!
+    def save
       return update! if id
 
-      attributes = { :name => name }
-      attributes.merge!(:desc => description) if description
-      attributes.merge!(:idOrganization => organization_id) if organization_id
+      fields = { :name => name }
+      fields.merge!(:desc => description) if description
+      fields.merge!(:idOrganization => organization_id) if organization_id
 
-      Client.post("/boards", attributes).json_into(self)
+      Client.post("/boards", fields).json_into(self)
     end
 
     def update!
       fail "Cannot save new instance." unless self.id
+
+      @previously_changed = changes
+      @changed_attributes.clear
 
       Client.put("/boards/#{self.id}/", {
         :name        => @name,
@@ -39,18 +43,18 @@ module Trello
     end
 
     def update_fields(fields)
-      @id              = fields['id']              if fields['id']
-      @name            = fields['name']            if fields['name']
-      @description     = fields['desc']            if fields['desc']
-      @closed          = fields['closed']          if fields.has_key?('closed')
-      @url             = fields['url']             if fields['url']
-      @organization_id = fields['idOrganization']  if fields['idOrganization']
+      attributes[:id]              = fields['id']              if fields['id']
+      attributes[:name]            = fields['name']            if fields['name']
+      attributes[:description]     = fields['desc']            if fields['desc']
+      attributes[:closed]          = fields['closed']          if fields.has_key?('closed')
+      attributes[:url]             = fields['url']             if fields['url']
+      attributes[:organization_id] = fields['idOrganization']  if fields['idOrganization']
 
       self
     end
 
     def closed?
-      @closed
+      @attributes[:closed]
     end
 
     # Return all the cards on this board.

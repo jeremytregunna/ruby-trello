@@ -1,6 +1,7 @@
 require 'oauth'
 require 'json'
 require 'logger'
+require 'active_model'
 
 # Ruby wrapper around the Trello[http://trello.com] API
 #

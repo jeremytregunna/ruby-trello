@@ -1,7 +1,8 @@
 module Trello
   # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
   class Checklist < BasicData
-    attr_reader :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids
+    register_attributes :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids
+    validates_presence_of :id, :board_id, :list_id
 
     class << self
       # Locate a specific checklist by its id.
@@ -20,14 +21,14 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a checklist.
     def update_fields(fields)
-      @id          = fields['id']
-      @name        = fields['name']
-      @description = fields['desc']
-      @closed      = fields['closed']
-      @url         = fields['url']
-      @check_items = fields['checkItems']
-      @board_id    = fields['idBoard']
-      @member_ids  = fields['idMembers']
+      attributes[:id]          = fields['id']
+      attributes[:name]        = fields['name']
+      attributes[:description] = fields['desc']
+      attributes[:closed]      = fields['closed']
+      attributes[:url]         = fields['url']
+      attributes[:check_items] = fields['checkItems']
+      attributes[:board_id]    = fields['idBoard']
+      attributes[:member_ids]  = fields['idMembers']
       self
     end
 
@@ -37,7 +38,7 @@ module Trello
     end
 
     # Save a record.
-    def save!
+    def save
       return update! if id
 
       Client.post("/checklists", {

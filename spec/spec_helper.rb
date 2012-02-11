@@ -19,6 +19,10 @@ Bundler.require(:spec)
 
 require 'trello'
 require 'webmock/rspec'
+require 'stringio'
+
+$strio = StringIO.new
+Trello.logger = Logger.new($strio)
 
 RSpec.configure do |c|
   c.filter_run_excluding :broken => true
@@ -27,12 +31,12 @@ end
 module Helpers
   def user_details
     {
-      "id"       => "abcdef123456789012345678",
-      "fullName" => "Test User",
-      "username" => "me",
-      "gravatar" => "abcdef1234567890abcdef1234567890",
-      "bio"      => "a rather dumb user",
-      "url"      => "https://trello.com/me"
+      "id"         => "abcdef123456789012345678",
+      "fullName"   => "Test User",
+      "username"   => "me",
+      "avatarHash" => "abcdef1234567890abcdef1234567890",
+      "bio"        => "a rather dumb user",
+      "url"        => "https://trello.com/me"
     }
   end
 
@@ -89,6 +93,7 @@ module Helpers
   def cards_details
     [{
       "id"        => "abcdef123456789123456789",
+      "idShort"   => "1",
       "name"      => "Do something awesome",
       "desc"      => "Awesome things are awesome.",
       "closed"    => false,
@@ -135,6 +140,7 @@ module Helpers
           "name"        => "Assembler"
         }
       },
+      "date"            => "2012-02-10T11:32:17.447Z",
       "type"            => "createCard"
     }]
   end

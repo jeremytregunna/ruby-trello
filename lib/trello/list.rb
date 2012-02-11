@@ -1,7 +1,8 @@
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
   class List < BasicData
-    attr_reader :id, :name, :closed, :board_id
+    register_attributes :id, :name, :closed, :board_id
+    validates_presence_of :id, :name, :board_id
 
     include HasActions
 
@@ -22,14 +23,14 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a List.
     def update_fields(fields)
-      @id       = fields['id']
-      @name     = fields['name']
-      @closed   = fields['closed']
-      @board_id = fields['idBoard']
+      attributes[:id]       = fields['id']
+      attributes[:name]     = fields['name']
+      attributes[:closed]   = fields['closed']
+      attributes[:board_id] = fields['idBoard']
       self
     end
 
-    def save!
+    def save
       return update! if id
 
       Client.post("/lists", {

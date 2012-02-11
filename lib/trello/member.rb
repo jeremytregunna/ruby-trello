@@ -1,8 +1,8 @@
 module Trello
   # A Member is a user of the Trello service.
   class Member < BasicData
-    attr_reader   :id
-    attr_accessor :full_name, :username, :gravatar_id, :bio, :url
+    register_attributes :id, :username, :full_name, :avatar_id, :bio, :url
+    validates_presence_of :id, :username
 
     include HasActions
 
@@ -20,13 +20,23 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Member.
     def update_fields(fields)
-      @id          = fields['id']
-      @full_name   = fields['fullName']
-      @username    = fields['username']
-      @gravatar_id = fields['gravatar']
-      @bio         = fields['bio']
-      @url         = fields['url']
+      attributes[:id]        = fields['id']
+      attributes[:full_name] = fields['fullName']
+      attributes[:username]  = fields['username']
+      attributes[:avatar_id] = fields['avatarHash']
+      attributes[:bio]       = fields['bio']
+      attributes[:url]       = fields['url']
       self
+    end
+
+    # Retrieve a URL to the avatar.
+    # 
+    # Valid values for options are:
+    #   :large (170x170)
+    #   :small (30x30)
+    def avatar_url(options = { :size => :large })
+      size = options[:size] == :small ? 30 : 170
+      "https://trello-avatars.s3.amazonaws.com/#{avatar_id}/#{size}.png"
     end
 
     # Returns a list of the boards a member is a part of.
@@ -61,16 +71,11 @@ module Trello
       Client.get("/members/#{username}/notifications").json_into(Notification)
     end
 
-    # Returns a hash of the items that would be returned by Trello.
-    def to_hash
-      {
-        'id'       => id,
-        'fullName' => full_name,
-        'username' => username,
-        'gravatar' => gravatar_id,
-        'bio'      => bio,
-        'url'      => url
-      }
+    def save
+      @previously_changed = changes
+      @changed_attributes.clear
+
+      # TODO: updating attributes.
     end
 
     # :nodoc:

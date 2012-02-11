@@ -14,7 +14,7 @@ describe "how to use boards", :broken => true do
     after do
       if @new_board and false == @new_board.closed? 
         @new_board.update_fields 'closed' => true
-        @new_board.save!
+        @new_board.save
       end
     end
 
@@ -36,7 +36,7 @@ describe "how to use boards", :broken => true do
       @new_board = Board.create(:name => "[#{Time.now}, CLOSED] An example")
 
       @new_board.update_fields 'closed' => true
-      @new_board.save!
+      @new_board.save
       
       Board.find(@new_board.id).should be_closed
     end

@@ -5,6 +5,7 @@ gem 'addressable'
 gem 'json', :platforms => [ :ruby_18, :jruby ]
 gem 'jruby-openssl', :platforms => :jruby
 gem 'rest-client'
+gem 'activemodel'
 
 group :spec do
   gem 'rspec'

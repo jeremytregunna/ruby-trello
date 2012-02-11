@@ -1,7 +1,8 @@
 module Trello
   # Organizations are useful for linking members together.
   class Organization < BasicData
-    attr_reader :id, :name, :display_name, :description, :url
+    register_attributes :id, :name, :display_name, :description, :url
+    validates_presence_of :id, :name
 
     include HasActions
 
@@ -17,11 +18,11 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Organization.
     def update_fields(fields)
-      @id           = fields['id']
-      @name         = fields['name']
-      @display_name = fields['displayName']
-      @description  = fields['description']
-      @url          = fields['url']
+      attributes[:id]           = fields['id']
+      attributes[:name]         = fields['name']
+      attributes[:display_name] = fields['displayName']
+      attributes[:description]  = fields['description']
+      attributes[:url]          = fields['url']
       self
     end
 

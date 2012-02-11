@@ -1,8 +1,8 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    attr_reader   :id
-    attr_accessor :name, :description, :closed, :url, :board_id, :member_ids, :list_id
+    register_attributes :id, :short_id, :name, :description, :closed, :url, :board_id, :member_ids, :list_id
+    validates_presence_of :id, :name, :list_id
 
     include HasActions
 
@@ -16,7 +16,7 @@ module Trello
       def create(options)
         new('name'   => options[:name],
             'idList' => options[:list_id],
-            'desc'   => options[:description]).save!
+            'desc'   => options[:description]).save
       end
     end
 
@@ -25,14 +25,15 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a card.
     def update_fields(fields)
-      @id          = fields['id']
-      @name        = fields['name']
-      @description = fields['desc']
-      @closed      = fields['closed']
-      @url         = fields['url']
-      @board_id    = fields['idBoard']
-      @member_ids  = fields['idMembers']
-      @list_id     = fields['idList']
+      attributes[:id]          = fields['id']
+      attributes[:short_id]    = fields['idShort']
+      attributes[:name]        = fields['name']
+      attributes[:description] = fields['desc']
+      attributes[:closed]      = fields['closed']
+      attributes[:url]         = fields['url']
+      attributes[:board_id]    = fields['idBoard']
+      attributes[:member_ids]  = fields['idMembers']
+      attributes[:list_id]     = fields['idList']
       self
     end
 
@@ -62,34 +63,15 @@ module Trello
       end
     end
 
-    # Change the name of the card
-    def name=(val)
-      Client.put("/card/#{id}/name", :value => val)
-      @name = val
-    end
-
-    # Change the description of the card
-    def description=(val)
-      Client.put("/card/#{id}/desc", :value => val)
-      @description = val
-    end
-
-    # Change the list this card is a part of
-    def list=(other)
-      Client.put("/card/#{id}/idList", :value => other.id)
-      @list_id = other.id
-      other
-    end
-
     # Saves a record.
-    def save!
+    def save
       # If we have an id, just update our fields.
       return update! if id
 
       Client.post("/cards", {
-        :name   => @name,
-        :desc   => @description,
-        :idList => @list_id
+        :name   => name,
+        :desc   => description,
+        :idList => list_id
       }).json_into(self)
     end
 
@@ -98,19 +80,22 @@ module Trello
     # an external resource has updated these fields, you should refresh!
     # this object before making your changes, and before updating the record.
     def update!
+      @previously_changed = changes
+      @changed_attributes.clear
+
       Client.put("/cards/#{@id}", {
-        :name      => @name,
-        :desc      => @description,
-        :closed    => @closed,
-        :idList    => @list_id,
-        :idBoard   => @board_id,
-        :idMembers => @member_ids
+        :name      => name,
+        :desc      => description,
+        :closed    => closed,
+        :idList    => list_id,
+        :idBoard   => board_id,
+        :idMembers => member_ids
       }).json_into(self)
     end
 
     # Is the record valid?
     def valid?
-      @name && @list_id
+      name && list_id
     end
 
     # Add a comment with the supplied text.

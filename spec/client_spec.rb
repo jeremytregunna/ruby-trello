@@ -45,7 +45,7 @@ describe Client, "and how it handles authorization" do
   it "raises an error when response has non-200 status" do
     expected_error_message = "An error response"
     response_with_non_200_status = stub "A fake OK response", 
-      :code => 201,
+      :code => 404,
       :body => expected_error_message
 
     TInternet.stub(:execute).and_return response_with_non_200_status
