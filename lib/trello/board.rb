@@ -1,7 +1,7 @@
 module Trello
   class Board < BasicData
-    register_attributes :id, :name, :description, :closed, :url, :organization_id,
-      :readonly => [ :id, :url, :organization_id ]
+    register_attributes :id, :name, :description, :closed, :url, :organization_id, :prefs,
+      :readonly => [ :id, :url, :organization_id, :prefs ]
     validates_presence_of :id, :name
     validates_length_of   :name,        :in      => 1..16384
     validates_length_of   :description, :maximum => 16384
@@ -51,12 +51,12 @@ module Trello
       attributes[:closed]          = fields['closed']          if fields.has_key?('closed')
       attributes[:url]             = fields['url']             if fields['url']
       attributes[:organization_id] = fields['idOrganization']  if fields['idOrganization']
-
+      attributes[:prefs]           = fields['prefs'] || {}
       self
     end
 
     def closed?
-      @attributes[:closed]
+      attributes[:closed]
     end
 
     # Return all the cards on this board.
