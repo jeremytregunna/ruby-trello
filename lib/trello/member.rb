@@ -77,7 +77,14 @@ module Trello
       @previously_changed = changes
       @changed_attributes.clear
 
-      # TODO: updating attributes.
+      return update! if id
+    end
+
+    def update!
+      Client.put("/members/#{username}", {
+        :displayName => full_name,
+        :bio         => bio
+      }).json_into(self)
     end
 
     # :nodoc:
