@@ -41,6 +41,7 @@ module Trello
   autoload :Organization, 'trello/organization'
   autoload :Request,      'trello/net'
   autoload :TInternet,    'trello/net'
+  autoload :Token,        'trello/token'
 
   module Authorization
     autoload :AuthPolicy,      'trello/authorization'

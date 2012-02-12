@@ -198,4 +198,36 @@ module Helpers
   def organization_payload
     JSON.generate(organization_details)
   end
+
+  def token_details
+    {
+      "id"            => "4f2c10c7b3eb95a45b294cd5",
+      "idMember"      => "abcdef123456789123456789",
+      "dateCreated"   => "2012-02-03T16:52:23.661Z",
+      "permissions"   => [
+        {
+          "idModel"   => "me",
+          "modelType" => "Member",
+          "read"      => true,
+          "write"     => true
+        },
+        {
+          "idModel"   => "*",
+          "modelType" => "Board",
+          "read"      => true,
+          "write"     => true
+        },
+        {
+          "idModel"   => "*",
+          "modelType" => "Organization",
+          "read"      => true,
+          "write"     => true
+        }
+      ]
+    }
+  end
+
+  def token_payload
+    JSON.generate(token_details)
+  end
 end
