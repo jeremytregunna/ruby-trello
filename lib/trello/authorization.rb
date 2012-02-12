@@ -1,4 +1,5 @@
 require 'securerandom'
+require "oauth"
 
 module Trello
   module Authorization
@@ -32,9 +33,28 @@ module Trello
 
     OAuthCredential = Struct.new "OAuthCredential", :key, :secret
 
+    # Handles the OAuth connectivity to Trello.
+    #
+    # For 2-legged OAuth, do the following:
+    #
+    #    OAuthPolicy.consumer_credential = OAuthCredential.new "public_key", "secret"
+    #    OAuthPolicy.token               = OAuthCredential.new "token_key", nil
+    #
+    # For 3-legged OAuth, do the following:
+    #
+    #    OAuthPolicy.consumer_credential = OAuthCredential.new "public_key", "secret"
+    #    OAuthPolicy.return_url          = "http://your.site.com/path/to/receive/post"
+    #    OAuthPolicy.callback            = Proc.new do |request_token|
+    #      DB.save(request_token.key, request_token.secret)
+    #      redirect_to request_token.authorize_url
+    #    end
+    #
+    # Then, recreate the request token given the request token key and secret you saved earlier,
+    # and the consumer, and pass that RequestToken instance the #get_access_token method, and
+    # store that in OAuthPolicy.token as a OAuthCredential.
     class OAuthPolicy
       class << self
-        attr_accessor :consumer_credential, :token
+        attr_accessor :consumer_credential, :token, :return_url, :callback
 
         def authorize(request)
           unless consumer_credential
@@ -42,26 +62,40 @@ module Trello
             fail "The consumer_credential has not been supplied."
           end
 
-          request.headers = {"Authorization" => get_auth_header(request.uri, :get)}
-          request
+          if token
+            request.headers = {"Authorization" => get_auth_header(request.uri, :get)}
+            request
+          else
+            consumer(:return_url => return_url, :callback_method => :postMessage)
+            request_token = consumer.get_request_token
+            callback.call request_token
+            return nil
+          end
         end
 
         private
 
-        def get_auth_header(url, verb)
-          require "oauth"
+        def consumer_params(params = {})
+          {
+            :scheme      => :header,
+            :scope       => 'read,write,account',
+            :http_method => :get,
+            :request_token_path => "https://trello.com/1/OAuthGetRequestToken",
+            :authorize_path     => "https://trello.com/1/OAuthAuthorizeToken",
+            :access_token_path  => "https://trello.com/1/OAuthGetAccessToken"
+          }.merge!(params)
+        end
 
-          self.token ||= OAuthCredential.new
-
-          consumer = OAuth::Consumer.new(
+        def consumer(options = {})
+          @consumer ||= OAuth::Consumer.new(
             consumer_credential.key,
             consumer_credential.secret,
-            {
-              :scheme      => :header,
-              :scope       => 'read,write,account',
-              :http_method => verb
-            }
+            consumer_params(options)
           )
+        end
+
+        def get_auth_header(url, verb, options = {})
+          self.token ||= OAuththCredential.new
 
           request = Net::HTTP::Get.new Addressable::URI.parse(url).to_s
 

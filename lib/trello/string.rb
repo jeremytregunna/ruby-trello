@@ -25,10 +25,11 @@ class String
     end
   rescue JSON::ParserError => json_error
     if json_error.message =~ /model not found/
-      logger.error "Could not find that record."
+      Trello.logger.error "Could not find that record."
       raise Trello::Error, "Request could not be found."
+    elsif json_error.message =~ /A JSON text must at least contain two octets/
     else
-      logger.error "Unknown error."
+      Trello.logger.error "Unknown error."
       raise
     end
   end

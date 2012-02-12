@@ -30,6 +30,8 @@ module Trello
         request = Request.new name, uri, {}, body
         response = TInternet.execute AuthPolicy.authorize(request)
 
+        return '' unless response
+
         if response.code.to_i == 401 && response.body =~ /expired token/
           Trello.logger.error("[401 #{name.to_s.upcase} #{uri}]: Your access token has expired.")
           raise InvalidAccessToken, response.body
