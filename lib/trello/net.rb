@@ -12,8 +12,10 @@ module Trello
 
       def try_execute(request)
         begin
-          result = execute_core request
-          Response.new(200, {}, result)
+          if request
+            result = execute_core request
+            Response.new(200, {}, result)
+          end
         rescue Exception => e
           Response.new(e.http_code, {}, e.http_body)
         end
