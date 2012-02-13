@@ -65,7 +65,8 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
-      Client.get("/boards/#{id}/cards").json_into(Card)
+      cards = Client.get("/boards/#{id}/cards").json_into(Card)
+      MultiAssociation.new(self, cards).proxy
     end
 
     def has_lists?
@@ -78,7 +79,8 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def lists(options = { :filter => :open })
-      Client.get("/boards/#{id}/lists", options).json_into(List)
+      lists = Client.get("/boards/#{id}/lists", options).json_into(List)
+      MultiAssociation.new(self, lists).proxy
     end
 
     # Returns an array of members who are associated with this board.
@@ -87,7 +89,8 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :normal, :owners, :all ] # default :all
     def members(options = { :filter => :all })
-      Client.get("/boards/#{id}/members", options).json_into(Member)
+      members = Client.get("/boards/#{id}/members", options).json_into(Member)
+      MultiAssociation.new(self, members).proxy
     end
 
     # Returns a reference to the organization this board belongs to.
