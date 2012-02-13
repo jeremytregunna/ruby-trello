@@ -61,14 +61,10 @@ module Trello
     end
 
     # Return a reference to the board the checklist is on.
-    def board
-      Board.find(board_id)
-    end
+    one :board, :using => :board_id
 
     # Return a reference to the list the checklist is on.
-    def list
-      List.find(list_id)
-    end
+    one :list, :using => :list_id
 
     # Return a list of members active in this checklist.
     def members
