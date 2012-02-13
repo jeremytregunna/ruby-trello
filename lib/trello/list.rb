@@ -64,7 +64,8 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
-      Client.get("/lists/#{id}/cards", options).json_into(Card)
+      cards = Client.get("/lists/#{id}/cards", options).json_into(Card)
+      MultiAssociation.new(self, cards).proxy
     end
 
     # :nodoc:

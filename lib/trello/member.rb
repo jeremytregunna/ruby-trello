@@ -47,7 +47,8 @@ module Trello
     # of the following values:
     #   :filter => [ :none, :members, :organization, :public, :open, :closed, :all ] # default: :all
     def boards(options = { :filter => :all })
-      Client.get("/members/#{username}/boards", options).json_into(Board)
+      boards = Client.get("/members/#{username}/boards", options).json_into(Board)
+      MultiAssociation.new(self, boards).proxy
     end
 
     # Returns a list of cards the member is assigned to.
@@ -56,7 +57,8 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     def cards(options = { :filter => :open })
-      Client.get("/members/#{username}/cards", options).json_into(Card)
+      cards = Client.get("/members/#{username}/cards", options).json_into(Card)
+      MultiAssociation.new(self, cards).proxy
     end
 
     # Returns a list of the organizations this member is a part of.
@@ -65,12 +67,14 @@ module Trello
     # of the following values:
     #   :filter => [ :none, :members, :public, :all ] # default: all
     def organizations(options = { :filter => :all })
-      Client.get("/members/#{username}/organizations", options).json_into(Organization)
+      orgs = Client.get("/members/#{username}/organizations", options).json_into(Organization)
+      MultiAssociation.new(self, orgs).proxy
     end
 
     # Returns a list of notifications for the user
     def notifications
-      Client.get("/members/#{username}/notifications").json_into(Notification)
+      notifications = Client.get("/members/#{username}/notifications").json_into(Notification)
+      MultiAssociation.new(self, notifications).proxy
     end
 
     def save
