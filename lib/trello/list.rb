@@ -35,16 +35,16 @@ module Trello
       return update! if id
 
       Client.post("/lists", {
-        :name    => @name,
-        :closed  => @closed || false,
-        :idBoard => @board_id
+        :name    => name,
+        :closed  => closed || false,
+        :idBoard => board_id
       }).json_into(self)
     end
 
     def update!
       Client.put("/lists", {
-        :name   => @name,
-        :closed => @closed
+        :name   => name,
+        :closed => closed
       }).json_into(self)
     end
 
