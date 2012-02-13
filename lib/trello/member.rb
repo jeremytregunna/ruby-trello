@@ -43,39 +43,33 @@ module Trello
 
     # Returns a list of the boards a member is a part of.
     #
-    # The options hash may have a filter key which can have its value set as any
+    # This method, when called, can take a hash table with a filter key containing any
     # of the following values:
     #   :filter => [ :none, :members, :organization, :public, :open, :closed, :all ] # default: :all
-    def boards(options = { :filter => :all })
-      boards = Client.get("/members/#{username}/boards", options).json_into(Board)
-      MultiAssociation.new(self, boards).proxy
-    end
+    # i.e.,
+    #    me.boards(:filter => :closed) # retrieves all closed boards
+    many :boards, :filter => :all
 
     # Returns a list of cards the member is assigned to.
     #
-    # The options hash may have a filter key which can have its value set as any
+    # This method, when called, can take a hash table with a filter key containing any
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
-    def cards(options = { :filter => :open })
-      cards = Client.get("/members/#{username}/cards", options).json_into(Card)
-      MultiAssociation.new(self, cards).proxy
-    end
+    # i.e.,
+    #    me.cards(:filter => :closed) # retrieves all closed cards
+    many :cards, :filter => :open
 
     # Returns a list of the organizations this member is a part of.
     #
-    # The options hash may have a filter key which can have its value set as any
+    # This method, when called, can take a hash table with a filter key containing any
     # of the following values:
     #   :filter => [ :none, :members, :public, :all ] # default: all
-    def organizations(options = { :filter => :all })
-      orgs = Client.get("/members/#{username}/organizations", options).json_into(Organization)
-      MultiAssociation.new(self, orgs).proxy
-    end
+    # i.e.,
+    #    me.organizations(:filter => :public) # retrieves all public organizations
+    many :organizations, :filter => :all
 
     # Returns a list of notifications for the user
-    def notifications
-      notifications = Client.get("/members/#{username}/notifications").json_into(Notification)
-      MultiAssociation.new(self, notifications).proxy
-    end
+    many :notifications
 
     def save
       @previously_changed = changes
@@ -85,7 +79,7 @@ module Trello
     end
 
     def update!
-      Client.put("/members/#{username}", {
+      Client.put(request_prefix, {
         :displayName => full_name,
         :bio         => bio
       }).json_into(self)
@@ -93,7 +87,7 @@ module Trello
 
     # :nodoc:
     def request_prefix
-      "/members/#{username}"
+      "/members/#{id}"
     end
   end
 end
