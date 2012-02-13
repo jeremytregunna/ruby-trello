@@ -5,9 +5,10 @@ module Trello
     include Helpers
 
     before(:each) do
-      Client.stub(:get).with("/members/me").and_return user_payload
-      Client.stub(:get).with("/members/me/notifications").and_return "[" << notification_payload << "]"
-      @notification = Member.find("me").notifications.first
+      Client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
+      member = Member.find("abcdef123456789012345678")
+      Client.stub(:get).with("/members/abcdef123456789012345678/notifications", {}).and_return "[" << notification_payload << "]"
+      @notification = member.notifications.first
     end
 
     context "finding" do
