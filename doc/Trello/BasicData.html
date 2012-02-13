@@ -71,7 +71,13 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
+					<li><a href="#method-c-many">::many</a></li>
+					
 					<li><a href="#method-c-new">::new</a></li>
+					
+					<li><a href="#method-c-one">::one</a></li>
+					
+					<li><a href="#method-c-register_attributes">::register_attributes</a></li>
 					
 					<li><a href="#method-i-%3D%3D">#==</a></li>
 					
@@ -84,6 +90,25 @@
 			
 
 			<!-- Included Modules -->
+			
+			<div id="includes-section" class="section">
+				<h3 class="section-header">Included Modules</h3>
+				<ul class="link-list">
+				
+				
+					<li><span class="include">ActiveModel::Validations</span></li>
+				
+				
+				
+					<li><span class="include">ActiveModel::Dirty</span></li>
+				
+				
+				
+					<li><span class="include">ActiveModel::Serializers::JSON</span></li>
+				
+				
+				</ul>
+			</div>
 			
 		</div>
 
@@ -110,6 +135,10 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -132,6 +161,10 @@
 				
 					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
@@ -140,11 +173,15 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="../Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -167,27 +204,6 @@
 		
 
 		<!-- Attributes -->
-		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="id-attribute-method" class="method-detail">
-				<a name="id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
 		
 
 		<!-- Methods -->
@@ -216,10 +232,53 @@
 					<div class="method-source-code"
 						id="find-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 8</span>
- 8:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">id</span>)
- 9:         <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/#{path}/#{id}&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword kw">self</span>)
-10:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 10</span>
+10:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">id</span>)
+11:         <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/#{path}/#{id}&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword kw">self</span>)
+12:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="many-method" class="method-detail ">
+				<a name="method-c-many"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">many</span><span
+						class="method-args">(name, opts = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="many-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 51</span>
+51:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">many</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">opts</span> = {})
+52:       <span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+53:         <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:&quot;#{name}&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span>*<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+54:           <span class="ruby-identifier">options</span>   = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">dup</span>
+55:           <span class="ruby-identifier">resource</span>  = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:in</span>)  <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;::&quot;</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">pluralize</span>
+56:           <span class="ruby-identifier">klass</span>     = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:via</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">singularize</span>.<span class="ruby-identifier">camelize</span>)
+57:           <span class="ruby-identifier">params</span>    = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">||</span> {})
+58:           <span class="ruby-identifier">resources</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/#{resource}/#{id}/#{name}&quot;</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-identifier">klass</span>)
+59:           <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">resources</span>).<span class="ruby-identifier">proxy</span>
+60:         <span class="ruby-keyword kw">end</span>
+61:       <span class="ruby-keyword kw">end</span>
+62:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -250,10 +309,106 @@
 					<div class="method-source-code"
 						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 13</span>
-13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
-14:       <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-15:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 66</span>
+66:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">fields</span> = {})
+67:       <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+68:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="one-method" class="method-detail ">
+				<a name="method-c-one"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">one</span><span
+						class="method-args">(name, opts = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="one-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 40</span>
+40:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">one</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">opts</span> = {})
+41:       <span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+42:         <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:&quot;#{name}&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span>*<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+43:           <span class="ruby-identifier">options</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">dup</span>
+44:           <span class="ruby-identifier">klass</span>   = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:via</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>)
+45:           <span class="ruby-identifier">ident</span>   = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value">:using</span>) <span class="ruby-operator">||</span> <span class="ruby-value">:id</span>
+46:           <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">ident</span>))
+47:         <span class="ruby-keyword kw">end</span>
+48:       <span class="ruby-keyword kw">end</span>
+49:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="register-attributes-method" class="method-detail ">
+				<a name="method-c-register_attributes"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">register_attributes</span><span
+						class="method-args">(*names)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="register-attributes-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 15</span>
+15:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">register_attributes</span>(*<span class="ruby-identifier">names</span>)
+16:       <span class="ruby-identifier">options</span> = { <span class="ruby-value">:readonly</span> =<span class="ruby-operator">&gt;</span> [] }
+17:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">names</span>.<span class="ruby-identifier">pop</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Hash</span>
+18: 
+19:       <span class="ruby-comment cmt"># Defines the attribute getter and setters.</span>
+20:       <span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+21:         <span class="ruby-identifier">define_method</span> <span class="ruby-value">:attributes</span> <span class="ruby-keyword kw">do</span>
+22:           <span class="ruby-ivar">@attributes</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">inject</span>({}) { <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>,<span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">to_sym</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>) }
+23:         <span class="ruby-keyword kw">end</span>
+24: 
+25:         <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+26:           <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:&quot;#{key}&quot;</span>) { <span class="ruby-ivar">@attributes</span>[<span class="ruby-identifier">key</span>] }
+27: 
+28:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:readonly</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>)
+29:             <span class="ruby-identifier">define_method</span> <span class="ruby-value">:&quot;#{key}=&quot;</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+30:               <span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{key}_will_change!&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@attributes</span>[<span class="ruby-identifier">key</span>]
+31:               <span class="ruby-ivar">@attributes</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span>
+32:             <span class="ruby-keyword kw">end</span>
+33:           <span class="ruby-keyword kw">end</span>
+34:         <span class="ruby-keyword kw">end</span>
+35: 
+36:         <span class="ruby-identifier">define_attribute_methods</span> <span class="ruby-identifier">names</span>
+37:       <span class="ruby-keyword kw">end</span>
+38:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -292,10 +447,10 @@ Two objects are equal if their <em>id</em> methods are equal.
 					<div class="method-source-code"
 						id="--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 27</span>
-27:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
-28:       <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>
-29:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 80</span>
+80:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
+81:       <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span>
+82:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -328,10 +483,10 @@ Refresh the contents of our object.
 					<div class="method-source-code"
 						id="refresh--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 22</span>
-22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refresh!</span>
-23:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
-24:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 75</span>
+75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">refresh!</span>
+76:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+77:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -362,10 +517,10 @@ Refresh the contents of our object.
 					<div class="method-source-code"
 						id="update-fields-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 17</span>
-17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-18:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;#{self.class} does not implement update_fields.&quot;</span>
-19:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/basic_data.rb, line 70</span>
+70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+71:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;#{self.class} does not implement update_fields.&quot;</span>
+72:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

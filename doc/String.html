@@ -102,6 +102,10 @@
 				
 					<li><a href="./Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="./Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="./Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -124,6 +128,10 @@
 				
 					<li><a href="./Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="./Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="./Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="./Trello/ItemState.html">Trello::ItemState</a></li>
@@ -132,11 +140,15 @@
 				
 					<li><a href="./Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="./Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="./Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="./Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="./Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="./String.html">String</a></li>
 				
@@ -216,11 +228,14 @@ For instance:
 25:     <span class="ruby-keyword kw">end</span>
 26:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">ParserError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">json_error</span>
 27:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/model not found/</span>
-28:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;Request could not be found.&quot;</span>
-29:     <span class="ruby-keyword kw">else</span>
-30:       <span class="ruby-identifier">raise</span>
-31:     <span class="ruby-keyword kw">end</span>
-32:   <span class="ruby-keyword kw">end</span></pre>
+28:       <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Could not find that record.&quot;</span>
+29:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;Request could not be found.&quot;</span>
+30:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/A JSON text must at least contain two octets/</span>
+31:     <span class="ruby-keyword kw">else</span>
+32:       <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Unknown error.&quot;</span>
+33:       <span class="ruby-identifier">raise</span>
+34:     <span class="ruby-keyword kw">end</span>
+35:   <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

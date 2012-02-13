@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Trello::Error</title>
+	<title>Module: Trello::HasActions</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -19,7 +19,7 @@
 		charset="utf-8"></script>
 
 </head>
-<body class="class">
+<body class="module">
 
 	<div id="metadata">
 		<div id="home-metadata">
@@ -38,8 +38,8 @@
 				<div class="section-body">
 					<ul>
 					
-						<li><a href="../lib/trello_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello.rb">lib/trello.rb</a></li>
+						<li><a href="../lib/trello/has_actions_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/has_actions.rb">lib/trello/has_actions.rb</a></li>
 					
 					</ul>
 				</div>
@@ -52,18 +52,20 @@
 
 			<!-- Parent Class -->
 			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link">StandardError</p>
-				
-			</div>
-			
 
 			<!-- Namespace Contents -->
 			
 
 			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-actions">#actions</a></li>
+					
+				</ul>
+			</div>
 			
 
 			<!-- Included Modules -->
@@ -152,13 +154,10 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">Trello::Error</h1>
+		<h1 class="module">Trello::HasActions</h1>
 
 		<div id="description">
-			<p>
-Raise this when we hit a <a href="../Trello.html">Trello</a> error.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
@@ -169,6 +168,49 @@ Raise this when we hit a <a href="../Trello.html">Trello</a> error.
 
 		<!-- Methods -->
 		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="actions-method" class="method-detail ">
+				<a name="method-i-actions"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">actions</span><span
+						class="method-args">(options = {})</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Returns a list of the actions associated with this object.
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="actions-source">
+<pre>
+   <span class="ruby-comment cmt"># File lib/trello/has_actions.rb, line 4</span>
+4:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actions</span>(<span class="ruby-identifier">options</span> = {})
+5:       <span class="ruby-identifier">actions</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{request_prefix}/actions&quot;</span>, { <span class="ruby-value">:filter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:all</span> }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Action</span>)
+6:       <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">actions</span>).<span class="ruby-identifier">proxy</span>
+7:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 
 	</div>
 

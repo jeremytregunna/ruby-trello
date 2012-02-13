@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Trello::Organization</title>
+	<title>Class: Trello::AssociationProxy</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -38,8 +38,8 @@
 				<div class="section-body">
 					<ul>
 					
-						<li><a href="../lib/trello/organization_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/organization.rb">lib/trello/organization.rb</a></li>
+						<li><a href="../lib/trello/association_proxy_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/association_proxy.rb">lib/trello/association_proxy.rb</a></li>
 					
 					</ul>
 				</div>
@@ -55,7 +55,7 @@
 			<div id="parent-class-section" class="section">
 				<h3 class="section-header">Parent</h3>
 				
-				<p class="link"><a href="BasicData.html">Trello::BasicData</a></p>
+				<p class="link">Object</p>
 				
 			</div>
 			
@@ -69,32 +69,25 @@
 				<h3 class="section-header">Methods</h3>
 				<ul class="link-list">
 					
-					<li><a href="#method-c-find">::find</a></li>
+					<li><a href="#method-c-new">::new</a></li>
 					
-					<li><a href="#method-i-boards">#boards</a></li>
+					<li><a href="#method-i-%3C%3C">#<<</a></li>
 					
-					<li><a href="#method-i-members">#members</a></li>
+					<li><a href="#method-i-%3D%3D%3D">#===</a></li>
 					
-					<li><a href="#method-i-request_prefix">#request_prefix</a></li>
+					<li><a href="#method-i-method_missing">#method_missing</a></li>
 					
-					<li><a href="#method-i-update_fields">#update_fields</a></li>
+					<li><a href="#method-i-proxy_assocation">#proxy_assocation</a></li>
+					
+					<li><a href="#method-i-to_a">#to_a</a></li>
+					
+					<li><a href="#method-i-to_ary">#to_ary</a></li>
 					
 				</ul>
 			</div>
 			
 
 			<!-- Included Modules -->
-			
-			<div id="includes-section" class="section">
-				<h3 class="section-header">Included Modules</h3>
-				<ul class="link-list">
-				
-				
-					<li><span class="include">HasActions</span></li>
-				
-				
-				</ul>
-			</div>
 			
 		</div>
 
@@ -180,13 +173,10 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">Trello::Organization</h1>
+		<h1 class="class">Trello::AssociationProxy</h1>
 
 		<div id="description">
-			<p>
-Organizations are useful for linking members together.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
@@ -201,32 +191,31 @@ Organizations are useful for linking members together.
 			<h3 class="section-header">Public Class Methods</h3>
 
 		
-			<div id="find-method" class="method-detail ">
-				<a name="method-c-find"></a>
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">find</span><span
-						class="method-args">(id)</span>
+					<span class="method-name">new</span><span
+						class="method-args">(association)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-Find an organization by its id.
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="find-source">
+						id="new-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 12</span>
-12:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
-13:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:organizations</span>, <span class="ruby-identifier">id</span>)
-14:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/association_proxy.rb, line 12</span>
+12:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">association</span>)
+13:       <span class="ruby-ivar">@association</span> = <span class="ruby-identifier">association</span>
+14:       <span class="ruby-constant">Array</span>(<span class="ruby-identifier">association</span>.<span class="ruby-identifier">options</span>[<span class="ruby-value">:extend</span>]).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ext</span><span class="ruby-operator">|</span> <span class="ruby-identifier">proxy_extend</span>(<span class="ruby-identifier">ext</span>) }
+15:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -243,69 +232,29 @@ Find an organization by its id.
 			<h3 class="section-header">Public Instance Methods</h3>
 
 		
-			<div id="boards-method" class="method-detail ">
-				<a name="method-i-boards"></a>
+			<div id="--method" class="method-detail ">
+				<a name="method-i-%3C%3C"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">boards</span><span
-						class="method-args">()</span>
+					<span class="method-name">&lt;&lt;</span><span
+						class="method-args">(*records)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-Returns a list of boards under this organization.
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="boards-source">
+						id="--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 31</span>
-31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">boards</span>
-32:       <span class="ruby-identifier">boards</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/boards/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
-33:       <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">boards</span>).<span class="ruby-identifier">proxy</span>
-34:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="members-method" class="method-detail ">
-				<a name="method-i-members"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">members</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Returns an array of members associated with the organization.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="members-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 37</span>
-37:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>
-38:       <span class="ruby-identifier">members</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/members/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
-39:       <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">members</span>).<span class="ruby-identifier">proxy</span>
+    <span class="ruby-comment cmt"># File lib/trello/association_proxy.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;&lt;</span>(*<span class="ruby-identifier">records</span>)
+39:       <span class="ruby-identifier">proxy_assocation</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">records</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">self</span>
 40:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
@@ -317,32 +266,30 @@ Returns an array of members associated with the organization.
 			</div>
 
 		
-			<div id="request-prefix-method" class="method-detail ">
-				<a name="method-i-request_prefix"></a>
+			<div id="--method" class="method-detail ">
+				<a name="method-i-%3D%3D%3D"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">request_prefix</span><span
-						class="method-args">()</span>
+					<span class="method-name">===</span><span
+						class="method-args">(other)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-:nodoc: 
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="request-prefix-source">
+						id="--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 43</span>
-43:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_prefix</span>
-44:       <span class="ruby-node">&quot;/organizations/#{id}&quot;</span>
-45:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/association_proxy.rb, line 29</span>
+29:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">other</span>)
+30:       <span class="ruby-identifier">other</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">target</span>
+31:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -353,46 +300,139 @@ Returns an array of members associated with the organization.
 			</div>
 
 		
-			<div id="update-fields-method" class="method-detail ">
-				<a name="method-i-update_fields"></a>
+			<div id="method-missing-method" class="method-detail ">
+				<a name="method-i-method_missing"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">update_fields</span><span
-						class="method-args">(fields)</span>
+					<span class="method-name">method_missing</span><span
+						class="method-args">(method, *args, &block)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
 
 				<div class="method-description">
 					
-					<p>
-Update the fields of an organization.
-</p>
-<p>
-Supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing an <a
-href="Organization.html">Organization</a>.
-</p>
+					
 					
 
 					
 					<div class="method-source-code"
-						id="update-fields-source">
+						id="method-missing-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/organization.rb, line 21</span>
-21:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-22:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]           = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-23:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]         = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
-24:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:display_name</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'displayName'</span>]
-25:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:description</span>]  = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'description'</span>]
-26:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>]          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
-27:       <span class="ruby-keyword kw">self</span>
-28:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/association_proxy.rb, line 21</span>
+21:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">method</span>, *<span class="ruby-identifier">args</span>, &amp;<span class="ruby-identifier">block</span>)
+22:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">method</span>
+23:         <span class="ruby-identifier">target</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, *<span class="ruby-identifier">args</span>, &amp;<span class="ruby-identifier">block</span>)
+24:       <span class="ruby-keyword kw">else</span>
+25:         <span class="ruby-keyword kw">super</span>
+26:       <span class="ruby-keyword kw">end</span>
+27:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
 
+				
+
+				
+			</div>
+
+		
+			<div id="proxy-assocation-method" class="method-detail ">
+				<a name="method-i-proxy_assocation"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">proxy_assocation</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="proxy-assocation-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/association_proxy.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">proxy_assocation</span>
+18:       <span class="ruby-ivar">@association</span>
+19:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="to-a-method" class="method-detail method-alias">
+				<a name="method-i-to_a"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">to_a</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+				</div>
+
+				
+
+				
+				<div class="aliases">
+          Alias for: <a href="AssociationProxy.html#method-i-to_ary">to_ary</a>
+				</div>
+				
+			</div>
+
+		
+			<div id="to-ary-method" class="method-detail ">
+				<a name="method-i-to_ary"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">to_ary</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="to-ary-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/association_proxy.rb, line 33</span>
+33:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_ary</span>
+34:       <span class="ruby-identifier">proxy_assocation</span>.<span class="ruby-identifier">dup</span>
+35:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+				<div class="aliases">
+					Also aliased as: <a href="AssociationProxy.html#method-i-to_a">to_a</a>
+				</div>
 				
 
 				

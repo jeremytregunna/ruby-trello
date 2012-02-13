@@ -77,8 +77,6 @@
 					
 					<li><a href="#method-i-list">#list</a></li>
 					
-					<li><a href="#method-i-member_creator">#member_creator</a></li>
-					
 					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
 				</ul>
@@ -112,6 +110,10 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -134,6 +136,10 @@
 				
 					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
@@ -142,11 +148,15 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="../Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -173,72 +183,6 @@ instance, when a card is created.
 		
 
 		<!-- Attributes -->
-		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="id-attribute-method" class="method-detail">
-				<a name="id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="type-attribute-method" class="method-detail">
-				<a name="type"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">type</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="data-attribute-method" class="method-detail">
-				<a name="data"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">data</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="member-creator-id-attribute-method" class="method-detail">
-				<a name="member_creator_id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">member_creator_id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
 		
 
 		<!-- Methods -->
@@ -270,10 +214,10 @@ object.
 					<div class="method-source-code"
 						id="find-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 8</span>
- 8:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
- 9:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:actions</span>, <span class="ruby-identifier">id</span>)
-10:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 10</span>
+10:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+11:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:actions</span>, <span class="ruby-identifier">id</span>)
+12:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -312,11 +256,10 @@ Returns the board this action occurred on.
 					<div class="method-source-code"
 						id="board-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 26</span>
-26:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
-27:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@board</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@board</span>
-28:       <span class="ruby-ivar">@board</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/board&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
-29:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 29</span>
+29:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
+30:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/board&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
+31:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -349,11 +292,10 @@ Returns the card the action occurred on.
 					<div class="method-source-code"
 						id="card-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 32</span>
-32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card</span>
-33:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@card</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@card</span>
-34:       <span class="ruby-ivar">@card</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/card&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
-35:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 34</span>
+34:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card</span>
+35:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/card&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
+36:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -386,48 +328,10 @@ Returns the list the action occurred on.
 					<div class="method-source-code"
 						id="list-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 38</span>
-38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
-39:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@list</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@list</span>
-40:       <span class="ruby-ivar">@list</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/list&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 39</span>
+39:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
+40:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/actions/#{id}/list&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
 41:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="member-creator-method" class="method-detail ">
-				<a name="method-i-member_creator"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">member_creator</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Returns the member who created the action.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="member-creator-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 44</span>
-44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">member_creator</span>
-45:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@member_creator</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@member_creator</span>
-46:       <span class="ruby-ivar">@member_creator</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">member_creator_id</span>)
-47:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -465,14 +369,15 @@ href="Action.html">Action</a>.
 					<div class="method-source-code"
 						id="update-fields-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 17</span>
-17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-18:       <span class="ruby-ivar">@id</span>                = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-19:       <span class="ruby-ivar">@type</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
-20:       <span class="ruby-ivar">@data</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'data'</span>]
-21:       <span class="ruby-ivar">@member_creator_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMemberCreator'</span>]
-22:       <span class="ruby-keyword kw">self</span>
-23:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/action.rb, line 19</span>
+19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+20:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]                = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+21:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:type</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
+22:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:data</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'data'</span>]
+23:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:date</span>]              = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">iso8601</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-value str">'date'</span>])
+24:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_creator_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMemberCreator'</span>]
+25:       <span class="ruby-keyword kw">self</span>
+26:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

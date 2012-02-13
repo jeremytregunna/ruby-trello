@@ -102,6 +102,10 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -124,6 +128,10 @@
 				
 					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
@@ -132,11 +140,15 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="../Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -163,57 +175,6 @@ marked as completed.
 		
 
 		<!-- Attributes -->
-		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="id-attribute-method" class="method-detail">
-				<a name="id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="name-attribute-method" class="method-detail">
-				<a name="name"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">name</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="type-attribute-method" class="method-detail">
-				<a name="type"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">type</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
 		
 
 		<!-- Methods -->
@@ -248,13 +209,13 @@ href="../Trello.html">Trello</a> API representing an item.
 					<div class="method-source-code"
 						id="update-fields-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/item.rb, line 10</span>
-10:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-11:       <span class="ruby-ivar">@id</span>   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-12:       <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
-13:       <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
-14:       <span class="ruby-keyword kw">self</span>
-15:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/item.rb, line 11</span>
+11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+12:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+13:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
+14:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:type</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
+15:       <span class="ruby-keyword kw">self</span>
+16:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

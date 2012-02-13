@@ -102,6 +102,10 @@
 				
 					<li><a href="../../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../../Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="../../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="../../Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="../../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -124,6 +128,10 @@
 				
 					<li><a href="../../Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="../../Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="../../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="../../Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="../../Trello/ItemState.html">Trello::ItemState</a></li>
@@ -132,11 +140,15 @@
 				
 					<li><a href="../../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="../../Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="../../Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="../../Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="../../Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="../../String.html">String</a></li>
 				
@@ -227,15 +239,15 @@
 					<div class="method-source-code"
 						id="authorize-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/authorization.rb, line 12</span>
-12:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
-13:           <span class="ruby-identifier">the_uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">uri</span>)
-14:           <span class="ruby-identifier">existing_values</span> = <span class="ruby-identifier">the_uri</span>.<span class="ruby-identifier">query_values</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> {} <span class="ruby-operator">:</span> <span class="ruby-identifier">the_uri</span>.<span class="ruby-identifier">query_values</span>
-15:           <span class="ruby-identifier">new_values</span> = { <span class="ruby-value">:key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@developer_public_key</span>, <span class="ruby-value">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@member_token</span> }
-16:           <span class="ruby-identifier">the_uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">new_values</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">existing_values</span>
-17: 
-18:           <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">verb</span>, <span class="ruby-identifier">the_uri</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">headers</span>
-19:         <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/authorization.rb, line 13</span>
+13:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
+14:           <span class="ruby-identifier">the_uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">uri</span>)
+15:           <span class="ruby-identifier">existing_values</span> = <span class="ruby-identifier">the_uri</span>.<span class="ruby-identifier">query_values</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">?</span> {} <span class="ruby-operator">:</span> <span class="ruby-identifier">the_uri</span>.<span class="ruby-identifier">query_values</span>
+16:           <span class="ruby-identifier">new_values</span> = { <span class="ruby-value">:key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@developer_public_key</span>, <span class="ruby-value">:token</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@member_token</span> }
+17:           <span class="ruby-identifier">the_uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">new_values</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">existing_values</span>
+18: 
+19:           <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">verb</span>, <span class="ruby-identifier">the_uri</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">headers</span>
+20:         <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

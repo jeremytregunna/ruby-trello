@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Trello::Error</title>
+	<title>Class: Trello::Association</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -38,8 +38,8 @@
 				<div class="section-body">
 					<ul>
 					
-						<li><a href="../lib/trello_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello.rb">lib/trello.rb</a></li>
+						<li><a href="../lib/trello/association_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/association.rb">lib/trello/association.rb</a></li>
 					
 					</ul>
 				</div>
@@ -55,7 +55,7 @@
 			<div id="parent-class-section" class="section">
 				<h3 class="section-header">Parent</h3>
 				
-				<p class="link">StandardError</p>
+				<p class="link">Object</p>
 				
 			</div>
 			
@@ -64,6 +64,15 @@
 			
 
 			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-new">::new</a></li>
+					
+				</ul>
+			</div>
 			
 
 			<!-- Included Modules -->
@@ -152,13 +161,10 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">Trello::Error</h1>
+		<h1 class="class">Trello::Association</h1>
 
 		<div id="description">
-			<p>
-Raise this when we hit a <a href="../Trello.html">Trello</a> error.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
@@ -166,9 +172,117 @@ Raise this when we hit a <a href="../Trello.html">Trello</a> error.
 
 		<!-- Attributes -->
 		
+		<div id="attribute-method-details" class="method-section section">
+			<h3 class="section-header">Attributes</h3>
+
+			
+			<div id="owner-attribute-method" class="method-detail">
+				<a name="owner"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">owner</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="target-attribute-method" class="method-detail">
+				<a name="target"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">target</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="options-attribute-method" class="method-detail">
+				<a name="options"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">options</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+			<div id="proxy-attribute-method" class="method-detail">
+				<a name="proxy"></a>
+				
+				<div class="method-heading attribute-method-heading">
+					<span class="method-name">proxy</span><span
+						class="attribute-access-type">[R]</span>
+				</div>
+
+				<div class="method-description">
+				
+				
+				
+				</div>
+			</div>
+			
+		</div>
+		
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="new-method" class="method-detail ">
+				<a name="method-c-new"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">new</span><span
+						class="method-args">(owner, target)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="new-source">
+<pre>
+   <span class="ruby-comment cmt"># File lib/trello/association.rb, line 5</span>
+5:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">owner</span>, <span class="ruby-identifier">target</span>)
+6:       <span class="ruby-ivar">@owner</span>  = <span class="ruby-identifier">owner</span>
+7:       <span class="ruby-ivar">@target</span> = <span class="ruby-identifier">target</span>
+8:       <span class="ruby-ivar">@options</span> = {}
+9:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 
 	</div>
 

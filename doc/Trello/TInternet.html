@@ -106,6 +106,10 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -128,6 +132,10 @@
 				
 					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
@@ -136,11 +144,15 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="../Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -231,18 +243,18 @@
 					<div class="method-source-code"
 						id="execute-core-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/net.rb, line 22</span>
-22:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_core</span>(<span class="ruby-identifier">request</span>)
-23:         <span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;rest_client&quot;</span>
-24:         
-25:         <span class="ruby-constant">RestClient</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">execute</span>(
-26:           <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">verb</span>, 
-27:           <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>, 
-28:           <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">headers</span>, 
-29:           <span class="ruby-value">:payload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>, 
-30:           <span class="ruby-value">:timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>
-31:         )
-32:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/net.rb, line 24</span>
+24:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute_core</span>(<span class="ruby-identifier">request</span>)
+25:         <span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;rest_client&quot;</span>
+26:         
+27:         <span class="ruby-constant">RestClient</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">execute</span>(
+28:           <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">verb</span>, 
+29:           <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">to_s</span>, 
+30:           <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">headers</span>, 
+31:           <span class="ruby-value">:payload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>, 
+32:           <span class="ruby-value">:timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>
+33:         )
+34:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -276,12 +288,14 @@
     <span class="ruby-comment cmt"># File lib/trello/net.rb, line 13</span>
 13:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">try_execute</span>(<span class="ruby-identifier">request</span>)
 14:         <span class="ruby-keyword kw">begin</span>
-15:           <span class="ruby-identifier">result</span> = <span class="ruby-identifier">execute_core</span> <span class="ruby-identifier">request</span>
-16:           <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">200</span>, {}, <span class="ruby-identifier">result</span>)
-17:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
-18:           <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">http_code</span>, {}, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">http_body</span>)
-19:         <span class="ruby-keyword kw">end</span>
-20:       <span class="ruby-keyword kw">end</span></pre>
+15:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request</span>
+16:             <span class="ruby-identifier">result</span> = <span class="ruby-identifier">execute_core</span> <span class="ruby-identifier">request</span>
+17:             <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">200</span>, {}, <span class="ruby-identifier">result</span>)
+18:           <span class="ruby-keyword kw">end</span>
+19:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+20:           <span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">http_code</span>, {}, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">http_body</span>)
+21:         <span class="ruby-keyword kw">end</span>
+22:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>

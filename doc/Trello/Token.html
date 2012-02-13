@@ -5,7 +5,7 @@
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 
-	<title>Class: Trello::Error</title>
+	<title>Class: Trello::Token</title>
 
 	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -38,8 +38,8 @@
 				<div class="section-body">
 					<ul>
 					
-						<li><a href="../lib/trello_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello.rb">lib/trello.rb</a></li>
+						<li><a href="../lib/trello/token_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="lib/trello/token.rb">lib/trello/token.rb</a></li>
 					
 					</ul>
 				</div>
@@ -55,7 +55,7 @@
 			<div id="parent-class-section" class="section">
 				<h3 class="section-header">Parent</h3>
 				
-				<p class="link">StandardError</p>
+				<p class="link"><a href="BasicData.html">Trello::BasicData</a></p>
 				
 			</div>
 			
@@ -64,6 +64,17 @@
 			
 
 			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-c-find">::find</a></li>
+					
+					<li><a href="#method-i-update_fields">#update_fields</a></li>
+					
+				</ul>
+			</div>
 			
 
 			<!-- Included Modules -->
@@ -152,13 +163,10 @@
 	</div>
 
 	<div id="documentation">
-		<h1 class="class">Trello::Error</h1>
+		<h1 class="class">Trello::Token</h1>
 
 		<div id="description">
-			<p>
-Raise this when we hit a <a href="../Trello.html">Trello</a> error.
-</p>
-
+			
 		</div>
 
 		<!-- Constants -->
@@ -169,6 +177,93 @@ Raise this when we hit a <a href="../Trello.html">Trello</a> error.
 
 		<!-- Methods -->
 		
+		<div id="public-class-method-details" class="method-section section">
+			<h3 class="section-header">Public Class Methods</h3>
+
+		
+			<div id="find-method" class="method-detail ">
+				<a name="method-c-find"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">find</span><span
+						class="method-args">(token)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+Finds a token
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="find-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/token.rb, line 8</span>
+ 8:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">token</span>)
+ 9:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:tokens</span>, <span class="ruby-identifier">token</span>)
+10:       <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="update-fields-method" class="method-detail ">
+				<a name="method-i-update_fields"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update_fields</span><span
+						class="method-args">(fields)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+:nodoc: 
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="update-fields-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/token.rb, line 14</span>
+14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+15:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+16:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_id</span>]   = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMember'</span>]
+17:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:created_at</span>]  = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">iso8601</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-value str">'dateCreated'</span>])
+18:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:permissions</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'permissions'</span>] <span class="ruby-operator">||</span> {}
+19:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
 
 	</div>
 

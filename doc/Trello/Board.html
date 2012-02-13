@@ -73,21 +73,15 @@
 					
 					<li><a href="#method-c-find">::find</a></li>
 					
-					<li><a href="#method-i-actions">#actions</a></li>
-					
-					<li><a href="#method-i-cards">#cards</a></li>
-					
 					<li><a href="#method-i-closed%3F">#closed?</a></li>
 					
 					<li><a href="#method-i-has_lists%3F">#has_lists?</a></li>
 					
-					<li><a href="#method-i-lists">#lists</a></li>
+					<li><a href="#method-i-request_prefix">#request_prefix</a></li>
 					
-					<li><a href="#method-i-members">#members</a></li>
+					<li><a href="#method-i-save">#save</a></li>
 					
-					<li><a href="#method-i-organization">#organization</a></li>
-					
-					<li><a href="#method-i-save%21">#save!</a></li>
+					<li><a href="#method-i-update%21">#update!</a></li>
 					
 					<li><a href="#method-i-update_fields">#update_fields</a></li>
 					
@@ -96,6 +90,17 @@
 			
 
 			<!-- Included Modules -->
+			
+			<div id="includes-section" class="section">
+				<h3 class="section-header">Included Modules</h3>
+				<ul class="link-list">
+				
+				
+					<li><span class="include">HasActions</span></li>
+				
+				
+				</ul>
+			</div>
 			
 		</div>
 
@@ -122,6 +127,10 @@
 				
 					<li><a href="../Trello/Action.html">Trello::Action</a></li>
 				
+					<li><a href="../Trello/Association.html">Trello::Association</a></li>
+				
+					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
+				
 					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
 				
 					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
@@ -144,6 +153,10 @@
 				
 					<li><a href="../Trello/Error.html">Trello::Error</a></li>
 				
+					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
+				
+					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
+				
 					<li><a href="../Trello/Item.html">Trello::Item</a></li>
 				
 					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
@@ -152,11 +165,15 @@
 				
 					<li><a href="../Trello/Member.html">Trello::Member</a></li>
 				
+					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
+				
 					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
 				
 					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
 				
 					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
+				
+					<li><a href="../Trello/Token.html">Trello::Token</a></li>
 				
 					<li><a href="../String.html">String</a></li>
 				
@@ -180,87 +197,6 @@
 
 		<!-- Attributes -->
 		
-		<div id="attribute-method-details" class="method-section section">
-			<h3 class="section-header">Attributes</h3>
-
-			
-			<div id="id-attribute-method" class="method-detail">
-				<a name="id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="name-attribute-method" class="method-detail">
-				<a name="name"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">name</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="description-attribute-method" class="method-detail">
-				<a name="description"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">description</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="url-attribute-method" class="method-detail">
-				<a name="url"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">url</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-			<div id="organization-id-attribute-method" class="method-detail">
-				<a name="organization_id"></a>
-				
-				<div class="method-heading attribute-method-heading">
-					<span class="method-name">organization_id</span><span
-						class="attribute-access-type">[R]</span>
-				</div>
-
-				<div class="method-description">
-				
-				
-				
-				</div>
-			</div>
-			
-		</div>
-		
 
 		<!-- Methods -->
 		
@@ -274,7 +210,7 @@
 				<div class="method-heading">
 				
 					<span class="method-name">create</span><span
-						class="method-args">(attributes)</span>
+						class="method-args">(fields)</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
 				</div>
@@ -288,10 +224,12 @@
 					<div class="method-source-code"
 						id="create-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 12</span>
-12:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">attributes</span>)
-13:         <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">&quot;/boards/&quot;</span>, <span class="ruby-identifier">attributes</span>).<span class="ruby-identifier">json_into</span> <span class="ruby-constant">Board</span>
-14:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 17</span>
+17:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">fields</span>)
+18:         <span class="ruby-identifier">new</span>(<span class="ruby-value str">'name'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:name</span>],
+19:             <span class="ruby-value str">'desc'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:description</span>],
+20:             <span class="ruby-value str">'closed'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:closed</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">false</span>).<span class="ruby-identifier">save</span>
+21:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -315,17 +253,19 @@
 
 				<div class="method-description">
 					
-					
+					<p>
+Finds a board.
+</p>
 					
 
 					
 					<div class="method-source-code"
 						id="find-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 8</span>
- 8:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
- 9:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:boards</span>, <span class="ruby-identifier">id</span>)
-10:       <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 13</span>
+13:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+14:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:boards</span>, <span class="ruby-identifier">id</span>)
+15:       <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -340,86 +280,6 @@
 	
 		<div id="public-instance-method-details" class="method-section section">
 			<h3 class="section-header">Public Instance Methods</h3>
-
-		
-			<div id="actions-method" class="method-detail ">
-				<a name="method-i-actions"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">actions</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Return a timeline of actions related to this board.
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="actions-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 45</span>
-45:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">actions</span>
-46:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@actions</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@actions</span>
-47:       <span class="ruby-ivar">@actions</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/boards/#{id}/actions&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Action</span>)
-48:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="cards-method" class="method-detail ">
-				<a name="method-i-cards"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">cards</span><span
-						class="method-args">(options = { :filter => :open })</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Return all the cards on this board.
-</p>
-<p>
-The options hash may have a filter key which can have its value set as any
-of the following values:
-</p>
-<pre>
-   :filter =&gt; [ :none, :open, :closed, :all ] # default :open</pre>
-					
-
-					
-					<div class="method-source-code"
-						id="cards-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 55</span>
-55:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cards</span>(<span class="ruby-identifier">options</span> = { <span class="ruby-value">:filter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:open</span> })
-56:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@cards</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@cards</span>
-57:       <span class="ruby-ivar">@cards</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/boards/#{id}/cards&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
-58:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
 
 		
 			<div id="closed--method" class="method-detail ">
@@ -442,10 +302,10 @@ of the following values:
 					<div class="method-source-code"
 						id="closed--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 40</span>
-40:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">closed?</span>
-41:       <span class="ruby-ivar">@closed</span>
-42:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 58</span>
+58:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">closed?</span>
+59:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>]
+60:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -476,10 +336,10 @@ of the following values:
 					<div class="method-source-code"
 						id="has-lists--source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 60</span>
-60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_lists?</span>
-61:       <span class="ruby-identifier">lists</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-62:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 62</span>
+62:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_lists?</span>
+63:       <span class="ruby-identifier">lists</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+64:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -490,98 +350,12 @@ of the following values:
 			</div>
 
 		
-			<div id="lists-method" class="method-detail ">
-				<a name="method-i-lists"></a>
+			<div id="request-prefix-method" class="method-detail ">
+				<a name="method-i-request_prefix"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">lists</span><span
-						class="method-args">(options = { :filter => :open })</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Returns all the lists on this board.
-</p>
-<p>
-The options hash may have a filter key which can have its value set as any
-of the following values:
-</p>
-<pre>
-   :filter =&gt; [ :none, :open, :closed, :all ] # default :open</pre>
-					
-
-					
-					<div class="method-source-code"
-						id="lists-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 69</span>
-69:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">lists</span>(<span class="ruby-identifier">options</span> = { <span class="ruby-value">:filter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:open</span> })
-70:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@lists</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@lists</span>
-71:       <span class="ruby-ivar">@lists</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/boards/#{id}/lists&quot;</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
-72:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="members-method" class="method-detail ">
-				<a name="method-i-members"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">members</span><span
-						class="method-args">(options = { :filter => :all })</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Returns an array of members who are associated with this board.
-</p>
-<p>
-The options hash may have a filter key which can have its value set as any
-of the following values:
-</p>
-<pre>
-   :filter =&gt; [ :none, :normal, :owners, :all ] # default :all</pre>
-					
-
-					
-					<div class="method-source-code"
-						id="members-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 79</span>
-79:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">members</span>(<span class="ruby-identifier">options</span> = { <span class="ruby-value">:filter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:all</span> })
-80:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@members</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@members</span>
-81:       <span class="ruby-ivar">@members</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/boards/#{id}/members&quot;</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
-82:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="organization-method" class="method-detail ">
-				<a name="method-i-organization"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">organization</span><span
+					<span class="method-name">request_prefix</span><span
 						class="method-args">()</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
@@ -590,19 +364,18 @@ of the following values:
 				<div class="method-description">
 					
 					<p>
-Returns a reference to the organization this board belongs to.
+:nodoc: 
 </p>
 					
 
 					
 					<div class="method-source-code"
-						id="organization-source">
+						id="request-prefix-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 85</span>
-85:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">organization</span>
-86:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@organization</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@organization</span>
-87:       <span class="ruby-ivar">@organization</span> = <span class="ruby-constant">Organization</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">organization_id</span>)
-88:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 91</span>
+91:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_prefix</span>
+92:       <span class="ruby-node">&quot;/boards/#{id}&quot;</span>
+93:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -613,12 +386,12 @@ Returns a reference to the organization this board belongs to.
 			</div>
 
 		
-			<div id="save--method" class="method-detail ">
-				<a name="method-i-save%21"></a>
+			<div id="save-method" class="method-detail ">
+				<a name="method-i-save"></a>
 
 				<div class="method-heading">
 				
-					<span class="method-name">save!</span><span
+					<span class="method-name">save</span><span
 						class="method-args">()</span>
 					<span class="method-click-advice">click to toggle source</span>
 				
@@ -631,20 +404,61 @@ Returns a reference to the organization this board belongs to.
 
 					
 					<div class="method-source-code"
-						id="save--source">
+						id="save-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 17</span>
-17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save!</span>
-18:       <span class="ruby-identifier">fail</span> <span class="ruby-value str">&quot;Cannot save new instance.&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>
-19: 
-20:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/boards/#{self.id}/&quot;</span>, {
-21:         <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
-22:         <span class="ruby-value">:description</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>,
-23:         <span class="ruby-value">:closed</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@closed</span>,
-24:         <span class="ruby-value">:url</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@url</span>,
-25:         <span class="ruby-value">:organisation_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@organisation_id</span>
-26:       }).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword kw">self</span>)
-27:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 24</span>
+24:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save</span>
+25:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">update!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span>
+26: 
+27:       <span class="ruby-identifier">fields</span> = { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span> }
+28:       <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:desc</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">description</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">description</span>
+29:       <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-value">:idOrganization</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">organization_id</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">organization_id</span>
+30: 
+31:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-value str">&quot;/boards&quot;</span>, <span class="ruby-identifier">fields</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword kw">self</span>)
+32:     <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="update--method" class="method-detail ">
+				<a name="method-i-update%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">update!</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="update--source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 34</span>
+34:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update!</span>
+35:       <span class="ruby-identifier">fail</span> <span class="ruby-value str">&quot;Cannot save new instance.&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>
+36: 
+37:       <span class="ruby-ivar">@previously_changed</span> = <span class="ruby-identifier">changes</span>
+38:       <span class="ruby-ivar">@changed_attributes</span>.<span class="ruby-identifier">clear</span>
+39: 
+40:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/boards/#{self.id}/&quot;</span>, {
+41:         <span class="ruby-value">:name</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@name</span>,
+42:         <span class="ruby-value">:description</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@description</span>,
+43:         <span class="ruby-value">:closed</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@closed</span>
+44:       }).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword kw">self</span>)
+45:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
@@ -675,17 +489,17 @@ Returns a reference to the organization this board belongs to.
 					<div class="method-source-code"
 						id="update-fields-source">
 <pre>
-    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 29</span>
-29:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-30:       <span class="ruby-ivar">@id</span>              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-31:       <span class="ruby-ivar">@name</span>            = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
-32:       <span class="ruby-ivar">@description</span>     = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]
-33:       <span class="ruby-ivar">@closed</span>          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'closed'</span>]          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'closed'</span>)
-34:       <span class="ruby-ivar">@url</span>             = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
-35:       <span class="ruby-ivar">@organization_id</span> = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idOrganization'</span>]  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idOrganization'</span>]
-36: 
-37:       <span class="ruby-keyword kw">self</span>
-38:     <span class="ruby-keyword kw">end</span></pre>
+    <span class="ruby-comment cmt"># File lib/trello/board.rb, line 47</span>
+47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+48:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
+49:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]            = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'name'</span>]
+50:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:description</span>]     = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'desc'</span>]
+51:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>]          = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'closed'</span>]          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value str">'closed'</span>)
+52:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>]             = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'url'</span>]
+53:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:organization_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idOrganization'</span>]  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idOrganization'</span>]
+54:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:prefs</span>]           = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'prefs'</span>] <span class="ruby-operator">||</span> {}
+55:       <span class="ruby-keyword kw">self</span>
+56:     <span class="ruby-keyword kw">end</span></pre>
 					</div>
 					
 				</div>
