@@ -5,3 +5,4 @@ test-credentials
 *.gem
 coverage
 .*.sw?
+test*.rb
