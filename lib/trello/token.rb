@@ -19,8 +19,6 @@ module Trello
     end
 
     # Returns a reference to the user who authorized the token.
-    def member
-      Member.find(member_id)
-    end
+    one :member, :using => :member_id
   end
 end
