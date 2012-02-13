@@ -52,7 +52,8 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :all ] # default :all
     def checklists(options = { :filter => :all })
-      Client.get("/cards/#{id}/checklists", options).json_into(Checklist)
+      checklists = Client.get("/cards/#{id}/checklists", options).json_into(Checklist)
+      MultiAssociation.new(self, checklists).proxy
     end
 
     # Returns a reference to the list this card is currently in.
@@ -62,9 +63,10 @@ module Trello
 
     # Returns a list of members who are assigned to this card.
     def members
-      member_ids.map do |member_id|
+      members = member_ids.map do |member_id|
         Client.get("/members/#{member_id}").json_into(Member)
       end
+      MultiAssociation.new(self, members).proxy
     end
 
     # Saves a record.
