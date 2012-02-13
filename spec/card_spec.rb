@@ -40,18 +40,29 @@ module Trello
         Client.should_receive(:post).with("/cards", expected_payload).and_return result
 
         card = Card.create(cards_details.first.merge(payload.merge(:list_id => lists_details.first['id'])))
-        
+
         card.class.should be Card
       end
     end
 
     context "updating" do
-      it "updating name does a put on the correct resource with the correct value", :broken => true do
+      it "updating name does a put on the correct resource with the correct value" do
         expected_new_name = "xxx"
         expected_resource = "/card/#{@card.id}/name"
+        payload = {
+          :name      => expected_new_name,
+          :desc      => "Awesome things are awesome.",
+          :due       => nil,
+          :closed    => false,
+          :idList    => "abcdef123456789123456789",
+          :idBoard   => "abcdef123456789123456789",
+          :idMembers => ["abcdef123456789123456789"]
+        }
 
-        Client.should_receive(:put).once.with expected_resource, :value => expected_new_name
-        @card.name = expected_new_name
+        Client.should_receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+        card = @card.dup
+        card.name = expected_new_name
+        card.save
       end
     end
 

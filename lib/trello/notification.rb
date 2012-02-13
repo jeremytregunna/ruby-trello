@@ -23,9 +23,7 @@ module Trello
 
     alias :unread? :unread
 
-    def member_creator
-      Member.find(member_creator_id)
-    end
+    one :member_creator, :via => Member, :using => :member_creator_id
 
     def board
       Client.get("/notifications/#{id}/board").json_into(Board)

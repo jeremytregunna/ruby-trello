@@ -41,8 +41,6 @@ module Trello
     end
 
     # Returns the member who created the action.
-    def member_creator
-      Member.find(member_creator_id)
-    end
+    one :member_creator, :via => Member, :using => :member_creator_id
   end
 end

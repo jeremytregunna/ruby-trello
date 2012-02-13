@@ -42,24 +42,17 @@ module Trello
     end
 
     # Returns a reference to the board this card is part of.
-    def board
-      Board.find(board_id)
-    end
+    one :board, :using => :board_id
 
     # Returns a list of checklists associated with the card.
     #
     # The options hash may have a filter key which can have its value set as any
     # of the following values:
     #    :filter => [ :none, :all ] # default :all
-    def checklists(options = { :filter => :all })
-      checklists = Client.get("/cards/#{id}/checklists", options).json_into(Checklist)
-      MultiAssociation.new(self, checklists).proxy
-    end
+    many :checklists, :filter => :all
 
     # Returns a reference to the list this card is currently in.
-    def list
-      List.find(list_id)
-    end
+    one :list, :using => :list_id
 
     # Returns a list of members who are assigned to this card.
     def members
@@ -89,15 +82,15 @@ module Trello
       @previously_changed = changes
       @changed_attributes.clear
 
-      Client.put("/cards/#{@id}", {
+      Client.put("/cards/#{id}", {
         :name      => name,
         :desc      => description,
-        :due       => due.utc.iso8601,
+        :due       => due && due.utc.iso8601,
         :closed    => closed,
         :idList    => list_id,
         :idBoard   => board_id,
         :idMembers => member_ids
-      }).json_into(self)
+      })
     end
 
     # Is the record valid?

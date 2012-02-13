@@ -35,16 +35,16 @@ module Trello
       return update! if id
 
       Client.post("/lists", {
-        :name    => @name,
-        :closed  => @closed || false,
-        :idBoard => @board_id
+        :name    => name,
+        :closed  => closed || false,
+        :idBoard => board_id
       }).json_into(self)
     end
 
     def update!
       Client.put("/lists", {
-        :name   => @name,
-        :closed => @closed
+        :name   => name,
+        :closed => closed
       }).json_into(self)
     end
 
@@ -54,19 +54,14 @@ module Trello
     end
 
     # Return the board the list is connected to.
-    def board
-      Board.find(board_id)
-    end
+    one :board, :using => :board_id
 
     # Returns all the cards on this list.
     #
     # The options hash may have a filter key which can have its value set as any
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
-    def cards(options = { :filter => :open })
-      cards = Client.get("/lists/#{id}/cards", options).json_into(Card)
-      MultiAssociation.new(self, cards).proxy
-    end
+    many :cards, :filter => :open
 
     # :nodoc:
     def request_prefix

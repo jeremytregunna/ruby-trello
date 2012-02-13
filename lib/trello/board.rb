@@ -59,44 +59,33 @@ module Trello
       attributes[:closed]
     end
 
-    # Return all the cards on this board.
-    #
-    # The options hash may have a filter key which can have its value set as any
-    # of the following values:
-    #    :filter => [ :none, :open, :closed, :all ] # default :open
-    def cards(options = { :filter => :open })
-      cards = Client.get("/boards/#{id}/cards").json_into(Card)
-      MultiAssociation.new(self, cards).proxy
-    end
-
     def has_lists?
       lists.size > 0
     end
 
-    # Returns all the lists on this board.
+    # Return all the cards on this board.
     #
-    # The options hash may have a filter key which can have its value set as any
+    # This method, when called, can take a hash table with a filter key containing any
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
-    def lists(options = { :filter => :open })
-      lists = Client.get("/boards/#{id}/lists", options).json_into(List)
-      MultiAssociation.new(self, lists).proxy
-    end
+    many :cards, :filter => :open
+
+    # Returns all the lists on this board.
+    #
+    # This method, when called, can take a hash table with a filter key containing any
+    # of the following values:
+    #    :filter => [ :none, :open, :closed, :all ] # default :open
+    many :lists, :filter => :open
 
     # Returns an array of members who are associated with this board.
     #
-    # The options hash may have a filter key which can have its value set as any
+    # This method, when called, can take a hash table with a filter key containing any
     # of the following values:
     #    :filter => [ :none, :normal, :owners, :all ] # default :all
-    def members(options = { :filter => :all })
-      members = Client.get("/boards/#{id}/members", options).json_into(Member)
-      MultiAssociation.new(self, members).proxy
-    end
+    many :members, :filter => :all
 
     # Returns a reference to the organization this board belongs to.
-    def organization
-      Organization.find(organization_id)
-    end
+    one :organization, :using => :organization_id
 
     # :nodoc:
     def request_prefix

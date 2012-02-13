@@ -44,7 +44,7 @@ module Trello
 
     context "cards" do
       it "gets its list of cards" do
-        Client.stub(:get).with("/boards/abcdef123456789123456789/cards").
+        Client.stub(:get).with("/boards/abcdef123456789123456789/cards", { :filter => :open }).
           and_return cards_payload
 
         @board.cards.count.should be > 0
