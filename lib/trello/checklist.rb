@@ -72,9 +72,10 @@ module Trello
 
     # Return a list of members active in this checklist.
     def members
-      member_ids.map do |member_id|
+      members = member_ids.map do |member_id|
         Member.find(member_id)
       end
+      MultiAssociation.new(self, members).proxy
     end
 
     # Add an item to the checklist
