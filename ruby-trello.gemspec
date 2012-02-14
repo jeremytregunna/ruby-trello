@@ -1,10 +1,10 @@
 Gem::Specification.new do |s|
   s.name              = %q{ruby-trello}
-  s.version           = "0.4.1"
+  s.version           = "0.4.2"
   s.platform          = Gem::Platform::RUBY
 
   s.authors           = ["Jeremy Tregunna"]
-  s.date              = %q{2012-02-13}
+  s.date              = %q{2012-02-14}
   s.description       = %q{A wrapper around the trello.com API.}
   s.email             = %q{jeremy@tregunna.ca}
   s.extra_rdoc_files  = ["README.md"]
