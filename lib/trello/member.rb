@@ -80,8 +80,8 @@ module Trello
 
     def update!
       Client.put(request_prefix, {
-        :displayName => full_name,
-        :bio         => bio
+        :fullName => full_name,
+        :bio      => bio
       }).json_into(self)
     end
 
