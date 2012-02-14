@@ -230,4 +230,15 @@ module Helpers
   def token_payload
     JSON.generate(token_details)
   end
+
+  def label_details
+    [
+      {"color" => "yellow", "name" => "iOS"},
+      {"color" => "purple", "name" => "Issue or bug"}
+    ]
+  end
+
+  def label_payload
+    JSON.generate(label_details)
+  end
 end

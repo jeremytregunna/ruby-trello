@@ -146,6 +146,19 @@ module Trello
     end
 
     context "labels" do
+      it "can retrieve labels" do
+        Client.stub(:get).with("/cards/abcdef123456789123456789/labels").
+          and_return label_payload
+        labels = @card.labels
+        labels.size.should == 2
+
+        labels[0].color.should == 'yellow'
+        labels[0].name.should == 'iOS'
+
+        labels[1].color.should == 'purple'
+        labels[1].name.should == 'Issue or bug'
+      end
+
       it "can add a label" do
         Client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => 'green' }).
           and_return "not important"

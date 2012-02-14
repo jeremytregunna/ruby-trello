@@ -110,6 +110,12 @@ module Trello
       })
     end
 
+    # Retrieve a list of labels
+    def labels
+      labels = Client.get("/cards/#{id}/labels").json_into(Label)
+      MultiAssociation.new(self, labels).proxy
+    end
+
     # Add a label
     def add_label(colour)
       unless %w{green yellow orange red purple blue}.include? colour
