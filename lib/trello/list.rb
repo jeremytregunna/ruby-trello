@@ -15,7 +15,7 @@ module Trello
 
       def create(options)
         new('name'    => options[:name],
-            'idBoard' => options[:board_id]).save!
+            'idBoard' => options[:board_id]).save
       end
     end
 
