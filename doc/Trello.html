@@ -1,433 +1,373 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-	<title>Module: Trello</title>
+<title>module Trello - RDoc Documentation</title>
 
-	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-	<script src="./js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
-<body class="module">
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
 
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="./lib/trello/action_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/action.rb">lib/trello/action.rb</a></li>
-					
-						<li><a href="./lib/trello/association_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/association.rb">lib/trello/association.rb</a></li>
-					
-						<li><a href="./lib/trello/association_proxy_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/association_proxy.rb">lib/trello/association_proxy.rb</a></li>
-					
-						<li><a href="./lib/trello/authorization_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/authorization.rb">lib/trello/authorization.rb</a></li>
-					
-						<li><a href="./lib/trello/basic_data_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/basic_data.rb">lib/trello/basic_data.rb</a></li>
-					
-						<li><a href="./lib/trello/board_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/board.rb">lib/trello/board.rb</a></li>
-					
-						<li><a href="./lib/trello/card_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/card.rb">lib/trello/card.rb</a></li>
-					
-						<li><a href="./lib/trello/checklist_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/checklist.rb">lib/trello/checklist.rb</a></li>
-					
-						<li><a href="./lib/trello/client_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/client.rb">lib/trello/client.rb</a></li>
-					
-						<li><a href="./lib/trello/has_actions_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/has_actions.rb">lib/trello/has_actions.rb</a></li>
-					
-						<li><a href="./lib/trello/item_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/item.rb">lib/trello/item.rb</a></li>
-					
-						<li><a href="./lib/trello/item_state_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/item_state.rb">lib/trello/item_state.rb</a></li>
-					
-						<li><a href="./lib/trello/list_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/list.rb">lib/trello/list.rb</a></li>
-					
-						<li><a href="./lib/trello/member_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/member.rb">lib/trello/member.rb</a></li>
-					
-						<li><a href="./lib/trello/multi_association_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/multi_association.rb">lib/trello/multi_association.rb</a></li>
-					
-						<li><a href="./lib/trello/net_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/net.rb">lib/trello/net.rb</a></li>
-					
-						<li><a href="./lib/trello/notification_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/notification.rb">lib/trello/notification.rb</a></li>
-					
-						<li><a href="./lib/trello/organization_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/organization.rb">lib/trello/organization.rb</a></li>
-					
-						<li><a href="./lib/trello/token_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/token.rb">lib/trello/token.rb</a></li>
-					
-						<li><a href="./lib/trello_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello.rb">lib/trello.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-			
-		</div>
 
-		<div id="class-metadata">
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-			<!-- Parent Class -->
-			
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-			<!-- Namespace Contents -->
-			
-			<div id="namespace-list-section" class="section">
-				<h3 class="section-header">Namespace</h3>
-				<ul class="link-list">
-					
-					<li><span class="type">MODULE</span> <a href="Trello/Authorization.html">Trello::Authorization</a></li>
-					
-					<li><span class="type">MODULE</span> <a href="Trello/HasActions.html">Trello::HasActions</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Action.html">Trello::Action</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Association.html">Trello::Association</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/BasicData.html">Trello::BasicData</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Board.html">Trello::Board</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Card.html">Trello::Card</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Checklist.html">Trello::Checklist</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Client.html">Trello::Client</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Error.html">Trello::Error</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Item.html">Trello::Item</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/ItemState.html">Trello::ItemState</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/List.html">Trello::List</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Member.html">Trello::Member</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Notification.html">Trello::Notification</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Organization.html">Trello::Organization</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/TInternet.html">Trello::TInternet</a></li>
-					
-					<li><span class="type">CLASS</span> <a href="Trello/Token.html">Trello::Token</a></li>
-					
-				</ul>
-			</div>
-			
 
-			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-c-logger">::logger</a></li>
-					
-					<li><a href="#method-c-logger%3D">::logger=</a></li>
-					
-				</ul>
-			</div>
-			
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/trello/action.rb
+    <li>lib/trello/association.rb
+    <li>lib/trello/association_proxy.rb
+    <li>lib/trello/authorization.rb
+    <li>lib/trello/basic_data.rb
+    <li>lib/trello/board.rb
+    <li>lib/trello/card.rb
+    <li>lib/trello/checklist.rb
+    <li>lib/trello/client.rb
+    <li>lib/trello/has_actions.rb
+    <li>lib/trello/item.rb
+    <li>lib/trello/item_state.rb
+    <li>lib/trello/label.rb
+    <li>lib/trello/list.rb
+    <li>lib/trello/member.rb
+    <li>lib/trello/multi_association.rb
+    <li>lib/trello/net.rb
+    <li>lib/trello/notification.rb
+    <li>lib/trello/organization.rb
+    <li>lib/trello/token.rb
+    <li>lib/trello.rb
+    <li>spec/action_spec.rb
+    <li>spec/board_spec.rb
+    <li>spec/card_spec.rb
+    <li>spec/item_spec.rb
+    <li>spec/list_spec.rb
+    <li>spec/member_spec.rb
+    <li>spec/notification_spec.rb
+    <li>spec/organization_spec.rb
+    <li>spec/token_spec.rb
+  </ul>
+</nav>
 
-			<!-- Included Modules -->
-			
-		</div>
+    
+  </div>
 
-		<div id="project-metadata">
-			
-			
+  <div id="class-metadata">
+    
+    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
 
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="./images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Helpers.html">Helpers</a>
+  
+  
+  </ul>
+</nav>
 
-				<ul class="link-list">
-				
-					<li><a href="./Trello.html">Trello</a></li>
-				
-					<li><a href="./Trello/Action.html">Trello::Action</a></li>
-				
-					<li><a href="./Trello/Association.html">Trello::Association</a></li>
-				
-					<li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
-				
-					<li><a href="./Trello/Authorization.html">Trello::Authorization</a></li>
-				
-					<li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
-				
-					<li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
-				
-					<li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
-				
-					<li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
-				
-					<li><a href="./Trello/BasicData.html">Trello::BasicData</a></li>
-				
-					<li><a href="./Trello/Board.html">Trello::Board</a></li>
-				
-					<li><a href="./Trello/Card.html">Trello::Card</a></li>
-				
-					<li><a href="./Trello/Checklist.html">Trello::Checklist</a></li>
-				
-					<li><a href="./Trello/Client.html">Trello::Client</a></li>
-				
-					<li><a href="./Trello/Error.html">Trello::Error</a></li>
-				
-					<li><a href="./Trello/HasActions.html">Trello::HasActions</a></li>
-				
-					<li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
-				
-					<li><a href="./Trello/Item.html">Trello::Item</a></li>
-				
-					<li><a href="./Trello/ItemState.html">Trello::ItemState</a></li>
-				
-					<li><a href="./Trello/List.html">Trello::List</a></li>
-				
-					<li><a href="./Trello/Member.html">Trello::Member</a></li>
-				
-					<li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
-				
-					<li><a href="./Trello/Notification.html">Trello::Notification</a></li>
-				
-					<li><a href="./Trello/Organization.html">Trello::Organization</a></li>
-				
-					<li><a href="./Trello/TInternet.html">Trello::TInternet</a></li>
-				
-					<li><a href="./Trello/Token.html">Trello::Token</a></li>
-				
-					<li><a href="./String.html">String</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
 
-			
-		</div>
-	</div>
+  <ul class="link-list">
+    
+    <li><a href="#method-c-logger">::logger</a>
+    
+    <li><a href="#method-c-logger-3D">::logger=</a>
+    
+  </ul>
+</nav>
 
-	<div id="documentation">
-		<h1 class="module">Trello</h1>
+  </div>
 
-		<div id="description">
-			<p>
-Ruby wrapper around the <a href="http://trello.com">Trello</a> API
-</p>
-<p>
-First, set up your key information. You can get this information by <a
-href="https://trello.com/1/appKey/generate">clicking here</a>.
-</p>
-<pre>
-  Trello.public_key = 'xxxxxxxxxxxxxxxxx'
-  Trello.secret     = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-</pre>
-<p>
-All the calls this library make to <a href="Trello.html">Trello</a> require
-authentication using these keys. Be sure to protect them.
-</p>
-<p>
-So lets say you want to get information about the user <b>bobtester</b>. We
-can do something like this:
-</p>
-<pre>
-  bob = Member.find(&quot;bobtester&quot;)
-  # Print out his name
-  puts bob.full_name # &quot;Bob Tester&quot;
-  # Print his bio
-  puts bob.bio # A wonderfully delightful test user
-  # How about a list of his boards?
-  bob.boards
-</pre>
-<p>
-And so much more. Consult the rest of the documentation for more
-information.
-</p>
-<p>
-Feel free to <a
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="./Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="./test-credentials.html">test-credentials</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Trello.html">Trello</a>
+  
+    <li><a href="./Trello/Action.html">Trello::Action</a>
+  
+    <li><a href="./Trello/Association.html">Trello::Association</a>
+  
+    <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
+  
+    <li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a>
+  
+    <li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a>
+  
+    <li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a>
+  
+    <li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a>
+  
+    <li><a href="./Trello/BasicData.html">Trello::BasicData</a>
+  
+    <li><a href="./Trello/Board.html">Trello::Board</a>
+  
+    <li><a href="./Trello/Card.html">Trello::Card</a>
+  
+    <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
+  
+    <li><a href="./Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="./Trello/Error.html">Trello::Error</a>
+  
+    <li><a href="./Trello/HasActions.html">Trello::HasActions</a>
+  
+    <li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a>
+  
+    <li><a href="./Trello/Item.html">Trello::Item</a>
+  
+    <li><a href="./Trello/ItemState.html">Trello::ItemState</a>
+  
+    <li><a href="./Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="./Trello/List.html">Trello::List</a>
+  
+    <li><a href="./Trello/Member.html">Trello::Member</a>
+  
+    <li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a>
+  
+    <li><a href="./Trello/Notification.html">Trello::Notification</a>
+  
+    <li><a href="./Trello/Organization.html">Trello::Organization</a>
+  
+    <li><a href="./Trello/TInternet.html">Trello::TInternet</a>
+  
+    <li><a href="./Trello/Token.html">Trello::Token</a>
+  
+    <li><a href="./IntegrationTest.html">IntegrationTest</a>
+  
+    <li><a href="./IntegrationTest/Container.html">IntegrationTest::Container</a>
+  
+    <li><a href="./Helpers.html">Helpers</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Trello</h1>
+
+  <div id="description" class="description">
+    
+<p>Ruby wrapper around the <a href="http://trello.com">Trello</a> API</p>
+
+<p>First, set up your key information. You can get this information by <a
+href="https://trello.com/1/appKey/generate">clicking here</a>.</p>
+
+<pre>include Trello
+include Trello::Authorization
+
+Trello::Authorization.const_set :AuthPolicy, OAuthPolicy
+
+OAuthPolicy.consumer_credential = OAuthCredential.new 'PUBLIC_KEY', 'SECRET'</pre>
+
+<p>You can get the key by going to this url in your browser: <a
+href="https://trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never">trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never</a>
+Only request the permissions you need; i.e., scope=read if you only need
+read, or scope=write if you only need write. Comma separate scopes you
+need. If you want your token to expire after 30 days, drop the
+&amp;expiration=never. Then run the following code, where KEY denotes the
+key returned from the url above:</p>
+
+<pre>OAuthPolicy.token = OAuthCredential.new 'KEY', nil</pre>
+
+<p>All the calls this library make to <a href="Trello.html">Trello</a> require
+authentication using these keys. Be sure to protect them.</p>
+
+<p>So lets say you want to get information about the user
+<strong>bobtester</strong>. We can do something like this:</p>
+
+<pre>bob = Member.find(&quot;bobtester&quot;)
+# Print out his name
+puts bob.full_name # &quot;Bob Tester&quot;
+# Print his bio
+puts bob.bio # A wonderfully delightful test user
+# How about a list of his boards?
+bob.boards</pre>
+
+<p>And so much more. Consult the rest of the documentation for more
+information.</p>
+
+<p>Feel free to <a
 href="https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd">peruse
-and participate in our Trello board</a>. It&#8217;s completely open to the
-public.
-</p>
+and participate in our Trello board</a>. It’s completely open to the
+public.</p>
 
-		</div>
+  </div><!-- description -->
 
-		<!-- Constants -->
-		
-		<div id="constants-list" class="section">
-			<h3 class="section-header">Constants</h3>
-			<dl>
-			
-				<dt><a name="Request">Request</a></dt>
-				
-				<dd class="description"></dd>
-				
-			
-				<dt><a name="Response">Response</a></dt>
-				
-				<dd class="description"></dd>
-				
-			
-				<dt><a name="API_VERSION">API_VERSION</a></dt>
-				
-				<dd class="description"><p>
-Version of the <a href="Trello.html">Trello</a> API that we use by default.
-</p></dd>
-				
-			
-			</dl>
-		</div>
-		
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
-		<!-- Attributes -->
-		
+    
 
-		<!-- Methods -->
-		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="API_VERSION">API_VERSION
+        
+        <dd class="description"><p>Version of the <a href="Trello.html">Trello</a> API that we use by default.</p>
+        
+      
+        <dt id="Request">Request
+        
+        <dd class="description">
+        
+      
+        <dt id="Response">Response
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
 
-		
-			<div id="logger-method" class="method-detail ">
-				<a name="method-c-logger"></a>
+    
 
-				<div class="method-heading">
-				
-					<span class="method-name">logger</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
-				<div class="method-description">
-					
-					
-					
+    
+      <div id="method-c-logger" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logger</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
 
-					
-					<div class="method-source-code"
-						id="logger-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello.rb, line 63</span>
-63:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logger</span>
-64:     <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
-65:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+        <div class="method-description">
+          
+          
+          
 
-				
+          
+          <div class="method-source-code" id="logger-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">logger</span>
+  <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logger-source -->
+          
+        </div>
 
-				
-			</div>
+        
 
-		
-			<div id="logger--method" class="method-detail ">
-				<a name="method-c-logger%3D"></a>
+        
+      </div><!-- logger-method -->
 
-				<div class="method-heading">
-				
-					<span class="method-name">logger=</span><span
-						class="method-args">(logger)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+    
+      <div id="method-c-logger-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logger=</span><span
+            class="method-args">(logger)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
 
-				<div class="method-description">
-					
-					
-					
+        <div class="method-description">
+          
+          
+          
 
-					
-					<div class="method-source-code"
-						id="logger--source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello.rb, line 67</span>
-67:   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">logger=</span>(<span class="ruby-identifier">logger</span>)
-68:     <span class="ruby-ivar">@logger</span> = <span class="ruby-identifier">logger</span>
-69:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+          
+          <div class="method-source-code" id="logger-3D-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">logger=</span>(<span class="ruby-identifier">logger</span>)
+  <span class="ruby-ivar">@logger</span> = <span class="ruby-identifier">logger</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logger-3D-source -->
+          
+        </div>
 
-				
+        
 
-				
-			</div>
+        
+      </div><!-- logger-3D-method -->
 
-		
-		</div>
-	
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
 
-	</div>
+</div><!-- documentation -->
 
 
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
-
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
-
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

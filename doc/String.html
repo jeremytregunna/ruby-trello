@@ -1,269 +1,270 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-	<title>Class: String</title>
+<title>class String - RDoc Documentation</title>
 
-	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
-	<script src="./js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="./js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
 
-</head>
-<body class="class">
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
 
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="./lib/trello/string_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/string.rb">lib/trello/string.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-			
-		</div>
 
-		<div id="class-metadata">
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
 
-			<!-- Parent Class -->
-			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link">Object</p>
-				
-			</div>
-			
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
 
-			<!-- Namespace Contents -->
-			
 
-			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-i-json_into">#json_into</a></li>
-					
-				</ul>
-			</div>
-			
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/trello/string.rb
+  </ul>
+</nav>
 
-			<!-- Included Modules -->
-			
-		</div>
+    
+  </div>
 
-		<div id="project-metadata">
-			
-			
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
 
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="./images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
 
-				<ul class="link-list">
-				
-					<li><a href="./Trello.html">Trello</a></li>
-				
-					<li><a href="./Trello/Action.html">Trello::Action</a></li>
-				
-					<li><a href="./Trello/Association.html">Trello::Association</a></li>
-				
-					<li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
-				
-					<li><a href="./Trello/Authorization.html">Trello::Authorization</a></li>
-				
-					<li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
-				
-					<li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
-				
-					<li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
-				
-					<li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
-				
-					<li><a href="./Trello/BasicData.html">Trello::BasicData</a></li>
-				
-					<li><a href="./Trello/Board.html">Trello::Board</a></li>
-				
-					<li><a href="./Trello/Card.html">Trello::Card</a></li>
-				
-					<li><a href="./Trello/Checklist.html">Trello::Checklist</a></li>
-				
-					<li><a href="./Trello/Client.html">Trello::Client</a></li>
-				
-					<li><a href="./Trello/Error.html">Trello::Error</a></li>
-				
-					<li><a href="./Trello/HasActions.html">Trello::HasActions</a></li>
-				
-					<li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
-				
-					<li><a href="./Trello/Item.html">Trello::Item</a></li>
-				
-					<li><a href="./Trello/ItemState.html">Trello::ItemState</a></li>
-				
-					<li><a href="./Trello/List.html">Trello::List</a></li>
-				
-					<li><a href="./Trello/Member.html">Trello::Member</a></li>
-				
-					<li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
-				
-					<li><a href="./Trello/Notification.html">Trello::Notification</a></li>
-				
-					<li><a href="./Trello/Organization.html">Trello::Organization</a></li>
-				
-					<li><a href="./Trello/TInternet.html">Trello::TInternet</a></li>
-				
-					<li><a href="./Trello/Token.html">Trello::Token</a></li>
-				
-					<li><a href="./String.html">String</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
+  <ul class="link-list">
+    
+    <li><a href="#method-i-json_into">#json_into</a>
+    
+  </ul>
+</nav>
 
-			
-		</div>
-	</div>
+  </div>
 
-	<div id="documentation">
-		<h1 class="class">String</h1>
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
 
-		<div id="description">
-			
-		</div>
+  <ul>
+  
+    <li class="file"><a href="./Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="./Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="./test-credentials.html">test-credentials</a>
+  
+  </ul>
+</nav>
 
-		<!-- Constants -->
-		
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
 
-		<!-- Attributes -->
-		
+  <ul class="link-list">
+  
+    <li><a href="./Trello.html">Trello</a>
+  
+    <li><a href="./Trello/Action.html">Trello::Action</a>
+  
+    <li><a href="./Trello/Association.html">Trello::Association</a>
+  
+    <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
+  
+    <li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a>
+  
+    <li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a>
+  
+    <li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a>
+  
+    <li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a>
+  
+    <li><a href="./Trello/BasicData.html">Trello::BasicData</a>
+  
+    <li><a href="./Trello/Board.html">Trello::Board</a>
+  
+    <li><a href="./Trello/Card.html">Trello::Card</a>
+  
+    <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
+  
+    <li><a href="./Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="./Trello/Error.html">Trello::Error</a>
+  
+    <li><a href="./Trello/HasActions.html">Trello::HasActions</a>
+  
+    <li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a>
+  
+    <li><a href="./Trello/Item.html">Trello::Item</a>
+  
+    <li><a href="./Trello/ItemState.html">Trello::ItemState</a>
+  
+    <li><a href="./Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="./Trello/List.html">Trello::List</a>
+  
+    <li><a href="./Trello/Member.html">Trello::Member</a>
+  
+    <li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a>
+  
+    <li><a href="./Trello/Notification.html">Trello::Notification</a>
+  
+    <li><a href="./Trello/Organization.html">Trello::Organization</a>
+  
+    <li><a href="./Trello/TInternet.html">Trello::TInternet</a>
+  
+    <li><a href="./Trello/Token.html">Trello::Token</a>
+  
+    <li><a href="./IntegrationTest.html">IntegrationTest</a>
+  
+    <li><a href="./IntegrationTest/Container.html">IntegrationTest::Container</a>
+  
+    <li><a href="./Helpers.html">Helpers</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./String.html">String</a>
+  
+  </ul>
+</nav>
 
-		<!-- Methods -->
-		
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
+  </div>
+</nav>
 
-		
-			<div id="json-into-method" class="method-detail ">
-				<a name="method-i-json_into"></a>
+<div id="documentation">
+  <h1 class="class">class String</h1>
 
-				<div class="method-heading">
-				
-					<span class="method-name">json_into</span><span
-						class="method-args">(obj)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
+  <div id="description" class="description">
+    
+  </div><!-- description -->
 
-				<div class="method-description">
-					
-					<p>
-Decodes some JSON text in the receiver, and marshals it into a class
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-json_into" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">json_into</span><span
+            class="method-args">(obj)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Decodes some JSON text in the receiver, and marshals it into a class
 specified in <em>obj</em>. If <em>obj</em> is not a class, then we marshall
-the data into that instance via <em>update_fields</em>.
-</p>
-<p>
-For instance:
-</p>
-<pre>
-  class Stuff
-    attr_reader :a, :b
-    def initialize(values)
-      @a = values['a']
-      @b = values['b']
-    end
-  end
-  thing = '{&quot;a&quot;:42,&quot;b&quot;:&quot;foo&quot;}'.json_into(Stuff)
-  thing.a == 42
-  thing.b == &quot;foo&quot;</pre>
-					
+the data into that instance via <em>update_fields</em>.</p>
 
-					
-					<div class="method-source-code"
-						id="json-into-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/string.rb, line 18</span>
-18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">json_into</span>(<span class="ruby-identifier">obj</span>)
-19:     <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>)
-20:     <span class="ruby-identifier">action</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Class</span>) <span class="ruby-operator">?</span> <span class="ruby-value">:new</span> <span class="ruby-operator">:</span> <span class="ruby-value">:update_fields</span>
-21:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Hash</span>
-22:       <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>, <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">self</span>))
-23:     <span class="ruby-keyword kw">else</span>
-24:       <span class="ruby-identifier">data</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">element</span>) }
-25:     <span class="ruby-keyword kw">end</span>
-26:   <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">ParserError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">json_error</span>
-27:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/model not found/</span>
-28:       <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Could not find that record.&quot;</span>
-29:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-value str">&quot;Request could not be found.&quot;</span>
-30:     <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/A JSON text must at least contain two octets/</span>
-31:     <span class="ruby-keyword kw">else</span>
-32:       <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;Unknown error.&quot;</span>
-33:       <span class="ruby-identifier">raise</span>
-34:     <span class="ruby-keyword kw">end</span>
-35:   <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
+<p>For instance:</p>
 
-				
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Stuff</span>
+  <span class="ruby-identifier">attr_reader</span> :<span class="ruby-identifier">a</span>, :<span class="ruby-identifier">b</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">values</span>)
+    <span class="ruby-ivar">@a</span> = <span class="ruby-identifier">values</span>[<span class="ruby-string">'a'</span>]
+    <span class="ruby-ivar">@b</span> = <span class="ruby-identifier">values</span>[<span class="ruby-string">'b'</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">thing</span> = <span class="ruby-string">'{&quot;a&quot;:42,&quot;b&quot;:&quot;foo&quot;}'</span>.<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Stuff</span>)
+<span class="ruby-identifier">thing</span>.<span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-value">42</span>
+<span class="ruby-identifier">thing</span>.<span class="ruby-identifier">b</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;foo&quot;</span>
+</pre>
+          
 
-				
-			</div>
+          
+          <div class="method-source-code" id="json_into-source">
+            <pre><span class="ruby-comment"># File lib/trello/string.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">json_into</span>(<span class="ruby-identifier">obj</span>)
+  <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">action</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Class</span>) <span class="ruby-operator">?</span> <span class="ruby-value">:new</span> <span class="ruby-operator">:</span> <span class="ruby-value">:update_fields</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Hash</span>
+    <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>, <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword">self</span>))
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">element</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">ParserError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">json_error</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rmodel not found/</span>
+    <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;Could not find that record.&quot;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-string">&quot;Request could not be found.&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">json_error</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rA JSON text must at least contain two octets/</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;Unknown error.&quot;</span>
+    <span class="ruby-identifier">raise</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- json_into-source -->
+          
+        </div>
 
-		
-		</div>
-	
+        
 
-	</div>
+        
+      </div><!-- json_into-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
 
 
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
-
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
-
-</body>
-</html>
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

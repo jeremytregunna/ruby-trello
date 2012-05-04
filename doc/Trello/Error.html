@@ -1,190 +1,195 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-	<title>Class: Trello::Error</title>
+<title>class Trello::Error - RDoc Documentation</title>
 
-	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
-	<script src="../js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
 
-</head>
-<body class="class">
-
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="../index.html">Home</a>
-          <a href="../index.html#classes">Classes</a>
-          <a href="../index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
-
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="../lib/trello_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello.rb">lib/trello.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
-
-			
-		</div>
-
-		<div id="class-metadata">
-
-			<!-- Parent Class -->
-			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link">StandardError</p>
-				
-			</div>
-			
-
-			<!-- Namespace Contents -->
-			
-
-			<!-- Method Quickref -->
-			
-
-			<!-- Included Modules -->
-			
-		</div>
-
-		<div id="project-metadata">
-			
-			
-
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="../images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
-
-				<ul class="link-list">
-				
-					<li><a href="../Trello.html">Trello</a></li>
-				
-					<li><a href="../Trello/Action.html">Trello::Action</a></li>
-				
-					<li><a href="../Trello/Association.html">Trello::Association</a></li>
-				
-					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
-				
-					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
-				
-					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
-				
-					<li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
-				
-					<li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
-				
-					<li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
-				
-					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
-				
-					<li><a href="../Trello/Board.html">Trello::Board</a></li>
-				
-					<li><a href="../Trello/Card.html">Trello::Card</a></li>
-				
-					<li><a href="../Trello/Checklist.html">Trello::Checklist</a></li>
-				
-					<li><a href="../Trello/Client.html">Trello::Client</a></li>
-				
-					<li><a href="../Trello/Error.html">Trello::Error</a></li>
-				
-					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
-				
-					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
-				
-					<li><a href="../Trello/Item.html">Trello::Item</a></li>
-				
-					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
-				
-					<li><a href="../Trello/List.html">Trello::List</a></li>
-				
-					<li><a href="../Trello/Member.html">Trello::Member</a></li>
-				
-					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
-				
-					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
-				
-					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
-				
-					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
-				
-					<li><a href="../Trello/Token.html">Trello::Token</a></li>
-				
-					<li><a href="../String.html">String</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
-
-			
-		</div>
-	</div>
-
-	<div id="documentation">
-		<h1 class="class">Trello::Error</h1>
-
-		<div id="description">
-			<p>
-Raise this when we hit a <a href="../Trello.html">Trello</a> error.
-</p>
-
-		</div>
-
-		<!-- Constants -->
-		
-
-		<!-- Attributes -->
-		
-
-		<!-- Methods -->
-		
-
-	</div>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
 
 
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
 
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
 
-</body>
-</html>
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/trello.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">StandardError
+  
+</nav>
+
+    
+    
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="../Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="../test-credentials.html">test-credentials</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Trello.html">Trello</a>
+  
+    <li><a href="../Trello/Action.html">Trello::Action</a>
+  
+    <li><a href="../Trello/Association.html">Trello::Association</a>
+  
+    <li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="../Trello/Authorization.html">Trello::Authorization</a>
+  
+    <li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a>
+  
+    <li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a>
+  
+    <li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a>
+  
+    <li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a>
+  
+    <li><a href="../Trello/BasicData.html">Trello::BasicData</a>
+  
+    <li><a href="../Trello/Board.html">Trello::Board</a>
+  
+    <li><a href="../Trello/Card.html">Trello::Card</a>
+  
+    <li><a href="../Trello/Checklist.html">Trello::Checklist</a>
+  
+    <li><a href="../Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="../Trello/Error.html">Trello::Error</a>
+  
+    <li><a href="../Trello/HasActions.html">Trello::HasActions</a>
+  
+    <li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a>
+  
+    <li><a href="../Trello/Item.html">Trello::Item</a>
+  
+    <li><a href="../Trello/ItemState.html">Trello::ItemState</a>
+  
+    <li><a href="../Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="../Trello/List.html">Trello::List</a>
+  
+    <li><a href="../Trello/Member.html">Trello::Member</a>
+  
+    <li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a>
+  
+    <li><a href="../Trello/Notification.html">Trello::Notification</a>
+  
+    <li><a href="../Trello/Organization.html">Trello::Organization</a>
+  
+    <li><a href="../Trello/TInternet.html">Trello::TInternet</a>
+  
+    <li><a href="../Trello/Token.html">Trello::Token</a>
+  
+    <li><a href="../IntegrationTest.html">IntegrationTest</a>
+  
+    <li><a href="../IntegrationTest/Container.html">IntegrationTest::Container</a>
+  
+    <li><a href="../Helpers.html">Helpers</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Trello::Error</h1>
+
+  <div id="description" class="description">
+    
+<p>Raise this when we hit a <a href="../Trello.html">Trello</a> error.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 

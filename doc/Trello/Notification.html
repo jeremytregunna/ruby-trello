@@ -1,466 +1,443 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+
+<html>
 <head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-
-	<title>Class: Trello::Notification</title>
-
-	<link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
-
-	<script src="../js/jquery.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/thickbox-compressed.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/quicksearch.js" type="text/javascript"
-		charset="utf-8"></script>
-	<script src="../js/darkfish.js" type="text/javascript"
-		charset="utf-8"></script>
-
-</head>
-<body class="class">
-
-	<div id="metadata">
-		<div id="home-metadata">
-			<div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="../index.html">Home</a>
-          <a href="../index.html#classes">Classes</a>
-          <a href="../index.html#methods">Methods</a>
-        </h3>
-			</div>
-		</div>
-
-		<div id="file-metadata">
-			<div id="file-list-section" class="section">
-				<h3 class="section-header">In Files</h3>
-				<div class="section-body">
-					<ul>
-					
-						<li><a href="../lib/trello/notification_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-							class="thickbox" title="lib/trello/notification.rb">lib/trello/notification.rb</a></li>
-					
-					</ul>
-				</div>
-			</div>
-
-			
-		</div>
-
-		<div id="class-metadata">
-
-			<!-- Parent Class -->
-			
-			<div id="parent-class-section" class="section">
-				<h3 class="section-header">Parent</h3>
-				
-				<p class="link"><a href="BasicData.html">Trello::BasicData</a></p>
-				
-			</div>
-			
-
-			<!-- Namespace Contents -->
-			
-
-			<!-- Method Quickref -->
-			
-			<div id="method-list-section" class="section">
-				<h3 class="section-header">Methods</h3>
-				<ul class="link-list">
-					
-					<li><a href="#method-c-find">::find</a></li>
-					
-					<li><a href="#method-i-board">#board</a></li>
-					
-					<li><a href="#method-i-card">#card</a></li>
-					
-					<li><a href="#method-i-list">#list</a></li>
-					
-					<li><a href="#method-i-member">#member</a></li>
-					
-					<li><a href="#method-i-organization">#organization</a></li>
-					
-					<li><a href="#method-i-update_fields">#update_fields</a></li>
-					
-				</ul>
-			</div>
-			
-
-			<!-- Included Modules -->
-			
-		</div>
-
-		<div id="project-metadata">
-			
-			
-
-			<div id="classindex-section" class="section project-section">
-				<h3 class="section-header">Class Index
-					<span class="search-toggle"><img src="../images/find.png"
-						height="16" width="16" alt="[+]"
-						title="show/hide quicksearch" /></span></h3>
-				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
-				<fieldset>
-					<legend>Quicksearch</legend>
-					<input type="text" name="quicksearch" value=""
-						class="quicksearch-field" />
-				</fieldset>
-				</form>
-
-				<ul class="link-list">
-				
-					<li><a href="../Trello.html">Trello</a></li>
-				
-					<li><a href="../Trello/Action.html">Trello::Action</a></li>
-				
-					<li><a href="../Trello/Association.html">Trello::Association</a></li>
-				
-					<li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a></li>
-				
-					<li><a href="../Trello/Authorization.html">Trello::Authorization</a></li>
-				
-					<li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a></li>
-				
-					<li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a></li>
-				
-					<li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a></li>
-				
-					<li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a></li>
-				
-					<li><a href="../Trello/BasicData.html">Trello::BasicData</a></li>
-				
-					<li><a href="../Trello/Board.html">Trello::Board</a></li>
-				
-					<li><a href="../Trello/Card.html">Trello::Card</a></li>
-				
-					<li><a href="../Trello/Checklist.html">Trello::Checklist</a></li>
-				
-					<li><a href="../Trello/Client.html">Trello::Client</a></li>
-				
-					<li><a href="../Trello/Error.html">Trello::Error</a></li>
-				
-					<li><a href="../Trello/HasActions.html">Trello::HasActions</a></li>
-				
-					<li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a></li>
-				
-					<li><a href="../Trello/Item.html">Trello::Item</a></li>
-				
-					<li><a href="../Trello/ItemState.html">Trello::ItemState</a></li>
-				
-					<li><a href="../Trello/List.html">Trello::List</a></li>
-				
-					<li><a href="../Trello/Member.html">Trello::Member</a></li>
-				
-					<li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a></li>
-				
-					<li><a href="../Trello/Notification.html">Trello::Notification</a></li>
-				
-					<li><a href="../Trello/Organization.html">Trello::Organization</a></li>
-				
-					<li><a href="../Trello/TInternet.html">Trello::TInternet</a></li>
-				
-					<li><a href="../Trello/Token.html">Trello::Token</a></li>
-				
-					<li><a href="../String.html">String</a></li>
-				
-				</ul>
-				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
-			</div>
-
-			
-		</div>
-	</div>
-
-	<div id="documentation">
-		<h1 class="class">Trello::Notification</h1>
-
-		<div id="description">
-			
-		</div>
-
-		<!-- Constants -->
-		
-
-		<!-- Attributes -->
-		
-
-		<!-- Methods -->
-		
-		<div id="public-class-method-details" class="method-section section">
-			<h3 class="section-header">Public Class Methods</h3>
-
-		
-			<div id="find-method" class="method-detail ">
-				<a name="method-c-find"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">find</span><span
-						class="method-args">(id)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					<p>
-Locate a notification by its id
-</p>
-					
-
-					
-					<div class="method-source-code"
-						id="find-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 9</span>
- 9:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
-10:         <span class="ruby-keyword kw">super</span>(<span class="ruby-value">:notifications</span>, <span class="ruby-identifier">id</span>)
-11:       <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
-		<div id="public-instance-method-details" class="method-section section">
-			<h3 class="section-header">Public Instance Methods</h3>
-
-		
-			<div id="board-method" class="method-detail ">
-				<a name="method-i-board"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">board</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="board-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 28</span>
-28:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">board</span>
-29:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/board&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
-30:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="card-method" class="method-detail ">
-				<a name="method-i-card"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">card</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="card-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 36</span>
-36:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">card</span>
-37:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/card&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
-38:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="list-method" class="method-detail ">
-				<a name="method-i-list"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">list</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="list-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 32</span>
-32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
-33:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/list&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
-34:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="member-method" class="method-detail ">
-				<a name="method-i-member"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">member</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="member-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 40</span>
-40:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">member</span>
-41:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/member&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
-42:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="organization-method" class="method-detail ">
-				<a name="method-i-organization"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">organization</span><span
-						class="method-args">()</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="organization-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 44</span>
-44:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">organization</span>
-45:       <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/organization&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Organization</span>)
-46:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-			<div id="update-fields-method" class="method-detail ">
-				<a name="method-i-update_fields"></a>
-
-				<div class="method-heading">
-				
-					<span class="method-name">update_fields</span><span
-						class="method-args">(fields)</span>
-					<span class="method-click-advice">click to toggle source</span>
-				
-				</div>
-
-				<div class="method-description">
-					
-					
-					
-
-					
-					<div class="method-source-code"
-						id="update-fields-source">
-<pre>
-    <span class="ruby-comment cmt"># File lib/trello/notification.rb, line 14</span>
-14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-15:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]                = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'id'</span>]
-16:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:unread</span>]            = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'unread'</span>]
-17:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:type</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'type'</span>]
-18:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:date</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'date'</span>]
-19:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:data</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'data'</span>]
-20:       <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_creator_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-value str">'idMemberCreator'</span>]
-21:       <span class="ruby-keyword kw">self</span>
-22:     <span class="ruby-keyword kw">end</span></pre>
-					</div>
-					
-				</div>
-
-				
-
-				
-			</div>
-
-		
-		</div>
-	
-
-	</div>
-
-
-	<div id="rdoc-debugging-section-dump" class="debugging-section">
-	
-		<p>Disabled; run with --debug to generate this.</p>
-	
-	</div>
-
-	<div id="validator-badges">
-		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-			Rdoc Generator</a> 1.1.6</small>.</p>
-	</div>
-
-</body>
-</html>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Trello::Notification - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/trello/notification.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="BasicData.html">Trello::BasicData</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-find">::find</a>
+    
+    <li><a href="#method-i-board">#board</a>
+    
+    <li><a href="#method-i-card">#card</a>
+    
+    <li><a href="#method-i-list">#list</a>
+    
+    <li><a href="#method-i-member">#member</a>
+    
+    <li><a href="#method-i-organization">#organization</a>
+    
+    <li><a href="#method-i-update_fields">#update_fields</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="../Rakefile.html">Rakefile</a>
+  
+    <li class="file"><a href="../test-credentials.html">test-credentials</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Trello.html">Trello</a>
+  
+    <li><a href="../Trello/Action.html">Trello::Action</a>
+  
+    <li><a href="../Trello/Association.html">Trello::Association</a>
+  
+    <li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="../Trello/Authorization.html">Trello::Authorization</a>
+  
+    <li><a href="../Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a>
+  
+    <li><a href="../Trello/Authorization/Clock.html">Trello::Authorization::Clock</a>
+  
+    <li><a href="../Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a>
+  
+    <li><a href="../Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a>
+  
+    <li><a href="../Trello/BasicData.html">Trello::BasicData</a>
+  
+    <li><a href="../Trello/Board.html">Trello::Board</a>
+  
+    <li><a href="../Trello/Card.html">Trello::Card</a>
+  
+    <li><a href="../Trello/Checklist.html">Trello::Checklist</a>
+  
+    <li><a href="../Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="../Trello/Error.html">Trello::Error</a>
+  
+    <li><a href="../Trello/HasActions.html">Trello::HasActions</a>
+  
+    <li><a href="../Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a>
+  
+    <li><a href="../Trello/Item.html">Trello::Item</a>
+  
+    <li><a href="../Trello/ItemState.html">Trello::ItemState</a>
+  
+    <li><a href="../Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="../Trello/List.html">Trello::List</a>
+  
+    <li><a href="../Trello/Member.html">Trello::Member</a>
+  
+    <li><a href="../Trello/MultiAssociation.html">Trello::MultiAssociation</a>
+  
+    <li><a href="../Trello/Notification.html">Trello::Notification</a>
+  
+    <li><a href="../Trello/Organization.html">Trello::Organization</a>
+  
+    <li><a href="../Trello/TInternet.html">Trello::TInternet</a>
+  
+    <li><a href="../Trello/Token.html">Trello::Token</a>
+  
+    <li><a href="../IntegrationTest.html">IntegrationTest</a>
+  
+    <li><a href="../IntegrationTest/Container.html">IntegrationTest::Container</a>
+  
+    <li><a href="../Helpers.html">Helpers</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../String.html">String</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Trello::Notification</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-find" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find</span><span
+            class="method-args">(id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Locate a notification by its id</p>
+          
+
+          
+          <div class="method-source-code" id="find-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">super</span>(<span class="ruby-value">:notifications</span>, <span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-board" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">board</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="board-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">board</span>
+  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/board&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- board-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- board-method -->
+
+    
+      <div id="method-i-card" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">card</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="card-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">card</span>
+  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/card&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Card</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- card-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- card-method -->
+
+    
+      <div id="method-i-list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">list</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="list-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">list</span>
+  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/list&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">List</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- list-method -->
+
+    
+      <div id="method-i-member" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">member</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="member-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">member</span>
+  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/member&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- member-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- member-method -->
+
+    
+      <div id="method-i-organization" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">organization</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="organization-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">organization</span>
+  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/notifications/#{id}/organization&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Organization</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- organization-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- organization-method -->
+
+    
+      <div id="method-i-update_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_fields</span><span
+            class="method-args">(fields)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_fields-source">
+            <pre><span class="ruby-comment"># File lib/trello/notification.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]                = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:unread</span>]            = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'unread'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:type</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'type'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:date</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'date'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:data</span>]              = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'data'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_creator_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idMemberCreator'</span>]
+  <span class="ruby-keyword">self</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_fields-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
 
