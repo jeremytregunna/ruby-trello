@@ -123,6 +123,13 @@ module Trello
         Client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
         @card.list.should_not be_nil
       end
+
+      it 'can be moved to another list' do
+        other_list = stub(:id => '987654321987654321fedcba')
+        payload = {:value => other_list.id}
+        Client.should_receive(:put).with("/cards/abcdef123456789123456789/idList", payload)
+        @card.move_to_list(other_list)
+      end
     end
 
     context "members" do
