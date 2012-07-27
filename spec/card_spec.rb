@@ -133,6 +133,21 @@ module Trello
         @card.board.should_not be_nil
         @card.members.should_not be_nil
       end
+
+      it "allows a member to be added to a card" do
+        new_member = stub(:id => '4ee7df3ce582acdec80000b2')
+        payload = {
+          :value => new_member.id
+        }
+        Client.should_receive(:post).with("/cards/abcdef123456789123456789/members", payload)
+        @card.add_member(new_member)
+      end
+
+      it "allows a member to be removed from a card" do
+        existing_member = stub(:id => '4ee7df3ce582acdec80000b2')
+        Client.should_receive(:delete).with("/cards/abcdef123456789123456789/members/#{existing_member.id}")
+        @card.remove_member(existing_member)
+      end
     end
 
     context "comments" do
