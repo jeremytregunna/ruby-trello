@@ -14,7 +14,7 @@ module Trello
 
       def create(options)
         new('name'       => options[:name],
-            'idBoard'    => options[:board_id]).save!
+            'idBoard'    => options[:board_id]).save
       end
     end
 
@@ -50,7 +50,7 @@ module Trello
     end
 
     def update!
-      Client.put("/checklists", { :name => name }).json_into(self)
+      Client.put("/checklists/#{id}", { :name => name }).json_into(self)
     end
 
     # Return a list of items on the checklist.
