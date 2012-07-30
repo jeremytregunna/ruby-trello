@@ -110,6 +110,18 @@ module Trello
       })
     end
 
+    # Add a member to this card
+    def add_member(member)
+      Client.post("/cards/#{id}/members", {
+        :value => member.id
+      })
+    end
+
+    # Remove a member from this card
+    def remove_member(member)
+      Client.delete("/cards/#{id}/members/#{member.id}")
+    end
+
     # Retrieve a list of labels
     def labels
       labels = Client.get("/cards/#{id}/labels").json_into(Label)
