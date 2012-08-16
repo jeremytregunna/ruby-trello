@@ -55,7 +55,7 @@ module Trello
           resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
           klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
           params    = options.merge(args[0] || {})
-          resources = Client.get("/#{resource}/#{id}/#{name}", options).json_into(klass)
+          resources = Client.get("/#{resource}/#{id}/#{name}", params).json_into(klass)
           MultiAssociation.new(self, resources).proxy
         end
       end
