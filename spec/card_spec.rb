@@ -209,5 +209,37 @@ module Trello
         @card.errors.full_messages.to_sentence.should == "Label colour 'mauve' does not exist"
       end
     end
+
+    context "attachments" do
+      it "can add an attachment" do
+        f = File.new('spec/list_spec.rb', 'r')
+        Client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
+        Client.stub(:post).with("/cards/abcdef123456789123456789/attachments", 
+              { :file => f, :name => ''  }).
+              and_return "not important"
+        
+        @card.add_attachment(f)
+        
+        @card.errors.should be_empty
+      
+      end
+
+      it "can list the existing attachments" do
+        Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+        Client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
+
+        @card.board.should_not be_nil
+        @card.attachments.should_not be_nil        
+      end
+
+      it "can remove an attachment" do
+        Client.stub(:delete).with("/cards/abcdef123456789123456789/attachments/abcdef123456789123456789").
+          and_return "not important"
+        Client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
+
+        @card.remove_attachment(@card.attachments.first)
+        @card.errors.should be_empty
+      end
+    end
   end
 end

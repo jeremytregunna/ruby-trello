@@ -104,8 +104,21 @@ module Helpers
     }]
   end
 
+
   def cards_payload
     JSON.generate(cards_details)
+  end
+
+
+  def attachments_details
+    [{
+      "id"    =>  "abcdef123456789123456789",
+      "name"  =>  "list_spec.rb"
+    }]
+  end
+
+  def attachments_payload
+    JSON.generate(attachments_details)
   end
 
   def orgs_details

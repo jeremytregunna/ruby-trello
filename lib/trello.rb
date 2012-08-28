@@ -41,6 +41,7 @@ module Trello
   autoload :Action,            'trello/action'
   autoload :Association,       'trello/association'
   autoload :AssociationProxy,  'trello/association_proxy'
+  autoload :Attachment,        'trello/attachment'
   autoload :BasicData,         'trello/basic_data'
   autoload :Board,             'trello/board'
   autoload :Card,              'trello/card'
