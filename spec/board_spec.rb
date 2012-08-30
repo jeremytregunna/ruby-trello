@@ -51,6 +51,14 @@ module Trello
       end
     end
 
+    context "find_card" do
+      it "gets a card" do
+        Client.stub(:get).with("/boards/abcdef123456789123456789/cards/1").
+          and_return card_payload
+        @board.find_card(1).should be_a(Card)
+      end
+    end
+
     context "lists" do
       it "has a list of lists" do
         Client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).

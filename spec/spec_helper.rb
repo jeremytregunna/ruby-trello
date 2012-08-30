@@ -109,7 +109,6 @@ module Helpers
     JSON.generate(cards_details)
   end
 
-
   def attachments_details
     [{
       "id"    =>  "abcdef123456789123456789",
@@ -119,6 +118,10 @@ module Helpers
 
   def attachments_payload
     JSON.generate(attachments_details)
+  end
+
+  def card_payload
+    JSON.generate(cards_details.first)
   end
 
   def orgs_details
