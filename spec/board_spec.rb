@@ -115,33 +115,33 @@ module Trello
     include Helpers
 
     let(:any_board_json) do
-      JSON.generate(boards_details.first)      
+      JSON.generate(boards_details.first)
     end
 
     it "cannot currently save a new instance" do
       Client.should_not_receive :put
-      
+
       the_new_board = Board.new
       lambda{the_new_board.save}.should raise_error
     end
 
     it "puts all fields except id" do
       expected_fields = %w{name description closed}.map{|s| s.to_sym}
-        
+
       Client.should_receive(:put) do |anything, body|
         body.keys.should =~ expected_fields
         any_board_json
       end
-      
+
       the_new_board = Board.new 'id' => "xxx"
       the_new_board.save
     end
 
     it "mutates the current instance" do
       Client.stub(:put).and_return any_board_json
-      
+
       board = Board.new 'id' => "xxx"
-      
+
       the_result_of_save = board.save
 
       the_result_of_save.should equal board
@@ -154,19 +154,19 @@ module Trello
         path.should =~ /#{expected_resource_id}\/$/
         any_board_json
       end
-      
+
       the_new_board = Board.new 'id' => expected_resource_id
       the_new_board.save
-    end 
+    end
 
     it "saves OR updates depending on whether or not it has an id set"
   end
-  
+
   describe "Repository" do
     include Helpers
 
     let(:any_board_json) do
-      JSON.generate(boards_details.first)      
+      JSON.generate(boards_details.first)
     end
 
     it "creates a new board with whatever attributes are supplied " do
@@ -190,7 +190,7 @@ module Trello
       the_new_board = Board.create :xxx => ""
       the_new_board.should be_a Board
     end
-    
+
     it "at least name is required"
   end
 end
