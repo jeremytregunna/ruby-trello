@@ -154,15 +154,15 @@ module Trello
     end
 
     # Add an attachment to this card
-    def add_attachment(item, name='')
-      if item.is_a? File
+    def add_attachment(attachment, name='')
+      if attachment.is_a? File
         Client.post("/cards/#{id}/attachments", {
-            :file => item,
+            :file => attachment,
             :name => name
           })
       else
         Client.post("/cards/#{id}/attachments", {
-            :url => item,
+            :url => attachment,
             :name => name
           })
       end

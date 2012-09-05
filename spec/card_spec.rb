@@ -224,6 +224,16 @@ module Trello
       
       end
 
+      it "can add another attachment" do
+        f = File.new('spec/list_spec.rb', 'r')
+        card = Card.new(cards_details.first)
+        before_count = card.attachments.count
+        card.add_attachment(f)
+        after_count = card.attachments.count
+        after_count.should be > before_count
+      end
+
+
       it "can list the existing attachments" do
         Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
         Client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
