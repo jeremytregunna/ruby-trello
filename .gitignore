@@ -6,3 +6,7 @@ test-credentials
 coverage
 .*.sw?
 test*.rb
+bin
+.bundle
+vendor/bundle
+Gemfile.lock

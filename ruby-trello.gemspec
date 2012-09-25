@@ -23,7 +23,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'addressable', '~> 2.2.6'
   s.add_dependency 'rest-client', '~> 1.6.7'
   s.add_dependency 'activemodel'
-  s.add_development_dependency 'bundler', '~> 1.0.0'
-  s.add_development_dependency 'rspec',   '~> 2.8.0'
-  s.add_development_dependency 'rake'
 end
