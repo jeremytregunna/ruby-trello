@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'activemodel'
   s.add_dependency 'addressable', '~> 2.3'
-  s.add_dependency 'json'                     if RUBY_VERSION < "1.9.0"
+  s.add_dependency 'json'
   s.add_dependency 'oauth',       '~> 0.4.5'
   s.add_dependency 'rest-client', '~> 1.6.7'
 end
