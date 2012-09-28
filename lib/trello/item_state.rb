@@ -1,6 +1,6 @@
 module Trello
   # Represents the state of an item.
-  class ItemState < BasicData
+  class CheckItemState < BasicData
     register_attributes :id, :state, :item_id, :readonly => [ :id, :state, :item_id ]
     validates_presence_of :id, :item_id
 
@@ -11,7 +11,7 @@ module Trello
     def update_fields(fields)
       attributes[:id]      = fields['id']
       attributes[:state]   = fields['state']
-      attributes[:item_id] = fields['idItem']
+      attributes[:item_id] = fields['idCheckItem']
       self
     end
 
