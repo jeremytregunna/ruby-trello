@@ -159,6 +159,32 @@ module Trello
       Client.delete("/cards/#{id}/labels/#{colour}")
     end
 
+    # Add an attachment to this card
+    def add_attachment(attachment, name='')
+      if attachment.is_a? File
+        Client.post("/cards/#{id}/attachments", {
+            :file => attachment,
+            :name => name
+          })
+      else
+        Client.post("/cards/#{id}/attachments", {
+            :url => attachment,
+            :name => name
+          })
+      end
+    end
+
+    # Retrieve a list of attachments
+    def attachments
+      attachments = Client.get("/cards/#{id}/attachments").json_into(Attachment)
+      MultiAssociation.new(self, attachments).proxy
+    end
+
+      # Remove an attachment from this card
+    def remove_attachment(attachment)
+      Client.delete("/cards/#{id}/attachments/#{attachment.id}")
+    end
+
     # :nodoc:
     def request_prefix
       "/cards/#{id}"
