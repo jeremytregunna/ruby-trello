@@ -50,7 +50,11 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :all ] # default :all
     many :checklists, :filter => :all
-    many :checkItemStates, :filter => :all
+
+    def check_item_states
+      states = Client.get("/cards/#{self.id}/checkItemStates").json_into(CheckItemState)
+      MultiAssociation.new(self, states).proxy
+    end
 
 
     # Returns a reference to the list this card is currently in.
