@@ -103,7 +103,9 @@ module Trello
           consumer.options[:nonce]            = Nonce.next
           consumer.options[:timestamp] 	      = Clock.timestamp
           consumer.options[:uri]              = url
-          
+          consumer.key                        = consumer_credential.key
+          consumer.secret                     = consumer_credential.secret
+
           consumer.sign!(request, OAuth::Token.new(token.key, token.secret))
 
           request['authorization']

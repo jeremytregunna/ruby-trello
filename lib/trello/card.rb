@@ -1,7 +1,7 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id,
+    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos,
       :readonly => [ :id, :short_id, :url, :board_id, :member_ids ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
@@ -38,6 +38,7 @@ module Trello
       attributes[:board_id]    = fields['idBoard']
       attributes[:member_ids]  = fields['idMembers']
       attributes[:list_id]     = fields['idList']
+      attributes[:pos]         = fields['pos']
       self
     end
 
@@ -50,6 +51,12 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :all ] # default :all
     many :checklists, :filter => :all
+
+    def check_item_states
+      states = Client.get("/cards/#{self.id}/checkItemStates").json_into(CheckItemState)
+      MultiAssociation.new(self, states).proxy
+    end
+
 
     # Returns a reference to the list this card is currently in.
     one :list, :using => :list_id
@@ -89,7 +96,8 @@ module Trello
         :closed    => closed,
         :idList    => list_id,
         :idBoard   => board_id,
-        :idMembers => member_ids
+        :idMembers => member_ids,
+        :pos => pos
       })
     end
 
@@ -151,6 +159,32 @@ module Trello
         return Trello.logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
       end
       Client.delete("/cards/#{id}/labels/#{colour}")
+    end
+
+    # Add an attachment to this card
+    def add_attachment(attachment, name='')
+      if attachment.is_a? File
+        Client.post("/cards/#{id}/attachments", {
+            :file => attachment,
+            :name => name
+          })
+      else
+        Client.post("/cards/#{id}/attachments", {
+            :url => attachment,
+            :name => name
+          })
+      end
+    end
+
+    # Retrieve a list of attachments
+    def attachments
+      attachments = Client.get("/cards/#{id}/attachments").json_into(Attachment)
+      MultiAssociation.new(self, attachments).proxy
+    end
+
+      # Remove an attachment from this card
+    def remove_attachment(attachment)
+      Client.delete("/cards/#{id}/attachments/#{attachment.id}")
     end
 
     # :nodoc:
