@@ -100,7 +100,8 @@ module Helpers
       "idList"    => "abcdef123456789123456789",
       "idBoard"   => "abcdef123456789123456789",
       "idMembers" => ["abcdef123456789123456789"],
-      "url"       => "https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789"
+      "url"       => "https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789",
+      "pos"       => 12
     }]
   end
 
