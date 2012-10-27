@@ -56,7 +56,8 @@ module Trello
           :closed    => false,
           :idList    => "abcdef123456789123456789",
           :idBoard   => "abcdef123456789123456789",
-          :idMembers => ["abcdef123456789123456789"]
+          :idMembers => ["abcdef123456789123456789"],
+          :pos       => 12
         }
 
         Client.should_receive(:put).once.with("/cards/abcdef123456789123456789", payload)
