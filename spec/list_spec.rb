@@ -11,6 +11,22 @@ module Trello
       @list = List.find("abcdef123456789123456789")
     end
 
+    context "updating" do
+      it "updating name does a put on the correct resource with the correct value" do
+        expected_new_name = "xxx"
+
+        payload = {
+          :name      => expected_new_name,
+          :closed    => false
+        }
+
+        Client.should_receive(:put).once.with("/lists/abcdef123456789123456789", payload)
+        list = @list.dup
+        list.name = expected_new_name
+        list.save
+      end
+    end
+
     context "fields" do
       it "gets its id" do
         @list.id.should == lists_details.first['id']
