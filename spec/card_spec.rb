@@ -252,5 +252,38 @@ module Trello
         @card.errors.should be_empty
       end
     end
+
+    describe "#closed?" do
+      it "returns the closed attribute" do
+        @card.closed?.should_not be_true
+      end
+    end
+
+    describe "#close" do
+      it "updates the close attribute to true" do
+        @card.close
+        @card.closed.should be_true
+      end
+    end
+
+    describe "#close!" do
+      it "updates the close attribute to true and saves the list" do
+        payload = {
+          :name      => @card.name,
+          :desc      => "Awesome things are awesome.",
+          :due       => nil,
+          :closed    => true,
+          :idList    => "abcdef123456789123456789",
+          :idBoard   => "abcdef123456789123456789",
+          :idMembers => ["abcdef123456789123456789"],
+          :pos       => 12
+        }
+
+        Client.should_receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+
+        @card.close!
+      end
+    end
+
   end
 end
