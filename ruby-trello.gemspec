@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{ruby-trello}
-  s.version           = "0.4.4"
+  s.version           = "0.4.4.1"
   s.platform          = Gem::Platform::RUBY
 
   s.authors           = ["Jeremy Tregunna"]
