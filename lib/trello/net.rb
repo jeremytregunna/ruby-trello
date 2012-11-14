@@ -24,6 +24,7 @@ module Trello
       def execute_core(request)
         require "rest_client"
         
+        RestClient.proxy = ENV['HTTP_PROXY'] if ENV['HTTP_PROXY']
         RestClient::Request.execute(
           :method => request.verb, 
           :url => request.uri.to_s, 
