@@ -63,6 +63,10 @@ module Trello
       lists.size > 0
     end
 
+    def find_card(card_id)
+      Client.get("/boards/#{self.id}/cards/#{card_id}").json_into(Card)
+    end
+
     # Return all the cards on this board.
     #
     # This method, when called, can take a hash table with a filter key containing any
