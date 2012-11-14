@@ -53,6 +53,15 @@ module Trello
       closed
     end
 
+    def close
+      self.closed = true
+    end
+
+    def close!
+      close
+      save
+    end
+
     # Return the board the list is connected to.
     one :board, :using => :board_id
 
