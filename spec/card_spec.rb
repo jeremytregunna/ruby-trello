@@ -32,7 +32,7 @@ module Trello
           :name    => 'Test Card',
           :desc    => '',
         }
- 
+
         result = JSON.generate(cards_details.first.merge(payload.merge(:idList => lists_details.first['id'])))
 
         expected_payload = {:name => "Test Card", :desc => nil, :idList => "abcdef123456789123456789"}
@@ -48,7 +48,7 @@ module Trello
     context "updating" do
       it "updating name does a put on the correct resource with the correct value" do
         expected_new_name = "xxx"
-        expected_resource = "/card/#{@card.id}/name"
+
         payload = {
           :name      => expected_new_name,
           :desc      => "Awesome things are awesome.",
@@ -163,7 +163,7 @@ module Trello
         Client.should_receive(:post).
           with("/cards/abcdef123456789123456789/actions/comments", { :text => 'testing' }).
           and_return JSON.generate(boards_details.first)
-        
+
         @card.add_comment "testing"
       end
     end
@@ -215,14 +215,14 @@ module Trello
       it "can add an attachment" do
         f = File.new('spec/list_spec.rb', 'r')
         Client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
-        Client.stub(:post).with("/cards/abcdef123456789123456789/attachments", 
+        Client.stub(:post).with("/cards/abcdef123456789123456789/attachments",
               { :file => f, :name => ''  }).
               and_return "not important"
-        
+
         @card.add_attachment(f)
-        
+
         @card.errors.should be_empty
-      
+
       end
 
       it "can add another attachment" do
@@ -240,7 +240,7 @@ module Trello
         Client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
 
         @card.board.should_not be_nil
-        @card.attachments.should_not be_nil        
+        @card.attachments.should_not be_nil
       end
 
       it "can remove an attachment" do
