@@ -21,9 +21,8 @@ module Trello
         }
 
         Client.should_receive(:put).once.with("/lists/abcdef123456789123456789", payload)
-        list = @list.dup
-        list.name = expected_new_name
-        list.save
+        @list.name = expected_new_name
+        @list.save
       end
     end
 
@@ -59,8 +58,28 @@ module Trello
       end
     end
 
-    it "is not closed" do
-      @list.closed?.should_not be_true
+    describe "#closed?" do
+      it "returns the closed attribute" do
+        @list.closed?.should_not be_true
+      end
+    end
+
+    describe "#close" do
+      it "updates the close attribute to true" do
+        @list.close
+        @list.closed.should be_true
+      end
+    end
+
+    describe "#close!" do
+      it "updates the close attribute to true and saves the list" do
+        Client.should_receive(:put).once.with("/lists/abcdef123456789123456789", {
+          :name   => @list.name,
+          :closed => true
+        })
+
+        @list.close!
+      end
     end
   end
 end

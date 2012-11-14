@@ -101,6 +101,20 @@ module Trello
       })
     end
 
+    # Check if the card is not active anymore.
+    def closed?
+      closed
+    end
+
+    def close
+      self.closed = true
+    end
+
+    def close!
+      close
+      save
+    end
+
     # Is the record valid?
     def valid?
       name && list_id
@@ -191,6 +205,5 @@ module Trello
     def request_prefix
       "/cards/#{id}"
     end
-
   end
 end
