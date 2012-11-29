@@ -139,6 +139,13 @@ module Trello
       })
     end
 
+    # Move this card to the given board (and optional list on this board)
+    def move_to_board(new_board, new_list = nil)
+      payload = { :value => new_board.id }
+      payload[:idList] = new_list.id if new_list
+      Client.put("/cards/#{id}/idBoard", payload)
+    end
+
     # Add a member to this card
     def add_member(member)
       Client.post("/cards/#{id}/members", {
