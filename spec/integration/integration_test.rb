@@ -16,7 +16,7 @@ module IntegrationTest
       before :all do
         # Getting developer/member key
         # 1. https://trello.com/1/appKey/generate
-        # 2. https://trello.com/1/connect?key=<public_key_here>&name=RubyTrelloIntegrationTests&response_type=token
+        # 2. https://trello.com/1/authorize?key=<public_key_here>&name=RubyTrelloIntegrationTests&response_type=token
         # See: https://trello.com/board/trello-public-api/4ed7e27fe6abb2517a21383d
 
         @developer_public_key = ENV["DEVELOPER_PUBLIC_KEY"]
