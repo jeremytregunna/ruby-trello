@@ -131,6 +131,21 @@ module Trello
         Client.should_receive(:put).with("/cards/abcdef123456789123456789/idList", payload)
         @card.move_to_list(other_list)
       end
+
+      it 'can be moved to another board' do
+        other_board = stub(:id => '987654321987654321fedcba')
+        payload = {:value => other_board.id}
+        Client.should_receive(:put).with("/cards/abcdef123456789123456789/idBoard", payload)
+        @card.move_to_board(other_board)
+      end
+
+      it 'can be moved to a list on another board' do
+        other_board = stub(:id => '987654321987654321fedcba')
+        other_list = stub(:id => '987654321987654321aalist')
+        payload = {:value => other_board.id, :idList => other_list.id}
+        Client.should_receive(:put).with("/cards/abcdef123456789123456789/idBoard", payload)
+        @card.move_to_board(other_board, other_list)
+      end
     end
 
     context "members" do
