@@ -19,6 +19,10 @@ module Trello
             'desc'   => fields[:description],
             'closed' => fields[:closed] || false).save
       end
+
+      def all
+        Client.get("/members/#{Member.find(:me).username}/boards").json_into(self)
+      end
     end
 
     def save

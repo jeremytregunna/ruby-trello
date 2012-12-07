@@ -11,6 +11,14 @@ module Trello
       @board = Board.find('abcdef123456789123456789')
     end
 
+    it "gets all boards" do
+      Member.stub_chain(:find, :username).and_return "testuser"
+      Client.stub(:get).with("/members/testuser/boards").and_return boards_payload
+
+      expected = Board.new(boards_details.first)
+      Board.all.first.should eq(expected)
+    end
+
     context "fields" do
       it "gets an id" do
         @board.id.should_not be_nil
