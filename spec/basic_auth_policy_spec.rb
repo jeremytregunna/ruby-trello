@@ -46,11 +46,5 @@ describe BasicAuthPolicy do
     authorized_request.headers.should === request.headers
   end
 
-  it "returns nil body if one is supplied" do
-    uri = Addressable::URI.parse("https://xxx/")
-    request = Request.new :get, uri, {}, "any body"
-    BasicAuthPolicy.authorize(request).body.should be_nil
-  end
-
   it "does what when a query parameter already exists called key or token?"
 end
