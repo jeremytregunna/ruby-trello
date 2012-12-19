@@ -48,7 +48,7 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
       
-      authorized_request.headers["Authorization"].should =~ /oauth_signature="kLcSxrCTd4ATHcLmTp8q%2Foa%2BFMA%3D"/
+      authorized_request.headers["Authorization"].should =~ /oauth_signature="TVNk%2FCs03FHqutDUqn05%2FDkvVek%3D"/
     end
 
     it "adds correct signature for uri with parameters" do
@@ -62,7 +62,7 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
       
-      authorized_request.headers["Authorization"].should =~ /oauth_signature="xm%2FJ1swxxPb6mnuR1Q1ucJMdGRk%3D"/
+      authorized_request.headers["Authorization"].should =~ /oauth_signature="DprU1bdbNdJQ40UhD4n7wRR9jts%3D"/
     end
 
     it "fails if consumer_credential is unset" do
@@ -84,7 +84,7 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
 
-      authorized_request.headers["Authorization"].should =~ /oauth_signature="3JeZSzsLCYnGNdVALZMgbzQKN44%3D"/
+      authorized_request.headers["Authorization"].should =~ /oauth_signature="1Boj4fo6KiXA4xGD%2BKF5QOD36PI%3D"/
     end
 
     it "adds correct signature for https uri"
