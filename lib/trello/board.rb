@@ -42,9 +42,9 @@ module Trello
       @changed_attributes.clear
 
       Client.put("/boards/#{self.id}/", {
-        :name        => @name,
-        :description => @description,
-        :closed      => @closed
+        :name        => attributes[:name],
+        :description => attributes[:description],
+        :closed      => attributes[:closed]
       }).json_into(self)
     end
 
