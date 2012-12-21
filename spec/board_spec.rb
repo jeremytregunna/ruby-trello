@@ -178,6 +178,29 @@ module Trello
     it "saves OR updates depending on whether or not it has an id set"
   end
 
+  describe '#update!' do
+    include Helpers
+
+    let(:any_board_json) do
+      JSON.generate(boards_details.first)
+    end
+
+    it "puts basic attributes" do
+      board = Board.new 'id' => "board_id"
+
+      board.name        = "new name"
+      board.description = "new description"
+      board.closed      = true
+
+      Client.should_receive(:put).with("/boards/#{board.id}/", {
+        :name => "new name",
+        :description => "new description",
+        :closed => true
+      }).and_return any_board_json
+      board.update!
+    end
+  end
+
   describe "Repository" do
     include Helpers
 
