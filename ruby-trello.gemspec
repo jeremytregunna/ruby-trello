@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
 
   s.authors           = ["Jeremy Tregunna"]
-  s.date              = %q{2012-02-14}
+  s.date              = Time.now.strftime "%Y-%m-%d"
   s.description       = %q{A wrapper around the trello.com API.}
   s.email             = %q{jeremy@tregunna.ca}
   s.extra_rdoc_files  = ["README.md"]
