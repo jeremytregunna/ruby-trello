@@ -7,7 +7,7 @@ module Trello
     let(:checklist) { Checklist.find('abcdef123456789123456789') }
 
     before(:each) do
-      Client.stub(:get).with("/checklists/abcdef123456789123456789").
+      Trello.client.stub(:get).with("/checklists/abcdef123456789123456789").
         and_return JSON.generate(checklists_details.first)
     end
 
@@ -22,7 +22,7 @@ module Trello
 
         expected_payload = {:name => "Test Checklist", :idBoard => "abcdef123456789123456789"}
 
-        Client.should_receive(:post).with("/checklists", expected_payload).and_return result
+        Trello.client.should_receive(:post).with("/checklists", expected_payload).and_return result
 
         checklist = Checklist.create(checklists_details.first.merge(payload.merge(:board_id => boards_details.first['id'])))
 
@@ -39,7 +39,7 @@ module Trello
         }
 
         result = JSON.generate(checklists_details.first)
-        Client.should_receive(:put).once.with("/checklists/abcdef123456789123456789", payload).and_return result
+        Trello.client.should_receive(:put).once.with("/checklists/abcdef123456789123456789", payload).and_return result
 
         checklist.name = expected_new_name
         checklist.save

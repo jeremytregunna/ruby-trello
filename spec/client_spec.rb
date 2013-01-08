@@ -9,7 +9,8 @@ describe Client, "and how it handles authorization" do
       :code => 200,
       :body => "A fake response body"
   }
-  
+  let(:client) { Client.new }
+
   before do
     TInternet.stub(:execute).and_return fake_ok_response
     Authorization::AuthPolicy.stub(:authorize) do |request|
@@ -21,7 +22,7 @@ describe Client, "and how it handles authorization" do
     AuthPolicy.should_receive(:authorize).once.ordered
     TInternet.should_receive(:execute).once.ordered
 
-    Client.get "/xxx"
+    client.get "/xxx"
   end
 
   it "queries the internet with expanded earl and query parameters" do
@@ -30,7 +31,7 @@ describe Client, "and how it handles authorization" do
 
     TInternet.should_receive(:execute).once.with expected_request
 
-    Client.get "/xxx", :a => "1", :b => "2"
+    client.get "/xxx", :a => "1", :b => "2"
   end
 
   it "encodes parameters" do
@@ -39,42 +40,42 @@ describe Client, "and how it handles authorization" do
 
     TInternet.should_receive(:execute).once.with expected_request
 
-    Client.get "/xxx", :name => "Jazz Kang"
+    client.get "/xxx", :name => "Jazz Kang"
   end
 
   it "raises an error when response has non-200 status" do
     expected_error_message = "An error response"
-    response_with_non_200_status = stub "A fake OK response", 
+    response_with_non_200_status = stub "A fake OK response",
       :code => 404,
       :body => expected_error_message
 
     TInternet.stub(:execute).and_return response_with_non_200_status
 
-    lambda{Client.get "/xxx"}.should raise_error expected_error_message
+    lambda{client.get "/xxx"}.should raise_error expected_error_message
   end
 
   it "uses version 1 of the API" do
     TInternet.should_receive(:execute).once do |request|
       request.uri.to_s.should =~ /1\//
       fake_ok_response
-    end 
+    end
 
-    Client.get "/"
-  end 
+    client.get "/"
+  end
 
   it "omits the \"?\" when no parameters" do
     TInternet.should_receive(:execute).once do |request|
       request.uri.to_s.should_not =~ /\?$/
       fake_ok_response
-    end 
+    end
 
-    Client.get "/xxx"
+    client.get "/xxx"
   end
 
   it "supports post" do
     TInternet.should_receive(:execute).once.and_return fake_ok_response
 
-    Client.post "/xxx", { :phil => "T' north" }
+    client.post "/xxx", { :phil => "T' north" }
   end
 
   it "supplies the body for a post" do
@@ -85,7 +86,7 @@ describe Client, "and how it handles authorization" do
       fake_ok_response
     end
 
-    Client.post "/xxx", expected_body
+    client.post "/xxx", expected_body
   end
 
   it "supplies the path for a post" do
@@ -96,7 +97,7 @@ describe Client, "and how it handles authorization" do
       fake_ok_response
     end
 
-    Client.post "/xxx", {}
+    client.post "/xxx", {}
   end
 
   it "supports put" do
@@ -104,7 +105,7 @@ describe Client, "and how it handles authorization" do
 
     TInternet.should_receive(:execute).once.and_return fake_ok_response
 
-    Client.put "/xxx", { :phil => "T' north" }
+    client.put "/xxx", { :phil => "T' north" }
   end
 
   it "supplies the body for a put" do
@@ -115,7 +116,7 @@ describe Client, "and how it handles authorization" do
       fake_ok_response
     end
 
-    Client.put "/xxx", expected_body
+    client.put "/xxx", expected_body
   end
 
   it "supplies the path for a put" do
@@ -126,6 +127,6 @@ describe Client, "and how it handles authorization" do
       fake_ok_response
     end
 
-    Client.put "/xxx", {}
+    client.put "/xxx", {}
   end
 end

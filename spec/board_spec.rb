@@ -5,7 +5,7 @@ module Trello
     include Helpers
 
     before(:each) do
-      Client.stub(:get).with("/boards/abcdef123456789123456789").
+      Trello.client.stub(:get).with("/boards/abcdef123456789123456789").
         and_return JSON.generate(boards_details.first)
 
       @board = Board.find('abcdef123456789123456789')
@@ -13,7 +13,7 @@ module Trello
 
     it "gets all boards" do
       Member.stub_chain(:find, :username).and_return "testuser"
-      Client.stub(:get).with("/members/testuser/boards").and_return boards_payload
+      Trello.client.stub(:get).with("/members/testuser/boards").and_return boards_payload
 
       expected = Board.new(boards_details.first)
       Board.all.first.should eq(expected)
@@ -43,7 +43,7 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        Client.stub(:get).with("/boards/abcdef123456789123456789/actions", {:filter => :all}).
+        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/actions", {:filter => :all}).
           and_return actions_payload
 
         @board.actions.count.should be > 0
@@ -52,7 +52,7 @@ module Trello
 
     context "cards" do
       it "gets its list of cards" do
-        Client.stub(:get).with("/boards/abcdef123456789123456789/cards", { :filter => :open }).
+        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/cards", { :filter => :open }).
           and_return cards_payload
 
         @board.cards.count.should be > 0
@@ -61,7 +61,7 @@ module Trello
 
     context "find_card" do
       it "gets a card" do
-        Client.stub(:get).with("/boards/abcdef123456789123456789/cards/1").
+        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/cards/1").
           and_return card_payload
         @board.find_card(1).should be_a(Card)
       end
@@ -69,7 +69,7 @@ module Trello
 
     context "lists" do
       it "has a list of lists" do
-        Client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
+        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
           and_return lists_payload
 
         @board.has_lists?.should be true
@@ -78,7 +78,7 @@ module Trello
 
     context "members" do
       it "has a list of members" do
-        Client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(:filter => :all)).
+        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(:filter => :all)).
           and_return JSON.generate([user_details])
 
         @board.members.count.should be > 0
@@ -87,7 +87,7 @@ module Trello
 
     context "organization" do
       it "belongs to an organization" do
-        Client.stub(:get).with("/organizations/abcdef123456789123456789").
+        Trello.client.stub(:get).with("/organizations/abcdef123456789123456789").
           and_return JSON.generate(orgs_details.first)
 
         @board.organization.should_not be_nil
@@ -135,7 +135,7 @@ module Trello
     end
 
     it "cannot currently save a new instance" do
-      Client.should_not_receive :put
+      Trello.client.should_not_receive :put
 
       the_new_board = Board.new
       lambda{the_new_board.save}.should raise_error
@@ -144,7 +144,7 @@ module Trello
     it "puts all fields except id" do
       expected_fields = %w{name description closed}.map{|s| s.to_sym}
 
-      Client.should_receive(:put) do |anything, body|
+      Trello.client.should_receive(:put) do |anything, body|
         body.keys.should =~ expected_fields
         any_board_json
       end
@@ -154,7 +154,7 @@ module Trello
     end
 
     it "mutates the current instance" do
-      Client.stub(:put).and_return any_board_json
+      Trello.client.stub(:put).and_return any_board_json
 
       board = Board.new 'id' => "xxx"
 
@@ -166,7 +166,7 @@ module Trello
     it "uses the correct resource" do
       expected_resource_id = "xxx_board_id_xxx"
 
-      Client.should_receive(:put) do |path, anything|
+      Trello.client.should_receive(:put) do |path, anything|
         path.should =~ /#{expected_resource_id}\/$/
         any_board_json
       end
@@ -192,7 +192,7 @@ module Trello
       board.description = "new description"
       board.closed      = true
 
-      Client.should_receive(:put).with("/boards/#{board.id}/", {
+      Trello.client.should_receive(:put).with("/boards/#{board.id}/", {
         :name => "new name",
         :description => "new description",
         :closed => true
@@ -212,19 +212,19 @@ module Trello
       expected_attributes = { :name => "Any new board name", :description => "Any new board desription" }
       sent_attributes = { :name => expected_attributes[:name], :desc => expected_attributes[:description] }
 
-      Client.should_receive(:post).with("/boards", sent_attributes).and_return any_board_json
+      Trello.client.should_receive(:post).with("/boards", sent_attributes).and_return any_board_json
 
       Board.create expected_attributes
     end
 
     it "posts to the boards collection" do
-      Client.should_receive(:post).with("/boards", anything).and_return any_board_json
+      Trello.client.should_receive(:post).with("/boards", anything).and_return any_board_json
 
       Board.create :xxx => ""
     end
 
     it "returns a board" do
-      Client.stub(:post).with("/boards", anything).and_return any_board_json
+      Trello.client.stub(:post).with("/boards", anything).and_return any_board_json
 
       the_new_board = Board.create :xxx => ""
       the_new_board.should be_a Board

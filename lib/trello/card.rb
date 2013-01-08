@@ -53,7 +53,7 @@ module Trello
     many :checklists, :filter => :all
 
     def check_item_states
-      states = Client.get("/cards/#{self.id}/checkItemStates").json_into(CheckItemState)
+      states = client.get("/cards/#{self.id}/checkItemStates").json_into(CheckItemState)
       MultiAssociation.new(self, states).proxy
     end
 
@@ -64,7 +64,7 @@ module Trello
     # Returns a list of members who are assigned to this card.
     def members
       members = member_ids.map do |member_id|
-        Client.get("/members/#{member_id}").json_into(Member)
+        client.get("/members/#{member_id}").json_into(Member)
       end
       MultiAssociation.new(self, members).proxy
     end
@@ -74,7 +74,7 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      Client.post("/cards", {
+      client.post("/cards", {
         :name   => name,
         :desc   => description,
         :idList => list_id
@@ -91,7 +91,7 @@ module Trello
       payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
       @changed_attributes.clear
 
-      Client.put("/cards/#{id}", payload)
+      client.put("/cards/#{id}", payload)
     end
 
     # Check if the card is not active anymore.
@@ -115,12 +115,12 @@ module Trello
 
     # Add a comment with the supplied text.
     def add_comment(text)
-      Client.post("/cards/#{id}/actions/comments", :text => text)
+      client.post("/cards/#{id}/actions/comments", :text => text)
     end
 
     # Add a checklist to this card
     def add_checklist(checklist)
-      Client.post("/cards/#{id}/checklists", {
+      client.post("/cards/#{id}/checklists", {
         :value => checklist.id
       })
     end
@@ -128,7 +128,7 @@ module Trello
     # Move this card to the given list
     def move_to_list(list)
       unless list_id == list.id
-        Client.put("/cards/#{id}/idList", {
+        client.put("/cards/#{id}/idList", {
           :value => list.id
         })
       end
@@ -139,25 +139,25 @@ module Trello
       unless board_id == new_board.id
         payload = { :value => new_board.id }
         payload[:idList] = new_list.id if new_list
-        Client.put("/cards/#{id}/idBoard", payload)
+        client.put("/cards/#{id}/idBoard", payload)
       end
     end
 
     # Add a member to this card
     def add_member(member)
-      Client.post("/cards/#{id}/members", {
+      client.post("/cards/#{id}/members", {
         :value => member.id
       })
     end
 
     # Remove a member from this card
     def remove_member(member)
-      Client.delete("/cards/#{id}/members/#{member.id}")
+      client.delete("/cards/#{id}/members/#{member.id}")
     end
 
     # Retrieve a list of labels
     def labels
-      labels = Client.get("/cards/#{id}/labels").json_into(Label)
+      labels = client.get("/cards/#{id}/labels").json_into(Label)
       MultiAssociation.new(self, labels).proxy
     end
 
@@ -167,7 +167,7 @@ module Trello
         errors.add(:label, "colour '#{colour}' does not exist")
         return Trello.logger.warn "The label colour '#{colour}' does not exist."
       end
-      Client.post("/cards/#{id}/labels", { :value => colour })
+      client.post("/cards/#{id}/labels", { :value => colour })
     end
 
     # Remove a label
@@ -176,18 +176,18 @@ module Trello
         errors.add(:label, "colour '#{colour}' does not exist")
         return Trello.logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
       end
-      Client.delete("/cards/#{id}/labels/#{colour}")
+      client.delete("/cards/#{id}/labels/#{colour}")
     end
 
     # Add an attachment to this card
     def add_attachment(attachment, name='')
       if attachment.is_a? File
-        Client.post("/cards/#{id}/attachments", {
+        client.post("/cards/#{id}/attachments", {
             :file => attachment,
             :name => name
           })
       else
-        Client.post("/cards/#{id}/attachments", {
+        client.post("/cards/#{id}/attachments", {
             :url => attachment,
             :name => name
           })
@@ -196,13 +196,13 @@ module Trello
 
     # Retrieve a list of attachments
     def attachments
-      attachments = Client.get("/cards/#{id}/attachments").json_into(Attachment)
+      attachments = client.get("/cards/#{id}/attachments").json_into(Attachment)
       MultiAssociation.new(self, attachments).proxy
     end
 
       # Remove an attachment from this card
     def remove_attachment(attachment)
-      Client.delete("/cards/#{id}/attachments/#{attachment.id}")
+      client.delete("/cards/#{id}/attachments/#{attachment.id}")
     end
 
     # :nodoc:

@@ -21,7 +21,7 @@ module Trello
       end
 
       def all
-        Client.get("/members/#{Member.find(:me).username}/boards").json_into(self)
+        client.get("/members/#{Member.find(:me).username}/boards").json_into(self)
       end
     end
 
@@ -32,7 +32,7 @@ module Trello
       fields.merge!(:desc => description) if description
       fields.merge!(:idOrganization => organization_id) if organization_id
 
-      Client.post("/boards", fields).json_into(self)
+      client.post("/boards", fields).json_into(self)
     end
 
     def update!
@@ -41,7 +41,7 @@ module Trello
       @previously_changed = changes
       @changed_attributes.clear
 
-      Client.put("/boards/#{self.id}/", {
+      client.put("/boards/#{self.id}/", {
         :name        => attributes[:name],
         :description => attributes[:description],
         :closed      => attributes[:closed]
@@ -68,7 +68,7 @@ module Trello
     end
 
     def find_card(card_id)
-      Client.get("/boards/#{self.id}/cards/#{card_id}").json_into(Card)
+      client.get("/boards/#{self.id}/cards/#{card_id}").json_into(Card)
     end
 
     # Return all the cards on this board.

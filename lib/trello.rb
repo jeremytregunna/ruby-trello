@@ -9,9 +9,9 @@ require 'active_model'
 #
 #   include Trello
 #   include Trello::Authorization
-#   
+#
 #   Trello::Authorization.const_set :AuthPolicy, OAuthPolicy
-#   
+#
 #   OAuthPolicy.consumer_credential = OAuthCredential.new 'PUBLIC_KEY', 'SECRET'
 #
 # You can get the key by going to this url in your browser:
@@ -80,5 +80,9 @@ module Trello
 
   def self.logger=(logger)
     @logger = logger
+  end
+
+  def self.client
+    @client ||= Client.new
   end
 end
