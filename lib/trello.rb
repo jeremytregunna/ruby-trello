@@ -47,6 +47,7 @@ module Trello
   autoload :Card,              'trello/card'
   autoload :Checklist,         'trello/checklist'
   autoload :Client,            'trello/client'
+  autoload :Configuration,     'trello/configuration'
   autoload :HasActions,        'trello/has_actions'
   autoload :Item,              'trello/item'
   autoload :CheckItemState,         'trello/item_state'
@@ -84,5 +85,13 @@ module Trello
 
   def self.client
     @client ||= Client.new
+  end
+
+  def self.configuration
+    client.configuration
+  end
+
+  def self.configure
+    yield configuration
   end
 end

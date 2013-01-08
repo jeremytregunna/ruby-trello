@@ -16,6 +16,30 @@ Seriously, [check it out](http://www.trello.com/).
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
 to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
 
+## Configuration
+
+Basic authorization
+
+```ruby
+Trello.configure do |config|
+  config.strategy = :basic
+  config.consumer_key = YOUR_CONSUMER_KEY
+  config.consumer_secret = YOUR_CONSUMER_SECRET
+end
+```
+
+OAuth authorization
+
+```ruby
+Trello.configure do |config|
+  config.strategy = :oauth
+  config.consumer_key = YOUR_CONSUMER_KEY
+  config.consumer_secret = YOUR_CONSUMER_SECRET
+  config.oauth_token = YOUR_OAUTH_TOKEN
+  config.oauth_token_secret = YOUR_OAUTH_TOKEN_SECRET
+end
+```
+
 ## Special thanks
 
 A special thanks goes out to [Ben Biddington](https://github.com/ben-biddington) who has contributed a significant amount

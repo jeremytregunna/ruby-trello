@@ -44,5 +44,9 @@ module Trello
       response.body
     end
 
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
   end
 end
