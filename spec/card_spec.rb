@@ -132,6 +132,13 @@ module Trello
         @card.move_to_list(other_list)
       end
 
+      it 'should not be moved if new list is identical to old list' do
+        other_list = stub(:id => 'abcdef123456789123456789')
+        payload = {:value => other_list.id}
+        Client.should_not_receive(:put)
+        @card.move_to_list(other_list)
+      end
+
       it 'can be moved to another board' do
         other_board = stub(:id => '987654321987654321fedcba')
         payload = {:value => other_board.id}
@@ -145,6 +152,12 @@ module Trello
         payload = {:value => other_board.id, :idList => other_list.id}
         Client.should_receive(:put).with("/cards/abcdef123456789123456789/idBoard", payload)
         @card.move_to_board(other_board, other_list)
+      end
+
+      it 'should not be moved if new board is identical with old board', :focus => true do
+        other_board = stub(:id => 'abcdef123456789123456789')
+        Client.should_not_receive(:put)
+        @card.move_to_board(other_board)
       end
     end
 
