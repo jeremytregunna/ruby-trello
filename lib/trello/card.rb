@@ -87,18 +87,11 @@ module Trello
     # this object before making your changes, and before updating the record.
     def update!
       @previously_changed = changes
+      # extract only new values to build payload
+      payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
       @changed_attributes.clear
 
-      Client.put("/cards/#{id}", {
-        :name      => name,
-        :desc      => description,
-        :due       => due && due.utc.iso8601,
-        :closed    => closed,
-        :idList    => list_id,
-        :idBoard   => board_id,
-        :idMembers => member_ids,
-        :pos => pos
-      })
+      Client.put("/cards/#{id}", payload)
     end
 
     # Check if the card is not active anymore.
