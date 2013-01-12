@@ -10,16 +10,18 @@ describe Client, "and how it handles authorization" do
       :body => "A fake response body"
   }
   let(:client) { Client.new }
+  let(:auth_policy) { stub }
 
   before do
     TInternet.stub(:execute).and_return fake_ok_response
-    Authorization::AuthPolicy.stub(:authorize) do |request|
+    Authorization::AuthPolicy.stub(:new).and_return(auth_policy)
+    auth_policy.stub(:authorize) do |request|
       request
     end
   end
 
   it "authorizes before it queries the internet" do
-    AuthPolicy.should_receive(:authorize).once.ordered
+    auth_policy.should_receive(:authorize).once.ordered
     TInternet.should_receive(:execute).once.ordered
 
     client.get "/xxx"

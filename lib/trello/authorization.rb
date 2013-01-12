@@ -11,13 +11,24 @@ module Trello
         attr_accessor :developer_public_key, :member_token
 
         def authorize(request)
-          the_uri = Addressable::URI.parse(request.uri)
-          existing_values = the_uri.query_values.nil? ? {} : the_uri.query_values
-          new_values = { :key => @developer_public_key, :token => @member_token }
-          the_uri.query_values = new_values.merge existing_values
-
-          Request.new request.verb, the_uri, request.headers, request.body
+          new.authorize(request)
         end
+      end
+
+      attr_accessor :developer_public_key, :member_token
+
+      def initialize(attrs = {})
+        @developer_public_key = attrs[:developer_public_key] || self.class.developer_public_key
+        @member_token = attrs[:member_token] || self.class.member_token
+      end
+
+      def authorize(request)
+        the_uri = Addressable::URI.parse(request.uri)
+        existing_values = the_uri.query_values.nil? ? {} : the_uri.query_values
+        new_values = { :key => @developer_public_key, :token => @member_token }
+        the_uri.query_values = new_values.merge existing_values
+
+        Request.new request.verb, the_uri, request.headers, request.body
       end
     end
 
@@ -57,59 +68,72 @@ module Trello
         attr_accessor :consumer_credential, :token, :return_url, :callback
 
         def authorize(request)
-          unless consumer_credential
-            Trello.logger.error "The consumer_credential has not been supplied."
-            fail "The consumer_credential has not been supplied."
-          end
+          new.authorize(request)
+        end
+      end
 
-          if token
-            request.headers = {"Authorization" => get_auth_header(request.uri, :get)}
-            request
-          else
-            consumer(:return_url => return_url, :callback_method => :postMessage)
-            request_token = consumer.get_request_token
-            callback.call request_token
-            return nil
-          end
+      attr_accessor :consumer_credential, :token, :return_url, :callback
+
+      def initialize(attrs = {})
+        @consumer_credential = attrs[:consumer_credential] || self.class.consumer_credential
+        @token = attrs[:token] || self.class.token
+        @return_url = attrs[:return_url] || self.class.return_url
+        @callback = attrs[:callback] || self.class.callback
+      end
+
+      def authorize(request)
+        unless consumer_credential
+          Trello.logger.error "The consumer_credential has not been supplied."
+          fail "The consumer_credential has not been supplied."
         end
 
-        private
-
-        def consumer_params(params = {})
-          {
-            :scheme      => :header,
-            :scope       => 'read,write,account',
-            :http_method => :get,
-            :request_token_path => "https://trello.com/1/OAuthGetRequestToken",
-            :authorize_path     => "https://trello.com/1/OAuthAuthorizeToken",
-            :access_token_path  => "https://trello.com/1/OAuthGetAccessToken"
-          }.merge!(params)
+        if token
+          request.headers = {"Authorization" => get_auth_header(request.uri, :get)}
+          request
+        else
+          consumer(:return_url => return_url, :callback_method => :postMessage)
+          request_token = consumer.get_request_token
+          callback.call request_token
+          return nil
         end
+      end
 
-        def consumer(options = {})
-          @consumer ||= OAuth::Consumer.new(
-            consumer_credential.key,
-            consumer_credential.secret,
-            consumer_params(options)
-          )
-        end
+      private
 
-        def get_auth_header(url, verb, options = {})
-          self.token ||= OAuththCredential.new
+      def consumer_params(params = {})
+        {
+          :scheme      => :header,
+          :scope       => 'read,write,account',
+          :http_method => :get,
+          :request_token_path => "https://trello.com/1/OAuthGetRequestToken",
+          :authorize_path     => "https://trello.com/1/OAuthAuthorizeToken",
+          :access_token_path  => "https://trello.com/1/OAuthGetAccessToken"
+        }.merge!(params)
+      end
 
-          request = Net::HTTP::Get.new Addressable::URI.parse(url).to_s
+      def consumer(options = {})
+        @consumer ||= OAuth::Consumer.new(
+          consumer_credential.key,
+          consumer_credential.secret,
+          consumer_params(options)
+        )
+      end
 
-          consumer.options[:signature_method] = 'HMAC-SHA1'
-          consumer.options[:nonce]            = Nonce.next
-          consumer.options[:timestamp] 	      = Clock.timestamp
-          consumer.options[:uri]              = url
-          consumer.key                        = consumer_credential.key
-          consumer.secret                     = consumer_credential.secret
+      def get_auth_header(url, verb, options = {})
+        self.token ||= OAuththCredential.new
 
-          consumer.sign!(request, OAuth::Token.new(token.key, token.secret))
+        request = Net::HTTP::Get.new Addressable::URI.parse(url).to_s
 
-          request['authorization']
-        end
+        consumer.options[:signature_method] = 'HMAC-SHA1'
+        consumer.options[:nonce]            = Nonce.next
+        consumer.options[:timestamp] 	      = Clock.timestamp
+        consumer.options[:uri]              = url
+        consumer.key                        = consumer_credential.key
+        consumer.secret                     = consumer_credential.secret
+
+        consumer.sign!(request, OAuth::Token.new(token.key, token.secret))
+
+        request['authorization']
       end
     end
   end

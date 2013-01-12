@@ -27,7 +27,7 @@ module Trello
 
     def invoke_verb(name, uri, body = nil)
       request = Request.new name, uri, {}, body
-      response = TInternet.execute AuthPolicy.authorize(request)
+      response = TInternet.execute auth_policy.authorize(request)
 
       return '' unless response
 
@@ -46,6 +46,10 @@ module Trello
 
     def configuration
       @configuration ||= Configuration.new
+    end
+
+    def auth_policy
+      @auth_policy ||= AuthPolicy.new
     end
 
   end
