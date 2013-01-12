@@ -42,6 +42,10 @@ module Trello
       it "has a board" do
         @list.board.should == Board.new(boards_details.first)
       end
+
+      it "gets its position" do
+        @list.pos.should == lists_details.first['pos']
+      end
     end
 
     context "actions" do
