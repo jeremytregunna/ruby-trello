@@ -81,7 +81,7 @@ module Trello
         @consumer_key       = attrs[:consumer_key]
         @consumer_secret    = attrs[:consumer_secret]
         @oauth_token        = attrs[:oauth_token]
-        @oauth_secret = attrs[:oauth_secret]
+        @oauth_secret       = attrs[:oauth_secret]
         @return_url         = attrs[:return_url]          || self.class.return_url
         @callback           = attrs[:callback]            || self.class.callback
       end
@@ -127,7 +127,7 @@ module Trello
       end
 
       def build_token
-        if @oauth_token && @oauth_secret
+        if @oauth_token
           OAuthCredential.new @oauth_token, @oauth_secret
         else
           self.class.token || OAuthCredential.new
