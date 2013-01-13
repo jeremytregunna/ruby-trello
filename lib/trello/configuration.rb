@@ -1,22 +1,29 @@
 module Trello
   class Configuration
-    attr_accessor :auth_policy
     attr_accessor :developer_public_key, :member_token
-    attr_accessor :consumer_key, :consumer_secret, :oauth_token, :oauth_token_secret
+    attr_accessor :consumer_key, :consumer_secret, :oauth_token, :oauth_secret
 
     def initialize(attrs = {})
       attrs.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     def credentials
-      case auth_policy
-      when :oauth
+      case
+      when oauth?
         oauth_credentials
-      when :basic
+      when basic?
         basic_credentials
       else
         {}
       end
+    end
+
+    def oauth?
+      consumer_key && consumer_secret
+    end
+
+    def basic?
+      developer_public_key && member_token
     end
 
     private
@@ -26,7 +33,7 @@ module Trello
         :consumer_key => consumer_key,
         :consumer_secret => consumer_secret,
         :oauth_token => oauth_token,
-        :oauth_token_secret => oauth_token_secret,
+        :oauth_secret => oauth_secret,
       }
     end
 

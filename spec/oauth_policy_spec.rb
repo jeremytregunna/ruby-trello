@@ -9,6 +9,53 @@ describe OAuthPolicy do
     OAuthPolicy.token = nil
   end
 
+  describe "#consumer_credential" do
+    it "uses class setting if available" do
+      policy = OAuthPolicy.new
+      policy.consumer_credential.key.should eq('xxx')
+      policy.consumer_credential.secret.should eq('xxx')
+    end
+
+    it "is built from given consumer_key and consumer_secret" do
+      policy = OAuthPolicy.new(
+        :consumer_key => 'consumer_key',
+        :consumer_secret => 'consumer_secret'
+      )
+      policy.consumer_credential.key.should eq('consumer_key')
+      policy.consumer_credential.secret.should eq('consumer_secret')
+    end
+
+    it "is nil if none supplied to class" do
+      OAuthPolicy.consumer_credential = nil
+      policy = OAuthPolicy.new
+      policy.consumer_credential.should be_nil
+    end
+  end
+
+  describe "#token" do
+    it "uses class setting if available" do
+      OAuthPolicy.token = OAuthCredential.new "xxx", "xxx"
+      policy = OAuthPolicy.new
+      policy.token.key.should eq('xxx')
+      policy.token.secret.should eq('xxx')
+    end
+
+    it "is built from given consumer_key and consumer_secret" do
+      policy = OAuthPolicy.new(
+        :oauth_token => 'oauth_token',
+        :oauth_secret => 'oauth_secret'
+      )
+      policy.token.key.should eq('oauth_token')
+      policy.token.secret.should eq('oauth_secret')
+    end
+
+    it "is an empty token if none supplied to class" do
+      policy = OAuthPolicy.new
+      policy.token.key.should be_nil
+      policy.token.secret.should be_nil
+    end
+  end
+
   context "2-legged" do
     it "adds an authorization header" do
       uri = Addressable::URI.parse("https://xxx/")

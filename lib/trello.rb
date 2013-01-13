@@ -1,3 +1,4 @@
+
 require 'oauth'
 require 'json'
 require 'logger'
@@ -87,11 +88,16 @@ module Trello
     @client ||= Client.new
   end
 
-  def self.configuration
-    client.configuration
+  def self.configure
+    reset!
+    yield client.configuration
   end
 
-  def self.configure
-    yield configuration
+  def self.auth_policy
+    client.auth_policy
+  end
+
+  def self.reset!
+    @client = nil
   end
 end

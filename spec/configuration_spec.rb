@@ -20,9 +20,9 @@ describe Configuration do
     configuration.oauth_token.should eq('oauth_token')
   end
 
-  it "has a oauth_token_secret attribute" do
-    configuration.oauth_token_secret = 'oauth_token_secret'
-    configuration.oauth_token_secret.should eq('oauth_token_secret')
+  it "has a oauth_secret attribute" do
+    configuration.oauth_secret = 'oauth_secret'
+    configuration.oauth_secret.should eq('oauth_secret')
   end
 
   it "has a developer public key attribute" do
@@ -35,59 +35,56 @@ describe Configuration do
     configuration.member_token.should eq('member_token')
   end
 
-  it "has an auth_policy attribute" do
-    configuration.auth_policy = 'auth_policy'
-    configuration.auth_policy.should eq('auth_policy')
-  end
-
   describe "initialize" do
     it "sets key attributes provided as a hash" do
       configuration = Configuration.new(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        :oauth_secret => 'oauth_secret'
       )
       configuration.consumer_key.should eq('consumer_key')
       configuration.consumer_secret.should eq('consumer_secret')
       configuration.oauth_token.should eq('oauth_token')
-      configuration.oauth_token_secret.should eq('oauth_token_secret')
+      configuration.oauth_secret.should eq('oauth_secret')
     end
   end
 
   describe "#credentials" do
-    let(:configuration) {
-      Configuration.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret',
-        :developer_public_key => 'developer_public_key',
-        :member_token => 'member_token'
-      )
-    }
+    let(:configuration) { Configuration.new(attributes) }
+
+    it "returns an empty if no attributes specified" do
+      Configuration.new({}).credentials.should eq({})
+    end
+
+    it "returns an empty if attributes incomplete" do
+      Configuration.new(:consumer_key => 'consumer_key').credentials.should eq({})
+    end
 
     it 'returns a hash of oauth attributes' do
-      configuration.auth_policy = :oauth
+      configuration = Configuration.new(
+        :consumer_key => 'consumer_key',
+        :consumer_secret => 'consumer_secret',
+        :oauth_token => 'oauth_token',
+        :oauth_secret => 'oauth_secret'
+      )
       configuration.credentials.should eq(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        :oauth_secret => 'oauth_secret'
       )
     end
 
     it "returns a hash of basic auth policy attributes" do
-      configuration.auth_policy = :basic
+      configuration = Configuration.new(
+        :developer_public_key => 'developer_public_key',
+        :member_token => 'member_token'
+      )
       configuration.credentials.should eq(
         :developer_public_key => 'developer_public_key',
         :member_token => 'member_token'
       )
-    end
-
-    it "returns a hash of basic auth policy attributes" do
-      configuration.auth_policy = nil
-      configuration.credentials.should eq({})
     end
   end
 end

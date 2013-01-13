@@ -4,7 +4,9 @@ require "oauth"
 module Trello
   module Authorization
 
-    AuthPolicy = Class.new
+    AuthPolicy = Class.new do
+      def initialize(attrs = {}); end
+    end
 
     class BasicAuthPolicy
       class << self
@@ -18,8 +20,8 @@ module Trello
       attr_accessor :developer_public_key, :member_token
 
       def initialize(attrs = {})
-        @developer_public_key = attrs[:developer_public_key] || self.class.developer_public_key
-        @member_token = attrs[:member_token] || self.class.member_token
+        @developer_public_key = attrs[:developer_public_key]  || self.class.developer_public_key
+        @member_token         = attrs[:member_token]          || self.class.member_token
       end
 
       def authorize(request)
@@ -72,13 +74,16 @@ module Trello
         end
       end
 
+      attr_accessor :attributes
       attr_accessor :consumer_credential, :token, :return_url, :callback
 
       def initialize(attrs = {})
-        @consumer_credential = attrs[:consumer_credential] || self.class.consumer_credential
-        @token = attrs[:token] || self.class.token
-        @return_url = attrs[:return_url] || self.class.return_url
-        @callback = attrs[:callback] || self.class.callback
+        @consumer_key       = attrs[:consumer_key]
+        @consumer_secret    = attrs[:consumer_secret]
+        @oauth_token        = attrs[:oauth_token]
+        @oauth_secret = attrs[:oauth_secret]
+        @return_url         = attrs[:return_url]          || self.class.return_url
+        @callback           = attrs[:callback]            || self.class.callback
       end
 
       def authorize(request)
@@ -98,7 +103,36 @@ module Trello
         end
       end
 
+      def consumer_credential
+        @consumer_credential ||= build_consumer_credential
+      end
+
+      def token
+        @token ||= build_token
+      end
+
+      def consumer_key; consumer_credential.key; end
+      def consumer_secret; consumer_credential.secret; end
+      def oauth_token; token.key; end
+      def oauth_secret; token.secret; end
+
       private
+
+      def build_consumer_credential
+        if @consumer_key && @consumer_secret
+          OAuthCredential.new @consumer_key, @consumer_secret
+        else
+          self.class.consumer_credential
+        end
+      end
+
+      def build_token
+        if @oauth_token && @oauth_secret
+          OAuthCredential.new @oauth_token, @oauth_secret
+        else
+          self.class.token || OAuthCredential.new
+        end
+      end
 
       def consumer_params(params = {})
         {
@@ -120,8 +154,6 @@ module Trello
       end
 
       def get_auth_header(url, verb, options = {})
-        self.token ||= OAuththCredential.new
-
         request = Net::HTTP::Get.new Addressable::URI.parse(url).to_s
 
         consumer.options[:signature_method] = 'HMAC-SHA1'

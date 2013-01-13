@@ -49,7 +49,17 @@ module Trello
     end
 
     def auth_policy
-      @auth_policy ||= AuthPolicy.new
+      @auth_policy ||= auth_policy_class.new(configuration.credentials)
+    end
+
+    def auth_policy_class
+      if configuration.oauth?
+        OAuthPolicy
+      elsif configuration.basic?
+        BasicAuthPolicy
+      else
+        AuthPolicy
+      end
     end
 
   end

@@ -22,9 +22,8 @@ Basic authorization
 
 ```ruby
 Trello.configure do |config|
-  config.strategy = :basic
-  config.consumer_key = YOUR_CONSUMER_KEY
-  config.consumer_secret = YOUR_CONSUMER_SECRET
+  config.developer_public_key = TRELLO_DEVELOPER_PUBLIC_KEY
+  config.member_token = TRELLO_MEMBER_TOKEN
 end
 ```
 
@@ -32,11 +31,10 @@ OAuth authorization
 
 ```ruby
 Trello.configure do |config|
-  config.strategy = :oauth
-  config.consumer_key = YOUR_CONSUMER_KEY
-  config.consumer_secret = YOUR_CONSUMER_SECRET
-  config.oauth_token = YOUR_OAUTH_TOKEN
-  config.oauth_token_secret = YOUR_OAUTH_TOKEN_SECRET
+  config.consumer_key = TRELLO_CONSUMER_KEY
+  config.consumer_secret = TRELLO_CONSUMER_SECRET
+  config.oauth_token = TRELLO_OAUTH_TOKEN
+  config.oauth_secret = TRELLO_OAUTH_TOKEN_SECRET
 end
 ```
 
