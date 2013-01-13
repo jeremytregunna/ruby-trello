@@ -20,9 +20,9 @@ describe Configuration do
     configuration.oauth_token.should eq('oauth_token')
   end
 
-  it "has a oauth_secret attribute" do
-    configuration.oauth_secret = 'oauth_secret'
-    configuration.oauth_secret.should eq('oauth_secret')
+  it "has a oauth_token_secret attribute" do
+    configuration.oauth_token_secret = 'oauth_token_secret'
+    configuration.oauth_token_secret.should eq('oauth_token_secret')
   end
 
   it "has a developer public key attribute" do
@@ -41,12 +41,12 @@ describe Configuration do
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
-        :oauth_secret => 'oauth_secret'
+        :oauth_token_secret => 'oauth_token_secret'
       )
       configuration.consumer_key.should eq('consumer_key')
       configuration.consumer_secret.should eq('consumer_secret')
       configuration.oauth_token.should eq('oauth_token')
-      configuration.oauth_secret.should eq('oauth_secret')
+      configuration.oauth_token_secret.should eq('oauth_token_secret')
     end
   end
 
@@ -66,13 +66,13 @@ describe Configuration do
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
-        :oauth_secret => 'oauth_secret'
+        :oauth_token_secret => 'oauth_token_secret'
       )
       configuration.credentials.should eq(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
-        :oauth_secret => 'oauth_secret'
+        :oauth_token_secret => 'oauth_token_secret'
       )
     end
 

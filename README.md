@@ -34,7 +34,7 @@ Trello.configure do |config|
   config.consumer_key = TRELLO_CONSUMER_KEY
   config.consumer_secret = TRELLO_CONSUMER_SECRET
   config.oauth_token = TRELLO_OAUTH_TOKEN
-  config.oauth_secret = TRELLO_OAUTH_TOKEN_SECRET
+  config.oauth_token_secret = TRELLO_OAUTH_TOKEN_SECRET
 end
 ```
 

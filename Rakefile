@@ -56,7 +56,7 @@ namespace :example do
   end
 
   def parse_token(text)
-    matchdata = /oauth_token=([^&]+)&oauth_secret=(.+)/.match text
+    matchdata = /oauth_token=([^&]+)&oauth_token_secret=(.+)/.match text
 
     the_request_token = OAuthCredential.new *matchdata[1..2]
   end

@@ -38,7 +38,7 @@ describe Trello do
           config.consumer_key     = 'consumer_key'
           config.consumer_secret  = 'consumer_secret'
           config.oauth_token      = 'oauth_token'
-          config.oauth_secret     = 'oauth_secret'
+          config.oauth_token_secret     = 'oauth_token_secret'
         end
       end
 
@@ -49,7 +49,7 @@ describe Trello do
         auth_policy.consumer_key.should eq('consumer_key')
         auth_policy.consumer_secret.should eq('consumer_secret')
         auth_policy.oauth_token.should eq('oauth_token')
-        auth_policy.oauth_secret.should eq('oauth_secret')
+        auth_policy.oauth_token_secret.should eq('oauth_token_secret')
       end
 
       it "updates auth policy configuration" do
@@ -60,7 +60,7 @@ describe Trello do
           config.consumer_key     = 'new_consumer_key'
           config.consumer_secret  = 'new_consumer_secret'
           config.oauth_token      = 'new_oauth_token'
-          config.oauth_secret     = nil
+          config.oauth_token_secret     = nil
         end
 
         auth_policy = Trello.auth_policy
@@ -69,7 +69,7 @@ describe Trello do
         auth_policy.consumer_key.should eq('new_consumer_key')
         auth_policy.consumer_secret.should eq('new_consumer_secret')
         auth_policy.oauth_token.should eq('new_oauth_token')
-        auth_policy.oauth_secret.should be_nil
+        auth_policy.oauth_token_secret.should be_nil
       end
     end
   end

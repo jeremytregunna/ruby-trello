@@ -43,10 +43,10 @@ describe OAuthPolicy do
     it "is built from given consumer_key and consumer_secret" do
       policy = OAuthPolicy.new(
         :oauth_token => 'oauth_token',
-        :oauth_secret => 'oauth_secret'
+        :oauth_token_secret => 'oauth_token_secret'
       )
       policy.token.key.should eq('oauth_token')
-      policy.token.secret.should eq('oauth_secret')
+      policy.token.secret.should eq('oauth_token_secret')
     end
 
     it "is an empty token if none supplied to class" do
