@@ -1,9 +1,7 @@
 require "spec_helper"
 
-include Trello
-
-describe Configuration do
-  let(:configuration) { Configuration.new }
+describe Trello::Configuration do
+  let(:configuration) { Trello::Configuration.new }
 
   it "has a consumer_key attribute" do
     configuration.consumer_key = 'consumer_key'
@@ -48,7 +46,7 @@ describe Configuration do
 
   describe "initialize" do
     it "sets key attributes provided as a hash" do
-      configuration = Configuration.new(
+      configuration = Trello::Configuration.new(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
@@ -62,18 +60,18 @@ describe Configuration do
   end
 
   describe "#credentials" do
-    let(:configuration) { Configuration.new(attributes) }
+    let(:configuration) { Trello::Configuration.new(attributes) }
 
     it "returns an empty if no attributes specified" do
-      Configuration.new({}).credentials.should eq({})
+      Trello::Configuration.new({}).credentials.should eq({})
     end
 
     it "returns an empty if attributes incomplete" do
-      Configuration.new(:consumer_key => 'consumer_key').credentials.should eq({})
+      Trello::Configuration.new(:consumer_key => 'consumer_key').credentials.should eq({})
     end
 
     it 'returns a hash of oauth attributes' do
-      configuration = Configuration.new(
+      configuration = Trello::Configuration.new(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
@@ -88,7 +86,7 @@ describe Configuration do
     end
 
     it 'includes callback and return url if given' do
-      configuration = Configuration.new(
+      configuration = Trello::Configuration.new(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :return_url => 'http://example.com',
@@ -103,7 +101,7 @@ describe Configuration do
     end
 
     it "returns a hash of basic auth policy attributes" do
-      configuration = Configuration.new(
+      configuration = Trello::Configuration.new(
         :developer_public_key => 'developer_public_key',
         :member_token => 'member_token'
       )
