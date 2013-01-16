@@ -8,7 +8,7 @@ module Trello
 
     class << self
       def find(path, id)
-        Client.get("/#{path}/#{id}").json_into(self)
+        client.get("/#{path}/#{id}").json_into(self)
       end
     end
 
@@ -55,10 +55,14 @@ module Trello
           resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
           klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
           params    = options.merge(args[0] || {})
-          resources = Client.get("/#{resource}/#{id}/#{name}", params).json_into(klass)
+          resources = client.get("/#{resource}/#{id}/#{name}", params).json_into(klass)
           MultiAssociation.new(self, resources).proxy
         end
       end
+    end
+
+    def self.client
+      Trello.client
     end
 
     register_attributes :id, :readonly => [ :id ]
@@ -79,6 +83,10 @@ module Trello
     # Two objects are equal if their _id_ methods are equal.
     def ==(other)
       id == other.id
+    end
+
+    def client
+      self.class.client
     end
   end
 end

@@ -5,8 +5,8 @@ module Trello
     include Helpers
 
     before(:each) do
-      Client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
-      Client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+      Trello.client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
+      Trello.client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
 
       @list = List.find("abcdef123456789123456789")
     end
@@ -20,7 +20,7 @@ module Trello
           :closed    => false
         }
 
-        Client.should_receive(:put).once.with("/lists/abcdef123456789123456789", payload)
+        Trello.client.should_receive(:put).once.with("/lists/abcdef123456789123456789", payload)
         @list.name = expected_new_name
         @list.save
       end
@@ -50,14 +50,14 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        Client.stub(:get).with("/lists/abcdef123456789123456789/actions", { :filter => :all }).and_return actions_payload
+        Trello.client.stub(:get).with("/lists/abcdef123456789123456789/actions", { :filter => :all }).and_return actions_payload
         @list.actions.count.should be > 0
       end
     end
 
     context "cards" do
       it "has a list of cards" do
-        Client.stub(:get).with("/lists/abcdef123456789123456789/cards", { :filter => :open }).and_return cards_payload
+        Trello.client.stub(:get).with("/lists/abcdef123456789123456789/cards", { :filter => :open }).and_return cards_payload
         @list.cards.count.should be > 0
       end
     end
@@ -77,7 +77,7 @@ module Trello
 
     describe "#close!" do
       it "updates the close attribute to true and saves the list" do
-        Client.should_receive(:put).once.with("/lists/abcdef123456789123456789", {
+        Trello.client.should_receive(:put).once.with("/lists/abcdef123456789123456789", {
           :name   => @list.name,
           :closed => true
         })

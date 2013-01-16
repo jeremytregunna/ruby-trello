@@ -43,14 +43,14 @@ module Trello
     def save
       return update! if id
 
-      Client.post("/checklists", {
+      client.post("/checklists", {
         :name    => name,
         :idBoard => board_id
       }).json_into(self)
     end
 
     def update!
-      Client.put("/checklists/#{id}", { :name => name }).json_into(self)
+      client.put("/checklists/#{id}", { :name => name }).json_into(self)
     end
 
     # Return a list of items on the checklist.
@@ -76,7 +76,7 @@ module Trello
 
     # Add an item to the checklist
     def add_item(name)
-      Client.post("/checklists/#{id}/checkItems", { :name => name })
+      client.post("/checklists/#{id}/checkItems", { :name => name })
     end
   end
 end
