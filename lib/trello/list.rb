@@ -35,7 +35,7 @@ module Trello
     def save
       return update! if id
 
-      Client.post("/lists", {
+      client.post("/lists", {
         :name    => name,
         :closed  => closed || false,
         :idBoard => board_id
@@ -43,7 +43,7 @@ module Trello
     end
 
     def update!
-      Client.put("/lists/#{id}", {
+      client.put("/lists/#{id}", {
         :name   => name,
         :closed => closed
       })

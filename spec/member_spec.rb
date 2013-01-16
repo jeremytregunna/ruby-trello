@@ -7,21 +7,21 @@ module Trello
     include Helpers
 
     before(:each) do
-      Client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
+      Trello.client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
 
       @member = Member.find('abcdef123456789012345678')
     end
 
     context "actions" do
       it "retrieves a list of actions", :refactor => true do
-        Client.stub(:get).with("/members/abcdef123456789012345678/actions", { :filter => :all }).and_return actions_payload
+        Trello.client.stub(:get).with("/members/abcdef123456789012345678/actions", { :filter => :all }).and_return actions_payload
         @member.actions.count.should be > 0
       end
     end
 
     context "boards" do
       it "has a list of boards" do
-        Client.stub(:get).with("/members/abcdef123456789012345678/boards", { :filter => :all }).and_return boards_payload
+        Trello.client.stub(:get).with("/members/abcdef123456789012345678/boards", { :filter => :all }).and_return boards_payload
         boards = @member.boards
         boards.count.should be > 0
       end
@@ -29,7 +29,7 @@ module Trello
 
     context "cards" do
       it "has a list of cards" do
-        Client.stub(:get).with("/members/abcdef123456789012345678/cards", { :filter => :open }).and_return cards_payload
+        Trello.client.stub(:get).with("/members/abcdef123456789012345678/cards", { :filter => :open }).and_return cards_payload
         cards = @member.cards
         cards.count.should be > 0
       end
@@ -37,7 +37,7 @@ module Trello
 
     context "organizations" do
       it "has a list of organizations" do
-        Client.stub(:get).with("/members/abcdef123456789012345678/organizations", { :filter => :all }).and_return orgs_payload
+        Trello.client.stub(:get).with("/members/abcdef123456789012345678/organizations", { :filter => :all }).and_return orgs_payload
         orgs = @member.organizations
         orgs.count.should be > 0
       end
@@ -45,7 +45,7 @@ module Trello
 
     context "notifications" do
       it "has a list of notifications" do
-        Client.stub(:get).with("/members/abcdef123456789012345678/notifications", {}).and_return "[" << notification_payload << "]"
+        Trello.client.stub(:get).with("/members/abcdef123456789012345678/notifications", {}).and_return "[" << notification_payload << "]"
         @member.notifications.count.should be 1
       end
     end

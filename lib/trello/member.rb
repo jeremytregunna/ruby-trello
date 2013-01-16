@@ -32,7 +32,7 @@ module Trello
     end
 
     # Retrieve a URL to the avatar.
-    # 
+    #
     # Valid values for options are:
     #   :large (170x170)
     #   :small (30x30)
@@ -79,7 +79,7 @@ module Trello
     end
 
     def update!
-      Client.put(request_prefix, {
+      client.put(request_prefix, {
         :fullName => full_name,
         :bio      => bio
       }).json_into(self)
