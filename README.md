@@ -45,10 +45,7 @@ Trello.configure do |config|
   config.consumer_key    = TRELLO_CONSUMER_KEY
   config.consumer_secret = TRELLO_CONSUMER_SECRET
   config.return_url      = "http://your.site.com/path/to/receive/post"
-  config.callback        = Proc.new do |request_token|
-                             DB.save(request_token.key, request_token.secret)
-                             redirect_to request_token.authorize_url
-                           end
+  config.callback        = lambda { |request_token| DB.save(request_token.key, request_token.secret) }
 end
 ```
 
