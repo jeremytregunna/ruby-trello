@@ -40,7 +40,7 @@ describe OAuthPolicy do
       policy.token.secret.should eq('xxx')
     end
 
-    it "is built from given consumer_key and consumer_secret" do
+    it "is built from given oauth_token and oauth_token_secret" do
       policy = OAuthPolicy.new(
         :oauth_token => 'oauth_token',
         :oauth_token_secret => 'oauth_token_secret'
@@ -49,10 +49,9 @@ describe OAuthPolicy do
       policy.token.secret.should eq('oauth_token_secret')
     end
 
-    it "is an empty token if none supplied to class" do
+    it "is an empty token if no oauth credentials supplied" do
       policy = OAuthPolicy.new
-      policy.token.key.should be_nil
-      policy.token.secret.should be_nil
+      policy.token.should be_nil
     end
   end
 

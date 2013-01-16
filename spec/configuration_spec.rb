@@ -35,6 +35,17 @@ describe Configuration do
     configuration.member_token.should eq('member_token')
   end
 
+  it "has a callback (for oauth)" do
+    callback = lambda { 'foobar' }
+    configuration.callback = callback
+    configuration.callback.call.should eq('foobar')
+  end
+
+  it "has a return_url" do
+    configuration.return_url = "http://www.example.com/callback"
+    configuration.return_url.should eq("http://www.example.com/callback")
+  end
+
   describe "initialize" do
     it "sets key attributes provided as a hash" do
       configuration = Configuration.new(
@@ -73,6 +84,21 @@ describe Configuration do
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
         :oauth_token_secret => 'oauth_token_secret'
+      )
+    end
+
+    it 'includes callback and return url if given' do
+      configuration = Configuration.new(
+        :consumer_key => 'consumer_key',
+        :consumer_secret => 'consumer_secret',
+        :return_url => 'http://example.com',
+        :callback => 'callback'
+      )
+      configuration.credentials.should eq(
+        :consumer_key => 'consumer_key',
+        :consumer_secret => 'consumer_secret',
+        :return_url => 'http://example.com',
+        :callback => 'callback'
       )
     end
 

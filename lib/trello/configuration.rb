@@ -2,6 +2,7 @@ module Trello
   class Configuration
     attr_accessor :developer_public_key, :member_token
     attr_accessor :consumer_key, :consumer_secret, :oauth_token, :oauth_token_secret
+    attr_accessor :callback, :return_url
 
     def initialize(attrs = {})
       attrs.each { |key, value| instance_variable_set("@#{key}", value) }
@@ -33,8 +34,10 @@ module Trello
         :consumer_key => consumer_key,
         :consumer_secret => consumer_secret,
         :oauth_token => oauth_token,
-        :oauth_token_secret => oauth_token_secret
-      }
+        :oauth_token_secret => oauth_token_secret,
+        :return_url => return_url,
+        :callback => callback,
+      }.delete_if { |key, value| value.nil? }
     end
 
     def basic_credentials

@@ -130,7 +130,7 @@ module Trello
         if @oauth_token
           OAuthCredential.new @oauth_token, @oauth_token_secret
         else
-          self.class.token || OAuthCredential.new
+          self.class.token
         end
       end
 

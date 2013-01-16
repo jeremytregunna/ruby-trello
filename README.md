@@ -27,7 +27,7 @@ Trello.configure do |config|
 end
 ```
 
-OAuth authorization
+2-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -35,6 +35,20 @@ Trello.configure do |config|
   config.consumer_secret = TRELLO_CONSUMER_SECRET
   config.oauth_token = TRELLO_OAUTH_TOKEN
   config.oauth_token_secret = TRELLO_OAUTH_TOKEN_SECRET
+end
+```
+
+3-legged OAuth authorization
+
+```ruby
+Trello.configure do |config|
+  config.consumer_key    = TRELLO_CONSUMER_KEY
+  config.consumer_secret = TRELLO_CONSUMER_SECRET
+  config.return_url      = "http://your.site.com/path/to/receive/post"
+  config.callback        = Proc.new do |request_token|
+                             DB.save(request_token.key, request_token.secret)
+                             redirect_to request_token.authorize_url
+                           end
 end
 ```
 
