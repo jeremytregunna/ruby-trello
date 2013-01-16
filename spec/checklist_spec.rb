@@ -4,11 +4,11 @@ module Trello
   describe Checklist do
     include Helpers
 
+    let(:checklist) { Checklist.find('abcdef123456789123456789') }
+
     before(:each) do
       Client.stub(:get).with("/checklists/abcdef123456789123456789").
         and_return JSON.generate(checklists_details.first)
-
-      @checklist = Checklist.find('abcdef123456789123456789')
     end
 
     context "creating" do
@@ -33,14 +33,14 @@ module Trello
     context "updating" do
       it "updating name does a put on the correct resource with the correct value" do
         expected_new_name = "xxx"
-        expected_resource = "/checklists/#{@checklist.id}"
+        expected_resource = "/checklists/abcdef123456789123456789"
         payload = {
           :name      => expected_new_name
         }
 
         result = JSON.generate(checklists_details.first)
         Client.should_receive(:put).once.with("/checklists/abcdef123456789123456789", payload).and_return result
-        checklist = @checklist.dup
+
         checklist.name = expected_new_name
         checklist.save
       end
