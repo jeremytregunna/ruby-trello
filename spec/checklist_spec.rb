@@ -62,5 +62,18 @@ module Trello
       end
     end
 
+    context "board" do
+      it "has a board" do
+        client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+        checklist.board.should_not be_nil
+      end
+    end
+
+    context "list" do
+      it 'has a list' do
+        client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
+        checklist.list.should_not be_nil
+      end
+    end
   end
 end
