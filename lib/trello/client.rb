@@ -26,10 +26,16 @@ module Trello
     end
 
     def find(path, id)
-      response = get("/#{path}/#{id}")
+      response = get("/#{path.to_s.pluralize}/#{id}")
       response.json_into(class_from_path(path)).tap do |basic_data|
         basic_data.client = self
       end
+    end
+
+    def create(path, options)
+      class_from_path(path).new(options).tap do |basic_data|
+        basic_data.client = self
+      end.save
     end
 
     def configuration

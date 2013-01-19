@@ -12,14 +12,15 @@ module Trello
     class << self
       # Find a specific card by its id.
       def find(id)
-        super(:cards, id)
+        client.find(:cards, id)
       end
 
       # Create a new card and save it on Trello.
       def create(options)
-        new('name'   => options[:name],
+        client.create(:card,
+            'name' => options[:name],
             'idList' => options[:list_id],
-            'desc'   => options[:description]).save
+            'desc'   => options[:description])
       end
     end
 
@@ -43,7 +44,7 @@ module Trello
     end
 
     # Returns a reference to the board this card is part of.
-    one :board, :using => :board_id
+    one :board, :path => :boards, :using => :board_id
 
     # Returns a list of checklists associated with the card.
     #
@@ -59,7 +60,7 @@ module Trello
 
 
     # Returns a reference to the list this card is currently in.
-    one :list, :using => :list_id
+    one :list, :path => :lists, :using => :list_id
 
     # Returns a list of members who are assigned to this card.
     def members
