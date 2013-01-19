@@ -11,7 +11,7 @@ module Trello
     class << self
       # Finds a board.
       def find(id)
-        super(:boards, id)
+        client.find(:boards, id)
       end
 
       def create(fields)
@@ -93,7 +93,7 @@ module Trello
     many :members, :filter => :all
 
     # Returns a reference to the organization this board belongs to.
-    one :organization, :using => :organization_id
+    one :organization, :path => :organizations, :using => :organization_id
 
     # :nodoc:
     def request_prefix
