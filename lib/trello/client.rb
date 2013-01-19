@@ -25,6 +25,7 @@ module Trello
       invoke_verb(:delete, uri)
     end
 
+    # Finds given resource by id
     def find(path, id)
       response = get("/#{path.to_s.pluralize}/#{id}")
       class_from_path(path).parse(response) do |data|
@@ -32,6 +33,15 @@ module Trello
       end
     end
 
+    # Finds given resource by path with params
+    def find_many(klass, path, params)
+      response = get(path, params)
+      klass.parse_many(response) do |data|
+        data.client = self
+      end
+    end
+
+    # Creates resource with given options (attributes)
     def create(path, options)
       class_from_path(path).save(options) do |data|
         data.client = self

@@ -22,6 +22,14 @@ module Trello
           yield basic_data if block_given?
         end
       end
+
+      def parse_many(response)
+        response.json_into(self).map do |data|
+          data.tap do |d|
+            yield d if block_given?
+          end
+        end
+      end
     end
 
     def self.register_attributes(*names)
@@ -73,15 +81,9 @@ module Trello
           resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
           klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
           params    = options.merge(args[0] || {})
-          resources = objects_from_response klass, client.get("/#{resource}/#{id}/#{name}", params)
+          resources = client.find_many(klass, "/#{resource}/#{id}/#{name}", params)
           MultiAssociation.new(self, resources).proxy
         end
-      end
-    end
-
-    def objects_from_response(klass, response)
-      response.json_into(klass).map do |data|
-        data.tap { |d| d.client = self.client }
       end
     end
 
