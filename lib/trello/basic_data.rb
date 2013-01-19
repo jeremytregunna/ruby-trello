@@ -8,7 +8,21 @@ module Trello
 
     class << self
       def find(path, id)
-        client.get("/#{path}/#{id}").json_into(self)
+        klass = class_from_path(path)
+        object_from_response klass, client.get("/#{path.to_s.pluralize}/#{id}")
+      end
+
+      def create(path, options)
+        klass = class_from_path(path)
+        klass.new(options).tap { |data| data.client = self.client }.save
+      end
+
+      def object_from_response(klass, response)
+        response.json_into(klass).tap { |data| data.client = self }
+      end
+
+      def class_from_path(path)
+        Trello.const_get(path.to_s.singularize.camelize)
       end
     end
 
@@ -61,9 +75,15 @@ module Trello
           resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
           klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
           params    = options.merge(args[0] || {})
-          resources = client.get("/#{resource}/#{id}/#{name}", params).json_into(klass)
+          resources = objects_from_response klass, client.get("/#{resource}/#{id}/#{name}", params)
           MultiAssociation.new(self, resources).proxy
         end
+      end
+    end
+
+    def objects_from_response(klass, response)
+      response.json_into(klass).map do |data|
+        data.tap { |d| d.client = self.client }
       end
     end
 

@@ -7,7 +7,7 @@ module Trello
     class << self
       # Locate a notification by its id
       def find(id)
-        super(:notifications, id)
+        client.find(:notifications, id)
       end
     end
 
@@ -23,7 +23,7 @@ module Trello
 
     alias :unread? :unread
 
-    one :member_creator, :via => Member, :using => :member_creator_id
+    one :member_creator, :path => :members, :via => Member, :using => :member_creator_id
 
     def board
       client.get("/notifications/#{id}/board").json_into(Board)

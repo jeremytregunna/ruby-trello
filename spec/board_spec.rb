@@ -12,7 +12,7 @@ module Trello
         and_return JSON.generate(boards_details.first)
     end
 
-    context "self.find" do
+    context "finding" do
       let(:client) { Trello.client }
 
       it "delegates to client#find" do

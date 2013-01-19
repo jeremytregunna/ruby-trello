@@ -13,7 +13,7 @@ module Trello
       client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
     end
 
-    context "self.find" do
+    context "finding" do
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#member" do
