@@ -15,9 +15,10 @@ module Trello
       end
 
       def create(fields)
-        new('name'   => fields[:name],
-            'desc'   => fields[:description],
-            'closed' => fields[:closed] || false).save
+        client.create(:board,
+          'name'   => fields[:name],
+          'desc'   => fields[:description],
+          'closed' => fields[:closed] || false)
       end
 
       def all
