@@ -6,20 +6,18 @@ module Trello
   describe Member do
     include Helpers
 
-    let(:client) { Client.new }
     let(:member) { client.find(:members, 'abcdef123456789012345678') }
+    let(:client) { Client.new }
 
     before(:each) do
       client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
     end
 
     context "self.find" do
-      before do
-        Trello.client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
-      end
+      let(:client) { Trello.client }
 
       it "delegates to Trello.client#member" do
-        Trello.client.should_receive(:find).with(:members, 'abcdef123456789012345678')
+        client.should_receive(:find).with(:members, 'abcdef123456789012345678')
         Member.find('abcdef123456789012345678')
       end
 

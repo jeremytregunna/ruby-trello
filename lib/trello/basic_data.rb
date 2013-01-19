@@ -43,7 +43,13 @@ module Trello
           options = opts.dup
           klass   = options.delete(:via) || Trello.const_get(name.to_s.camelize)
           ident   = options.delete(:using) || :id
-          klass.find(self.send(ident))
+          path    = options.delete(:path)
+
+          if path
+            client.find(path, self.send(ident))
+          else
+            klass.find(self.send(ident))
+          end
         end
       end
     end

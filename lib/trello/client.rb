@@ -72,7 +72,7 @@ module Trello
     end
 
     def class_from_path(path)
-      Trello.const_get("#{path.to_s.singularize.titleize}")
+      Trello.const_get(path.to_s.singularize.camelize)
     end
   end
 end
