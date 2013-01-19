@@ -25,6 +25,23 @@ module Trello
       invoke_verb(:delete, uri)
     end
 
+    def find(path, id)
+      response = get("/#{path}/#{id}")
+      response.json_into(class_from_path(path)).tap do |basic_data|
+        basic_data.client = self
+      end
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def auth_policy
+      @auth_policy ||= auth_policy_class.new(configuration.credentials)
+    end
+
+    private
+
     def invoke_verb(name, uri, body = nil)
       request = Request.new name, uri, {}, body
       response = TInternet.execute auth_policy.authorize(request)
@@ -44,14 +61,6 @@ module Trello
       response.body
     end
 
-    def configuration
-      @configuration ||= Configuration.new
-    end
-
-    def auth_policy
-      @auth_policy ||= auth_policy_class.new(configuration.credentials)
-    end
-
     def auth_policy_class
       if configuration.oauth?
         OAuthPolicy
@@ -62,5 +71,8 @@ module Trello
       end
     end
 
+    def class_from_path(path)
+      Trello.const_get("#{path.to_s.singularize.titleize}")
+    end
   end
 end

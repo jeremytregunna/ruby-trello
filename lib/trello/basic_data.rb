@@ -67,6 +67,8 @@ module Trello
 
     register_attributes :id, :readonly => [ :id ]
 
+    attr_writer :client
+
     def initialize(fields = {})
       update_fields(fields)
     end
@@ -86,7 +88,7 @@ module Trello
     end
 
     def client
-      self.class.client
+      @client ||= self.class.client
     end
   end
 end
