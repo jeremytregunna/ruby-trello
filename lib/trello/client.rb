@@ -29,12 +29,12 @@ module Trello
       object_from_response class_from_path(path), get("/#{path.to_s.pluralize}/#{id}")
     end
 
-    def object_from_response(klass, response)
-      response.json_into(klass).tap { |data| data.client = self }
-    end
-
     def create(path, options)
       class_from_path(path).new(options).tap { |data| data.client = self }.save
+    end
+
+    def object_from_response(klass, response)
+      response.json_into(klass).tap { |data| data.client = self }
     end
 
     def configuration
