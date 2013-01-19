@@ -7,22 +7,20 @@ module Trello
     include ActiveModel::Serializers::JSON
 
     class << self
-      def find(path, id)
-        klass = class_from_path(path)
-        object_from_response klass, client.get("/#{path.to_s.pluralize}/#{id}")
+      def find(id)
+        client.find(self, id)
       end
 
-      def create(path, options)
-        klass = class_from_path(path)
-        klass.new(options).tap { |data| data.client = self.client }.save
+      def save(options)
+        new(options).tap do |basic_data|
+          yield basic_data if block_given?
+        end.save
       end
 
-      def object_from_response(klass, response)
-        response.json_into(klass).tap { |data| data.client = self }
-      end
-
-      def class_from_path(path)
-        Trello.const_get(path.to_s.singularize.camelize)
+      def parse(response)
+        response.json_into(self).tap do |basic_data|
+          yield basic_data if block_given?
+        end
       end
     end
 

@@ -26,15 +26,16 @@ module Trello
     end
 
     def find(path, id)
-      object_from_response class_from_path(path), get("/#{path.to_s.pluralize}/#{id}")
+      response = get("/#{path.to_s.pluralize}/#{id}")
+      class_from_path(path).parse(response) do |data|
+        data.client = self
+      end
     end
 
     def create(path, options)
-      class_from_path(path).new(options).tap { |data| data.client = self }.save
-    end
-
-    def object_from_response(klass, response)
-      response.json_into(klass).tap { |data| data.client = self }
+      class_from_path(path).save(options) do |data|
+        data.client = self
+      end
     end
 
     def configuration
@@ -76,8 +77,9 @@ module Trello
       end
     end
 
-    def class_from_path(path)
-      Trello.const_get(path.to_s.singularize.camelize)
+    def class_from_path(path_or_class)
+      return path_or_class if path_or_class.is_a?(Class)
+      Trello.const_get(path_or_class.to_s.singularize.camelize)
     end
   end
 end

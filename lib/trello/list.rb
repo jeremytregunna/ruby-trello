@@ -14,7 +14,7 @@ module Trello
       end
 
       def create(options)
-        client.create(:list,
+        client.create(self,
             'name'    => options[:name],
             'idBoard' => options[:board_id])
       end
