@@ -15,12 +15,12 @@ module Trello
     context "self.find" do
       let(:client) { Trello.client }
 
-      it "delegates to Trello.client#member" do
+      it "delegates to Trello.client#find" do
         client.should_receive(:find).with(:actions, '4ee2482134a81a757a08af47')
         Action.find('4ee2482134a81a757a08af47')
       end
 
-      it "is equivalent to client#member" do
+      it "is equivalent to client#find" do
         Action.find('4ee2482134a81a757a08af47').should eq(action)
       end
     end

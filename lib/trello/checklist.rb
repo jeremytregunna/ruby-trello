@@ -9,12 +9,13 @@ module Trello
     class << self
       # Locate a specific checklist by its id.
       def find(id)
-        super(:checklists, id)
+        client.find(:checklists, id)
       end
 
       def create(options)
-        new('name'       => options[:name],
-            'idBoard'    => options[:board_id]).save
+        client.create(:checklist,
+          'name'       => options[:name],
+          'idBoard'    => options[:board_id])
       end
     end
 

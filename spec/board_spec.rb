@@ -20,7 +20,7 @@ module Trello
         Board.find('abcdef123456789123456789')
       end
 
-      it "is equivalent to client#board" do
+      it "is equivalent to client#find" do
         Board.find('abcdef123456789123456789').should eq(board)
       end
     end

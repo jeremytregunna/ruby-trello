@@ -15,12 +15,12 @@ module Trello
     context "self.find" do
       let(:client) { Trello.client }
 
-      it "delegates to Trello.client#member" do
+      it "delegates to Trello.client#find" do
         client.should_receive(:find).with(:cards, 'abcdef123456789123456789')
         Card.find('abcdef123456789123456789')
       end
 
-      it "is equivalent to client#member" do
+      it "is equivalent to client#find" do
         Card.find('abcdef123456789123456789').should eq(card)
       end
     end
