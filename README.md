@@ -65,9 +65,7 @@ bob.boards
 
 #### Multiple Users
 
-Applications that make requests on behalf of multiple Trello users should
-avoid using global configuration. Instead, for each user's access
-token/secret pair, instantiate a `Trello::Client`:
+Applications that make requests on behalf of multiple Trello users have an alternative to global configuration. For each user's access token/secret pair, instantiate a `Trello::Client`:
 
 ```ruby
 @client_bob = Trello::Client.new(
