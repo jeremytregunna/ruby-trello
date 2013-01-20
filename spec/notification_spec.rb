@@ -5,7 +5,7 @@ module Trello
     include Helpers
 
     let(:notification) { member.notifications.first }
-    let(:member) { client.find(:members, "abcdef123456789012345678") }
+    let(:member) { client.find(:member, "abcdef123456789012345678") }
     let(:client) { Client.new }
 
     before(:each) do

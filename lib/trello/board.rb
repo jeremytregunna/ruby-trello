@@ -11,7 +11,7 @@ module Trello
     class << self
       # Finds a board.
       def find(id)
-        client.find(:boards, id)
+        client.find(:board, id)
       end
 
       def create(fields)

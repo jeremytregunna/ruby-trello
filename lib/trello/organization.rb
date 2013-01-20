@@ -10,7 +10,7 @@ module Trello
     class << self
       # Find an organization by its id.
       def find(id)
-        client.find(:organizations, id)
+        client.find(:organization, id)
       end
     end
 

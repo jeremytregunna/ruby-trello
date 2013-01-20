@@ -12,7 +12,7 @@ module Trello
     class << self
       # Find a specific card by its id.
       def find(id)
-        client.find(:cards, id)
+        client.find(:card, id)
       end
 
       # Create a new card and save it on Trello.

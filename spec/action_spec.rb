@@ -4,7 +4,7 @@ module Trello
   describe Action do
     include Helpers
 
-    let(:action) { client.find(:actions, '4ee2482134a81a757a08af47') }
+    let(:action) { client.find(:action, '4ee2482134a81a757a08af47') }
     let(:client) { Client.new }
 
     before(:each) do
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:actions, '4ee2482134a81a757a08af47')
+        client.should_receive(:find).with(:action, '4ee2482134a81a757a08af47')
         Action.find('4ee2482134a81a757a08af47')
       end
 

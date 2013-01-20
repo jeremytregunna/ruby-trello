@@ -10,7 +10,7 @@ module Trello
     class << self
       # Finds a specific list, given an id.
       def find(id)
-        client.find(:lists, id)
+        client.find(:list, id)
       end
 
       def create(options)

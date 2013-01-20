@@ -4,7 +4,7 @@ module Trello
   describe Token do
     include Helpers
 
-    let(:token) { client.find(:tokens, "1234") }
+    let(:token) { client.find(:token, "1234") }
     let(:client) { Client.new }
 
     before(:each) do
@@ -15,7 +15,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:tokens, '1234')
+        client.should_receive(:find).with(:token, '1234')
         Token.find('1234')
       end
 

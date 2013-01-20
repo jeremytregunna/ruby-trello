@@ -4,7 +4,7 @@ module Trello
   describe Checklist do
     include Helpers
 
-    let(:checklist) { client.find(:checklists, 'abcdef123456789123456789') }
+    let(:checklist) { client.find(:checklist, 'abcdef123456789123456789') }
     let(:client) { Client.new }
 
     before(:each) do
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:checklists, 'abcdef123456789123456789')
+        client.should_receive(:find).with(:checklist, 'abcdef123456789123456789')
         Checklist.find('abcdef123456789123456789')
       end
 

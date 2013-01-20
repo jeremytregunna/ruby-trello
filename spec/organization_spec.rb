@@ -5,7 +5,7 @@ module Trello
   describe Organization do
     include Helpers
 
-    let(:organization) { client.find(:organizations, "4ee7e59ae582acdec8000291") }
+    let(:organization) { client.find(:organization, "4ee7e59ae582acdec8000291") }
     let(:client) { Client.new }
 
     before(:each) do
@@ -17,7 +17,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:organizations, '4ee7e59ae582acdec8000291')
+        client.should_receive(:find).with(:organization, '4ee7e59ae582acdec8000291')
         Organization.find('4ee7e59ae582acdec8000291')
       end
 

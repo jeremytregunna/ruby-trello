@@ -13,7 +13,7 @@ module Trello
       #
       # The argument may be specified as either an _id_ or a _username_.
       def find(id_or_username)
-        client.find(:members, id_or_username)
+        client.find(:member, id_or_username)
       end
     end
 

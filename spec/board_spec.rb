@@ -4,7 +4,7 @@ module Trello
   describe Board do
     include Helpers
 
-    let(:board) { client.find(:boards, 'abcdef123456789123456789') }
+    let(:board) { client.find(:board, 'abcdef123456789123456789') }
     let(:client) { Client.new }
 
     before(:each) do
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to client#find" do
-        client.should_receive(:find).with(:boards, 'abcdef123456789123456789')
+        client.should_receive(:find).with(:board, 'abcdef123456789123456789')
         Board.find('abcdef123456789123456789')
       end
 
