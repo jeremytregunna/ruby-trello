@@ -7,8 +7,16 @@ module Trello
     include ActiveModel::Serializers::JSON
 
     class << self
+      def path_name
+        name.split("::").last.underscore
+      end
+
       def find(id)
-        client.find(self, id)
+        client.find(path_name, id)
+      end
+
+      def create(options)
+        client.create(path_name, options)
       end
 
       def save(options)
