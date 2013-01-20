@@ -96,20 +96,6 @@ Thread.new do
 end
 ```
 
-Or, if you prefer, you can specify all configuration options when instantiating
-a `Trello::Client`:
-
-```ruby
-@client = Trello::Client.new(
-  :consumer_key => "an application's consumer key",
-  :consumer_secret => "an application's consumer secret",
-  :oauth_token => "a user's access token",
-  :oauth_token_secret => "a user's access secret"
-)
-```
-
-This may be useful if you're using multiple consumer key/secret pairs.
-
 ## Special thanks
 
 A special thanks goes out to [Ben Biddington](https://github.com/ben-biddington) who has contributed a significant amount
