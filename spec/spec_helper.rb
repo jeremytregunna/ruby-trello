@@ -26,6 +26,10 @@ Trello.logger = Logger.new($strio)
 
 RSpec.configure do |c|
   c.filter_run_excluding :broken => true
+
+  c.before :each do
+    Trello.reset!
+  end
 end
 
 module Helpers

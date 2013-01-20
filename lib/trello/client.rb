@@ -4,6 +4,13 @@ module Trello
   class Client
     include Authorization
 
+    delegate *Configuration::CONFIGURABLE_ATTRIBUTES, to: :configuration
+    delegate :credentials, to: :configuration
+
+    def initialize(attrs = {})
+      self.configuration.attributes = attrs
+    end
+
     def get(path, params = {})
       uri = Addressable::URI.parse("https://api.trello.com/#{API_VERSION}#{path}")
       uri.query_values = params unless params.empty?
@@ -26,6 +33,13 @@ module Trello
     end
 
     # Finds given resource by id
+    #
+    # Examples:
+    #   client.find(:board, "board1234")
+    #   client.find(:member, "user1234")
+    #   client.find(Board, "board1234")
+    #   client.find(Member, "member1234")
+    #
     def find(path, id)
       response = get("/#{path.to_s.pluralize}/#{id}")
       class_from_path(path).parse(response) do |data|
@@ -34,7 +48,7 @@ module Trello
     end
 
     # Finds given resource by path with params
-    def find_many(klass, path, params)
+    def find_many(klass, path, params = {})
       response = get(path, params)
       klass.parse_many(response) do |data|
         data.client = self
@@ -42,10 +56,21 @@ module Trello
     end
 
     # Creates resource with given options (attributes)
+    #
+    # Examples:
+    #   client.create(:member, options)
+    #   client.create(:board, options)
+    #   client.create(Member, options)
+    #   client.create(Board, options)
+    #
     def create(path, options)
       class_from_path(path).save(options) do |data|
         data.client = self
       end
+    end
+
+    def configure
+      yield configuration if block_given?
     end
 
     def configuration
@@ -53,7 +78,7 @@ module Trello
     end
 
     def auth_policy
-      @auth_policy ||= auth_policy_class.new(configuration.credentials)
+      @auth_policy ||= auth_policy_class.new(credentials)
     end
 
     private

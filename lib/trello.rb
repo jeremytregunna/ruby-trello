@@ -86,16 +86,15 @@ module Trello
     @client ||= Client.new
   end
 
-  def self.configure
+  def self.configure(&block)
     reset!
-    yield client.configuration
-  end
-
-  def self.auth_policy
-    client.auth_policy
+    client.configure(&block)
   end
 
   def self.reset!
     @client = nil
   end
+
+  def self.auth_policy; client.auth_policy; end
+  def self.configuration; client.configuration; end
 end
