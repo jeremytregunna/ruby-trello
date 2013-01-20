@@ -13,7 +13,7 @@ module Trello
       end
 
       def create(options)
-        client.create(:checklists,
+        client.create(:checklist,
           'name'       => options[:name],
           'idBoard'    => options[:board_id])
       end

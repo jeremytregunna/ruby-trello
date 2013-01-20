@@ -37,8 +37,6 @@ module Trello
     # Examples:
     #   client.find(:board, "board1234")
     #   client.find(:member, "user1234")
-    #   client.find(Board, "board1234")
-    #   client.find(Member, "member1234")
     #
     def find(path, id)
       response = get("/#{path.to_s.pluralize}/#{id}")
@@ -61,8 +59,6 @@ module Trello
     # Examples:
     #   client.create(:member, options)
     #   client.create(:board, options)
-    #   client.create(Member, options)
-    #   client.create(Board, options)
     #
     def create(path, options)
       trello_class = class_from_path(path)
