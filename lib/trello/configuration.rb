@@ -13,6 +13,10 @@ module Trello
 
     attr_accessor *CONFIGURABLE_ATTRIBUTES
 
+    def self.configurable_attributes
+      CONFIGURABLE_ATTRIBUTES
+    end
+
     def initialize(attrs = {})
       self.attributes = attrs
     end

@@ -4,8 +4,8 @@ module Trello
   class Client
     include Authorization
 
-    delegate *Configuration::CONFIGURABLE_ATTRIBUTES, to: :configuration
-    delegate :credentials, to: :configuration
+    delegate *Configuration.configurable_attributes << { :to => :configuration }
+    delegate :credentials, :to => :configuration
 
     def initialize(attrs = {})
       self.configuration.attributes = attrs
@@ -42,15 +42,16 @@ module Trello
     #
     def find(path, id)
       response = get("/#{path.to_s.pluralize}/#{id}")
-      class_from_path(path).parse(response) do |data|
+      trello_class = class_from_path(path)
+      trello_class.parse response do |data|
         data.client = self
       end
     end
 
     # Finds given resource by path with params
-    def find_many(klass, path, params = {})
+    def find_many(trello_class, path, params = {})
       response = get(path, params)
-      klass.parse_many(response) do |data|
+      trello_class.parse_many response do |data|
         data.client = self
       end
     end
@@ -64,7 +65,8 @@ module Trello
     #   client.create(Board, options)
     #
     def create(path, options)
-      class_from_path(path).save(options) do |data|
+      trello_class = class_from_path(path)
+      trello_class.save options do |data|
         data.client = self
       end
     end
