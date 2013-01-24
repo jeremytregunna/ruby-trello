@@ -27,11 +27,4 @@ Several ways you can contribute. Documentation, code, tests, feature requests, b
 
 We develop ruby-trello using [Trello itself](https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd).
 
-Pick up an editor, fix a test! (If you want to, of course.) Send a pull
-request, and I'll look at it. I only ask a few things:
-
-1. Feature branches please!
-2. Adding or refactoring existing features, ensure there are tests.
-
-Also, don't be afraid to send a pull request if your changes aren't done. Just
-let me know.
+Please see the `CONTRIBUTING.md` file for more information.
