@@ -131,4 +131,38 @@ describe Client, "and how it handles authorization" do
 
     client.put "/xxx", {}
   end
+
+  context "initialize" do
+    let(:client) {
+      Client.new(
+        :consumer_key => 'consumer_key',
+        :consumer_secret => 'consumer_secret',
+        :oauth_token => 'oauth_token',
+        :oauth_token_secret => 'oauth_token_secret'
+      )
+    }
+
+    it "is configurable" do
+      client.consumer_key.should eq('consumer_key')
+      client.consumer_secret.should eq('consumer_secret')
+      client.oauth_token.should eq('oauth_token')
+      client.oauth_token_secret.should eq('oauth_token_secret')
+    end
+  end
+
+  describe "configure" do
+    it "sets key attributes through config block" do
+      client.configure do |config|
+        config.consumer_key = 'consumer_key'
+        config.consumer_secret = 'consumer_secret'
+        config.oauth_token = 'oauth_token'
+        config.oauth_token_secret = 'oauth_token_secret'
+      end
+
+      client.consumer_key.should eq('consumer_key')
+      client.consumer_secret.should eq('consumer_secret')
+      client.oauth_token.should eq('oauth_token')
+      client.oauth_token_secret.should eq('oauth_token_secret')
+    end
+  end
 end

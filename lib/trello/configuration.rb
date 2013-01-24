@@ -1,10 +1,27 @@
 module Trello
   class Configuration
-    attr_accessor :developer_public_key, :member_token
-    attr_accessor :consumer_key, :consumer_secret, :oauth_token, :oauth_token_secret
-    attr_accessor :callback, :return_url
+    CONFIGURABLE_ATTRIBUTES = [
+      :developer_public_key,
+      :member_token,
+      :consumer_key,
+      :consumer_secret,
+      :oauth_token,
+      :oauth_token_secret,
+      :callback,
+      :return_url
+    ]
+
+    attr_accessor *CONFIGURABLE_ATTRIBUTES
+
+    def self.configurable_attributes
+      CONFIGURABLE_ATTRIBUTES
+    end
 
     def initialize(attrs = {})
+      self.attributes = attrs
+    end
+
+    def attributes=(attrs = {})
       attrs.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
