@@ -5,7 +5,7 @@ module Trello
     include Helpers
 
     before(:each) do
-      Client.stub(:get).with("/tokens/1234").and_return token_payload
+      Trello.client.stub(:get).with("/tokens/1234").and_return token_payload
       @token = Token.find("1234")
     end
 
@@ -25,7 +25,7 @@ module Trello
 
     context "members" do
       it "retrieves the member who authorized the token" do
-        Client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
+        Trello.client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
         @token.member.should == Member.find("abcdef123456789123456789")
       end
     end

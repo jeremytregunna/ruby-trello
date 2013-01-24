@@ -16,6 +16,39 @@ Seriously, [check it out](http://www.trello.com/).
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
 to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
 
+## Configuration
+
+Basic authorization
+
+```ruby
+Trello.configure do |config|
+  config.developer_public_key = TRELLO_DEVELOPER_PUBLIC_KEY
+  config.member_token = TRELLO_MEMBER_TOKEN
+end
+```
+
+2-legged OAuth authorization
+
+```ruby
+Trello.configure do |config|
+  config.consumer_key = TRELLO_CONSUMER_KEY
+  config.consumer_secret = TRELLO_CONSUMER_SECRET
+  config.oauth_token = TRELLO_OAUTH_TOKEN
+  config.oauth_token_secret = TRELLO_OAUTH_TOKEN_SECRET
+end
+```
+
+3-legged OAuth authorization
+
+```ruby
+Trello.configure do |config|
+  config.consumer_key    = TRELLO_CONSUMER_KEY
+  config.consumer_secret = TRELLO_CONSUMER_SECRET
+  config.return_url      = "http://your.site.com/path/to/receive/post"
+  config.callback        = lambda { |request_token| DB.save(request_token.key, request_token.secret) }
+end
+```
+
 ## Special thanks
 
 A special thanks goes out to [Ben Biddington](https://github.com/ben-biddington) who has contributed a significant amount

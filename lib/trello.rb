@@ -1,3 +1,4 @@
+
 require 'oauth'
 require 'json'
 require 'logger'
@@ -7,20 +8,18 @@ require 'active_model'
 #
 # First, set up your key information. You can get this information by {clicking here}[https://trello.com/1/appKey/generate].
 #
-#   include Trello
-#   include Trello::Authorization
-#   
-#   Trello::Authorization.const_set :AuthPolicy, OAuthPolicy
-#   
-#   OAuthPolicy.consumer_credential = OAuthCredential.new 'PUBLIC_KEY', 'SECRET'
-#
 # You can get the key by going to this url in your browser:
-# https://trello.com/1/authorize?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never
+# https://trello.com/1/authorize?key=TRELLO_CONSUMER_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never
 # Only request the permissions you need; i.e., scope=read if you only need read, or scope=write if you only need write. Comma separate scopes you need.
 # If you want your token to expire after 30 days, drop the &expiration=never. Then run the following code, where KEY denotes the key returned from the
 # url above:
 #
-#   OAuthPolicy.token = OAuthCredential.new 'KEY', nil
+# Trello.configure do |config|
+#   config.consumer_key = TRELLO_CONSUMER_KEY
+#   config.consumer_secret = TRELLO_CONSUMER_SECRET
+#   config.oauth_token = TRELLO_OAUTH_TOKEN
+#   config.oauth_token_secret = TRELLO_OAUTH_TOKEN_SECRET
+# end
 #
 # All the calls this library make to Trello require authentication using these keys. Be sure to protect them.
 #
@@ -47,6 +46,7 @@ module Trello
   autoload :Card,              'trello/card'
   autoload :Checklist,         'trello/checklist'
   autoload :Client,            'trello/client'
+  autoload :Configuration,     'trello/configuration'
   autoload :HasActions,        'trello/has_actions'
   autoload :Item,              'trello/item'
   autoload :CheckItemState,         'trello/item_state'
@@ -80,5 +80,22 @@ module Trello
 
   def self.logger=(logger)
     @logger = logger
+  end
+
+  def self.client
+    @client ||= Client.new
+  end
+
+  def self.configure
+    reset!
+    yield client.configuration
+  end
+
+  def self.auth_policy
+    client.auth_policy
+  end
+
+  def self.reset!
+    @client = nil
   end
 end

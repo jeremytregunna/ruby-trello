@@ -1,7 +1,7 @@
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
   class List < BasicData
-    register_attributes :id, :name, :closed, :board_id, :readonly => [ :id, :board_id ]
+    register_attributes :id, :name, :closed, :board_id, :pos, :readonly => [ :id, :board_id ]
     validates_presence_of :id, :name, :board_id
     validates_length_of   :name, :in => 1..16384
 
@@ -28,13 +28,14 @@ module Trello
       attributes[:name]     = fields['name']
       attributes[:closed]   = fields['closed']
       attributes[:board_id] = fields['idBoard']
+      attributes[:pos]      = fields['pos']
       self
     end
 
     def save
       return update! if id
 
-      Client.post("/lists", {
+      client.post("/lists", {
         :name    => name,
         :closed  => closed || false,
         :idBoard => board_id
@@ -42,7 +43,7 @@ module Trello
     end
 
     def update!
-      Client.put("/lists/#{id}", {
+      client.put("/lists/#{id}", {
         :name   => name,
         :closed => closed
       })
