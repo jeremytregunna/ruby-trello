@@ -2,12 +2,12 @@ require 'active_support/core_ext'
 
 module Trello
   class AssociationProxy
+    extend Forwardable
     alias :proxy_extend :extend
 
     instance_methods.each { |m| undef_method m unless m.to_s =~ /^(?:nil\?|send|object_id|to_a)$|^__|^respond_to|proxy_/ }
 
-    delegate :owner, :target, :to => :@association
-    delegate :count,          :to => :@association
+    def_delegators :@association, :owner, :target, :count
 
     def initialize(association)
       @association = association

@@ -1,6 +1,8 @@
 module Trello
   class MultiAssociation < Association
-    delegate :count, :to => :target
+    extend Forwardable
+
+    def_delegator :target, :count
 
     def initialize(owner, target = [])
       super
