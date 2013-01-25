@@ -2,10 +2,10 @@ require 'addressable/uri'
 
 module Trello
   class Client
+    extend Forwardable
     include Authorization
 
-    delegate *Configuration.configurable_attributes << { :to => :configuration }
-    delegate :credentials, :to => :configuration
+    def_delegators :configuration, :credentials, *Configuration.configurable_attributes
 
     def initialize(attrs = {})
       self.configuration.attributes = attrs
