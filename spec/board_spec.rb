@@ -4,232 +4,253 @@ module Trello
   describe Board do
     include Helpers
 
-    before(:each) do
-      Trello.client.stub(:get).with("/boards/abcdef123456789123456789").
-        and_return JSON.generate(boards_details.first)
+    let(:board) { client.find(:board, 'abcdef123456789123456789') }
+    let(:client) { Client.new }
 
-      @board = Board.find('abcdef123456789123456789')
+    before(:each) do
+      client.stub(:get).with("/boards/abcdef123456789123456789").
+        and_return JSON.generate(boards_details.first)
     end
 
-    it "gets all boards" do
-      Member.stub_chain(:find, :username).and_return "testuser"
-      Trello.client.stub(:get).with("/members/testuser/boards").and_return boards_payload
+    context "finding" do
+      let(:client) { Trello.client }
 
-      expected = Board.new(boards_details.first)
-      Board.all.first.should eq(expected)
+      it "delegates to client#find" do
+        client.should_receive(:find).with(:board, 'abcdef123456789123456789')
+        Board.find('abcdef123456789123456789')
+      end
+
+      it "is equivalent to client#find" do
+        Board.find('abcdef123456789123456789').should eq(board)
+      end
+    end
+
+    context "self.all" do
+      let(:client) { Trello.client }
+
+      it "gets all boards" do
+        Member.stub_chain(:find, :username).and_return "testuser"
+        client.stub(:get).with("/members/testuser/boards").and_return boards_payload
+
+        expected = Board.new(boards_details.first)
+        Board.all.first.should eq(expected)
+      end
     end
 
     context "fields" do
       it "gets an id" do
-        @board.id.should_not be_nil
+        board.id.should_not be_nil
       end
 
       it "gets a name" do
-        @board.name.should_not be_nil
+        board.name.should_not be_nil
       end
 
       it "gets the description" do
-        @board.description.should_not be_nil
+        board.description.should_not be_nil
       end
 
       it "knows if it is closed or open" do
-        @board.closed?.should_not be_nil
+        board.closed?.should_not be_nil
       end
 
       it "gets its url" do
-        @board.url.should_not be_nil
+        board.url.should_not be_nil
       end
     end
 
     context "actions" do
       it "has a list of actions" do
-        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/actions", {:filter => :all}).
+        client.stub(:get).with("/boards/abcdef123456789123456789/actions", {:filter => :all}).
           and_return actions_payload
 
-        @board.actions.count.should be > 0
+        board.actions.count.should be > 0
       end
     end
 
     context "cards" do
       it "gets its list of cards" do
-        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/cards", { :filter => :open }).
+        client.stub(:get).with("/boards/abcdef123456789123456789/cards", { :filter => :open }).
           and_return cards_payload
 
-        @board.cards.count.should be > 0
+        board.cards.count.should be > 0
       end
     end
 
     context "find_card" do
       it "gets a card" do
-        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/cards/1").
+        client.stub(:get).with("/boards/abcdef123456789123456789/cards/1").
           and_return card_payload
-        @board.find_card(1).should be_a(Card)
+        board.find_card(1).should be_a(Card)
       end
     end
 
     context "lists" do
       it "has a list of lists" do
-        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
+        client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
           and_return lists_payload
 
-        @board.has_lists?.should be true
+        board.has_lists?.should be true
       end
     end
 
     context "members" do
       it "has a list of members" do
-        Trello.client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(:filter => :all)).
+        client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(:filter => :all)).
           and_return JSON.generate([user_details])
 
-        @board.members.count.should be > 0
+        board.members.count.should be > 0
       end
     end
 
     context "organization" do
       it "belongs to an organization" do
-        Trello.client.stub(:get).with("/organizations/abcdef123456789123456789").
+        client.stub(:get).with("/organizations/abcdef123456789123456789").
           and_return JSON.generate(orgs_details.first)
 
-        @board.organization.should_not be_nil
+        board.organization.should_not be_nil
       end
     end
 
     it "is not closed" do
-      @board.closed?.should_not be_true
+      board.closed?.should_not be_true
     end
-  end
 
-  describe "#update_fields" do
-    it "does not set any fields when the fields argument is empty" do
-      expected = {
-       'id' => "id",
-       'name' => "name",
-       'desc' => "desc",
-       'closed' => false,
-       'url' => "url",
-       'idOrganization' => "org_id"
-      }
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+         'id' => "id",
+         'name' => "name",
+         'desc' => "desc",
+         'closed' => false,
+         'url' => "url",
+         'idOrganization' => "org_id"
+        }
 
-      board = Board.new(expected)
+        board = Board.new(expected)
+        board.client = client
 
-      board.update_fields({})
+        board.update_fields({})
 
-      expected.each_pair do |key, value|
-        if board.respond_to?(key)
-          board.send(key).should == value
+        expected.each_pair do |key, value|
+          if board.respond_to?(key)
+            board.send(key).should == value
+          end
         end
+
+        board.description.should == expected['desc']
+        board.organization_id.should == expected['idOrganization']
       end
 
-      board.description.should == expected['desc']
-      board.organization_id.should == expected['idOrganization']
+      it "sets any attributes supplied in the fields argument"
     end
 
-    it "sets any attributes supplied in the fields argument"
-  end
+    describe "#save" do
+      let(:client) { Trello.client }
 
-  describe "#save" do
-    include Helpers
-
-    let(:any_board_json) do
-      JSON.generate(boards_details.first)
-    end
-
-    it "cannot currently save a new instance" do
-      Trello.client.should_not_receive :put
-
-      the_new_board = Board.new
-      lambda{the_new_board.save}.should raise_error
-    end
-
-    it "puts all fields except id" do
-      expected_fields = %w{name description closed}.map{|s| s.to_sym}
-
-      Trello.client.should_receive(:put) do |anything, body|
-        body.keys.should =~ expected_fields
-        any_board_json
+      let(:any_board_json) do
+        JSON.generate(boards_details.first)
       end
 
-      the_new_board = Board.new 'id' => "xxx"
-      the_new_board.save
-    end
+      it "cannot currently save a new instance" do
+        client.should_not_receive :put
 
-    it "mutates the current instance" do
-      Trello.client.stub(:put).and_return any_board_json
-
-      board = Board.new 'id' => "xxx"
-
-      the_result_of_save = board.save
-
-      the_result_of_save.should equal board
-    end
-
-    it "uses the correct resource" do
-      expected_resource_id = "xxx_board_id_xxx"
-
-      Trello.client.should_receive(:put) do |path, anything|
-        path.should =~ /#{expected_resource_id}\/$/
-        any_board_json
+        the_new_board = Board.new
+        lambda{the_new_board.save}.should raise_error
       end
 
-      the_new_board = Board.new 'id' => expected_resource_id
-      the_new_board.save
+      it "puts all fields except id" do
+        expected_fields = %w{name description closed}.map{|s| s.to_sym}
+
+        client.should_receive(:put) do |anything, body|
+          body.keys.should =~ expected_fields
+          any_board_json
+        end
+
+        the_new_board = Board.new 'id' => "xxx"
+        the_new_board.save
+      end
+
+      it "mutates the current instance" do
+        client.stub(:put).and_return any_board_json
+
+        board = Board.new 'id' => "xxx"
+
+        the_result_of_save = board.save
+
+        the_result_of_save.should equal board
+      end
+
+      it "uses the correct resource" do
+        expected_resource_id = "xxx_board_id_xxx"
+
+        client.should_receive(:put) do |path, anything|
+          path.should =~ /#{expected_resource_id}\/$/
+          any_board_json
+        end
+
+        the_new_board = Board.new 'id' => expected_resource_id
+        the_new_board.save
+      end
+
+      it "saves OR updates depending on whether or not it has an id set"
     end
 
-    it "saves OR updates depending on whether or not it has an id set"
-  end
+    describe '#update!' do
+      let(:client) { Trello.client }
 
-  describe '#update!' do
-    include Helpers
+      let(:any_board_json) do
+        JSON.generate(boards_details.first)
+      end
 
-    let(:any_board_json) do
-      JSON.generate(boards_details.first)
+      it "puts basic attributes" do
+        board = Board.new 'id' => "board_id"
+
+        board.name        = "new name"
+        board.description = "new description"
+        board.closed      = true
+
+        client.should_receive(:put).with("/boards/#{board.id}/", {
+          :name => "new name",
+          :description => "new description",
+          :closed => true
+        }).and_return any_board_json
+        board.update!
+      end
     end
 
-    it "puts basic attributes" do
-      board = Board.new 'id' => "board_id"
+    describe "Repository" do
+      include Helpers
 
-      board.name        = "new name"
-      board.description = "new description"
-      board.closed      = true
+      let(:client) { Trello.client }
 
-      Trello.client.should_receive(:put).with("/boards/#{board.id}/", {
-        :name => "new name",
-        :description => "new description",
-        :closed => true
-      }).and_return any_board_json
-      board.update!
+      let(:any_board_json) do
+        JSON.generate(boards_details.first)
+      end
+
+      it "creates a new board with whatever attributes are supplied " do
+        expected_attributes = { :name => "Any new board name", :description => "Any new board desription" }
+        sent_attributes = { :name => expected_attributes[:name], :desc => expected_attributes[:description] }
+
+        client.should_receive(:post).with("/boards", sent_attributes).and_return any_board_json
+
+        Board.create expected_attributes
+      end
+
+      it "posts to the boards collection" do
+        client.should_receive(:post).with("/boards", anything).and_return any_board_json
+
+        Board.create :xxx => ""
+      end
+
+      it "returns a board" do
+        client.stub(:post).with("/boards", anything).and_return any_board_json
+
+        the_new_board = Board.create :xxx => ""
+        the_new_board.should be_a Board
+      end
+
+      it "at least name is required"
     end
-  end
-
-  describe "Repository" do
-    include Helpers
-
-    let(:any_board_json) do
-      JSON.generate(boards_details.first)
-    end
-
-    it "creates a new board with whatever attributes are supplied " do
-      expected_attributes = { :name => "Any new board name", :description => "Any new board desription" }
-      sent_attributes = { :name => expected_attributes[:name], :desc => expected_attributes[:description] }
-
-      Trello.client.should_receive(:post).with("/boards", sent_attributes).and_return any_board_json
-
-      Board.create expected_attributes
-    end
-
-    it "posts to the boards collection" do
-      Trello.client.should_receive(:post).with("/boards", anything).and_return any_board_json
-
-      Board.create :xxx => ""
-    end
-
-    it "returns a board" do
-      Trello.client.stub(:post).with("/boards", anything).and_return any_board_json
-
-      the_new_board = Board.create :xxx => ""
-      the_new_board.should be_a Board
-    end
-
-    it "at least name is required"
   end
 end

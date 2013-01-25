@@ -8,7 +8,7 @@ module Trello
     class << self
       # Locate a specific action and return a new Action object.
       def find(id)
-        super(:actions, id)
+        client.find(:action, id)
       end
     end
 
@@ -41,6 +41,6 @@ module Trello
     end
 
     # Returns the member who created the action.
-    one :member_creator, :via => Member, :using => :member_creator_id
+    one :member_creator, :via => Member, :path => :members, :using => :member_creator_id
   end
 end

@@ -49,6 +49,53 @@ Trello.configure do |config|
 end
 ```
 
+All the calls this library make to Trello require authentication using these keys. Be sure to protect them.
+
+So lets say you want to get information about the user *bobtester*. We can do something like this:
+
+```ruby
+bob = Trello::Member.find("bobtester")
+# Print out his name
+puts bob.full_name # "Bob Tester"
+# Print his bio
+puts bob.bio # A wonderfully delightful test user
+# How about a list of his boards?
+bob.boards
+```
+
+#### Multiple Users
+
+Applications that make requests on behalf of multiple Trello users have an alternative to global configuration. For each user's access token/secret pair, instantiate a `Trello::Client`:
+
+```ruby
+@client_bob = Trello::Client.new(
+  :consumer_key => YOUR_CONSUMER_KEY,
+  :consumer_secret => YOUR_CONSUMER_SECRET,
+  :oauth_token => "Bob's access token",
+  :oauth_token_secret => "Bob's access secret"
+)
+
+@client_alice = Trello::Client.new(
+  :consumer_key => YOUR_CONSUMER_KEY,
+  :consumer_secret => YOUR_CONSUMER_SECRET,
+  :oauth_token => "Alice's access token",
+  :oauth_token_secret => "Alice's access secret"
+)
+```
+
+You can now make threadsafe requests as the authenticated user:
+
+```ruby
+Thread.new do
+  @client_bob.find(:members, "bobtester")
+  @client_bob.find(:boards, "bobs_board_id")
+end
+Thread.new do
+  @client_alice.find(:members, "alicetester")
+  @client_alice.find(:boards, "alices_board_id")
+end
+```
+
 ## Special thanks
 
 A special thanks goes out to [Ben Biddington](https://github.com/ben-biddington) who has contributed a significant amount

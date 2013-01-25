@@ -7,8 +7,36 @@ module Trello
     include ActiveModel::Serializers::JSON
 
     class << self
-      def find(path, id)
-        client.get("/#{path}/#{id}").json_into(self)
+      def path_name
+        name.split("::").last.underscore
+      end
+
+      def find(id)
+        client.find(path_name, id)
+      end
+
+      def create(options)
+        client.create(path_name, options)
+      end
+
+      def save(options)
+        new(options).tap do |basic_data|
+          yield basic_data if block_given?
+        end.save
+      end
+
+      def parse(response)
+        response.json_into(self).tap do |basic_data|
+          yield basic_data if block_given?
+        end
+      end
+
+      def parse_many(response)
+        response.json_into(self).map do |data|
+          data.tap do |d|
+            yield d if block_given?
+          end
+        end
       end
     end
 
@@ -43,7 +71,13 @@ module Trello
           options = opts.dup
           klass   = options.delete(:via) || Trello.const_get(name.to_s.camelize)
           ident   = options.delete(:using) || :id
-          klass.find(self.send(ident))
+          path    = options.delete(:path)
+
+          if path
+            client.find(path, self.send(ident))
+          else
+            klass.find(self.send(ident))
+          end
         end
       end
     end
@@ -55,7 +89,7 @@ module Trello
           resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
           klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
           params    = options.merge(args[0] || {})
-          resources = client.get("/#{resource}/#{id}/#{name}", params).json_into(klass)
+          resources = client.find_many(klass, "/#{resource}/#{id}/#{name}", params)
           MultiAssociation.new(self, resources).proxy
         end
       end
@@ -66,6 +100,8 @@ module Trello
     end
 
     register_attributes :id, :readonly => [ :id ]
+
+    attr_writer :client
 
     def initialize(fields = {})
       update_fields(fields)
@@ -86,7 +122,7 @@ module Trello
     end
 
     def client
-      self.class.client
+      @client ||= self.class.client
     end
   end
 end

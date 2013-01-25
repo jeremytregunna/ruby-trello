@@ -4,6 +4,13 @@ module Trello
   class Client
     include Authorization
 
+    delegate *Configuration.configurable_attributes << { :to => :configuration }
+    delegate :credentials, :to => :configuration
+
+    def initialize(attrs = {})
+      self.configuration.attributes = attrs
+    end
+
     def get(path, params = {})
       uri = Addressable::URI.parse("https://api.trello.com/#{API_VERSION}#{path}")
       uri.query_values = params unless params.empty?
@@ -25,6 +32,55 @@ module Trello
       invoke_verb(:delete, uri)
     end
 
+    # Finds given resource by id
+    #
+    # Examples:
+    #   client.find(:board, "board1234")
+    #   client.find(:member, "user1234")
+    #
+    def find(path, id)
+      response = get("/#{path.to_s.pluralize}/#{id}")
+      trello_class = class_from_path(path)
+      trello_class.parse response do |data|
+        data.client = self
+      end
+    end
+
+    # Finds given resource by path with params
+    def find_many(trello_class, path, params = {})
+      response = get(path, params)
+      trello_class.parse_many response do |data|
+        data.client = self
+      end
+    end
+
+    # Creates resource with given options (attributes)
+    #
+    # Examples:
+    #   client.create(:member, options)
+    #   client.create(:board, options)
+    #
+    def create(path, options)
+      trello_class = class_from_path(path)
+      trello_class.save options do |data|
+        data.client = self
+      end
+    end
+
+    def configure
+      yield configuration if block_given?
+    end
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def auth_policy
+      @auth_policy ||= auth_policy_class.new(credentials)
+    end
+
+    private
+
     def invoke_verb(name, uri, body = nil)
       request = Request.new name, uri, {}, body
       response = TInternet.execute auth_policy.authorize(request)
@@ -44,14 +100,6 @@ module Trello
       response.body
     end
 
-    def configuration
-      @configuration ||= Configuration.new
-    end
-
-    def auth_policy
-      @auth_policy ||= auth_policy_class.new(configuration.credentials)
-    end
-
     def auth_policy_class
       if configuration.oauth?
         OAuthPolicy
@@ -62,5 +110,9 @@ module Trello
       end
     end
 
+    def class_from_path(path_or_class)
+      return path_or_class if path_or_class.is_a?(Class)
+      Trello.const_get(path_or_class.to_s.singularize.camelize)
+    end
   end
 end

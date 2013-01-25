@@ -26,6 +26,10 @@ Trello.logger = Logger.new($strio)
 
 RSpec.configure do |c|
   c.filter_run_excluding :broken => true
+
+  c.before :each do
+    Trello.reset!
+  end
 end
 
 module Helpers
@@ -67,6 +71,7 @@ module Helpers
       "closed"     => false,
       "url"        => "https://trello.com/blah/blah",
       "idBoard"    => "abcdef123456789123456789",
+      "idList"     => "abcdef123456789123456789",
       "idMembers"  => ["abcdef123456789123456789"],
       "checkItems" => {}
     }]

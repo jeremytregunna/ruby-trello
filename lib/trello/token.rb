@@ -2,11 +2,11 @@ module Trello
   class Token < BasicData
     register_attributes :id, :member_id, :created_at, :permissions,
       :readonly => [ :id, :member_id, :created_at, :permissions ]
-  
+
     class << self
       # Finds a token
       def find(token)
-        super(:tokens, token)
+        client.find(:token, token)
       end
     end
 
@@ -19,6 +19,6 @@ module Trello
     end
 
     # Returns a reference to the user who authorized the token.
-    one :member, :using => :member_id
+    one :member, :path => :members, :using => :member_id
   end
 end

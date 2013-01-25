@@ -10,12 +10,13 @@ module Trello
     class << self
       # Finds a specific list, given an id.
       def find(id)
-        super(:lists, id)
+        client.find(:list, id)
       end
 
       def create(options)
-        new('name'    => options[:name],
-            'idBoard' => options[:board_id]).save
+        client.create(:list,
+            'name'    => options[:name],
+            'idBoard' => options[:board_id])
       end
     end
 
@@ -64,7 +65,7 @@ module Trello
     end
 
     # Return the board the list is connected to.
-    one :board, :using => :board_id
+    one :board, :path => :boards, :using => :board_id
 
     # Returns all the cards on this list.
     #

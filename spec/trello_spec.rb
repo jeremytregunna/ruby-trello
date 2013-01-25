@@ -4,9 +4,6 @@ include Trello
 include Trello::Authorization
 
 describe Trello do
-  before do
-    Trello.reset!
-  end
 
   describe "self.configure" do
     it "builds auth policy client uses to make requests" do
