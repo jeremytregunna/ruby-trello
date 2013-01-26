@@ -76,6 +76,13 @@ module Trello
       end
     end
 
+    context "deleting" do
+      it "deletes the card" do
+        client.should_receive(:delete).with("/cards/#{card.id}")
+        card.delete
+      end
+    end
+
     context "fields" do
       it "gets its id" do
         card.id.should_not be_nil
