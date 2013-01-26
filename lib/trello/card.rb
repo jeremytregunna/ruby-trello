@@ -95,6 +95,11 @@ module Trello
       client.put("/cards/#{id}", payload)
     end
 
+    # Delete this card
+    def delete
+      client.delete("/cards/#{id}")
+    end
+
     # Check if the card is not active anymore.
     def closed?
       closed
