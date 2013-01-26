@@ -77,7 +77,7 @@ module Trello
     end
 
     context "deleting" do
-      it "allows a member to be removed from a card" do
+      it "deletes the card" do
         client.should_receive(:delete).with("/cards/#{card.id}")
         card.delete
       end
