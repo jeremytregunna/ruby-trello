@@ -4,11 +4,13 @@ module Trello
 
   class TInternet
     class << self
+      require "rest_client"
+
       def execute(request)
         try_execute request
       end
 
-      private 
+      private
 
       def try_execute(request)
         begin
@@ -16,14 +18,12 @@ module Trello
             result = execute_core request
             Response.new(200, {}, result)
           end
-        rescue Exception => e
+        rescue RestClient::Exception => e
           Response.new(e.http_code, {}, e.http_body)
         end
       end
 
       def execute_core(request)
-        require "rest_client"
-        
         RestClient.proxy = ENV['HTTP_PROXYS'] if ENV['HTTP_PROXYS']
         RestClient::Request.execute(
           :method => request.verb, 
