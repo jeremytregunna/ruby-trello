@@ -1,8 +1,8 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos,
-      :readonly => [ :id, :short_id, :url, :board_id, :member_ids ]
+    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date,
+      :readonly => [ :id, :short_id, :url, :board_id, :member_ids, :last_activity_date ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
     validates_length_of   :description, :in => 0..16384
@@ -29,17 +29,18 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a card.
     def update_fields(fields)
-      attributes[:id]          = fields['id']
-      attributes[:short_id]    = fields['idShort']
-      attributes[:name]        = fields['name']
-      attributes[:description] = fields['desc']
-      attributes[:due]         = Time.iso8601(fields['due']) rescue nil
-      attributes[:closed]      = fields['closed']
-      attributes[:url]         = fields['url']
-      attributes[:board_id]    = fields['idBoard']
-      attributes[:member_ids]  = fields['idMembers']
-      attributes[:list_id]     = fields['idList']
-      attributes[:pos]         = fields['pos']
+      attributes[:id]                 = fields['id']
+      attributes[:short_id]           = fields['idShort']
+      attributes[:name]               = fields['name']
+      attributes[:description]        = fields['desc']
+      attributes[:due]                = Time.iso8601(fields['due']) rescue nil
+      attributes[:closed]             = fields['closed']
+      attributes[:url]                = fields['url']
+      attributes[:board_id]           = fields['idBoard']
+      attributes[:member_ids]         = fields['idMembers']
+      attributes[:list_id]            = fields['idList']
+      attributes[:pos]                = fields['pos']
+      attributes[:last_activity_date] = Time.iso8601(fields['dateLastActivity']) rescue nil
       self
     end
 
