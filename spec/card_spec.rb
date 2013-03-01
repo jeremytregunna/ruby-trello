@@ -107,6 +107,10 @@ module Trello
       it "gets its url" do
         card.url.should_not be_nil
       end
+
+      it "gets its last active date" do
+        card.date_last_activity.should_not be_nil
+      end
     end
 
     context "actions" do
