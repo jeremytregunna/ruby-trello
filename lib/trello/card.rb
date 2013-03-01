@@ -1,8 +1,8 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :date_last_activity,
-      :readonly => [ :id, :short_id, :url, :board_id, :member_ids, :date_last_activity ]
+    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date,
+      :readonly => [ :id, :short_id, :url, :board_id, :member_ids, :last_activity_date ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
     validates_length_of   :description, :in => 0..16384
@@ -40,7 +40,7 @@ module Trello
       attributes[:member_ids]         = fields['idMembers']
       attributes[:list_id]            = fields['idList']
       attributes[:pos]                = fields['pos']
-      attributes[:date_last_activity] = Time.iso8601(fields['dateLastActivity']) rescue nil
+      attributes[:last_activity_date] = Time.iso8601(fields['dateLastActivity']) rescue nil
       self
     end
 
