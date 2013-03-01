@@ -109,7 +109,7 @@ module Trello
       end
 
       it "gets its last active date" do
-        card.date_last_activity.should_not be_nil
+        card.last_activity_date.should_not be_nil
       end
     end
 
