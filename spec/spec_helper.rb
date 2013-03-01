@@ -263,4 +263,19 @@ module Helpers
   def label_payload
     JSON.generate(label_details)
   end
+
+  def label_name_details
+    [
+      {"yellow" => "bug"},
+      {"red" => "urgent"},
+      {"green" => "deploy"},
+      {"blue" => "on hold"},
+      {"orange" => "new feature"},
+      {"purple" => "experimental"}
+    ]
+  end
+
+  def label_name_payload
+    JSON.generate(label_name_details)
+  end
 end
