@@ -51,6 +51,7 @@ module Trello
   autoload :Item,              'trello/item'
   autoload :CheckItemState,    'trello/item_state'
   autoload :Label,             'trello/label'
+  autoload :LabelName,             'trello/label_name'
   autoload :List,              'trello/list'
   autoload :Member,            'trello/member'
   autoload :MultiAssociation,  'trello/multi_association'

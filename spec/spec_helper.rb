@@ -97,16 +97,17 @@ module Helpers
 
   def cards_details
     [{
-      "id"        => "abcdef123456789123456789",
-      "idShort"   => "1",
-      "name"      => "Do something awesome",
-      "desc"      => "Awesome things are awesome.",
-      "closed"    => false,
-      "idList"    => "abcdef123456789123456789",
-      "idBoard"   => "abcdef123456789123456789",
-      "idMembers" => ["abcdef123456789123456789"],
-      "url"       => "https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789",
-      "pos"       => 12
+      "id"                => "abcdef123456789123456789",
+      "idShort"           => "1",
+      "name"              => "Do something awesome",
+      "desc"              => "Awesome things are awesome.",
+      "closed"            => false,
+      "idList"            => "abcdef123456789123456789",
+      "idBoard"           => "abcdef123456789123456789",
+      "idMembers"         => ["abcdef123456789123456789"],
+      "url"               => "https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789",
+      "pos"               => 12,
+      "dateLastActivity"  => "2012-12-07T18:40:24.314Z"
     }]
   end
 
@@ -117,9 +118,23 @@ module Helpers
 
   def attachments_details
     [{
-      "id"    =>  "abcdef123456789123456789",
-      "name"  =>  "list_spec.rb"
-    }]
+       "id"           => "abcdef123456789123456789",
+       "name"         => "attachment1.png",
+       "url"          => "http://trello-assets.domain.tld/attachment1.png",
+       "bytes"        => 98765,
+       "idMember"     => "abcdef123456789123456781",
+       "isUpload"     => false,
+       "date"         => "2013-02-28T17:12:28.497Z",
+     },
+     {
+       "id"           => "abcdef123456789123456781",
+       "name"         => "attachment2.png",
+       "url"          => "http://trello-assets.domain.tld/attachment2.png",
+       "bytes"        => 89123,
+       "idMember"     => "abcdef123456789123456782",
+       "isUpload"     => true,
+       "date"         => "2013-03-01T14:01:25.212Z",
+     }]
   end
 
   def attachments_payload
@@ -262,5 +277,20 @@ module Helpers
 
   def label_payload
     JSON.generate(label_details)
+  end
+
+  def label_name_details
+    [
+      {"yellow" => "bug"},
+      {"red" => "urgent"},
+      {"green" => "deploy"},
+      {"blue" => "on hold"},
+      {"orange" => "new feature"},
+      {"purple" => "experimental"}
+    ]
+  end
+
+  def label_name_payload
+    JSON.generate(label_name_details)
   end
 end

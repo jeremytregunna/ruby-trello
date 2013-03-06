@@ -1,7 +1,7 @@
 module Trello
   # A file or url that is linked to a Trello card
   class Attachment < BasicData
-    register_attributes :name, :id
+    register_attributes :name, :id, :url, :bytes, :member_id, :date, :is_upload, :mime_type
     # Update the fields of an attachment.
     #
     # Supply a hash of stringkeyed data retrieved from the Trello API representing
@@ -9,6 +9,12 @@ module Trello
     def update_fields(fields)
       attributes[:name]  = fields['name']
       attributes[:id] = fields['id']
+      attributes[:url] = fields['url']
+      attributes[:bytes] = fields['bytes'].to_i
+      attributes[:member_id] = fields['idMember']
+      attributes[:date] = Time.parse(fields['date'])
+      attributes[:is_upload] = fields['isUpload']
+      attributes[:mime_type] = fields['mimeType']
       self
     end
   end
