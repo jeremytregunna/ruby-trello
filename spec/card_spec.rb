@@ -272,12 +272,21 @@ module Trello
         card.errors.should be_empty
       end
 
-      it "can list the existing attachments" do
+      it "can list the existing attachments with correct fields" do
         client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
         client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
 
         card.board.should_not be_nil
         card.attachments.should_not be_nil
+        first_attachment = card.attachments.first
+        first_attachment.id.should == attachments_details[0]["id"]
+        first_attachment.name.should == attachments_details[0]["name"]
+        first_attachment.url.should == attachments_details[0]["url"]
+        first_attachment.bytes.should == attachments_details[0]["bytes"]
+        first_attachment.member_id.should == attachments_details[0]["idMember"]
+        first_attachment.date.should == Time.parse(attachments_details[0]["date"])
+        first_attachment.is_upload.should == attachments_details[0]["isUpload"]
+        first_attachment.mime_type.should == attachments_details[0]["mimeType"]
       end
 
       it "can remove an attachment" do
