@@ -118,9 +118,23 @@ module Helpers
 
   def attachments_details
     [{
-      "id"    =>  "abcdef123456789123456789",
-      "name"  =>  "list_spec.rb"
-    }]
+       "id"           => "abcdef123456789123456789",
+       "name"         => "attachment1.png",
+       "url"          => "http://trello-assets.domain.tld/attachment1.png",
+       "bytes"        => 98765,
+       "idMember"     => "abcdef123456789123456781",
+       "isUpload"     => false,
+       "date"         => "2013-02-28T17:12:28.497Z",
+     },
+     {
+       "id"           => "abcdef123456789123456781",
+       "name"         => "attachment2.png",
+       "url"          => "http://trello-assets.domain.tld/attachment2.png",
+       "bytes"        => 89123,
+       "idMember"     => "abcdef123456789123456782",
+       "isUpload"     => true,
+       "date"         => "2013-03-01T14:01:25.212Z",
+     }]
   end
 
   def attachments_payload
