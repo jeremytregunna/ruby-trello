@@ -49,7 +49,7 @@ module Trello
   autoload :Configuration,     'trello/configuration'
   autoload :HasActions,        'trello/has_actions'
   autoload :Item,              'trello/item'
-  autoload :CheckItemState,         'trello/item_state'
+  autoload :CheckItemState,    'trello/item_state'
   autoload :Label,             'trello/label'
   autoload :List,              'trello/list'
   autoload :Member,            'trello/member'
