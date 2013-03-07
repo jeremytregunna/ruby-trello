@@ -40,7 +40,8 @@ module Helpers
       "username"   => "me",
       "avatarHash" => "abcdef1234567890abcdef1234567890",
       "bio"        => "a rather dumb user",
-      "url"        => "https://trello.com/me"
+      "url"        => "https://trello.com/me",
+      "email"      => "johnsmith@example.com"
     }
   end
 
