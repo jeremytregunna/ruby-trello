@@ -89,6 +89,10 @@ module Trello
       it "gets the username" do
         member.username.should == user_details['username']
       end
+
+      it "gets the email" do
+        member.email.should == user_details['email']
+      end
     end
 
     context "modification" do
