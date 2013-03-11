@@ -2,9 +2,9 @@ module Trello
   # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
   class Checklist < BasicData
     register_attributes :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids,
-      :readonly => [ :id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids ]
+                        :readonly => [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids]
     validates_presence_of :id, :board_id, :list_id
-    validates_length_of   :name, :in => 1..16384
+    validates_length_of :name, :in => 1..16384
 
     class << self
       # Locate a specific checklist by its id.
@@ -14,8 +14,8 @@ module Trello
 
       def create(options)
         client.create(:checklist,
-          'name'       => options[:name],
-          'idBoard'    => options[:board_id])
+                      'name' => options[:name],
+                      'idBoard' => options[:board_id])
       end
     end
 
@@ -24,15 +24,15 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a checklist.
     def update_fields(fields)
-      attributes[:id]          = fields['id']
-      attributes[:name]        = fields['name']
+      attributes[:id] = fields['id']
+      attributes[:name] = fields['name']
       attributes[:description] = fields['desc']
-      attributes[:closed]      = fields['closed']
-      attributes[:url]         = fields['url']
+      attributes[:closed] = fields['closed']
+      attributes[:url] = fields['url']
       attributes[:check_items] = fields['checkItems']
-      attributes[:board_id]    = fields['idBoard']
-      attributes[:list_id]     = fields['idList']
-      attributes[:member_ids]  = fields['idMembers']
+      attributes[:board_id] = fields['idBoard']
+      attributes[:list_id] = fields['idList']
+      attributes[:member_ids] = fields['idMembers']
       self
     end
 
@@ -46,13 +46,13 @@ module Trello
       return update! if id
 
       client.post("/checklists", {
-        :name    => name,
-        :idBoard => board_id
+          :name => name,
+          :idBoard => board_id
       }).json_into(self)
     end
 
     def update!
-      client.put("/checklists/#{id}", { :name => name }).json_into(self)
+      client.put("/checklists/#{id}", {:name => name}).json_into(self)
     end
 
     # Return a list of items on the checklist.
@@ -78,7 +78,17 @@ module Trello
 
     # Add an item to the checklist
     def add_item(name)
-      client.post("/checklists/#{id}/checkItems", { :name => name })
+      client.post("/checklists/#{id}/checkItems", {:name => name})
+    end
+
+    # Delete a checklist item
+    def delete_checklist_item(item_id)
+      client.delete("/checklists/#{id}/checkItems/#{item_id}")
+    end
+
+    # Delete a checklist
+    def delete
+      client.delete("/checklists/#{id}")
     end
   end
 end
