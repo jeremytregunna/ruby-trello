@@ -80,5 +80,12 @@ module Trello
     def add_item(name)
       client.post("/checklists/#{id}/checkItems", { :name => name })
     end
+      def delete_checklist_item(item_id)
+      client.delete("/checklists/#{id}/checkItems/#{item_id}")
+    end
+
+    def delete_checklist
+      client.delete("/checklists/#{id}")
+    end
   end
 end
