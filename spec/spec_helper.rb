@@ -74,7 +74,7 @@ module Helpers
       "idBoard"    => "abcdef123456789123456789",
       "idList"     => "abcdef123456789123456789",
       "idMembers"  => ["abcdef123456789123456789"],
-      "checkItems" => {}
+      "checkItems" => { "id" => "ghijk987654321" }
     }]
   end
 

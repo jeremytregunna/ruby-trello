@@ -9,7 +9,7 @@ module Trello
 
     before(:each) do
       client.stub(:get).with("/checklists/abcdef123456789123456789").
-        and_return JSON.generate(checklists_details.first)
+          and_return JSON.generate(checklists_details.first)
     end
 
     context "finding" do
@@ -30,8 +30,8 @@ module Trello
 
       it 'creates a new record and saves it on Trello', :refactor => true do
         payload = {
-          :name    => 'Test Checklist',
-          :desc    => '',
+            :name => 'Test Checklist',
+            :desc => '',
         }
 
         result = JSON.generate(checklists_details.first.merge(payload.merge(:idBoard => boards_details.first['id'])))
@@ -46,12 +46,27 @@ module Trello
       end
     end
 
+    context "deleting" do
+      let(:client) { Trello.client }
+
+      it "deletes a checklist" do
+        client.should_receive(:delete).with("/checklists/#{checklist.id}")
+        checklist.delete
+      end
+
+      it "deletes a checklist item" do
+        item_id = checklist.check_items.first.last
+        client.should_receive(:delete).with("/checklists/#{checklist.id}/checkItems/#{item_id}")
+        checklist.delete_checklist_item(item_id)
+      end
+    end
+
     context "updating" do
       it "updating name does a put on the correct resource with the correct value" do
         expected_new_name = "xxx"
         expected_resource = "/checklists/abcdef123456789123456789"
         payload = {
-          :name      => expected_new_name
+            :name => expected_new_name
         }
 
         result = JSON.generate(checklists_details.first)
