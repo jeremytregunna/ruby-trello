@@ -72,6 +72,18 @@
     
     <li><a href="#method-c-authorize">::authorize</a>
     
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-authorize">#authorize</a>
+    
+    <li><a href="#method-i-consumer_key">#consumer_key</a>
+    
+    <li><a href="#method-i-consumer_secret">#consumer_secret</a>
+    
+    <li><a href="#method-i-oauth_token">#oauth_token</a>
+    
+    <li><a href="#method-i-oauth_token_secret">#oauth_token_secret</a>
+    
   </ul>
 </nav>
 
@@ -89,8 +101,6 @@
   
     <li class="file"><a href="../../Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="../../test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -106,6 +116,8 @@
     <li><a href="../../Trello/Association.html">Trello::Association</a>
   
     <li><a href="../../Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="../../Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="../../Trello/Authorization.html">Trello::Authorization</a>
   
@@ -123,9 +135,13 @@
   
     <li><a href="../../Trello/Card.html">Trello::Card</a>
   
+    <li><a href="../../Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="../../Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="../../Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="../../Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="../../Trello/Error.html">Trello::Error</a>
   
@@ -135,9 +151,9 @@
   
     <li><a href="../../Trello/Item.html">Trello::Item</a>
   
-    <li><a href="../../Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="../../Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="../../Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="../../Trello/List.html">Trello::List</a>
   
@@ -266,6 +282,71 @@ href="OAuthPolicy.html#attribute-c-token">::token</a> as a OAuthCredential.</p>
         </div>
       </div>
       
+      <div id="attribute-i-attributes" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">attributes</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-callback" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">callback</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-consumer_credential" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">consumer_credential</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-return_url" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">return_url</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-token" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">token</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
     </section><!-- attribute-method-details -->
     
 
@@ -291,7 +372,78 @@ href="OAuthPolicy.html#attribute-c-token">::token</a> as a OAuthCredential.</p>
 
           
           <div class="method-source-code" id="authorize-source">
-            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
+  <span class="ruby-identifier">new</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- authorize-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- authorize-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(attrs = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">attrs</span> = {})
+  <span class="ruby-ivar">@consumer_key</span>       = <span class="ruby-identifier">attrs</span>[<span class="ruby-value">:consumer_key</span>]
+  <span class="ruby-ivar">@consumer_secret</span>    = <span class="ruby-identifier">attrs</span>[<span class="ruby-value">:consumer_secret</span>]
+  <span class="ruby-ivar">@oauth_token</span>        = <span class="ruby-identifier">attrs</span>[<span class="ruby-value">:oauth_token</span>]
+  <span class="ruby-ivar">@oauth_token_secret</span> = <span class="ruby-identifier">attrs</span>[<span class="ruby-value">:oauth_token_secret</span>]
+  <span class="ruby-ivar">@return_url</span>         = <span class="ruby-identifier">attrs</span>[<span class="ruby-value">:return_url</span>]          <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">return_url</span>
+  <span class="ruby-ivar">@callback</span>           = <span class="ruby-identifier">attrs</span>[<span class="ruby-value">:callback</span>]            <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">callback</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-authorize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize</span><span
+            class="method-args">(request)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="authorize-source">
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">consumer_credential</span>
     <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-string">&quot;The consumer_credential has not been supplied.&quot;</span>
@@ -318,7 +470,119 @@ href="OAuthPolicy.html#attribute-c-token">::token</a> as a OAuthCredential.</p>
       </div><!-- authorize-method -->
 
     
-    </section><!-- public-class-method-details -->
+      <div id="method-i-consumer_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">consumer_key</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="consumer_key-source">
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">consumer_key</span>; <span class="ruby-identifier">consumer_credential</span>.<span class="ruby-identifier">key</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- consumer_key-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- consumer_key-method -->
+
+    
+      <div id="method-i-consumer_secret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">consumer_secret</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="consumer_secret-source">
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">consumer_secret</span>; <span class="ruby-identifier">consumer_credential</span>.<span class="ruby-identifier">secret</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- consumer_secret-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- consumer_secret-method -->
+
+    
+      <div id="method-i-oauth_token" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">oauth_token</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="oauth_token-source">
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">oauth_token</span>; <span class="ruby-identifier">token</span>.<span class="ruby-identifier">key</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- oauth_token-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- oauth_token-method -->
+
+    
+      <div id="method-i-oauth_token_secret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">oauth_token_secret</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="oauth_token_secret-source">
+            <pre><span class="ruby-comment"># File lib/trello/authorization.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">oauth_token_secret</span>; <span class="ruby-identifier">token</span>.<span class="ruby-identifier">secret</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- oauth_token_secret-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- oauth_token_secret-method -->
+
+    
+    </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

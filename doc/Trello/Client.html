@@ -63,22 +63,46 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="Authorization.html">Trello::Authorization</a>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
     
-    <li><a href="#method-c-delete">::delete</a>
+    <li><a href="#method-c-new">::new</a>
     
-    <li><a href="#method-c-get">::get</a>
+    <li><a href="#method-i-auth_policy">#auth_policy</a>
     
-    <li><a href="#method-c-invoke_verb">::invoke_verb</a>
+    <li><a href="#method-i-configuration">#configuration</a>
     
-    <li><a href="#method-c-post">::post</a>
+    <li><a href="#method-i-configure">#configure</a>
     
-    <li><a href="#method-c-put">::put</a>
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-delete">#delete</a>
+    
+    <li><a href="#method-i-find">#find</a>
+    
+    <li><a href="#method-i-find_many">#find_many</a>
+    
+    <li><a href="#method-i-get">#get</a>
+    
+    <li><a href="#method-i-post">#post</a>
+    
+    <li><a href="#method-i-put">#put</a>
     
   </ul>
 </nav>
@@ -97,8 +121,6 @@
   
     <li class="file"><a href="../Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="../test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -114,6 +136,8 @@
     <li><a href="../Trello/Association.html">Trello::Association</a>
   
     <li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="../Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="../Trello/Authorization.html">Trello::Authorization</a>
   
@@ -131,9 +155,13 @@
   
     <li><a href="../Trello/Card.html">Trello::Card</a>
   
+    <li><a href="../Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="../Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="../Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="../Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="../Trello/Error.html">Trello::Error</a>
   
@@ -143,9 +171,9 @@
   
     <li><a href="../Trello/Item.html">Trello::Item</a>
   
-    <li><a href="../Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="../Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="../Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="../Trello/List.html">Trello::List</a>
   
@@ -202,7 +230,171 @@
       <h3 class="section-header">Public Class Methods</h3>
 
     
-      <div id="method-c-delete" class="method-detail ">
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(attrs = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">attrs</span> = {})
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">attrs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-auth_policy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">auth_policy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="auth_policy-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">auth_policy</span>
+  <span class="ruby-ivar">@auth_policy</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">auth_policy_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">credentials</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- auth_policy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- auth_policy-method -->
+
+    
+      <div id="method-i-configuration" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configuration</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configuration-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">configuration</span>
+  <span class="ruby-ivar">@configuration</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Configuration</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- configuration-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- configuration-method -->
+
+    
+      <div id="method-i-configure" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configure</span><span
+            class="method-args">() { |configuration| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configure-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">configure</span>
+  <span class="ruby-keyword">yield</span> <span class="ruby-identifier">configuration</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- configure-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- configure-method -->
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(path, options)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates resource with given options (attributes)</p>
+
+<p>Examples:</p>
+
+<pre>client.create(:member, options)
+client.create(:board, options)</pre>
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">trello_class</span> = <span class="ruby-identifier">class_from_path</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">trello_class</span>.<span class="ruby-identifier">save</span> <span class="ruby-identifier">options</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">client</span> = <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-delete" class="method-detail ">
         
         <div class="method-heading">
           <span class="method-name">delete</span><span
@@ -218,7 +410,7 @@
 
           
           <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 24</span>
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">path</span>)
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{API_VERSION}#{path}&quot;</span>)
   <span class="ruby-identifier">invoke_verb</span>(<span class="ruby-value">:delete</span>, <span class="ruby-identifier">uri</span>)
@@ -233,7 +425,79 @@
       </div><!-- delete-method -->
 
     
-      <div id="method-c-get" class="method-detail ">
+      <div id="method-i-find" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find</span><span
+            class="method-args">(path, id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds given resource by id</p>
+
+<p>Examples:</p>
+
+<pre>client.find(:board, &quot;board1234&quot;)
+client.find(:member, &quot;user1234&quot;)</pre>
+          
+
+          
+          <div class="method-source-code" id="find-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/#{path.to_s.pluralize}/#{id}&quot;</span>)
+  <span class="ruby-identifier">trello_class</span> = <span class="ruby-identifier">class_from_path</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-identifier">trello_class</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">client</span> = <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find-method -->
+
+    
+      <div id="method-i-find_many" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_many</span><span
+            class="method-args">(trello_class, path, params = {})</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Finds given resource by path with params</p>
+          
+
+          
+          <div class="method-source-code" id="find_many-source">
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_many</span>(<span class="ruby-identifier">trello_class</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">params</span> = {})
+  <span class="ruby-identifier">response</span> = <span class="ruby-identifier">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">params</span>)
+  <span class="ruby-identifier">trello_class</span>.<span class="ruby-identifier">parse_many</span> <span class="ruby-identifier">response</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">data</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">client</span> = <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- find_many-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- find_many-method -->
+
+    
+      <div id="method-i-get" class="method-detail ">
         
         <div class="method-heading">
           <span class="method-name">get</span><span
@@ -249,7 +513,7 @@
 
           
           <div class="method-source-code" id="get-source">
-            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 8</span>
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">params</span> = {})
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{API_VERSION}#{path}&quot;</span>)
   <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">params</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">empty?</span>
@@ -265,52 +529,7 @@
       </div><!-- get-method -->
 
     
-      <div id="method-c-invoke_verb" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">invoke_verb</span><span
-            class="method-args">(name, uri, body = nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="invoke_verb-source">
-            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 29</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">invoke_verb</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">body</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">uri</span>, {}, <span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">TInternet</span>.<span class="ruby-identifier">execute</span> <span class="ruby-constant">AuthPolicy</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
-
-  <span class="ruby-keyword">return</span> <span class="ruby-string">''</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>
-
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">401</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rexpired token/</span>
-    <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span>(<span class="ruby-node">&quot;[401 #{name.to_s.upcase} #{uri}]: Your access token has expired.&quot;</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidAccessToken</span>, <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">unless</span> [<span class="ruby-value">200</span>, <span class="ruby-value">201</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>
-    <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span>(<span class="ruby-node">&quot;[#{response.code} #{name.to_s.upcase} #{uri}]: #{response.body}&quot;</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- invoke_verb-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- invoke_verb-method -->
-
-    
-      <div id="method-c-post" class="method-detail ">
+      <div id="method-i-post" class="method-detail ">
         
         <div class="method-heading">
           <span class="method-name">post</span><span
@@ -326,7 +545,7 @@
 
           
           <div class="method-source-code" id="post-source">
-            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 14</span>
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span> = {})
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{API_VERSION}#{path}&quot;</span>)
   <span class="ruby-identifier">invoke_verb</span>(<span class="ruby-value">:post</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">body</span>)
@@ -341,7 +560,7 @@
       </div><!-- post-method -->
 
     
-      <div id="method-c-put" class="method-detail ">
+      <div id="method-i-put" class="method-detail ">
         
         <div class="method-heading">
           <span class="method-name">put</span><span
@@ -357,7 +576,7 @@
 
           
           <div class="method-source-code" id="put-source">
-            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 19</span>
+            <pre><span class="ruby-comment"># File lib/trello/client.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">put</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">body</span> = {})
   <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://api.trello.com/#{API_VERSION}#{path}&quot;</span>)
   <span class="ruby-identifier">invoke_verb</span>(<span class="ruby-value">:put</span>, <span class="ruby-identifier">uri</span>, <span class="ruby-identifier">body</span>)
@@ -372,7 +591,7 @@
       </div><!-- put-method -->
 
     
-    </section><!-- public-class-method-details -->
+    </section><!-- public-instance-method-details -->
   
   </section><!-- 5Buntitled-5D -->
 

@@ -86,17 +86,41 @@
     
     <li><a href="#method-c-find">::find</a>
     
+    <li><a href="#method-i-add_attachment">#add_attachment</a>
+    
     <li><a href="#method-i-add_checklist">#add_checklist</a>
     
     <li><a href="#method-i-add_comment">#add_comment</a>
     
     <li><a href="#method-i-add_label">#add_label</a>
     
+    <li><a href="#method-i-add_member">#add_member</a>
+    
+    <li><a href="#method-i-attachments">#attachments</a>
+    
+    <li><a href="#method-i-check_item_states">#check_item_states</a>
+    
+    <li><a href="#method-i-close">#close</a>
+    
+    <li><a href="#method-i-close-21">#close!</a>
+    
+    <li><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li><a href="#method-i-delete">#delete</a>
+    
     <li><a href="#method-i-labels">#labels</a>
     
     <li><a href="#method-i-members">#members</a>
     
+    <li><a href="#method-i-move_to_board">#move_to_board</a>
+    
+    <li><a href="#method-i-move_to_list">#move_to_list</a>
+    
+    <li><a href="#method-i-remove_attachment">#remove_attachment</a>
+    
     <li><a href="#method-i-remove_label">#remove_label</a>
+    
+    <li><a href="#method-i-remove_member">#remove_member</a>
     
     <li><a href="#method-i-save">#save</a>
     
@@ -123,8 +147,6 @@
   
     <li class="file"><a href="../Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="../test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -140,6 +162,8 @@
     <li><a href="../Trello/Association.html">Trello::Association</a>
   
     <li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="../Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="../Trello/Authorization.html">Trello::Authorization</a>
   
@@ -157,9 +181,13 @@
   
     <li><a href="../Trello/Card.html">Trello::Card</a>
   
+    <li><a href="../Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="../Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="../Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="../Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="../Trello/Error.html">Trello::Error</a>
   
@@ -169,9 +197,9 @@
   
     <li><a href="../Trello/Item.html">Trello::Item</a>
   
-    <li><a href="../Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="../Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="../Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="../Trello/List.html">Trello::List</a>
   
@@ -249,9 +277,10 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File lib/trello/card.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">new</span>(<span class="ruby-string">'name'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>],
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:card</span>,
+      <span class="ruby-string">'name'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>],
       <span class="ruby-string">'idList'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:list_id</span>],
-      <span class="ruby-string">'desc'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:description</span>]).<span class="ruby-identifier">save</span>
+      <span class="ruby-string">'desc'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:description</span>])
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create-source -->
           
@@ -281,7 +310,7 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
           <div class="method-source-code" id="find-source">
             <pre><span class="ruby-comment"># File lib/trello/card.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
-  <span class="ruby-keyword">super</span>(<span class="ruby-value">:cards</span>, <span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:card</span>, <span class="ruby-identifier">id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- find-source -->
           
@@ -297,6 +326,46 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
   
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-add_attachment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_attachment</span><span
+            class="method-args">(attachment, name='')</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add an attachment to this card</p>
+          
+
+          
+          <div class="method-source-code" id="add_attachment-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_attachment</span>(<span class="ruby-identifier">attachment</span>, <span class="ruby-identifier">name</span>=<span class="ruby-string">''</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">File</span>
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/attachments&quot;</span>, {
+        <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">attachment</span>,
+        <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>
+      })
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/attachments&quot;</span>, {
+        <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">attachment</span>,
+        <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>
+      })
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- add_attachment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- add_attachment-method -->
 
     
       <div id="method-i-add_checklist" class="method-detail ">
@@ -315,9 +384,9 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="add_checklist-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 107</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_checklist</span>(<span class="ruby-identifier">checklist</span>)
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/checklists&quot;</span>, {
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/checklists&quot;</span>, {
     <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">checklist</span>.<span class="ruby-identifier">id</span>
   })
 <span class="ruby-keyword">end</span></pre>
@@ -347,9 +416,9 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="add_comment-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 102</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_comment</span>(<span class="ruby-identifier">text</span>)
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/actions/comments&quot;</span>, <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/actions/comments&quot;</span>, <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">text</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- add_comment-source -->
           
@@ -377,13 +446,13 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="add_label-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 120</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 172</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_label</span>(<span class="ruby-identifier">colour</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-node">%w{green yellow orange red purple blue}</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">colour</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:label</span>, <span class="ruby-node">&quot;colour '#{colour}' does not exist&quot;</span>)
     <span class="ruby-keyword">return</span> <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;The label colour '#{colour}' does not exist.&quot;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/labels&quot;</span>, { <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">colour</span> })
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/labels&quot;</span>, { <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">colour</span> })
 <span class="ruby-keyword">end</span></pre>
           </div><!-- add_label-source -->
           
@@ -393,6 +462,221 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
         
       </div><!-- add_label-method -->
+
+    
+      <div id="method-i-add_member" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_member</span><span
+            class="method-args">(member)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Add a member to this card</p>
+          
+
+          
+          <div class="method-source-code" id="add_member-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_member</span>(<span class="ruby-identifier">member</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/cards/#{id}/members&quot;</span>, {
+    <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">id</span>
+  })
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- add_member-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- add_member-method -->
+
+    
+      <div id="method-i-attachments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">attachments</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieve a list of attachments</p>
+          
+
+          
+          <div class="method-source-code" id="attachments-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">attachments</span>
+  <span class="ruby-identifier">attachments</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/attachments&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Attachment</span>)
+  <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">attachments</span>).<span class="ruby-identifier">proxy</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- attachments-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- attachments-method -->
+
+    
+      <div id="method-i-check_item_states" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_item_states</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="check_item_states-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_item_states</span>
+  <span class="ruby-identifier">states</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{self.id}/checkItemStates&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">CheckItemState</span>)
+  <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">states</span>).<span class="ruby-identifier">proxy</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_item_states-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_item_states-method -->
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">closed</span> = <span class="ruby-keyword">true</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- close-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-method -->
+
+    
+      <div id="method-i-close-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="close-21-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close!</span>
+  <span class="ruby-identifier">close</span>
+  <span class="ruby-identifier">save</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- close-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-21-method -->
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">closed?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Check if the card is not active anymore.</p>
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed?</span>
+  <span class="ruby-identifier">closed</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- closed-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- closed-3F-method -->
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Delete this card</p>
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/cards/#{id}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete-method -->
 
     
       <div id="method-i-labels" class="method-detail ">
@@ -411,9 +695,9 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="labels-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 114</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 166</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">labels</span>
-  <span class="ruby-identifier">labels</span> = <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/labels&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Label</span>)
+  <span class="ruby-identifier">labels</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/cards/#{id}/labels&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Label</span>)
   <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">labels</span>).<span class="ruby-identifier">proxy</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- labels-source -->
@@ -442,10 +726,10 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="members-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 58</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">members</span>
   <span class="ruby-identifier">members</span> = <span class="ruby-identifier">member_ids</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member_id</span><span class="ruby-operator">|</span>
-    <span class="ruby-constant">Client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/members/#{member_id}&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/members/#{member_id}&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">members</span>).<span class="ruby-identifier">proxy</span>
 <span class="ruby-keyword">end</span></pre>
@@ -457,6 +741,104 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
         
       </div><!-- members-method -->
+
+    
+      <div id="method-i-move_to_board" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">move_to_board</span><span
+            class="method-args">(new_board, new_list = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Move this card to the given board (and optional list on this board)</p>
+          
+
+          
+          <div class="method-source-code" id="move_to_board-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">move_to_board</span>(<span class="ruby-identifier">new_board</span>, <span class="ruby-identifier">new_list</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">board_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">new_board</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">payload</span> = { <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">new_board</span>.<span class="ruby-identifier">id</span> }
+    <span class="ruby-identifier">payload</span>[<span class="ruby-value">:idList</span>] = <span class="ruby-identifier">new_list</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_list</span>
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/cards/#{id}/idBoard&quot;</span>, <span class="ruby-identifier">payload</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- move_to_board-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- move_to_board-method -->
+
+    
+      <div id="method-i-move_to_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">move_to_list</span><span
+            class="method-args">(list)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Move this card to the given list</p>
+          
+
+          
+          <div class="method-source-code" id="move_to_list-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">move_to_list</span>(<span class="ruby-identifier">list</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">list_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/cards/#{id}/idList&quot;</span>, {
+      <span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">id</span>
+    })
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- move_to_list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- move_to_list-method -->
+
+    
+      <div id="method-i-remove_attachment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_attachment</span><span
+            class="method-args">(attachment)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Remove an attachment from this card</p>
+          
+
+          
+          <div class="method-source-code" id="remove_attachment-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_attachment</span>(<span class="ruby-identifier">attachment</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/cards/#{id}/attachments/#{attachment.id}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remove_attachment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remove_attachment-method -->
 
     
       <div id="method-i-remove_label" class="method-detail ">
@@ -475,13 +857,13 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="remove_label-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 129</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 181</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_label</span>(<span class="ruby-identifier">colour</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-node">%w{green yellow orange red purple blue}</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">colour</span>
     <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:label</span>, <span class="ruby-node">&quot;colour '#{colour}' does not exist&quot;</span>)
     <span class="ruby-keyword">return</span> <span class="ruby-constant">Trello</span>.<span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;The label colour '#{colour}' does not exist.&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-node">%w{green yellow orange red purple blue}</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">colour</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/cards/#{id}/labels/#{colour}&quot;</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/cards/#{id}/labels/#{colour}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- remove_label-source -->
           
@@ -491,6 +873,36 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
         
       </div><!-- remove_label-method -->
+
+    
+      <div id="method-i-remove_member" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_member</span><span
+            class="method-args">(member)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Remove a member from this card</p>
+          
+
+          
+          <div class="method-source-code" id="remove_member-source">
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_member</span>(<span class="ruby-identifier">member</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/cards/#{id}/members/#{member.id}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remove_member-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remove_member-method -->
 
     
       <div id="method-i-save" class="method-detail ">
@@ -509,12 +921,12 @@ comments; it resides inside a <a href="List.html">List</a>.</p>
 
           
           <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 66</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
   <span class="ruby-comment"># If we have an id, just update our fields.</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">update!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span>
 
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-string">&quot;/cards&quot;</span>, {
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-string">&quot;/cards&quot;</span>, {
     <span class="ruby-value">:name</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
     <span class="ruby-value">:desc</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">description</span>,
     <span class="ruby-value">:idList</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">list_id</span>
@@ -549,20 +961,14 @@ the record.</p>
 
           
           <div class="method-source-code" id="update-21-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 81</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update!</span>
   <span class="ruby-ivar">@previously_changed</span> = <span class="ruby-identifier">changes</span>
+  <span class="ruby-comment"># extract only new values to build payload</span>
+  <span class="ruby-identifier">payload</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">changes</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">values</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">values</span>[<span class="ruby-value">1</span>]] }]
   <span class="ruby-ivar">@changed_attributes</span>.<span class="ruby-identifier">clear</span>
 
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/cards/#{id}&quot;</span>, {
-    <span class="ruby-value">:name</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
-    <span class="ruby-value">:desc</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">description</span>,
-    <span class="ruby-value">:due</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">due</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">due</span>.<span class="ruby-identifier">utc</span>.<span class="ruby-identifier">iso8601</span>,
-    <span class="ruby-value">:closed</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">closed</span>,
-    <span class="ruby-value">:idList</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">list_id</span>,
-    <span class="ruby-value">:idBoard</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">board_id</span>,
-    <span class="ruby-value">:idMembers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">member_ids</span>
-  })
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/cards/#{id}&quot;</span>, <span class="ruby-identifier">payload</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-21-source -->
           
@@ -593,18 +999,20 @@ href="../Trello.html">Trello</a> API representing a card.</p>
 
           
           <div class="method-source-code" id="update_fields-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]          = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:short_id</span>]    = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idShort'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]        = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'name'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:description</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'desc'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:due</span>]         = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">iso8601</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-string">'due'</span>]) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>]      = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'closed'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>]         = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'url'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:board_id</span>]    = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idBoard'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_ids</span>]  = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idMembers'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:list_id</span>]     = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idList'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]                 = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:short_id</span>]           = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idShort'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]               = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'name'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:description</span>]        = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'desc'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:due</span>]                = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">iso8601</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-string">'due'</span>]) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>]             = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'closed'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>]                = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'url'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:board_id</span>]           = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idBoard'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_ids</span>]         = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idMembers'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:list_id</span>]            = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idList'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:pos</span>]                = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'pos'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:last_activity_date</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">iso8601</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-string">'dateLastActivity'</span>]) <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update_fields-source -->
@@ -633,7 +1041,7 @@ href="../Trello.html">Trello</a> API representing a card.</p>
 
           
           <div class="method-source-code" id="valid-3F-source">
-            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 97</span>
+            <pre><span class="ruby-comment"># File lib/trello/card.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">valid?</span>
   <span class="ruby-identifier">name</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">list_id</span>
 <span class="ruby-keyword">end</span></pre>

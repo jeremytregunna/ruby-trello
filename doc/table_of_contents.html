@@ -34,9 +34,6 @@
     <li class="file">
     <a href="Rakefile.html">Rakefile</a>
   </li>
-    <li class="file">
-    <a href="test-credentials.html">test-credentials</a>
-  </li>
   
 </ul>
 
@@ -53,6 +50,9 @@
   </li>
     <li class="class">
     <a href="Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  </li>
+    <li class="class">
+    <a href="Trello/Attachment.html">Trello::Attachment</a>
   </li>
     <li class="module">
     <a href="Trello/Authorization.html">Trello::Authorization</a>
@@ -79,10 +79,16 @@
     <a href="Trello/Card.html">Trello::Card</a>
   </li>
     <li class="class">
+    <a href="Trello/CheckItemState.html">Trello::CheckItemState</a>
+  </li>
+    <li class="class">
     <a href="Trello/Checklist.html">Trello::Checklist</a>
   </li>
     <li class="class">
     <a href="Trello/Client.html">Trello::Client</a>
+  </li>
+    <li class="class">
+    <a href="Trello/Configuration.html">Trello::Configuration</a>
   </li>
     <li class="class">
     <a href="Trello/Error.html">Trello::Error</a>
@@ -97,10 +103,10 @@
     <a href="Trello/Item.html">Trello::Item</a>
   </li>
     <li class="class">
-    <a href="Trello/ItemState.html">Trello::ItemState</a>
+    <a href="Trello/Label.html">Trello::Label</a>
   </li>
     <li class="class">
-    <a href="Trello/Label.html">Trello::Label</a>
+    <a href="Trello/LabelName.html">Trello::LabelName</a>
   </li>
     <li class="class">
     <a href="Trello/List.html">Trello::List</a>
@@ -144,9 +150,27 @@
 <h2 id="methods">Methods</h2>
 <ul>
   
+    <li class="method"><a href="Trello/Board.html#method-c-all">::all &mdash; Trello::Board</a>
+  
+    <li class="method"><a href="Trello.html#method-c-auth_policy">::auth_policy &mdash; Trello</a>
+  
     <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-c-authorize">::authorize &mdash; Trello::Authorization::OAuthPolicy</a>
   
     <li class="method"><a href="Trello/Authorization/BasicAuthPolicy.html#method-c-authorize">::authorize &mdash; Trello::Authorization::BasicAuthPolicy</a>
+  
+    <li class="method"><a href="Trello.html#method-c-client">::client &mdash; Trello</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-c-client">::client &mdash; Trello::BasicData</a>
+  
+    <li class="method"><a href="Trello/Configuration.html#method-c-configurable_attributes">::configurable_attributes &mdash; Trello::Configuration</a>
+  
+    <li class="method"><a href="Trello.html#method-c-configuration">::configuration &mdash; Trello</a>
+  
+    <li class="method"><a href="Trello.html#method-c-configure">::configure &mdash; Trello</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-c-create">::create &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-c-create">::create &mdash; Trello::BasicData</a>
   
     <li class="method"><a href="Trello/Board.html#method-c-create">::create &mdash; Trello::Board</a>
   
@@ -154,37 +178,29 @@
   
     <li class="method"><a href="Trello/Checklist.html#method-c-create">::create &mdash; Trello::Checklist</a>
   
-    <li class="method"><a href="Trello/Card.html#method-c-create">::create &mdash; Trello::Card</a>
-  
-    <li class="method"><a href="Trello/Client.html#method-c-delete">::delete &mdash; Trello::Client</a>
-  
     <li class="method"><a href="Trello/TInternet.html#method-c-execute">::execute &mdash; Trello::TInternet</a>
-  
-    <li class="method"><a href="Trello/Member.html#method-c-find">::find &mdash; Trello::Member</a>
-  
-    <li class="method"><a href="Trello/Checklist.html#method-c-find">::find &mdash; Trello::Checklist</a>
-  
-    <li class="method"><a href="Trello/Organization.html#method-c-find">::find &mdash; Trello::Organization</a>
-  
-    <li class="method"><a href="Trello/Notification.html#method-c-find">::find &mdash; Trello::Notification</a>
-  
-    <li class="method"><a href="Trello/Card.html#method-c-find">::find &mdash; Trello::Card</a>
-  
-    <li class="method"><a href="Trello/Board.html#method-c-find">::find &mdash; Trello::Board</a>
-  
-    <li class="method"><a href="Trello/BasicData.html#method-c-find">::find &mdash; Trello::BasicData</a>
-  
-    <li class="method"><a href="Trello/List.html#method-c-find">::find &mdash; Trello::List</a>
   
     <li class="method"><a href="Trello/Action.html#method-c-find">::find &mdash; Trello::Action</a>
   
+    <li class="method"><a href="Trello/Notification.html#method-c-find">::find &mdash; Trello::Notification</a>
+  
+    <li class="method"><a href="Trello/Organization.html#method-c-find">::find &mdash; Trello::Organization</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-c-find">::find &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-c-find">::find &mdash; Trello::BasicData</a>
+  
+    <li class="method"><a href="Trello/Board.html#method-c-find">::find &mdash; Trello::Board</a>
+  
     <li class="method"><a href="Trello/Token.html#method-c-find">::find &mdash; Trello::Token</a>
   
-    <li class="method"><a href="Trello/Client.html#method-c-get">::get &mdash; Trello::Client</a>
+    <li class="method"><a href="Trello/Checklist.html#method-c-find">::find &mdash; Trello::Checklist</a>
+  
+    <li class="method"><a href="Trello/List.html#method-c-find">::find &mdash; Trello::List</a>
+  
+    <li class="method"><a href="Trello/Member.html#method-c-find">::find &mdash; Trello::Member</a>
   
     <li class="method"><a href="IntegrationTest.html#method-c-included">::included &mdash; IntegrationTest</a>
-  
-    <li class="method"><a href="Trello/Client.html#method-c-invoke_verb">::invoke_verb &mdash; Trello::Client</a>
   
     <li class="method"><a href="Trello.html#method-c-logger">::logger &mdash; Trello</a>
   
@@ -194,23 +210,37 @@
   
     <li class="method"><a href="Trello/Association.html#method-c-new">::new &mdash; Trello::Association</a>
   
-    <li class="method"><a href="Trello/BasicData.html#method-c-new">::new &mdash; Trello::BasicData</a>
-  
     <li class="method"><a href="Trello/MultiAssociation.html#method-c-new">::new &mdash; Trello::MultiAssociation</a>
+  
+    <li class="method"><a href="Trello/Authorization/BasicAuthPolicy.html#method-c-new">::new &mdash; Trello::Authorization::BasicAuthPolicy</a>
   
     <li class="method"><a href="Trello/AssociationProxy.html#method-c-new">::new &mdash; Trello::AssociationProxy</a>
   
+    <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-c-new">::new &mdash; Trello::Authorization::OAuthPolicy</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-c-new">::new &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Configuration.html#method-c-new">::new &mdash; Trello::Configuration</a>
+  
     <li class="method"><a href="Object.html#method-c-new">::new &mdash; Object</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-c-new">::new &mdash; Trello::BasicData</a>
   
     <li class="method"><a href="Trello/Authorization/Nonce.html#method-c-next">::next &mdash; Trello::Authorization::Nonce</a>
   
     <li class="method"><a href="Trello/BasicData.html#method-c-one">::one &mdash; Trello::BasicData</a>
   
-    <li class="method"><a href="Trello/Client.html#method-c-post">::post &mdash; Trello::Client</a>
+    <li class="method"><a href="Trello/BasicData.html#method-c-parse">::parse &mdash; Trello::BasicData</a>
   
-    <li class="method"><a href="Trello/Client.html#method-c-put">::put &mdash; Trello::Client</a>
+    <li class="method"><a href="Trello/BasicData.html#method-c-parse_many">::parse_many &mdash; Trello::BasicData</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-c-path_name">::path_name &mdash; Trello::BasicData</a>
   
     <li class="method"><a href="Trello/BasicData.html#method-c-register_attributes">::register_attributes &mdash; Trello::BasicData</a>
+  
+    <li class="method"><a href="Trello.html#method-c-reset-21">::reset! &mdash; Trello</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-c-save">::save &mdash; Trello::BasicData</a>
   
     <li class="method"><a href="IntegrationTest/Container.html#method-c-set">::set &mdash; IntegrationTest::Container</a>
   
@@ -228,6 +258,8 @@
   
     <li class="method"><a href="Helpers.html#method-i-actions_payload">#actions_payload &mdash; Helpers</a>
   
+    <li class="method"><a href="Trello/Card.html#method-i-add_attachment">#add_attachment &mdash; Trello::Card</a>
+  
     <li class="method"><a href="Trello/Card.html#method-i-add_checklist">#add_checklist &mdash; Trello::Card</a>
   
     <li class="method"><a href="Trello/Card.html#method-i-add_comment">#add_comment &mdash; Trello::Card</a>
@@ -236,11 +268,29 @@
   
     <li class="method"><a href="Trello/Card.html#method-i-add_label">#add_label &mdash; Trello::Card</a>
   
+    <li class="method"><a href="Trello/Card.html#method-i-add_member">#add_member &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-attachments">#attachments &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Helpers.html#method-i-attachments_details">#attachments_details &mdash; Helpers</a>
+  
+    <li class="method"><a href="Helpers.html#method-i-attachments_payload">#attachments_payload &mdash; Helpers</a>
+  
+    <li class="method"><a href="Trello/Configuration.html#method-i-attributes-3D">#attributes= &mdash; Trello::Configuration</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-auth_policy">#auth_policy &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-i-authorize">#authorize &mdash; Trello::Authorization::OAuthPolicy</a>
+  
+    <li class="method"><a href="Trello/Authorization/BasicAuthPolicy.html#method-i-authorize">#authorize &mdash; Trello::Authorization::BasicAuthPolicy</a>
+  
     <li class="method"><a href="Trello/Member.html#method-i-avatar_url">#avatar_url &mdash; Trello::Member</a>
   
-    <li class="method"><a href="Trello/Action.html#method-i-board">#board &mdash; Trello::Action</a>
+    <li class="method"><a href="Trello/Configuration.html#method-i-basic-3F">#basic? &mdash; Trello::Configuration</a>
   
     <li class="method"><a href="Trello/Notification.html#method-i-board">#board &mdash; Trello::Notification</a>
+  
+    <li class="method"><a href="Trello/Action.html#method-i-board">#board &mdash; Trello::Action</a>
   
     <li class="method"><a href="Trello/Organization.html#method-i-boards">#boards &mdash; Trello::Organization</a>
   
@@ -252,27 +302,71 @@
   
     <li class="method"><a href="Trello/Action.html#method-i-card">#card &mdash; Trello::Action</a>
   
+    <li class="method"><a href="Helpers.html#method-i-card_payload">#card_payload &mdash; Helpers</a>
+  
     <li class="method"><a href="Helpers.html#method-i-cards_details">#cards_details &mdash; Helpers</a>
   
     <li class="method"><a href="Helpers.html#method-i-cards_payload">#cards_payload &mdash; Helpers</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-check_item_states">#check_item_states &mdash; Trello::Card</a>
   
     <li class="method"><a href="Helpers.html#method-i-checklists_details">#checklists_details &mdash; Helpers</a>
   
     <li class="method"><a href="Helpers.html#method-i-checklists_payload">#checklists_payload &mdash; Helpers</a>
   
-    <li class="method"><a href="Trello/Board.html#method-i-closed-3F">#closed? &mdash; Trello::Board</a>
+    <li class="method"><a href="Trello/BasicData.html#method-i-client">#client &mdash; Trello::BasicData</a>
   
-    <li class="method"><a href="Trello/Checklist.html#method-i-closed-3F">#closed? &mdash; Trello::Checklist</a>
+    <li class="method"><a href="Trello/List.html#method-i-close">#close &mdash; Trello::List</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-close">#close &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/List.html#method-i-close-21">#close! &mdash; Trello::List</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-close-21">#close! &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Board.html#method-i-closed-3F">#closed? &mdash; Trello::Board</a>
   
     <li class="method"><a href="Trello/List.html#method-i-closed-3F">#closed? &mdash; Trello::List</a>
   
+    <li class="method"><a href="Trello/Checklist.html#method-i-closed-3F">#closed? &mdash; Trello::Checklist</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-closed-3F">#closed? &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-configuration">#configuration &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-configure">#configure &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-i-consumer_key">#consumer_key &mdash; Trello::Authorization::OAuthPolicy</a>
+  
+    <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-i-consumer_secret">#consumer_secret &mdash; Trello::Authorization::OAuthPolicy</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-create">#create &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Configuration.html#method-i-credentials">#credentials &mdash; Trello::Configuration</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-delete">#delete &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-delete">#delete &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Checklist.html#method-i-delete">#delete &mdash; Trello::Checklist</a>
+  
+    <li class="method"><a href="Trello/Checklist.html#method-i-delete_checklist_item">#delete_checklist_item &mdash; Trello::Checklist</a>
+  
     <li class="method"><a href="Object.html#method-i-example_class">#example_class &mdash; Object</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-find">#find &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Board.html#method-i-find_card">#find_card &mdash; Trello::Board</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-find_many">#find_many &mdash; Trello::Client</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-get">#get &mdash; Trello::Client</a>
   
     <li class="method"><a href="IntegrationTest.html#method-i-get">#get &mdash; IntegrationTest</a>
   
     <li class="method"><a href="Trello/Board.html#method-i-has_lists-3F">#has_lists? &mdash; Trello::Board</a>
   
-    <li class="method"><a href="Trello/ItemState.html#method-i-item">#item &mdash; Trello::ItemState</a>
+    <li class="method"><a href="Trello/CheckItemState.html#method-i-item">#item &mdash; Trello::CheckItemState</a>
   
     <li class="method"><a href="Trello/Checklist.html#method-i-items">#items &mdash; Trello::Checklist</a>
   
@@ -280,7 +374,13 @@
   
     <li class="method"><a href="Helpers.html#method-i-label_details">#label_details &mdash; Helpers</a>
   
+    <li class="method"><a href="Helpers.html#method-i-label_name_details">#label_name_details &mdash; Helpers</a>
+  
+    <li class="method"><a href="Helpers.html#method-i-label_name_payload">#label_name_payload &mdash; Helpers</a>
+  
     <li class="method"><a href="Helpers.html#method-i-label_payload">#label_payload &mdash; Helpers</a>
+  
+    <li class="method"><a href="Trello/Board.html#method-i-labels">#labels &mdash; Trello::Board</a>
   
     <li class="method"><a href="Trello/Card.html#method-i-labels">#labels &mdash; Trello::Card</a>
   
@@ -296,15 +396,25 @@
   
     <li class="method"><a href="Trello/Checklist.html#method-i-members">#members &mdash; Trello::Checklist</a>
   
-    <li class="method"><a href="Trello/Card.html#method-i-members">#members &mdash; Trello::Card</a>
-  
     <li class="method"><a href="Trello/Organization.html#method-i-members">#members &mdash; Trello::Organization</a>
   
+    <li class="method"><a href="Trello/Card.html#method-i-members">#members &mdash; Trello::Card</a>
+  
     <li class="method"><a href="Trello/AssociationProxy.html#method-i-method_missing">#method_missing &mdash; Trello::AssociationProxy</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-move_to_board">#move_to_board &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-move_to_list">#move_to_list &mdash; Trello::Card</a>
   
     <li class="method"><a href="Helpers.html#method-i-notification_details">#notification_details &mdash; Helpers</a>
   
     <li class="method"><a href="Helpers.html#method-i-notification_payload">#notification_payload &mdash; Helpers</a>
+  
+    <li class="method"><a href="Trello/Configuration.html#method-i-oauth-3F">#oauth? &mdash; Trello::Configuration</a>
+  
+    <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-i-oauth_token">#oauth_token &mdash; Trello::Authorization::OAuthPolicy</a>
+  
+    <li class="method"><a href="Trello/Authorization/OAuthPolicy.html#method-i-oauth_token_secret">#oauth_token_secret &mdash; Trello::Authorization::OAuthPolicy</a>
   
     <li class="method"><a href="Trello/Notification.html#method-i-organization">#organization &mdash; Trello::Notification</a>
   
@@ -316,21 +426,29 @@
   
     <li class="method"><a href="Helpers.html#method-i-orgs_payload">#orgs_payload &mdash; Helpers</a>
   
+    <li class="method"><a href="Trello/Client.html#method-i-post">#post &mdash; Trello::Client</a>
+  
     <li class="method"><a href="Trello/AssociationProxy.html#method-i-proxy_assocation">#proxy_assocation &mdash; Trello::AssociationProxy</a>
+  
+    <li class="method"><a href="Trello/Client.html#method-i-put">#put &mdash; Trello::Client</a>
   
     <li class="method"><a href="Trello/BasicData.html#method-i-refresh-21">#refresh! &mdash; Trello::BasicData</a>
   
+    <li class="method"><a href="Trello/Card.html#method-i-remove_attachment">#remove_attachment &mdash; Trello::Card</a>
+  
     <li class="method"><a href="Trello/Card.html#method-i-remove_label">#remove_label &mdash; Trello::Card</a>
   
-    <li class="method"><a href="Trello/Member.html#method-i-save">#save &mdash; Trello::Member</a>
-  
-    <li class="method"><a href="Trello/Checklist.html#method-i-save">#save &mdash; Trello::Checklist</a>
+    <li class="method"><a href="Trello/Card.html#method-i-remove_member">#remove_member &mdash; Trello::Card</a>
   
     <li class="method"><a href="Trello/Card.html#method-i-save">#save &mdash; Trello::Card</a>
   
+    <li class="method"><a href="Trello/List.html#method-i-save">#save &mdash; Trello::List</a>
+  
+    <li class="method"><a href="Trello/Checklist.html#method-i-save">#save &mdash; Trello::Checklist</a>
+  
     <li class="method"><a href="Trello/Board.html#method-i-save">#save &mdash; Trello::Board</a>
   
-    <li class="method"><a href="Trello/List.html#method-i-save">#save &mdash; Trello::List</a>
+    <li class="method"><a href="Trello/Member.html#method-i-save">#save &mdash; Trello::Member</a>
   
     <li class="method"><a href="Trello/AssociationProxy.html#method-i-to_a">#to_a &mdash; Trello::AssociationProxy</a>
   
@@ -340,39 +458,43 @@
   
     <li class="method"><a href="Helpers.html#method-i-token_payload">#token_payload &mdash; Helpers</a>
   
-    <li class="method"><a href="Trello/Board.html#method-i-update-21">#update! &mdash; Trello::Board</a>
-  
-    <li class="method"><a href="Trello/Card.html#method-i-update-21">#update! &mdash; Trello::Card</a>
+    <li class="method"><a href="Trello/Member.html#method-i-update-21">#update! &mdash; Trello::Member</a>
   
     <li class="method"><a href="Trello/Checklist.html#method-i-update-21">#update! &mdash; Trello::Checklist</a>
   
-    <li class="method"><a href="Trello/Member.html#method-i-update-21">#update! &mdash; Trello::Member</a>
+    <li class="method"><a href="Trello/Card.html#method-i-update-21">#update! &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Board.html#method-i-update-21">#update! &mdash; Trello::Board</a>
   
     <li class="method"><a href="Trello/List.html#method-i-update-21">#update! &mdash; Trello::List</a>
   
-    <li class="method"><a href="Trello/Card.html#method-i-update_fields">#update_fields &mdash; Trello::Card</a>
-  
-    <li class="method"><a href="Trello/ItemState.html#method-i-update_fields">#update_fields &mdash; Trello::ItemState</a>
-  
-    <li class="method"><a href="Trello/Action.html#method-i-update_fields">#update_fields &mdash; Trello::Action</a>
-  
-    <li class="method"><a href="Trello/Board.html#method-i-update_fields">#update_fields &mdash; Trello::Board</a>
-  
-    <li class="method"><a href="Trello/BasicData.html#method-i-update_fields">#update_fields &mdash; Trello::BasicData</a>
-  
-    <li class="method"><a href="Trello/Member.html#method-i-update_fields">#update_fields &mdash; Trello::Member</a>
-  
-    <li class="method"><a href="Trello/Checklist.html#method-i-update_fields">#update_fields &mdash; Trello::Checklist</a>
-  
-    <li class="method"><a href="Trello/Organization.html#method-i-update_fields">#update_fields &mdash; Trello::Organization</a>
-  
-    <li class="method"><a href="Trello/List.html#method-i-update_fields">#update_fields &mdash; Trello::List</a>
+    <li class="method"><a href="Trello/Attachment.html#method-i-update_fields">#update_fields &mdash; Trello::Attachment</a>
   
     <li class="method"><a href="Trello/Notification.html#method-i-update_fields">#update_fields &mdash; Trello::Notification</a>
   
-    <li class="method"><a href="Trello/Label.html#method-i-update_fields">#update_fields &mdash; Trello::Label</a>
+    <li class="method"><a href="Trello/Organization.html#method-i-update_fields">#update_fields &mdash; Trello::Organization</a>
   
     <li class="method"><a href="Trello/Item.html#method-i-update_fields">#update_fields &mdash; Trello::Item</a>
+  
+    <li class="method"><a href="Trello/CheckItemState.html#method-i-update_fields">#update_fields &mdash; Trello::CheckItemState</a>
+  
+    <li class="method"><a href="Trello/Label.html#method-i-update_fields">#update_fields &mdash; Trello::Label</a>
+  
+    <li class="method"><a href="Trello/Action.html#method-i-update_fields">#update_fields &mdash; Trello::Action</a>
+  
+    <li class="method"><a href="Trello/BasicData.html#method-i-update_fields">#update_fields &mdash; Trello::BasicData</a>
+  
+    <li class="method"><a href="Trello/List.html#method-i-update_fields">#update_fields &mdash; Trello::List</a>
+  
+    <li class="method"><a href="Trello/LabelName.html#method-i-update_fields">#update_fields &mdash; Trello::LabelName</a>
+  
+    <li class="method"><a href="Trello/Member.html#method-i-update_fields">#update_fields &mdash; Trello::Member</a>
+  
+    <li class="method"><a href="Trello/Card.html#method-i-update_fields">#update_fields &mdash; Trello::Card</a>
+  
+    <li class="method"><a href="Trello/Board.html#method-i-update_fields">#update_fields &mdash; Trello::Board</a>
+  
+    <li class="method"><a href="Trello/Checklist.html#method-i-update_fields">#update_fields &mdash; Trello::Checklist</a>
   
     <li class="method"><a href="Helpers.html#method-i-user_details">#user_details &mdash; Helpers</a>
   

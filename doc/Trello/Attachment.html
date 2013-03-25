@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class Trello::Organization - RDoc Documentation</title>
+<title>class Trello::Attachment - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/trello/organization.rb
+    <li>lib/trello/attachment.rb
   </ul>
 </nav>
 
@@ -59,34 +59,16 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="BasicData.html">Trello::BasicData</a>
+  <p class="link">BasicData
   
 </nav>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
-
-  <ul class="link-list">
-  
-  
-    <li><a class="include" href="HasActions.html">Trello::HasActions</a>
-  
-  
-  </ul>
-</nav>
-
+    
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
-    
-    <li><a href="#method-c-find">::find</a>
-    
-    <li><a href="#method-i-boards">#boards</a>
-    
-    <li><a href="#method-i-members">#members</a>
     
     <li><a href="#method-i-update_fields">#update_fields</a>
     
@@ -192,11 +174,11 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class Trello::Organization</h1>
+  <h1 class="class">class Trello::Attachment</h1>
 
   <div id="description" class="description">
     
-<p>Organizations are useful for linking members together.</p>
+<p>A file or url that is linked to a <a href="../Trello.html">Trello</a> card</p>
 
   </div><!-- description -->
 
@@ -214,106 +196,8 @@
 
     <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-find" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find</span><span
-            class="method-args">(id)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Find an organization by its id.</p>
-          
-
-          
-          <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File lib/trello/organization.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:organization</span>, <span class="ruby-identifier">id</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- find-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- find-method -->
-
-    
-    </section><!-- public-class-method-details -->
-  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-boards" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">boards</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns a list of boards under this organization.</p>
-          
-
-          
-          <div class="method-source-code" id="boards-source">
-            <pre><span class="ruby-comment"># File lib/trello/organization.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">boards</span>
-  <span class="ruby-identifier">boards</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/boards/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Board</span>)
-  <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">boards</span>).<span class="ruby-identifier">proxy</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- boards-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- boards-method -->
-
-    
-      <div id="method-i-members" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">members</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns an array of members associated with the organization.</p>
-          
-
-          
-          <div class="method-source-code" id="members-source">
-            <pre><span class="ruby-comment"># File lib/trello/organization.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">members</span>
-  <span class="ruby-identifier">members</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;/organizations/#{id}/members/all&quot;</span>).<span class="ruby-identifier">json_into</span>(<span class="ruby-constant">Member</span>)
-  <span class="ruby-constant">MultiAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">members</span>).<span class="ruby-identifier">proxy</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- members-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- members-method -->
 
     
       <div id="method-i-update_fields" class="method-detail ">
@@ -327,22 +211,24 @@
 
         <div class="method-description">
           
-          <p>Update the fields of an organization.</p>
+          <p>Update the fields of an attachment.</p>
 
-<p>Supply a hash of string keyed data retrieved from the <a
-href="../Trello.html">Trello</a> API representing an <a
-href="Organization.html">Organization</a>.</p>
+<p>Supply a hash of stringkeyed data retrieved from the <a
+href="../Trello.html">Trello</a> API representing an attachment.</p>
           
 
           
           <div class="method-source-code" id="update_fields-source">
-            <pre><span class="ruby-comment"># File lib/trello/organization.rb, line 21</span>
+            <pre><span class="ruby-comment"># File lib/trello/attachment.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]           = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]         = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'name'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:display_name</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'displayName'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:description</span>]  = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'description'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>]          = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'url'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]  = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'name'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'url'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:bytes</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'bytes'</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idMember'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:date</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-string">'date'</span>])
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:is_upload</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'isUpload'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:mime_type</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'mimeType'</span>]
   <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update_fields-source -->

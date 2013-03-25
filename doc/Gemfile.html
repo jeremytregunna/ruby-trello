@@ -55,8 +55,6 @@
   
     <li class="file"><a href="./Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="./test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -72,6 +70,8 @@
     <li><a href="./Trello/Association.html">Trello::Association</a>
   
     <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="./Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
   
@@ -89,9 +89,13 @@
   
     <li><a href="./Trello/Card.html">Trello::Card</a>
   
+    <li><a href="./Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="./Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="./Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="./Trello/Error.html">Trello::Error</a>
   
@@ -101,9 +105,9 @@
   
     <li><a href="./Trello/Item.html">Trello::Item</a>
   
-    <li><a href="./Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="./Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="./Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="./Trello/List.html">Trello::List</a>
   
@@ -137,14 +141,17 @@
 
 <div id="documentation" class="description">
   
-<p>source :rubygems gem ‘rake’ gem ‘oauth’ gem ‘addressable’ gem ‘json’,
-:platforms =&gt; [ :ruby_18, :jruby ] gem ‘jruby-openssl’, :platforms =&gt;
-:jruby gem ‘rest-client’ gem ‘activemodel’</p>
+<p>source ‘<a href="https://rubygems.org">rubygems.org</a>’</p>
 
-<p>group :spec do</p>
+<p>gemspec</p>
 
-<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">'rspec'</span>
-<span class="ruby-identifier">gem</span> <span class="ruby-string">'simplecov'</span>, :<span class="ruby-identifier">require</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, :<span class="ruby-identifier">platforms</span> =<span class="ruby-operator">&gt;</span> [ :<span class="ruby-identifier">mri</span>, :<span class="ruby-identifier">mri_18</span>, :<span class="ruby-identifier">mri_19</span>, :<span class="ruby-identifier">jruby</span>, :<span class="ruby-identifier">mingw</span> ]
+<p>group :development, :spec do</p>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">'fuubar'</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">'jruby-openssl'</span>, :<span class="ruby-identifier">platforms</span> =<span class="ruby-operator">&gt;</span> :<span class="ruby-identifier">jruby</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">'rake'</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">'rspec'</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">'simplecov'</span>, :<span class="ruby-identifier">require</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>, :<span class="ruby-identifier">platforms</span> =<span class="ruby-operator">&gt;</span> [:<span class="ruby-identifier">mri</span>, :<span class="ruby-identifier">mri_18</span>, :<span class="ruby-identifier">mri_19</span>, :<span class="ruby-identifier">jruby</span>, :<span class="ruby-identifier">mingw</span>]
 <span class="ruby-identifier">gem</span> <span class="ruby-string">'webmock'</span>
 </pre>
 

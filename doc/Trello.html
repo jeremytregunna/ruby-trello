@@ -50,16 +50,19 @@
     <li>lib/trello/action.rb
     <li>lib/trello/association.rb
     <li>lib/trello/association_proxy.rb
+    <li>lib/trello/attachment.rb
     <li>lib/trello/authorization.rb
     <li>lib/trello/basic_data.rb
     <li>lib/trello/board.rb
     <li>lib/trello/card.rb
     <li>lib/trello/checklist.rb
     <li>lib/trello/client.rb
+    <li>lib/trello/configuration.rb
     <li>lib/trello/has_actions.rb
     <li>lib/trello/item.rb
     <li>lib/trello/item_state.rb
     <li>lib/trello/label.rb
+    <li>lib/trello/label_name.rb
     <li>lib/trello/list.rb
     <li>lib/trello/member.rb
     <li>lib/trello/multi_association.rb
@@ -71,6 +74,7 @@
     <li>spec/action_spec.rb
     <li>spec/board_spec.rb
     <li>spec/card_spec.rb
+    <li>spec/checklist_spec.rb
     <li>spec/item_spec.rb
     <li>spec/list_spec.rb
     <li>spec/member_spec.rb
@@ -105,9 +109,19 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-c-auth_policy">::auth_policy</a>
+    
+    <li><a href="#method-c-client">::client</a>
+    
+    <li><a href="#method-c-configuration">::configuration</a>
+    
+    <li><a href="#method-c-configure">::configure</a>
+    
     <li><a href="#method-c-logger">::logger</a>
     
     <li><a href="#method-c-logger-3D">::logger=</a>
+    
+    <li><a href="#method-c-reset-21">::reset!</a>
     
   </ul>
 </nav>
@@ -126,8 +140,6 @@
   
     <li class="file"><a href="./Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="./test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -143,6 +155,8 @@
     <li><a href="./Trello/Association.html">Trello::Association</a>
   
     <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="./Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
   
@@ -160,9 +174,13 @@
   
     <li><a href="./Trello/Card.html">Trello::Card</a>
   
+    <li><a href="./Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="./Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="./Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="./Trello/Error.html">Trello::Error</a>
   
@@ -172,9 +190,9 @@
   
     <li><a href="./Trello/Item.html">Trello::Item</a>
   
-    <li><a href="./Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="./Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="./Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="./Trello/List.html">Trello::List</a>
   
@@ -216,22 +234,22 @@
 <p>First, set up your key information. You can get this information by <a
 href="https://trello.com/1/appKey/generate">clicking here</a>.</p>
 
-<pre>include Trello
-include Trello::Authorization
-
-Trello::Authorization.const_set :AuthPolicy, OAuthPolicy
-
-OAuthPolicy.consumer_credential = OAuthCredential.new 'PUBLIC_KEY', 'SECRET'</pre>
-
 <p>You can get the key by going to this url in your browser: <a
-href="https://trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never">trello.com/1/connect?key=PUBLIC_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never</a>
+href="https://trello.com/1/authorize?key=TRELLO_CONSUMER_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never">trello.com/1/authorize?key=TRELLO_CONSUMER_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never</a>
 Only request the permissions you need; i.e., scope=read if you only need
 read, or scope=write if you only need write. Comma separate scopes you
 need. If you want your token to expire after 30 days, drop the
 &amp;expiration=never. Then run the following code, where KEY denotes the
 key returned from the url above:</p>
 
-<pre>OAuthPolicy.token = OAuthCredential.new 'KEY', nil</pre>
+<p><a href="Trello.html#method-c-configure">::configure</a> do |config|</p>
+
+<pre>config.consumer_key = TRELLO_CONSUMER_KEY
+config.consumer_secret = TRELLO_CONSUMER_SECRET
+config.oauth_token = TRELLO_OAUTH_TOKEN
+config.oauth_token_secret = TRELLO_OAUTH_TOKEN_SECRET</pre>
+
+<p>end</p>
 
 <p>All the calls this library make to <a href="Trello.html">Trello</a> require
 authentication using these keys. Be sure to protect them.</p>
@@ -298,6 +316,123 @@ public.</p>
       <h3 class="section-header">Public Class Methods</h3>
 
     
+      <div id="method-c-auth_policy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">auth_policy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="auth_policy-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">auth_policy</span>; <span class="ruby-identifier">client</span>.<span class="ruby-identifier">auth_policy</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- auth_policy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- auth_policy-method -->
+
+    
+      <div id="method-c-client" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">client</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="client-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">client</span>
+  <span class="ruby-ivar">@client</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- client-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- client-method -->
+
+    
+      <div id="method-c-configuration" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configuration</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configuration-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">configuration</span>; <span class="ruby-identifier">client</span>.<span class="ruby-identifier">configuration</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- configuration-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- configuration-method -->
+
+    
+      <div id="method-c-configure" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">configure</span><span
+            class="method-args">(&block)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="configure-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">configure</span>(&amp;<span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">reset!</span>
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">configure</span>(&amp;<span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- configure-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- configure-method -->
+
+    
       <div id="method-c-logger" class="method-detail ">
         
         <div class="method-heading">
@@ -314,7 +449,7 @@ public.</p>
 
           
           <div class="method-source-code" id="logger-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 76</span>
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">logger</span>
   <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -344,7 +479,7 @@ public.</p>
 
           
           <div class="method-source-code" id="logger-3D-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 80</span>
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">logger=</span>(<span class="ruby-identifier">logger</span>)
   <span class="ruby-ivar">@logger</span> = <span class="ruby-identifier">logger</span>
 <span class="ruby-keyword">end</span></pre>
@@ -356,6 +491,36 @@ public.</p>
 
         
       </div><!-- logger-3D-method -->
+
+    
+      <div id="method-c-reset-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reset!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reset-21-source">
+            <pre><span class="ruby-comment"># File lib/trello.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset!</span>
+  <span class="ruby-ivar">@client</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reset-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reset-21-method -->
 
     
     </section><!-- public-class-method-details -->

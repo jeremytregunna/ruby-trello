@@ -55,8 +55,6 @@
   
     <li class="file"><a href="./Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="./test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -72,6 +70,8 @@
     <li><a href="./Trello/Association.html">Trello::Association</a>
   
     <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="./Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
   
@@ -89,9 +89,13 @@
   
     <li><a href="./Trello/Card.html">Trello::Card</a>
   
+    <li><a href="./Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="./Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="./Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="./Trello/Error.html">Trello::Error</a>
   
@@ -101,9 +105,9 @@
   
     <li><a href="./Trello/Item.html">Trello::Item</a>
   
-    <li><a href="./Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="./Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="./Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="./Trello/List.html">Trello::List</a>
   
@@ -145,7 +149,8 @@
 
 <p>namespace :example do</p>
 
-<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&quot;addressable/uri&quot;</span>
+<pre class="ruby"><span class="ruby-identifier">$LOAD_PATH</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-string">'lib'</span>
+<span class="ruby-identifier">require</span> <span class="ruby-string">&quot;addressable/uri&quot;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;trello&quot;</span>
 <span class="ruby-identifier">include</span> <span class="ruby-constant">Trello</span>
 <span class="ruby-identifier">include</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">Authorization</span>
@@ -168,8 +173,8 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;key =&gt; #{the_request_token.key}, secret =&gt; #{the_request_token.secret}&quot;</span>
 <span class="ruby-keyword">end</span>
 
-<span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;convert request token to access token&quot;</span> 
-<span class="ruby-identifier">task</span> :<span class="ruby-identifier">get_access_token</span>, :<span class="ruby-identifier">request_token_key</span>, :<span class="ruby-identifier">request_token_secret</span>, :<span class="ruby-identifier">oauth_verifier</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span> 
+<span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;convert request token to access token&quot;</span>
+<span class="ruby-identifier">task</span> :<span class="ruby-identifier">get_access_token</span>, :<span class="ruby-identifier">request_token_key</span>, :<span class="ruby-identifier">request_token_secret</span>, :<span class="ruby-identifier">oauth_verifier</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">ensure_consumer_credentials</span>
   <span class="ruby-ivar">@developer_public_key</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DEVELOPER_PUBLIC_KEY&quot;</span>]
   <span class="ruby-ivar">@developer_secret</span>     = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DEVELOPER_SECRET&quot;</span>]
@@ -188,8 +193,8 @@
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">ensure_consumer_credentials</span>
     <span class="ruby-node">%w{PUBLIC_KEY SECRET}</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">fullname</span> = <span class="ruby-node">&quot;DEVELOPER_#{name}&quot;</span>
-      <span class="ruby-keyword">unless</span> <span class="ruby-constant">ENV</span>[<span class="ruby-identifier">fullname</span>] 
-        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ERROR: Missing &lt;#{fullname}&gt; environment variable.&quot;</span> 
+      <span class="ruby-keyword">unless</span> <span class="ruby-constant">ENV</span>[<span class="ruby-identifier">fullname</span>]
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ERROR: Missing &lt;#{fullname}&gt; environment variable.&quot;</span>
         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>

@@ -78,6 +78,10 @@
     
     <li><a href="#method-i-closed-3F">#closed?</a>
     
+    <li><a href="#method-i-delete">#delete</a>
+    
+    <li><a href="#method-i-delete_checklist_item">#delete_checklist_item</a>
+    
     <li><a href="#method-i-items">#items</a>
     
     <li><a href="#method-i-members">#members</a>
@@ -105,8 +109,6 @@
   
     <li class="file"><a href="../Rakefile.html">Rakefile</a>
   
-    <li class="file"><a href="../test-credentials.html">test-credentials</a>
-  
   </ul>
 </nav>
 
@@ -122,6 +124,8 @@
     <li><a href="../Trello/Association.html">Trello::Association</a>
   
     <li><a href="../Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+  
+    <li><a href="../Trello/Attachment.html">Trello::Attachment</a>
   
     <li><a href="../Trello/Authorization.html">Trello::Authorization</a>
   
@@ -139,9 +143,13 @@
   
     <li><a href="../Trello/Card.html">Trello::Card</a>
   
+    <li><a href="../Trello/CheckItemState.html">Trello::CheckItemState</a>
+  
     <li><a href="../Trello/Checklist.html">Trello::Checklist</a>
   
     <li><a href="../Trello/Client.html">Trello::Client</a>
+  
+    <li><a href="../Trello/Configuration.html">Trello::Configuration</a>
   
     <li><a href="../Trello/Error.html">Trello::Error</a>
   
@@ -151,9 +159,9 @@
   
     <li><a href="../Trello/Item.html">Trello::Item</a>
   
-    <li><a href="../Trello/ItemState.html">Trello::ItemState</a>
-  
     <li><a href="../Trello/Label.html">Trello::Label</a>
+  
+    <li><a href="../Trello/LabelName.html">Trello::LabelName</a>
   
     <li><a href="../Trello/List.html">Trello::List</a>
   
@@ -231,8 +239,9 @@
           <div class="method-source-code" id="create-source">
             <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">new</span>(<span class="ruby-string">'name'</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>],
-      <span class="ruby-string">'idBoard'</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:board_id</span>]).<span class="ruby-identifier">save!</span>
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:checklist</span>,
+                <span class="ruby-string">'name'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>],
+                <span class="ruby-string">'idBoard'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:board_id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create-source -->
           
@@ -262,7 +271,7 @@
           <div class="method-source-code" id="find-source">
             <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
-  <span class="ruby-keyword">super</span>(<span class="ruby-value">:checklists</span>, <span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:checklist</span>, <span class="ruby-identifier">id</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- find-source -->
           
@@ -296,9 +305,9 @@
 
           
           <div class="method-source-code" id="add_item-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_item</span>(<span class="ruby-identifier">name</span>)
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/checklists/#{id}/checkItems&quot;</span>, { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span> })
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/checklists/#{id}/checkItems&quot;</span>, {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>})
 <span class="ruby-keyword">end</span></pre>
           </div><!-- add_item-source -->
           
@@ -326,7 +335,7 @@
 
           
           <div class="method-source-code" id="closed-3F-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 38</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">closed?</span>
   <span class="ruby-identifier">closed</span>
 <span class="ruby-keyword">end</span></pre>
@@ -338,6 +347,66 @@
 
         
       </div><!-- closed-3F-method -->
+
+    
+      <div id="method-i-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Delete a checklist</p>
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/checklists/#{id}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete-method -->
+
+    
+      <div id="method-i-delete_checklist_item" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_checklist_item</span><span
+            class="method-args">(item_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Delete a checklist item</p>
+          
+
+          
+          <div class="method-source-code" id="delete_checklist_item-source">
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 85</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_checklist_item</span>(<span class="ruby-identifier">item_id</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-node">&quot;/checklists/#{id}/checkItems/#{item_id}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- delete_checklist_item-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- delete_checklist_item-method -->
 
     
       <div id="method-i-items" class="method-detail ">
@@ -356,7 +425,7 @@
 
           
           <div class="method-source-code" id="items-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">items</span>
   <span class="ruby-identifier">check_items</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item_fields</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">Item</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">item_fields</span>)
@@ -388,7 +457,7 @@
 
           
           <div class="method-source-code" id="members-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">members</span>
   <span class="ruby-identifier">members</span> = <span class="ruby-identifier">member_ids</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">member_id</span><span class="ruby-operator">|</span>
     <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">member_id</span>)
@@ -421,13 +490,13 @@
 
           
           <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 43</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">update!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span>
 
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-string">&quot;/checklists&quot;</span>, {
-    <span class="ruby-value">:name</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
-    <span class="ruby-value">:idBoard</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">board_id</span>
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-string">&quot;/checklists&quot;</span>, {
+      <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
+      <span class="ruby-value">:idBoard</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">board_id</span>
   }).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- save-source -->
@@ -456,9 +525,9 @@
 
           
           <div class="method-source-code" id="update-21-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 52</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update!</span>
-  <span class="ruby-constant">Client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-string">&quot;/checklists&quot;</span>, { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span> }).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword">self</span>)
+  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/checklists/#{id}&quot;</span>, {<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>}).<span class="ruby-identifier">json_into</span>(<span class="ruby-keyword">self</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update-21-source -->
           
@@ -489,16 +558,17 @@ href="../Trello.html">Trello</a> API representing a checklist.</p>
 
           
           <div class="method-source-code" id="update_fields-source">
-            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/trello/checklist.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update_fields</span>(<span class="ruby-identifier">fields</span>)
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]          = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]        = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'name'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'id'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'name'</span>]
   <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:description</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'desc'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>]      = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'closed'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>]         = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'url'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'closed'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:url</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'url'</span>]
   <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:check_items</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'checkItems'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:board_id</span>]    = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idBoard'</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_ids</span>]  = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idMembers'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:board_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idBoard'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:list_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idList'</span>]
+  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:member_ids</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">'idMembers'</span>]
   <span class="ruby-keyword">self</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- update_fields-source -->
