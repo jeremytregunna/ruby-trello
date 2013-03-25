@@ -5,6 +5,7 @@ RSpec::Core::RakeTask.new
 task :default => [:spec]
 
 namespace :example do
+  $LOAD_PATH.unshift 'lib'
   require "addressable/uri"
   require "trello"
   include Trello
