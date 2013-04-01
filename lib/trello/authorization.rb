@@ -97,7 +97,7 @@ module Trello
           request
         else
           consumer(:return_url => return_url, :callback_method => :postMessage)
-          request_token = consumer.get_request_token
+          request_token = consumer.get_request_token(:oauth_callback => return_url)
           callback.call request_token
           return nil
         end
