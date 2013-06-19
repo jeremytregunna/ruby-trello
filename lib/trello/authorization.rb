@@ -6,6 +6,10 @@ module Trello
 
     AuthPolicy = Class.new do
       def initialize(attrs = {}); end
+
+      def authorize(*args)
+        raise Trello::ConfigurationError, "Trello has not been configured to make authorized requests."
+      end
     end
 
     class BasicAuthPolicy
