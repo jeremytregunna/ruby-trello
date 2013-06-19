@@ -71,9 +71,13 @@ module Trello
   API_VERSION = 1
 
   # Raise this when we hit a Trello error.
-  class Error < StandardError; end
+  Error = Class.new(StandardError)
+
   # This specific error is thrown when your access token is invalid. You should get a new one.
-  class InvalidAccessToken < StandardError; end
+  InvalidAccessToken = Class.new(Error)
+
+  # This error is thrown when your client has not been configured
+  ConfigurationError = Class.new(Error)
 
   def self.logger
     @logger ||= Logger.new(STDOUT)
