@@ -69,5 +69,15 @@ describe Trello do
         auth_policy.oauth_token_secret.should be_nil
       end
     end
+
+    context "not configured" do
+      before do
+        Trello.configure
+      end
+
+      it { Trello.auth_policy.should be_a(AuthPolicy) }
+      it { expect { Trello.client.get(:member) }.to raise_error(Trello::ConfigurationError) }
+    end
+
   end
 end
