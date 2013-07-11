@@ -93,6 +93,10 @@ module Trello
       it "gets the email" do
         member.email.should == user_details['email']
       end
+
+      it "gets the initials" do
+        member.initials.should == user_details['initials']
+      end
     end
 
     context "modification" do

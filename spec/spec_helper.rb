@@ -38,6 +38,7 @@ module Helpers
       "id"         => "abcdef123456789012345678",
       "fullName"   => "Test User",
       "username"   => "me",
+      "intials"    => "TU",
       "avatarHash" => "abcdef1234567890abcdef1234567890",
       "bio"        => "a rather dumb user",
       "url"        => "https://trello.com/me",
