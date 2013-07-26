@@ -1,11 +1,11 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :description, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date,
+    register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date,
       :readonly => [ :id, :short_id, :url, :board_id, :member_ids, :last_activity_date ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
-    validates_length_of   :description, :in => 0..16384
+    validates_length_of   :desc, :in => 0..16384
 
     include HasActions
 
@@ -20,7 +20,7 @@ module Trello
         client.create(:card,
             'name' => options[:name],
             'idList' => options[:list_id],
-            'desc'   => options[:description])
+            'desc'   => options[:desc])
       end
     end
 
@@ -32,7 +32,7 @@ module Trello
       attributes[:id]                 = fields['id']
       attributes[:short_id]           = fields['idShort']
       attributes[:name]               = fields['name']
-      attributes[:description]        = fields['desc']
+      attributes[:desc]               = fields['desc']
       attributes[:due]                = Time.iso8601(fields['due']) rescue nil
       attributes[:closed]             = fields['closed']
       attributes[:url]                = fields['url']
@@ -78,7 +78,7 @@ module Trello
 
       client.post("/cards", {
         :name   => name,
-        :desc   => description,
+        :desc   => desc,
         :idList => list_id
       }).json_into(self)
     end
