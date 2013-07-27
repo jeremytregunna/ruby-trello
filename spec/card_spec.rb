@@ -46,7 +46,7 @@ module Trello
       it 'creates a new record and saves it on Trello', :refactor => true do
         payload = {
           :name    => 'Test Card',
-          :desc    => '',
+          :desc    => nil,
         }
 
         result = JSON.generate(cards_details.first.merge(payload.merge(:idList => lists_details.first['id'])))
@@ -97,7 +97,7 @@ module Trello
       end
 
       it "gets its description" do
-        card.description.should_not be_nil
+        card.desc.should_not be_nil
       end
 
       it "knows if it is open or closed" do
