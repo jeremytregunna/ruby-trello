@@ -75,6 +75,27 @@ module Trello
         checklist.name = expected_new_name
         checklist.save
       end
+
+      it "adds an item" do
+        expected_item_name = "item1"
+        expected_checked = true
+        expected_pos = 9999
+        expected_resource = "/checklists/abcdef123456789123456789"
+        payload = {
+            :name => expected_item_name,
+            :checked => expected_checked,
+            :pos => expected_pos
+        }
+        result_hash = {
+            :name => expected_item_name,
+            :state => expected_checked ? 'complete' : 'incomplete',
+            :pos => expected_pos
+        }
+        result = JSON.generate(result_hash)
+        client.should_receive(:post).once.with("/checklists/abcdef123456789123456789/checkItems", payload).and_return result
+
+        checklist.add_item(expected_item_name, expected_checked, expected_pos)
+      end
     end
 
     context "board" do
