@@ -10,3 +10,4 @@ bin
 .bundle
 vendor/bundle
 Gemfile.lock
+.project
