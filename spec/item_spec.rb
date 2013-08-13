@@ -6,7 +6,9 @@ module Trello
       @detail = {
         'id'   => "abcdef123456789123456789",
         'name' => "test item",
-        'type' => "check"
+        'type' => "check",
+        'state' => "complete",
+        'pos' => 0
       }
 
       @item = Item.new(@detail)
@@ -22,6 +24,14 @@ module Trello
 
     it "knows its type" do
       @item.type.should == @detail['type']
+    end
+
+    it "knows its state" do
+      @item.state.should == @detail['state']
+    end
+
+    it "knows its pos" do
+      @item.pos.should == @detail['pos']
     end
   end
 end
