@@ -2,6 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{ruby-trello}
   s.version           = "1.0.2"
   s.platform          = Gem::Platform::RUBY
+  s.license           = 'MIT'
 
   s.authors           = ["Jeremy Tregunna"]
   s.date              = Time.now.strftime "%Y-%m-%d"
