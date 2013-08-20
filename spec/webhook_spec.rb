@@ -70,5 +70,11 @@ module Trello
         webhook.delete
       end
     end
+
+    context "activated?" do
+      it "returns the active attribute" do
+        webhook.activated?.should be_true
+      end
+    end
   end
 end

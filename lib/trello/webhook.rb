@@ -54,5 +54,10 @@ module Trello
     def delete
       client.delete("/webhooks/#{id}")
     end
+
+    # Check if the webhook is activated
+    def activated?
+      active
+    end
   end
 end
