@@ -9,7 +9,7 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
+      client.stub(:get).with("/members/abcdef123456789012345678", {}).and_return user_payload
       client.stub(:get).with("/members/abcdef123456789012345678/notifications", {}).and_return "[" << notification_payload << "]"
     end
 
@@ -17,7 +17,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "can find a specific notification" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}").and_return notification_payload
+        client.stub(:get).with("/notifications/#{notification_details['id']}", {}).and_return notification_payload
         Notification.find(notification_details['id']).should == notification
       end
     end
@@ -50,7 +50,7 @@ module Trello
       end
 
       it "can retrieve the member creator" do
-        client.stub(:get).with("/members/#{user_details['id']}").and_return user_payload
+        client.stub(:get).with("/members/#{user_details['id']}", {}).and_return user_payload
         notification.member_creator.id.should == user_details['id']
       end
     end

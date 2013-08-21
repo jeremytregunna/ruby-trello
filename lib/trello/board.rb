@@ -10,8 +10,8 @@ module Trello
 
     class << self
       # Finds a board.
-      def find(id)
-        client.find(:board, id)
+      def find(id, params = {})
+        client.find(:board, id, params)
       end
 
       def create(fields)

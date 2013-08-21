@@ -10,14 +10,14 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/members/abcdef123456789012345678").and_return user_payload
+      client.stub(:get).with("/members/abcdef123456789012345678", {}).and_return user_payload
     end
 
     context "finding" do
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:member, 'abcdef123456789012345678')
+        client.should_receive(:find).with(:member, 'abcdef123456789012345678', {})
         Member.find('abcdef123456789012345678')
       end
 

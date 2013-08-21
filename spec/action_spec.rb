@@ -8,7 +8,7 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/actions/4ee2482134a81a757a08af47").
+      client.stub(:get).with("/actions/4ee2482134a81a757a08af47", {}).
         and_return JSON.generate(actions_details.first)
     end
 
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:action, '4ee2482134a81a757a08af47')
+        client.should_receive(:find).with(:action, '4ee2482134a81a757a08af47', {})
         Action.find('4ee2482134a81a757a08af47')
       end
 
@@ -74,7 +74,7 @@ module Trello
 
     context "member creator" do
       it "knows its member creator" do
-        client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
+        client.stub(:get).with("/members/abcdef123456789123456789", {}).and_return user_payload
 
         action.member_creator.should_not be_nil
       end

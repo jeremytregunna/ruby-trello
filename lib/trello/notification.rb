@@ -6,8 +6,8 @@ module Trello
 
     class << self
       # Locate a notification by its id
-      def find(id)
-        client.find(:notification, id)
+      def find(id, params = {})
+        client.find(:notification, id, params)
       end
     end
 

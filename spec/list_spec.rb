@@ -8,15 +8,15 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
-      client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+      client.stub(:get).with("/lists/abcdef123456789123456789", {}).and_return JSON.generate(lists_details.first)
+      client.stub(:get).with("/boards/abcdef123456789123456789", {}).and_return JSON.generate(boards_details.first)
     end
 
     context "finding" do
       let(:client) { Trello.client }
 
       it "delegates to client#find" do
-        client.should_receive(:find).with(:list, 'abcdef123456789123456789')
+        client.should_receive(:find).with(:list, 'abcdef123456789123456789', {})
         List.find('abcdef123456789123456789')
       end
 
