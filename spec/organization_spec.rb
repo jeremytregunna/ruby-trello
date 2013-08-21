@@ -9,7 +9,7 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/organizations/4ee7e59ae582acdec8000291").
+      client.stub(:get).with("/organizations/4ee7e59ae582acdec8000291", {}).
         and_return organization_payload
     end
 
@@ -17,7 +17,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:organization, '4ee7e59ae582acdec8000291')
+        client.should_receive(:find).with(:organization, '4ee7e59ae582acdec8000291', {})
         Organization.find('4ee7e59ae582acdec8000291')
       end
 

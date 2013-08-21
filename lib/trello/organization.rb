@@ -9,8 +9,8 @@ module Trello
 
     class << self
       # Find an organization by its id.
-      def find(id)
-        client.find(:organization, id)
+      def find(id, params = {})
+        client.find(:organization, id, params)
       end
     end
 

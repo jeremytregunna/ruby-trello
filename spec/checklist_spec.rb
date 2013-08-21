@@ -8,7 +8,7 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/checklists/abcdef123456789123456789").
+      client.stub(:get).with("/checklists/abcdef123456789123456789", {}).
           and_return JSON.generate(checklists_details.first)
     end
 
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:checklist, 'abcdef123456789123456789')
+        client.should_receive(:find).with(:checklist, 'abcdef123456789123456789', {})
         Checklist.find('abcdef123456789123456789')
       end
 
@@ -107,7 +107,7 @@ module Trello
 
     context "list" do
       it 'has a list' do
-        client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
+        client.stub(:get).with("/lists/abcdef123456789123456789", {}).and_return JSON.generate(lists_details.first)
         checklist.list.should_not be_nil
       end
     end

@@ -8,14 +8,14 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/tokens/1234").and_return token_payload
+      client.stub(:get).with("/tokens/1234", {}).and_return token_payload
     end
 
     context "finding" do
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:token, '1234')
+        client.should_receive(:find).with(:token, '1234', {})
         Token.find('1234')
       end
 
@@ -40,9 +40,9 @@ module Trello
 
     context "members" do
       it "retrieves the member who authorized the token" do
-        client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
-        Trello.client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
-        client.stub(:get).with("/tokens/1234").and_return token_payload
+        client.stub(:get).with("/members/abcdef123456789123456789", {}).and_return user_payload
+        Trello.client.stub(:get).with("/members/abcdef123456789123456789", {}).and_return user_payload
+        client.stub(:get).with("/tokens/1234", {}).and_return token_payload
         token.member.should == Member.find("abcdef123456789123456789")
       end
     end

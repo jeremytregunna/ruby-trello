@@ -7,8 +7,8 @@ module Trello
 
     class << self
       # Locate a specific action and return a new Action object.
-      def find(id)
-        client.find(:action, id)
+      def find(id, params = {})
+        client.find(:action, id, params)
       end
     end
 

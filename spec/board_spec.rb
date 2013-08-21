@@ -8,7 +8,7 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/boards/abcdef123456789123456789").
+      client.stub(:get).with("/boards/abcdef123456789123456789", {}).
         and_return JSON.generate(boards_details.first)
     end
 
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to client#find" do
-        client.should_receive(:find).with(:board, 'abcdef123456789123456789')
+        client.should_receive(:find).with(:board, 'abcdef123456789123456789', {})
         Board.find('abcdef123456789123456789')
       end
 
@@ -114,7 +114,7 @@ module Trello
 
     context "organization" do
       it "belongs to an organization" do
-        client.stub(:get).with("/organizations/abcdef123456789123456789").
+        client.stub(:get).with("/organizations/abcdef123456789123456789", {}).
           and_return JSON.generate(orgs_details.first)
 
         board.organization.should_not be_nil
