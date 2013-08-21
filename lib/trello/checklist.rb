@@ -8,8 +8,8 @@ module Trello
 
     class << self
       # Locate a specific checklist by its id.
-      def find(id)
-        client.find(:checklist, id)
+      def find(id, params = {})
+        client.find(:checklist, id, params)
       end
 
       def create(options)

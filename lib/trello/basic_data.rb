@@ -11,8 +11,8 @@ module Trello
         name.split("::").last.underscore
       end
 
-      def find(id)
-        client.find(path_name, id)
+      def find(id, params = {})
+        client.find(path_name, id, params)
       end
 
       def create(options)

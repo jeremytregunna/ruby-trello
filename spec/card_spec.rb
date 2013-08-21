@@ -8,7 +8,7 @@ module Trello
     let(:client) { Client.new }
 
     before(:each) do
-      client.stub(:get).with("/cards/abcdef123456789123456789").
+      client.stub(:get).with("/cards/abcdef123456789123456789", {}).
         and_return JSON.generate(cards_details.first)
     end
 
@@ -16,7 +16,7 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:card, 'abcdef123456789123456789')
+        client.should_receive(:find).with(:card, 'abcdef123456789123456789', {})
         Card.find('abcdef123456789123456789')
       end
 
@@ -127,7 +127,7 @@ module Trello
 
     context "boards" do
       it "has a board" do
-        client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+        client.stub(:get).with("/boards/abcdef123456789123456789", {}).and_return JSON.generate(boards_details.first)
         card.board.should_not be_nil
       end
     end
@@ -141,7 +141,7 @@ module Trello
 
     context "list" do
       it 'has a list' do
-        client.stub(:get).with("/lists/abcdef123456789123456789").and_return JSON.generate(lists_details.first)
+        client.stub(:get).with("/lists/abcdef123456789123456789", {}).and_return JSON.generate(lists_details.first)
         card.list.should_not be_nil
       end
 
@@ -183,7 +183,7 @@ module Trello
 
     context "members" do
       it "has a list of members" do
-        client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+        client.stub(:get).with("/boards/abcdef123456789123456789", {}).and_return JSON.generate(boards_details.first)
         client.stub(:get).with("/members/abcdef123456789123456789").and_return user_payload
 
         card.board.should_not be_nil
@@ -273,7 +273,7 @@ module Trello
       end
 
       it "can list the existing attachments with correct fields" do
-        client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
+        client.stub(:get).with("/boards/abcdef123456789123456789", {}).and_return JSON.generate(boards_details.first)
         client.stub(:get).with("/cards/abcdef123456789123456789/attachments").and_return attachments_payload
 
         card.board.should_not be_nil

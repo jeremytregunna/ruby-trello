@@ -5,8 +5,8 @@ module Trello
 
     class << self
       # Finds a token
-      def find(token)
-        client.find(:token, token)
+      def find(token, params = {})
+        client.find(:token, token, params)
       end
     end
 

@@ -12,8 +12,8 @@ module Trello
       # Finds a user
       #
       # The argument may be specified as either an _id_ or a _username_.
-      def find(id_or_username)
-        client.find(:member, id_or_username)
+      def find(id_or_username, params = {})
+        client.find(:member, id_or_username, params)
       end
     end
 
