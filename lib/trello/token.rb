@@ -1,11 +1,11 @@
 module Trello
   class Token < BasicData
-    register_attributes :id, :member_id, :created_at, :permissions,
-      :readonly => [ :id, :member_id, :created_at, :permissions ]
+    register_attributes :id, :member_id, :created_at, :permissions, :webhooks,
+      :readonly => [ :id, :member_id, :created_at, :permissions, :webhooks ]
 
     class << self
       # Finds a token
-      def find(token, params = {})
+      def find(token, params = {webhooks: true})
         client.find(:token, token, params)
       end
     end
@@ -16,6 +16,7 @@ module Trello
       attributes[:member_id]   = fields['idMember']
       attributes[:created_at]  = Time.iso8601(fields['dateCreated'])
       attributes[:permissions] = fields['permissions'] || {}
+      attributes[:webhooks]    = fields['webhooks']
     end
 
     # Returns a reference to the user who authorized the token.

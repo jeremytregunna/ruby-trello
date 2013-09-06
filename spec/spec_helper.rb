@@ -295,4 +295,24 @@ module Helpers
   def label_name_payload
     JSON.generate(label_name_details)
   end
+
+  def webhooks_details
+    [
+     {
+       "id"          => "webhookid",
+       "description" => "Test webhook",
+       "idModel"     => "1234",
+       "callbackURL" => "http://example.org/webhook",
+       "active"      => true
+     }
+    ]
+  end
+
+  def webhooks_payload
+    JSON.generate(webhooks_details)
+  end
+
+  def webhook_payload
+    JSON.generate(webhooks_details.first)
+  end
 end
