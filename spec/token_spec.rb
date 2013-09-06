@@ -15,12 +15,12 @@ module Trello
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:token, '1234', {})
+        client.should_receive(:find).with(:token, '1234', {:webhooks => true})
         Token.find('1234')
       end
 
       it "is equivalent to client#find" do
-        Token.find('1234').should eq(token)
+        Token.find('1234', {}).should eq(token)
       end
     end
 
