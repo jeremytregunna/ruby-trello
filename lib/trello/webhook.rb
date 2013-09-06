@@ -1,9 +1,9 @@
 module Trello
   # A webhook is an url called each time a specified idModel is updated
   class Webhook < BasicData
-    register_attributes :id, :description, :idModel, :callbackURL, :active,
+    register_attributes :id, :description, :id_model, :callback_url, :active,
       :readonly => [ :id ]
-    validates_presence_of :id, :idModel, :callbackURL
+    validates_presence_of :id, :id_model, :callback_url
     validates_length_of   :description,  :in => 1..16384
 
     class << self
@@ -16,16 +16,16 @@ module Trello
       def create(options)
         client.create(:webhook,
             'description' => options[:description],
-            'idModel'     => options[:idModel],
-            'callbackURL' => options[:callbackURL])
+            'idModel'     => options[:id_model],
+            'callbackURL' => options[:callback_url])
       end
     end
 
     def update_fields(fields)
       attributes[:id]              = fields['id']
       attributes[:description]     = fields['description']
-      attributes[:idModel]         = fields['idModel']
-      attributes[:callbackURL]     = fields['callbackURL']
+      attributes[:id_model]        = fields['idModel']
+      attributes[:callback_url]    = fields['callbackURL']
       attributes[:active]          = fields['active']
       self
     end
@@ -36,16 +36,16 @@ module Trello
 
       client.post("/webhooks", {
         :description => description,
-        :idModel     => idModel,
-        :callbackURL => callbackURL
+        :idModel     => id_model,
+        :callbackURL => callback_url
       }).json_into(self)
     end
 
     def update!
       client.put("/webhooks/#{id}", {
         :description => description,
-        :idModel     => idModel,
-        :callbackURL => callbackURL,
+        :idModel     => id_model,
+        :callbackURL => callback_url,
         :active      => active
       })
     end

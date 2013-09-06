@@ -55,7 +55,7 @@ module Trello
       it "updating description does a put on the correct resource with the correct value" do
         expected_new_description = "xxx"
 
-        expected_payload = {:description => expected_new_description, :idModel => webhook.idModel, :callbackURL => webhook.callbackURL, :active => webhook.active}
+        expected_payload = {:description => expected_new_description, :idModel => webhook.id_model, :callbackURL => webhook.callback_url, :active => webhook.active}
 
         client.should_receive(:put).once.with("/webhooks/#{webhook.id}", expected_payload)
 
