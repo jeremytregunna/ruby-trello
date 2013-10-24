@@ -165,7 +165,7 @@ module Trello
         client.should_not_receive :put
 
         the_new_board = Board.new
-        lambda{the_new_board.save}.should raise_error
+        -> { the_new_board.save }.should raise_error
       end
 
       it "puts all fields except id" do

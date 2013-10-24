@@ -53,7 +53,7 @@ describe Client, "and how it handles authorization" do
 
     TInternet.stub(:execute).and_return response_with_non_200_status
 
-    lambda{client.get "/xxx"}.should raise_error expected_error_message
+    -> { client.get "/xxx" }.should raise_error expected_error_message
   end
 
   it "uses version 1 of the API" do

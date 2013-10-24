@@ -34,7 +34,7 @@ describe Trello::Configuration do
   end
 
   it "has a callback (for oauth)" do
-    callback = lambda { 'foobar' }
+    callback = -> { 'foobar' }
     configuration.callback = callback
     configuration.callback.call.should eq('foobar')
   end

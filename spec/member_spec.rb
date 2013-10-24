@@ -107,7 +107,7 @@ module Trello
       end
 
       it "doesn't understand the #id= method" do
-        lambda { member.id = "42" }.should raise_error NoMethodError
+        -> { member.id = "42" }.should raise_error NoMethodError
       end
     end
   end

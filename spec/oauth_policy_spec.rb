@@ -116,7 +116,7 @@ describe OAuthPolicy do
 
       request = Request.new :get, Addressable::URI.parse("http://xxx/")
 
-      lambda{OAuthPolicy.authorize request}.should raise_error "The consumer_credential has not been supplied."
+      -> { OAuthPolicy.authorize request }.should raise_error "The consumer_credential has not been supplied."
     end
 
     it "can sign with token" do
