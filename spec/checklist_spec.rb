@@ -70,7 +70,7 @@ module Trello
         }
 
         result = JSON.generate(checklists_details.first)
-        client.should_receive(:put).once.with("/checklists/abcdef123456789123456789", payload).and_return result
+        client.should_receive(:put).once.with(expected_resource, payload).and_return result
 
         checklist.name = expected_new_name
         checklist.save

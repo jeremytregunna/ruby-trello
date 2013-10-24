@@ -154,7 +154,7 @@ module Trello
 
       it 'should not be moved if new list is identical to old list' do
         other_list = double(:id => 'abcdef123456789123456789')
-        payload = {:value => other_list.id}
+        payload = { :value => other_list.id }
         client.should_not_receive(:put)
         card.move_to_list(other_list)
       end

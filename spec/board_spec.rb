@@ -169,7 +169,7 @@ module Trello
       end
 
       it "puts all fields except id" do
-        expected_fields = %w{ name description closed }.map{|s| s.to_sym}
+        expected_fields = %w{ name description closed }.map { |s| s.to_sym }
 
         client.should_receive(:put) do |anything, body|
           body.keys.should =~ expected_fields
