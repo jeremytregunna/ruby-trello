@@ -146,36 +146,36 @@ module Trello
       end
 
       it 'can be moved to another list' do
-        other_list = stub(:id => '987654321987654321fedcba')
+        other_list = double(:id => '987654321987654321fedcba')
         payload = {:value => other_list.id}
         client.should_receive(:put).with("/cards/abcdef123456789123456789/idList", payload)
         card.move_to_list(other_list)
       end
 
       it 'should not be moved if new list is identical to old list' do
-        other_list = stub(:id => 'abcdef123456789123456789')
+        other_list = double(:id => 'abcdef123456789123456789')
         payload = {:value => other_list.id}
         client.should_not_receive(:put)
         card.move_to_list(other_list)
       end
 
       it 'can be moved to another board' do
-        other_board = stub(:id => '987654321987654321fedcba')
+        other_board = double(:id => '987654321987654321fedcba')
         payload = {:value => other_board.id}
         client.should_receive(:put).with("/cards/abcdef123456789123456789/idBoard", payload)
         card.move_to_board(other_board)
       end
 
       it 'can be moved to a list on another board' do
-        other_board = stub(:id => '987654321987654321fedcba')
-        other_list = stub(:id => '987654321987654321aalist')
+        other_board = double(:id => '987654321987654321fedcba')
+        other_list = double(:id => '987654321987654321aalist')
         payload = {:value => other_board.id, :idList => other_list.id}
         client.should_receive(:put).with("/cards/abcdef123456789123456789/idBoard", payload)
         card.move_to_board(other_board, other_list)
       end
 
       it 'should not be moved if new board is identical with old board', :focus => true do
-        other_board = stub(:id => 'abcdef123456789123456789')
+        other_board = double(:id => 'abcdef123456789123456789')
         client.should_not_receive(:put)
         card.move_to_board(other_board)
       end
@@ -191,7 +191,7 @@ module Trello
       end
 
       it "allows a member to be added to a card" do
-        new_member = stub(:id => '4ee7df3ce582acdec80000b2')
+        new_member = double(:id => '4ee7df3ce582acdec80000b2')
         payload = {
           :value => new_member.id
         }
@@ -200,7 +200,7 @@ module Trello
       end
 
       it "allows a member to be removed from a card" do
-        existing_member = stub(:id => '4ee7df3ce582acdec80000b2')
+        existing_member = double(:id => '4ee7df3ce582acdec80000b2')
         client.should_receive(:delete).with("/cards/abcdef123456789123456789/members/#{existing_member.id}")
         card.remove_member(existing_member)
       end

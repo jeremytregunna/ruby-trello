@@ -5,12 +5,12 @@ include Trello::Authorization
 
 describe Client, "and how it handles authorization" do
   let (:fake_ok_response) {
-    stub "A fake OK response",
+    double "A fake OK response",
       :code => 200,
       :body => "A fake response body"
   }
   let(:client) { Client.new }
-  let(:auth_policy) { stub }
+  let(:auth_policy) { double }
 
   before do
     TInternet.stub(:execute).and_return fake_ok_response
@@ -47,7 +47,7 @@ describe Client, "and how it handles authorization" do
 
   it "raises an error when response has non-200 status" do
     expected_error_message = "An error response"
-    response_with_non_200_status = stub "A fake OK response",
+    response_with_non_200_status = double "A fake OK response",
       :code => 404,
       :body => expected_error_message
 
