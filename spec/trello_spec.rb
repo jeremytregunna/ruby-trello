@@ -5,8 +5,8 @@ include Trello::Authorization
 
 describe Trello do
 
-  describe "self.configure" do
-    it "builds auth policy client uses to make requests" do
+  describe 'self.configure' do
+    it 'builds auth policy client uses to make requests' do
       Trello.configure do |config|
         config.developer_public_key = 'developer_public_key'
         config.member_token         = 'member_token'
@@ -17,7 +17,7 @@ describe Trello do
       Trello.client.get(:member, params = {})
     end
 
-    it "configures basic auth policy" do
+    it 'configures basic auth policy' do
       Trello.configure do |config|
         config.developer_public_key = 'developer_public_key'
         config.member_token         = 'member_token'
@@ -29,7 +29,7 @@ describe Trello do
       auth_policy.member_token.should eq('member_token')
     end
 
-    context "oauth" do
+    context 'oauth' do
       before do
         Trello.configure do |config|
           config.consumer_key     = 'consumer_key'
@@ -39,7 +39,7 @@ describe Trello do
         end
       end
 
-      it "configures oauth policy" do
+      it 'configures oauth policy' do
         auth_policy = Trello.auth_policy
 
         auth_policy.should be_a(OAuthPolicy)
@@ -49,7 +49,7 @@ describe Trello do
         auth_policy.oauth_token_secret.should eq('oauth_token_secret')
       end
 
-      it "updates auth policy configuration" do
+      it 'updates auth policy configuration' do
         auth_policy = Trello.auth_policy
         auth_policy.consumer_key.should eq('consumer_key')
 
@@ -70,7 +70,7 @@ describe Trello do
       end
     end
 
-    context "not configured" do
+    context 'not configured' do
       before do
         Trello.configure
       end
