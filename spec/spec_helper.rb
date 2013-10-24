@@ -21,8 +21,7 @@ require 'trello'
 require 'webmock/rspec'
 require 'stringio'
 
-$strio = StringIO.new
-Trello.logger = Logger.new($strio)
+Trello.logger = Logger.new(StringIO.new)
 
 RSpec.configure do |c|
   c.filter_run_excluding :broken => true
