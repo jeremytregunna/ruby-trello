@@ -4,11 +4,11 @@ include Trello
 include Trello::Authorization
 
 describe Client, "and how it handles authorization" do
-  let (:fake_ok_response) {
+  let (:fake_ok_response) do
     double "A fake OK response",
       :code => 200,
       :body => "A fake response body"
-  }
+  end
   let(:client) { Client.new }
   let(:auth_policy) { double }
 
@@ -103,8 +103,6 @@ describe Client, "and how it handles authorization" do
   end
 
   it "supports put" do
-    expected_path = "/xxx"
-
     TInternet.should_receive(:execute).once.and_return fake_ok_response
 
     client.put "/xxx", { :phil => "T' north" }
@@ -133,14 +131,14 @@ describe Client, "and how it handles authorization" do
   end
 
   context "initialize" do
-    let(:client) {
+    let(:client) do
       Client.new(
         :consumer_key => 'consumer_key',
         :consumer_secret => 'consumer_secret',
         :oauth_token => 'oauth_token',
         :oauth_token_secret => 'oauth_token_secret'
       )
-    }
+    end
 
     it "is configurable" do
       client.consumer_key.should eq('consumer_key')

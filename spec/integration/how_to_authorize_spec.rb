@@ -47,7 +47,7 @@ describe "OAuth", :broken => true do
     OAuthPolicy.token = OAuthCredential.new @access_token_key, nil
 
     pending "I would expect this to fail because I have signed with nil secrets" do
-      lambda{Client.get("/boards/#{@welcome_board}/")}.should raise_error
+      -> { Client.get("/boards/#{@welcome_board}/") }.should raise_error
     end
   end
 end

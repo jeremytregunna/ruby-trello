@@ -47,7 +47,7 @@ module Trello
       # Defines the attribute getter and setters.
       class_eval do
         define_method :attributes do
-          @attributes ||= names.reduce({}) { |hash,k| hash.merge(k.to_sym => nil) }
+          @attributes ||= names.reduce({}) { |hash, k| hash.merge(k.to_sym => nil) }
         end
 
         names.each do |key|

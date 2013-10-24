@@ -80,7 +80,6 @@ module Trello
         expected_item_name = "item1"
         expected_checked = true
         expected_pos = 9999
-        expected_resource = "/checklists/abcdef123456789123456789"
         payload = {
             :name => expected_item_name,
             :checked => expected_checked,
