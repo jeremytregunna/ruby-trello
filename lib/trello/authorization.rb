@@ -115,10 +115,21 @@ module Trello
         @token ||= build_token
       end
 
-      def consumer_key; consumer_credential.key; end
-      def consumer_secret; consumer_credential.secret; end
-      def oauth_token; token.key; end
-      def oauth_token_secret; token.secret; end
+      def consumer_key
+        consumer_credential.key
+      end
+
+      def consumer_secret
+        consumer_credential.secret
+      end
+
+      def oauth_token
+        token.key
+      end
+
+      def oauth_token_secret
+        token.secret
+      end
 
       private
 
