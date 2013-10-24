@@ -106,7 +106,7 @@ module Trello
         member.changed?.should be_true
       end
 
-      it 'doesn't understand the #id= method' do
+      it 'does not understand the #id= method' do
         -> { member.id = '42' }.should raise_error NoMethodError
       end
     end

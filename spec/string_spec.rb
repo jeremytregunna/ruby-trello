@@ -19,13 +19,13 @@ describe String, '#json_into' do
     '{}'.json_into(example_class).should be_an_instance_of example_class
   end
 
-  it 'supplies the parsed json to the class's ctor as a hash' do
+  it 'supplies the parsed json to the class ctor as a hash' do
     example_class.should_receive(:new).once.with({
-      'name'        => 'Jazz Kang',
-      'description' => 'Plonker'
+      "name"        => "Jazz Kang",
+      "description" => "Plonker"
     })
     
-    json_text = '{'name' : 'Jazz Kang', 'description': 'Plonker'}'
+    json_text = '{"name" : "Jazz Kang", "description": "Plonker"}'
     
     json_text.json_into example_class
   end
@@ -33,8 +33,8 @@ describe String, '#json_into' do
   it 'can also handle arrays of instances of a class' do
     json_text = <<-JSON
       [
-       {'name' : 'Jazz Kang', 'description': 'Plonker'},
-       {'name' : 'Phil Murphy', 'description': 'Shoreditch hipster'}
+       {"name" : "Jazz Kang", "description": "Plonker"},
+       {"name" : "Phil Murphy", "description": "Shoreditch hipster"}
       ]
     JSON
     
