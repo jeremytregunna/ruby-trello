@@ -90,7 +90,7 @@ module Trello
     def update!
       @previously_changed = changes
       # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
+      payload = Hash[changes.map { |key, values| [key.to_sym.eql?(:list_id) ? :idList : key.to_sym, values[1]] }]
       @changed_attributes.clear
 
       client.put("/cards/#{id}", payload)
