@@ -159,6 +159,12 @@ module Trello
         card.move_to_list(other_list)
       end
 
+      it "should accept a string for moving a card to list" do
+        payload = { value: "12345678"}
+        client.should_receive(:put).with("/cards/abcdef123456789123456789/idList", payload)
+        card.move_to_list("12345678")
+      end
+
       it 'can be moved to another board' do
         other_board = double(:id => '987654321987654321fedcba')
         payload = {:value => other_board.id}

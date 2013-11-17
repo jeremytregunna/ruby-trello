@@ -134,9 +134,10 @@ module Trello
 
     # Move this card to the given list
     def move_to_list(list)
-      unless list_id == list.id
+      list_number = list.is_a?(String) ? list : list.id
+      unless list_id == list_number
         client.put("/cards/#{id}/idList", {
-          :value => list.id
+          value: list_number
         })
       end
     end
