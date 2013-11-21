@@ -17,12 +17,7 @@ class String
   #   thing.b == "foo"
   def json_into(obj)
     data = JSON.parse(self)
-    action = obj.kind_of?(Class) ? :new : :update_fields
-    if data.kind_of? Hash
-      obj.send(action, JSON.parse(self))
-    else
-      data.map { |element| obj.send(action, element) }
-    end
+    data.jsoned_into(obj)
   rescue JSON::ParserError => json_error
     if json_error.message =~ /model not found/
       Trello.logger.error "Could not find that record."

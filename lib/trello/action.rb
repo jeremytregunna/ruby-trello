@@ -10,6 +10,14 @@ module Trello
       def find(id, params = {})
         client.find(:action, id, params)
       end
+
+      def search(query, opts={})
+        response = client.get("/search/", { query: query }.merge(opts))
+        formatted_response = JSON.parse(response).except("options").inject({}) do |res, key|
+          res.merge!({ key.first => key.last.array_into("Trello::#{key.first.singularize.capitalize}".constantize) })
+          res
+        end
+      end
     end
 
     # Update the attributes of an action
