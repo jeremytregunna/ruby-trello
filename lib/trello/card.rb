@@ -35,7 +35,8 @@ module Trello
         client.create(:card,
             'name' => options[:name],
             'idList' => options[:list_id],
-            'desc'   => options[:desc])
+            'desc'   => options[:desc],
+            'idMembers' => options[:member_ids])
       end
     end
 
@@ -92,9 +93,10 @@ module Trello
       return update! if id
 
       client.post("/cards", {
-        :name   => name,
-        :desc   => desc,
-        :idList => list_id
+        name:   name,
+        desc:   desc,
+        idList: list_id,
+        idMembers: member_ids
       }).json_into(self)
     end
 
