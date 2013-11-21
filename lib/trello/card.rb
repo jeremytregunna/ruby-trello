@@ -35,7 +35,8 @@ module Trello
         client.create(:card,
             'name' => options[:name],
             'idList' => options[:list_id],
-            'desc'   => options[:desc])
+            'desc'   => options[:desc],
+            'idMembers' => options[:member_ids])
       end
     end
 
