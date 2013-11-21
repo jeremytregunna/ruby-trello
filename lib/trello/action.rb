@@ -14,7 +14,7 @@ module Trello
       def search(query, opts={})
         response = client.get("/search/", { query: query }.merge(opts))
         formatted_response = JSON.parse(response).except("options").inject({}) do |res, key|
-          res.merge!({ key.first => key.last.array_into("Trello::#{key.first.singularize.capitalize}".constantize) })
+          res.merge!({ key.first => key.last.jsoned_into("Trello::#{key.first.singularize.capitalize}".constantize) })
           res
         end
       end
