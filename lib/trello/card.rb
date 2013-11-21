@@ -2,12 +2,27 @@ module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date,
-      :readonly => [ :id, :short_id, :url, :board_id, :member_ids, :last_activity_date ]
+      :readonly => [ :id, :short_id, :url, :last_activity_date ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
     validates_length_of   :desc, :in => 0..16384
 
     include HasActions
+
+    SYMBOL_TO_STRING = {
+      id: 'id',
+      short_id: 'idShort',
+      name: 'name',
+      desc: 'desc',
+      due: 'due',
+      closed: 'closed',
+      url: 'url',
+      board_id: 'idBoard',
+      member_ids: 'idMembers',
+      list_id: 'idList',
+      pos: 'pos',
+      last_activity_date: 'dateLastActivity'
+    }
 
     class << self
       # Find a specific card by its id.
@@ -29,18 +44,18 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a card.
     def update_fields(fields)
-      attributes[:id]                 = fields['id']
-      attributes[:short_id]           = fields['idShort']
-      attributes[:name]               = fields['name']
-      attributes[:desc]               = fields['desc']
-      attributes[:due]                = Time.iso8601(fields['due']) rescue nil
-      attributes[:closed]             = fields['closed']
-      attributes[:url]                = fields['url']
-      attributes[:board_id]           = fields['idBoard']
-      attributes[:member_ids]         = fields['idMembers']
-      attributes[:list_id]            = fields['idList']
-      attributes[:pos]                = fields['pos']
-      attributes[:last_activity_date] = Time.iso8601(fields['dateLastActivity']) rescue nil
+      attributes[:id]                 = fields[SYMBOL_TO_STRING[:id]]
+      attributes[:short_id]           = fields[SYMBOL_TO_STRING[:short_id]]
+      attributes[:name]               = fields[SYMBOL_TO_STRING[:name]]
+      attributes[:desc]               = fields[SYMBOL_TO_STRING[:desc]]
+      attributes[:due]                = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil
+      attributes[:closed]             = fields[SYMBOL_TO_STRING[:closed]]
+      attributes[:url]                = fields[SYMBOL_TO_STRING[:url]]
+      attributes[:board_id]           = fields[SYMBOL_TO_STRING[:board_id]]
+      attributes[:member_ids]         = fields[SYMBOL_TO_STRING[:member_ids]]
+      attributes[:list_id]            = fields[SYMBOL_TO_STRING[:list_id]]
+      attributes[:pos]                = fields[SYMBOL_TO_STRING[:post]]
+      attributes[:last_activity_date] = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
       self
     end
 
@@ -90,7 +105,7 @@ module Trello
     def update!
       @previously_changed = changes
       # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [key.to_sym.eql?(:list_id) ? :idList : key.to_sym, values[1]] }]
+      payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
       @changed_attributes.clear
 
       client.put("/cards/#{id}", payload)
