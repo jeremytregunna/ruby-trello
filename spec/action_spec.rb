@@ -25,6 +25,15 @@ module Trello
       end
     end
 
+    context 'search' do
+      let(:client) { Trello.client }
+
+      it "should search and get back a card object" do
+        client.should_receive(:get).with("/search/", { query: "something"}).and_return(JSON.generate({ "cards" => cards_details }))
+        Action.search("something").should eq({ "cards" => cards_details.jsoned_into(Card) })
+      end
+    end
+
     context 'fields' do
       let(:detail) { actions_details.first }
 
