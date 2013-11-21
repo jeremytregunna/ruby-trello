@@ -1,7 +1,7 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date,
+    register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
       :readonly => [ :id, :short_id, :url, :last_activity_date ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
@@ -21,7 +21,8 @@ module Trello
       member_ids: 'idMembers',
       list_id: 'idList',
       pos: 'pos',
-      last_activity_date: 'dateLastActivity'
+      last_activity_date: 'dateLastActivity',
+      card_labels: 'labels'
     }
 
     class << self
@@ -33,10 +34,12 @@ module Trello
       # Create a new card and save it on Trello.
       def create(options)
         client.create(:card,
-            'name' => options[:name],
-            'idList' => options[:list_id],
-            'desc'   => options[:desc],
-            'idMembers' => options[:member_ids])
+          'name' => options[:name],
+          'idList' => options[:list_id],
+          'desc'   => options[:desc],
+          'idMembers' => options[:member_ids],
+          'labels' => options[:card_labels]
+        )
       end
     end
 
@@ -56,6 +59,7 @@ module Trello
       attributes[:member_ids]         = fields[SYMBOL_TO_STRING[:member_ids]]
       attributes[:list_id]            = fields[SYMBOL_TO_STRING[:list_id]]
       attributes[:pos]                = fields[SYMBOL_TO_STRING[:post]]
+      attributes[:card_labels]        = fields[SYMBOL_TO_STRING[:card_labels]]
       attributes[:last_activity_date] = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
       self
     end
@@ -96,7 +100,8 @@ module Trello
         name:   name,
         desc:   desc,
         idList: list_id,
-        idMembers: member_ids
+        idMembers: member_ids,
+        labels: card_labels
       }).json_into(self)
     end
 
