@@ -92,9 +92,10 @@ module Trello
       return update! if id
 
       client.post("/cards", {
-        :name   => name,
-        :desc   => desc,
-        :idList => list_id
+        name:   name,
+        desc:   desc,
+        idList: list_id,
+        idMembers: member_ids
       }).json_into(self)
     end
 
