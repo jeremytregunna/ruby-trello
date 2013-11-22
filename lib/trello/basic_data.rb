@@ -1,3 +1,5 @@
+require 'trello/array'
+require 'trello/hash'
 require 'trello/string'
 
 module Trello
