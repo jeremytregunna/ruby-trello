@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'json'
   s.add_dependency 'oauth',       '~> 0.4.5'
   s.add_dependency 'rest-client', '~> 1.6.7'
+  s.add_dependency 'racc'
 end
