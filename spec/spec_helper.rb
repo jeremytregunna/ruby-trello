@@ -70,6 +70,7 @@ module Helpers
       'name'       => 'Test Checklist',
       'desc'       => 'A marvelous little checklist',
       'closed'     => false,
+      'position'   => 16384,
       'url'        => 'https://trello.com/blah/blah',
       'idBoard'    => 'abcdef123456789123456789',
       'idList'     => 'abcdef123456789123456789',

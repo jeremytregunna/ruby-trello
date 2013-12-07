@@ -1,7 +1,7 @@
 module Trello
   # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
   class Checklist < BasicData
-    register_attributes :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids,
+    register_attributes :id, :name, :description, :closed, :position, :url, :check_items, :board_id, :list_id, :member_ids,
                         :readonly => [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids]
     validates_presence_of :id, :board_id, :list_id
     validates_length_of :name, :in => 1..16384
@@ -30,6 +30,7 @@ module Trello
       attributes[:closed] = fields['closed']
       attributes[:url] = fields['url']
       attributes[:check_items] = fields['checkItems']
+      attributes[:position] = fields['position']
       attributes[:board_id] = fields['idBoard']
       attributes[:list_id] = fields['idList']
       attributes[:member_ids] = fields['idMembers']
@@ -52,7 +53,7 @@ module Trello
     end
 
     def update!
-      client.put("/checklists/#{id}", {:name => name}).json_into(self)
+      client.put("/checklists/#{id}", {:name => name, :pos => position}).json_into(self)
     end
 
     # Return a list of items on the checklist.
