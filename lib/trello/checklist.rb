@@ -1,7 +1,7 @@
 module Trello
   # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
   class Checklist < BasicData
-    register_attributes :id, :name, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids,
+    register_attributes :id, :name, :description, :closed, :position, :url, :check_items, :board_id, :list_id, :member_ids,
                         :readonly => [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids]
     validates_presence_of :id, :board_id, :list_id
     validates_length_of :name, :in => 1..16384
@@ -29,6 +29,7 @@ module Trello
       attributes[:description] = fields['desc']
       attributes[:closed] = fields['closed']
       attributes[:url] = fields['url']
+      attributes[:position] = fields['position']
       attributes[:check_items] = fields['checkItems']
       attributes[:board_id] = fields['idBoard']
       attributes[:list_id] = fields['idList']
