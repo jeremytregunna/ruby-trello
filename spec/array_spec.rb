@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'core_ext/array'
+require 'trello/core_ext/array'
 
 describe Array, '#jsoned_into' do
   include Helpers

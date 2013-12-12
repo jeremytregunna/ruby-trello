@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'core_ext/string'
+require 'trello/core_ext/string'
 
 describe String, '#json_into' do
   include Helpers
