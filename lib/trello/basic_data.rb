@@ -1,6 +1,6 @@
-require 'trello/array'
-require 'trello/hash'
-require 'trello/string'
+require 'trello/core_ext/array'
+require 'trello/core_ext/hash'
+require 'trello/core_ext/string'
 
 module Trello
   class BasicData
