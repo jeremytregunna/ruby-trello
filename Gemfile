@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+if active_model_version = ENV['ACTIVE_MODEL_VERSION']
+  gem 'activemodel', active_model_version
+end
+
 gemspec
 
 group :development, :spec do
