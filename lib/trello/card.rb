@@ -1,7 +1,8 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
+    register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :board_id,
+      :member_ids, :list_id, :pos, :last_activity_date, :card_labels, :cover_image_id,
       :readonly => [ :id, :short_id, :url, :last_activity_date ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
@@ -19,6 +20,7 @@ module Trello
       url: 'url',
       board_id: 'idBoard',
       member_ids: 'idMembers',
+      cover_image_id: 'idAttachmentCover',
       list_id: 'idList',
       pos: 'pos',
       last_activity_date: 'dateLastActivity',
@@ -61,11 +63,14 @@ module Trello
       attributes[:pos]                = fields[SYMBOL_TO_STRING[:post]]
       attributes[:card_labels]        = fields[SYMBOL_TO_STRING[:card_labels]]
       attributes[:last_activity_date] = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
+      attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
       self
     end
 
     # Returns a reference to the board this card is part of.
     one :board, :path => :boards, :using => :board_id
+    # Returns a reference to the cover image attachment
+    one :cover_image, :path => :attachments, :using => :cover_image_id
 
     # Returns a list of checklists associated with the card.
     #
