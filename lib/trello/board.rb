@@ -1,7 +1,7 @@
 module Trello
   class Board < BasicData
     register_attributes :id, :name, :description, :closed, :url, :organization_id, :prefs,
-      :readonly => [ :id, :url, :organization_id, :prefs ]
+      :readonly => [ :id, :url, :prefs ]
     validates_presence_of :id, :name
     validates_length_of   :name,        :in      => 1..16384
     validates_length_of   :description, :maximum => 16384
@@ -15,10 +15,12 @@ module Trello
       end
 
       def create(fields)
-        client.create(:board,
+        data = {
           'name'   => fields[:name],
           'desc'   => fields[:description],
-          'closed' => fields[:closed] || false)
+          'closed' => fields[:closed] || false }
+        data.merge!('idOrganization' => fields[:organization_id]) if fields[:organization_id]
+        client.create(:board, data)
       end
 
       def all
