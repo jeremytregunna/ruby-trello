@@ -108,6 +108,10 @@ module Trello
         card.url.should_not be_nil
       end
 
+      it "gets its short url" do
+        card.short_url.should_not be_nil
+      end
+
       it "gets its last active date" do
         card.last_activity_date.should_not be_nil
       end
