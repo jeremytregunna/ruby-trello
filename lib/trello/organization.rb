@@ -34,8 +34,8 @@ module Trello
     end
 
     # Returns an array of members associated with the organization.
-    def members
-      members = client.get("/organizations/#{id}/members/all").json_into(Member)
+    def members(params = {})
+      members = client.get("/organizations/#{id}/members/all", params).json_into(Member)
       MultiAssociation.new(self, members).proxy
     end
 
