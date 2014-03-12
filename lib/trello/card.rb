@@ -3,8 +3,8 @@ module Trello
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels, 
-      :cover_image_id,
-      :readonly => [ :id, :short_id, :url, :short_url, :last_activity_date ]
+      :cover_image_id, :badges, :card_members,
+      :readonly => [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name,        :in => 1..16384
     validates_length_of   :desc, :in => 0..16384
@@ -26,7 +26,9 @@ module Trello
       list_id: 'idList',
       pos: 'pos',
       last_activity_date: 'dateLastActivity',
-      card_labels: 'labels'
+      card_labels: 'labels',
+      badges: 'badges',
+      card_members: 'members'
     }
 
     class << self
@@ -67,6 +69,8 @@ module Trello
       attributes[:card_labels]        = fields[SYMBOL_TO_STRING[:card_labels]]
       attributes[:last_activity_date] = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
       attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
+      attributes[:badges]             = fields[SYMBOL_TO_STRING[:badges]]
+      attributes[:card_members]       = fields[SYMBOL_TO_STRING[:card_members]]
       self
     end
 

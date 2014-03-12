@@ -1,8 +1,8 @@
 module Trello
   # Action represents some event that occurred. For instance, when a card is created.
   class Action < BasicData
-    register_attributes :id, :type, :data, :date, :member_creator_id,
-      :readonly => [ :id, :type, :data, :date, :member_creator_id ]
+    register_attributes :id, :type, :data, :date, :member_creator_id, :member_participant,
+      :readonly => [ :id, :type, :data, :date, :member_creator_id, :member_participant ]
     validates_presence_of :id, :type, :date, :member_creator_id
 
     class << self
@@ -25,11 +25,12 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Action.
     def update_fields(fields)
-      attributes[:id]                = fields['id']
-      attributes[:type]              = fields['type']
-      attributes[:data]              = fields['data']
-      attributes[:date]              = Time.iso8601(fields['date'])
-      attributes[:member_creator_id] = fields['idMemberCreator']
+      attributes[:id]                 = fields['id']
+      attributes[:type]               = fields['type']
+      attributes[:data]               = fields['data']
+      attributes[:date]               = Time.iso8601(fields['date'])
+      attributes[:member_creator_id]  = fields['idMemberCreator']
+      attributes[:member_participant] = fields['member']
       self
     end
 
