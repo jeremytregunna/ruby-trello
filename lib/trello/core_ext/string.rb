@@ -15,8 +15,8 @@ class String
   #   thing = '{"a":42,"b":"foo"}'.json_into(Stuff)
   #   thing.a == 42
   #   thing.b == "foo"
-  def json_into(obj)
-    data = JSON.parse(self)
+  def json_into(obj, encoding = 'UTF-8')
+    data = JSON.parse(self.force_encoding(encoding))
     data.jsoned_into(obj)
   rescue JSON::ParserError => json_error
     if json_error.message =~ /model not found/
