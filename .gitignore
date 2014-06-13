@@ -11,3 +11,4 @@ bin
 vendor/bundle
 Gemfile.lock
 .project
+.DS_Store

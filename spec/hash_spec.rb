@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'trello/hash'
+require 'trello/core_ext/hash'
 
 describe Hash, '#jsoned_into' do
   include Helpers

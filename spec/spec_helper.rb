@@ -70,6 +70,7 @@ module Helpers
       'name'       => 'Test Checklist',
       'desc'       => 'A marvelous little checklist',
       'closed'     => false,
+      'position'   => 16384,
       'url'        => 'https://trello.com/blah/blah',
       'idBoard'    => 'abcdef123456789123456789',
       'idList'     => 'abcdef123456789123456789',
@@ -105,8 +106,10 @@ module Helpers
       'closed'            => false,
       'idList'            => 'abcdef123456789123456789',
       'idBoard'           => 'abcdef123456789123456789',
+      'idAttachmentCover' => 'abcdef123456789123456789',
       'idMembers'         => ['abcdef123456789123456789'],
       'url'               => 'https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789',
+      'shortUrl'          => 'https://trello.com/c/abcdef12',
       'pos'               => 12,
       'dateLastActivity'  => '2012-12-07T18:40:24.314Z'
     }]

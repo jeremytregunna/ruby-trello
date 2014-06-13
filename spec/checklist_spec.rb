@@ -66,13 +66,29 @@ module Trello
         expected_new_name = "xxx"
         expected_resource = "/checklists/abcdef123456789123456789"
         payload = {
-            :name => expected_new_name
+            :name => expected_new_name,
+            :pos => checklist.position
         }
 
         result = JSON.generate(checklists_details.first)
         client.should_receive(:put).once.with(expected_resource, payload).and_return result
 
         checklist.name = expected_new_name
+        checklist.save
+      end
+
+      it "updating position does a put on the correct resource with the correct value" do
+        expected_new_position = 33
+        expected_resource = "/checklists/abcdef123456789123456789"
+        payload = {
+            :name => checklist.name,
+            :pos => expected_new_position
+        }
+
+        result = JSON.generate(checklists_details.first)
+        client.should_receive(:put).once.with(expected_resource, payload).and_return result
+
+        checklist.position = expected_new_position
         checklist.save
       end
 

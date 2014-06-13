@@ -1,5 +1,6 @@
 require 'addressable/uri'
 require 'forwardable'
+require 'active_support/inflector'
 
 module Trello
   class Client

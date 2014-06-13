@@ -2,7 +2,10 @@ rvm:
   - 1.9.3
   - 2.0.0
   - jruby-19mode
-  - rbx-19mode
+  - rbx-2.1.1
+env:
+  - ACTIVE_MODEL_VERSION='~> 3.2.0'
+  - ACTIVE_MODEL_VERSION='~> 4.0'
 gemfile: Gemfile
 notifications:
   recipients:

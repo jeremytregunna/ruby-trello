@@ -108,8 +108,16 @@ module Trello
         card.url.should_not be_nil
       end
 
+      it "gets its short url" do
+        card.short_url.should_not be_nil
+      end
+
       it "gets its last active date" do
         card.last_activity_date.should_not be_nil
+      end
+
+      it "gets its cover image id" do
+        card.cover_image_id.should_not be_nil
       end
     end
 
@@ -129,6 +137,13 @@ module Trello
       it "has a board" do
         client.stub(:get).with("/boards/abcdef123456789123456789", {}).and_return JSON.generate(boards_details.first)
         card.board.should_not be_nil
+      end
+    end
+
+    context "cover image" do
+      it "has a cover image" do
+        client.stub(:get).with("/attachments/abcdef123456789123456789", {}).and_return JSON.generate(attachments_details.first)
+        card.cover_image.should_not be_nil
       end
     end
 

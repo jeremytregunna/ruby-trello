@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'trello/string'
+require 'trello/core_ext/string'
 
 describe String, '#json_into' do
   include Helpers
@@ -24,9 +24,9 @@ describe String, '#json_into' do
       "name"        => "Jazz Kang",
       "description" => "Plonker"
     })
-    
+
     json_text = '{"name" : "Jazz Kang", "description": "Plonker"}'
-    
+
     json_text.json_into example_class
   end
 
@@ -37,7 +37,7 @@ describe String, '#json_into' do
        {"name" : "Phil Murphy", "description": "Shoreditch hipster"}
       ]
     JSON
-    
+
     result = json_text.json_into example_class
 
     result.should be_an Array
@@ -47,4 +47,4 @@ describe String, '#json_into' do
     end
   end
 end
- 
+
