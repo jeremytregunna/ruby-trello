@@ -7,6 +7,8 @@ end
 gemspec
 
 group :development, :spec do
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'fuubar'
   gem 'jruby-openssl', :platforms => :jruby
   gem 'rake'

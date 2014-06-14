@@ -2,7 +2,7 @@ module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
-      :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels, 
+      :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
       :cover_image_id, :badges, :card_members,
       :readonly => [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
     validates_presence_of :id, :name, :list_id
@@ -164,6 +164,11 @@ module Trello
       client.post("/cards/#{id}/checklists", {
         :value => checklist.id
       })
+    end
+
+    # create a new checklist and add it to this card
+    def create_new_checklist(name)
+      client.post("/cards/#{id}/checklists", { name: name })
     end
 
     # Move this card to the given list
