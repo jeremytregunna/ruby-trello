@@ -101,9 +101,9 @@ module Trello
 
     context 'modification' do
       it 'lets us know a field has changed without committing it' do
-        member.changed?.should be_false
+        expect(member.changed?).to be(false)
         member.bio = 'New and amazing'
-        member.changed?.should be_true
+        expect(member.changed?).to be(true)
       end
 
       it 'does not understand the #id= method' do

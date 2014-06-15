@@ -114,14 +114,14 @@ module Trello
 
     describe '#closed?' do
       it 'returns the closed attribute' do
-        list.closed?.should_not be_true
+        expect(list.closed?).not_to be(true)
       end
     end
 
     describe '#close' do
       it 'updates the close attribute to true' do
         list.close
-        list.closed.should be_true
+        expect(list.closed).to be(true)
       end
     end
 

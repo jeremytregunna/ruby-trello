@@ -70,7 +70,7 @@ module Trello
 
     context "activated?" do
       it "returns the active attribute" do
-        webhook.activated?.should be_true
+        expect(webhook.activated?).to be(true)
       end
     end
   end
