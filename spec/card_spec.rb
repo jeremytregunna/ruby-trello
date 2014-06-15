@@ -148,9 +148,17 @@ module Trello
     end
 
     context "checklists" do
-      it "has a list of checklists" do
+      before(:each) do
         client.stub(:get).with("/cards/abcdef123456789123456789/checklists", { :filter => :all }).and_return checklists_payload
+      end
+
+      it "has a list of checklists" do
         card.checklists.count.should be > 0
+      end
+
+      it "creates a new checklist for the card" do
+        client.should_receive(:post).with("/cards/abcdef123456789123456789/checklists", name: "new checklist")
+        card.create_new_checklist("new checklist")
       end
     end
 
@@ -322,14 +330,14 @@ module Trello
 
     describe "#closed?" do
       it "returns the closed attribute" do
-        card.closed?.should_not be_true
+        expect(card.closed?).to be(false)
       end
     end
 
     describe "#close" do
       it "updates the close attribute to true" do
         card.close
-        card.closed.should be_true
+        expect(card.closed).to be(true)
       end
     end
 
