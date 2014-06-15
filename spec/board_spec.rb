@@ -122,7 +122,7 @@ module Trello
     end
 
     it "is not closed" do
-      board.closed?.should_not be_true
+      expect(board.closed?).not_to be(true)
     end
 
     describe "#update_fields" do
