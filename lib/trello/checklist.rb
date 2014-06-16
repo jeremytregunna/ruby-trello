@@ -30,7 +30,7 @@ module Trello
       attributes[:closed] = fields['closed']
       attributes[:url] = fields['url']
       attributes[:check_items] = fields['checkItems']
-      attributes[:position] = fields['position']
+      attributes[:position] = fields['pos']
       attributes[:board_id] = fields['idBoard']
       attributes[:list_id] = fields['idList']
       attributes[:member_ids] = fields['idMembers']
