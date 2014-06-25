@@ -25,6 +25,8 @@ illustrate that future versions may include ruby 1.9.3+ specific features.
 Basic authorization
 
 ```ruby
+require 'trello'
+
 Trello.configure do |config|
   config.developer_public_key = TRELLO_DEVELOPER_PUBLIC_KEY
   config.member_token = TRELLO_MEMBER_TOKEN
