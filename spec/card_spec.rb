@@ -119,6 +119,10 @@ module Trello
       it "gets its cover image id" do
         card.cover_image_id.should_not be_nil
       end
+
+      it "gets its pos" do
+        card.pos.should_not be_nil
+      end
     end
 
     context "actions" do
