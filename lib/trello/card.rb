@@ -45,7 +45,8 @@ module Trello
           'desc'   => options[:desc],
           'idMembers' => options[:member_ids],
           'labels' => options[:card_labels],
-          'due' => options[:due]
+          'due' => options[:due],
+          'pos' => options[:pos]
         )
       end
     end
