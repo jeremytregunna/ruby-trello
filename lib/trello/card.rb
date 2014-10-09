@@ -44,7 +44,9 @@ module Trello
           'idList' => options[:list_id],
           'desc'   => options[:desc],
           'idMembers' => options[:member_ids],
-          'labels' => options[:card_labels]
+          'labels' => options[:card_labels],
+          'due' => options[:due],
+          'pos' => options[:pos]
         )
       end
     end
@@ -65,7 +67,7 @@ module Trello
       attributes[:board_id]           = fields[SYMBOL_TO_STRING[:board_id]]
       attributes[:member_ids]         = fields[SYMBOL_TO_STRING[:member_ids]]
       attributes[:list_id]            = fields[SYMBOL_TO_STRING[:list_id]]
-      attributes[:pos]                = fields[SYMBOL_TO_STRING[:post]]
+      attributes[:pos]                = fields[SYMBOL_TO_STRING[:pos]]
       attributes[:card_labels]        = fields[SYMBOL_TO_STRING[:card_labels]]
       attributes[:last_activity_date] = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
       attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
@@ -113,7 +115,8 @@ module Trello
         desc:   desc,
         idList: list_id,
         idMembers: member_ids,
-        labels: card_labels
+        labels: card_labels,
+        pos: pos
       }).json_into(self)
     end
 
