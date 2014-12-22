@@ -8,6 +8,8 @@ This library implements the [Trello](http://www.trello.com/) [API](http://trello
 Trello is an awesome tool for organization. Not just aimed at developers, but everybody.
 Seriously, [check it out](http://www.trello.com/).
 
+[Full API documentation](http://www.rubydoc.info/gems/ruby-trello).
+
 ## Installation
 
 ```
