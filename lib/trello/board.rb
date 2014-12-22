@@ -10,6 +10,8 @@ module Trello
 
     class << self
       # Finds a board.
+      #
+      # @return [Trello::Board]
       def find(id, params = {})
         client.find(:board, id, params)
       end
@@ -23,6 +25,7 @@ module Trello
         client.create(:board, data)
       end
 
+      # @return [Array<Trello::Board>] all boards for the current user
       def all
         client.get("/members/#{Member.find(:me).username}/boards").json_into(self)
       end
@@ -63,14 +66,18 @@ module Trello
       self
     end
 
+    # @return [Boolean]
     def closed?
       attributes[:closed]
     end
 
+    # @return [Boolean]
     def has_lists?
       lists.size > 0
     end
 
+    # Find a card on this Board with the given ID.
+    # @return [Trello::Card]
     def find_card(card_id)
       client.get("/boards/#{self.id}/cards/#{card_id}").json_into(Card)
     end
