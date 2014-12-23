@@ -6,8 +6,8 @@ include Trello::Authorization
 describe Client, "and how it handles authorization" do
   let (:fake_ok_response) do
     double "A fake OK response",
-      :code => 200,
-      :body => "A fake response body"
+      code: 200,
+      body: "A fake response body"
   end
   let(:client) { Client.new }
   let(:auth_policy) { double }
@@ -33,7 +33,7 @@ describe Client, "and how it handles authorization" do
 
     TInternet.should_receive(:execute).once.with expected_request
 
-    client.get "/xxx", :a => "1", :b => "2"
+    client.get "/xxx", a: "1", b: "2"
   end
 
   it "encodes parameters" do
@@ -42,14 +42,14 @@ describe Client, "and how it handles authorization" do
 
     TInternet.should_receive(:execute).once.with expected_request
 
-    client.get "/xxx", :name => "Jazz Kang"
+    client.get "/xxx", name: "Jazz Kang"
   end
 
   it "raises an error when response has non-200 status" do
     expected_error_message = "An error response"
     response_with_non_200_status = double "A fake OK response",
-      :code => 404,
-      :body => expected_error_message
+      code: 404,
+      body: expected_error_message
 
     TInternet.stub(:execute).and_return response_with_non_200_status
 
@@ -77,11 +77,11 @@ describe Client, "and how it handles authorization" do
   it "supports post" do
     TInternet.should_receive(:execute).once.and_return fake_ok_response
 
-    client.post "/xxx", { :phil => "T' north" }
+    client.post "/xxx", { phil: "T' north" }
   end
 
   it "supplies the body for a post" do
-    expected_body = { :name => "Phil", :nickname => "The Crack Fox" }
+    expected_body = { name: "Phil", nickname: "The Crack Fox" }
 
     TInternet.should_receive(:execute).once do |request|
       request.body.should == expected_body
@@ -105,11 +105,11 @@ describe Client, "and how it handles authorization" do
   it "supports put" do
     TInternet.should_receive(:execute).once.and_return fake_ok_response
 
-    client.put "/xxx", { :phil => "T' north" }
+    client.put "/xxx", { phil: "T' north" }
   end
 
   it "supplies the body for a put" do
-    expected_body = { :name => "Phil", :nickname => "The Crack Fox" }
+    expected_body = { name: "Phil", nickname: "The Crack Fox" }
 
     TInternet.should_receive(:execute).once do |request|
       request.body.should == expected_body
@@ -133,10 +133,10 @@ describe Client, "and how it handles authorization" do
   context "initialize" do
     let(:client) do
       Client.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
       )
     end
 

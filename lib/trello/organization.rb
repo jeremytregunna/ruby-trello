@@ -2,7 +2,7 @@ module Trello
   # Organizations are useful for linking members together.
   class Organization < BasicData
     register_attributes :id, :name, :display_name, :description, :url,
-      :readonly => [ :id, :name, :display_name, :description, :url ]
+      readonly: [ :id, :name, :display_name, :description, :url ]
     validates_presence_of :id, :name
 
     include HasActions

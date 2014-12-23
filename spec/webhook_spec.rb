@@ -32,13 +32,13 @@ module Trello
         webhook.should be_valid
       end
 
-      it 'creates a new webhook and saves it on Trello', :refactor => true do
-        payload = { :name => 'Test Card', :desc => nil }
+      it 'creates a new webhook and saves it on Trello', refactor: true do
+        payload = { name: 'Test Card', desc: nil }
 
         webhook = webhooks_details.first
         result = JSON.generate(webhook)
 
-        expected_payload = {:description => webhook[:description], :idModel => webhook[:idModel], :callbackURL => webhook[:callbackURL]}
+        expected_payload = {description: webhook[:description], idModel: webhook[:idModel], callbackURL: webhook[:callbackURL]}
 
         client.should_receive(:post).with("/webhooks", expected_payload).and_return result
 
@@ -52,7 +52,7 @@ module Trello
       it "updating description does a put on the correct resource with the correct value" do
         expected_new_description = "xxx"
 
-        expected_payload = {:description => expected_new_description, :idModel => webhook.id_model, :callbackURL => webhook.callback_url, :active => webhook.active}
+        expected_payload = {description: expected_new_description, idModel: webhook.id_model, callbackURL: webhook.callback_url, active: webhook.active}
 
         client.should_receive(:put).once.with("/webhooks/#{webhook.id}", expected_payload)
 

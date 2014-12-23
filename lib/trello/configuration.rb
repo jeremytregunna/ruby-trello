@@ -48,19 +48,19 @@ module Trello
 
     def oauth_credentials
       {
-        :consumer_key => consumer_key,
-        :consumer_secret => consumer_secret,
-        :oauth_token => oauth_token,
-        :oauth_token_secret => oauth_token_secret,
-        :return_url => return_url,
-        :callback => callback,
+        consumer_key: consumer_key,
+        consumer_secret: consumer_secret,
+        oauth_token: oauth_token,
+        oauth_token_secret: oauth_token_secret,
+        return_url: return_url,
+        callback: callback,
       }.delete_if { |key, value| value.nil? }
     end
 
     def basic_credentials
       {
-        :developer_public_key => developer_public_key,
-        :member_token => member_token
+        developer_public_key: developer_public_key,
+        member_token: member_token
       }
     end
 

@@ -18,10 +18,10 @@ OAuthPolicy.consumer_credential = OAuthCredential.new 'PUBLIC_KEY', 'SECRET'
 OAuthPolicy.token = OAuthCredential.new 'ACCESS_TOKEN_KEY', nil
 
 me = Member.find("me")
-board = Board.create(:name => "ruby-trello test")
+board = Board.create(name: "ruby-trello test")
 if board.has_lists?
   list = board.lists.first
 else
-  list = List.create(:name => "Getting Shit done", :board_id => board.id)
+  list = List.create(name: "Getting Shit done", board_id: board.id)
 end
-Card.create(:name => "test from ruby-trello", :description => "Just a desc", :list_id => list.id)
+Card.create(name: "test from ruby-trello", description: "Just a desc", list_id: list.id)

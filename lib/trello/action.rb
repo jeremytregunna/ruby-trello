@@ -2,7 +2,7 @@ module Trello
   # Action represents some event that occurred. For instance, when a card is created.
   class Action < BasicData
     register_attributes :id, :type, :data, :date, :member_creator_id, :member_participant,
-      :readonly => [ :id, :type, :data, :date, :member_creator_id, :member_participant ]
+      readonly: [ :id, :type, :data, :date, :member_creator_id, :member_participant ]
     validates_presence_of :id, :type, :date, :member_creator_id
 
     class << self
@@ -50,6 +50,6 @@ module Trello
     end
 
     # Returns the member who created the action.
-    one :member_creator, :via => Member, :path => :members, :using => :member_creator_id
+    one :member_creator, via: Member, path: :members, using: :member_creator_id
   end
 end

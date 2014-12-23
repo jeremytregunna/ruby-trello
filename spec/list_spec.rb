@@ -43,15 +43,15 @@ module Trello
         list.should_not be_valid
       end
 
-      it 'creates a new record and saves it on Trello', :refactor => true do
+      it 'creates a new record and saves it on Trello', refactor: true do
         payload = {
-          :name       => 'Test List',
-          :board_id   => 'abcdef123456789123456789'
+          name: 'Test List',
+          board_id: 'abcdef123456789123456789'
         }
 
         result = JSON.generate(payload)
 
-        expected_payload = {:name => 'Test List', :closed => false, :idBoard => 'abcdef123456789123456789'}
+        expected_payload = {name: 'Test List', closed: false, idBoard: 'abcdef123456789123456789'}
 
         client.should_receive(:post).with('/lists', expected_payload).and_return result
 
@@ -66,8 +66,8 @@ module Trello
         expected_new_name = 'xxx'
 
         payload = {
-          :name      => expected_new_name,
-          :closed    => false
+          name: expected_new_name,
+          closed: false
         }
 
         client.should_receive(:put).once.with('/lists/abcdef123456789123456789', payload)
@@ -100,14 +100,14 @@ module Trello
 
     context 'actions' do
       it 'has a list of actions' do
-        client.stub(:get).with('/lists/abcdef123456789123456789/actions', { :filter => :all }).and_return actions_payload
+        client.stub(:get).with('/lists/abcdef123456789123456789/actions', { filter: :all }).and_return actions_payload
         list.actions.count.should be > 0
       end
     end
 
     context 'cards' do
       it 'has a list of cards' do
-        client.stub(:get).with('/lists/abcdef123456789123456789/cards', { :filter => :open }).and_return cards_payload
+        client.stub(:get).with('/lists/abcdef123456789123456789/cards', { filter: :open }).and_return cards_payload
         list.cards.count.should be > 0
       end
     end
@@ -128,8 +128,8 @@ module Trello
     describe '#close!' do
       it 'updates the close attribute to true and saves the list' do
         client.should_receive(:put).once.with('/lists/abcdef123456789123456789', {
-          :name   => list.name,
-          :closed => true
+          name: list.name,
+          closed: true
         })
 
         list.close!

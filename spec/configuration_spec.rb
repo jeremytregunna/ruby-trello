@@ -47,10 +47,10 @@ describe Trello::Configuration do
   describe 'initialize' do
     it 'sets key attributes provided as a hash' do
       configuration = Trello::Configuration.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
       )
       configuration.consumer_key.should eq('consumer_key')
       configuration.consumer_secret.should eq('consumer_secret')
@@ -67,47 +67,47 @@ describe Trello::Configuration do
     end
 
     it 'returns an empty if attributes incomplete' do
-      Trello::Configuration.new(:consumer_key => 'consumer_key').credentials.should eq({})
+      Trello::Configuration.new(consumer_key: 'consumer_key').credentials.should eq({})
     end
 
     it 'returns a hash of oauth attributes' do
       configuration = Trello::Configuration.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
       )
       configuration.credentials.should eq(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
       )
     end
 
     it 'includes callback and return url if given' do
       configuration = Trello::Configuration.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :return_url => 'http://example.com',
-        :callback => 'callback'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        return_url: 'http://example.com',
+        callback: 'callback'
       )
       configuration.credentials.should eq(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret',
-        :return_url => 'http://example.com',
-        :callback => 'callback'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret',
+        return_url: 'http://example.com',
+        callback: 'callback'
       )
     end
 
     it 'returns a hash of basic auth policy attributes' do
       configuration = Trello::Configuration.new(
-        :developer_public_key => 'developer_public_key',
-        :member_token => 'member_token'
+        developer_public_key: 'developer_public_key',
+        member_token: 'member_token'
       )
       configuration.credentials.should eq(
-        :developer_public_key => 'developer_public_key',
-        :member_token => 'member_token'
+        developer_public_key: 'developer_public_key',
+        member_token: 'member_token'
       )
     end
   end

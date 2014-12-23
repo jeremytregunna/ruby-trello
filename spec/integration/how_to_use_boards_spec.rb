@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'integration/integration_test'
 
-describe "how to use boards", :broken => true do
+describe "how to use boards", broken: true do
   include IntegrationTest
 
   context "given a valid access token" do
@@ -12,14 +12,14 @@ describe "how to use boards", :broken => true do
     end
 
     after do
-      if @new_board and false == @new_board.closed? 
+      if @new_board and false == @new_board.closed?
         @new_board.update_fields 'closed' => true
         @new_board.save
       end
     end
 
     it "can add a board" do
-      @new_board = Board.create(:name => "An example")
+      @new_board = Board.create(name: "An example")
       @new_board.should_not be_nil
       @new_board.id.should_not be_nil
       @new_board.name.should == "An example"
@@ -33,11 +33,11 @@ describe "how to use boards", :broken => true do
     end
 
     it "can close a board" do
-      @new_board = Board.create(:name => "[#{Time.now}, CLOSED] An example")
+      @new_board = Board.create(name: "[#{Time.now}, CLOSED] An example")
 
       @new_board.update_fields 'closed' => true
       @new_board.save
-      
+
       Board.find(@new_board.id).should be_closed
     end
 

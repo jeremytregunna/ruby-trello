@@ -4,10 +4,10 @@ module Trello
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
       :cover_image_id, :badges, :card_members,
-      :readonly => [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
+      readonly: [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
     validates_presence_of :id, :name, :list_id
-    validates_length_of   :name,        :in => 1..16384
-    validates_length_of   :desc, :in => 0..16384
+    validates_length_of   :name,        in: 1..16384
+    validates_length_of   :desc, in: 0..16384
 
     include HasActions
 
@@ -77,16 +77,16 @@ module Trello
     end
 
     # Returns a reference to the board this card is part of.
-    one :board, :path => :boards, :using => :board_id
+    one :board, path: :boards, using: :board_id
     # Returns a reference to the cover image attachment
-    one :cover_image, :path => :attachments, :using => :cover_image_id
+    one :cover_image, path: :attachments, using: :cover_image_id
 
     # Returns a list of checklists associated with the card.
     #
     # The options hash may have a filter key which can have its value set as any
     # of the following values:
     #    :filter => [ :none, :all ] # default :all
-    many :checklists, :filter => :all
+    many :checklists, filter: :all
 
     def check_item_states
       states = client.get("/cards/#{self.id}/checkItemStates").json_into(CheckItemState)
@@ -95,7 +95,7 @@ module Trello
 
 
     # Returns a reference to the list this card is currently in.
-    one :list, :path => :lists, :using => :list_id
+    one :list, path: :lists, using: :list_id
 
     # Returns a list of members who are assigned to this card.
     def members
@@ -159,13 +159,13 @@ module Trello
 
     # Add a comment with the supplied text.
     def add_comment(text)
-      client.post("/cards/#{id}/actions/comments", :text => text)
+      client.post("/cards/#{id}/actions/comments", text: text)
     end
 
     # Add a checklist to this card
     def add_checklist(checklist)
       client.post("/cards/#{id}/checklists", {
-        :value => checklist.id
+        value: checklist.id
       })
     end
 
@@ -187,7 +187,7 @@ module Trello
     # Move this card to the given board (and optional list on this board)
     def move_to_board(new_board, new_list = nil)
       unless board_id == new_board.id
-        payload = { :value => new_board.id }
+        payload = { value: new_board.id }
         payload[:idList] = new_list.id if new_list
         client.put("/cards/#{id}/idBoard", payload)
       end
@@ -196,7 +196,7 @@ module Trello
     # Add a member to this card
     def add_member(member)
       client.post("/cards/#{id}/members", {
-        :value => member.id
+        value: member.id
       })
     end
 
@@ -222,7 +222,7 @@ module Trello
         errors.add(:label, "colour '#{colour}' does not exist")
         return Trello.logger.warn "The label colour '#{colour}' does not exist."
       end
-      client.post("/cards/#{id}/labels", { :value => colour })
+      client.post("/cards/#{id}/labels", { value: colour })
     end
 
     # Remove a label
@@ -238,13 +238,13 @@ module Trello
     def add_attachment(attachment, name='')
       if attachment.is_a? File
         client.post("/cards/#{id}/attachments", {
-            :file => attachment,
-            :name => name
+            file: attachment,
+            name: name
           })
       else
         client.post("/cards/#{id}/attachments", {
-            :url => attachment,
-            :name => name
+            url: attachment,
+            name: name
           })
       end
     end

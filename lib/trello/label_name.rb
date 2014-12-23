@@ -18,9 +18,9 @@ module Trello
       self
     end
 
-    one :board, :path => :boards, :using => :board_id
+    one :board, path: :boards, using: :board_id
 
-    many :cards, :filter => :all
+    many :cards, filter: :all
 
   end
 end

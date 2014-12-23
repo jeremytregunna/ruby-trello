@@ -1,13 +1,13 @@
 require 'spec_helper'
 require 'integration/integration_test'
 
-describe "Authorizing read-only requests", :broken => true do
+describe "Authorizing read-only requests", broken: true do
   include IntegrationTest
 
   it "Reading public resources requires just a developer public key" do
     uri = Addressable::URI.parse("https://api.trello.com/1/boards/4ed7e27fe6abb2517a21383d")
     uri.query_values = {
-      :key => @developer_public_key
+      key: @developer_public_key
     }
 
     get(uri).code.should === 200
@@ -16,8 +16,8 @@ describe "Authorizing read-only requests", :broken => true do
   it "Reading private resources requires developer public key AND a member token" do
     uri = Addressable::URI.parse("https://api.trello.com/1/boards/#{@welcome_board}")
     uri.query_values = {
-      :key => @developer_public_key,
-      :token => @member_token
+      key: @developer_public_key,
+      token: @member_token
     }
 
     get(uri).code.should === 200
@@ -35,7 +35,7 @@ describe "Authorizing read-only requests", :broken => true do
   end
 end
 
-describe "OAuth", :broken => true do
+describe "OAuth", broken: true do
   include IntegrationTest
 
   before do

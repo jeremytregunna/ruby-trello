@@ -26,11 +26,11 @@ module Trello
       def execute_core(request)
         RestClient.proxy = ENV['HTTP_PROXY'] if ENV['HTTP_PROXY']
         RestClient::Request.execute(
-          :method => request.verb, 
-          :url => request.uri.to_s, 
-          :headers => request.headers, 
-          :payload => request.body, 
-          :timeout => 10
+          method: request.verb,
+          url: request.uri.to_s,
+          headers: request.headers,
+          payload: request.body,
+          timeout: 10
         )
       end
     end
