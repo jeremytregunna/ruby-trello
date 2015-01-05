@@ -211,9 +211,14 @@ module Trello
       MultiAssociation.new(self, labels).proxy
     end
 
+    # Label colours
+    def label_colours
+      %w{green yellow orange red purple blue sky lime pink black}
+    end
+    
     # Add a label
     def add_label(colour)
-      unless %w{green yellow orange red purple blue}.include? colour
+      unless label_colours.include? colour
         errors.add(:label, "colour '#{colour}' does not exist")
         return Trello.logger.warn "The label colour '#{colour}' does not exist."
       end
@@ -222,9 +227,9 @@ module Trello
 
     # Remove a label
     def remove_label(colour)
-      unless %w{green yellow orange red purple blue}.include? colour
+      unless label_colours.include? colour
         errors.add(:label, "colour '#{colour}' does not exist")
-        return Trello.logger.warn "The label colour '#{colour}' does not exist." unless %w{green yellow orange red purple blue}.include? colour
+        return Trello.logger.warn "The label colour '#{colour}' does not exist." unless label_colours.include? colour
       end
       client.delete("/cards/#{id}/labels/#{colour}")
     end
