@@ -169,7 +169,7 @@ module Trello
       end
 
       it "puts all fields except id" do
-        expected_fields = %w{ name description closed }.map { |s| s.to_sym }
+        expected_fields = %w{ name description closed idOrganization}.map { |s| s.to_sym }
 
         client.should_receive(:put) do |anything, body|
           body.keys.should =~ expected_fields
@@ -222,7 +222,8 @@ module Trello
         client.should_receive(:put).with("/boards/#{board.id}/", {
           :name => "new name",
           :description => "new description",
-          :closed => true
+          :closed => true,
+          :idOrganization => nil
         }).and_return any_board_json
         board.update!
       end
