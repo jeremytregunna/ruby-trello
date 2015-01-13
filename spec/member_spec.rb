@@ -27,15 +27,15 @@ module Trello
     end
 
     context 'actions' do
-      it 'retrieves a list of actions', :refactor => true do
-        client.stub(:get).with('/members/abcdef123456789012345678/actions', { :filter => :all }).and_return actions_payload
+      it 'retrieves a list of actions', refactor: true do
+        client.stub(:get).with('/members/abcdef123456789012345678/actions', { filter: :all }).and_return actions_payload
         member.actions.count.should be > 0
       end
     end
 
     context 'boards' do
       it 'has a list of boards' do
-        client.stub(:get).with('/members/abcdef123456789012345678/boards', { :filter => :all }).and_return boards_payload
+        client.stub(:get).with('/members/abcdef123456789012345678/boards', { filter: :all }).and_return boards_payload
         boards = member.boards
         boards.count.should be > 0
       end
@@ -43,7 +43,7 @@ module Trello
 
     context 'cards' do
       it 'has a list of cards' do
-        client.stub(:get).with('/members/abcdef123456789012345678/cards', { :filter => :open }).and_return cards_payload
+        client.stub(:get).with('/members/abcdef123456789012345678/cards', { filter: :open }).and_return cards_payload
         cards = member.cards
         cards.count.should be > 0
       end
@@ -51,7 +51,7 @@ module Trello
 
     context 'organizations' do
       it 'has a list of organizations' do
-        client.stub(:get).with('/members/abcdef123456789012345678/organizations', { :filter => :all }).and_return orgs_payload
+        client.stub(:get).with('/members/abcdef123456789012345678/organizations', { filter: :all }).and_return orgs_payload
         orgs = member.organizations
         orgs.count.should be > 0
       end
@@ -78,8 +78,8 @@ module Trello
       end
 
       it 'returns a valid url for the avatar' do
-        member.avatar_url(:size => :large).should == 'https://trello-avatars.s3.amazonaws.com/abcdef1234567890abcdef1234567890/170.png'
-        member.avatar_url(:size => :small).should == 'https://trello-avatars.s3.amazonaws.com/abcdef1234567890abcdef1234567890/30.png'
+        member.avatar_url(size: :large).should == 'https://trello-avatars.s3.amazonaws.com/abcdef1234567890abcdef1234567890/170.png'
+        member.avatar_url(size: :small).should == 'https://trello-avatars.s3.amazonaws.com/abcdef1234567890abcdef1234567890/30.png'
       end
 
       it 'gets the url' do

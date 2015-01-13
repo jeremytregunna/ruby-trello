@@ -18,8 +18,8 @@ describe OAuthPolicy do
 
     it 'is built from given consumer_key and consumer_secret' do
       policy = OAuthPolicy.new(
-        :consumer_key => 'consumer_key',
-        :consumer_secret => 'consumer_secret'
+        consumer_key: 'consumer_key',
+        consumer_secret: 'consumer_secret'
       )
       policy.consumer_credential.key.should eq('consumer_key')
       policy.consumer_credential.secret.should eq('consumer_secret')
@@ -42,8 +42,8 @@ describe OAuthPolicy do
 
     it 'is built from given oauth_token and oauth_token_secret' do
       policy = OAuthPolicy.new(
-        :oauth_token => 'oauth_token',
-        :oauth_token_secret => 'oauth_token_secret'
+        oauth_token: 'oauth_token',
+        oauth_token_secret: 'oauth_token_secret'
       )
       policy.token.key.should eq('oauth_token')
       policy.token.secret.should eq('oauth_token_secret')

@@ -28,19 +28,19 @@ module Trello
     context "creating" do
       let(:client) { Trello.client }
 
-      it 'creates a new record and saves it on Trello', :refactor => true do
+      it 'creates a new record and saves it on Trello', refactor: true do
         payload = {
-            :name => 'Test Checklist',
-            :desc => '',
+            name: 'Test Checklist',
+            desc: '',
         }
 
-        result = JSON.generate(checklists_details.first.merge(payload.merge(:idBoard => boards_details.first['id'])))
+        result = JSON.generate(checklists_details.first.merge(payload.merge(idBoard: boards_details.first['id'])))
 
-        expected_payload = {:name => "Test Checklist", :idBoard => "abcdef123456789123456789"}
+        expected_payload = {name: "Test Checklist", idBoard: "abcdef123456789123456789"}
 
         client.should_receive(:post).with("/checklists", expected_payload).and_return result
 
-        checklist = Checklist.create(checklists_details.first.merge(payload.merge(:board_id => boards_details.first['id'])))
+        checklist = Checklist.create(checklists_details.first.merge(payload.merge(board_id: boards_details.first['id'])))
 
         checklist.class.should be Checklist
       end
@@ -66,8 +66,8 @@ module Trello
         expected_new_name = "xxx"
         expected_resource = "/checklists/abcdef123456789123456789"
         payload = {
-            :name => expected_new_name,
-            :pos => checklist.position
+            name: expected_new_name,
+            pos: checklist.position
         }
 
         result = JSON.generate(checklists_details.first)
@@ -81,8 +81,8 @@ module Trello
         expected_new_position = 33
         expected_resource = "/checklists/abcdef123456789123456789"
         payload = {
-            :name => checklist.name,
-            :pos => expected_new_position
+            name: checklist.name,
+            pos: expected_new_position
         }
 
         result = JSON.generate(checklists_details.first)
@@ -97,14 +97,14 @@ module Trello
         expected_checked = true
         expected_pos = 9999
         payload = {
-            :name => expected_item_name,
-            :checked => expected_checked,
-            :pos => expected_pos
+            name: expected_item_name,
+            checked: expected_checked,
+            pos: expected_pos
         }
         result_hash = {
-            :name => expected_item_name,
-            :state => expected_checked ? 'complete' : 'incomplete',
-            :pos => expected_pos
+            name: expected_item_name,
+            state: expected_checked ? 'complete' : 'incomplete',
+            pos: expected_pos
         }
         result = JSON.generate(result_hash)
         client.should_receive(:post).once.with("/checklists/abcdef123456789123456789/checkItems", payload).and_return result

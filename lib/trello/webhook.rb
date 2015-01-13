@@ -2,9 +2,9 @@ module Trello
   # A webhook is an url called each time a specified idModel is updated
   class Webhook < BasicData
     register_attributes :id, :description, :id_model, :callback_url, :active,
-      :readonly => [ :id ]
+      readonly: [ :id ]
     validates_presence_of :id, :id_model, :callback_url
-    validates_length_of   :description,  :in => 1..16384
+    validates_length_of   :description,  in: 1..16384
 
     class << self
       # Find a specific webhook by its ID.
@@ -45,18 +45,18 @@ module Trello
       return update! if id
 
       client.post("/webhooks", {
-        :description => description,
-        :idModel     => id_model,
-        :callbackURL => callback_url
+        description: description,
+        idModel: id_model,
+        callbackURL: callback_url
       }).json_into(self)
     end
 
     def update!
       client.put("/webhooks/#{id}", {
-        :description => description,
-        :idModel     => id_model,
-        :callbackURL => callback_url,
-        :active      => active
+        description: description,
+        idModel: id_model,
+        callbackURL: callback_url,
+        active: active
       })
     end
 

@@ -28,7 +28,7 @@ describe BasicAuthPolicy do
   it 'preserves other query parameters' do
     uri = Addressable::URI.parse('https://xxx/?name=Phil')
 
-    request = Request.new :get, uri, {:example_header => 'example_value'}
+    request = Request.new :get, uri, {example_header: 'example_value'}
 
     authorized_request = BasicAuthPolicy.authorize request
 
@@ -40,7 +40,7 @@ describe BasicAuthPolicy do
   it 'preserves headers' do
     uri = Addressable::URI.parse('https://xxx/')
 
-    request = Request.new :get, uri, {:example_header => 'example_value'}
+    request = Request.new :get, uri, {example_header: 'example_value'}
 
     authorized_request = BasicAuthPolicy.authorize request
 

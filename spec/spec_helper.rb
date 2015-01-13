@@ -24,7 +24,7 @@ require 'stringio'
 Trello.logger = Logger.new(StringIO.new)
 
 RSpec.configure do |c|
-  c.filter_run_excluding :broken => true
+  c.filter_run_excluding broken: true
 
   c.before :each do
     Trello.reset!

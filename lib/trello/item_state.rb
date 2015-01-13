@@ -1,7 +1,7 @@
 module Trello
   # Represents the state of an item.
   class CheckItemState < BasicData
-    register_attributes :id, :state, :item_id, :readonly => [ :id, :state, :item_id ]
+    register_attributes :id, :state, :item_id, readonly: [ :id, :state, :item_id ]
     validates_presence_of :id, :item_id
 
     # Update the fields of an item state.

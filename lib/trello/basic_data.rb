@@ -44,7 +44,7 @@ module Trello
     end
 
     def self.register_attributes(*names)
-      options = { :readonly => [] }
+      options = { readonly: [] }
       options.merge!(names.pop) if names.last.kind_of? Hash
 
       # Defines the attribute getter and setters.
@@ -102,7 +102,7 @@ module Trello
       Trello.client
     end
 
-    register_attributes :id, :readonly => [ :id ]
+    register_attributes :id, readonly: [ :id ]
 
     attr_writer :client
 

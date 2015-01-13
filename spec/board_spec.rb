@@ -61,7 +61,7 @@ module Trello
 
     context "actions" do
       it "has a list of actions" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/actions", {:filter => :all}).
+        client.stub(:get).with("/boards/abcdef123456789123456789/actions", {filter: :all}).
           and_return actions_payload
 
         board.actions.count.should be > 0
@@ -70,7 +70,7 @@ module Trello
 
     context "cards" do
       it "gets its list of cards" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/cards", { :filter => :open }).
+        client.stub(:get).with("/boards/abcdef123456789123456789/cards", { filter: :open }).
           and_return cards_payload
 
         board.cards.count.should be > 0
@@ -96,7 +96,7 @@ module Trello
 
     context "lists" do
       it "has a list of lists" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(:filter => :open)).
+        client.stub(:get).with("/boards/abcdef123456789123456789/lists", hash_including(filter: :open)).
           and_return lists_payload
 
         board.has_lists?.should be true
@@ -105,7 +105,7 @@ module Trello
 
     context "members" do
       it "has a list of members" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(:filter => :all)).
+        client.stub(:get).with("/boards/abcdef123456789123456789/members", hash_including(filter: :all)).
           and_return JSON.generate([user_details])
 
         board.members.count.should be > 0
@@ -220,10 +220,10 @@ module Trello
         board.closed      = true
 
         client.should_receive(:put).with("/boards/#{board.id}/", {
-          :name => "new name",
-          :description => "new description",
-          :closed => true,
-          :idOrganization => nil
+          name: "new name",
+          description: "new description",
+          closed: true,
+          idOrganization: nil
         }).and_return any_board_json
         board.update!
       end
@@ -239,8 +239,8 @@ module Trello
       end
 
       it "creates a new board with whatever attributes are supplied " do
-        expected_attributes = { :name => "Any new board name", :description => "Any new board desription" }
-        sent_attributes = { :name => expected_attributes[:name], :desc => expected_attributes[:description] }
+        expected_attributes = { name: "Any new board name", description: "Any new board desription" }
+        sent_attributes = { name: expected_attributes[:name], desc: expected_attributes[:description] }
 
         client.should_receive(:post).with("/boards", sent_attributes).and_return any_board_json
 
@@ -250,13 +250,13 @@ module Trello
       it "posts to the boards collection" do
         client.should_receive(:post).with("/boards", anything).and_return any_board_json
 
-        Board.create :xxx => ""
+        Board.create xxx: ""
       end
 
       it "returns a board" do
         client.stub(:post).with("/boards", anything).and_return any_board_json
 
-        the_new_board = Board.create :xxx => ""
+        the_new_board = Board.create xxx: ""
         the_new_board.should be_a Board
       end
 

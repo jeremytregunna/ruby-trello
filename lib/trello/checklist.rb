@@ -2,9 +2,9 @@ module Trello
   # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
   class Checklist < BasicData
     register_attributes :id, :name, :description, :closed, :position, :url, :check_items, :board_id, :list_id, :member_ids,
-                        :readonly => [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids]
+                        readonly: [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids]
     validates_presence_of :id, :board_id, :list_id
-    validates_length_of :name, :in => 1..16384
+    validates_length_of :name, in: 1..16384
 
     class << self
       # Locate a specific checklist by its id.
@@ -47,13 +47,13 @@ module Trello
       return update! if id
 
       client.post("/checklists", {
-          :name => name,
-          :idBoard => board_id
+          name: name,
+          idBoard: board_id
       }).json_into(self)
     end
 
     def update!
-      client.put("/checklists/#{id}", {:name => name, :pos => position}).json_into(self)
+      client.put("/checklists/#{id}", {name: name, pos: position}).json_into(self)
     end
 
     # Return a list of items on the checklist.
@@ -64,10 +64,10 @@ module Trello
     end
 
     # Return a reference to the board the checklist is on.
-    one :board, :path => :checklists, :using => :board_id
+    one :board, path: :checklists, using: :board_id
 
     # Return a reference to the list the checklist is on.
-    one :list, :path => :lists, :using => :list_id
+    one :list, path: :lists, using: :list_id
 
     # Return a list of members active in this checklist.
     def members
@@ -79,7 +79,7 @@ module Trello
 
     # Add an item to the checklist
     def add_item(name, checked=false, position='bottom')
-      client.post("/checklists/#{id}/checkItems", {:name => name, :checked => checked, :pos => position})
+      client.post("/checklists/#{id}/checkItems", {name: name, checked: checked, pos: position})
     end
 
     # Delete a checklist item

@@ -1,7 +1,7 @@
 module Trello
   class Token < BasicData
     register_attributes :id, :member_id, :created_at, :permissions, :webhooks,
-      :readonly => [ :id, :member_id, :created_at, :permissions, :webhooks ]
+      readonly: [ :id, :member_id, :created_at, :permissions, :webhooks ]
 
     class << self
       # Finds a token
@@ -20,6 +20,6 @@ module Trello
     end
 
     # Returns a reference to the user who authorized the token.
-    one :member, :path => :members, :using => :member_id
+    one :member, path: :members, using: :member_id
   end
 end
