@@ -255,41 +255,50 @@ module Trello
         client.stub(:get).with("/cards/abcdef123456789123456789/labels").
           and_return label_payload
         labels = card.labels
-        labels.size.should == 2
+        expect(labels.size).to  eq(2)
 
-        labels[0].color.should == 'yellow'
-        labels[0].name.should == 'iOS'
+        expect(labels[0].color).to  eq('yellow')
+        expect(labels[0].name).to  eq('iOS')
 
-        labels[1].color.should == 'purple'
-        labels[1].name.should == 'Issue or bug'
+        expect(labels[1].color).to  eq('purple')
+        expect(labels[1].name).to  eq('Issue or bug')
       end
 
       it "can add a label" do
         client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => 'green' }).
           and_return "not important"
         card.add_label('green')
-        card.errors.should be_empty
+        expect(card.errors).to be_empty
       end
 
       it "can remove a label" do
         client.stub(:delete).with("/cards/abcdef123456789123456789/labels/green").
           and_return "not important"
         card.remove_label('green')
-        card.errors.should be_empty
+        expect(card.errors).to be_empty
+      end
+
+      it "can add a label of any valid color" do
+        %w(green yellow orange red purple blue sky lime pink black).each do |color|
+          client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => color }).
+            and_return "not important"
+          card.add_label(color)
+          expect(card.errors).to be_empty
+        end
       end
 
       it "throws an error when trying to add a label with an unknown colour" do
         client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => 'green' }).
           and_return "not important"
         card.add_label('mauve')
-        card.errors.full_messages.to_sentence.should == "Label colour 'mauve' does not exist"
+        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
       end
 
       it "throws an error when trying to remove a label with an unknown colour" do
         client.stub(:delete).with("/cards/abcdef123456789123456789/labels/mauve").
           and_return "not important"
         card.remove_label('mauve')
-        card.errors.full_messages.to_sentence.should == "Label colour 'mauve' does not exist"
+        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
       end
     end
 
