@@ -278,11 +278,20 @@ module Trello
         card.errors.should be_empty
       end
 
+      it "can add a label of any valid color" do
+        %w(green yellow orange red purple blue sky lime pink black).each do |color|
+          client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => color }).
+            and_return "not important"
+          card.add_label(color)
+          card.errors.should be_empty
+        end
+      end
+
       it "throws an error when trying to add a label with an unknown colour" do
         client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => 'green' }).
           and_return "not important"
         card.add_label('mauve')
-        card.errors.full_messages.to_sentence.should == "Label colour 'mauve' does not exist"
+        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
       end
 
       it "throws an error when trying to remove a label with an unknown colour" do
