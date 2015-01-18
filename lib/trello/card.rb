@@ -116,6 +116,7 @@ module Trello
         idList: list_id,
         idMembers: member_ids,
         labels: card_labels,
+        due: due,
         pos: pos
       }).json_into(self)
     end
