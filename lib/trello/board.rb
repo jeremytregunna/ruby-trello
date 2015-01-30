@@ -1,4 +1,21 @@
 module Trello
+
+  # A board on Trello
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] name
+  #   @return [String]
+  # @!attribute [rw] description
+  #   @return [String]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [r] url
+  #   @return [String]
+  # @!attribute [rw] organization_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] prefs
+  #   @return [Hash] A 24-character hex string
   class Board < BasicData
     register_attributes :id, :name, :description, :closed, :url, :organization_id, :prefs,
       readonly: [ :id, :url, :prefs ]

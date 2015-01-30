@@ -1,5 +1,16 @@
 module Trello
   # An Item is a basic task that can be checked off and marked as completed.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] name
+  #   @return [String]
+  # @!attribute [r] type
+  #   @return [Object]
+  # @!attribute [r] state
+  #   @return [Object]
+  # @!attribute [r] pos
+  #   @return [Object]
   class Item < BasicData
     register_attributes :id, :name, :type, :state, :pos, readonly: [ :id, :name, :type, :state, :pos ]
     validates_presence_of :id, :type

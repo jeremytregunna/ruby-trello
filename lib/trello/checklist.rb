@@ -1,5 +1,26 @@
 module Trello
   # A Checklist holds items which are like a "task" list. Checklists are linked to a card.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [r] description
+  #   @return [String]
+  # @!attribute [r] closed
+  #   @return [Boolean]
+  # @!attribute [rw] position
+  #   @return [Object]
+  # @!attribute [r] url
+  #   @return [String]
+  # @!attribute [r] check_items
+  #   @return [Object]
+  # @!attribute [r] board_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] list_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] member_ids
+  #   @return [Array<String>] An array of 24-character hex strings
   class Checklist < BasicData
     register_attributes :id, :name, :description, :closed, :position, :url, :check_items, :board_id, :list_id, :member_ids,
                         readonly: [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :member_ids]

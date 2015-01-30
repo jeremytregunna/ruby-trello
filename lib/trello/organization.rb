@@ -1,5 +1,16 @@
 module Trello
   # Organizations are useful for linking members together.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] name
+  #   @return [String]
+  # @!attribute [r] display_name
+  #   @return [String]
+  # @!attribute [r] description
+  #   @return [String]
+  # @!attribute [r] url
+  #   @return [String]
   class Organization < BasicData
     register_attributes :id, :name, :display_name, :description, :url,
       readonly: [ :id, :name, :display_name, :description, :url ]

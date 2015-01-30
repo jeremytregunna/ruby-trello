@@ -1,4 +1,17 @@
 module Trello
+
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [rw] unread
+  #   @return [Boolean]
+  # @!attribute [r] type
+  #   @return [Object]
+  # @!attribute [r] date
+  #   @return [Datetime]
+  # @!attribute [rw] data
+  #   @return [Object]
+  # @!attribute [r] member_creator_id,
+  #   @return [String]
   class Notification < BasicData
     register_attributes :id, :unread, :type, :date, :data, :member_creator_id,
       read_only: [ :id, :unread, :type, :date, :member_creator_id ]

@@ -1,5 +1,16 @@
 module Trello
-  # A webhook is an url called each time a specified idModel is updated
+  # A webhook is a URL called each time a specified model is updated
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] description
+  #   @return [String]
+  # @!attribute [r] id_model
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] callback_url
+  #   @return [String]
+  # @!attribute [r] active
+  #   @return [Boolean]
   class Webhook < BasicData
     register_attributes :id, :description, :id_model, :callback_url, :active,
       readonly: [ :id ]

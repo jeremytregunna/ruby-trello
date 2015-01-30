@@ -1,5 +1,40 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] short_id
+  #   @return [Fixnum]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] desc
+  #   @return [String]
+  # @!attribute [rw] due
+  #   @return [Datetime]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [r] url
+  #   @return [String]
+  # @!attribute [r] short_url
+  #   @return [String]
+  # @!attribute [rw] board_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] member_ids
+  #   @return [Array<String>] An Array of 24-character hex strings
+  # @!attribute [rw] list_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] pos
+  #   @return [Float]
+  # @!attribute [r] last_activity_date
+  #   @return [Dateime]
+  # @!attribute [rw] card_labels
+  #   @return [Array<Hash>]
+  # @!attribute [rw] cover_image_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] badges
+  #   @return [Hash]
+  # @!attribute [r] card_members
+  #   @return [Object]
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
