@@ -11,6 +11,13 @@ module Trello
     class << self
       # Finds a board.
       #
+      # @param [String] id Either the board's short ID (an alphanumeric string,
+      #     found e.g. in the board's URL) or its long ID (a 24-character hex
+      #     string.)
+      # @param [Hash] params
+      #
+      # @raise  [Trello::Board] if a board with the given ID could not be found.
+      #
       # @return [Trello::Board]
       def find(id, params = {})
         client.find(:board, id, params)

@@ -9,6 +9,9 @@ module Trello
 
     class << self
       # Finds a specific list, given an id.
+      #
+      # @param [id] id the list's ID on Trello (24-character hex string).
+      # @param [Hash] params
       def find(id, params = {})
         client.find(:list, id, params)
       end

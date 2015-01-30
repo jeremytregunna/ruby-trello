@@ -18,9 +18,14 @@ module Trello
       # Create a new webhook and save it to Trello.
       #
       # @param [Hash] options
+      #
       # @option options [String] :description (optional) A string with a length from 0 to 16384
-      # @option options [String] :callback_url (required) A valid URL that is reachable with a HEAD request
+      # @option options [String] :callback_url (required) A valid URL that is
+      #    reachable with a HEAD request
       # @option options [String] :id_model (required) id of the model that should be hooked
+      #
+      # @raise [Trello::Error] if the Webhook could not be created.
+      #
       # @return [Trello::Webhook]
       def create(options)
         client.create(:webhook,
@@ -30,7 +35,7 @@ module Trello
       end
     end
 
-    # return [Trello::Webhook] self
+    # @return [Trello::Webhook] self
     def update_fields(fields)
       attributes[:id]              = fields['id']
       attributes[:description]     = fields['description']
@@ -40,6 +45,11 @@ module Trello
       self
     end
 
+    # Save the webhook.
+    #
+    # @raise  [Trello::Error] if the Webhook could not be saved.
+    #
+    # @return [String] the JSON representation of the saved webhook.
     def save
       # If we have an id, just update our fields.
       return update! if id
@@ -51,6 +61,11 @@ module Trello
       }).json_into(self)
     end
 
+    # Update the webhook.
+    #
+    # @raise  [Trello::Error] if the Webhook could not be saved.
+    #
+    # @return [String] the JSON representation of the updated webhook.
     def update!
       client.put("/webhooks/#{id}", {
         description: description,
@@ -61,6 +76,8 @@ module Trello
     end
 
     # Delete this webhook
+    #
+    # @return [String] the JSON response from the Trello API
     def delete
       client.delete("/webhooks/#{id}")
     end
