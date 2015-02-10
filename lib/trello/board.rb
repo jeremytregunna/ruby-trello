@@ -1,6 +1,6 @@
 module Trello
   class Board < BasicData
-    register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs
+    register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs,
       readonly: [ :id, :url, :prefs ]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
