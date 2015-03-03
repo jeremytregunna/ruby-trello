@@ -79,10 +79,28 @@ module Trello
 
     context "labels" do
       it "gets the specific labels for the board" do
+        client.stub(:get).with("/boards/abcdef123456789123456789/labels").
+          and_return label_payload
+        labels = board.labels
+        labels.count.should eq(4)
+
+        expect(labels[2].color).to  eq('red')
+        expect(labels[2].id).to  eq('abcdef123456789123456789')
+        expect(labels[2].board_id).to  eq('abcdef123456789123456789')
+        expect(labels[2].name).to  eq('deploy')
+        expect(labels[2].uses).to  eq(2)
+
+        expect(labels[3].color).to  eq('blue')
+        expect(labels[3].id).to  eq('abcdef123456789123456789')
+        expect(labels[3].board_id).to  eq('abcdef123456789123456789')
+        expect(labels[3].name).to  eq('on hold')
+        expect(labels[3].uses).to  eq(6)
+      end
+
+      it "gets the specific labels for the board" do
         client.stub(:get).with("/boards/abcdef123456789123456789/labelnames").
           and_return label_name_payload
-
-        board.labels.count.should eq(6)
+        board.label_names.count.should eq(6)
       end
     end
 

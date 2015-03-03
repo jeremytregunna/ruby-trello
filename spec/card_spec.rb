@@ -255,50 +255,49 @@ module Trello
         client.stub(:get).with("/cards/abcdef123456789123456789/labels").
           and_return label_payload
         labels = card.labels
-        expect(labels.size).to  eq(2)
+        expect(labels.size).to  eq(4)
 
         expect(labels[0].color).to  eq('yellow')
+        expect(labels[0].id).to  eq('abcdef123456789123456789')
+        expect(labels[0].board_id).to  eq('abcdef123456789123456789')
         expect(labels[0].name).to  eq('iOS')
+        expect(labels[0].uses).to  eq(3)
 
         expect(labels[1].color).to  eq('purple')
+        expect(labels[1].id).to  eq('abcdef123456789123456789')
+        expect(labels[1].board_id).to  eq('abcdef123456789123456789')
         expect(labels[1].name).to  eq('Issue or bug')
-      end
-
-      it "can add a label" do
-        client.stub(:post).with("/cards/abcdef123456789123456789/labels", { value: 'green' }).
-          and_return "not important"
-        card.add_label('green')
-        expect(card.errors).to be_empty
+        expect(labels[1].uses).to  eq(1)
       end
 
       it "can remove a label" do
-        client.stub(:delete).with("/cards/abcdef123456789123456789/labels/green").
-          and_return "not important"
-        card.remove_label('green')
-        expect(card.errors).to be_empty
+        client.should_receive(:delete).once.with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789")
+        label = Label.new(label_details.first)
+        card.remove_label(label)
       end
 
-      it "can add a label of any valid color" do
-        %w(green yellow orange red purple blue sky lime pink black).each do |color|
-          client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => color }).
-            and_return "not important"
-          card.add_label(color)
-          expect(card.errors).to be_empty
-        end
+      it "can add a label" do
+        client.should_receive(:post).once.with("/cards/abcdef123456789123456789/idLabels", {:value => "abcdef123456789123456789"})
+        label = Label.new(label_details.first)
+        card.add_label label
       end
 
-      it "throws an error when trying to add a label with an unknown colour" do
-        client.stub(:post).with("/cards/abcdef123456789123456789/labels", { value: 'green' }).
+      it "throws an error when trying to add a invalid label" do
+        client.stub(:post).with("/cards/abcdef123456789123456789/idLabels", { value: 'abcdef123456789123456789' }).
           and_return "not important"
-        card.add_label('mauve')
-        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
+        label = Label.new(label_details.first)
+        label.name = nil
+        card.add_label(label)
+        expect(card.errors.full_messages.to_sentence).to eq("Label is not valid.")
       end
 
-      it "throws an error when trying to remove a label with an unknown colour" do
-        client.stub(:delete).with("/cards/abcdef123456789123456789/labels/mauve").
+      it "throws an error when trying to remove a invalid label" do
+        client.stub(:delete).with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789").
           and_return "not important"
-        card.remove_label('mauve')
-        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
+        label = Label.new(label_details.first)
+        label.name = nil
+        card.remove_label(label)
+        expect(card.errors.full_messages.to_sentence).to eq("Label is not valid.")
       end
     end
 

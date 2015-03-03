@@ -107,8 +107,13 @@ module Trello
     one :organization, path: :organizations, using: :organization_id
 
     def labels
-      labels = client.get("/boards/#{id}/labelnames").json_into(LabelName)
+      labels = client.get("/boards/#{id}/labels").json_into(Label)
       MultiAssociation.new(self, labels).proxy
+    end
+
+    def label_names
+      label_names = client.get("/boards/#{id}/labelnames").json_into(LabelName)
+      MultiAssociation.new(self, label_names).proxy
     end
 
     # :nodoc:

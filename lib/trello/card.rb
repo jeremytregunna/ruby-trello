@@ -210,28 +210,23 @@ module Trello
       labels = client.get("/cards/#{id}/labels").json_into(Label)
       MultiAssociation.new(self, labels).proxy
     end
-
-    # Label colours
-    def label_colours
-      %w{green yellow orange red purple blue sky lime pink black}
-    end
     
     # Add a label
-    def add_label(colour)
-      unless label_colours.include? colour
-        errors.add(:label, "colour '#{colour}' does not exist")
-        return Trello.logger.warn "The label colour '#{colour}' does not exist."
+    def add_label(label)
+      unless label.valid?
+        errors.add(:label, "is not valid.")
+        return Trello.logger.warn "Label is not valid." unless label.valid?
       end
-      client.post("/cards/#{id}/labels", { value: colour })
+      client.post("/cards/#{id}/idLabels", {value: label.id})
     end
 
     # Remove a label
-    def remove_label(colour)
-      unless label_colours.include? colour
-        errors.add(:label, "colour '#{colour}' does not exist")
-        return Trello.logger.warn "The label colour '#{colour}' does not exist." unless label_colours.include? colour
-      end
-      client.delete("/cards/#{id}/labels/#{colour}")
+    def remove_label(label)
+        unless label.valid?
+          errors.add(:label, "is not valid.")
+          return Trello.logger.warn "Label is not valid." unless label.valid?
+        end
+        client.delete("/cards/#{id}/idLabels/#{label.id}")
     end
 
     # Add an attachment to this card
