@@ -274,28 +274,15 @@ module Helpers
 
   def label_details
     [
-      {'color' => 'yellow', 'name' => 'iOS'},
-      {'color' => 'purple', 'name' => 'Issue or bug'}
+      {'color' => 'yellow', 'name' => 'iOS', 'id' => 'abcdef123456789123456789', 'uses' => 3, 'idBoard' => 'abcdef123456789123456789'},
+      {'color' => 'purple', 'name' => 'Issue or bug', 'id' => 'abcdef123456789123456789', 'uses' => 1, 'idBoard' => 'abcdef123456789123456789'},
+      {'color' => 'red', 'name' => 'deploy', 'id' => 'abcdef123456789123456789', 'uses' => 2, 'idBoard' => 'abcdef123456789123456789'},
+      {'color' => 'blue', 'name' => 'on hold', 'id' => 'abcdef123456789123456789', 'uses' => 6, 'idBoard' => 'abcdef123456789123456789'}
     ]
   end
 
   def label_payload
     JSON.generate(label_details)
-  end
-
-  def label_name_details
-    [
-      {'yellow' => 'bug'},
-      {'red' => 'urgent'},
-      {'green' => 'deploy'},
-      {'blue' => 'on hold'},
-      {'orange' => 'new feature'},
-      {'purple' => 'experimental'}
-    ]
-  end
-
-  def label_name_payload
-    JSON.generate(label_name_details)
   end
 
   def webhooks_details
@@ -308,6 +295,21 @@ module Helpers
        'active'      => true
      }
     ]
+  end
+
+  def label_name_details
+  [
+    {'yellow' => 'bug'},
+    {'red' => 'urgent'},
+    {'green' => 'deploy'},
+    {'blue' => 'on hold'},
+    {'orange' => 'new feature'},
+    {'purple' => 'experimental'}
+  ]
+  end
+
+  def label_name_payload
+    JSON.generate(label_name_details)
   end
 
   def webhooks_payload
