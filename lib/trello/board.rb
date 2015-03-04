@@ -82,6 +82,17 @@ module Trello
       client.get("/boards/#{self.id}/cards/#{card_id}").json_into(Card)
     end
 
+    # Add a member to this Board.
+    #    type => [ :admin, :normal, :observer ]
+    def add_member(member, type = :normal)
+      client.put("/boards/#{self.id}/members/#{member.id}", { type: type })
+    end
+
+    # Remove a member of this Board.
+    def remove_member(member)
+      client.delete("/boards/#{self.id}/members/#{member.id}")
+    end
+
     # Return all the cards on this board.
     #
     # This method, when called, can take a hash table with a filter key containing any
