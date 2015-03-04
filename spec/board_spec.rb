@@ -82,7 +82,7 @@ module Trello
         client.stub(:get).with("/boards/abcdef123456789123456789/labelnames").
           and_return label_name_payload
 
-        board.labels.count.should eq(6)
+        board.labels.count.should eq(10)
       end
     end
 
