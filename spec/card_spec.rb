@@ -284,6 +284,12 @@ module Trello
         expect(card.errors).to be_empty
       end
 
+      it "can remove a label instance" do
+        client.should_receive(:delete).once.with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789")
+        label = Label.new(label_details.first)
+        card.remove_label(label)
+      end
+
       it "can add a label of any valid color" do
         %w(green yellow orange red purple blue sky lime pink black).each do |color|
           client.stub(:post).with("/cards/abcdef123456789123456789/labels", { :value => color }).

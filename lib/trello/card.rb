@@ -226,12 +226,17 @@ module Trello
     end
 
     # Remove a label
-    def remove_label(colour)
-      unless Label.label_colours.include? colour
-        errors.add(:label, "colour '#{colour}' does not exist")
-        return Trello.logger.warn "The label colour '#{colour}' does not exist." unless Label.label_colours.include? colour
+    def remove_label(value)
+      if value.is_a? String
+        colour = value 
+        unless Label.label_colours.include? colour
+          errors.add(:label, "colour '#{colour}' does not exist")
+          return Trello.logger.warn "The label colour '#{colour}' does not exist." unless Label.label_colours.include? colour
+        end
+        client.delete("/cards/#{id}/labels/#{colour}")
+      elsif value.is_a? Label
+        client.delete("/cards/#{id}/idLabels/#{value.id}")
       end
-      client.delete("/cards/#{id}/labels/#{colour}")
     end
 
     # Add an attachment to this card
