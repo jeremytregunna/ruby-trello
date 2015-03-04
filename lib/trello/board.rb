@@ -22,6 +22,7 @@ module Trello
           'desc'   => fields[:description],
           'closed' => fields[:closed] || false }
         data.merge!('idOrganization' => fields[:organization_id]) if fields[:organization_id]
+        data.merge!('prefs' => fields[:prefs]) if fields[:prefs]
         client.create(:board, data)
       end
 
