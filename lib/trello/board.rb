@@ -1,7 +1,7 @@
 module Trello
   class Board < BasicData
     register_attributes :id, :name, :description, :closed, :url, :organization_id, :prefs,
-      readonly: [ :id, :url, :prefs ]
+      readonly: [ :id, :url ]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
@@ -37,6 +37,7 @@ module Trello
       fields = { name: name }
       fields.merge!(desc: description) if description
       fields.merge!(idOrganization: organization_id) if organization_id
+      fields.merge!(flat_prefs)
 
       client.post("/boards", fields).json_into(self)
     end
@@ -47,12 +48,15 @@ module Trello
       @previously_changed = changes
       @changed_attributes.clear
 
-      client.put("/boards/#{self.id}/", {
+      fields = {
         name: attributes[:name],
         description: attributes[:description],
         closed: attributes[:closed],
         idOrganization: attributes[:organization_id]
-      }).json_into(self)
+      }
+      fields.merge!(flat_prefs)
+
+      client.put("/boards/#{self.id}/", fields).json_into(self)
     end
 
     def update_fields(fields)
@@ -114,6 +118,30 @@ module Trello
     # :nodoc:
     def request_prefix
       "/boards/#{id}"
+    end
+
+    private
+
+    # On creation
+    # https://trello.com/docs/api/board/#post-1-boards
+    # - permissionLevel
+    # - voting
+    # - comments
+    # - invitations
+    # - selfJoin
+    # - cardCovers
+    # - background
+    # - cardAging
+    #
+    # On update
+    # https://trello.com/docs/api/board/#put-1-boards-board-id
+    # Same as above plus:
+    # - calendarFeedEnabled
+    def flat_prefs
+      separator = id ? "/" : "_"
+      attributes[:prefs].inject({}) do |hash, (pref, v)|
+        hash.merge("prefs#{separator}#{pref}" => v)
+      end
     end
   end
 end
