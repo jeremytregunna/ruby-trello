@@ -15,7 +15,7 @@ module Trello
     end
 
     def cards 
-      cards = client.get("/cards/labels/#{self[:label]}").json_into(Card)
+      cards = client.get("/cards/labels/#{name}").json_into(Card)
       MultiAssociation.new(self, cards).proxy
     end
 
