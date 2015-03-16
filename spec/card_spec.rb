@@ -75,6 +75,19 @@ module Trello
         card.name = expected_new_name
         card.save
       end
+
+      it "updating desc does a put on the correct resource with the correct value" do
+        expected_new_desc = "xxx"
+
+        payload = {
+          desc: expected_new_desc,
+        }
+
+        client.should_receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+
+        card.desc = expected_new_desc
+        card.save
+      end
     end
 
     context "deleting" do
@@ -252,7 +265,7 @@ module Trello
 
     context "labels" do
       it "can retrieve labels" do
-        client.stub(:get).with("/cards/abcdef123456789123456789/labels").
+        client.stub(:get).with("/cards/abcdef123456789123456789/labels", {}).
           and_return label_payload
         labels = card.labels
         expect(labels.size).to  eq(4)

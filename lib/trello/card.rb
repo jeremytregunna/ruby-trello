@@ -93,7 +93,8 @@ module Trello
       MultiAssociation.new(self, states).proxy
     end
 
-
+    many :labels
+    
     # Returns a reference to the list this card is currently in.
     one :list, path: :lists, using: :list_id
 
@@ -203,12 +204,6 @@ module Trello
     # Remove a member from this card
     def remove_member(member)
       client.delete("/cards/#{id}/members/#{member.id}")
-    end
-
-    # Retrieve a list of labels
-    def labels
-      labels = client.get("/cards/#{id}/labels").json_into(Label)
-      MultiAssociation.new(self, labels).proxy
     end
     
     # Add a label
