@@ -18,7 +18,7 @@ module Trello
   #   @return [Hash] A 24-character hex string
   class Board < BasicData
     register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs,
-      readonly: [ :id, :url, :prefs ]
+      readonly: [ :id, :url ]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
