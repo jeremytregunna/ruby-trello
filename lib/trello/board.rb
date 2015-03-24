@@ -1,4 +1,21 @@
 module Trello
+
+  # A board on Trello
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] name
+  #   @return [String]
+  # @!attribute [rw] description
+  #   @return [String]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [r] url
+  #   @return [String]
+  # @!attribute [rw] organization_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] prefs
+  #   @return [Hash] A 24-character hex string
   class Board < BasicData
     register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs,
       readonly: [ :id, :url, :prefs ]
@@ -10,6 +27,13 @@ module Trello
 
     class << self
       # Finds a board.
+      #
+      # @param [String] id Either the board's short ID (an alphanumeric string,
+      #     found e.g. in the board's URL) or its long ID (a 24-character hex
+      #     string.)
+      # @param [Hash] params
+      #
+      # @raise  [Trello::Board] if a board with the given ID could not be found.
       #
       # @return [Trello::Board]
       def find(id, params = {})

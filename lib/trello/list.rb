@@ -1,5 +1,16 @@
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [r] board_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] pos
+  #   @return [Object]
   class List < BasicData
     register_attributes :id, :name, :closed, :board_id, :pos, readonly: [ :id, :board_id ]
     validates_presence_of :id, :name, :board_id
@@ -9,6 +20,9 @@ module Trello
 
     class << self
       # Finds a specific list, given an id.
+      #
+      # @param [id] id the list's ID on Trello (24-character hex string).
+      # @param [Hash] params
       def find(id, params = {})
         client.find(:list, id, params)
       end

@@ -1,5 +1,20 @@
 module Trello
   # A file or url that is linked to a Trello card
+  #
+  # @!attribute id
+  #   @return [String]
+  # @!attribute name
+  #   @return [String]
+  # @!attribute url
+  #   @return [String]
+  # @!attribute bytes
+  #   @return [Fixnum]
+  # @!attribute date
+  #   @return [Datetime]
+  # @!attribute is_upload
+  #   @return [Boolean]
+  # @!attribute mime_type
+  #   @return [String]
   class Attachment < BasicData
     register_attributes :name, :id, :url, :bytes, :member_id, :date, :is_upload, :mime_type
     # Update the fields of an attachment.
