@@ -1,7 +1,7 @@
 module Trello
   class Board < BasicData
-    register_attributes :id, :name, :description, :closed, :url, :organization_id, :prefs,
-      readonly: [ :id, :url ]
+    register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs,
+      readonly: [ :id, :url, :prefs ]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
@@ -20,7 +20,8 @@ module Trello
         data = {
           'name'   => fields[:name],
           'desc'   => fields[:description],
-          'closed' => fields[:closed] || false }
+          'closed' => fields[:closed] || false,
+          'starred' => fields[:starred] || false }
         data.merge!('idOrganization' => fields[:organization_id]) if fields[:organization_id]
         data.merge!('prefs' => fields[:prefs]) if fields[:prefs]
         client.create(:board, data)
@@ -53,6 +54,7 @@ module Trello
         name: attributes[:name],
         description: attributes[:description],
         closed: attributes[:closed],
+        starred: attributes[:starred],
         idOrganization: attributes[:organization_id]
       }
       fields.merge!(flat_prefs)
@@ -65,6 +67,7 @@ module Trello
       attributes[:name]            = fields['name']            if fields['name']
       attributes[:description]     = fields['desc']            if fields['desc']
       attributes[:closed]          = fields['closed']          if fields.has_key?('closed')
+      attributes[:starred]          = fields['starred']          if fields.has_key?('starred')
       attributes[:url]             = fields['url']             if fields['url']
       attributes[:organization_id] = fields['idOrganization']  if fields['idOrganization']
       attributes[:prefs]           = fields['prefs'] || {}
@@ -76,6 +79,11 @@ module Trello
       attributes[:closed]
     end
 
+    # @return [Boolean]
+    def starred?
+      attributes[:starred]
+    end
+    
     # @return [Boolean]
     def has_lists?
       lists.size > 0

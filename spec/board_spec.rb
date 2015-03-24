@@ -53,6 +53,10 @@ module Trello
       it "knows if it is closed or open" do
         board.closed?.should_not be_nil
       end
+      
+      it "knows if it is starred or not" do
+        board.starred?.should_not be_nil
+      end
 
       it "gets its url" do
         board.url.should_not be_nil
@@ -82,7 +86,7 @@ module Trello
         client.stub(:get).with("/boards/abcdef123456789123456789/labelnames").
           and_return label_name_payload
 
-        board.labels.count.should eq(6)
+        board.labels.count.should eq(10)
       end
     end
 
@@ -124,6 +128,10 @@ module Trello
     it "is not closed" do
       expect(board.closed?).not_to be(true)
     end
+    
+     it "is not starred" do
+      expect(board.starred?).not_to be(true)
+    end
 
     describe "#update_fields" do
       it "does not set any fields when the fields argument is empty" do
@@ -132,6 +140,7 @@ module Trello
          'name' => "name",
          'desc' => "desc",
          'closed' => false,
+         'starred' => false,
          'url' => "url",
          'idOrganization' => "org_id"
         }
@@ -169,7 +178,7 @@ module Trello
       end
 
       it "puts all fields except id" do
-        expected_fields = %w{ name description closed idOrganization}.map { |s| s.to_sym }
+        expected_fields = %w{ name description closed starred idOrganization}.map { |s| s.to_sym }
 
         client.should_receive(:put) do |anything, body|
           body.keys.should =~ expected_fields
@@ -218,11 +227,13 @@ module Trello
         board.name        = "new name"
         board.description = "new description"
         board.closed      = true
+        board.starred      = true
 
         client.should_receive(:put).with("/boards/#{board.id}/", {
           name: "new name",
           description: "new description",
           closed: true,
+          starred: true,
           idOrganization: nil
         }).and_return any_board_json
         board.update!
