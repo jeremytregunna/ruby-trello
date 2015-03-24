@@ -55,6 +55,7 @@ module Helpers
       'name'           => 'Test',
       'desc'           => 'This is a test board',
       'closed'         => false,
+      'starred'         => false,
       'idOrganization' => 'abcdef123456789123456789',
       'url'            => 'https://trello.com/board/test/abcdef123456789123456789'
     }]
