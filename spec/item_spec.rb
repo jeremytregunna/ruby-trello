@@ -33,5 +33,17 @@ module Trello
     it 'knows its pos' do
       @item.pos.should == @detail['pos']
     end
+
+    describe '#complete?' do
+      it "knows when it is complete" do
+        allow(@item).to receive(:state).and_return "complete"
+        expect(@item).to be_complete
+      end
+
+      it "knowns when it is not complete" do
+        allow(@item).to receive(:state).and_return "incomplete"
+        expect(@item).to_not be_complete
+      end
+    end
   end
 end
