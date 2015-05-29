@@ -112,5 +112,19 @@ module Trello
     def delete
       client.delete("/checklists/#{id}")
     end
+
+    # Copy a checklist (i.e., same attributes, items, etc.)
+    def copy
+      checklist_copy = self.class.create(name: self.name, board_id: self.board_id)
+      copy_items_to(checklist_copy)
+      return checklist_copy
+    end
+
+    private
+    def copy_items_to(another_checklist)
+      items.each do |item|
+        another_checklist.add_item(item.name, item.complete?)
+      end
+    end
   end
 end
