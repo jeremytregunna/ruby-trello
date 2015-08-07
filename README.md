@@ -32,8 +32,9 @@ Basic authorization:
     - `response_type`: "token"
     - `expiration`: "never" if you don't want your token to ever expire. If you leave this blank,
        your generated token will expire after 30 days.
+    - `scope`: "read,write" (optional) by default the API key will only give read access.  You must set the scope to "read,write" if you would like ruby-trello to have permissions to create and delete.
     - The URL will look like this:
-      `https://trello.com/1/authorize?key=YOURAPIKEY&response_type=token&expiration=never`
+      `https://trello.com/1/authorize?key=YOURAPIKEY&response_type=token&expiration=never&scope=read,write`
 3. You should see a page asking you to authorize your Trello application. Click "allow" and you should see a second page with a long alphanumeric string. This is your member token.
 
 ```ruby
