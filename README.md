@@ -24,7 +24,7 @@ illustrate that future versions may include ruby 1.9.3+ specific features.
 
 ## Configuration
 
-Basic authorization:
+####Basic authorization:
 
 1. Get your API keys from [trello.com/app-key](https://trello.com/app-key).
 2. Visit the URL [trello.com/1/authorize], with the following GET parameters:
@@ -45,7 +45,7 @@ Trello.configure do |config|
 end
 ```
 
-2-legged OAuth authorization
+####2-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -56,7 +56,7 @@ Trello.configure do |config|
 end
 ```
 
-3-legged OAuth authorization
+####3-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
