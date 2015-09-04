@@ -2,36 +2,36 @@ require 'spec_helper'
 
 module Trello
   describe Item do
-    before(:all) do
-      @detail = {
+    let(:details) {
+      {
         'id'   => 'abcdef123456789123456789',
         'name' => 'test item',
         'type' => 'check',
         'state' => 'complete',
         'pos' => 0
       }
+    }
 
-      @item = Item.new(@detail)
-    end
+    let(:item) { Item.new(details) }
 
     it 'gets its id' do
-      @item.id.should == @detail['id']
+      expect(item.id).to eq details['id']
     end
 
     it 'gets its name' do
-      @item.name.should == @detail['name']
+      expect(item.name).to eq details['name']
     end
 
     it 'knows its type' do
-      @item.type.should == @detail['type']
+      expect(item.type).to eq details['type']
     end
 
     it 'knows its state' do
-      @item.state.should == @detail['state']
+      expect(item.state).to eq details['state']
     end
 
     it 'knows its pos' do
-      @item.pos.should == @detail['pos']
+      expect(item.pos).to eq details['pos']
     end
 
     describe '#complete?' do
