@@ -124,6 +124,6 @@ of refactoring and functionality to be deserving of a beer and this special than
 
 Several ways you can contribute. Documentation, code, tests, feature requests, bug reports.
 
-We develop ruby-trello using [Trello itself](https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd).
+If you submit a pull request that's accepted, you'll be given commit access to this repository.
 
 Please see the `CONTRIBUTING.md` file for more information.
