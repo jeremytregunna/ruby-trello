@@ -24,14 +24,17 @@ illustrate that future versions may include ruby 1.9.3+ specific features.
 
 ## Configuration
 
-Basic authorization:
+####Basic authorization:
 
-1. Get your API keys from [trello.com/app-key](https://trello.com/app-key). 
+1. Get your API keys from [trello.com/app-key](https://trello.com/app-key).
 2. Visit the URL [trello.com/1/authorize], with the following GET parameters:
     - `key`: the API key you got in step 1.
     - `response_type`: "token"
     - `expiration`: "never" if you don't want your token to ever expire. If you leave this blank,
        your generated token will expire after 30 days.
+    - `scope`: "read,write" (optional) by default the API key will only give read access.  You must set the scope to "read,write" if you would like ruby-trello to have permissions to create and delete.
+    - The URL will look like this:
+      `https://trello.com/1/authorize?key=YOURAPIKEY&response_type=token&expiration=never&scope=read,write`
 3. You should see a page asking you to authorize your Trello application. Click "allow" and you should see a second page with a long alphanumeric string. This is your member token.
 
 ```ruby
@@ -43,7 +46,7 @@ Trello.configure do |config|
 end
 ```
 
-2-legged OAuth authorization
+####2-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -54,7 +57,7 @@ Trello.configure do |config|
 end
 ```
 
-3-legged OAuth authorization
+####3-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -121,6 +124,6 @@ of refactoring and functionality to be deserving of a beer and this special than
 
 Several ways you can contribute. Documentation, code, tests, feature requests, bug reports.
 
-We develop ruby-trello using [Trello itself](https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd).
+If you submit a pull request that's accepted, you'll be given commit access to this repository.
 
 Please see the `CONTRIBUTING.md` file for more information.

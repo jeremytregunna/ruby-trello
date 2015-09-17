@@ -1,6 +1,11 @@
 module Trello
 
   # A colored Label attached to a card
+  #
+  # @!attribute [rw] id
+  #   @return [String]
+  # @!attribute [rw] color
+  #   @return [String]
   class Label < BasicData
     register_attributes :id, :name, :board_id, :uses,
       readonly: [ :id, :uses, :board_id ]

@@ -1,5 +1,22 @@
 module Trello
   # A Member is a user of the Trello service.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] username
+  #   @return [String]
+  # @!attribute [rw] email
+  #   @return [String]
+  # @!attribute [rw] full_name
+  #   @return [String]
+  # @!attribute [rw] initials
+  #   @return [String]
+  # @!attribute [r] avatar_id
+  #   @return [String]
+  # @!attribute [rw] bio
+  #   @return [String]
+  # @!attribute [r] url
+  #   @return [String]
   class Member < BasicData
     register_attributes :id, :username, :email, :full_name, :initials, :avatar_id, :bio, :url, readonly: [ :id, :username, :avatar_id, :url ]
     validates_presence_of :id, :username

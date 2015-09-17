@@ -1,5 +1,16 @@
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [r] board_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] pos
+  #   @return [Object]
   class List < BasicData
     register_attributes :id, :name, :closed, :board_id, :pos, readonly: [ :id, :board_id ]
     validates_presence_of :id, :name, :board_id
@@ -9,6 +20,9 @@ module Trello
 
     class << self
       # Finds a specific list, given an id.
+      #
+      # @param [id] id the list's ID on Trello (24-character hex string).
+      # @param [Hash] params
       def find(id, params = {})
         client.find(:list, id, params)
       end
@@ -16,7 +30,8 @@ module Trello
       def create(options)
         client.create(:list,
             'name'    => options[:name],
-            'idBoard' => options[:board_id])
+            'idBoard' => options[:board_id],
+            'pos'     => options[:pos])
       end
     end
 
@@ -39,14 +54,16 @@ module Trello
       client.post("/lists", {
         name: name,
         closed: closed || false,
-        idBoard: board_id
+        idBoard: board_id,
+        pos: pos
       }).json_into(self)
     end
 
     def update!
       client.put("/lists/#{id}", {
         name: name,
-        closed: closed
+        closed: closed,
+        pos: pos
       })
     end
 
@@ -73,6 +90,13 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     many :cards, filter: :open
+
+    def move_all_cards(other_list)
+      client.post("/lists/#{id}/moveAllCards", {
+        idBoard: other_list.board_id,
+        idList: other_list.id
+       })
+    end
 
     # :nodoc:
     def request_prefix

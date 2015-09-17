@@ -1,5 +1,40 @@
 module Trello
   # A Card is a container that can house checklists and comments; it resides inside a List.
+  #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] short_id
+  #   @return [Fixnum]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] desc
+  #   @return [String]
+  # @!attribute [rw] due
+  #   @return [Datetime]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [r] url
+  #   @return [String]
+  # @!attribute [r] short_url
+  #   @return [String]
+  # @!attribute [rw] board_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] member_ids
+  #   @return [Array<String>] An Array of 24-character hex strings
+  # @!attribute [rw] list_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] pos
+  #   @return [Float]
+  # @!attribute [r] last_activity_date
+  #   @return [Dateime]
+  # @!attribute [rw] card_labels
+  #   @return [Array<Hash>]
+  # @!attribute [rw] cover_image_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [r] badges
+  #   @return [Hash]
+  # @!attribute [r] card_members
+  #   @return [Object]
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
@@ -33,11 +68,32 @@ module Trello
 
     class << self
       # Find a specific card by its id.
+      #
+      # @raise [Trello::Error] if the card could not be found.
+      #
+      # @return [Trello::Card]
       def find(id, params = {})
         client.find(:card, id, params)
       end
 
       # Create a new card and save it on Trello.
+      #
+      # @param [Hash] options # @option options [String] :name The name of the new card.
+      # @option options [String] :list_id ID of the list that the card should
+      #     be added to.
+      # @option options [String] :desc A string with a
+      #     length from 0 to 16384.
+      # @option options [String] :member_ids A comma-separated list of
+      #     objectIds (24-character hex strings).
+      # @option options [String] :card_labels A comma-separated list of
+      #     objectIds (24-character hex strings).
+      # @option options [Date] :due A date, or `nil`.
+      # @option options [String] :pos A position. `"top"`, `"bottom"`, or a
+      #     positive number. Defaults to `"bottom"`.
+      #
+      # @raise [Trello::Error] if the card could not be created.
+      #
+      # @return [Trello::Card]
       def create(options)
         client.create(:card,
           'name' => options[:name],
@@ -55,6 +111,34 @@ module Trello
     #
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a card.
+    #
+    # Note that this this method does not save anything new to the Trello API,
+    # it just assigns the input attributes to your local object. If you use
+    # this method to assign attributes, call `save` or `update!` afterwards if
+    # you want to persist your changes to Trello.
+    #
+    # @param [Hash] fields
+    # @option fields [String] :id
+    # @option fields [String] :short_id
+    # @option fields [String] :name The new name of the card.
+    # @option fields [String] :desc A string with a length from 0 to
+    #     16384.
+    # @option fields [Date] :due A date, or `nil`.
+    # @option fields [Boolean] :closed
+    # @option fields [String] :url
+    # @option fields [String] :short_url
+    # @option fields [String] :board_id
+    # @option fields [String] :member_ids A comma-separated list of objectIds
+    #     (24-character hex strings).
+    # @option fields [String] :pos A position. `"top"`, `"bottom"`, or a
+    #     positive number. Defaults to `"bottom"`.
+    # @option fields [String] :card_labels A comma-separated list of
+    #     objectIds (24-character hex strings).
+    # @option fields [Object] :cover_image_id
+    # @option fields [Object] :badges
+    # @option fields [Object] :card_members
+    #
+    # @return [Trello::Card] self
     def update_fields(fields)
       attributes[:id]                 = fields[SYMBOL_TO_STRING[:id]]
       attributes[:short_id]           = fields[SYMBOL_TO_STRING[:short_id]]
@@ -99,6 +183,8 @@ module Trello
     one :list, path: :lists, using: :list_id
 
     # Returns a list of members who are assigned to this card.
+    #
+    # @return [Array<Trello::Member>]
     def members
       members = member_ids.map do |member_id|
         client.get("/members/#{member_id}").json_into(Member)
@@ -107,6 +193,11 @@ module Trello
     end
 
     # Saves a record.
+    #
+    # @raise [Trello::Error] if the card could not be saved
+    #
+    # @return [String] The JSON representation of the saved card returned by
+    #     the Trello API.
     def save
       # If we have an id, just update our fields.
       return update! if id
@@ -117,14 +208,21 @@ module Trello
         idList: list_id,
         idMembers: member_ids,
         labels: card_labels,
-        pos: pos
+        pos: pos,
+        due: due
       }).json_into(self)
     end
 
     # Update an existing record.
-    # Warning, this updates all fields using values already in memory. If
+    #
+    # Warning: this updates all fields using values already in memory. If
     # an external resource has updated these fields, you should refresh!
     # this object before making your changes, and before updating the record.
+    #
+    # @raise [Trello::Error] if the card could not be updated.
+    #
+    # @return [String] The JSON representation of the updated card returned by
+    #     the Trello API.
     def update!
       @previously_changed = changes
       # extract only new values to build payload
@@ -134,7 +232,10 @@ module Trello
       client.put("/cards/#{id}", payload)
     end
 
+
     # Delete this card
+    #
+    # @return [String] the JSON response from the Trello API
     def delete
       client.delete("/cards/#{id}")
     end
@@ -144,6 +245,15 @@ module Trello
       closed
     end
 
+    # Close the card.
+    #
+    # This only marks your local copy card as closed. Use `close!` if you
+    # want to close the card and persist the change to the Trello API.
+    #
+    # @return [Boolean] always returns true
+    #
+    # @return [String] The JSON representation of the closed card returned by
+    #     the Trello API.
     def close
       self.closed = true
     end
@@ -245,7 +355,7 @@ module Trello
       MultiAssociation.new(self, attachments).proxy
     end
 
-      # Remove an attachment from this card
+    # Remove an attachment from this card
     def remove_attachment(attachment)
       client.delete("/cards/#{id}/attachments/#{attachment.id}")
     end

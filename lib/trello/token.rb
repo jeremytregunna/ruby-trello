@@ -1,4 +1,15 @@
 module Trello
+
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] member_id
+  #   @return [String]
+  # @!attribute [r] created_at
+  #   @return [Datetime]
+  # @!attribute [r] permissions
+  #   @return [Object]
+  # @!attribute [r] webhooks
+  #   @return [Object]
   class Token < BasicData
     register_attributes :id, :member_id, :created_at, :permissions, :webhooks,
       readonly: [ :id, :member_id, :created_at, :permissions, :webhooks ]

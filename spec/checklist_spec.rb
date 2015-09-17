@@ -126,5 +126,50 @@ module Trello
         checklist.list.should_not be_nil
       end
     end
+
+    context "making a copy" do
+      let(:client) { Trello.client }
+      let(:copy_options) { { :name => checklist.name, :idBoard => checklist.board_id } }
+      let(:copied_checklist) { checklist.copy }
+
+      before(:each) do
+        allow(client).to receive(:post).with("/checklists", copy_options).and_return JSON.generate(copied_checklists_details.first)
+        allow(checklist).to receive(:items).and_return []
+      end
+
+      it "creates a new checklist" do
+        expect(copied_checklist).to be_an_instance_of Checklist
+      end
+
+      it "is not the same Ruby object as the original checklist" do
+        expect(copied_checklist).to_not be checklist
+      end
+
+      it "has the same name as the original checklist" do
+        expect(copied_checklist.name).to eq checklist.name
+      end
+
+      it "has the same board as the original checklist" do
+        expect(copied_checklist.board_id).to eq checklist.board_id
+      end
+
+      it "creates items for the copy based on the original checklist's items" do
+        checklist_copy  = Trello::Checklist.new
+        allow(checklist_copy).to receive(:add_item)
+        allow(Trello::Checklist).to receive(:create).and_return(checklist_copy)
+
+        incomplete_item = double("incomplete", name: "1", complete?: false)
+        complete_item   = double("complete", name: "2", complete?: true)
+        checklist_items = [incomplete_item, complete_item]
+        allow(checklist).to receive(:items).and_return checklist_items
+
+        checklist_items.each do |item|
+          expect(checklist_copy).to receive(:add_item).with(item.name, item.complete?)
+        end
+
+        checklist.copy
+      end
+    end
+
   end
 end

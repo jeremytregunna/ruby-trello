@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{ruby-trello}
-  s.version           = "1.1.3"
+  s.version           = "1.2.1"
   s.platform          = Gem::Platform::RUBY
   s.license           = 'MIT'
 
@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'addressable', '~> 2.3'
   s.add_dependency 'json'
   s.add_dependency 'oauth',       '~> 0.4.5'
-  s.add_dependency 'rest-client', '~> 1.7.2'
+  s.add_dependency 'rest-client', '~> 1.8.0'
 end
