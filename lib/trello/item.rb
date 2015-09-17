@@ -27,5 +27,9 @@ module Trello
       attributes[:pos]   = fields['pos']
       self
     end
+
+    def complete?
+      state == "complete"
+    end
   end
 end

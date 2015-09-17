@@ -85,6 +85,25 @@ module Helpers
     JSON.generate(checklists_details)
   end
 
+  def copied_checklists_details
+    [{
+      'id'         => 'uvwxyz987654321987654321',
+      'name'       => 'Test Checklist',
+      'desc'       => '',
+      'closed'     => nil,
+      'position'   => 99999,
+      'url'        => nil,
+      'idBoard'    => 'abcdef123456789123456789',
+      'idList'     => nil,
+      'idMembers'  => nil,
+      'checkItems' => []
+    }]
+  end
+
+  def copied_checklists_payload
+    JSON.generate(copied_checklists_details)
+  end
+
   def lists_details
     [{
       'id'      => 'abcdef123456789123456789',
