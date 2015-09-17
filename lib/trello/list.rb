@@ -88,6 +88,13 @@ module Trello
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     many :cards, filter: :open
 
+    def move_all_cards(other_list)
+      client.post("/lists/#{id}/moveAllCards", {
+        idBoard: other_list.board_id,
+        idList: other_list.id
+       })
+    end
+
     # :nodoc:
     def request_prefix
       "/lists/#{id}"

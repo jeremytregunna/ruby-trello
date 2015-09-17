@@ -110,6 +110,13 @@ module Trello
         client.stub(:get).with('/lists/abcdef123456789123456789/cards', { filter: :open }).and_return cards_payload
         list.cards.count.should be > 0
       end
+
+      it 'moves cards to another list' do
+        other_list = List.new(lists_details.first.merge(id: 'otherListID', cards: []))
+
+        client.stub(:post).with('/lists/abcdef123456789123456789/moveAllCards', { idBoard: other_list.board_id, idList: other_list.id }).and_return cards_payload
+        list.move_all_cards(other_list).should eq cards_payload
+      end
     end
 
     describe '#closed?' do
