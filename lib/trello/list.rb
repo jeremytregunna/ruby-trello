@@ -30,7 +30,8 @@ module Trello
       def create(options)
         client.create(:list,
             'name'    => options[:name],
-            'idBoard' => options[:board_id])
+            'idBoard' => options[:board_id],
+            'pos'     => options[:pos])
       end
     end
 
@@ -53,14 +54,16 @@ module Trello
       client.post("/lists", {
         name: name,
         closed: closed || false,
-        idBoard: board_id
+        idBoard: board_id,
+        pos: pos
       }).json_into(self)
     end
 
     def update!
       client.put("/lists/#{id}", {
         name: name,
-        closed: closed
+        closed: closed,
+        pos: pos
       })
     end
 
