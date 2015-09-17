@@ -23,6 +23,7 @@ require 'stringio'
 
 Trello.logger = Logger.new(StringIO.new)
 
+RSpec::Expectations.configuration.warn_about_potential_false_positives = false
 RSpec.configure do |c|
   c.filter_run_excluding broken: true
 
