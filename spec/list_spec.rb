@@ -46,12 +46,13 @@ module Trello
       it 'creates a new record and saves it on Trello', refactor: true do
         payload = {
           name: 'Test List',
-          board_id: 'abcdef123456789123456789'
+          board_id: 'abcdef123456789123456789',
+          pos: 42
         }
 
         result = JSON.generate(payload)
 
-        expected_payload = {name: 'Test List', closed: false, idBoard: 'abcdef123456789123456789'}
+        expected_payload = {name: 'Test List', closed: false, idBoard: 'abcdef123456789123456789', pos: 42}
 
         client.should_receive(:post).with('/lists', expected_payload).and_return result
 
@@ -67,11 +68,25 @@ module Trello
 
         payload = {
           name: expected_new_name,
-          closed: false
+          closed: false,
+          pos: list.pos
         }
 
         client.should_receive(:put).once.with('/lists/abcdef123456789123456789', payload)
         list.name = expected_new_name
+        list.save
+      end
+
+      it 'updates position' do
+        new_position = 42
+        payload = {
+          name: list.name,
+          closed: list.closed,
+          pos: new_position
+        }
+
+        client.should_receive(:put).once.with('/lists/abcdef123456789123456789', payload)
+        list.pos = new_position
         list.save
       end
     end
@@ -110,6 +125,13 @@ module Trello
         client.stub(:get).with('/lists/abcdef123456789123456789/cards', { filter: :open }).and_return cards_payload
         list.cards.count.should be > 0
       end
+
+      it 'moves cards to another list' do
+        other_list = List.new(lists_details.first.merge(id: 'otherListID', cards: []))
+
+        client.stub(:post).with('/lists/abcdef123456789123456789/moveAllCards', { idBoard: other_list.board_id, idList: other_list.id }).and_return cards_payload
+        list.move_all_cards(other_list).should eq cards_payload
+      end
     end
 
     describe '#closed?' do
@@ -129,7 +151,8 @@ module Trello
       it 'updates the close attribute to true and saves the list' do
         client.should_receive(:put).once.with('/lists/abcdef123456789123456789', {
           name: list.name,
-          closed: true
+          closed: true,
+          pos: list.pos
         })
 
         list.close!

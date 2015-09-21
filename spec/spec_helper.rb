@@ -23,6 +23,7 @@ require 'stringio'
 
 Trello.logger = Logger.new(StringIO.new)
 
+RSpec::Expectations.configuration.warn_about_potential_false_positives = false
 RSpec.configure do |c|
   c.filter_run_excluding broken: true
 
@@ -82,6 +83,25 @@ module Helpers
 
   def checklists_payload
     JSON.generate(checklists_details)
+  end
+
+  def copied_checklists_details
+    [{
+      'id'         => 'uvwxyz987654321987654321',
+      'name'       => 'Test Checklist',
+      'desc'       => '',
+      'closed'     => nil,
+      'position'   => 99999,
+      'url'        => nil,
+      'idBoard'    => 'abcdef123456789123456789',
+      'idList'     => nil,
+      'idMembers'  => nil,
+      'checkItems' => []
+    }]
+  end
+
+  def copied_checklists_payload
+    JSON.generate(copied_checklists_details)
   end
 
   def lists_details

@@ -30,7 +30,8 @@ module Trello
       def create(options)
         client.create(:list,
             'name'    => options[:name],
-            'idBoard' => options[:board_id])
+            'idBoard' => options[:board_id],
+            'pos'     => options[:pos])
       end
     end
 
@@ -53,14 +54,16 @@ module Trello
       client.post("/lists", {
         name: name,
         closed: closed || false,
-        idBoard: board_id
+        idBoard: board_id,
+        pos: pos
       }).json_into(self)
     end
 
     def update!
       client.put("/lists/#{id}", {
         name: name,
-        closed: closed
+        closed: closed,
+        pos: pos
       })
     end
 
@@ -87,6 +90,13 @@ module Trello
     # of the following values:
     #    :filter => [ :none, :open, :closed, :all ] # default :open
     many :cards, filter: :open
+
+    def move_all_cards(other_list)
+      client.post("/lists/#{id}/moveAllCards", {
+        idBoard: other_list.board_id,
+        idList: other_list.id
+       })
+    end
 
     # :nodoc:
     def request_prefix
