@@ -7,21 +7,26 @@ module Trello
     let(:checklist) { client.find(:checklist, 'abcdef123456789123456789') }
     let(:client) { Client.new }
 
-    before(:each) do
-      client.stub(:get).with("/checklists/abcdef123456789123456789", {}).
-          and_return JSON.generate(checklists_details.first)
+    before do
+      allow(client)
+        .to receive(:get)
+        .with("/checklists/abcdef123456789123456789", {})
+        .and_return JSON.generate(checklists_details.first)
     end
 
     context "finding" do
       let(:client) { Trello.client }
 
       it "delegates to Trello.client#find" do
-        client.should_receive(:find).with(:checklist, 'abcdef123456789123456789', {})
+        expect(client)
+          .to receive(:find)
+          .with(:checklist, 'abcdef123456789123456789', {})
+
         Checklist.find('abcdef123456789123456789')
       end
 
       it "is equivalent to client#find" do
-        Checklist.find('abcdef123456789123456789').should eq(checklist)
+        expect(Checklist.find('abcdef123456789123456789')).to eq(checklist)
       end
     end
 
@@ -38,11 +43,14 @@ module Trello
 
         expected_payload = {name: "Test Checklist", idBoard: "abcdef123456789123456789"}
 
-        client.should_receive(:post).with("/checklists", expected_payload).and_return result
+        expect(client)
+          .to receive(:post)
+          .with("/checklists", expected_payload)
+          .and_return result
 
         checklist = Checklist.create(checklists_details.first.merge(payload.merge(board_id: boards_details.first['id'])))
 
-        checklist.class.should be Checklist
+        expect(checklist).to be_a Checklist
       end
     end
 
@@ -50,13 +58,19 @@ module Trello
       let(:client) { Trello.client }
 
       it "deletes a checklist" do
-        client.should_receive(:delete).with("/checklists/#{checklist.id}")
+        expect(client)
+          .to receive(:delete)
+          .with("/checklists/#{checklist.id}")
+
         checklist.delete
       end
 
       it "deletes a checklist item" do
         item_id = checklist.check_items.first.last
-        client.should_receive(:delete).with("/checklists/#{checklist.id}/checkItems/#{item_id}")
+        expect(client)
+          .to receive(:delete)
+          .with("/checklists/#{checklist.id}/checkItems/#{item_id}")
+
         checklist.delete_checklist_item(item_id)
       end
     end
@@ -71,7 +85,10 @@ module Trello
         }
 
         result = JSON.generate(checklists_details.first)
-        client.should_receive(:put).once.with(expected_resource, payload).and_return result
+        expect(client)
+          .to receive(:put)
+          .once.with(expected_resource, payload)
+          .and_return result
 
         checklist.name = expected_new_name
         checklist.save
@@ -86,7 +103,11 @@ module Trello
         }
 
         result = JSON.generate(checklists_details.first)
-        client.should_receive(:put).once.with(expected_resource, payload).and_return result
+        expect(client)
+          .to receive(:put)
+          .once
+          .with(expected_resource, payload)
+          .and_return result
 
         checklist.position = expected_new_position
         checklist.save
@@ -107,23 +128,39 @@ module Trello
             pos: expected_pos
         }
         result = JSON.generate(result_hash)
-        client.should_receive(:post).once.with("/checklists/abcdef123456789123456789/checkItems", payload).and_return result
+        expect(client)
+          .to receive(:post)
+          .once
+          .with("/checklists/abcdef123456789123456789/checkItems", payload)
+          .and_return result
 
         checklist.add_item(expected_item_name, expected_checked, expected_pos)
       end
     end
 
     context "board" do
+      before do
+        allow(client)
+          .to receive(:get)
+          .with("/boards/abcdef123456789123456789")
+          .and_return JSON.generate(boards_details.first)
+      end
+
       it "has a board" do
-        client.stub(:get).with("/boards/abcdef123456789123456789").and_return JSON.generate(boards_details.first)
-        checklist.board.should_not be_nil
+        expect(checklist.board).to_not be_nil
       end
     end
 
     context "list" do
+      before do
+        allow(client)
+          .to receive(:get)
+          .with("/lists/abcdef123456789123456789", {})
+          .and_return JSON.generate(lists_details.first)
+      end
+
       it 'has a list' do
-        client.stub(:get).with("/lists/abcdef123456789123456789", {}).and_return JSON.generate(lists_details.first)
-        checklist.list.should_not be_nil
+        expect(checklist.list).to_not be_nil
       end
     end
 
@@ -133,8 +170,14 @@ module Trello
       let(:copied_checklist) { checklist.copy }
 
       before(:each) do
-        allow(client).to receive(:post).with("/checklists", copy_options).and_return JSON.generate(copied_checklists_details.first)
-        allow(checklist).to receive(:items).and_return []
+        allow(client)
+          .to receive(:post)
+          .with("/checklists", copy_options)
+          .and_return JSON.generate(copied_checklists_details.first)
+
+        allow(checklist)
+          .to receive(:items)
+          .and_return []
       end
 
       it "creates a new checklist" do
@@ -155,8 +198,12 @@ module Trello
 
       it "creates items for the copy based on the original checklist's items" do
         checklist_copy  = Trello::Checklist.new
-        allow(checklist_copy).to receive(:add_item)
-        allow(Trello::Checklist).to receive(:create).and_return(checklist_copy)
+        allow(checklist_copy)
+          .to receive(:add_item)
+
+        allow(Trello::Checklist)
+          .to receive(:create)
+          .and_return(checklist_copy)
 
         incomplete_item = double("incomplete", name: "1", complete?: false)
         complete_item   = double("complete", name: "2", complete?: true)
@@ -164,12 +211,13 @@ module Trello
         allow(checklist).to receive(:items).and_return checklist_items
 
         checklist_items.each do |item|
-          expect(checklist_copy).to receive(:add_item).with(item.name, item.complete?)
+          expect(checklist_copy)
+            .to receive(:add_item)
+            .with(item.name, item.complete?)
         end
 
         checklist.copy
       end
     end
-
   end
 end
