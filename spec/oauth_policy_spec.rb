@@ -72,8 +72,14 @@ describe OAuthPolicy do
       uri = Addressable::URI.parse('https://xxx/?name=Riccardo')
       request = Request.new :get, uri
 
-      Clock.stub(:timestamp).and_return '1327048592'
-      Nonce.stub(:next).and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327048592'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
+
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token               = OAuthCredential.new 'token', nil
 
@@ -84,8 +90,13 @@ describe OAuthPolicy do
     end
 
     it 'adds the correct signature as part of authorization header' do
-      Clock.stub(:timestamp).and_return '1327048592'
-      Nonce.stub(:next).and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327048592'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
 
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token               = OAuthCredential.new 'token', nil
@@ -98,8 +109,13 @@ describe OAuthPolicy do
     end
 
     it 'adds correct signature for uri with parameters' do
-      Clock.stub(:timestamp).and_return '1327351010'
-      Nonce.stub(:next).and_return 'f5474aaf44ca84df0b09870044f91c69'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327351010'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return 'f5474aaf44ca84df0b09870044f91c69'
 
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token               = OAuthCredential.new 'token', nil
@@ -120,8 +136,13 @@ describe OAuthPolicy do
     end
 
     it 'can sign with token' do
-      Clock.stub(:timestamp).and_return '1327360530'
-      Nonce.stub(:next).and_return '4f610cb28e7aa8711558de5234af1f0e'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327360530'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return '4f610cb28e7aa8711558de5234af1f0e'
 
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token  = OAuthCredential.new 'token_key', 'token_secret'

@@ -13,8 +13,14 @@ describe Client, "and how it handles authorization" do
   let(:auth_policy) { double }
 
   before do
-    TInternet.stub(:execute).and_return fake_ok_response
-    Authorization::AuthPolicy.stub(:new).and_return(auth_policy)
+    allow(TInternet)
+      .to receive(:execute)
+      .and_return fake_ok_response
+
+    allow(Authorization::AuthPolicy)
+      .to receive(:new)
+      .and_return(auth_policy)
+
     allow(auth_policy)
       .to receive(:authorize) { |request| request }
   end
