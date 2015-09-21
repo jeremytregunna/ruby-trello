@@ -34,7 +34,7 @@ module Trello
     context "self.all" do
       let(:client) { Trello.client }
 
-      it "gets all boards" do
+      before do
         allow(Member)
           .to receive_message_chain(:find, :username)
           .and_return "testuser"
@@ -43,9 +43,10 @@ module Trello
           .to receive(:get)
           .with("/members/testuser/boards")
           .and_return boards_payload
+      end
 
-        expected = Board.new(boards_details.first)
-        expect(Board.all.first).to eq(expected)
+      it "gets all boards" do
+        expect(Board.all.first).to eq Board.new(boards_details.first)
       end
     end
 
