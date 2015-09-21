@@ -54,7 +54,7 @@ module Trello
       it "knows if it is closed or open" do
         board.closed?.should_not be_nil
       end
-      
+
       it "knows if it is starred or not" do
         board.starred?.should_not be_nil
       end
@@ -100,12 +100,6 @@ module Trello
         expect(labels[3].board_id).to  eq('abcdef123456789123456789')
         expect(labels[3].name).to  eq('on hold')
         expect(labels[3].uses).to  eq(6)
-      end
-
-      it "gets the specific labels for the board" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/labelnames").
-          and_return label_name_payload
-        board.label_names.count.should eq(6)
       end
     end
 
@@ -166,7 +160,7 @@ module Trello
     it "is not closed" do
       expect(board.closed?).not_to be(true)
     end
-    
+
      it "is not starred" do
       expect(board.starred?).not_to be(true)
     end

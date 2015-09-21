@@ -52,7 +52,7 @@ module Trello
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: "Test Card", desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, labels: nil, pos: nil, due: nil }
+                            idMembers: nil, labels: nil, pos: nil, due: nil}
 
         client.should_receive(:post).with("/cards", expected_payload).and_return result
 
