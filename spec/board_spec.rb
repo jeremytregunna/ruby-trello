@@ -93,7 +93,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with("/boards/abcdef123456789123456789/cards", {filter: :open })
+          .with("/boards/abcdef123456789123456789/cards", {filter: :open})
           .and_return cards_payload
       end
 
