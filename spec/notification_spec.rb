@@ -8,79 +8,114 @@ module Trello
     let(:member) { client.find(:member, "abcdef123456789012345678") }
     let(:client) { Client.new }
 
-    before(:each) do
-      client.stub(:get).with("/members/abcdef123456789012345678", {}).and_return user_payload
-      client.stub(:get).with("/members/abcdef123456789012345678/notifications", {}).and_return "[" << notification_payload << "]"
+    before do
+      allow(client)
+        .to receive(:get)
+        .with("/members/abcdef123456789012345678", {})
+        .and_return user_payload
+
+      allow(client)
+        .to receive(:get)
+        .with("/members/abcdef123456789012345678/notifications", {})
+        .and_return("[" << notification_payload << "]")
     end
 
     context "finding" do
       let(:client) { Trello.client }
 
       it "can find a specific notification" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}", {}).and_return notification_payload
-        Notification.find(notification_details['id']).should == notification
+        allow(client)
+          .to receive(:get)
+          .with("/notifications/#{notification_details['id']}", {})
+          .and_return notification_payload
+
+        expect(Notification.find(notification_details['id'])).to eq notification
       end
     end
 
     context "boards" do
       it "can retrieve the board" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}/board").and_return JSON.generate(boards_details.first)
-        notification.board.id.should == boards_details.first['id']
+        allow(client)
+          .to receive(:get)
+          .with("/notifications/#{notification_details['id']}/board")
+          .and_return JSON.generate(boards_details.first)
+
+        expect(notification.board.id).to eq boards_details.first['id']
       end
     end
 
     context "lists" do
       it "can retrieve the list" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}/list").and_return JSON.generate(lists_details.first)
-        notification.list.id.should == lists_details.first['id']
+        allow(client)
+          .to receive(:get)
+          .with("/notifications/#{notification_details['id']}/list")
+          .and_return JSON.generate(lists_details.first)
+
+        expect(notification.list.id).to eq lists_details.first['id']
       end
     end
 
     context "cards" do
       it "can retrieve the card" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}/card").and_return JSON.generate(cards_details.first)
-        notification.card.id.should == cards_details.first['id']
+        allow(client)
+          .to receive(:get)
+          .with("/notifications/#{notification_details['id']}/card")
+          .and_return JSON.generate(cards_details.first)
+
+        expect(notification.card.id).to eq cards_details.first['id']
       end
     end
 
     context "members" do
       it "can retrieve the member" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}/member").and_return user_payload
-        notification.member.id.should == user_details['id']
+        allow(client)
+          .to receive(:get)
+          .with("/notifications/#{notification_details['id']}/member")
+          .and_return user_payload
+
+        expect(notification.member.id).to eq user_details['id']
       end
 
       it "can retrieve the member creator" do
-        client.stub(:get).with("/members/#{user_details['id']}", {}).and_return user_payload
-        notification.member_creator.id.should == user_details['id']
+        allow(client)
+          .to receive(:get)
+          .with("/members/#{user_details['id']}", {})
+          .and_return user_payload
+
+        expect(notification.member_creator.id).to eq user_details['id']
       end
     end
 
     context "organization" do
       it "can retrieve the organization" do
-        client.stub(:get).with("/notifications/#{notification_details['id']}/organization").and_return JSON.generate(orgs_details.first)
-        notification.organization.id.should == orgs_details.first['id']
+        allow(client)
+          .to receive(:get)
+          .with("/notifications/#{notification_details['id']}/organization")
+          .and_return JSON.generate(orgs_details.first)
+
+        expect(notification.organization.id).to eq orgs_details.first['id']
       end
     end
 
     context "local" do
       it "gets the read status" do
-        notification.unread?.should == notification_details['unread']
+        expect(notification.unread?).to eq notification_details['unread']
       end
 
       it "gets the type" do
-        notification.type.should == notification_details['type']
+        expect(notification.type).to eq notification_details['type']
       end
 
       it "gets the date" do
-        notification.date.should == notification_details['date']
+        expect(notification.date).to eq notification_details['date']
       end
 
       it "gets the data" do
-        notification.data.should == notification_details['data']
+        expect(notification.data).to eq notification_details['data']
       end
 
       it "gets the member creator id" do
-        notification.member_creator_id.should == notification_details['idMemberCreator']
+        expect(notification.member_creator_id).to eq notification_details['idMemberCreator']
       end
     end
   end

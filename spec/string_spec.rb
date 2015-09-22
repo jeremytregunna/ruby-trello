@@ -16,14 +16,17 @@ describe String, '#json_into' do
   end
 
   it 'converts json into an instance of a class' do
-    '{}'.json_into(example_class).should be_an_instance_of example_class
+    expect('{}'.json_into(example_class)).to be_a example_class
   end
 
   it 'supplies the parsed json to the class ctor as a hash' do
-    example_class.should_receive(:new).once.with({
-      "name"        => "Jazz Kang",
-      "description" => "Plonker"
-    })
+    expect(example_class)
+      .to receive(:new)
+      .once
+      .with({
+        "name"        => "Jazz Kang",
+        "description" => "Plonker"
+      })
 
     json_text = '{"name" : "Jazz Kang", "description": "Plonker"}'
 
@@ -40,10 +43,10 @@ describe String, '#json_into' do
 
     result = json_text.json_into example_class
 
-    result.should be_an Array
-    result.size.should == 2
+    expect(result).to be_an Array
+    expect(result.size).to eq 2
     result.each do |parsed|
-      parsed.should be_an_instance_of example_class
+      expect(parsed).to be_a example_class
     end
   end
 end

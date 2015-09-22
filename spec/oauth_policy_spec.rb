@@ -12,8 +12,8 @@ describe OAuthPolicy do
   describe '#consumer_credential' do
     it 'uses class setting if available' do
       policy = OAuthPolicy.new
-      policy.consumer_credential.key.should eq('xxx')
-      policy.consumer_credential.secret.should eq('xxx')
+      expect(policy.consumer_credential.key).to eq('xxx')
+      expect(policy.consumer_credential.secret).to eq('xxx')
     end
 
     it 'is built from given consumer_key and consumer_secret' do
@@ -21,14 +21,14 @@ describe OAuthPolicy do
         consumer_key: 'consumer_key',
         consumer_secret: 'consumer_secret'
       )
-      policy.consumer_credential.key.should eq('consumer_key')
-      policy.consumer_credential.secret.should eq('consumer_secret')
+      expect(policy.consumer_credential.key).to eq('consumer_key')
+      expect(policy.consumer_credential.secret).to eq('consumer_secret')
     end
 
     it 'is nil if none supplied to class' do
       OAuthPolicy.consumer_credential = nil
       policy = OAuthPolicy.new
-      policy.consumer_credential.should be_nil
+      expect(policy.consumer_credential).to be_nil
     end
   end
 
@@ -36,8 +36,8 @@ describe OAuthPolicy do
     it 'uses class setting if available' do
       OAuthPolicy.token = OAuthCredential.new 'xxx', 'xxx'
       policy = OAuthPolicy.new
-      policy.token.key.should eq('xxx')
-      policy.token.secret.should eq('xxx')
+      expect(policy.token.key).to eq('xxx')
+      expect(policy.token.secret).to eq('xxx')
     end
 
     it 'is built from given oauth_token and oauth_token_secret' do
@@ -45,13 +45,13 @@ describe OAuthPolicy do
         oauth_token: 'oauth_token',
         oauth_token_secret: 'oauth_token_secret'
       )
-      policy.token.key.should eq('oauth_token')
-      policy.token.secret.should eq('oauth_token_secret')
+      expect(policy.token.key).to eq('oauth_token')
+      expect(policy.token.secret).to eq('oauth_token_secret')
     end
 
     it 'is an empty token if no oauth credentials supplied' do
       policy = OAuthPolicy.new
-      policy.token.should be_nil
+      expect(policy.token).to be_nil
     end
   end
 
@@ -65,27 +65,38 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
 
-      authorized_request.headers.keys.should include 'Authorization'
+      expect(authorized_request.headers.keys).to include 'Authorization'
     end
 
     it 'preserves query parameters' do
       uri = Addressable::URI.parse('https://xxx/?name=Riccardo')
       request = Request.new :get, uri
 
-      Clock.stub(:timestamp).and_return '1327048592'
-      Nonce.stub(:next).and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327048592'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
+
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token               = OAuthCredential.new 'token', nil
 
       authorized_request = OAuthPolicy.authorize request
 
       the_query_parameters = Addressable::URI.parse(authorized_request.uri).query_values
-      the_query_parameters.should == {'name' => 'Riccardo'}
+      expect(the_query_parameters).to eq({'name' => 'Riccardo'})
     end
 
     it 'adds the correct signature as part of authorization header' do
-      Clock.stub(:timestamp).and_return '1327048592'
-      Nonce.stub(:next).and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327048592'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return 'b94ff2bf7f0a5e87a326064ae1dbb18f'
 
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token               = OAuthCredential.new 'token', nil
@@ -94,12 +105,17 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
 
-      authorized_request.headers['Authorization'].should =~ /oauth_signature="TVNk%2FCs03FHqutDUqn05%2FDkvVek%3D"/
+      expect(authorized_request.headers['Authorization']).to match(/oauth_signature="TVNk%2FCs03FHqutDUqn05%2FDkvVek%3D"/)
     end
 
     it 'adds correct signature for uri with parameters' do
-      Clock.stub(:timestamp).and_return '1327351010'
-      Nonce.stub(:next).and_return 'f5474aaf44ca84df0b09870044f91c69'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327351010'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return 'f5474aaf44ca84df0b09870044f91c69'
 
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token               = OAuthCredential.new 'token', nil
@@ -108,7 +124,7 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
 
-      authorized_request.headers['Authorization'].should =~ /oauth_signature="DprU1bdbNdJQ40UhD4n7wRR9jts%3D"/
+      expect(authorized_request.headers['Authorization']).to match(/oauth_signature="DprU1bdbNdJQ40UhD4n7wRR9jts%3D"/)
     end
 
     it 'fails if consumer_credential is unset' do
@@ -116,12 +132,17 @@ describe OAuthPolicy do
 
       request = Request.new :get, Addressable::URI.parse('http://xxx/')
 
-      -> { OAuthPolicy.authorize request }.should raise_error 'The consumer_credential has not been supplied.'
+      expect { OAuthPolicy.authorize request }.to raise_error 'The consumer_credential has not been supplied.'
     end
 
     it 'can sign with token' do
-      Clock.stub(:timestamp).and_return '1327360530'
-      Nonce.stub(:next).and_return '4f610cb28e7aa8711558de5234af1f0e'
+      allow(Clock)
+        .to receive(:timestamp)
+        .and_return '1327360530'
+
+      allow(Nonce)
+        .to receive(:next)
+        .and_return '4f610cb28e7aa8711558de5234af1f0e'
 
       OAuthPolicy.consumer_credential = OAuthCredential.new 'consumer_key', 'consumer_secret'
       OAuthPolicy.token  = OAuthCredential.new 'token_key', 'token_secret'
@@ -130,7 +151,7 @@ describe OAuthPolicy do
 
       authorized_request = OAuthPolicy.authorize request
 
-      authorized_request.headers['Authorization'].should =~ /oauth_signature="1Boj4fo6KiXA4xGD%2BKF5QOD36PI%3D"/
+      expect(authorized_request.headers['Authorization']).to match(/oauth_signature="1Boj4fo6KiXA4xGD%2BKF5QOD36PI%3D"/)
     end
 
     it 'adds correct signature for https uri'
