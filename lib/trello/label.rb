@@ -11,7 +11,7 @@ module Trello
       readonly: [ :id, :uses, :board_id ]
     validates_presence_of :id, :uses, :board_id, :name
     validates_length_of   :name,        in: 1..16384
-        
+
     SYMBOL_TO_STRING = {
       id: 'id',
       name: 'name',
@@ -26,7 +26,7 @@ module Trello
         client.find(:label, id, params)
       end
 
-      # Create a new card and save it on Trello.
+      # Create a new label and save it on Trello.
       def create(options)
         client.create(:label,
           'name' => options[:name],
@@ -98,7 +98,7 @@ module Trello
       client.put("/labels/#{id}", payload)
     end
 
-    # Delete this card
+    # Delete this label
     def delete
       client.delete("/labels/#{id}")
     end
