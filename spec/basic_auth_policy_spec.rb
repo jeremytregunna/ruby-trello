@@ -21,8 +21,8 @@ describe BasicAuthPolicy do
 
     the_query_parameters = Addressable::URI.parse(authorized_request.uri).query_values
 
-    the_query_parameters['key'].should === 'xxx_developer_public_key_xxx'
-    the_query_parameters['token'].should === 'xxx_member_token_xxx'
+    expect(the_query_parameters['key']).to eq 'xxx_developer_public_key_xxx'
+    expect(the_query_parameters['token']).to eq 'xxx_member_token_xxx'
   end
 
   it 'preserves other query parameters' do
@@ -34,7 +34,7 @@ describe BasicAuthPolicy do
 
     the_query_parameters = Addressable::URI.parse(authorized_request.uri).query_values
 
-    the_query_parameters['name'].should == 'Phil'
+    expect(the_query_parameters['name']).to eq 'Phil'
   end
 
   it 'preserves headers' do
@@ -44,7 +44,7 @@ describe BasicAuthPolicy do
 
     authorized_request = BasicAuthPolicy.authorize request
 
-    authorized_request.headers.should === request.headers
+    expect(authorized_request.headers).to eq request.headers
   end
 
   it 'does what when a query parameter already exists called key or token?'

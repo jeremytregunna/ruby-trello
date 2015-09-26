@@ -13,16 +13,28 @@ describe Client, "and how it handles authorization" do
   let(:auth_policy) { double }
 
   before do
-    TInternet.stub(:execute).and_return fake_ok_response
-    Authorization::AuthPolicy.stub(:new).and_return(auth_policy)
-    auth_policy.stub(:authorize) do |request|
-      request
-    end
+    allow(TInternet)
+      .to receive(:execute)
+      .and_return fake_ok_response
+
+    allow(Authorization::AuthPolicy)
+      .to receive(:new)
+      .and_return(auth_policy)
+
+    allow(auth_policy)
+      .to receive(:authorize) { |request| request }
   end
 
   it "authorizes before it queries the internet" do
-    auth_policy.should_receive(:authorize).once.ordered
-    TInternet.should_receive(:execute).once.ordered
+    expect(auth_policy)
+      .to receive(:authorize)
+      .once
+      .ordered
+
+    expect(TInternet)
+      .to receive(:execute)
+      .once
+      .ordered
 
     client.get "/xxx"
   end
@@ -31,7 +43,10 @@ describe Client, "and how it handles authorization" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?a=1&b=2")
     expected_request = Request.new :get, expected_uri, {}
 
-    TInternet.should_receive(:execute).once.with expected_request
+    expect(TInternet)
+      .to receive(:execute)
+      .once
+      .with expected_request
 
     client.get "/xxx", a: "1", b: "2"
   end
@@ -40,7 +55,10 @@ describe Client, "and how it handles authorization" do
     expected_uri = Addressable::URI.parse("https://api.trello.com/1/xxx?name=Jazz%20Kang")
     expected_request = Request.new :get, expected_uri, {}
 
-    TInternet.should_receive(:execute).once.with expected_request
+    expect(TInternet)
+      .to receive(:execute)
+      .once
+      .with expected_request
 
     client.get "/xxx", name: "Jazz Kang"
   end
@@ -51,31 +69,40 @@ describe Client, "and how it handles authorization" do
       code: 404,
       body: expected_error_message
 
-    TInternet.stub(:execute).and_return response_with_non_200_status
+    expect(TInternet)
+      .to receive(:execute)
+      .and_return response_with_non_200_status
 
-    -> { client.get "/xxx" }.should raise_error expected_error_message
+    expect { client.get "/xxx" }.to raise_error expected_error_message
   end
 
   it "uses version 1 of the API" do
-    TInternet.should_receive(:execute).once do |request|
-      request.uri.to_s.should =~ /1\//
-      fake_ok_response
-    end
+    expect(TInternet)
+      .to receive(:execute)
+      .once do |request|
+        expect(request.uri.to_s).to match(/1\//)
+        fake_ok_response
+      end
 
     client.get "/"
   end
 
   it "omits the \"?\" when no parameters" do
-    TInternet.should_receive(:execute).once do |request|
-      request.uri.to_s.should_not =~ /\?$/
-      fake_ok_response
-    end
+    expect(TInternet)
+      .to receive(:execute)
+      .once do |request|
+        expect(request.uri.to_s).not_to match(/\?$/)
+        fake_ok_response
+      end
 
     client.get "/xxx"
   end
 
   it "supports post" do
-    TInternet.should_receive(:execute).once.and_return fake_ok_response
+    expect(TInternet)
+      .to receive(:execute)
+      .once
+      .and_return fake_ok_response
 
     client.post "/xxx", { phil: "T' north" }
   end
@@ -83,10 +110,12 @@ describe Client, "and how it handles authorization" do
   it "supplies the body for a post" do
     expected_body = { name: "Phil", nickname: "The Crack Fox" }
 
-    TInternet.should_receive(:execute).once do |request|
-      request.body.should == expected_body
-      fake_ok_response
-    end
+    expect(TInternet)
+      .to receive(:execute)
+      .once do |request|
+        expect(request.body).to eq expected_body
+        fake_ok_response
+      end
 
     client.post "/xxx", expected_body
   end
@@ -94,16 +123,21 @@ describe Client, "and how it handles authorization" do
   it "supplies the path for a post" do
     expected_path = "/xxx"
 
-    TInternet.should_receive(:execute).once do |request|
-      request.uri.path.should =~ /#{expected_path}$/
-      fake_ok_response
-    end
+    expect(TInternet)
+      .to receive(:execute)
+      .once do |request|
+        expect(request.uri.path).to match(/#{expected_path}$/)
+        fake_ok_response
+      end
 
     client.post "/xxx", {}
   end
 
   it "supports put" do
-    TInternet.should_receive(:execute).once.and_return fake_ok_response
+    expect(TInternet)
+      .to receive(:execute)
+      .once
+      .and_return fake_ok_response
 
     client.put "/xxx", { phil: "T' north" }
   end
@@ -111,10 +145,12 @@ describe Client, "and how it handles authorization" do
   it "supplies the body for a put" do
     expected_body = { name: "Phil", nickname: "The Crack Fox" }
 
-    TInternet.should_receive(:execute).once do |request|
-      request.body.should == expected_body
-      fake_ok_response
-    end
+    expect(TInternet)
+      .to receive(:execute)
+      .once do |request|
+        expect(request.body).to eq expected_body
+        fake_ok_response
+      end
 
     client.put "/xxx", expected_body
   end
@@ -122,10 +158,12 @@ describe Client, "and how it handles authorization" do
   it "supplies the path for a put" do
     expected_path = "/xxx"
 
-    TInternet.should_receive(:execute).once do |request|
-      request.uri.path.should =~ /#{expected_path}$/
-      fake_ok_response
-    end
+    expect(TInternet)
+      .to receive(:execute)
+      .once do |request|
+        expect(request.uri.path).to match(/#{expected_path}$/)
+        fake_ok_response
+      end
 
     client.put "/xxx", {}
   end
@@ -141,10 +179,10 @@ describe Client, "and how it handles authorization" do
     end
 
     it "is configurable" do
-      client.consumer_key.should eq('consumer_key')
-      client.consumer_secret.should eq('consumer_secret')
-      client.oauth_token.should eq('oauth_token')
-      client.oauth_token_secret.should eq('oauth_token_secret')
+      expect(client.consumer_key).to eq('consumer_key')
+      expect(client.consumer_secret).to eq('consumer_secret')
+      expect(client.oauth_token).to eq('oauth_token')
+      expect(client.oauth_token_secret).to eq('oauth_token_secret')
     end
   end
 
@@ -157,10 +195,10 @@ describe Client, "and how it handles authorization" do
         config.oauth_token_secret = 'oauth_token_secret'
       end
 
-      client.consumer_key.should eq('consumer_key')
-      client.consumer_secret.should eq('consumer_secret')
-      client.oauth_token.should eq('oauth_token')
-      client.oauth_token_secret.should eq('oauth_token_secret')
+      expect(client.consumer_key).to eq('consumer_key')
+      expect(client.consumer_secret).to eq('consumer_secret')
+      expect(client.oauth_token).to eq('oauth_token')
+      expect(client.oauth_token_secret).to eq('oauth_token_secret')
     end
   end
 end

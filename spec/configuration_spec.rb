@@ -3,45 +3,26 @@ require 'spec_helper'
 describe Trello::Configuration do
   let(:configuration) { Trello::Configuration.new }
 
-  it 'has a consumer_key attribute' do
-    configuration.consumer_key = 'consumer_key'
-    configuration.consumer_key.should eq('consumer_key')
-  end
+  [
+    :consumer_key,
+    :consumer_secret,
+    :oauth_token,
+    :oauth_token_secret,
+    :developer_public_key,
+    :member_token,
+    :return_url
 
-  it 'has a consumer_secret attribute' do
-    configuration.consumer_secret = 'consumer_secret'
-    configuration.consumer_secret.should eq('consumer_secret')
-  end
-
-  it 'has a oauth_token attribute' do
-    configuration.oauth_token = 'oauth_token'
-    configuration.oauth_token.should eq('oauth_token')
-  end
-
-  it 'has a oauth_token_secret attribute' do
-    configuration.oauth_token_secret = 'oauth_token_secret'
-    configuration.oauth_token_secret.should eq('oauth_token_secret')
-  end
-
-  it 'has a developer public key attribute' do
-    configuration.developer_public_key = 'developer_public_key'
-    configuration.developer_public_key.should eq('developer_public_key')
-  end
-
-  it 'has a member token attribute' do
-    configuration.member_token = 'member_token'
-    configuration.member_token.should eq('member_token')
+  ].each do |attribute|
+    it "has a #{attribute} attribute" do
+      configuration.public_send(:"#{attribute}=", attribute)
+      expect(configuration.public_send(attribute)).to eq attribute
+    end
   end
 
   it 'has a callback (for oauth)' do
     callback = -> { 'foobar' }
     configuration.callback = callback
-    configuration.callback.call.should eq('foobar')
-  end
-
-  it 'has a return_url' do
-    configuration.return_url = 'http://www.example.com/callback'
-    configuration.return_url.should eq('http://www.example.com/callback')
+    expect(configuration.callback.call).to eq('foobar')
   end
 
   describe 'initialize' do
@@ -52,10 +33,10 @@ describe Trello::Configuration do
         oauth_token: 'oauth_token',
         oauth_token_secret: 'oauth_token_secret'
       )
-      configuration.consumer_key.should eq('consumer_key')
-      configuration.consumer_secret.should eq('consumer_secret')
-      configuration.oauth_token.should eq('oauth_token')
-      configuration.oauth_token_secret.should eq('oauth_token_secret')
+      expect(configuration.consumer_key).to eq('consumer_key')
+      expect(configuration.consumer_secret).to eq('consumer_secret')
+      expect(configuration.oauth_token).to eq('oauth_token')
+      expect(configuration.oauth_token_secret).to eq('oauth_token_secret')
     end
   end
 
@@ -63,11 +44,11 @@ describe Trello::Configuration do
     let(:configuration) { Trello::Configuration.new(attributes) }
 
     it 'returns an empty if no attributes specified' do
-      Trello::Configuration.new({}).credentials.should eq({})
+      expect(Trello::Configuration.new({}).credentials).to eq({})
     end
 
     it 'returns an empty if attributes incomplete' do
-      Trello::Configuration.new(consumer_key: 'consumer_key').credentials.should eq({})
+      expect(Trello::Configuration.new(consumer_key: 'consumer_key').credentials).to eq({})
     end
 
     it 'returns a hash of oauth attributes' do
@@ -77,7 +58,7 @@ describe Trello::Configuration do
         oauth_token: 'oauth_token',
         oauth_token_secret: 'oauth_token_secret'
       )
-      configuration.credentials.should eq(
+      expect(configuration.credentials).to eq(
         consumer_key: 'consumer_key',
         consumer_secret: 'consumer_secret',
         oauth_token: 'oauth_token',
@@ -92,7 +73,7 @@ describe Trello::Configuration do
         return_url: 'http://example.com',
         callback: 'callback'
       )
-      configuration.credentials.should eq(
+      expect(configuration.credentials).to eq(
         consumer_key: 'consumer_key',
         consumer_secret: 'consumer_secret',
         return_url: 'http://example.com',
@@ -105,7 +86,7 @@ describe Trello::Configuration do
         developer_public_key: 'developer_public_key',
         member_token: 'member_token'
       )
-      configuration.credentials.should eq(
+      expect(configuration.credentials).to eq(
         developer_public_key: 'developer_public_key',
         member_token: 'member_token'
       )
