@@ -116,9 +116,11 @@ module Trello
       end
 
       it "gets the specific labels for the board" do
-        labels = board.labels false
+        client.stub(:get).with("/boards/abcdef123456789123456789/labels", {}).
+          and_return label_payload
+        labels = board.labels
+        labels.count.should eq(4)
 
-        expect(labels.count).to eq(4)
         expect(labels[2].color).to  eq('red')
         expect(labels[2].id).to  eq('abcdef123456789123456789')
         expect(labels[2].board_id).to  eq('abcdef123456789123456789')
@@ -129,10 +131,6 @@ module Trello
         expect(labels[3].board_id).to  eq('abcdef123456789123456789')
         expect(labels[3].name).to  eq('on hold')
         expect(labels[3].uses).to  eq(6)
-      end
-
-      it "gets the specific labels for the board" do
-        expect(board.labels.count).to eq(label_name_details.length)
       end
     end
 

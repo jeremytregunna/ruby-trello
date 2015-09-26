@@ -177,7 +177,8 @@ module Trello
       MultiAssociation.new(self, states).proxy
     end
 
-
+    many :labels
+    
     # Returns a reference to the list this card is currently in.
     one :list, path: :lists, using: :list_id
 
@@ -314,39 +315,23 @@ module Trello
     def remove_member(member)
       client.delete("/cards/#{id}/members/#{member.id}")
     end
-
-    # Retrieve a list of labels
-    def labels
-      labels = client.get("/cards/#{id}/labels").json_into(Label)
-      MultiAssociation.new(self, labels).proxy
-    end
     
     # Add a label
-    def add_label(value)
-      if value.is_a? String
-        colour = value 
-        unless Label.label_colours.include? colour
-          errors.add(:label, "colour '#{colour}' does not exist")
-          return Trello.logger.warn "The label colour '#{colour}' does not exist."
-        end
-        client.post("/cards/#{id}/labels", { value: colour })
-      elsif value.is_a? Label
-        client.post("/cards/#{id}/idLabels", {value: value.id})
+    def add_label(label)
+      unless label.valid?
+        errors.add(:label, "is not valid.")
+        return Trello.logger.warn "Label is not valid." unless label.valid?
       end
+      client.post("/cards/#{id}/idLabels", {value: label.id})
     end
 
     # Remove a label
-    def remove_label(value)
-      if value.is_a? String
-        colour = value 
-        unless Label.label_colours.include? colour
-          errors.add(:label, "colour '#{colour}' does not exist")
-          return Trello.logger.warn "The label colour '#{colour}' does not exist." unless Label.label_colours.include? colour
+    def remove_label(label)
+        unless label.valid?
+          errors.add(:label, "is not valid.")
+          return Trello.logger.warn "Label is not valid." unless label.valid?
         end
-        client.delete("/cards/#{id}/labels/#{colour}")
-      elsif value.is_a? Label
-        client.delete("/cards/#{id}/idLabels/#{value.id}")
-      end
+        client.delete("/cards/#{id}/idLabels/#{label.id}")
     end
 
     # Add an attachment to this card

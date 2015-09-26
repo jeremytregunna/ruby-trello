@@ -91,6 +91,19 @@ module Trello
         card.name = expected_new_name
         card.save
       end
+
+      it "updating desc does a put on the correct resource with the correct value" do
+        expected_new_desc = "xxx"
+
+        payload = {
+          desc: expected_new_desc,
+        }
+
+        client.should_receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+
+        card.desc = expected_new_desc
+        card.save
+      end
     end
 
     context "deleting" do
@@ -354,6 +367,8 @@ module Trello
           .and_return "not important"
       end
       it "can retrieve labels" do
+        client.stub(:get).with("/cards/abcdef123456789123456789/labels", {}).
+          and_return label_payload
         labels = card.labels
         expect(labels.size).to  eq(4)
         expect(labels[0].color).to  eq('yellow')
@@ -368,66 +383,34 @@ module Trello
         expect(labels[1].uses).to  eq(1)
       end
 
-      it "can add a label" do
-        card.add_label('green')
-        expect(card.errors).to be_empty
-      end
-
       it "can remove a label" do
-        card.remove_label('green')
-        expect(card.errors).to be_empty
-      end
-
-      it "can remove a label instance" do
-        expect(client)
-          .to receive(:delete)
-          .once
-          .with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789")
-
+        client.should_receive(:delete).once.with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789")
         label = Label.new(label_details.first)
         card.remove_label(label)
       end
 
-      %w(green yellow orange red purple blue sky lime pink black).each do |color|
-        it "can add a label of color: #{color}" do
-          allow(client)
-            .to receive(:post)
-            .with("/cards/abcdef123456789123456789/labels", { :value => color })
-            .and_return "not important"
-
-          card.add_label(color)
-          expect(card.errors).to be_empty
-        end
+      it "can add a label" do
+        client.should_receive(:post).once.with("/cards/abcdef123456789123456789/idLabels", {:value => "abcdef123456789123456789"})
+        label = Label.new(label_details.first)
+        card.add_label label
       end
 
-      it "can add a label instance" do
-        expect(client)
-          .to receive(:post)
-          .once
-          .with("/cards/abcdef123456789123456789/idLabels", {:value => "abcdef123456789123456789"})
-
-        card.add_label Label.new(label_details.first)
+      it "throws an error when trying to add a invalid label" do
+        client.stub(:post).with("/cards/abcdef123456789123456789/idLabels", { value: 'abcdef123456789123456789' }).
+          and_return "not important"
+        label = Label.new(label_details.first)
+        label.name = nil
+        card.add_label(label)
+        expect(card.errors.full_messages.to_sentence).to eq("Label is not valid.")
       end
 
-      it "throws an error when trying to add a label with an unknown colour" do
-        allow(client)
-          .to receive(:post)
-          .with("/cards/abcdef123456789123456789/labels", { value: 'green' })
-          .and_return "not important"
-
-        card.add_label('mauve')
-
-        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
-      end
-
-      it "throws an error when trying to remove a label with an unknown colour" do
-        allow(client)
-          .to receive(:delete)
-          .with("/cards/abcdef123456789123456789/labels/mauve")
-          .and_return "not important"
-
-        card.remove_label('mauve')
-        expect(card.errors.full_messages.to_sentence).to eq("Label colour 'mauve' does not exist")
+      it "throws an error when trying to remove a invalid label" do
+        client.stub(:delete).with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789").
+          and_return "not important"
+        label = Label.new(label_details.first)
+        label.name = nil
+        card.remove_label(label)
+        expect(card.errors.full_messages.to_sentence).to eq("Label is not valid.")
       end
     end
 
