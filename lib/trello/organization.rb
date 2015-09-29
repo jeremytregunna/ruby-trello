@@ -12,8 +12,10 @@ module Trello
   # @!attribute [r] url
   #   @return [String]
   class Organization < BasicData
-    register_attributes :id, :name, :display_name, :description, :url,
-      readonly: [ :id, :name, :display_name, :description, :url ]
+    register_attributes :id, :name, :display_name, :description, :url, :invited,
+      :website, :logo_hash, :billable_member_count, :active_billable_member_count,
+      readonly: [ :id, :name, :display_name, :description, :url, :invited,
+        :website, :logo_hash, :billable_member_count, :active_billable_member_count ]
     validates_presence_of :id, :name
 
     include HasActions
@@ -30,11 +32,16 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Organization.
     def update_fields(fields)
-      attributes[:id]           = fields['id']
-      attributes[:name]         = fields['name']
-      attributes[:display_name] = fields['displayName']
-      attributes[:description]  = fields['description']
-      attributes[:url]          = fields['url']
+      attributes[:id]                           = fields['id']
+      attributes[:name]                         = fields['name']
+      attributes[:display_name]                 = fields['displayName']
+      attributes[:description]                  = fields['desc']
+      attributes[:url]                          = fields['url']
+      attributes[:invited]                      = fields['invited']
+      attributes[:website]                      = fields['website']
+      attributes[:logo_hash]                    = fields['logoHash']
+      attributes[:billable_member_count]        = fields['billableMemberCount']
+      attributes[:active_billable_member_count] = fields['activeBillableMemberCount']
       self
     end
 
