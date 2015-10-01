@@ -156,6 +156,7 @@ module Helpers
        'idMember'     => 'abcdef123456789123456781',
        'isUpload'     => false,
        'date'         => '2013-02-28T17:12:28.497Z',
+       'previews'     => 'previews'
      },
      {
        'id'           => 'abcdef123456789123456781',
