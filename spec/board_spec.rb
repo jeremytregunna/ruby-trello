@@ -74,6 +74,14 @@ module Trello
       it "gets its url" do
         expect(board.url).to_not be_nil
       end
+
+      it "gets its last_activity_date" do
+        expect(board.last_activity_date).to_not be_nil
+      end
+
+      it "gets a Time object for last_activity_date" do
+        expect(board.last_activity_date).to be_a(Time)
+      end
     end
 
     context "actions" do
