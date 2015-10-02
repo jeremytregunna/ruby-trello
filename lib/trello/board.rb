@@ -17,8 +17,8 @@ module Trello
   # @!attribute [r] prefs
   #   @return [Hash] A 24-character hex string
   class Board < BasicData
-    register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs,
-      readonly: [ :id, :url ]
+    register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs, :last_activity_date,
+      readonly: [ :id, :url, :last_activity_date ]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
@@ -95,6 +95,7 @@ module Trello
       attributes[:url]             = fields['url']             if fields['url']
       attributes[:organization_id] = fields['idOrganization']  if fields['idOrganization']
       attributes[:prefs]           = fields['prefs'] || {}
+      attributes[:last_activity_date]   = Time.iso8601(fields['dateLastActivity']) rescue nil
       self
     end
 
@@ -107,7 +108,7 @@ module Trello
     def starred?
       attributes[:starred]
     end
-    
+
     # @return [Boolean]
     def has_lists?
       lists.size > 0

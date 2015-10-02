@@ -455,6 +455,10 @@ module Trello
         expect(first_attachment.date).to eq Time.parse(attachments_details[0]["date"])
         expect(first_attachment.is_upload).to eq attachments_details[0]["isUpload"]
         expect(first_attachment.mime_type).to eq attachments_details[0]["mimeType"]
+        expect(first_attachment.previews).to eq attachments_details[0]["previews"]
+
+        second_attachment = card.attachments[1]
+        expect(second_attachment.previews).to eq nil
       end
 
       it "can remove an attachment" do

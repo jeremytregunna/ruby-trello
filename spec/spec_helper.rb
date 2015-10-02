@@ -57,13 +57,14 @@ module Helpers
 
   def boards_details
     [{
-      'id'             => 'abcdef123456789123456789',
-      'name'           => 'Test',
-      'desc'           => 'This is a test board',
-      'closed'         => false,
-      'starred'         => false,
-      'idOrganization' => 'abcdef123456789123456789',
-      'url'            => 'https://trello.com/board/test/abcdef123456789123456789'
+      'id'               => 'abcdef123456789123456789',
+      'name'             => 'Test',
+      'desc'             => 'This is a test board',
+      'closed'           => false,
+      'starred'          => false,
+      'idOrganization'   => 'abcdef123456789123456789',
+      'url'              => 'https://trello.com/board/test/abcdef123456789123456789',
+      'dateLastActivity' => '2012-12-08T18:40:24.314Z'
     }]
   end
 
@@ -155,6 +156,7 @@ module Helpers
        'idMember'     => 'abcdef123456789123456781',
        'isUpload'     => false,
        'date'         => '2013-02-28T17:12:28.497Z',
+       'previews'     => 'previews'
      },
      {
        'id'           => 'abcdef123456789123456781',
