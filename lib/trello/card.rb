@@ -78,7 +78,8 @@ module Trello
 
       # Create a new card and save it on Trello.
       #
-      # @param [Hash] options # @option options [String] :name The name of the new card.
+      # @param [Hash] options 
+      # @option options [String] :name The name of the new card.
       # @option options [String] :list_id ID of the list that the card should
       #     be added to.
       # @option options [String] :desc A string with a
