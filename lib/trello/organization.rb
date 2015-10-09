@@ -14,8 +14,10 @@ module Trello
   class Organization < BasicData
     register_attributes :id, :name, :display_name, :description, :url, :invited,
       :website, :logo_hash, :billable_member_count, :active_billable_member_count,
+      :memberships,
       readonly: [ :id, :name, :display_name, :description, :url, :invited,
-        :website, :logo_hash, :billable_member_count, :active_billable_member_count ]
+        :website, :logo_hash, :billable_member_count, :active_billable_member_count,
+        :memberships ]
     validates_presence_of :id, :name
 
     include HasActions
@@ -42,6 +44,7 @@ module Trello
       attributes[:logo_hash]                    = fields['logoHash']
       attributes[:billable_member_count]        = fields['billableMemberCount']
       attributes[:active_billable_member_count] = fields['activeBillableMemberCount']
+      attributes[:memberships]                  = fields['memberships']
       self
     end
 
