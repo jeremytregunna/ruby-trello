@@ -78,7 +78,7 @@ module Trello
 
       # Create a new card and save it on Trello.
       #
-      # @param [Hash] options 
+      # @param [Hash] options
       # @option options [String] :name The name of the new card.
       # @option options [String] :list_id ID of the list that the card should
       #     be added to.
@@ -158,6 +158,7 @@ module Trello
       attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
       attributes[:badges]             = fields[SYMBOL_TO_STRING[:badges]]
       attributes[:card_members]       = fields[SYMBOL_TO_STRING[:card_members]]
+
       self
     end
 
@@ -179,7 +180,7 @@ module Trello
     end
 
     many :labels
-    
+
     # Returns a reference to the list this card is currently in.
     one :list, path: :lists, using: :list_id
 
@@ -316,7 +317,7 @@ module Trello
     def remove_member(member)
       client.delete("/cards/#{id}/members/#{member.id}")
     end
-    
+
     # Add a label
     def add_label(label)
       unless label.valid?
