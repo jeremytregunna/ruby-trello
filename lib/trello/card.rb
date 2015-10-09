@@ -78,7 +78,7 @@ module Trello
 
       # Create a new card and save it on Trello.
       #
-      # @param [Hash] options 
+      # @param [Hash] options
       # @option options [String] :name The name of the new card.
       # @option options [String] :list_id ID of the list that the card should
       #     be added to.
@@ -158,6 +158,7 @@ module Trello
       attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
       attributes[:badges]             = fields[SYMBOL_TO_STRING[:badges]]
       attributes[:card_members]       = fields[SYMBOL_TO_STRING[:card_members]]
+
       self
     end
 
