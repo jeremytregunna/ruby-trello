@@ -179,7 +179,7 @@ module Trello
     end
 
     many :labels
-    
+
     # Returns a reference to the list this card is currently in.
     one :list, path: :lists, using: :list_id
 
@@ -316,7 +316,7 @@ module Trello
     def remove_member(member)
       client.delete("/cards/#{id}/members/#{member.id}")
     end
-    
+
     # Add a label
     def add_label(label)
       unless label.valid?
@@ -328,11 +328,11 @@ module Trello
 
     # Remove a label
     def remove_label(label)
-        unless label.valid?
-          errors.add(:label, "is not valid.")
-          return Trello.logger.warn "Label is not valid." unless label.valid?
-        end
-        client.delete("/cards/#{id}/idLabels/#{label.id}")
+      unless label.valid?
+        errors.add(:label, "is not valid.")
+        return Trello.logger.warn "Label is not valid." unless label.valid?
+      end
+      client.delete("/cards/#{id}/idLabels/#{label.id}")
     end
 
     # Add an attachment to this card

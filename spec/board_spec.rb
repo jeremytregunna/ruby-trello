@@ -124,7 +124,7 @@ module Trello
       end
 
       it "gets the specific labels for the board" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/labels", {}).
+        client.stub(:get).with("/boards/abcdef123456789123456789/labels", {:limit => 1000}).
           and_return label_payload
         labels = board.labels
         labels.count.should eq(4)
@@ -139,6 +139,12 @@ module Trello
         expect(labels[3].board_id).to  eq('abcdef123456789123456789')
         expect(labels[3].name).to  eq('on hold')
         expect(labels[3].uses).to  eq(6)
+      end
+
+      it "passes the label limit" do
+        client.stub(:get).with("/boards/abcdef123456789123456789/labels", {:limit => 50}).
+          and_return label_payload
+        labels = board.labels(:limit => 50)
       end
     end
 
