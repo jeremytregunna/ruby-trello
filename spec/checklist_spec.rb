@@ -37,18 +37,20 @@ module Trello
         payload = {
             name: 'Test Checklist',
             desc: '',
+            board_id: boards_details.first['id'],
+            card_id: cards_details.first['id']
         }
 
-        result = JSON.generate(checklists_details.first.merge(payload.merge(idBoard: boards_details.first['id'])))
+        result = JSON.generate(checklists_details.first.merge(payload))
 
-        expected_payload = {name: "Test Checklist", idBoard: "abcdef123456789123456789"}
+        expected_payload = {name: "Test Checklist", idBoard: boards_details.first['id'], idCard: cards_details.first['id']}
 
         expect(client)
           .to receive(:post)
           .with("/checklists", expected_payload)
           .and_return result
 
-        checklist = Checklist.create(checklists_details.first.merge(payload.merge(board_id: boards_details.first['id'])))
+        checklist = Checklist.create(checklists_details.first.merge(payload))
 
         expect(checklist).to be_a Checklist
       end
@@ -166,7 +168,7 @@ module Trello
 
     context "making a copy" do
       let(:client) { Trello.client }
-      let(:copy_options) { { :name => checklist.name, :idBoard => checklist.board_id } }
+      let(:copy_options) { { :name => checklist.name, :idBoard => checklist.board_id, :idCard => checklist.card_id } }
       let(:copied_checklist) { checklist.copy }
 
       before(:each) do
