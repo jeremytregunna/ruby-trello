@@ -99,7 +99,7 @@ module Trello
           desc: expected_new_desc,
         }
 
-        client.should_receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+        expect(client).to receive(:put).once.with("/cards/abcdef123456789123456789", payload)
 
         card.desc = expected_new_desc
         card.save
@@ -367,7 +367,8 @@ module Trello
           .and_return "not important"
       end
       it "can retrieve labels" do
-        client.stub(:get).with("/cards/abcdef123456789123456789/labels", {}).
+        allow(client).to receive(:get).
+          with("/cards/abcdef123456789123456789/labels", {}).
           and_return label_payload
         labels = card.labels
         expect(labels.size).to  eq(4)
@@ -384,19 +385,19 @@ module Trello
       end
 
       it "can remove a label" do
-        client.should_receive(:delete).once.with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789")
+        expect(client).to receive(:delete).once.with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789")
         label = Label.new(label_details.first)
         card.remove_label(label)
       end
 
       it "can add a label" do
-        client.should_receive(:post).once.with("/cards/abcdef123456789123456789/idLabels", {:value => "abcdef123456789123456789"})
+        expect(client).to receive(:post).once.with("/cards/abcdef123456789123456789/idLabels", {:value => "abcdef123456789123456789"})
         label = Label.new(label_details.first)
         card.add_label label
       end
 
       it "throws an error when trying to add a invalid label" do
-        client.stub(:post).with("/cards/abcdef123456789123456789/idLabels", { value: 'abcdef123456789123456789' }).
+        allow(client).to receive(:post).with("/cards/abcdef123456789123456789/idLabels", { value: 'abcdef123456789123456789' }).
           and_return "not important"
         label = Label.new(label_details.first)
         label.name = nil
@@ -405,7 +406,7 @@ module Trello
       end
 
       it "throws an error when trying to remove a invalid label" do
-        client.stub(:delete).with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789").
+        allow(client).to receive(:delete).with("/cards/abcdef123456789123456789/idLabels/abcdef123456789123456789").
           and_return "not important"
         label = Label.new(label_details.first)
         label.name = nil
