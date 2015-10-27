@@ -124,11 +124,11 @@ module Trello
       end
 
       it "gets the specific labels for the board" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/labels", {:limit => 1000}).
+        allow(client).to receive(:get).with("/boards/abcdef123456789123456789/labels", {:limit => 1000}).
           and_return label_payload
         labels = board.labels
-        labels.count.should eq(4)
 
+        expect(labels.count).to eq(4)
         expect(labels[2].color).to  eq('red')
         expect(labels[2].id).to  eq('abcdef123456789123456789')
         expect(labels[2].board_id).to  eq('abcdef123456789123456789')
@@ -142,7 +142,7 @@ module Trello
       end
 
       it "passes the label limit" do
-        client.stub(:get).with("/boards/abcdef123456789123456789/labels", {:limit => 50}).
+        allow(client).to receive(:get).with("/boards/abcdef123456789123456789/labels", {:limit => 50}).
           and_return label_payload
         labels = board.labels(:limit => 50)
       end
@@ -292,7 +292,7 @@ module Trello
         expect(client).to_not receive(:put)
         expect {
           Board.new.save
-        }.to raise_error
+        }.to raise_error(Trello::ConfigurationError)
       end
 
       it "puts all fields except id" do
