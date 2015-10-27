@@ -1,6 +1,6 @@
 # Ruby Trello API
 
-[![Stories in Ready](http://badge.waffle.io/jeremytregunna/ruby-trello.png)](http://waffle.io/jeremytregunna/ruby-trello)  
+[![Stories in Ready](http://badge.waffle.io/jeremytregunna/ruby-trello.png)](http://waffle.io/jeremytregunna/ruby-trello)
 [![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.png)](http://travis-ci.org/jeremytregunna/ruby-trello) [![Dependency Status](https://gemnasium.com/jeremytregunna/ruby-trello.png)](https://gemnasium.com/jeremytregunna/ruby-trello.png)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
@@ -26,16 +26,17 @@ Supports Ruby 2.0 or newer. Version 1.3.0 is the last version that supports Ruby
 
 ####Basic authorization:
 
-1. Get your API keys from [trello.com/app-key](https://trello.com/app-key).
-2. Visit the URL [trello.com/1/authorize], with the following GET parameters:
-    - `key`: the API key you got in step 1.
-    - `response_type`: "token"
-    - `expiration`: "never" if you don't want your token to ever expire. If you leave this blank,
-       your generated token will expire after 30 days.
-    - `scope`: "read,write" (optional) by default the API key will only give read access.  You must set the scope to "read,write" if you would like ruby-trello to have permissions to create and delete.
-    - The URL will look like this:
-      `https://trello.com/1/authorize?key=YOURAPIKEY&response_type=token&expiration=never&scope=read,write`
-3. You should see a page asking you to authorize your Trello application. Click "allow" and you should see a second page with a long alphanumeric string. This is your member token.
+1. Get your API public key from Trello via the irb console:
+
+```
+$ gem install trello
+$ irb -rubygems
+irb> require 'trello'
+irb> Trello.open_public_key_url                         # copy your public key
+irb> Trello.open_authorization_url key: 'yourpublickey' # copy your member token
+```
+
+2. You can now use the public key and member token in your app code:
 
 ```ruby
 require 'trello'
