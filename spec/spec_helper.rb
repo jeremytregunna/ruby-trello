@@ -35,6 +35,13 @@ RSpec.configure do |rspec|
   rspec.before :each do
     Trello.reset!
   end
+
+  rspec.around(:each, :silence_warnings) do |example|
+    verbose = $VERBOSE
+    $VERBOSE = nil
+    example.run
+    $VERBOSE = verbose
+  end
 end
 
 module Helpers
