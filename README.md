@@ -19,8 +19,7 @@ Seriously, [check it out](http://www.trello.com/).
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
 to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
 
-While this library still does function on ruby 1.8 as of version 1.0.2 with activemodel < 4.0, this notice services to
-illustrate that future versions may include ruby 1.9.3+ specific features.
+Supports Ruby 2.0 or newer. Version 1.3.0 is the last version that supports Ruby that is older than 1.9.3. 
 
 ## Configuration
 
