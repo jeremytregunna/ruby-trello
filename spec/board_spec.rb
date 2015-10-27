@@ -292,7 +292,7 @@ module Trello
         expect(client).to_not receive(:put)
         expect {
           Board.new.save
-        }.to raise_error
+        }.to raise_error(Trello::ConfigurationError)
       end
 
       it "puts all fields except id" do
