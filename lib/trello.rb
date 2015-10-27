@@ -107,7 +107,7 @@ module Trello
 
   # Url to Trello API public key page
   def self.public_key_url
-    "https://trello.com/app-key"
+    'https://trello.com/app-key'
   end
 
   # Url to token for making authorized requests to the Trello API
@@ -116,21 +116,21 @@ module Trello
   # @param options [Hash] Repository information to update
   # @option options [String] :name Name of the application
   # @option options [String] :key Application key
-  # @option options [String] :response_type "token"
-  # @option options [String] :callback_method "postMessage" or "fragment"
+  # @option options [String] :response_type 'token'
+  # @option options [String] :callback_method 'postMessage' or 'fragment'
   # @option options [String] :return_url URL the token should be returned to
-  # @option options [String] :scope Comma-separated list of one or more of "read", "write", "account"
-  # @option options [String] :expiration "1hour", "1day", "30days", "never"
+  # @option options [String] :scope Comma-separated list of one or more of 'read', 'write', 'account'
+  # @option options [String] :expiration '1hour', '1day', '30days', 'never'
   # @see https://developers.trello.com/authorize
   def self.authorize_url(options = {})
     params = options.dup
     params[:key] ||= configuration.developer_public_key or
-      raise ArgumentError, "Please configure your Trello public key"
-    params[:name] ||= "Ruby Trello"
-    params[:scope] = "read,write,account"
-    params[:expiration] ||= "never"
-    params[:response_type] ||= "token"
-    uri = Addressable::URI.parse "https://trello.com/1/authorize"
+      raise ArgumentError, 'Please configure your Trello public key'
+    params[:name] ||= 'Ruby Trello'
+    params[:scope] = 'read,write,account'
+    params[:expiration] ||= 'never'
+    params[:response_type] ||= 'token'
+    uri = Addressable::URI.parse 'https://trello.com/1/authorize'
     uri.query_values = params
     uri
   end
@@ -151,10 +151,10 @@ module Trello
 
   # @private
   def self.open_url(url)
-    require "launchy"
+    require 'launchy'
     Launchy.open(url.to_s)
   rescue LoadError
-    warn "Please install the launchy gem to open the url automatically."
+    warn 'Please install the launchy gem to open the url automatically.'
     url
   end
 end
