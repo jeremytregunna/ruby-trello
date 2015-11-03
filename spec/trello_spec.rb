@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'launchy'
 
 include Trello
 include Trello::Authorization
@@ -75,6 +76,53 @@ describe Trello do
       it { expect(Trello.auth_policy).to be_a(AuthPolicy) }
       it { expect { Trello.client.get(:member) }.to raise_error(Trello::ConfigurationError) }
     end
+  end
 
+  context 'client authorization helpers' do
+    before do
+      allow(Launchy).to receive(:open)
+    end
+
+    it { expect(Trello.public_key_url).to eq('https://trello.com/app-key') }
+    it { expect(Trello.authorize_url(key: 'foo')).to match(%r{^https://trello.com/1/authorize}) }
+
+    describe '.open_public_key_url' do
+      it 'launches app key endpoint' do
+        expect(Launchy).to receive(:open).with('https://trello.com/app-key')
+
+        Trello.open_public_key_url
+      end
+
+      it 'rescues LoadError', :silence_warnings do
+        allow(Launchy).to receive(:open).and_raise(LoadError)
+
+        expect { Trello.open_public_key_url }.to_not raise_error(LoadError)
+      end
+    end
+
+    describe '.open_authorization_url' do
+      it 'launches authorize endpoint with configured public key' do
+        app_key = 'abcd1234'
+        allow(Trello.configuration).to receive(:developer_public_key).and_return(app_key)
+        authorize_url = "https://trello.com/1/authorize?expiration=never&key=#{app_key}&name=Ruby%20Trello&response_type=token&scope=read%2Cwrite%2Caccount"
+        expect(Launchy).to receive(:open).with(authorize_url)
+
+        Trello.open_authorization_url
+      end
+
+      it 'launches authorize endpoint with given public key' do
+        app_key = 'wxyz6789'
+        authorize_url = "https://trello.com/1/authorize?expiration=never&key=#{app_key}&name=Ruby%20Trello&response_type=token&scope=read%2Cwrite%2Caccount"
+        expect(Launchy).to receive(:open).with(authorize_url)
+
+        Trello.open_authorization_url(key: 'wxyz6789')
+      end
+
+      it 'raises an error if key not configured' do
+        expect(Launchy).to_not receive(:open)
+
+        expect { Trello.open_authorization_url }.to raise_error(ArgumentError)
+      end
+    end
   end
 end
