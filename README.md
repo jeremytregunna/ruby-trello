@@ -29,7 +29,7 @@ Supports Ruby 2.0 or newer. Version 1.3.0 is the last version that supports Ruby
 1. Get your API public key from Trello via the irb console:
 
 ```
-$ gem install trello
+$ gem install ruby-trello
 $ irb -rubygems
 irb> require 'trello'
 irb> Trello.open_public_key_url                         # copy your public key
