@@ -9,6 +9,8 @@ module Trello
     include ActiveModel::Dirty
     include ActiveModel::Serializers::JSON
 
+    extend Trello::Utils
+
     class << self
       def path_name
         name.split("::").last.underscore

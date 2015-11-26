@@ -62,6 +62,7 @@ module Trello
   autoload :TInternet,         'trello/net'
   autoload :Token,             'trello/token'
   autoload :Webhook,           'trello/webhook'
+  autoload :Utils,             'trello/utils'
 
   module Authorization
     autoload :AuthPolicy,      'trello/authorization'
