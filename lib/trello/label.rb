@@ -78,11 +78,11 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      client.post("/labels", {
+      from_response client.post("/labels", {
         name:   name,
         color:   color,
         idBoard: board_id,
-      }).json_into(self)
+      })
     end
 
     # Update an existing record.

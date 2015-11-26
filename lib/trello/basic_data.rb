@@ -9,7 +9,7 @@ module Trello
     include ActiveModel::Dirty
     include ActiveModel::Serializers::JSON
 
-    extend Trello::Utils
+    include Trello::JsonUtils
 
     class << self
       def path_name
@@ -31,13 +31,13 @@ module Trello
       end
 
       def parse(response)
-        response.json_into(self).tap do |basic_data|
+        from_response(response).tap do |basic_data|
           yield basic_data if block_given?
         end
       end
 
       def parse_many(response)
-        response.json_into(self).map do |data|
+        from_response(response).map do |data|
           data.tap do |d|
             yield d if block_given?
           end

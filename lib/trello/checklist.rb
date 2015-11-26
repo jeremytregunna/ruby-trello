@@ -69,15 +69,15 @@ module Trello
     def save
       return update! if id
 
-      client.post("/checklists", {
-          name: name,
-          idBoard: board_id,
-          idCard: card_id
-      }).json_into(self)
+      from_response(client.post("/checklists", {
+        name: name,
+        idBoard: board_id,
+        idCard: card_id
+      }))
     end
 
     def update!
-      client.put("/checklists/#{id}", {name: name, pos: position}).json_into(self)
+      from_response(client.put("/checklists/#{id}", {name: name, pos: position}))
     end
 
     # Return a list of items on the checklist.

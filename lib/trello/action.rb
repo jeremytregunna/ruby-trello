@@ -49,17 +49,17 @@ module Trello
 
     # Returns the board this action occurred on.
     def board
-      client.get("/actions/#{id}/board").json_into(Board)
+      Board.from_response client.get("/actions/#{id}/board")
     end
 
     # Returns the card the action occurred on.
     def card
-      client.get("/actions/#{id}/card").json_into(Card)
+      Card.from_response client.get("/actions/#{id}/card")
     end
 
     # Returns the list the action occurred on.
     def list
-      client.get("/actions/#{id}/list").json_into(List)
+      List.from_response client.get("/actions/#{id}/list")
     end
 
     # Returns the member who created the action.

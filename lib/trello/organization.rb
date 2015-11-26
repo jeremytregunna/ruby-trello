@@ -50,13 +50,13 @@ module Trello
 
     # Returns a list of boards under this organization.
     def boards
-      boards = client.get("/organizations/#{id}/boards/all").json_into(Board)
+      boards = Board.from_response client.get("/organizations/#{id}/boards/all")
       MultiAssociation.new(self, boards).proxy
     end
 
     # Returns an array of members associated with the organization.
     def members(params = {})
-      members = client.get("/organizations/#{id}/members/all", params).json_into(Member)
+      members = Member.from_response client.get("/organizations/#{id}/members/all", params)
       MultiAssociation.new(self, members).proxy
     end
 

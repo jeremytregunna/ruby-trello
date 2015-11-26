@@ -65,11 +65,11 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      client.post("/webhooks", {
+      from_response client.post("/webhooks", {
         description: description,
         idModel: id_model,
         callbackURL: callback_url
-      }).json_into(self)
+      })
     end
 
     # Update the webhook.
