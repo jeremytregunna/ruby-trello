@@ -1,13 +1,18 @@
 module Trello
   module JsonUtils
-    extend ActiveSupport::Concern
-
-    def from_response(*args)
-      update_fields parse_json(*args)
+    def self.included(base)
+      base.send :include, InstanceMethods
+      base.send :extend, ClassMethods
     end
 
-    def parse_json(*args)
-      self.class.parse_json(*args)
+    module InstanceMethods
+      def from_response(*args)
+        update_fields parse_json(*args)
+      end
+
+      def parse_json(*args)
+        self.class.parse_json(*args)
+      end
     end
 
     module ClassMethods
