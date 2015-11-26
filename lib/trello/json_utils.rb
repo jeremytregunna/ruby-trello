@@ -11,8 +11,24 @@ module Trello
     end
 
     module ClassMethods
-      def from_response(data)
-        from_json(parse_json(data))
+      # Public - Decodes some JSON text in the receiver, and marshals it into a class specified
+      # in _obj_.
+      #
+      # For instance:
+      #
+      #   class Stuff
+      #     attr_reader :a, :b
+      #     def initialize(values)
+      #       @a = values['a']
+      #       @b = values['b']
+      #     end
+      #   end
+      #   thing = Stuff.from_response '{"a":42,"b":"foo"}'
+      #   thing.a == 42
+      #   thing.b == "foo"
+      #
+      def from_response(data, encoding = 'UTF-8')
+        from_json(parse_json(data, encoding))
       end
 
       def from_json(json)
