@@ -21,6 +21,8 @@ module Trello
     }
 
     class << self
+      VALID_LABEL_COLOURS = %w{green yellow orange red purple blue sky lime pink black} << ''
+
       # Find a specific card by its id.
       def find(id, params = {})
         client.find(:label, id, params)
@@ -37,7 +39,7 @@ module Trello
 
       # Label colours
       def label_colours
-        %w{green yellow orange red purple blue sky lime pink black}
+        VALID_LABEL_COLOURS
       end
     end
 
