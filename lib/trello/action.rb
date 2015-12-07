@@ -26,8 +26,9 @@ module Trello
 
       def search(query, opts={})
         response = client.get("/search/", { query: query }.merge(opts))
-        JSON.parse(response).except("options").inject({}) do |res, key|
-          res.merge({ key.first => key.last.jsoned_into("Trello::#{key.first.singularize.capitalize}".constantize) })
+        parse_json(response).except("options").each_with_object({}) do |(key, data), result|
+          klass = "Trello::#{key.singularize.capitalize}".constantize
+          result[key] = klass.from_json(data)
         end
       end
     end
@@ -48,17 +49,17 @@ module Trello
 
     # Returns the board this action occurred on.
     def board
-      client.get("/actions/#{id}/board").json_into(Board)
+      Board.from_response client.get("/actions/#{id}/board")
     end
 
     # Returns the card the action occurred on.
     def card
-      client.get("/actions/#{id}/card").json_into(Card)
+      Card.from_response client.get("/actions/#{id}/card")
     end
 
     # Returns the list the action occurred on.
     def list
-      client.get("/actions/#{id}/list").json_into(List)
+      List.from_response client.get("/actions/#{id}/list")
     end
 
     # Returns the member who created the action.

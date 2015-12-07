@@ -51,12 +51,12 @@ module Trello
     def save
       return update! if id
 
-      client.post("/lists", {
+      from_response client.post("/lists", {
         name: name,
         closed: closed || false,
         idBoard: board_id,
         pos: pos
-      }).json_into(self)
+      })
     end
 
     def update!

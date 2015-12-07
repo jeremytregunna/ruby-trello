@@ -1,6 +1,3 @@
-require 'trello/core_ext/array'
-require 'trello/core_ext/hash'
-require 'trello/core_ext/string'
 require 'active_support/inflector'
 
 module Trello
@@ -8,6 +5,8 @@ module Trello
     include ActiveModel::Validations
     include ActiveModel::Dirty
     include ActiveModel::Serializers::JSON
+
+    include Trello::JsonUtils
 
     class << self
       def path_name
@@ -29,13 +28,13 @@ module Trello
       end
 
       def parse(response)
-        response.json_into(self).tap do |basic_data|
+        from_response(response).tap do |basic_data|
           yield basic_data if block_given?
         end
       end
 
       def parse_many(response)
-        response.json_into(self).map do |data|
+        from_response(response).map do |data|
           data.tap do |d|
             yield d if block_given?
           end

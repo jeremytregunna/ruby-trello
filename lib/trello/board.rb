@@ -53,7 +53,7 @@ module Trello
 
       # @return [Array<Trello::Board>] all boards for the current user
       def all
-        client.get("/members/#{Member.find(:me).username}/boards").json_into(self)
+        from_response client.get("/members/#{Member.find(:me).username}/boards")
       end
     end
 
@@ -65,7 +65,7 @@ module Trello
       fields.merge!(idOrganization: organization_id) if organization_id
       fields.merge!(flat_prefs)
 
-      client.post("/boards", fields).json_into(self)
+      from_response(client.post("/boards", fields))
     end
 
     def update!
@@ -83,7 +83,7 @@ module Trello
       }
       fields.merge!(flat_prefs)
 
-      client.put("/boards/#{self.id}/", fields).json_into(self)
+      from_response client.put("/boards/#{self.id}/", fields)
     end
 
     def update_fields(fields)
@@ -117,7 +117,7 @@ module Trello
     # Find a card on this Board with the given ID.
     # @return [Trello::Card]
     def find_card(card_id)
-      client.get("/boards/#{self.id}/cards/#{card_id}").json_into(Card)
+      Card.from_response client.get("/boards/#{self.id}/cards/#{card_id}")
     end
 
     # Add a member to this Board.
@@ -158,12 +158,12 @@ module Trello
     def labels(params={})
       # Set the limit to as high as possible given there is no pagination in this API.
       params[:limit] = 1000 unless params[:limit]
-      labels = client.get("/boards/#{id}/labels", params).json_into(Label)
+      labels = Label.from_response client.get("/boards/#{id}/labels", params)
       MultiAssociation.new(self, labels).proxy
     end
 
     def label_names
-      label_names = client.get("/boards/#{id}/labelnames").json_into(LabelName)
+      label_names = LabelName.from_response client.get("/boards/#{id}/labelnames")
       MultiAssociation.new(self, label_names).proxy
     end
 

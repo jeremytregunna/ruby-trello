@@ -98,10 +98,10 @@ module Trello
     end
 
     def update!
-      client.put(request_prefix, {
+      from_response client.put(request_prefix, {
         fullName: full_name,
         bio: bio
-      }).json_into(self)
+      })
     end
 
     # :nodoc:

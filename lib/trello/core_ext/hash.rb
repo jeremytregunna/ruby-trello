@@ -1,6 +1,6 @@
+warn "Use of trello/core_ext/hash is deprecated. Use Trello::JsonUtils instead"
 class Hash
   def jsoned_into(obj)
-    action = obj.kind_of?(Class) ? :new : :update_fields
-    obj.send(action, self)
+    obj.from_json(self)
   end
 end

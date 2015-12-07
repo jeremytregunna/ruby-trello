@@ -175,7 +175,7 @@ module Trello
     many :checklists, filter: :all
 
     def check_item_states
-      states = client.get("/cards/#{self.id}/checkItemStates").json_into(CheckItemState)
+      states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates")
       MultiAssociation.new(self, states).proxy
     end
 
@@ -189,7 +189,7 @@ module Trello
     # @return [Array<Trello::Member>]
     def members
       members = member_ids.map do |member_id|
-        client.get("/members/#{member_id}").json_into(Member)
+        Member.from_response client.get("/members/#{member_id}")
       end
       MultiAssociation.new(self, members).proxy
     end
@@ -204,7 +204,7 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      client.post("/cards", {
+      from_response client.post("/cards", {
         name:   name,
         desc:   desc,
         idList: list_id,
@@ -212,7 +212,7 @@ module Trello
         labels: card_labels,
         pos: pos,
         due: due
-      }).json_into(self)
+      })
     end
 
     # Update an existing record.
@@ -233,7 +233,6 @@ module Trello
 
       client.put("/cards/#{id}", payload)
     end
-
 
     # Delete this card
     #
@@ -353,7 +352,7 @@ module Trello
 
     # Retrieve a list of attachments
     def attachments
-      attachments = client.get("/cards/#{id}/attachments").json_into(Attachment)
+      attachments = Attachment.from_response client.get("/cards/#{id}/attachments")
       MultiAssociation.new(self, attachments).proxy
     end
 

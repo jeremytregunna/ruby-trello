@@ -42,7 +42,7 @@ describe "how to use boards", broken: true do
     end
 
     it "can list all boards" do
-      Client.get("/members/me/boards/").json_into(Board).should be_an Array
+      Board.from_response(Client.get("/members/me/boards/")).should be_an Array
     end
   end
 end

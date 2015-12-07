@@ -6,6 +6,8 @@ describe String, '#json_into' do
 
   def example_class
     @example_class ||= Class.new do
+      include Trello::JsonUtils
+
       attr_accessor :name, :description
 
       def initialize(options = {})
