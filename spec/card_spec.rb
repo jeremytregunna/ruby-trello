@@ -57,12 +57,13 @@ module Trello
         payload = {
           name: 'Test Card',
           desc: nil,
+          card_labels: "abcdef123456789123456789"
         }
 
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: "Test Card", desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, labels: nil, pos: nil, due: nil}
+                            idMembers: nil, idLabels: "abcdef123456789123456789", pos: nil, due: nil}
 
         expect(client)
           .to receive(:post)

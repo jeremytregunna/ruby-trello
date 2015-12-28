@@ -209,7 +209,7 @@ module Trello
         desc:   desc,
         idList: list_id,
         idMembers: member_ids,
-        labels: card_labels,
+        idLabels: card_labels,
         pos: pos,
         due: due
       })
