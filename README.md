@@ -20,7 +20,7 @@ Seriously, [check it out](http://www.trello.com/).
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
 to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
 
-Supports Ruby 2.0 or newer. Version 1.3.0 is the last version that supports Ruby that is older than 1.9.3. 
+Supports Ruby 1.9.3 or newer.
 
 ## Configuration
 
