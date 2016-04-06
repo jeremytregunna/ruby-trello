@@ -365,5 +365,15 @@ module Trello
     def request_prefix
       "/cards/#{id}"
     end
+
+    # Retrieve a list of actions
+    def actions
+      action = Action.from_response client.get("/cards/#{id}/actions")
+    end
+
+    # Retrieve a list of comments
+    def comments
+      comments = Comment.from_response client.get("/cards/#{id}/actions", filter: "commentCard")
+    end
   end
 end
