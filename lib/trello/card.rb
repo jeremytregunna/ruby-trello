@@ -84,6 +84,10 @@ module Trello
       end
 
       # Create a new card and save it on Trello.
+      # 
+      # If using source_card_id to duplicate a card, make sure to save
+      # the source card to Trello before calling this method to assure 
+      # the correct data is used in the duplication.
       #
       # @param [Hash] options
       # @option options [String] :name The name of the new card.
