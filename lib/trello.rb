@@ -129,7 +129,7 @@ module Trello
     params[:key] ||= configuration.developer_public_key or
       raise ArgumentError, 'Please configure your Trello public key'
     params[:name] ||= 'Ruby Trello'
-    params[:scope] = 'read,write,account'
+    params[:scope] ||= 'read,write,account'
     params[:expiration] ||= 'never'
     params[:response_type] ||= 'token'
     uri = Addressable::URI.parse 'https://trello.com/1/authorize'

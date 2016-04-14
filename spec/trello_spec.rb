@@ -86,6 +86,12 @@ describe Trello do
     it { expect(Trello.public_key_url).to eq('https://trello.com/app-key') }
     it { expect(Trello.authorize_url(key: 'foo')).to match(%r{^https://trello.com/1/authorize}) }
 
+    describe '.authorize_url' do
+      it 'allows the scope to be set' do
+        expect(Trello.authorize_url(key: 'foo', scope: 'read')).to match(%r{scope=read$})
+      end
+    end
+
     describe '.open_public_key_url' do
       it 'launches app key endpoint' do
         expect(Launchy).to receive(:open).with('https://trello.com/app-key')
