@@ -63,7 +63,7 @@ module Trello
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: "Test Card", desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: "abcdef123456789123456789", pos: nil, due: nil}
+                            idMembers: nil, idLabels: "abcdef123456789123456789", pos: nil, due: nil, idCardSource: nil, keepFromSource: 'all'}
 
         expect(client)
           .to receive(:post)
@@ -74,6 +74,69 @@ module Trello
 
         expect(card).to be_a Card
       end
+
+      it 'creates a duplicate card with all source properties and saves it on Trello', refactor: true do
+        payload = {
+          source_card_id: cards_details.first['id']
+        }
+
+        result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
+
+        expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: 'all'}
+
+        expect(client)
+          .to receive(:post)
+          .with("/cards", expected_payload)
+          .and_return result
+
+        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+
+        expect(card).to be_a Card
+      end
+      
+      it 'creates a duplicate card with source due date and checklists and saves it on Trello', refactor: true do
+        payload = {
+          source_card_id: cards_details.first['id'],
+          source_card_properties: ['due','checklists']
+        }
+
+        result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
+
+        expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: ['due','checklists']}
+
+        expect(client)
+          .to receive(:post)
+          .with("/cards", expected_payload)
+          .and_return result
+
+        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+
+        expect(card).to be_a Card
+      end
+
+      it 'creates a duplicate card with no source properties and saves it on Trello', refactor: true do
+        payload = {
+          source_card_id: cards_details.first['id'],
+          source_card_properties: nil
+        }
+
+        result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
+
+        expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: nil}
+
+        expect(client)
+          .to receive(:post)
+          .with("/cards", expected_payload)
+          .and_return result
+
+        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+
+        expect(card).to be_a Card
+      end
+
     end
 
     context "updating" do

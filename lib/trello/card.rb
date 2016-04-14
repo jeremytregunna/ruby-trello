@@ -35,13 +35,18 @@ module Trello
   #   @return [Hash]
   # @!attribute [r] card_members
   #   @return [Object]
+  # @!attribute [rw] source_card_id
+  #   @return [String] A 24-character hex string
+  # @!attribute [rw] source_card_properties
+  #   @return [Array<String>] Array of strings
+
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
-      :cover_image_id, :badges, :card_members,
+      :cover_image_id, :badges, :card_members, :source_card_id, :source_card_properties,
       readonly: [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
     validates_presence_of :id, :name, :list_id
-    validates_length_of   :name,        in: 1..16384
+    validates_length_of   :name, in: 1..16384
     validates_length_of   :desc, in: 0..16384
 
     include HasActions
@@ -63,7 +68,9 @@ module Trello
       last_activity_date: 'dateLastActivity',
       card_labels: 'labels',
       badges: 'badges',
-      card_members: 'members'
+      card_members: 'members',
+      source_card_id: "idCardSource",
+      source_card_properties: "keepFromSource"
     }
 
     class << self
@@ -77,6 +84,10 @@ module Trello
       end
 
       # Create a new card and save it on Trello.
+      # 
+      # If using source_card_id to duplicate a card, make sure to save
+      # the source card to Trello before calling this method to assure 
+      # the correct data is used in the duplication.
       #
       # @param [Hash] options
       # @option options [String] :name The name of the new card.
@@ -91,6 +102,11 @@ module Trello
       # @option options [Date] :due A date, or `nil`.
       # @option options [String] :pos A position. `"top"`, `"bottom"`, or a
       #     positive number. Defaults to `"bottom"`.
+      # @option options [String] :source_card_id ID of the card to copy
+      # @option options [String] :source_card_properties A single, or array of,
+      #     string properties to copy from source card.
+      #     `"all"`, `"checklists"`, `"due"`, `"members"`, or `nil`.
+      #     Defaults to `"all"`.
       #
       # @raise [Trello::Error] if the card could not be created.
       #
@@ -103,7 +119,9 @@ module Trello
           'idMembers' => options[:member_ids],
           'labels' => options[:card_labels],
           'due' => options[:due],
-          'pos' => options[:pos]
+          'pos' => options[:pos],
+          'idCardSource' => options[:source_card_id],
+          'keepFromSource' => options.key?(:source_card_properties) ? options[:source_card_properties] : 'all'
         )
       end
     end
@@ -138,27 +156,30 @@ module Trello
     # @option fields [Object] :cover_image_id
     # @option fields [Object] :badges
     # @option fields [Object] :card_members
+    # @option fields [String] :source_card_id
+    # @option fields [Array]  :source_card_properties
     #
     # @return [Trello::Card] self
     def update_fields(fields)
-      attributes[:id]                 = fields[SYMBOL_TO_STRING[:id]]
-      attributes[:short_id]           = fields[SYMBOL_TO_STRING[:short_id]]
-      attributes[:name]               = fields[SYMBOL_TO_STRING[:name]]
-      attributes[:desc]               = fields[SYMBOL_TO_STRING[:desc]]
-      attributes[:due]                = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil
-      attributes[:closed]             = fields[SYMBOL_TO_STRING[:closed]]
-      attributes[:url]                = fields[SYMBOL_TO_STRING[:url]]
-      attributes[:short_url]          = fields[SYMBOL_TO_STRING[:short_url]]
-      attributes[:board_id]           = fields[SYMBOL_TO_STRING[:board_id]]
-      attributes[:member_ids]         = fields[SYMBOL_TO_STRING[:member_ids]]
-      attributes[:list_id]            = fields[SYMBOL_TO_STRING[:list_id]]
-      attributes[:pos]                = fields[SYMBOL_TO_STRING[:pos]]
-      attributes[:card_labels]        = fields[SYMBOL_TO_STRING[:card_labels]]
-      attributes[:last_activity_date] = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
-      attributes[:cover_image_id]     = fields[SYMBOL_TO_STRING[:cover_image_id]]
-      attributes[:badges]             = fields[SYMBOL_TO_STRING[:badges]]
-      attributes[:card_members]       = fields[SYMBOL_TO_STRING[:card_members]]
-
+      attributes[:id]                     = fields[SYMBOL_TO_STRING[:id]]
+      attributes[:short_id]               = fields[SYMBOL_TO_STRING[:short_id]]
+      attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]]
+      attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]]
+      attributes[:due]                    = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil
+      attributes[:closed]                 = fields[SYMBOL_TO_STRING[:closed]]
+      attributes[:url]                    = fields[SYMBOL_TO_STRING[:url]]
+      attributes[:short_url]              = fields[SYMBOL_TO_STRING[:short_url]]
+      attributes[:board_id]               = fields[SYMBOL_TO_STRING[:board_id]]
+      attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]]
+      attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]]
+      attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]]
+      attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]]
+      attributes[:last_activity_date]     = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
+      attributes[:cover_image_id]         = fields[SYMBOL_TO_STRING[:cover_image_id]]
+      attributes[:badges]                 = fields[SYMBOL_TO_STRING[:badges]]
+      attributes[:card_members]           = fields[SYMBOL_TO_STRING[:card_members]]
+      attributes[:source_card_id]         = fields[SYMBOL_TO_STRING[:source_card_id]]
+      attributes[:source_card_properties] = fields[SYMBOL_TO_STRING[:source_card_properties]]
       self
     end
 
@@ -211,7 +232,9 @@ module Trello
         idMembers: member_ids,
         idLabels: card_labels,
         pos: pos,
-        due: due
+        due: due,
+        idCardSource: source_card_id,
+        keepFromSource: source_card_properties
       })
     end
 
