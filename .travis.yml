@@ -13,6 +13,8 @@ rvm:
   - 2.2.2
   - 2.2.3
   - jruby-19mode
+before_install:
+  - gem update bundler
 env:
   - ACTIVE_MODEL_VERSION='~> 3.2.0'
   - ACTIVE_MODEL_VERSION='~> 4.0'
