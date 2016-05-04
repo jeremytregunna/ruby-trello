@@ -66,7 +66,7 @@ module Trello
       list_id: 'idList',
       pos: 'pos',
       last_activity_date: 'dateLastActivity',
-      card_labels: 'labels',
+      card_labels: 'idLabels',
       badges: 'badges',
       card_members: 'members',
       source_card_id: "idCardSource",
@@ -84,9 +84,9 @@ module Trello
       end
 
       # Create a new card and save it on Trello.
-      # 
+      #
       # If using source_card_id to duplicate a card, make sure to save
-      # the source card to Trello before calling this method to assure 
+      # the source card to Trello before calling this method to assure
       # the correct data is used in the duplication.
       #
       # @param [Hash] options
@@ -117,7 +117,7 @@ module Trello
           'idList' => options[:list_id],
           'desc'   => options[:desc],
           'idMembers' => options[:member_ids],
-          'labels' => options[:card_labels],
+          'idLabels' => options[:card_labels],
           'due' => options[:due],
           'pos' => options[:pos],
           'idCardSource' => options[:source_card_id],
