@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.summary           = %q{A wrapper around the trello.com API.}
   s.test_files        = Dir.glob("spec/**/*")
 
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 2.1.0'
 
   s.add_dependency 'activemodel', '>= 3.2.0'
   s.add_dependency 'addressable', '~> 2.3'
