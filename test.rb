@@ -24,4 +24,4 @@ if board.has_lists?
 else
   list = List.create(name: "Getting Shit done", board_id: board.id)
 end
-Card.create(name: "test from ruby-trello", description: "Just a desc", list_id: list.id)
+Card.create(name: "test from ruby-trello", desc: "Just a desc", list_id: list.id)
