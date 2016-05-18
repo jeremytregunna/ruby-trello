@@ -19,6 +19,7 @@ module Trello
             Response.new(200, {}, result)
           end
         rescue RestClient::Exception => e
+          raise if !e.respond_to?(:http_code) || e.http_code.nil?
           Response.new(e.http_code, {}, e.http_body)
         end
       end
