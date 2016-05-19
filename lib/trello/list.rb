@@ -98,6 +98,11 @@ module Trello
        })
     end
 
+    # Archives all the cards of the list
+    def archive_all_cards
+      client.post("/lists/#{id}/archiveAllCards")
+    end
+
     # :nodoc:
     def request_prefix
       "/lists/#{id}"
