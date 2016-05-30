@@ -57,12 +57,19 @@ module Trello
         payload = {
           name: 'Test List',
           board_id: 'abcdef123456789123456789',
-          pos: 42
+          pos: 42,
+          source_list_id: 'abcdef123456789'
         }
 
         result = JSON.generate(payload)
 
-        expected_payload = {name: 'Test List', closed: false, idBoard: 'abcdef123456789123456789', pos: 42}
+        expected_payload = {
+          name: 'Test List',
+          closed: false,
+          idBoard: 'abcdef123456789123456789',
+          pos: 42,
+          idListSource: 'abcdef123456789'
+        }
 
         expect(client)
           .to receive(:post)
