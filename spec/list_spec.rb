@@ -163,6 +163,15 @@ module Trello
 
         expect(list.move_all_cards(other_list)).to eq cards_payload
       end
+
+      it 'archives all cards' do
+        allow(client)
+          .to receive(:post)
+          .with('/lists/abcdef123456789123456789/archiveAllCards')
+          .and_return cards_payload
+
+        expect(list.archive_all_cards).to eq cards_payload
+      end
     end
 
     describe '#closed?' do
