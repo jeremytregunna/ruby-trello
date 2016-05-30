@@ -360,7 +360,8 @@ module Trello
 
     # Add an attachment to this card
     def add_attachment(attachment, name='')
-      if attachment.is_a? File
+      # Is it a file object or a string (url)?
+      if attachment.respond_to?(:path) && attachment.respond_to?(:read)
         client.post("/cards/#{id}/attachments", {
             file: attachment,
             name: name
