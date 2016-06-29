@@ -416,36 +416,38 @@ module Trello
     context "labels" do
       before do
         allow(client)
-          .to receive(:get)
-          .with("/cards/abcdef123456789123456789/labels")
-          .and_return label_payload
-
-        allow(client)
           .to receive(:post)
-          .with("/cards/abcdef123456789123456789/labels", { value: 'green' })
+          .with("/cards/ebcdef123456789123456789/labels", { value: 'green' })
           .and_return "not important"
 
         allow(client)
           .to receive(:delete)
-          .with("/cards/abcdef123456789123456789/labels/green")
+          .with("/cards/ebcdef123456789123456789/labels/green")
           .and_return "not important"
       end
-      it "can retrieve labels" do
-        allow(client).to receive(:get).
-          with("/cards/abcdef123456789123456789/labels", {}).
-          and_return label_payload
+
+      it "includes card label objects list" do
         labels = card.labels
-        expect(labels.size).to  eq(4)
-        expect(labels[0].color).to  eq('yellow')
-        expect(labels[0].id).to  eq('abcdef123456789123456789')
-        expect(labels[0].board_id).to  eq('abcdef123456789123456789')
-        expect(labels[0].name).to  eq('iOS')
-        expect(labels[0].uses).to  eq(3)
-        expect(labels[1].color).to  eq('purple')
-        expect(labels[1].id).to  eq('abcdef123456789123456789')
-        expect(labels[1].board_id).to  eq('abcdef123456789123456789')
-        expect(labels[1].name).to  eq('Issue or bug')
-        expect(labels[1].uses).to  eq(1)
+        expect(labels.size).to        eq(4)
+        expect(labels[0].color).to    eq('yellow')
+        expect(labels[0].id).to       eq('abcdef123456789123456789')
+        expect(labels[0].board_id).to eq('abcdef123456789123456789')
+        expect(labels[0].name).to     eq('iOS')
+        expect(labels[0].uses).to     eq(3)
+        expect(labels[1].color).to    eq('purple')
+        expect(labels[1].id).to       eq('bbcdef123456789123456789')
+        expect(labels[1].board_id).to eq('abcdef123456789123456789')
+        expect(labels[1].name).to     eq('Issue or bug')
+        expect(labels[1].uses).to     eq(1)
+      end
+
+      it "includes label ids list" do
+        label_ids = card.card_labels
+        expect(label_ids.size).to eq(4)
+        expect(label_ids[0]).to   eq('abcdef123456789123456789')
+        expect(label_ids[1]).to   eq('bbcdef123456789123456789')
+        expect(label_ids[2]).to   eq('cbcdef123456789123456789')
+        expect(label_ids[3]).to   eq('dbcdef123456789123456789')
       end
 
       it "can remove a label" do

@@ -142,6 +142,11 @@ module Helpers
       'idBoard'           => 'abcdef123456789123456789',
       'idAttachmentCover' => 'abcdef123456789123456789',
       'idMembers'         => ['abcdef123456789123456789'],
+      'labels'            => label_details,
+      'idLabels'          => [ 'abcdef123456789123456789',
+                               'bbcdef123456789123456789',
+                               'cbcdef123456789123456789',
+                               'dbcdef123456789123456789' ],
       'url'               => 'https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789',
       'shortUrl'          => 'https://trello.com/c/abcdef12',
       'pos'               => 12,
@@ -310,9 +315,9 @@ module Helpers
   def label_details
     [
       {'color' => 'yellow', 'name' => 'iOS', 'id' => 'abcdef123456789123456789', 'uses' => 3, 'idBoard' => 'abcdef123456789123456789'},
-      {'color' => 'purple', 'name' => 'Issue or bug', 'id' => 'abcdef123456789123456789', 'uses' => 1, 'idBoard' => 'abcdef123456789123456789'},
-      {'color' => 'red', 'name' => 'deploy', 'id' => 'abcdef123456789123456789', 'uses' => 2, 'idBoard' => 'abcdef123456789123456789'},
-      {'color' => 'blue', 'name' => 'on hold', 'id' => 'abcdef123456789123456789', 'uses' => 6, 'idBoard' => 'abcdef123456789123456789'}
+      {'color' => 'purple', 'name' => 'Issue or bug', 'id' => 'bbcdef123456789123456789', 'uses' => 1, 'idBoard' => 'abcdef123456789123456789'},
+      {'color' => 'red', 'name' => 'deploy', 'id' => 'cbcdef123456789123456789', 'uses' => 2, 'idBoard' => 'abcdef123456789123456789'},
+      {'color' => 'blue', 'name' => 'on hold', 'id' => 'dbcdef123456789123456789', 'uses' => 6, 'idBoard' => 'abcdef123456789123456789'}
     ]
   end
 
