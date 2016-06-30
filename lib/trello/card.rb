@@ -29,6 +29,8 @@ module Trello
   #   @return [Dateime]
   # @!attribute [rw] card_labels
   #   @return [Array<Hash>]
+  # @!attribute [rw] labels
+  #   @return [Array<Trello::Labels>]
   # @!attribute [rw] cover_image_id
   #   @return [String] A 24-character hex string
   # @!attribute [r] badges
@@ -42,7 +44,7 @@ module Trello
 
   class Card < BasicData
     register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
-      :board_id, :member_ids, :list_id, :pos, :last_activity_date, :card_labels,
+      :board_id, :member_ids, :list_id, :pos, :last_activity_date, :labels, :card_labels,
       :cover_image_id, :badges, :card_members, :source_card_id, :source_card_properties,
       readonly: [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
     validates_presence_of :id, :name, :list_id
@@ -67,6 +69,7 @@ module Trello
       pos: 'pos',
       last_activity_date: 'dateLastActivity',
       card_labels: 'idLabels',
+      labels: 'labels',
       badges: 'badges',
       card_members: 'members',
       source_card_id: "idCardSource",
@@ -151,6 +154,8 @@ module Trello
     #     (24-character hex strings).
     # @option fields [String] :pos A position. `"top"`, `"bottom"`, or a
     #     positive number. Defaults to `"bottom"`.
+    # @option fields [Array]  :labels An Array of Trello::Label objects
+    #     derived from the JSON response
     # @option fields [String] :card_labels A comma-separated list of
     #     objectIds (24-character hex strings).
     # @option fields [Object] :cover_image_id
@@ -173,6 +178,7 @@ module Trello
       attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]]
       attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]]
       attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]]
+      attributes[:labels]                 = (fields[SYMBOL_TO_STRING[:labels]] || []).map { |lbl| Trello::Label.new(lbl) }
       attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]]
       attributes[:last_activity_date]     = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
       attributes[:cover_image_id]         = fields[SYMBOL_TO_STRING[:cover_image_id]]
@@ -199,8 +205,6 @@ module Trello
       states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates")
       MultiAssociation.new(self, states).proxy
     end
-
-    many :labels
 
     # Returns a reference to the list this card is currently in.
     one :list, path: :lists, using: :list_id
