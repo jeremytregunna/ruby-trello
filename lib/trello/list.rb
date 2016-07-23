@@ -12,7 +12,7 @@ module Trello
   # @!attribute [rw] pos
   #   @return [Object]
   class List < BasicData
-    register_attributes :id, :name, :closed, :board_id, :pos, readonly: [ :id, :board_id ]
+    register_attributes :id, :name, :closed, :board_id, :pos, :source_list_id, readonly: [ :id, :board_id ]
     validates_presence_of :id, :name, :board_id
     validates_length_of   :name, in: 1..16384
 
@@ -29,9 +29,10 @@ module Trello
 
       def create(options)
         client.create(:list,
-            'name'    => options[:name],
-            'idBoard' => options[:board_id],
-            'pos'     => options[:pos])
+            'name'         => options[:name],
+            'idBoard'      => options[:board_id],
+            'pos'          => options[:pos],
+            'idListSource' => options[:source_list_id])
       end
     end
 
@@ -40,11 +41,12 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a List.
     def update_fields(fields)
-      attributes[:id]       = fields['id']
-      attributes[:name]     = fields['name']
-      attributes[:closed]   = fields['closed']
-      attributes[:board_id] = fields['idBoard']
-      attributes[:pos]      = fields['pos']
+      attributes[:id]             = fields['id']
+      attributes[:name]           = fields['name']
+      attributes[:closed]         = fields['closed']
+      attributes[:board_id]       = fields['idBoard']
+      attributes[:pos]            = fields['pos']
+      attributes[:source_list_id] = fields['idListSource']
       self
     end
 
@@ -55,7 +57,8 @@ module Trello
         name: name,
         closed: closed || false,
         idBoard: board_id,
-        pos: pos
+        pos: pos,
+        idListSource: source_list_id
       })
     end
 
@@ -96,6 +99,11 @@ module Trello
         idBoard: other_list.board_id,
         idList: other_list.id
        })
+    end
+
+    # Archives all the cards of the list
+    def archive_all_cards
+      client.post("/lists/#{id}/archiveAllCards")
     end
 
     # :nodoc:
