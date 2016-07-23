@@ -139,6 +139,17 @@ module Trello
 
         checklist.add_item(expected_item_name, expected_checked, expected_pos)
       end
+
+      it "updates an item's state" do
+        expected_item_id = "1234"
+        expected_state = "incomplete"
+        expected_resource =
+          "/cards/abccardid/checklist/abcdef123456789123456789" \
+          "/checkItem/#{expected_item_id}/state"
+        payload = { value: expected_state }
+        expect(client).to receive(:put).once.with(expected_resource, payload)
+        checklist.update_item_state(expected_item_id, expected_state)
+      end
     end
 
     context "board" do
