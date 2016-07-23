@@ -22,8 +22,8 @@ to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee2
 
 Supports Ruby 2.1.0 or newer.
 
-Version 1.3.0 is the last version that supports Ruby that is older than 1.9.3. 
-Version 1.4.1 is the last version that supports Ruby that is newer than 1.9.3 and older than 2.0.
+Use version 1.3.0 or earlier for ruby 1.9.3 support.
+Use version 1.4.x or earlier for ruby 2.0.0 support.
 
 ## Configuration
 
