@@ -107,6 +107,14 @@ module Trello
       client.post("/checklists/#{id}/checkItems", {name: name, checked: checked, pos: position})
     end
 
+    # Update a checklist item's state, e.g.: "complete" or "incomplete"
+    def update_item_state(item_id, state)
+      client.put(
+        "/cards/#{card_id}/checklist/#{id}/checkItem/#{item_id}/state",
+        value: state,
+      )
+    end
+
     # Delete a checklist item
     def delete_checklist_item(item_id)
       client.delete("/checklists/#{id}/checkItems/#{item_id}")
@@ -119,7 +127,7 @@ module Trello
 
     # Copy a checklist (i.e., same attributes, items, etc.)
     def copy
-      checklist_copy = self.class.create(name: self.name, board_id: self.board_id)
+      checklist_copy = self.class.create(name: self.name, board_id: self.board_id, card_id: self.card_id)
       copy_items_to(checklist_copy)
       return checklist_copy
     end

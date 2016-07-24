@@ -88,6 +88,7 @@ module Helpers
       'position'   => 16384,
       'url'        => 'https://trello.com/blah/blah',
       'idBoard'    => 'abcdef123456789123456789',
+      'idCard'     => 'abccardid',
       'idList'     => 'abcdef123456789123456789',
       'idMembers'  => ['abcdef123456789123456789'],
       'checkItems' => { 'id' => 'ghijk987654321' }
