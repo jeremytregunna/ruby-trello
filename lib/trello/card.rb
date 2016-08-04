@@ -346,17 +346,31 @@ module Trello
 
     # Current authenticated user upvotes a card
     def upvote
-      client.post("/cards/#{id}/membersVoted", {
-        value: get_authenticated_user_id
-      })
+      begin
+        client.post("/cards/#{id}/membersVoted", {
+          value: get_authenticated_user_id
+        })
+      rescue Trello::Error => e
+        fail e unless e.message =~ /has already voted/i
+      end
+
+      self
     end
 
     # Recind upvote. Noop if authenticated user hasn't previously voted
     def remove_upvote
-      client.delete("/cards/#{id}/membersVoted/#{get_authenticated_user_id}")
+      begin
+        client.delete("/cards/#{id}/membersVoted/#{get_authenticated_user_id}")
+      rescue Trello::Error => e
+        fail e unless e.message =~ /has not voted/i
+      end
+
+      self
     end
 
     # FIXME: this doesn't belong here
+    # Is there a possibility of an application (not a user) that can be
+    # authenticated?
     private def get_authenticated_user_id
       mem = Member.from_response client.get('/members/me')
       mem && mem.id

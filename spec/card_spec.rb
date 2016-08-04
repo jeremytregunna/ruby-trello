@@ -421,10 +421,29 @@ module Trello
         card.upvote
       end
 
+      it 'returns the card even if the user has already upvoted' do
+        expect(client)
+          .to receive(:post)
+          .with("/cards/abcdef123456789123456789/membersVoted", {
+            value: authenticated_member.id
+          })
+          .and_raise(Trello::Error, 'member has already voted')
+        expect(card.upvote).to be_kind_of Trello::Card
+      end
+
       it 'removes an upvote from a card' do
         expect(client)
           .to receive(:delete)
           .with("/cards/abcdef123456789123456789/membersVoted/#{authenticated_member.id}")
+
+        card.remove_upvote
+      end
+
+      it 'returns card after remove_upvote even if the user has not previously upvoted it' do
+        expect(client)
+          .to receive(:delete)
+          .with("/cards/abcdef123456789123456789/membersVoted/#{authenticated_member.id}")
+          .and_raise(Trello::Error, 'member has not voted on the card')
 
         card.remove_upvote
       end
