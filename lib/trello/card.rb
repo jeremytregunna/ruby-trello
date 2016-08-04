@@ -344,6 +344,24 @@ module Trello
       client.delete("/cards/#{id}/members/#{member.id}")
     end
 
+    # Current authenticated user upvotes a card
+    def upvote
+      client.post("/cards/#{id}/membersVoted", {
+        value: get_authenticated_user_id
+      })
+    end
+
+    # Recind upvote. Noop if authenticated user hasn't previously voted
+    def remove_upvote
+      client.delete("/cards/#{id}/membersVoted/#{get_authenticated_user_id}")
+    end
+
+    # FIXME: this doesn't belong here
+    private def get_authenticated_user_id
+      mem = Member.from_response client.get('/members/me')
+      mem && mem.id
+    end
+
     # Add a label
     def add_label(label)
       unless label.valid?

@@ -94,7 +94,7 @@ module Trello
 
         expect(card).to be_a Card
       end
-      
+
       it 'creates a duplicate card with source due date and checklists and saves it on Trello', refactor: true do
         payload = {
           source_card_id: cards_details.first['id'],
@@ -399,6 +399,34 @@ module Trello
           .with("/cards/abcdef123456789123456789/members/#{existing_member.id}")
 
         card.remove_member(existing_member)
+      end
+    end
+
+    context "votes" do
+      let(:authenticated_member) { double(id: '4ee7df3ce582acdec80000b2') }
+
+      before do
+        allow(card)
+          .to receive(:get_authenticated_user_id)
+          .and_return(authenticated_member.id)
+      end
+
+      it 'upvotes a card with the currently authenticated member' do
+        expect(client)
+          .to receive(:post)
+          .with("/cards/abcdef123456789123456789/membersVoted", {
+            value: authenticated_member.id
+          })
+
+        card.upvote
+      end
+
+      it 'removes an upvote from a card' do
+        expect(client)
+          .to receive(:delete)
+          .with("/cards/abcdef123456789123456789/membersVoted/#{authenticated_member.id}")
+
+        card.remove_upvote
       end
     end
 
