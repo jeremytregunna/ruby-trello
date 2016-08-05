@@ -447,7 +447,27 @@ module Trello
 
         card.remove_upvote
       end
+
+      it 'returns members that have voted for the card' do
+        no_voters = JSON.generate([])
+        expect(client)
+          .to receive(:get)
+          .with("/cards/#{card.id}/membersVoted")
+          .and_return(no_voters)
+
+        card.voters
+
+
+        voters = JSON.generate([user_details])
+        expect(client)
+          .to receive(:get)
+          .with("/cards/#{card.id}/membersVoted")
+          .and_return(voters)
+
+        expect(card.voters.first).to be_kind_of Trello::Member
+      end
     end
+
 
     context "comments" do
       it "posts a comment" do

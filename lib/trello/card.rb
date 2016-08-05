@@ -219,6 +219,16 @@ module Trello
       MultiAssociation.new(self, members).proxy
     end
 
+    # Returns a list of members who have upvoted this card
+    # NOTE: this fetches a list each time it's called to avoid case where
+    # card is voted (or vote is removed) after card is fetched. Optimizing
+    # accuracy over network performance
+    #
+    # @return [Array<Trello::Member>]
+    def voters
+      Member.from_response client.get("/cards/#{id}/membersVoted")
+    end
+
     # Saves a record.
     #
     # @raise [Trello::Error] if the card could not be saved
