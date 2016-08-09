@@ -402,13 +402,13 @@ module Trello
       end
     end
 
-    context "votes" do
+    context "add/remove votes" do
       let(:authenticated_member) { double(id: '4ee7df3ce582acdec80000b2') }
 
       before do
         allow(card)
-          .to receive(:get_authenticated_user_id)
-          .and_return(authenticated_member.id)
+          .to receive(:me)
+          .and_return(authenticated_member)
       end
 
       it 'upvotes a card with the currently authenticated member' do
@@ -448,6 +448,9 @@ module Trello
         card.remove_upvote
       end
 
+    end
+
+    context "return all voters" do
       it 'returns members that have voted for the card' do
         no_voters = JSON.generate([])
         expect(client)
