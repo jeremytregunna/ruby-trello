@@ -94,7 +94,7 @@ module Trello
 
         expect(card).to be_a Card
       end
-      
+
       it 'creates a duplicate card with source due date and checklists and saves it on Trello', refactor: true do
         payload = {
           source_card_id: cards_details.first['id'],
@@ -401,6 +401,76 @@ module Trello
         card.remove_member(existing_member)
       end
     end
+
+    context "add/remove votes" do
+      let(:authenticated_member) { double(id: '4ee7df3ce582acdec80000b2') }
+
+      before do
+        allow(card)
+          .to receive(:me)
+          .and_return(authenticated_member)
+      end
+
+      it 'upvotes a card with the currently authenticated member' do
+        expect(client)
+          .to receive(:post)
+          .with("/cards/abcdef123456789123456789/membersVoted", {
+            value: authenticated_member.id
+          })
+
+        card.upvote
+      end
+
+      it 'returns the card even if the user has already upvoted' do
+        expect(client)
+          .to receive(:post)
+          .with("/cards/abcdef123456789123456789/membersVoted", {
+            value: authenticated_member.id
+          })
+          .and_raise(Trello::Error, 'member has already voted')
+        expect(card.upvote).to be_kind_of Trello::Card
+      end
+
+      it 'removes an upvote from a card' do
+        expect(client)
+          .to receive(:delete)
+          .with("/cards/abcdef123456789123456789/membersVoted/#{authenticated_member.id}")
+
+        card.remove_upvote
+      end
+
+      it 'returns card after remove_upvote even if the user has not previously upvoted it' do
+        expect(client)
+          .to receive(:delete)
+          .with("/cards/abcdef123456789123456789/membersVoted/#{authenticated_member.id}")
+          .and_raise(Trello::Error, 'member has not voted on the card')
+
+        card.remove_upvote
+      end
+
+    end
+
+    context "return all voters" do
+      it 'returns members that have voted for the card' do
+        no_voters = JSON.generate([])
+        expect(client)
+          .to receive(:get)
+          .with("/cards/#{card.id}/membersVoted")
+          .and_return(no_voters)
+
+        card.voters
+
+
+        voters = JSON.generate([user_details])
+        expect(client)
+          .to receive(:get)
+          .with("/cards/#{card.id}/membersVoted")
+          .and_return(voters)
+
+        expect(card.voters.first).to be_kind_of Trello::Member
+      end
+    end
+
 
     context "comments" do
       it "posts a comment" do
