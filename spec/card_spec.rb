@@ -220,6 +220,11 @@ module Trello
       it "gets its pos" do
         expect(card.pos).to_not be_nil
       end
+
+      it "gets its creation date" do
+        expect(card.created_at).to_not be_nil
+      end
+
     end
 
     context "actions" do
