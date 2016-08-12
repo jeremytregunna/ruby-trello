@@ -433,6 +433,11 @@ module Trello
       comments = Comment.from_response client.get("/cards/#{id}/actions", filter: "commentCard")
     end
 
+    # Find the creation date
+    def created_at
+      @created_at ||= Time.at(id[0..7].to_i(16)) rescue nil
+    end
+
     private
 
     def me
