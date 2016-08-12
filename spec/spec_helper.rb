@@ -208,7 +208,7 @@ module Helpers
     [{
       'id'              => '4ee2482134a81a757a08af47',
       'idMemberCreator' => 'abcdef123456789123456789',
-      'data'=> {
+      'data' => {
         'card'          => {
           'id'          => '4ee2482134a81a757a08af45',
           'name'        => 'Bytecode outputter'
@@ -242,7 +242,7 @@ module Helpers
           'id'          => 'abcdef123456789123456789',
           'name'        => 'Test'
         },
-        'card'=>{
+        'card' =>{
           'id'          => 'abcdef123456789123456789',
           'name'        => 'Do something awesome'
         },

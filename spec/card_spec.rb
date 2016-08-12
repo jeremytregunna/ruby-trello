@@ -98,13 +98,13 @@ module Trello
       it 'creates a duplicate card with source due date and checklists and saves it on Trello', refactor: true do
         payload = {
           source_card_id: cards_details.first['id'],
-          source_card_properties: ['due','checklists']
+          source_card_properties: ['due', 'checklists']
         }
 
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: ['due','checklists']}
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: ['due', 'checklists']}
 
         expect(client)
           .to receive(:post)

@@ -155,7 +155,7 @@ module Trello
     # Returns a reference to the organization this board belongs to.
     one :organization, path: :organizations, using: :organization_id
 
-    def labels(params={})
+    def labels(params = {})
       # Set the limit to as high as possible given there is no pagination in this API.
       params[:limit] = 1000 unless params[:limit]
       labels = Label.from_response client.get("/boards/#{id}/labels", params)

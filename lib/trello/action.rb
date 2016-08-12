@@ -24,7 +24,7 @@ module Trello
         client.find(:action, id, params)
       end
 
-      def search(query, opts={})
+      def search(query, opts = {})
         response = client.get("/search/", { query: query }.merge(opts))
         parse_json(response).except("options").each_with_object({}) do |(key, data), result|
           klass = "Trello::#{key.singularize.capitalize}".constantize

@@ -103,7 +103,7 @@ module Trello
     end
 
     # Add an item to the checklist
-    def add_item(name, checked=false, position='bottom')
+    def add_item(name, checked = false, position = 'bottom')
       client.post("/checklists/#{id}/checkItems", {name: name, checked: checked, pos: position})
     end
 
