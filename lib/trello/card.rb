@@ -219,6 +219,16 @@ module Trello
       MultiAssociation.new(self, members).proxy
     end
 
+    # Returns a list of members who have upvoted this card
+    # NOTE: this fetches a list each time it's called to avoid case where
+    # card is voted (or vote is removed) after card is fetched. Optimizing
+    # accuracy over network performance
+    #
+    # @return [Array<Trello::Member>]
+    def voters
+      Member.from_response client.get("/cards/#{id}/membersVoted")
+    end
+
     # Saves a record.
     #
     # @raise [Trello::Error] if the card could not be saved
@@ -344,6 +354,30 @@ module Trello
       client.delete("/cards/#{id}/members/#{member.id}")
     end
 
+    # Current authenticated user upvotes a card
+    def upvote
+      begin
+        client.post("/cards/#{id}/membersVoted", {
+          value: me.id
+        })
+      rescue Trello::Error => e
+        fail e unless e.message =~ /has already voted/i
+      end
+
+      self
+    end
+
+    # Recind upvote. Noop if authenticated user hasn't previously voted
+    def remove_upvote
+      begin
+        client.delete("/cards/#{id}/membersVoted/#{me.id}")
+      rescue Trello::Error => e
+        fail e unless e.message =~ /has not voted/i
+      end
+
+      self
+    end
+
     # Add a label
     def add_label(label)
       unless label.valid?
@@ -400,8 +434,20 @@ module Trello
     end
 
     # Find the creation date
+
+    # id                          => 4d5ea62fd76aa1136000000c
+    # id[0..7]                    => 4d5ea62f
+    # id[0..7].to_i(16)           => 1298048559
+    # Time.at(id[0..7].to_i(16))  => 2011-02-18 18:02:39 +0100
+
     def created_at
-      Time.at(id[0..7].to_i(16)) rescue nil
+      @created_at ||= Time.at(id[0..7].to_i(16)) rescue nil
+    end
+
+    private
+
+    def me
+      @me ||= Member.find(:me)
     end
   end
 end
