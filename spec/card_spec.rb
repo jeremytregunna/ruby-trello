@@ -222,8 +222,12 @@ module Trello
       end
 
 
-      it "gets its creation date" do
+      it 'gets its creation time' do
         expect(card.created_at).to be_kind_of Time
+      end
+
+      it 'get its correct creation time' do
+        expect(card.created_at).to eq(Time.parse('2061-05-04 04:40:18 +0200'))
       end
 
     end
