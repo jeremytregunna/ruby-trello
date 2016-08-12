@@ -223,7 +223,7 @@ module Trello
 
 
       it "gets its creation date" do
-        expect(card.created_at).to_not be_nil
+        expect(card.created_at).to eq(Time.at(card.id[0..7].to_i(16)))
       end
 
     end

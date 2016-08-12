@@ -434,12 +434,6 @@ module Trello
     end
 
     # Find the creation date
-
-    # id                          => 4d5ea62fd76aa1136000000c
-    # id[0..7]                    => 4d5ea62f
-    # id[0..7].to_i(16)           => 1298048559
-    # Time.at(id[0..7].to_i(16))  => 2011-02-18 18:02:39 +0100
-
     def created_at
       @created_at ||= Time.at(id[0..7].to_i(16)) rescue nil
     end
