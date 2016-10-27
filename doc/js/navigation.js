@@ -43,17 +43,15 @@ Navigation = new function() {
       case 37: //Event.KEY_LEFT:
         if (this.moveLeft()) e.preventDefault();
         break;
-      case 38: //Event.KEY_UP:
-        if (e.keyCode == 38 || e.ctrlKey) {
-          if (this.moveUp()) e.preventDefault();
-          this.startMoveTimeout(false);
-        }
-        break;
       case 39: //Event.KEY_RIGHT:
         if (this.moveRight()) e.preventDefault();
         break;
+      case 38: //Event.KEY_UP:
       case 40: //Event.KEY_DOWN:
-        if (e.keyCode == 40 || e.ctrlKey) {
+        if (e.keyCode === 38 || e.ctrlKey) {
+          if (this.moveUp()) e.preventDefault();
+          this.startMoveTimeout(false);
+        } else if (e.keyCode === 40 || e.ctrlKey) {
           if (this.moveDown()) e.preventDefault();
           this.startMoveTimeout(true);
         }
