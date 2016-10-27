@@ -25,7 +25,7 @@ Searcher.prototype = new function() {
 
     var run = function() {
       // stop current search thread if new search started
-      if (state.n != _this.currentSuid) return;
+      if (state.n !== _this.currentSuid) return;
 
       var results =
         performSearch(_this.data, regexps, queries, highlighters, state);
@@ -85,7 +85,7 @@ Searcher.prototype = new function() {
    * matches all of the regexps
    */
   function matchPassBeginning(index, longIndex, queries, regexps) {
-    if (index.indexOf(queries[0]) != 0) return false;
+    if (index.indexOf(queries[0]) !== 0) return false;
     for (var i=1, l = regexps.length; i < l; i++) {
       if (!index.match(regexps[i]) && !longIndex.match(regexps[i]))
         return false;
@@ -98,7 +98,7 @@ Searcher.prototype = new function() {
    * longIndex matches all of the regexps
    */
   function matchPassLongIndex(index, longIndex, queries, regexps) {
-    if (longIndex.indexOf(queries[0]) != 0) return false;
+    if (longIndex.indexOf(queries[0]) !== 0) return false;
     for (var i=1, l = regexps.length; i < l; i++) {
       if (!longIndex.match(regexps[i]))
         return false;
@@ -111,7 +111,7 @@ Searcher.prototype = new function() {
    * matches all of the regexps
    */
   function matchPassContains(index, longIndex, queries, regexps) {
-    if (index.indexOf(queries[0]) == -1) return false;
+    if (index.indexOf(queries[0]) === -1) return false;
     for (var i=1, l = regexps.length; i < l; i++) {
       if (!index.match(regexps[i]) && !longIndex.match(regexps[i]))
         return false;
@@ -153,7 +153,7 @@ Searcher.prototype = new function() {
     var lcTitle = result.title.toLowerCase();
 
     pos = lcTitle.indexOf(queries[0]);
-    if (pos != -1) {
+    if (pos !== -1) {
       result.title = hltSubstring(result.title, pos, queries[0].length);
     }
 
@@ -187,22 +187,22 @@ Searcher.prototype = new function() {
     var matchFunc, hltFunc;
 
     while (state.pass < 4 && state.limit > 0 && togo > 0) {
-      if (state.pass == 0) {
+      if (state.pass === 0) {
         matchFunc = matchPassBeginning;
         hltFunc = highlightQuery;
-      } else if (state.pass == 1) {
+      } else if (state.pass === 1) {
         matchFunc = matchPassLongIndex;
         hltFunc = highlightQuery;
-      } else if (state.pass == 2) {
+      } else if (state.pass === 2) {
         matchFunc = matchPassContains;
         hltFunc = highlightQuery;
-      } else if (state.pass == 3) {
+      } else if (state.pass === 3) {
         matchFunc = matchPassRegexp;
         hltFunc = highlightRegexp;
       }
 
       for (; togo > 0 && i < l && state.limit > 0; i++, togo--) {
-        if (info[i].n == state.n) continue;
+        if (info[i].n === state.n) continue;
         if (matchFunc(searchIndex[i], longSearchIndex[i], queries, regexps)) {
           info[i].n = state.n;
           result.push(hltFunc(info[i], queries, regexps, highlighters));
