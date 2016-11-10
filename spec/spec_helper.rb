@@ -72,6 +72,13 @@ module Helpers
       'idOrganization'   => 'abcdef123456789123456789',
       'url'              => 'https://trello.com/board/test/abcdef123456789123456789',
       'dateLastActivity' => '2012-12-08T18:40:24.314Z'
+    },
+    {
+      name:            'Test',
+      desc:            'This is a test board',
+      closed:          false,
+      starred:         false,
+      organization_id: 'abcdef123456789123456789'
     }]
   end
 

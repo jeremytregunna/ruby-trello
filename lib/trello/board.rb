@@ -87,15 +87,17 @@ module Trello
     end
 
     def update_fields(fields)
-      attributes[:id]              = fields['id']              if fields['id']
-      attributes[:name]            = fields['name']            if fields['name']
-      attributes[:description]     = fields['desc']            if fields['desc']
-      attributes[:closed]          = fields['closed']          if fields.has_key?('closed')
-      attributes[:starred]          = fields['starred']          if fields.has_key?('starred')
-      attributes[:url]             = fields['url']             if fields['url']
-      attributes[:organization_id] = fields['idOrganization']  if fields['idOrganization']
-      attributes[:prefs]           = fields['prefs'] || {}
-      attributes[:last_activity_date]   = Time.iso8601(fields['dateLastActivity']) rescue nil
+      attributes[:id]              = fields['id'] || fields[:id]                          if fields['id']   || fields[:id]
+      attributes[:name]            = fields['name'] || fields[:name]                      if fields['name'] || fields[:name]
+      attributes[:description]     = fields['desc'] || fields[:desc]                      if fields['desc'] || fields[:desc]
+      attributes[:closed]          = fields['closed']                                     if fields.has_key?('closed')
+      attributes[:closed]          = fields[:closed]                                      if fields.has_key?(:closed)
+      attributes[:starred]         = fields['starred']                                    if fields.has_key?('starred')
+      attributes[:starred]         = fields[:starred]                                     if fields.has_key?(:starred)
+      attributes[:url]             = fields['url']                                        if fields['url']
+      attributes[:organization_id] = fields['idOrganization'] || fields[:organization_id] if fields['idOrganization'] || fields[:organization_id]
+      attributes[:prefs]           = fields['prefs'] || fields[:prefs] || {}
+      attributes[:last_activity_date] = Time.iso8601(fields['dateLastActivity']) rescue nil
       self
     end
 

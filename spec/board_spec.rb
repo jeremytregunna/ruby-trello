@@ -273,7 +273,28 @@ module Trello
         expect(board.organization_id).to eq expected['idOrganization']
       end
 
-      it "sets any attributes supplied in the fields argument"
+      it "initializes all fields from response-like formatted hash" do
+        board_details = boards_details.first
+        board = Board.new(board_details)
+        expect(board.id).to                 eq board_details['id']
+        expect(board.name).to               eq board_details['name']
+        expect(board.description).to        eq board_details['desc']
+        expect(board.closed).to             eq board_details['closed']
+        expect(board.starred).to            eq board_details['starred']
+        expect(board.organization_id).to    eq board_details['idOrganization']
+        expect(board.url).to                eq board_details['url']
+        expect(board.last_activity_date).to eq board_details['dateLastActivity']
+      end
+
+      it "initializes all fields from options-like formatted hash" do
+        board_details = boards_details[1]
+        board = Board.new(board_details)
+        expect(board.name).to            eq board_details[:name]
+        expect(board.description).to     eq board_details[:desc]
+        expect(board.closed).to          eq board_details[:closed]
+        expect(board.starred).to         eq board_details[:starred]
+        expect(board.organization_id).to eq board_details[:organization_id]
+      end
     end
 
     describe "#save" do
