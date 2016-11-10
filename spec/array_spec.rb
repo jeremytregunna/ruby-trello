@@ -5,6 +5,9 @@ describe Array, '#jsoned_into' do
   include Helpers
 
   it "should convert an array of parsed json into cards" do
-    expect(cards_details.jsoned_into(Trello::Card)).to eq([cards_details.first.jsoned_into(Trello::Card)])
+    expected = cards_details.map do |card_details|
+      card_details.jsoned_into(Trello::Card)
+    end
+    expect(cards_details.jsoned_into(Trello::Card)).to eq(expected)
   end
 end

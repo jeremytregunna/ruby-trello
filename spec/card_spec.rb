@@ -39,8 +39,44 @@ module Trello
       let(:client) { Trello.client }
 
       it "creates a new record" do
-        card = Card.new(cards_details.first)
-        expect(card).to be_valid
+        cards_details.each do |card_details|
+          card = Card.new(card_details)
+          expect(card).to be_valid
+        end
+      end
+
+      it 'properly initializes all fields from response-like formatted hash' do
+        card_details = cards_details.first
+        card = Card.new(card_details)
+        expect(card.id).to                 eq(card_details['id'])
+        expect(card.short_id).to           eq(card_details['idShort'])
+        expect(card.name).to               eq(card_details['name'])
+        expect(card.desc).to               eq(card_details['desc'])
+        expect(card.closed).to             eq(card_details['closed'])
+        expect(card.list_id).to            eq(card_details['idList'])
+        expect(card.board_id).to           eq(card_details['idBoard'])
+        expect(card.cover_image_id).to     eq(card_details['idAttachmentCover'])
+        expect(card.member_ids).to         eq(card_details['idMembers'])
+        expect(card.labels).to             eq(card_details['labels'].map { |lbl| Trello::Label.new(lbl) })
+        expect(card.card_labels).to        eq(card_details['idLabels'])
+        expect(card.url).to                eq(card_details['url'])
+        expect(card.short_url).to          eq(card_details['shortUrl'])
+        expect(card.pos).to                eq(card_details['pos'])
+        expect(card.last_activity_date).to eq(card_details['dateLastActivity'])
+      end
+
+      it 'properly initializes all fields from options-like formatted hash' do
+        card_details = cards_details[1]
+        card = Card.new(card_details)
+        expect(card.name).to                   eq(card_details[:name])
+        expect(card.list_id).to                eq(card_details[:list_id])
+        expect(card.desc).to                   eq(card_details[:desc])
+        expect(card.member_ids).to             eq(card_details[:member_ids])
+        expect(card.card_labels).to            eq(card_details[:card_labels])
+        expect(card.due).to                    eq(card_details[:due])
+        expect(card.pos).to                    eq(card_details[:pos])
+        expect(card.source_card_id).to         eq(card_details[:source_card_id])
+        expect(card.source_card_properties).to eq(card_details[:source_card_properties])
       end
 
       it 'must not be valid if not given a name' do

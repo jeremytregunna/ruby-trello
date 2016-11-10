@@ -152,6 +152,20 @@ module Helpers
       'shortUrl'          => 'https://trello.com/c/abcdef12',
       'pos'               => 12,
       'dateLastActivity'  => '2012-12-07T18:40:24.314Z'
+    },
+    {
+      name:                   'Do something awesome',
+      list_id:                'abcdef123456789123456789',
+      desc:                   'Awesome things are awesome.',
+      member_ids:             ['abcdef123456789123456789'],
+      card_labels:            [ 'abcdef123456789123456789',
+                              'bbcdef123456789123456789',
+                              'cbcdef123456789123456789',
+                              'dbcdef123456789123456789' ],
+      due:                    Date.today,
+      pos:                    12,
+      source_card_id:         'abcdef1234567891234567890',
+      source_card_properties: 'checklist,members'
     }]
   end
 

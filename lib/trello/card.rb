@@ -168,24 +168,25 @@ module Trello
     def update_fields(fields)
       attributes[:id]                     = fields[SYMBOL_TO_STRING[:id]]
       attributes[:short_id]               = fields[SYMBOL_TO_STRING[:short_id]]
-      attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]]
-      attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]]
+      attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]] || fields[:name]
+      attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]] || fields[:desc]
       attributes[:due]                    = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil
+      attributes[:due]                  ||= fields[:due]
       attributes[:closed]                 = fields[SYMBOL_TO_STRING[:closed]]
       attributes[:url]                    = fields[SYMBOL_TO_STRING[:url]]
       attributes[:short_url]              = fields[SYMBOL_TO_STRING[:short_url]]
       attributes[:board_id]               = fields[SYMBOL_TO_STRING[:board_id]]
-      attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]]
-      attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]]
-      attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]]
+      attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]] || fields[:member_ids]
+      attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]] || fields[:list_id]
+      attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos]
       attributes[:labels]                 = (fields[SYMBOL_TO_STRING[:labels]] || []).map { |lbl| Trello::Label.new(lbl) }
-      attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]]
+      attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]] || fields[:card_labels]
       attributes[:last_activity_date]     = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil
       attributes[:cover_image_id]         = fields[SYMBOL_TO_STRING[:cover_image_id]]
       attributes[:badges]                 = fields[SYMBOL_TO_STRING[:badges]]
       attributes[:card_members]           = fields[SYMBOL_TO_STRING[:card_members]]
-      attributes[:source_card_id]         = fields[SYMBOL_TO_STRING[:source_card_id]]
-      attributes[:source_card_properties] = fields[SYMBOL_TO_STRING[:source_card_properties]]
+      attributes[:source_card_id]         = fields[SYMBOL_TO_STRING[:source_card_id]] || fields[:source_card_id]
+      attributes[:source_card_properties] = fields[SYMBOL_TO_STRING[:source_card_properties]] || fields[:source_card_properties]
       self
     end
 
