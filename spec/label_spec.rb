@@ -37,6 +37,24 @@ module Trello
         expect(Label.new(label_details.first)).to be_valid
       end
 
+      it "initializes all fields from response-like formatted hash" do
+        details = label_details.first
+        label = Label.new(details)
+        expect(label.color).to    eq details['color']
+        expect(label.name).to     eq details['name']
+        expect(label.id).to       eq details['id']
+        expect(label.uses).to     eq details['uses']
+        expect(label.board_id).to eq details['idBoard']
+      end
+
+      it "initializes required fields from options-like formatted hash" do
+        details = label_options
+        label = Label.new(details)
+        expect(label.name).to     eq details[:name]
+        expect(label.board_id).to eq details[:board_id]
+        expect(label.color).to    eq details[:color]
+      end
+
       it 'must not be valid if not given a name' do
         expect(Label.new('idBoard' => lists_details.first['board_id'])).to_not be_valid
       end

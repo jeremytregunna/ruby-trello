@@ -42,11 +42,11 @@ module Trello
     # a List.
     def update_fields(fields)
       attributes[:id]             = fields['id']
-      attributes[:name]           = fields['name']
+      attributes[:name]           = fields['name'] || fields[:name]
       attributes[:closed]         = fields['closed']
-      attributes[:board_id]       = fields['idBoard']
-      attributes[:pos]            = fields['pos']
-      attributes[:source_list_id] = fields['idListSource']
+      attributes[:board_id]       = fields['idBoard'] || fields[:board_id]
+      attributes[:pos]            = fields['pos'] || fields[:pos]
+      attributes[:source_list_id] = fields['idListSource'] || fields[:source_list_id]
       self
     end
 

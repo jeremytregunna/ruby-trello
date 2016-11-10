@@ -72,6 +72,13 @@ module Helpers
       'idOrganization'   => 'abcdef123456789123456789',
       'url'              => 'https://trello.com/board/test/abcdef123456789123456789',
       'dateLastActivity' => '2012-12-08T18:40:24.314Z'
+    },
+    {
+      name:            'Test',
+      desc:            'This is a test board',
+      closed:          false,
+      starred:         false,
+      organization_id: 'abcdef123456789123456789'
     }]
   end
 
@@ -85,13 +92,17 @@ module Helpers
       'name'       => 'Test Checklist',
       'desc'       => 'A marvelous little checklist',
       'closed'     => false,
-      'position'   => 16384,
+      'pos'        => 16384,
       'url'        => 'https://trello.com/blah/blah',
       'idBoard'    => 'abcdef123456789123456789',
       'idCard'     => 'abccardid',
       'idList'     => 'abcdef123456789123456789',
       'idMembers'  => ['abcdef123456789123456789'],
       'checkItems' => { 'id' => 'ghijk987654321' }
+    },
+    {
+      name:    'A marvelous little checklist',
+      card_id: 'abccardid'
     }]
   end
 
@@ -120,12 +131,21 @@ module Helpers
 
   def lists_details
     [{
-      'id'      => 'abcdef123456789123456789',
-      'name'    => 'To Do',
-      'closed'  => false,
-      'idBoard' => 'abcdef123456789123456789',
-      'cards'   => cards_details
-    }]
+      'id'           => 'abcdef123456789123456789',
+      'name'         => 'To Do',
+      'closed'       => false,
+      'idBoard'      => 'abcdef123456789123456789',
+      'idListSource' => 'abcdef123456789123456780',
+      'cards'        => cards_details,
+      'pos'          => 12
+    },
+    {
+      name:           'To Do',
+      board_id:       'abcdef123456789123456789',
+      pos:            12,
+      source_list_id: 'abcdef123456789123456780'
+    }
+    ]
   end
 
   def lists_payload
@@ -152,6 +172,20 @@ module Helpers
       'shortUrl'          => 'https://trello.com/c/abcdef12',
       'pos'               => 12,
       'dateLastActivity'  => '2012-12-07T18:40:24.314Z'
+    },
+    {
+      name:                   'Do something awesome',
+      list_id:                'abcdef123456789123456789',
+      desc:                   'Awesome things are awesome.',
+      member_ids:             ['abcdef123456789123456789'],
+      card_labels:            [ 'abcdef123456789123456789',
+                              'bbcdef123456789123456789',
+                              'cbcdef123456789123456789',
+                              'dbcdef123456789123456789' ],
+      due:                    Date.today,
+      pos:                    12,
+      source_card_id:         'abcdef1234567891234567890',
+      source_card_properties: 'checklist,members'
     }]
   end
 
@@ -322,6 +356,14 @@ module Helpers
     ]
   end
 
+  def label_options
+    {
+      name:     'iOS',
+      board_id: 'abcdef123456789123456789',
+      color:    'yellow'
+    }
+  end
+
   def label_payload
     JSON.generate(label_details)
   end
@@ -334,6 +376,11 @@ module Helpers
        'idModel'     => '1234',
        'callbackURL' => 'http://example.org/webhook',
        'active'      => true
+     },
+     {
+       description:  'Test webhook',
+       id_model:     '1234',
+       cakkback_url: 'http://example.org/webhook'
      }
     ]
   end

@@ -42,7 +42,7 @@ module Trello
 
         attributes = checklists_details.first.merge(payload).except("idBoard")
         result = JSON.generate(attributes)
-        
+
 
         expected_payload = {name: "Test Checklist", idCard: cards_details.first['id']}
 
@@ -54,6 +54,29 @@ module Trello
         checklist = Checklist.create(attributes)
 
         expect(checklist).to be_a Checklist
+      end
+
+      it 'initializes all fields from response-like hash' do
+        checklist_details = checklists_details.first
+        checklist = Checklist.new(checklist_details)
+        expect(checklist.id).to          eq checklist_details['id']
+        expect(checklist.name).to        eq checklist_details['name']
+        expect(checklist.description).to eq checklist_details['desc']
+        expect(checklist.closed).to      eq checklist_details['closed']
+        expect(checklist.position).to    eq checklist_details['pos']
+        expect(checklist.url).to         eq checklist_details['url']
+        expect(checklist.board_id).to    eq checklist_details['idBoard']
+        expect(checklist.card_id).to     eq checklist_details['idCard']
+        expect(checklist.list_id).to     eq checklist_details['idList']
+        expect(checklist.member_ids).to  eq checklist_details['idMembers']
+        expect(checklist.check_items).to eq checklist_details['checkItems']
+      end
+
+      it 'initializes required fields from options-like hash' do
+        checklist_details = checklists_details[1]
+        checklist = Checklist.new(checklist_details)
+        expect(checklist.name).to    eq checklist_details[:name]
+        expect(checklist.card_id).to eq checklist_details[:card_id]
       end
     end
 

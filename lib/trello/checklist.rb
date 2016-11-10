@@ -46,14 +46,14 @@ module Trello
     # a checklist.
     def update_fields(fields)
       attributes[:id] = fields['id']
-      attributes[:name] = fields['name']
+      attributes[:name] = fields['name'] || fields[:name]
       attributes[:description] = fields['desc']
       attributes[:closed] = fields['closed']
       attributes[:url] = fields['url']
       attributes[:check_items] = fields['checkItems']
       attributes[:position] = fields['pos']
       attributes[:board_id] = fields['idBoard']
-      attributes[:card_id] = fields['idCard']
+      attributes[:card_id] = fields['idCard'] || fields[:card_id]
       attributes[:list_id] = fields['idList']
       attributes[:member_ids] = fields['idMembers']
       self
