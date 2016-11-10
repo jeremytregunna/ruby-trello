@@ -131,12 +131,21 @@ module Helpers
 
   def lists_details
     [{
-      'id'      => 'abcdef123456789123456789',
-      'name'    => 'To Do',
-      'closed'  => false,
-      'idBoard' => 'abcdef123456789123456789',
-      'cards'   => cards_details
-    }]
+      'id'           => 'abcdef123456789123456789',
+      'name'         => 'To Do',
+      'closed'       => false,
+      'idBoard'      => 'abcdef123456789123456789',
+      'idListSource' => 'abcdef123456789123456780',
+      'cards'        => cards_details,
+      'pos'          => 12
+    },
+    {
+      name:           'To Do',
+      board_id:       'abcdef123456789123456789',
+      pos:            12,
+      source_list_id: 'abcdef123456789123456780'
+    }
+    ]
   end
 
   def lists_payload

@@ -53,6 +53,26 @@ module Trello
         expect(list).to_not be_valid
       end
 
+      it 'initializes all fields from response-like formatted hash' do
+        list_details = lists_details.first
+        list = List.new(list_details)
+        expect(list.id).to             eq(list_details['id'])
+        expect(list.name).to           eq(list_details['name'])
+        expect(list.closed).to         eq(list_details['closed'])
+        expect(list.board_id).to       eq(list_details['idBoard'])
+        expect(list.pos).to            eq(list_details['pos'])
+        expect(list.source_list_id).to eq(list_details['idListSource'])
+      end
+
+      it 'initializes required fields from options-like formatted hash' do
+        list_details = lists_details[1]
+        list = List.new(list_details)
+        expect(list.name).to           eq list_details[:name]
+        expect(list.board_id).to       eq list_details[:board_id]
+        expect(list.pos).to            eq list_details[:pos]
+        expect(list.source_list_id).to eq list_details[:source_list_id]
+      end
+
       it 'creates a new record and saves it on Trello', refactor: true do
         payload = {
           name: 'Test List',
