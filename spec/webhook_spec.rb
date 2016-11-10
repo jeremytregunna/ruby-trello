@@ -38,6 +38,24 @@ module Trello
         expect(webhook).to be_valid
       end
 
+      it "initializes all fields from response-like formatted hash" do
+        webhook_details = webhooks_details.first
+        webhook = Webhook.new(webhook_details)
+        expect(webhook.id).to           eq webhook_details['id']
+        expect(webhook.description).to  eq webhook_details['description']
+        expect(webhook.id_model).to     eq webhook_details['idModel']
+        expect(webhook.callback_url).to eq webhook_details['callbackURL']
+        expect(webhook.active).to       eq webhook_details['active']
+      end
+
+      it "initializes required fields from options-like formatted hash" do
+        webhook_details = webhooks_details[1]
+        webhook = Webhook.new(webhook_details)
+        expect(webhook.description).to  eq webhook_details[:description]
+        expect(webhook.id_model).to     eq webhook_details[:id_model]
+        expect(webhook.callback_url).to eq webhook_details[:callback_url]
+      end
+
       it 'creates a new webhook and saves it on Trello', refactor: true do
         payload = { name: 'Test Card', desc: nil }
 

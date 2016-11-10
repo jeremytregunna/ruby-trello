@@ -49,9 +49,9 @@ module Trello
     # @return [Trello::Webhook] self
     def update_fields(fields)
       attributes[:id]              = fields['id']
-      attributes[:description]     = fields['description']
-      attributes[:id_model]        = fields['idModel']
-      attributes[:callback_url]    = fields['callbackURL']
+      attributes[:description]     = fields['description'] || fields[:description]
+      attributes[:id_model]        = fields['idModel'] || fields[:id_model]
+      attributes[:callback_url]    = fields['callbackURL'] || fields[:callback_url]
       attributes[:active]          = fields['active']
       self
     end

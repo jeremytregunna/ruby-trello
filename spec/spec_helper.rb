@@ -376,6 +376,11 @@ module Helpers
        'idModel'     => '1234',
        'callbackURL' => 'http://example.org/webhook',
        'active'      => true
+     },
+     {
+       description:  'Test webhook',
+       id_model:     '1234',
+       cakkback_url: 'http://example.org/webhook'
      }
     ]
   end
