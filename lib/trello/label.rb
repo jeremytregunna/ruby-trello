@@ -65,9 +65,9 @@ module Trello
     # a label.
     def update_fields(fields)
       attributes[:id] = fields['id']
-      attributes[:name]  = fields['name']
-      attributes[:color] = fields['color']
-      attributes[:board_id] = fields['idBoard']
+      attributes[:name]  = fields['name'] || fields[:name]
+      attributes[:color] = fields['color'] || fields[:color]
+      attributes[:board_id] = fields['idBoard'] || fields[:board_id]
       attributes[:uses] = fields['uses']
       self
     end

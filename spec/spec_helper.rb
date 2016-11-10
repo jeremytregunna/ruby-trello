@@ -347,6 +347,14 @@ module Helpers
     ]
   end
 
+  def label_options
+    {
+      name:     'iOS',
+      board_id: 'abcdef123456789123456789',
+      color:    'yellow'
+    }
+  end
+
   def label_payload
     JSON.generate(label_details)
   end
