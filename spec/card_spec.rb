@@ -99,7 +99,7 @@ module Trello
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: "Test Card", desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: "abcdef123456789123456789", pos: nil, due: nil, idCardSource: nil, keepFromSource: 'all'}
+                            idMembers: nil, idLabels: "abcdef123456789123456789", pos: nil, due: nil, dueComplete: false, idCardSource: nil, keepFromSource: 'all'}
 
         expect(client)
           .to receive(:post)
@@ -119,7 +119,7 @@ module Trello
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: 'all'}
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, dueComplete: false, idCardSource: cards_details.first['id'], keepFromSource: 'all'}
 
         expect(client)
           .to receive(:post)
@@ -140,7 +140,7 @@ module Trello
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: ['due', 'checklists']}
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, dueComplete: false, idCardSource: cards_details.first['id'], keepFromSource: ['due', 'checklists']}
 
         expect(client)
           .to receive(:post)
@@ -161,7 +161,7 @@ module Trello
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
         expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, idCardSource: cards_details.first['id'], keepFromSource: nil}
+                            idMembers: nil, idLabels: nil, pos: nil, due: nil, dueComplete: false, idCardSource: cards_details.first['id'], keepFromSource: nil}
 
         expect(client)
           .to receive(:post)
@@ -683,6 +683,20 @@ module Trello
           .with("/cards/abcdef123456789123456789", payload)
 
         card.close!
+      end
+    end
+
+    describe "can mark due_complete" do
+      it "updates the due completed attribute to true" do
+        card.due = Time.now
+        card.save
+
+        expect(card.due).to_not be_nil
+
+        card.due_complete = true
+        card.save 
+
+        expect(card.due_complete).to_be true
       end
     end
   end
