@@ -24,5 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'addressable', '~> 2.3'
   s.add_dependency 'json'
   s.add_dependency 'oauth',       '>= 0.4.5'
-  s.add_dependency 'rest-client', '~> 1.8.0'
+  s.add_dependency 'rest-client', '>= 1.8.0'
 end
