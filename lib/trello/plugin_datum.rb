@@ -13,7 +13,7 @@ module Trello
   #   @return [String]
   # @!attribute access
   #   @return [String]
-    class Plugin < BasicData
+    class PluginDatum < BasicData
     # Update the fields of a plugin.
     register_attributes :id, :idPlugin, :scope, :idModel, :value, :access
 

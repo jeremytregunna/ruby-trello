@@ -220,7 +220,7 @@ module Helpers
     JSON.generate(attachments_details)
   end
 
-  def plugins_details
+  def plugin_data_details
     [
       {
         "id"=>"abcdef123456789123456779",
@@ -241,8 +241,8 @@ module Helpers
     ]
   end
 
-  def plugins_payload
-    JSON.generate(plugins_details)
+  def plugin_data_payload
+    JSON.generate(plugin_data_details)
   end
 
   def card_payload

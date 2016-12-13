@@ -203,7 +203,7 @@ module Trello
     many :checklists, filter: :all
 
     # Returns a list of plugins associated with the card
-    many :plugins
+    many :plugin_data, path: "pluginData"
 
     def check_item_states
       states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates")
