@@ -90,8 +90,10 @@ module Trello
           options   = opts.dup
           resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
           klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
+          path = options.delete(:path) || name
           params    = options.merge(args[0] || {})
-          resources = client.find_many(klass, "/#{resource}/#{id}/#{name}", params)
+
+          resources = client.find_many(klass, "/#{resource}/#{id}/#{path}", params)
           MultiAssociation.new(self, resources).proxy
         end
       end
