@@ -24,7 +24,7 @@ module Trello
       attributes[:id]        = fields['id']
       attributes[:idPlugin]  = fields['idPlugin']
       attributes[:scope]     = fields['scope']
-      attributes[:value]     = fields['value']
+      attributes[:value]     = JSON.parse fields['value']
       attributes[:idModel]   = fields['idModel']
       attributes[:access]    = fields['access']
       self

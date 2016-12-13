@@ -617,7 +617,7 @@ module Trello
         expect(first_plugin.idPlugin).to eq plugins_details[0]["idPlugin"]
         expect(first_plugin.scope).to eq plugins_details[0]["scope"]
         expect(first_plugin.idModel).to eq plugins_details[0]["idModel"]
-        expect(first_plugin.value).to eq plugins_details[0]["value"]
+        expect(first_plugin.value).to eq JSON.parse plugins_details[0]["value"]
         expect(first_plugin.access).to eq plugins_details[0]["access"]
 
         second_plugin = card.plugins[1]
@@ -625,7 +625,7 @@ module Trello
         expect(second_plugin.idPlugin).to eq plugins_details[1]["idPlugin"]
         expect(second_plugin.scope).to eq plugins_details[1]["scope"]
         expect(second_plugin.idModel).to eq plugins_details[1]["idModel"]
-        expect(second_plugin.value).to eq plugins_details[1]["value"]
+        expect(second_plugin.value).to eq JSON.parse plugins_details[1]["value"]
         expect(second_plugin.access).to eq plugins_details[1]["access"]
 
       end
