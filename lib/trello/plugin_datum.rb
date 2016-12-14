@@ -30,4 +30,5 @@ module Trello
       self
     end
   end
+
 end
