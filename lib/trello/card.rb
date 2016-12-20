@@ -43,7 +43,7 @@ module Trello
   #   @return [Array<String>] Array of strings
 
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :desc, :due, :closed, :url, :short_url,
+    register_attributes :id, :short_id, :name, :desc, :due, :due_complete, :closed, :url, :short_url,
       :board_id, :member_ids, :list_id, :pos, :last_activity_date, :labels, :card_labels,
       :cover_image_id, :badges, :card_members, :source_card_id, :source_card_properties,
       readonly: [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
@@ -59,6 +59,7 @@ module Trello
       name: 'name',
       desc: 'desc',
       due: 'due',
+      due_complete: 'dueComplete',
       closed: 'closed',
       url: 'url',
       short_url: 'shortUrl',
@@ -122,6 +123,7 @@ module Trello
           'idMembers' => options[:member_ids],
           'idLabels' => options[:card_labels],
           'due' => options[:due],
+          'due_complete' => options[:due_complete] || false,
           'pos' => options[:pos],
           'idCardSource' => options[:source_card_id],
           'keepFromSource' => options.key?(:source_card_properties) ? options[:source_card_properties] : 'all'
@@ -146,6 +148,7 @@ module Trello
     # @option fields [String] :desc A string with a length from 0 to
     #     16384.
     # @option fields [Date] :due A date, or `nil`.
+    # @option fields [Boolean] :due_complete
     # @option fields [Boolean] :closed
     # @option fields [String] :url
     # @option fields [String] :short_url
@@ -171,7 +174,8 @@ module Trello
       attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]] || fields[:name]
       attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]] || fields[:desc]
       attributes[:due]                    = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil
-      attributes[:due]                  ||= fields[:due]
+      attributes[:due]                    ||= fields[:due]
+      attributes[:due_complete]           = fields[SYMBOL_TO_STRING[:due_complete]] || false
       attributes[:closed]                 = fields[SYMBOL_TO_STRING[:closed]]
       attributes[:url]                    = fields[SYMBOL_TO_STRING[:url]]
       attributes[:short_url]              = fields[SYMBOL_TO_STRING[:short_url]]
@@ -248,6 +252,7 @@ module Trello
         idLabels: card_labels,
         pos: pos,
         due: due,
+        dueComplete: due_complete,
         idCardSource: source_card_id,
         keepFromSource: source_card_properties
       })
