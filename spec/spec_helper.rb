@@ -220,6 +220,31 @@ module Helpers
     JSON.generate(attachments_details)
   end
 
+  def plugin_data_details
+    [
+      {
+        "id"=>"abcdef123456789123456779",
+        "idPlugin"=>"abcdef123456789123456879",
+        "scope"=>"card",
+        "idModel"=>"abcdef123456789123446879",
+        "value"=>"{\"fields\":{\"plugin_key\":\"plugin_value\"}}",
+        "access"=>"shared"
+      },
+      {
+        "id"=>"abcdef123456789123456879",
+        "idPlugin"=>"abcdef123456789123456779",
+        "scope"=>"card",
+        "idModel"=>"abcdef123456789123446579",
+        "value"=>"{\"fields\":{\"plugin_key\":\"plugin_value\"}}",
+        "access"=>"shared"
+      }
+    ]
+  end
+
+  def plugin_data_payload
+    JSON.generate(plugin_data_details)
+  end
+
   def card_payload
     JSON.generate(cards_details.first)
   end

@@ -59,6 +59,7 @@ module Trello
   autoload :MultiAssociation,  'trello/multi_association'
   autoload :Notification,      'trello/notification'
   autoload :Organization,      'trello/organization'
+  autoload :PluginDatum,       'trello/plugin_datum'
   autoload :Request,           'trello/net'
   autoload :TInternet,         'trello/net'
   autoload :Token,             'trello/token'

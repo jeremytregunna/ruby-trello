@@ -206,6 +206,9 @@ module Trello
     #    :filter => [ :none, :all ] # default :all
     many :checklists, filter: :all
 
+    # Returns a list of plugins associated with the card
+    many :plugin_data, path: "pluginData"
+
     def check_item_states
       states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates")
       MultiAssociation.new(self, states).proxy

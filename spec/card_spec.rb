@@ -597,6 +597,40 @@ module Trello
       end
     end
 
+    context "plugins" do
+      it "can list the existing plugins with correct fields" do
+        allow(client)
+          .to receive(:get)
+          .with("/boards/abcdef123456789123456789", {})
+          .and_return JSON.generate(boards_details.first)
+
+        allow(client)
+          .to receive(:get)
+          .with("/cards/abcdef123456789123456789/pluginData", {})
+          .and_return plugin_data_payload
+
+        expect(card.board).to_not be_nil
+        expect(card.plugin_data).to_not be_nil
+
+        first_plugin = card.plugin_data.first
+        expect(first_plugin.id).to eq plugin_data_details[0]["id"]
+        expect(first_plugin.idPlugin).to eq plugin_data_details[0]["idPlugin"]
+        expect(first_plugin.scope).to eq plugin_data_details[0]["scope"]
+        expect(first_plugin.idModel).to eq plugin_data_details[0]["idModel"]
+        expect(first_plugin.value).to eq JSON.parse plugin_data_details[0]["value"]
+        expect(first_plugin.access).to eq plugin_data_details[0]["access"]
+
+        second_plugin = card.plugin_data[1]
+        expect(second_plugin.id).to eq plugin_data_details[1]["id"]
+        expect(second_plugin.idPlugin).to eq plugin_data_details[1]["idPlugin"]
+        expect(second_plugin.scope).to eq plugin_data_details[1]["scope"]
+        expect(second_plugin.idModel).to eq plugin_data_details[1]["idModel"]
+        expect(second_plugin.value).to eq JSON.parse plugin_data_details[1]["value"]
+        expect(second_plugin.access).to eq plugin_data_details[1]["access"]
+
+      end
+    end
+
     context "attachments" do
       it "can add an attachment" do
         f = File.new('spec/list_spec.rb', 'r')
