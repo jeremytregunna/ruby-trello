@@ -722,15 +722,35 @@ module Trello
 
     describe "can mark due_complete" do
       it "updates the due completed attribute to true" do
-        card.due = Time.now
+        due_date = Time.now
+
+        payload = {
+          due: due_date,
+        }
+
+        expect(client)
+          .to receive(:put)
+          .once
+          .with("/cards/abcdef123456789123456789", payload)
+
+        card.due = due_date
         card.save
 
         expect(card.due).to_not be_nil
 
-        card.due_complete = true
-        card.save 
+        payload = {
+          dueComplete: true
+        }
 
-        expect(card.due_complete).to_be true
+        expect(client)
+          .to receive(:put)
+          .once
+          .with("/cards/abcdef123456789123456789", payload)
+
+        card.due_complete = true
+        card.save
+
+        expect(card.due_complete).to be true
       end
     end
   end
