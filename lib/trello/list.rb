@@ -41,12 +41,12 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a List.
     def update_fields(fields)
-      attributes[:id]             = fields['id']
-      attributes[:name]           = fields['name'] || fields[:name]
-      attributes[:closed]         = fields['closed']
-      attributes[:board_id]       = fields['idBoard'] || fields[:board_id]
-      attributes[:pos]            = fields['pos'] || fields[:pos]
-      attributes[:source_list_id] = fields['idListSource'] || fields[:source_list_id]
+      attributes[:id]             = fields['id'] || attributes[:id]
+      attributes[:name]           = fields['name'] || fields[:name] || attributes[:name]
+      attributes[:closed]         = fields['closed'] if fields.has_key?('closed')
+      attributes[:board_id]       = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
+      attributes[:pos]            = fields['pos'] || fields[:pos] || attributes[:pos]
+      attributes[:source_list_id] = fields['idListSource'] || fields[:source_list_id] || attributes[:source_list_id]
       self
     end
 

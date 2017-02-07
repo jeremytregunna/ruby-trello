@@ -124,5 +124,26 @@ module Trello
         expect(action.member_creator).to_not be_nil
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'type' => 'type',
+          'data' => 'data',
+          'idMemberCreator' => 'member_creator_id',
+          'member' => 'member_participant'
+        }
+
+        action = Action.new(expected)
+        action.client = client
+
+        action.update_fields({})
+
+        expected.each do |key, value|
+          expect(action.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

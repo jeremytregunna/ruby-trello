@@ -34,17 +34,17 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Organization.
     def update_fields(fields)
-      attributes[:id]                           = fields['id']
-      attributes[:name]                         = fields['name']
-      attributes[:display_name]                 = fields['displayName']
-      attributes[:description]                  = fields['desc']
-      attributes[:url]                          = fields['url']
-      attributes[:invited]                      = fields['invited']
-      attributes[:website]                      = fields['website']
-      attributes[:logo_hash]                    = fields['logoHash']
-      attributes[:billable_member_count]        = fields['billableMemberCount']
-      attributes[:active_billable_member_count] = fields['activeBillableMemberCount']
-      attributes[:memberships]                  = fields['memberships']
+      attributes[:id]                           = fields['id'] || attributes[:id]
+      attributes[:name]                         = fields['name'] || attributes[:name]
+      attributes[:display_name]                 = fields['displayName'] || attributes[:display_name]
+      attributes[:description]                  = fields['desc'] || attributes[:description]
+      attributes[:url]                          = fields['url'] || attributes[:url]
+      attributes[:invited]                      = fields['invited'] if fields.has_key?('invited')
+      attributes[:website]                      = fields['website'] || attributes[:website]
+      attributes[:logo_hash]                    = fields['logoHash'] || attributes[:logo_hash]
+      attributes[:billable_member_count]        = fields['billableMemberCount'] || attributes[:billable_member_count]
+      attributes[:active_billable_member_count] = fields['activeBillableMemberCount'] || attributes[:active_billable_member_count]
+      attributes[:memberships]                  = fields['memberships'] || attributes[:memberships]
       self
     end
 

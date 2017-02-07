@@ -16,9 +16,9 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an item state.
     def update_fields(fields)
-      attributes[:id]      = fields['id']
-      attributes[:state]   = fields['state']
-      attributes[:item_id] = fields['idCheckItem']
+      attributes[:id]      = fields['id'] || attributes[:id]
+      attributes[:state]   = fields['state'] || attributes[:state]
+      attributes[:item_id] = fields['idCheckItem'] || attributes[:item_id]
       self
     end
 

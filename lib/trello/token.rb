@@ -23,11 +23,12 @@ module Trello
 
     # :nodoc:
     def update_fields(fields)
-      attributes[:id]          = fields['id']
-      attributes[:member_id]   = fields['idMember']
-      attributes[:created_at]  = Time.iso8601(fields['dateCreated'])
-      attributes[:permissions] = fields['permissions'] || {}
-      attributes[:webhooks]    = fields['webhooks']
+      attributes[:id]          = fields['id'] || attributes[:id]
+      attributes[:member_id]   = fields['idMember'] || attributes[:member_id]
+      attributes[:created_at]  = Time.iso8601(fields['dateCreated']) rescue nil if fields.has_key?('dateCreated')
+      attributes[:permissions] = fields['permissions'] || attributes[:permissions]
+      attributes[:permissions] ||= {}
+      attributes[:webhooks]    = fields['webhooks'] || attributes[:webhooks]
     end
 
     # Returns a reference to the user who authorized the token.

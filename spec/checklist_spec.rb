@@ -256,5 +256,32 @@ module Trello
         checklist.copy
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'name' => 'name',
+          'desc' => 'description',
+          'closed' => 'closed',
+          'url' => 'url',
+          'checkItems' => 'check_items',
+          'pos' => 'position',
+          'idBoard' => 'board_id',
+          'idCard' => 'card_id',
+          'idList' => 'list_id',
+          'idMembers' => 'member_ids'
+        }
+
+        checklist = Checklist.new(expected)
+        checklist.client = client
+
+        checklist.update_fields({})
+
+        expected.each do |key, value|
+          expect(checklist.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

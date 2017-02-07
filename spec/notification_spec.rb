@@ -118,5 +118,26 @@ module Trello
         expect(notification.member_creator_id).to eq notification_details['idMemberCreator']
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'unread' => 'unread',
+          'type' => 'type',
+          'date' => 'date',
+          'data' => 'data',
+          'idMemberCreator' => 'member_creator_id'
+        }
+
+        notification = Notification.new(expected)
+
+        notification.update_fields({})
+
+        expected.each do |key, value|
+          expect(notification.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

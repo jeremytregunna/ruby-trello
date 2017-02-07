@@ -228,5 +228,26 @@ module Trello
         list.close!
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'name' => 'name',
+          'closed' => 'closed',
+          'idBoard' => 'board_id',
+          'pos' => 'pos',
+          'idListSource' => 'source_list_id'
+        }
+
+        label = List.new(expected)
+
+        label.update_fields({})
+
+        expected.each do |key, value|
+          expect(label.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

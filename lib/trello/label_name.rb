@@ -9,16 +9,16 @@ module Trello
     # Supply a hash of stringkeyed data retrieved from the Trello API representing
     # a label.
     def update_fields(fields)
-      attributes[:yellow]  = fields['yellow']
-      attributes[:red] = fields['red']
-      attributes[:orange] = fields['orange']
-      attributes[:green] = fields['green']
-      attributes[:purple] = fields['purple']
-      attributes[:blue] = fields['blue']
-      attributes[:sky] = fields['sky']
-      attributes[:pink] = fields['pink']
-      attributes[:lime] = fields['lime']
-      attributes[:black] = fields['black']
+      attributes[:yellow]  = fields['yellow'] || attributes[:yellow]
+      attributes[:red] = fields['red'] || attributes[:red]
+      attributes[:orange] = fields['orange'] || attributes[:orange]
+      attributes[:green] = fields['green'] || attributes[:green]
+      attributes[:purple] = fields['purple'] || attributes[:purple]
+      attributes[:blue] = fields['blue'] || attributes[:blue]
+      attributes[:sky] = fields['sky'] || attributes[:sky]
+      attributes[:pink] = fields['pink'] || attributes[:pink]
+      attributes[:lime] = fields['lime'] || attributes[:lime]
+      attributes[:black] = fields['black'] || attributes[:black]
 
       self
     end

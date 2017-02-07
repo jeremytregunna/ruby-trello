@@ -66,5 +66,24 @@ module Trello
         expect(token.member).to eq Member.find('abcdef123456789123456789')
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'idMember' => 'member_id',
+          'permissions' => 'permissions',
+          'webhooks' => 'webhooks'
+        }
+
+        token = Token.new(expected)
+
+        token.update_fields({})
+
+        expected.each do |key, value|
+          expect(token.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

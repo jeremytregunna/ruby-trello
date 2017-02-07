@@ -64,11 +64,11 @@ module Trello
     # Supply a hash of stringkeyed data retrieved from the Trello API representing
     # a label.
     def update_fields(fields)
-      attributes[:id] = fields['id']
-      attributes[:name]  = fields['name'] || fields[:name]
-      attributes[:color] = fields['color'] || fields[:color]
-      attributes[:board_id] = fields['idBoard'] || fields[:board_id]
-      attributes[:uses] = fields['uses']
+      attributes[:id] = fields['id'] || attributes[:id]
+      attributes[:name]  = fields['name'] || fields[:name] || attributes[:name]
+      attributes[:color] = fields['color'] || fields[:color] || attributes[:color]
+      attributes[:board_id] = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
+      attributes[:uses] = fields['uses'] if fields.has_key?('uses')
       self
     end
 

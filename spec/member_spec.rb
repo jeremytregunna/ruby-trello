@@ -132,5 +132,28 @@ module Trello
         expect { member.id = '42' }.to raise_error NoMethodError
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'fullName' => 'full_name',
+          'email' => 'email',
+          'username' => 'username',
+          'initials' => 'initials',
+          'avatarHash' => 'avatar_id',
+          'bio' => 'bio',
+          'url' => 'url'
+        }
+
+        member = Member.new(expected)
+
+        member.update_fields({})
+
+        expected.each do |key, value|
+          expect(member.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

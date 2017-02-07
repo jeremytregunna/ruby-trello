@@ -25,12 +25,12 @@ module Trello
     end
 
     def update_fields(fields)
-      attributes[:id]                = fields['id']
-      attributes[:unread]            = fields['unread']
-      attributes[:type]              = fields['type']
-      attributes[:date]              = fields['date']
-      attributes[:data]              = fields['data']
-      attributes[:member_creator_id] = fields['idMemberCreator']
+      attributes[:id]                = fields['id'] || attributes[:id]
+      attributes[:unread]            = fields['unread'] if fields.has_key?('unread')
+      attributes[:type]              = fields['type'] || attributes[:type]
+      attributes[:date]              = fields['date'] || attributes[:date]
+      attributes[:data]              = fields['data'] || attributes[:data]
+      attributes[:member_creator_id] = fields['idMemberCreator'] || attributes[:member_creator_id]
       self
     end
 

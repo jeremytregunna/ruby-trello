@@ -38,12 +38,12 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Action.
     def update_fields(fields)
-      attributes[:id]                 = fields['id']
-      attributes[:type]               = fields['type']
-      attributes[:data]               = fields['data']
-      attributes[:date]               = Time.iso8601(fields['date'])
-      attributes[:member_creator_id]  = fields['idMemberCreator']
-      attributes[:member_participant] = fields['member']
+      attributes[:id]                 = fields['id'] || attributes[:id]
+      attributes[:type]               = fields['type'] || attributes[:type]
+      attributes[:data]               = fields['data'] || attributes[:data]
+      attributes[:date]               = Time.iso8601(fields['date']) rescue nil if fields.has_key?('date')
+      attributes[:member_creator_id]  = fields['idMemberCreator'] || attributes[:member_creator_id]
+      attributes[:member_participant] = fields['member'] || attributes[:member_participant]
       self
     end
 
