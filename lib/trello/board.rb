@@ -156,6 +156,9 @@ module Trello
 
     # Returns a reference to the organization this board belongs to.
     one :organization, path: :organizations, using: :organization_id
+    
+    # Returns a list of plugins associated with the board
+    many :plugin_data, path: "pluginData"
 
     def labels(params = {})
       # Set the limit to as high as possible given there is no pagination in this API.
