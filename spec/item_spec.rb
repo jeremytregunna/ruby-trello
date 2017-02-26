@@ -51,5 +51,25 @@ module Trello
         it { expect(item).not_to be_complete }
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'name' => 'name',
+          'type' => 'type',
+          'state' => 'state',
+          'pos' => 'pos'
+        }
+
+        item = Item.new(expected)
+
+        item.update_fields({})
+
+        expected.each do |key, value|
+          expect(item.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

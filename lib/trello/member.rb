@@ -39,14 +39,14 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an Member.
     def update_fields(fields)
-      attributes[:id]        = fields['id']
-      attributes[:full_name] = fields['fullName']
-      attributes[:email]     = fields['email']
-      attributes[:username]  = fields['username']
-      attributes[:initials]  = fields['initials']
-      attributes[:avatar_id] = fields['avatarHash']
-      attributes[:bio]       = fields['bio']
-      attributes[:url]       = fields['url']
+      attributes[:id]        = fields['id'] || attributes[:id]
+      attributes[:full_name] = fields['fullName'] || attributes[:full_name]
+      attributes[:email]     = fields['email'] || attributes[:email]
+      attributes[:username]  = fields['username'] || attributes[:username]
+      attributes[:initials]  = fields['initials'] || attributes[:initials]
+      attributes[:avatar_id] = fields['avatarHash'] || attributes[:avatar_id]
+      attributes[:bio]       = fields['bio'] || attributes[:bio]
+      attributes[:url]       = fields['url'] || attributes[:url]
       self
     end
 

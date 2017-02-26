@@ -27,10 +27,10 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a Comment.
     def update_fields(fields)
-      attributes[:action_id]          = fields['id']
-      attributes[:text]               = fields['data']['text']
-      attributes[:date]               = Time.iso8601(fields['date'])
-      attributes[:member_creator_id]  = fields['idMemberCreator']
+      attributes[:action_id]          = fields['id'] || attributes[:action_id]
+      attributes[:text]               = fields['data']['text'] || attributes[:text]
+      attributes[:date]               = Time.iso8601(fields['date']) if fields.has_key?('date')
+      attributes[:member_creator_id]  = fields['idMemberCreator'] || attributes[:member_creator_id]
       self
     end
 

@@ -40,6 +40,32 @@ module Trello
         expect(organization.actions.count).to be > 0
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'name' => 'name',
+          'displayName' => 'display_name',
+          'desc' => 'description',
+          'url' => 'url',
+          'invited' => 'invited',
+          'website' => 'website',
+          'logoHash' => 'logo_hash',
+          'billableMemberCount' => 'billable_member_count',
+          'activeBillableMemberCount' => 'active_billable_member_count',
+          'memberships' => 'memberships'
+        }
+
+        organization = Organization.new(expected)
+
+        organization.update_fields({})
+
+        expected.each do |key, value|
+          expect(organization.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end
 

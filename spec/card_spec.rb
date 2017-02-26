@@ -753,5 +753,31 @@ module Trello
         expect(card.due_complete).to be true
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = cards_details.first
+
+        card = Card.new(expected)
+        card.client = client
+
+        card.update_fields({})
+
+        expected.each do |key, value|
+          if card.respond_to?(key) && key != 'labels'
+            expect(card.send(key)).to eq value
+          end
+
+          expect(card.labels).to eq expected['labels'].map { |lbl| Trello::Label.new(lbl) }
+          expect(card.short_id).to eq expected['idShort']
+          expect(card.short_url).to eq expected['shortUrl']
+          expect(card.board_id).to eq expected['idBoard']
+          expect(card.member_ids).to eq expected['idMembers']
+          expect(card.cover_image_id).to eq expected['idAttachmentCover']
+          expect(card.list_id).to eq expected['idList']
+          expect(card.card_labels).to eq expected['idLabels']
+        end
+      end
+    end
   end
 end

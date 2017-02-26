@@ -106,5 +106,25 @@ module Trello
         expect(webhook).to be_activated
       end
     end
+
+    describe "#update_fields" do
+      it "does not set any fields when the fields argument is empty" do
+        expected = {
+          'id' => 'id',
+          'description' => 'description',
+          'idModel' => 'id_model',
+          'callbackURL' => 'callback_url',
+          'active' => 'active'
+        }
+
+        webhook = Webhook.new(expected)
+
+        webhook.update_fields({})
+
+        expected.each do |key, value|
+          expect(webhook.send(value)).to eq expected[key]
+        end
+      end
+    end
   end
 end

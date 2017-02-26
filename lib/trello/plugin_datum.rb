@@ -21,12 +21,12 @@ module Trello
     # Supply a hash of stringkeyed data retrieved from the Trello API representing
     # an attachment.
     def update_fields(fields)
-      attributes[:id]        = fields['id']
-      attributes[:idPlugin]  = fields['idPlugin']
-      attributes[:scope]     = fields['scope']
-      attributes[:value]     = JSON.parse fields['value']
-      attributes[:idModel]   = fields['idModel']
-      attributes[:access]    = fields['access']
+      attributes[:id]        = fields['id'] || attributes[:id]
+      attributes[:idPlugin]  = fields['idPlugin'] || attributes[:idPlugin]
+      attributes[:scope]     = fields['scope'] || attributes[:scope]
+      attributes[:value]     = JSON.parse(fields['value']).presence if fields.has_key?('value')
+      attributes[:idModel]   = fields['idModel'] || attributes[:idModel]
+      attributes[:access]    = fields['access'] || attributes[:access]
       self
     end
   end

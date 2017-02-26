@@ -45,17 +45,17 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # a checklist.
     def update_fields(fields)
-      attributes[:id] = fields['id']
-      attributes[:name] = fields['name'] || fields[:name]
-      attributes[:description] = fields['desc']
-      attributes[:closed] = fields['closed']
-      attributes[:url] = fields['url']
-      attributes[:check_items] = fields['checkItems']
-      attributes[:position] = fields['pos']
-      attributes[:board_id] = fields['idBoard']
-      attributes[:card_id] = fields['idCard'] || fields[:card_id]
-      attributes[:list_id] = fields['idList']
-      attributes[:member_ids] = fields['idMembers']
+      attributes[:id] = fields['id'] || attributes[:id]
+      attributes[:name] = fields['name'] || fields[:name] || attributes[:name]
+      attributes[:description] = fields['desc'] || attributes[:description]
+      attributes[:closed] = fields['closed'] if fields.has_key?('closed')
+      attributes[:url] = fields['url'] || attributes[:url]
+      attributes[:check_items] = fields['checkItems'] if fields.has_key?('checkItems')
+      attributes[:position] = fields['pos'] || attributes[:position]
+      attributes[:board_id] = fields['idBoard'] || attributes[:board_id]
+      attributes[:card_id] = fields['idCard'] || fields[:card_id] || attributes[:card_id]
+      attributes[:list_id] = fields['idList'] || attributes[:list_id]
+      attributes[:member_ids] = fields['idMembers'] || attributes[:member_ids]
       self
     end
 
