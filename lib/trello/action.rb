@@ -61,6 +61,10 @@ module Trello
     def list
       List.from_response client.get("/actions/#{id}/list")
     end
+    
+    def delete
+      client.delete("/actions/#{id}")
+    end
 
     # Returns the member who created the action.
     one :member_creator, via: Member, path: :members, using: :member_creator_id
