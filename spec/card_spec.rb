@@ -399,6 +399,45 @@ module Trello
         card.move_to_board(other_board, other_list)
       end
 
+      it 'can be moved to a list on the same board' do
+        current_board = double(id: 'abcdef123456789123456789')
+        other_list = double(
+          id: '987654321987654321fedcba',
+          board_id: 'abcdef123456789123456789'
+        )
+        allow(List).to receive(:find).with('987654321987654321fedcba').
+          and_return(other_list)
+        allow(card).to receive(:board).and_return(current_board)
+        payload = {value: other_list.id}
+
+        expect(client)
+          .to receive(:put)
+          .with('/cards/abcdef123456789123456789/idList', payload)
+
+        card.move_to_list_on_any_board(other_list.id)
+      end
+
+      it 'can be moved to a list on another board' do
+        current_board = double(id: 'abcdef123456789123456789')
+        other_board = double(id: '987654321987654321fedcba')
+        other_list = double(
+          id: '987654321987654321aalist',
+          board_id: '987654321987654321fedcba'
+        )
+        allow(List).to receive(:find).with('987654321987654321aalist').
+          and_return(other_list)
+        allow(card).to receive(:board).and_return(current_board)
+        allow(Board).to receive(:find).with('987654321987654321fedcba').
+          and_return(other_board)
+        payload = { value: other_board.id, idList: other_list.id }
+
+        expect(client)
+          .to receive(:put)
+          .with('/cards/abcdef123456789123456789/idBoard', payload)
+
+        card.move_to_list_on_any_board(other_list.id)
+      end
+
       it 'should not be moved if new board is identical with old board', focus: true do
         other_board = double(id: 'abcdef123456789123456789')
         expect(client).to_not receive(:put)

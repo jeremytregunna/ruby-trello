@@ -343,6 +343,16 @@ module Trello
       end
     end
 
+    # Moves this card to the given list no matter which board it is on
+    def move_to_list_on_any_board(list_id)
+      list = List.find(list_id)
+      if board.id == list.board_id
+        move_to_list(list_id)
+      else
+        move_to_board(Board.find(list.board_id), list)
+      end
+    end
+
     # Move this card to the given board (and optional list on this board)
     def move_to_board(new_board, new_list = nil)
       unless board_id == new_board.id
