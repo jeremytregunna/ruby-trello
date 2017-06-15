@@ -4,7 +4,7 @@
 [![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.png)](http://travis-ci.org/jeremytregunna/ruby-trello) [![Dependency Status](https://gemnasium.com/jeremytregunna/ruby-trello.png)](https://gemnasium.com/jeremytregunna/ruby-trello)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
-This library implements the [Trello](http://www.trello.com/) [API](http://trello.com/api).
+This library implements the [Trello](http://www.trello.com/) [API](https://developers.trello.com/).
 
 Trello is an awesome tool for organization. Not just aimed at developers, but everybody.
 Seriously, [check it out](http://www.trello.com/).
