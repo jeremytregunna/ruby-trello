@@ -27,7 +27,7 @@ Use version 1.4.x or earlier for ruby 2.0.0 support.
 
 ## Configuration
 
-####Basic authorization:
+### Basic authorization:
 
 1. Get your API public key from Trello via the irb console:
 
@@ -50,7 +50,7 @@ Trello.configure do |config|
 end
 ```
 
-####2-legged OAuth authorization
+### 2-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -61,7 +61,7 @@ Trello.configure do |config|
 end
 ```
 
-####3-legged OAuth authorization
+### 3-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -86,7 +86,7 @@ puts bob.bio # A wonderfully delightful test user
 bob.boards
 ```
 
-#### Multiple Users
+### Multiple Users
 
 Applications that make requests on behalf of multiple Trello users have an alternative to global configuration. For each user's access token/secret pair, instantiate a `Trello::Client`:
 
