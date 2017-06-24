@@ -22,12 +22,12 @@ to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee2
 
 Supports Ruby 2.1.0 or newer.
 
-Use version 1.3.0 or earlier for ruby 1.9.3 support.
-Use version 1.4.x or earlier for ruby 2.0.0 support.
+Use version 1.3.0 or earlier for Ruby 1.9.3 support.
+Use version 1.4.x or earlier for Ruby 2.0.0 support.
 
 ## Configuration
 
-####Basic authorization:
+#### Basic authorization:
 
 1. Get your API public key from Trello via the irb console:
 
@@ -50,7 +50,7 @@ Trello.configure do |config|
 end
 ```
 
-####2-legged OAuth authorization
+#### 2-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -61,7 +61,7 @@ Trello.configure do |config|
 end
 ```
 
-####3-legged OAuth authorization
+#### 3-legged OAuth authorization
 
 ```ruby
 Trello.configure do |config|
@@ -72,9 +72,9 @@ Trello.configure do |config|
 end
 ```
 
-All the calls this library make to Trello require authentication using these keys. Be sure to protect them.
+All the calls this library makes to Trello require authentication using these keys. Be sure to protect them.
 
-So lets say you want to get information about the user *bobtester*. We can do something like this:
+So let's say you want to get information about the user *bobtester*. We can do something like this:
 
 ```ruby
 bob = Trello::Member.find("bobtester")
