@@ -154,9 +154,16 @@ module Trello
     #    :filter => [ :none, :normal, :owners, :all ] # default :all
     many :members, filter: :all
 
+    # Returns a list of checklists associated with the board.
+    #
+    # The options hash may have a filter key which can have its value set as any
+    # of the following values:
+    #    :filter => [ :none, :all ] # default :all
+    many :checklists, filter: :all
+
     # Returns a reference to the organization this board belongs to.
     one :organization, path: :organizations, using: :organization_id
-    
+
     # Returns a list of plugins associated with the board
     many :plugin_data, path: "pluginData"
 

@@ -225,6 +225,19 @@ module Trello
       end
     end
 
+    context "checklists" do
+      before do
+        allow(client)
+          .to receive(:get)
+          .with("/boards/abcdef123456789123456789/checklists", {filter: :all})
+          .and_return checklists_payload
+      end
+
+      it "has a list of checklists" do
+        expect(board.checklists.count).to be > 0
+      end
+    end
+
     context "organization" do
       before do
         allow(client)
