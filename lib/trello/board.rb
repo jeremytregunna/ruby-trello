@@ -151,7 +151,7 @@ module Trello
     #
     # This method, when called, can take a hash table with a filter key containing any
     # of the following values:
-    #    :filter => [ :none, :normal, :owners, :all ] # default :all
+    #    :filter => [ :none, :normal, :owners, :admins, :all ] # default :all
     many :members, filter: :all
 
     # Returns a list of checklists associated with the board.
