@@ -75,9 +75,6 @@ module Trello
   # Version of the Trello API that we use by default.
   API_VERSION = 1
 
-  # Raise this when we hit a Trello error.
-  Error = Class.new(StandardError)
-
   # This specific error is thrown when your access token is invalid. You should get a new one.
   InvalidAccessToken = Class.new(Error)
 
