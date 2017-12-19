@@ -37,6 +37,7 @@ require 'addressable/uri'
 #
 # Feel free to {peruse and participate in our Trello board}[https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd]. It's completely open to the public.
 module Trello
+  autoload :Error,             'trello/error'
   autoload :Action,            'trello/action'
   autoload :Comment,           'trello/comment'
   autoload :Association,       'trello/association'
