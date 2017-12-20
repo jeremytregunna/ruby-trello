@@ -3,7 +3,7 @@ module Trello
 
     attr_reader :status
 
-    def initialize(status, message)
+    def initialize(message, status=nil)
       @status = status
       super(message)
     end

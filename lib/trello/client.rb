@@ -96,7 +96,7 @@ module Trello
 
       unless [200, 201].include? response.code
         Trello.logger.error("[#{response.code} #{name.to_s.upcase} #{uri}]: #{response.body}")
-        raise Error.new(response.code, response.body)
+        raise Error.new(response.body, response.code)
       end
 
       response.body
