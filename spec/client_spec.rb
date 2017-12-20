@@ -53,7 +53,7 @@ describe Client do
         expect { client.get "/xxx" }.to raise_error do |error|
           expect(error).to be_a(Error)
           expect(error.message).to eq("404 error response")
-          expect(error.status).to eq(404)
+          expect(error.status_code).to eq(404)
         end
       end
     end
