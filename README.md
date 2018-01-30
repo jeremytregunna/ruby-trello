@@ -121,12 +121,12 @@ pp Trello::Card.find( card_id ).checklists
 checklist = Trello::Checklist.find( checklist_id )
 
 # At this point, there is no more ids. To get your checklist item, 
-# you have to know it's position (same as in the trello interface)
+# you have to know it's position (same as in the trello interface).
 # Let's take the first
 checklist_item = checklist.items.first
 
 # Then we can read the status
-checklist_item.status # return 'complete' or 'incomplete'
+checklist_item.state # return 'complete' or 'incomplete'
 
 # We can update it (note we call update_item_state from checklist, not from checklist_item)
 checklist.update_item_state( checklist_item.id, 'complete' ) # or 'incomplete'
