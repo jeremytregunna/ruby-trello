@@ -96,15 +96,15 @@ bob.boards.first.lists
 
 ##### Accessing specific items
 
-There is no find by name method in the trello API, to access a specific item, you have to know it's ID
+There is no find by name method in the trello API, to access a specific item, you have to know it's ID.
 The best way is to pretty print the elements and then find the id of the element you are looking for.
 
 ```ruby
 # With bob
-pp bob.boards # will pretty print all boards, allowing us to find our board id. Let's call it board_id
+pp bob.boards # Will pretty print all boards, allowing us to find our board id
 
 # We can now access it's lists
-pp Trello::Board.find( board_id ).lists # will pretty print all lists, allowing us again to get the list id
+pp Trello::Board.find( board_id ).lists # will pretty print all lists. Let's get the list id
 
 # We can now access the cards of the list
 pp Trello::List.find( list_id ).cards
@@ -120,14 +120,15 @@ pp Trello::Card.find( card_id ).checklists
 # First get your checklist id 
 checklist = Trello::Checklist.find( checklist_id )
 
-# At this point, there is no more ids. To get your checklist item, you have to know it's position (same as in the trello interface)
+# At this point, there is no more ids. To get your checklist item, 
+# you have to know it's position (same as in the trello interface)
 # Let's take the first
 checklist_item = checklist.items.first
 
 # Then we can read the status
-checklist_item.status # return 'complete' or 'uncomplete'
+checklist_item.status # return 'complete' or 'incomplete'
 
-# And we can update it (note we call update_item_state from checklist, not from checklist_item)
+# We can update it (note we call update_item_state from checklist, not from checklist_item)
 checklist.update_item_state( checklist_item.id, 'complete' ) # or 'incomplete'
 
 # You can also use true or false instead of 'complete' or 'incomplete'
