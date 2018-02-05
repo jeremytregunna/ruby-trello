@@ -37,6 +37,7 @@ require 'addressable/uri'
 #
 # Feel free to {peruse and participate in our Trello board}[https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd]. It's completely open to the public.
 module Trello
+  autoload :Error,             'trello/error'
   autoload :Action,            'trello/action'
   autoload :Comment,           'trello/comment'
   autoload :Association,       'trello/association'
@@ -74,9 +75,6 @@ module Trello
 
   # Version of the Trello API that we use by default.
   API_VERSION = 1
-
-  # Raise this when we hit a Trello error.
-  Error = Class.new(StandardError)
 
   # This specific error is thrown when your access token is invalid. You should get a new one.
   InvalidAccessToken = Class.new(Error)

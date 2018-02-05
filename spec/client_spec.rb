@@ -50,7 +50,11 @@ describe Client do
           .to receive(:try_execute)
           .and_return(response_with_non_200_status)
 
-        expect { client.get "/xxx" }.to raise_error(Error, "404 error response")
+        expect { client.get "/xxx" }.to raise_error do |error|
+          expect(error).to be_a(Error)
+          expect(error.message).to eq("404 error response")
+          expect(error.status_code).to eq(404)
+        end
       end
     end
   end
