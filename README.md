@@ -74,16 +74,65 @@ end
 
 All the calls this library makes to Trello require authentication using these keys. Be sure to protect them.
 
+#### Usage
+
 So let's say you want to get information about the user *bobtester*. We can do something like this:
 
 ```ruby
 bob = Trello::Member.find("bobtester")
+
 # Print out his name
 puts bob.full_name # "Bob Tester"
+
 # Print his bio
 puts bob.bio # A wonderfully delightful test user
+
 # How about a list of his boards?
 bob.boards
+
+# And then to read the lists of the first board do : 
+bob.boards.first.lists
+```
+
+##### Accessing specific items
+
+There is no find by name method in the trello API, to access a specific item, you have to know it's ID.
+The best way is to pretty print the elements and then find the id of the element you are looking for.
+
+```ruby
+# With bob
+pp bob.boards # Will pretty print all boards, allowing us to find our board id
+
+# We can now access it's lists
+pp Trello::Board.find( board_id ).lists # will pretty print all lists. Let's get the list id
+
+# We can now access the cards of the list
+pp Trello::List.find( list_id ).cards
+
+# We can now access the checklists of the card
+pp Trello::Card.find( card_id ).checklists
+
+# and so on ...
+```
+
+##### Changing a checkbox state
+```ruby
+# First get your checklist id 
+checklist = Trello::Checklist.find( checklist_id )
+
+# At this point, there is no more ids. To get your checklist item, 
+# you have to know it's position (same as in the trello interface).
+# Let's take the first
+checklist_item = checklist.items.first
+
+# Then we can read the status
+checklist_item.state # return 'complete' or 'incomplete'
+
+# We can update it (note we call update_item_state from checklist, not from checklist_item)
+checklist.update_item_state( checklist_item.id, 'complete' ) # or 'incomplete'
+
+# You can also use true or false instead of 'complete' or 'incomplete'
+checklist.update_item_state( checklist_item.id, true ) # or false
 ```
 
 #### Multiple Users

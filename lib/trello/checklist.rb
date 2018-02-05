@@ -109,9 +109,10 @@ module Trello
 
     # Update a checklist item's state, e.g.: "complete" or "incomplete"
     def update_item_state(item_id, state)
+      state = ( state ? 'complete' : 'incomplete' ) unless state.is_a?(String)
       client.put(
-        "/cards/#{card_id}/checklist/#{id}/checkItem/#{item_id}/state",
-        value: state,
+          "/cards/#{card_id}/checkItem/#{item_id}",
+          state: state
       )
     end
 
