@@ -125,6 +125,14 @@ module Trello
       self.class == other.class && id == other.id
     end
 
+    # Alias hash equality to equality
+    alias eql? ==
+
+    # Delegate hash key computation to class and id pair
+    def hash
+      [self.class, id].hash
+    end
+
     def client
       @client ||= self.class.client
     end

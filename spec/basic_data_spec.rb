@@ -25,5 +25,34 @@ module Trello
         expect(card).to_not eq(list)
       end
     end
+
+    describe "hash equality" do
+      specify "two objects of the same type point to the same hash key" do
+        data_object = Card.new('id' => 'abc123')
+        other_data_object = Card.new('id' => 'abc123')
+
+        hash = {data_object => 'one'}
+
+        expect(hash[other_data_object]).to eq('one')
+      end
+
+      specify "two object of the same type with different ids do not point to the same hash key" do
+        data_object = Card.new('id' => 'abc123')
+        other_data_object = Card.new('id' => 'def456')
+
+        hash = {data_object => 'one'}
+
+        expect(hash[other_data_object]).to be_nil
+      end
+
+      specify "two object of different types with same ids do not point to the same hash key" do
+        card = Card.new('id' => 'abc123')
+        list = List.new('id' => 'abc123')
+
+        hash = {card => 'one'}
+
+        expect(hash[list]).to be_nil
+      end
+    end
   end
 end
