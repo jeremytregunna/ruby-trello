@@ -122,7 +122,7 @@ module Trello
 
     # Two objects are equal if their _id_ methods are equal.
     def ==(other)
-      id == other.id
+      self.class == other.class && id == other.id
     end
 
     def client
