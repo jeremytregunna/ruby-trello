@@ -50,6 +50,7 @@ module Trello
   autoload :Checklist,         'trello/checklist'
   autoload :Client,            'trello/client'
   autoload :Configuration,     'trello/configuration'
+  autoload :CustomField,       'trello/custom_field'
   autoload :HasActions,        'trello/has_actions'
   autoload :Item,              'trello/item'
   autoload :CheckItemState,    'trello/item_state'
