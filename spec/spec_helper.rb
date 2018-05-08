@@ -425,6 +425,21 @@ module Helpers
     JSON.generate(label_name_details)
   end
 
+  def custom_fields_details
+    {
+      'id' => 'abcdef123456789123456789',
+      'name' => 'Priority',
+      'idModel' => 'abc123',
+      'type' => 'checkbox',
+      'pos' => '123',
+      'modelType' => 'board'
+    }
+  end
+
+  def custom_fields_payload
+    JSON.generate(custom_fields_details)
+  end
+
   def webhooks_payload
     JSON.generate(webhooks_details)
   end
