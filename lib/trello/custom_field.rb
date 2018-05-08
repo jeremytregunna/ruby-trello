@@ -34,12 +34,12 @@ module Trello
     class << self
       # Find a custom field by its id.
       def find(id, params = {})
-        client.find(:custom_field, id, params)
+        client.find('customFields', id, params)
       end
 
       # Create a new custom field and save it on Trello.
       def create(options)
-        client.create(:custom_field,
+        client.create('customFields',
           'name'       => options[:name],
           'idModel'    => options[:model_id],
           'modelType'  => options[:model_type],
