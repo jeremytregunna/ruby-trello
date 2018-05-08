@@ -1,5 +1,5 @@
 module Trello
-  # A Custom Field that can be activated on a board.
+  # A Custom Field can be activated on a board. Values are stored at the card level.
   #
   # @!attribute id
   #   @return [String]
@@ -50,6 +50,10 @@ module Trello
       end
     end
 
+    # References Board where this custom field is located
+    # Currently, model_type will always be "board" at the customFields endpoint
+    one :board, path: :boards, using: :model_id
+
     def update_fields(fields)
       attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || attributes[:id]
       attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || attributes[:name]
@@ -68,13 +72,22 @@ module Trello
 
       from_response client.post("/customFields", {
         name:       name,
-        color:      color,
         idModel:    model_id,
         modelType:  model_type,
         type:       type,
         pos:        pos,
         fieldGroup: field_group
       })
+    end
+
+    # Update an existing custom field.
+    def update!
+      @previously_changed = changes
+      # extract only new values to build payload
+      payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
+      @changed_attributes.clear
+
+      client.put("/customFields/#{id}", payload)
     end
 
     # Delete this custom field
