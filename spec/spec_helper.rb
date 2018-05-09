@@ -426,18 +426,28 @@ module Helpers
   end
 
   def custom_fields_details
-    {
-      'id' => 'abcdef123456789123456789',
-      'name' => 'Priority',
-      'idModel' => 'abc123',
-      'type' => 'checkbox',
-      'pos' => '123',
-      'modelType' => 'board'
-    }
+    [
+      {
+        'id' => 'abcdef123456789123456789',
+        'name' => 'Priority',
+        'idModel' => 'abc123',
+        'type' => 'checkbox',
+        'pos' => '123',
+        'modelType' => 'board'
+      },
+      {
+        id: 'abcdef123456789123456789',
+        name: 'Priority',
+        model_id: 'abc123',
+        type: 'checkbox',
+        pos: '123',
+        model_type: 'board'
+      }
+    ]
   end
 
   def custom_fields_payload
-    JSON.generate(custom_fields_details)
+    JSON.generate(custom_fields_details.first)
   end
 
   def webhooks_payload
