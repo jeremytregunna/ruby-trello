@@ -251,6 +251,19 @@ module Trello
       end
     end
 
+    context "custom fields" do
+      before do
+        allow(client)
+          .to receive(:get)
+          .with("/boards/abcdef123456789123456789/customFields", {})
+          .and_return JSON.generate([custom_fields_details.first])
+      end
+
+      it "has custom fields" do
+        expect(board.custom_fields.count).to be > 0
+      end
+    end
+
     it "is not closed" do
       expect(board).not_to be_closed
     end
