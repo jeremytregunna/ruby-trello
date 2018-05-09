@@ -65,7 +65,7 @@ module Trello
 
         result = JSON.generate(custom_fields_details.first.merge(test_payload))
         expected_payload = {name: 'Test Custom Field', type: 'checkbox', idModel: 'abc123',
-                            modelType: 'board', pos: '123', fieldGroup: nil}
+                            modelType: 'board', pos: 123, fieldGroup: nil}
 
         expect(client)
           .to receive(:post)

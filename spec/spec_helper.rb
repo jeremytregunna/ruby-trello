@@ -432,7 +432,7 @@ module Helpers
         'name' => 'Priority',
         'idModel' => 'abc123',
         'type' => 'checkbox',
-        'pos' => '123',
+        'pos' => 123,
         'modelType' => 'board'
       },
       {
@@ -440,7 +440,7 @@ module Helpers
         name: 'Priority',
         model_id: 'abc123',
         type: 'checkbox',
-        pos: '123',
+        pos: 123,
         model_type: 'board'
       }
     ]
