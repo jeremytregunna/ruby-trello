@@ -55,13 +55,13 @@ module Trello
     one :board, path: :boards, using: :model_id
 
     def update_fields(fields)
-      attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || attributes[:id]
-      attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || attributes[:name]
-      attributes[:model_id]    = fields[SYMBOL_TO_STRING[:model_id]] || attributes[:model_id]
-      attributes[:model_type]  = fields[SYMBOL_TO_STRING[:model_type]] || attributes[:model_type]
-      attributes[:field_group] = fields[SYMBOL_TO_STRING[:field_group]] || attributes[:field_group]
-      attributes[:type]        = fields[SYMBOL_TO_STRING[:type]] || attributes[:type]
-      attributes[:pos]         = fields[SYMBOL_TO_STRING[:pos]] || attributes[:pos]
+      attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || fields[:id] || attributes[:id]
+      attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
+      attributes[:model_id]    = fields[SYMBOL_TO_STRING[:model_id]] || fields[:model_id] || attributes[:model_id]
+      attributes[:model_type]  = fields[SYMBOL_TO_STRING[:model_type]] || fields[:model_type] || attributes[:model_type]
+      attributes[:field_group] = fields[SYMBOL_TO_STRING[:field_group]] || fields[:field_group] || attributes[:field_group]
+      attributes[:type]        = fields[SYMBOL_TO_STRING[:type]] || fields[:type] || attributes[:type]
+      attributes[:pos]         = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
       self
     end
 
