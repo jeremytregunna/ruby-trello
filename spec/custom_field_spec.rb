@@ -10,7 +10,7 @@ module Trello
     before do
       allow(client)
         .to receive(:get)
-        .with('customFields/abcdef123456789123456789', {})
+        .with('/customFields/abcdef123456789123456789', {})
         .and_return custom_fields_payload
     end
 
@@ -37,7 +37,7 @@ module Trello
 
       it 'properly initializes all fields from options-like formatted hash' do
         custom_field_details = custom_fields_details[1]
-        custom_field = CustomField.new(details)
+        custom_field = CustomField.new(custom_field_details)
         expect(custom_field.id).to          eq(custom_field_details[:id])
         expect(custom_field.name).to        eq(custom_field_details[:name])
         expect(custom_field.type).to        eq(custom_field_details[:type])
@@ -95,6 +95,16 @@ module Trello
 
       it 'is equivalent to client#find' do
         expect(CustomField.find('abcdef123456789123456789')).to eq(custom_field)
+      end
+    end
+
+    context "deleting" do
+      it "deletes the custom field" do
+        expect(client)
+          .to receive(:delete)
+          .with("/customFields/#{custom_field.id}")
+
+        custom_field.delete
       end
     end
   end
