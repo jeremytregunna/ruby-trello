@@ -98,8 +98,62 @@ module Trello
       end
     end
 
-    context "deleting" do
-      it "deletes the custom field" do
+    context 'updating' do
+      it 'correctly updates custom field name' do
+        expected_new_name = 'Test Name'
+
+        payload = { name: expected_new_name }
+
+        expect(client)
+          .to receive(:put).once
+          .with('/customFields/abcdef123456789123456789', payload)
+
+        custom_field.name = expected_new_name
+        custom_field.save
+      end
+    end
+
+    context 'fields' do
+      it 'gets its id' do
+        expect(custom_field.id).to_not be_nil
+      end
+
+      it 'gets its name' do
+        expect(custom_field.name).to_not be_nil
+      end
+
+      it 'gets the model id' do
+        expect(custom_field.model_id).to_not be_nil
+      end
+
+      it 'gets the model type' do
+        expect(custom_field.model_type).to_not be_nil
+      end
+
+      it 'gets its type' do
+        expect(custom_field.type).to_not be_nil
+      end
+
+      it 'gets its position' do
+        expect(custom_field.pos).to_not be_nil
+      end
+    end
+
+    context 'boards' do
+      before do
+        allow(client)
+          .to receive(:get)
+          .with('/boards/abc123', {})
+          .and_return JSON.generate(boards_details.first)
+      end
+
+      it 'has a board' do
+        expect(custom_field.board).to_not be_nil
+      end
+    end
+
+    context 'deleting' do
+      it 'deletes the custom field' do
         expect(client)
           .to receive(:delete)
           .with("/customFields/#{custom_field.id}")
