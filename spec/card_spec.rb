@@ -257,7 +257,6 @@ module Trello
         expect(card.pos).to_not be_nil
       end
 
-
       it 'gets its creation time' do
         expect(card.created_at).to be_kind_of Time
       end
@@ -338,6 +337,32 @@ module Trello
       end
     end
 
+    context "custom field items" do
+      before do
+        allow(client)
+          .to receive(:get)
+          .with("/cards/abcdef123456789123456789/customFieldItems", {})
+          .and_return JSON.generate([custom_field_item_details])
+      end
+
+      it "has a list of custom field items" do
+        card.custom_field_items.each do |c|
+          puts c.value
+        end
+        expect(card.custom_field_items.count).to be > 0
+      end
+
+      it "clears the custom field value on a card" do
+        params = { value: {} }
+
+        expect(client)
+          .to receive(:put)
+          .with("/card/abcdef123456789123456789/customField/abcdef123456789123456789/item", params)
+
+        card.custom_field_items.last.remove
+      end
+    end
+
     context "list" do
       before do
         allow(client)
@@ -345,6 +370,7 @@ module Trello
           .with("/lists/abcdef123456789123456789", {})
           .and_return JSON.generate(lists_details.first)
       end
+
       it 'has a list' do
         expect(card.list).to_not be_nil
       end
@@ -555,7 +581,6 @@ module Trello
         expect(card.voters.first).to be_kind_of Trello::Member
       end
     end
-
 
     context "comments" do
       it "posts a comment" do

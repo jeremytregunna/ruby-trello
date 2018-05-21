@@ -450,6 +450,20 @@ module Helpers
     JSON.generate(custom_fields_details.first)
   end
 
+  def custom_field_item_details
+    {
+      'id' => 'abcdefg1234567',
+      'value' => {text: 'hello world'},
+      'idModel' => 'abcdef123456789123456789',
+      'idCustomField' => 'abcdef123456789123456789',
+      'modelType' => 'card'
+    }
+  end
+
+  def custom_field_items_payload
+    JSON.generate(custom_field_item_details)
+  end
+
   def webhooks_payload
     JSON.generate(webhooks_details)
   end
