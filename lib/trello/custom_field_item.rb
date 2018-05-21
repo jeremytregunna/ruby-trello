@@ -1,17 +1,24 @@
 module Trello
+  # A custom field item contains the value for a custom field on a particular card.
+  #
   class CustomFieldItem < BasicData
-    register_attributes :id, :model_id, :model_type, :custom_field_id, :value
+    register_attributes :id, :model_id, :model_type, :custom_field_id, :value,
+                        readonly: [ :id, :custom_field_id, :model_id, :model_type ]
     validates_presence_of :id, :model_id, :custom_field_id
+
+    # References the card with this custom field value
+    one :card, path: :cards, using: :model_id
 
     # Update the fields of a custom field item.
     #
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an item state.
     def update_fields(fields)
-      attributes[:id]               = fields['id'] || attributes[:id]
-      attributes[:model_id]         = fields['idModel'] || attributes[:model_id]
-      attributes[:custom_field_id]  = fields['idCustomField'] || attributes[:custom_field_id]
-      attributes[:model_type]       = fields['modelType'] || attributes[:model_type]
+      attributes[:id]               = fields['id'] || fields[:id] || attributes[:id]
+      attributes[:model_id]         = fields['idModel'] || fields[:model_id] || attributes[:model_id]
+      attributes[:custom_field_id]  = fields['idCustomField'] || fields[:custom_field_id] || attributes[:custom_field_id]
+      attributes[:model_type]       = fields['modelType'] || fields[:model_type] || attributes[:model_type]
+      # value format: { "text": "hello world" }
       attributes[:value]            = fields['value'] if fields.has_key?('value')
       self
     end
