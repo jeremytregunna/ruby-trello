@@ -210,6 +210,9 @@ module Trello
     # Returns a list of plugins associated with the card
     many :plugin_data, path: "pluginData"
 
+    # List of custom field values on the card, only the ones that have been set
+    many :custom_field_items, path: 'customFieldItems'
+
     def check_item_states
       states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates")
       MultiAssociation.new(self, states).proxy

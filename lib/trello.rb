@@ -51,6 +51,7 @@ module Trello
   autoload :Client,            'trello/client'
   autoload :Configuration,     'trello/configuration'
   autoload :CustomField,       'trello/custom_field'
+  autoload :CustomFieldItem,   'trello/custom_field_item'
   autoload :HasActions,        'trello/has_actions'
   autoload :Item,              'trello/item'
   autoload :CheckItemState,    'trello/item_state'
