@@ -361,6 +361,18 @@ module Trello
 
         card.custom_field_items.last.remove
       end
+
+      it "updates a custom field value" do
+        payload = { value: { text: 'Test Text' } }
+
+        expect(client)
+          .to receive(:put)
+          .with("/card/abcdef123456789123456789/customField/abcdef123456789123456789/item", payload)
+
+        text_custom_field = card.custom_field_items.last
+        text_custom_field.value = { text: 'Test Text' }
+        text_custom_field.save
+      end
     end
 
     context "list" do

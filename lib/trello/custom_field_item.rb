@@ -19,14 +19,26 @@ module Trello
     def update!
       @previously_changed = changes
       # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
+      payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
       @changed_attributes.clear
 
       client.put("/card/#{model_id}/customField/#{custom_field_id}/item", payload)
     end
 
-    # References the card with this custom field value
-    one :card, path: :cards, using: :model_id
+    # Saves a record.
+    #
+    # @raise [Trello::Error] if the card could not be saved
+    #
+    # @return [String] The JSON representation of the saved custom field item returned by
+    # the Trello API.
+    def save
+      # If we have an id, just update our fields.
+      return update! if id
+
+      from_response client.post("/card/#{model_id}/customField/#{custom_field_id}/item", {
+        value: value
+      })
+    end
 
     # You can't "delete" a custom field item, you can only clear the value
     def remove
