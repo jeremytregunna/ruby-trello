@@ -346,9 +346,6 @@ module Trello
       end
 
       it "has a list of custom field items" do
-        card.custom_field_items.each do |c|
-          puts c.value
-        end
         expect(card.custom_field_items.count).to be > 0
       end
 
