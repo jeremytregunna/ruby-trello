@@ -9,6 +9,9 @@ module Trello
     # References the card with this custom field value
     one :card, path: :cards, using: :model_id
 
+    # References the parent custom field that this item is an instance of
+    one :custom_field, path: 'customFields', using: :custom_field_id
+
     # Update the fields of a custom field item.
     #
     # Supply a hash of string keyed data retrieved from the Trello API representing
@@ -51,6 +54,12 @@ module Trello
     def remove
       params = { value: {} }
       client.put("/card/#{model_id}/customField/#{custom_field_id}/item", params)
+    end
+
+    # Type is saved at the CustomField level
+    # Can equally be derived from :value, with a little parsing work: {"number": 42}
+    def type
+      custom_field.type
     end
   end
 end
