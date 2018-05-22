@@ -54,6 +54,9 @@ module Trello
     # Currently, model_type will always be "board" at the customFields endpoint
     one :board, path: :boards, using: :model_id
 
+    # If type == 'list'
+    many :custom_field_options, path: 'options'
+
     def update_fields(fields)
       attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || fields[:id] || attributes[:id]
       attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
@@ -94,6 +97,17 @@ module Trello
     # Also deletes all associated values across all cards
     def delete
       client.delete("/customFields/#{id}")
+    end
+
+    # If type == 'list', create a new option and add to this Custom Field
+    def create_new_option(value)
+      payload = { value: value }
+      client.post("/customFields/#{id}/options", payload)
+    end
+
+    # Will also clear it from individual cards that have this option selected
+    def delete_option(option_id)
+      client.delete("/customFields/#{id}/options/#{option_id}")
     end
   end
 end
