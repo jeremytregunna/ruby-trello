@@ -152,6 +152,26 @@ module Trello
       end
     end
 
+    context 'options' do
+      it 'creates a new option' do
+        payload = { "value": { "text": "High Priority" } }
+
+        expect(client)
+          .to receive(:post)
+          .with('/customFields/abcdef123456789123456789/options', payload)
+
+        custom_field.create_new_option({"text": "High Priority"})
+      end
+
+      it 'deletes option' do
+        expect(client)
+          .to receive(:delete)
+          .with('/customFields/abcdef123456789123456789/options/abc123')
+
+        custom_field.delete_option('abc123')
+      end
+    end
+
     context 'deleting' do
       it 'deletes the custom field' do
         expect(client)

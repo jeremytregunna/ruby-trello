@@ -453,7 +453,7 @@ module Helpers
   def custom_field_item_details
     {
       'id' => 'abcdefg1234567',
-      'value' => {text: 'hello world'},
+      'value' => { text: 'hello world' },
       'idModel' => 'abcdef123456789123456789',
       'idCustomField' => 'abcdef123456789123456789',
       'modelType' => 'card'
