@@ -2,16 +2,9 @@ require 'spec_helper'
 
 module Trello
   describe CustomFieldOption do
-    let(:details) {
-      {
-        '_id'   => 'abcdefgh12345678',
-        'value' => {"text": "Low Priority"},
-        'color' => 'green',
-        'pos' => 1
-      }
-    }
+    include Helpers
 
-    let(:option) { CustomFieldOption.new(details) }
+    let(:option) { CustomFieldOption.new(custom_field_option_details) }
 
     it 'validates presence of value and id' do
       invalid_option = CustomFieldOption.new
@@ -23,19 +16,19 @@ module Trello
 
     describe 'retrieve option fields' do
       it 'gets its id' do
-        expect(option.id).to eq details['_id']
+        expect(option.id).to eq custom_field_option_details['_id']
       end
 
       it 'gets its color' do
-        expect(option.color).to eq details['color']
+        expect(option.color).to eq custom_field_option_details['color']
       end
 
       it 'knows its value' do
-        expect(option.value).to eq details['value']
+        expect(option.value).to eq custom_field_option_details['value']
       end
 
       it 'gets its pos' do
-        expect(option.pos).to eq details['pos']
+        expect(option.pos).to eq custom_field_option_details['pos']
       end
     end
 

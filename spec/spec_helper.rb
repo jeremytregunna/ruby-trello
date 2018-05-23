@@ -450,6 +450,15 @@ module Helpers
     JSON.generate(custom_fields_details.first)
   end
 
+  def custom_field_option_details
+    {
+      '_id'   => 'abcdefgh12345678',
+      'value' => {"text": "Low Priority"},
+      'color' => 'green',
+      'pos' => 1
+    }
+  end
+
   def custom_field_item_details
     {
       'id' => 'abcdefg1234567',
