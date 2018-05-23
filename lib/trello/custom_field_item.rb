@@ -2,8 +2,8 @@ module Trello
   # A custom field item contains the value for a custom field on a particular card.
   #
   class CustomFieldItem < BasicData
-    register_attributes :id, :model_id, :model_type, :custom_field_id, :value,
-                        readonly: [ :id, :custom_field_id, :model_id, :model_type ]
+    register_attributes :id, :model_id, :model_type, :custom_field_id, :value, :option_id,
+                        readonly: [ :id, :custom_field_id, :model_id, :model_type, :option_id ]
     validates_presence_of :id, :model_id, :custom_field_id
 
     # References the card with this custom field value
@@ -21,6 +21,9 @@ module Trello
       attributes[:model_id]         = fields['idModel'] || fields[:model_id] || attributes[:model_id]
       attributes[:custom_field_id]  = fields['idCustomField'] || fields[:custom_field_id] || attributes[:custom_field_id]
       attributes[:model_type]       = fields['modelType'] || fields[:model_type] || attributes[:model_type]
+      # Dropdown custom field items do not have a value, they have an ID that maps to
+      # a different endpoint to get the value
+      attributes[:option_id]       = fields['idValue'] if fields.has_key?('idValue')
       # value format: { "text": "hello world" }
       attributes[:value]            = fields['value'] if fields.has_key?('value')
       self
@@ -60,6 +63,15 @@ module Trello
     # Can equally be derived from :value, with a little parsing work: {"number": 42}
     def type
       custom_field.type
+    end
+
+    # Need to make another call to get the actual value if the custom field type == 'list'
+    def option_value
+      if option_id
+        option_endpoint = "/customFields/#{custom_field_id}/options/#{option_id}"
+        option = CustomFieldOption.from_response client.get(option_endpoint)
+        option.value
+      end
     end
   end
 end
