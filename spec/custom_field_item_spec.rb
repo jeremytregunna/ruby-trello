@@ -7,7 +7,7 @@ module Trello
     let(:text_field_details) {
       {
         'id'   => 'abcdefgh12345678',
-        'value' => {"text": "Low Priority"},
+        'value' => {"text" => "Low Priority"},
         'idValue' => nil,
         'idModel' => 'abc123',
         'idCustomField' => 'abcd1234',

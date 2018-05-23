@@ -36,13 +36,13 @@ module Trello
       it 'allows fields to be updated' do
         updated = {
           color: "purple",
-          value: { "text": "Medium Priority" }
+          value: { "text" => "Medium Priority" }
         }
 
         option.update_fields(updated)
 
         expect(option.color).to eq "purple"
-        expect(option.value).to eq({"text": "Medium Priority"})
+        expect(option.value).to eq({"text" => "Medium Priority"})
       end
     end
   end

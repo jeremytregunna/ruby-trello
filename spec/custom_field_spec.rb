@@ -154,13 +154,13 @@ module Trello
 
     context 'options' do
       it 'creates a new option' do
-        payload = { "value": { "text": "High Priority" } }
+        payload = { :value => { "text" => "High Priority" } }
 
         expect(client)
           .to receive(:post)
           .with('/customFields/abcdef123456789123456789/options', payload)
 
-        custom_field.create_new_option({"text": "High Priority"})
+        custom_field.create_new_option({"text" => "High Priority"})
       end
 
       it 'deletes option' do
