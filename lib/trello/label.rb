@@ -9,7 +9,7 @@ module Trello
   class Label < BasicData
     register_attributes :id, :name, :board_id, :uses,
       readonly: [ :id, :uses, :board_id ]
-    validates_presence_of :id, :uses, :board_id, :name
+    validates_presence_of :id, :board_id, :name
     validates_length_of   :name,        in: 1..16384
 
     SYMBOL_TO_STRING = {
