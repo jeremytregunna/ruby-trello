@@ -167,6 +167,9 @@ module Trello
     # Returns a list of plugins associated with the board
     many :plugin_data, path: "pluginData"
 
+    # Returns custom fields activated on this board
+    many :custom_fields, path: "customFields"
+
     def labels(params = {})
       # Set the limit to as high as possible given there is no pagination in this API.
       params[:limit] = 1000 unless params[:limit]

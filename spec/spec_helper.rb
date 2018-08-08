@@ -425,6 +425,54 @@ module Helpers
     JSON.generate(label_name_details)
   end
 
+  def custom_fields_details
+    [
+      {
+        'id' => 'abcdef123456789123456789',
+        'name' => 'Priority',
+        'idModel' => 'abc123',
+        'type' => 'checkbox',
+        'pos' => 123,
+        'modelType' => 'board'
+      },
+      {
+        id: 'abcdef123456789123456789',
+        name: 'Priority',
+        model_id: 'abc123',
+        type: 'checkbox',
+        pos: 123,
+        model_type: 'board'
+      }
+    ]
+  end
+
+  def custom_fields_payload
+    JSON.generate(custom_fields_details.first)
+  end
+
+  def custom_field_option_details
+    {
+      '_id'   => 'abcdefgh12345678',
+      'value' => {'text' => 'Low Priority'},
+      'color' => 'green',
+      'pos' => 1
+    }
+  end
+
+  def custom_field_item_details
+    {
+      'id' => 'abcdefg1234567',
+      'value' => { 'text' => 'hello world' },
+      'idModel' => 'abcdef123456789123456789',
+      'idCustomField' => 'abcdef123456789123456789',
+      'modelType' => 'card'
+    }
+  end
+
+  def custom_field_items_payload
+    JSON.generate(custom_field_item_details)
+  end
+
   def webhooks_payload
     JSON.generate(webhooks_details)
   end
