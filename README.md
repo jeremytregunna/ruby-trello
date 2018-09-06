@@ -29,7 +29,7 @@ Use version 1.4.x or earlier for Ruby 2.0.0 support.
 
 #### Basic authorization:
 
-1. Get your API public key from Trello via the irb console:
+1. Get your API public key from Trello via [trello.com/app-key/](https://trello.com/app-key/) or the irb console as follows:
 
 ```
 $ gem install ruby-trello
