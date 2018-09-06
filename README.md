@@ -1,7 +1,8 @@
 # Ruby Trello API
 
 [![Stories in Ready](http://badge.waffle.io/jeremytregunna/ruby-trello.png)](http://waffle.io/jeremytregunna/ruby-trello)
-[![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.png)](http://travis-ci.org/jeremytregunna/ruby-trello) [![Dependency Status](https://gemnasium.com/jeremytregunna/ruby-trello.png)](https://gemnasium.com/jeremytregunna/ruby-trello)
+[![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.png)](http://travis-ci.org/jeremytregunna/ruby-trello)
+[![security](https://hakiri.io/github/jeremytregunna/ruby-trello/master.svg)](https://hakiri.io/github/jeremytregunna/ruby-trello/master)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
 This library implements the [Trello](http://www.trello.com/) [API](https://developers.trello.com/).
