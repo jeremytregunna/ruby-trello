@@ -489,7 +489,7 @@ module Trello
 
         allow(client)
           .to receive(:get)
-          .with("/members/abcdef123456789123456789")
+          .with("/cards/abcdef123456789123456789/members")
           .and_return user_payload
       end
 

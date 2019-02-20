@@ -225,9 +225,7 @@ module Trello
     #
     # @return [Array<Trello::Member>]
     def members
-      members = member_ids.map do |member_id|
-        Member.from_response client.get("/members/#{member_id}")
-      end
+      members = Member.from_response client.get("/cards/#{self.id}/members")
       MultiAssociation.new(self, members).proxy
     end
 
