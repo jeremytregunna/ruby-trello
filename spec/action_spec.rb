@@ -116,7 +116,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with('/members/abcdef123456789123456789', {})
+          .with('/actions/4ee2482134a81a757a08af47/memberCreator')
           .and_return user_payload
       end
 

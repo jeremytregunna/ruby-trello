@@ -62,7 +62,9 @@ module Trello
       List.from_response client.get("/actions/#{id}/list")
     end
 
-    # Returns the member who created the action.
-    one :member_creator, via: Member, path: :members, using: :member_creator_id
+    # Returns the list the action occurred on.
+    def member_creator
+      Member.from_response client.get("/actions/#{id}/memberCreator")
+    end
   end
 end
