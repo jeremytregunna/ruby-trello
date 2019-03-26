@@ -24,8 +24,7 @@ rvm:
   - 2.4.0
   - jruby-head
 before_install:
-  - gem install bundler
-  - gem update bundler
+  - gem install bundler -v '~> 1.0'
 env:
   - ACTIVE_MODEL_VERSION='~> 3.2.0'
   - ACTIVE_MODEL_VERSION='~> 4.0'
