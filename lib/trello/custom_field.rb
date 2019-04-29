@@ -88,7 +88,8 @@ module Trello
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.clear
+      @changed_attributes.try(:clear)
+      try(:changes_applied)
 
       client.put("/customFields/#{id}", payload)
     end

@@ -46,7 +46,7 @@ module Trello
     define_attribute_methods [:color]
 
     def color
-      @attributes[:color]
+      @__attributes[:color]
     end
 
     def color= colour
@@ -55,8 +55,8 @@ module Trello
         return Trello.logger.warn "The label colour '#{colour}' does not exist."
       end
 
-      self.send(:"color_will_change!") unless colour == @attributes[:color]
-      @attributes[:color] = colour
+      self.send(:"color_will_change!") unless colour == @__attributes[:color]
+      @__attributes[:color] = colour
     end
 
     # Update the fields of a label.
@@ -95,7 +95,8 @@ module Trello
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.clear
+      @changed_attributes.try(:clear)
+      try(:changes_applied)
 
       client.put("/labels/#{id}", payload)
     end
