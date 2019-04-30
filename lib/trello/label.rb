@@ -96,7 +96,7 @@ module Trello
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
       @changed_attributes.try(:clear)
-      try(:changes_applied)
+      changes_applied if respond_to?(:changes_applied)
 
       client.put("/labels/#{id}", payload)
     end

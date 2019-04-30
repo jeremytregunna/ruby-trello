@@ -34,7 +34,7 @@ module Trello
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
       @changed_attributes.try(:clear)
-      try(:changes_applied)
+      changes_applied if respond_to?(:changes_applied)
 
       client.put("/card/#{model_id}/customField/#{custom_field_id}/item", payload)
     end

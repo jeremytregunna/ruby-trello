@@ -73,7 +73,7 @@ module Trello
 
       @previously_changed = changes
       @changed_attributes.try(:clear)
-      try(:changes_applied)
+      changes_applied if respond_to?(:changes_applied)
 
       fields = {
         name: attributes[:name],
