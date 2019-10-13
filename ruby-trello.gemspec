@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.homepage          = %q{https://github.com/jeremytregunna/ruby-trello}
   s.rdoc_options      = ["--charset=UTF-8"]
   s.require_paths     = ["lib"]
-  s.rubyforge_project = %q{ruby-trello}
   s.rubygems_version  = %q{1.3.5}
   s.summary           = %q{A wrapper around the trello.com API.}
   s.test_files        = Dir.glob("spec/**/*")
