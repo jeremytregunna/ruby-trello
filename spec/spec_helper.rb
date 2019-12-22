@@ -31,6 +31,7 @@ Trello.logger = Logger.new(StringIO.new)
 
 RSpec.configure do |rspec|
   rspec.filter_run_excluding broken: true
+  rspec.filter_run_when_matching focus: true
 
   rspec.before :each do
     Trello.reset!

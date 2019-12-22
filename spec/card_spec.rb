@@ -473,7 +473,7 @@ module Trello
         card.move_to_list_on_any_board(other_list.id)
       end
 
-      it 'should not be moved if new board is identical with old board', focus: true do
+      it 'should not be moved if new board is identical with old board' do
         other_board = double(id: 'abcdef123456789123456789')
         expect(client).to_not receive(:put)
         card.move_to_board(other_board)
