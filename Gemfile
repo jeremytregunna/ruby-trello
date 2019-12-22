@@ -13,4 +13,5 @@ group :development, :spec do
   gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :jruby, :mingw]
   gem 'webmock'
   gem 'launchy'
+  gem 'pry-byebug'
 end
