@@ -114,5 +114,79 @@ module Trello
         expect(text_item.card).to be_a Card
       end
     end
+
+    describe '#update_fields' do
+
+      context 'when the fields argument is empty' do
+        let(:fields) { {} }
+
+        it 'custom field item does not set any fields' do
+          text_item.update_fields(fields)
+
+          expect(text_item.id).to eq text_field_details['id']
+          expect(text_item.option_id).to eq text_field_details['idValue']
+          expect(text_item.model_id).to eq text_field_details['idModel']
+          expect(text_item.custom_field_id).to eq text_field_details['idCustomField']
+          expect(text_item.model_type).to eq text_field_details['modelType']
+          expect(text_item.value).to eq text_field_details['value']
+        end
+      end
+
+      context 'when the fields argument has at least one field' do
+
+        context 'and the field does changed' do
+          let(:fields) { { value: { number: '42' } } }
+
+          it 'custom field item does set the changed fields' do
+            text_item.update_fields(fields)
+
+            expect(text_item.value).to eq( { number: '42' } )
+          end
+
+          it 'card has been mark as changed' do
+            text_item.update_fields(fields)
+
+            expect(text_item.changed?).to be_truthy
+          end
+        end
+
+        context "and the field doesn't changed" do
+          let(:fields) { { value: text_field_details['value'] } }
+
+          it "custom field item attributes doesn't changed" do
+            text_item.update_fields(fields)
+
+            expect(text_item.value).to eq(text_field_details['value'])
+          end
+
+          it "custom field item hasn't been mark as changed", pending: true do
+            text_item.update_fields(fields)
+
+            expect(text_item.changed?).to be_falsy
+          end
+        end
+
+        context "and the field isn't a correct attributes of the card" do
+          let(:fields) { { abc: 'abc' } }
+
+          it "custom field item attributes doesn't changed" do
+            text_item.update_fields(fields)
+
+            expect(text_item.id).to eq text_field_details['id']
+            expect(text_item.option_id).to eq text_field_details['idValue']
+            expect(text_item.model_id).to eq text_field_details['idModel']
+            expect(text_item.custom_field_id).to eq text_field_details['idCustomField']
+            expect(text_item.model_type).to eq text_field_details['modelType']
+            expect(text_item.value).to eq text_field_details['value']
+          end
+
+          it "custom field item hasn't been mark as changed" do
+            text_item.update_fields(fields)
+
+            expect(text_item.changed?).to be_falsy
+          end
+        end
+      end
+    end
   end
 end
