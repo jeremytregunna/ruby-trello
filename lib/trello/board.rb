@@ -72,7 +72,7 @@ module Trello
       fail "Cannot save new instance." unless self.id
 
       @previously_changed = changes
-      @changed_attributes.try(:clear)
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
       fields = {
