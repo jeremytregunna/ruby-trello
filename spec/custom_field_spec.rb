@@ -181,5 +181,81 @@ module Trello
         custom_field.delete
       end
     end
+
+    describe '#update_fields' do
+      let(:custom_field_detail) { custom_fields_details.first }
+      let(:custom_field) { CustomField.new(custom_field_detail) }
+
+      context 'when the fields argument is empty' do
+        let(:fields) { {} }
+
+        it 'custom field does not set any fields' do
+          custom_field.update_fields(fields)
+
+          expect(custom_field.id).to eq custom_field_detail['id']
+          expect(custom_field.model_id).to eq custom_field_detail['idModel']
+          expect(custom_field.model_type).to eq custom_field_detail['modelType']
+          expect(custom_field.name).to eq custom_field_detail['name']
+          expect(custom_field.pos).to eq custom_field_detail['pos']
+          expect(custom_field.type).to eq custom_field_detail['type']
+        end
+      end
+
+      context 'when the fields argument has at least one field' do
+        context 'and the field does changed' do
+          let(:fields) { { name: 'Awesome Name' } }
+
+          it 'custom field does set the changed fields' do
+            custom_field.update_fields(fields)
+
+            expect(custom_field.name).to eq('Awesome Name')
+          end
+
+          it 'custom field has been mark as changed' do
+            custom_field.update_fields(fields)
+
+            expect(custom_field.changed?).to be_truthy
+          end
+        end
+
+        context "and the field doesn't changed" do
+          let(:fields) { { name: custom_field_detail['name'] } }
+
+          it "custom field attributes doesn't changed" do
+            custom_field.update_fields(fields)
+
+            expect(custom_field.name).to eq(custom_field_detail['name'])
+          end
+
+          it "custom field hasn't been mark as changed", pending: true do
+            custom_field.update_fields(fields)
+
+            expect(custom_field.changed?).to be_falsy
+          end
+        end
+
+        context "and the field isn't a correct attributes of the card" do
+          let(:fields) { { abc: 'abc' } }
+
+          it "custom field attributes doesn't changed" do
+            custom_field.update_fields(fields)
+
+            expect(custom_field.id).to eq custom_field_detail['id']
+            expect(custom_field.model_id).to eq custom_field_detail['idModel']
+            expect(custom_field.model_type).to eq custom_field_detail['modelType']
+            expect(custom_field.name).to eq custom_field_detail['name']
+            expect(custom_field.pos).to eq custom_field_detail['pos']
+            expect(custom_field.type).to eq custom_field_detail['type']
+          end
+
+          it "custom field hasn't been mark as changed" do
+            custom_field.update_fields(fields)
+
+            expect(custom_field.changed?).to be_falsy
+          end
+        end
+      end
+    end
+
   end
 end
