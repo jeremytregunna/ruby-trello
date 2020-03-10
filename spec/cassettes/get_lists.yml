@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.trello.com/1/boards/5e679be40c407034b479459c?key=<DEVELOPER_PUBLIC_KEY>&token=<MEMBER_TOKEN>
+    uri: https://api.trello.com/1/boards/5e679be40c407034b479459c?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: US-ASCII
       string: ''
@@ -86,7 +86,7 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - dsc=<set_cookie_dsc>; Path=/; Expires=Fri, 13 Mar 2020 15:48:48 GMT; Secure
+      - dsc=set_cookie_dsc; Path=/; Expires=Fri, 13 Mar 2020 15:48:48 GMT; Secure
     body:
       encoding: UTF-8
       string: '{"id":"5e679be40c407034b479459c","name":"ruby-trello","desc":"","descData":null,"closed":false,"idOrganization":null,"idEnterprise":null,"pinned":false,"url":"https://trello.com/b/cHDSP1N4/ruby-trello","shortUrl":"https://trello.com/b/cHDSP1N4","prefs":{"permissionLevel":"private","hideVotes":false,"voting":"disabled","comments":"members","invitations":"members","selfJoin":true,"cardCovers":true,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"lime","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#4BBF6B","backgroundBottomColor":"#4BBF6B","backgroundTopColor":"#4BBF6B","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
@@ -94,7 +94,7 @@ http_interactions:
   recorded_at: Tue, 10 Mar 2020 15:48:48 GMT
 - request:
     method: get
-    uri: https://api.trello.com/1/boards/5e679be40c407034b479459c/lists?filter=open&key=<DEVELOPER_PUBLIC_KEY>&token=<MEMBER_TOKEN>
+    uri: https://api.trello.com/1/boards/5e679be40c407034b479459c/lists?filter=open&key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: US-ASCII
       string: ''
@@ -178,7 +178,7 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - dsc=<set_cookie_dsc>; Path=/; Expires=Fri, 13 Mar 2020 15:48:50 GMT; Secure
+      - dsc=set_cookie_dsc; Path=/; Expires=Fri, 13 Mar 2020 15:48:50 GMT; Secure
     body:
       encoding: UTF-8
       string: '[{"id":"5e679be480d34d521138cab1","name":"Things To Do","closed":false,"idBoard":"5e679be40c407034b479459c","pos":1,"subscribed":false,"softLimit":null},{"id":"5e679be5c6a2957439e0e3f8","name":"Doing","closed":false,"idBoard":"5e679be40c407034b479459c","pos":2,"subscribed":false,"softLimit":null},{"id":"5e679be57812f41deb8466cd","name":"Done","closed":false,"idBoard":"5e679be40c407034b479459c","pos":3,"subscribed":false,"softLimit":null}]'

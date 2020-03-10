@@ -33,19 +33,19 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
 
-  config.filter_sensitive_data('<DEVELOPER_PUBLIC_KEY>') do |interaction|
+  config.filter_sensitive_data('DEVELOPER_PUBLIC_KEY') do |interaction|
     CGI.parse(URI.parse(interaction.request.uri).query)['key'].first
   end
-  config.filter_sensitive_data('<MEMBER_TOKEN>') do |interaction|
+  config.filter_sensitive_data('MEMBER_TOKEN') do |interaction|
     CGI.parse(URI.parse(interaction.request.uri).query)['token'].first
   end
-  config.filter_sensitive_data('<set_cookie_dsc>') do |interaction|
+  config.filter_sensitive_data('set_cookie_dsc') do |interaction|
     interaction.response.headers['Set-Cookie'].first.scan(/dsc=(\w+)/).flatten.first
   end
 
   uri_without_credentials_matcher = lambda do |match_request, coming_request|
-    without_public_key = -> (uri) { uri.sub(/key=\w+/, 'key=<DEVELOPER_PUBLIC_KEY>') }
-    without_member_token = -> (uri) { uri.sub(/token=\w+/, 'token=<MEMBER_TOKEN>') }
+    without_public_key = -> (uri) { uri.sub(/key=\w+/, 'key=DEVELOPER_PUBLIC_KEY') }
+    without_member_token = -> (uri) { uri.sub(/token=\w+/, 'token=MEMBER_TOKEN') }
     without_credentials = -> (request) { without_public_key.call(without_member_token.call(request.uri)) }
 
     without_credentials.call(match_request) == without_credentials.call(coming_request)
