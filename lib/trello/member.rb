@@ -92,7 +92,7 @@ module Trello
 
     def save
       @previously_changed = changes
-      @changed_attributes.try(:clear)
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
       return update! if id

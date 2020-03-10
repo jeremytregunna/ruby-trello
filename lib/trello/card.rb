@@ -169,30 +169,19 @@ module Trello
     #
     # @return [Trello::Card] self
     def update_fields(fields)
-      attributes[:id]                     = fields[SYMBOL_TO_STRING[:id]] || attributes[:id]
-      attributes[:short_id]               = fields[SYMBOL_TO_STRING[:short_id]] || attributes[:short_id]
-      attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
-      attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]] || fields[:desc] || attributes[:desc]
-      attributes[:due]                    = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil if fields.has_key?(SYMBOL_TO_STRING[:due])
-      attributes[:due]                    = fields[:due] if fields.has_key?(:due)
-      attributes[:due_complete]           = fields[SYMBOL_TO_STRING[:due_complete]] if fields.has_key?(SYMBOL_TO_STRING[:due_complete])
-      attributes[:due_complete]           ||= false
-      attributes[:closed]                 = fields[SYMBOL_TO_STRING[:closed]] if fields.has_key?(SYMBOL_TO_STRING[:closed])
-      attributes[:url]                    = fields[SYMBOL_TO_STRING[:url]] || attributes[:url]
-      attributes[:short_url]              = fields[SYMBOL_TO_STRING[:short_url]] || attributes[:short_url]
-      attributes[:board_id]               = fields[SYMBOL_TO_STRING[:board_id]] || attributes[:board_id]
-      attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]] || fields[:member_ids] || attributes[:member_ids]
-      attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]] || fields[:list_id] || attributes[:list_id]
-      attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
-      attributes[:labels]                 = (fields[SYMBOL_TO_STRING[:labels]] || []).map { |lbl| Trello::Label.new(lbl) }.presence || attributes[:labels].presence || []
-      attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]] || fields[:card_labels] || attributes[:card_labels]
-      attributes[:last_activity_date]     = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil if fields.has_key?(SYMBOL_TO_STRING[:last_activity_date])
-      attributes[:cover_image_id]         = fields[SYMBOL_TO_STRING[:cover_image_id]] || attributes[:cover_image_id]
-      attributes[:badges]                 = fields[SYMBOL_TO_STRING[:badges]] || attributes[:badges]
-      attributes[:card_members]           = fields[SYMBOL_TO_STRING[:card_members]] || attributes[:card_members]
-      attributes[:source_card_id]         = fields[SYMBOL_TO_STRING[:source_card_id]] || fields[:source_card_id] || attributes[:source_card_id]
-      attributes[:source_card_properties] = fields[SYMBOL_TO_STRING[:source_card_properties]] || fields[:source_card_properties] || attributes[:source_card_properties]
-      self
+      %i[
+        name desc due due_complete closed
+        board_id member_ids list_id pos
+        card_labels cover_image_id
+      ].each do |key|
+        send("#{key}_will_change!") if fields_has_key?(fields, key)
+      end
+
+      initialize_fields(fields)
+    end
+
+    def initialize(fields = {})
+      initialize_fields(fields)
     end
 
     # Returns a reference to the board this card is part of.
@@ -277,7 +266,7 @@ module Trello
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.try(:clear)
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
       client.put("/cards/#{id}", payload)
@@ -465,5 +454,37 @@ module Trello
     def me
       @me ||= Member.find(:me)
     end
+
+    def fields_has_key?(fields, key)
+      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
+    end
+
+    def initialize_fields(fields)
+      attributes[:id]                     = fields[SYMBOL_TO_STRING[:id]] || attributes[:id]
+      attributes[:short_id]               = fields[SYMBOL_TO_STRING[:short_id]] || attributes[:short_id]
+      attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
+      attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]] || fields[:desc] || attributes[:desc]
+      attributes[:due]                    = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil if fields.has_key?(SYMBOL_TO_STRING[:due])
+      attributes[:due]                    = fields[:due] if fields.has_key?(:due)
+      attributes[:due_complete]           = fields[SYMBOL_TO_STRING[:due_complete]] if fields.has_key?(SYMBOL_TO_STRING[:due_complete])
+      attributes[:due_complete]           ||= false
+      attributes[:closed]                 = fields[SYMBOL_TO_STRING[:closed]] if fields.has_key?(SYMBOL_TO_STRING[:closed])
+      attributes[:url]                    = fields[SYMBOL_TO_STRING[:url]] || attributes[:url]
+      attributes[:short_url]              = fields[SYMBOL_TO_STRING[:short_url]] || attributes[:short_url]
+      attributes[:board_id]               = fields[SYMBOL_TO_STRING[:board_id]] || attributes[:board_id]
+      attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]] || fields[:member_ids] || attributes[:member_ids]
+      attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]] || fields[:list_id] || attributes[:list_id]
+      attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
+      attributes[:labels]                 = (fields[SYMBOL_TO_STRING[:labels]] || []).map { |lbl| Trello::Label.new(lbl) }.presence || attributes[:labels].presence || []
+      attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]] || fields[:card_labels] || attributes[:card_labels]
+      attributes[:last_activity_date]     = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil if fields.has_key?(SYMBOL_TO_STRING[:last_activity_date])
+      attributes[:cover_image_id]         = fields[SYMBOL_TO_STRING[:cover_image_id]] || attributes[:cover_image_id]
+      attributes[:badges]                 = fields[SYMBOL_TO_STRING[:badges]] || attributes[:badges]
+      attributes[:card_members]           = fields[SYMBOL_TO_STRING[:card_members]] || attributes[:card_members]
+      attributes[:source_card_id]         = fields[SYMBOL_TO_STRING[:source_card_id]] || fields[:source_card_id] || attributes[:source_card_id]
+      attributes[:source_card_properties] = fields[SYMBOL_TO_STRING[:source_card_properties]] || fields[:source_card_properties] || attributes[:source_card_properties]
+      self
+    end
+
   end
 end

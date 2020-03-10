@@ -64,12 +64,14 @@ module Trello
     # Supply a hash of stringkeyed data retrieved from the Trello API representing
     # a label.
     def update_fields(fields)
-      attributes[:id] = fields['id'] || attributes[:id]
-      attributes[:name]  = fields['name'] || fields[:name] || attributes[:name]
-      attributes[:color] = fields['color'] || fields[:color] || attributes[:color]
-      attributes[:board_id] = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
-      attributes[:uses] = fields['uses'] if fields.has_key?('uses')
-      self
+      send('name_will_change!') if fields_has_key?(fields, :name)
+      send('color_will_change!') if fields_has_key?(fields, :color)
+
+      initialize_fields(fields)
+    end
+
+    def initialize(fields = {})
+      initialize_fields(fields)
     end
 
     # Returns a reference to the board this label is currently connected.
@@ -95,7 +97,7 @@ module Trello
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.try(:clear)
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
       client.put("/labels/#{id}", payload)
@@ -104,6 +106,21 @@ module Trello
     # Delete this label
     def delete
       client.delete("/labels/#{id}")
+    end
+
+    private
+
+    def fields_has_key?(fields, key)
+      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
+    end
+
+    def initialize_fields(fields)
+      attributes[:id] = fields['id'] || attributes[:id]
+      attributes[:name]  = fields['name'] || fields[:name] || attributes[:name]
+      attributes[:color] = fields['color'] || fields[:color] || attributes[:color]
+      attributes[:board_id] = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
+      attributes[:uses] = fields['uses'] if fields.has_key?('uses')
+      self
     end
   end
 end

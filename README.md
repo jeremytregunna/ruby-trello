@@ -26,6 +26,8 @@ Supports Ruby 2.1.0 or newer.
 Use version 1.3.0 or earlier for Ruby 1.9.3 support.
 Use version 1.4.x or earlier for Ruby 2.0.0 support.
 
+Ruby 2.7.0 or newer only works with Rails 2.2.0 or newer.
+
 ## Configuration
 
 #### Basic authorization:

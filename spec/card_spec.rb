@@ -473,7 +473,7 @@ module Trello
         card.move_to_list_on_any_board(other_list.id)
       end
 
-      it 'should not be moved if new board is identical with old board', focus: true do
+      it 'should not be moved if new board is identical with old board' do
         other_board = double(id: 'abcdef123456789123456789')
         expect(client).to_not receive(:put)
         card.move_to_board(other_board)
@@ -827,28 +827,97 @@ module Trello
       end
     end
 
-    describe "#update_fields" do
-      it "does not set any fields when the fields argument is empty" do
-        expected = cards_details.first
+    describe '#update_fields' do
+      context 'when the fields argument is empty' do
+        let(:fields) { {} }
 
-        card = Card.new(expected)
-        card.client = client
+        it 'card does not set any fields' do
+          expected = cards_details.first
 
-        card.update_fields({})
+          card = Card.new(expected)
+          card.client = client
 
-        expected.each do |key, value|
-          if card.respond_to?(key) && key != 'labels'
-            expect(card.send(key)).to eq value
+          card.update_fields(fields)
+
+          expected.each do |key, value|
+            if card.respond_to?(key) && key != 'labels'
+              expect(card.send(key)).to eq value
+            end
+
+            expect(card.labels).to eq expected['labels'].map { |lbl| Trello::Label.new(lbl) }
+            expect(card.short_id).to eq expected['idShort']
+            expect(card.short_url).to eq expected['shortUrl']
+            expect(card.board_id).to eq expected['idBoard']
+            expect(card.member_ids).to eq expected['idMembers']
+            expect(card.cover_image_id).to eq expected['idAttachmentCover']
+            expect(card.list_id).to eq expected['idList']
+            expect(card.card_labels).to eq expected['idLabels']
+          end
+        end
+      end
+
+      context 'when the fields argument has at least one field' do
+        let(:expected) { cards_details.first }
+        let(:card) {
+          card = Card.new(expected)
+          card.client = client
+          card
+        }
+
+        context 'and the field does changed' do
+          let(:fields) { { desc: 'Awesome things have changed.' } }
+
+          it 'card does set the changed fields' do
+            card.update_fields(fields)
+
+            expect(card.desc).to eq('Awesome things have changed.')
           end
 
-          expect(card.labels).to eq expected['labels'].map { |lbl| Trello::Label.new(lbl) }
-          expect(card.short_id).to eq expected['idShort']
-          expect(card.short_url).to eq expected['shortUrl']
-          expect(card.board_id).to eq expected['idBoard']
-          expect(card.member_ids).to eq expected['idMembers']
-          expect(card.cover_image_id).to eq expected['idAttachmentCover']
-          expect(card.list_id).to eq expected['idList']
-          expect(card.card_labels).to eq expected['idLabels']
+          it 'card has been mark as changed' do
+            card.update_fields(fields)
+
+            expect(card.changed?).to be_truthy
+          end
+        end
+
+        context "and the field doesn't changed" do
+          let(:fields) { { desc: expected[:desc] } }
+
+          it "card attributes doesn't changed" do
+            card.update_fields(fields)
+
+            expect(card.desc).to eq(expected['desc'])
+          end
+
+          it "card hasn't been mark as changed", pending: true do
+            card.update_fields(fields)
+
+            expect(card.changed?).to be_falsy
+          end
+        end
+
+        context "and the field isn't a correct attributes of the card" do
+          let(:fields) { { abc: 'abc' } }
+
+          it "card attributes doesn't changed" do
+            card.update_fields(fields)
+
+            expect(card.labels).to eq expected['labels'].map { |lbl| Trello::Label.new(lbl) }
+            expect(card.short_id).to eq expected['idShort']
+            expect(card.short_url).to eq expected['shortUrl']
+            expect(card.board_id).to eq expected['idBoard']
+            expect(card.member_ids).to eq expected['idMembers']
+            expect(card.cover_image_id).to eq expected['idAttachmentCover']
+            expect(card.list_id).to eq expected['idList']
+            expect(card.card_labels).to eq expected['idLabels']
+            expect(card.desc).to eq expected['desc']
+          end
+
+          it "card hasn't been mark as changed" do
+            card.update_fields(fields)
+
+            expect(card.changed?).to be_falsy
+          end
         end
       end
     end

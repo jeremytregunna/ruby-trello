@@ -58,14 +58,14 @@ module Trello
     many :custom_field_options, path: 'options'
 
     def update_fields(fields)
-      attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || fields[:id] || attributes[:id]
-      attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
-      attributes[:model_id]    = fields[SYMBOL_TO_STRING[:model_id]] || fields[:model_id] || attributes[:model_id]
-      attributes[:model_type]  = fields[SYMBOL_TO_STRING[:model_type]] || fields[:model_type] || attributes[:model_type]
-      attributes[:field_group] = fields[SYMBOL_TO_STRING[:field_group]] || fields[:field_group] || attributes[:field_group]
-      attributes[:type]        = fields[SYMBOL_TO_STRING[:type]] || fields[:type] || attributes[:type]
-      attributes[:pos]         = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
-      self
+      send('name_will_change!') if fields_has_key?(fields, :name)
+      send('pos_will_change!') if fields_has_key?(fields, :pos)
+
+      initialize_fields(fields)
+    end
+
+    def initialize(fields = {})
+      initialize_fields(fields)
     end
 
     # Saves a record.
@@ -88,7 +88,7 @@ module Trello
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.try(:clear)
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
       client.put("/customFields/#{id}", payload)
@@ -109,6 +109,23 @@ module Trello
     # Will also clear it from individual cards that have this option selected
     def delete_option(option_id)
       client.delete("/customFields/#{id}/options/#{option_id}")
+    end
+
+    private
+
+    def fields_has_key?(fields, key)
+      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
+    end
+
+    def initialize_fields(fields)
+      attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || fields[:id] || attributes[:id]
+      attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
+      attributes[:model_id]    = fields[SYMBOL_TO_STRING[:model_id]] || fields[:model_id] || attributes[:model_id]
+      attributes[:model_type]  = fields[SYMBOL_TO_STRING[:model_type]] || fields[:model_type] || attributes[:model_type]
+      attributes[:field_group] = fields[SYMBOL_TO_STRING[:field_group]] || fields[:field_group] || attributes[:field_group]
+      attributes[:type]        = fields[SYMBOL_TO_STRING[:type]] || fields[:type] || attributes[:type]
+      attributes[:pos]         = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
+      self
     end
   end
 end

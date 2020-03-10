@@ -201,5 +201,84 @@ module Trello
         end
       end
     end
+
+    describe '#update_fields' do
+      let(:label_detail) {{
+        'id' => 'id',
+        'name' => 'name',
+        'color' => 'color',
+        'idBoard' => 'board_id',
+        'uses' => 'uses'
+      }}
+      let(:label) { Label.new(label_detail) }
+
+      context 'when the fields argument is empty' do
+        let(:fields) { {} }
+
+        it 'card does not set any fields' do
+          label.update_fields(fields)
+
+          expect(label.id).to eq label_detail['id']
+          expect(label.name).to eq label_detail['name']
+          expect(label.color).to eq label_detail['color']
+          expect(label.board_id).to eq label_detail['idBoard']
+          expect(label.uses).to eq label_detail['uses']
+        end
+      end
+
+      context 'when the fields argument has at least one field' do
+        context 'and the field does changed' do
+          let(:fields) { { name: 'Awesome Name' } }
+
+          it 'label does set the changed fields' do
+            label.update_fields(fields)
+
+            expect(label.name).to eq('Awesome Name')
+          end
+
+          it 'label has been mark as changed' do
+            label.update_fields(fields)
+
+            expect(label.changed?).to be_truthy
+          end
+        end
+
+        context "and the field doesn't changed" do
+          let(:fields) { { name: label_detail['name'] } }
+
+          it "label attributes doesn't changed" do
+            label.update_fields(fields)
+
+            expect(label.name).to eq(label_detail['name'])
+          end
+
+          it "label hasn't been mark as changed", pending: true do
+            label.update_fields(fields)
+
+            expect(label.changed?).to be_falsy
+          end
+        end
+
+        context "and the field isn't a correct attributes of the label" do
+          let(:fields) { { abc: 'abc' } }
+
+          it "label attributes doesn't changed" do
+            label.update_fields(fields)
+
+            expect(label.id).to eq label_detail['id']
+            expect(label.name).to eq label_detail['name']
+            expect(label.color).to eq label_detail['color']
+            expect(label.board_id).to eq label_detail['idBoard']
+            expect(label.uses).to eq label_detail['uses']
+          end
+
+          it "label hasn't been mark as changed" do
+            label.update_fields(fields)
+
+            expect(label.changed?).to be_falsy
+          end
+        end
+      end
+    end
   end
 end

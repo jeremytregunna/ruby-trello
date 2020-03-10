@@ -17,23 +17,24 @@ module Trello
     # Supply a hash of string keyed data retrieved from the Trello API representing
     # an item state.
     def update_fields(fields)
-      attributes[:id]               = fields['id'] || fields[:id] || attributes[:id]
-      attributes[:model_id]         = fields['idModel'] || fields[:model_id] || attributes[:model_id]
-      attributes[:custom_field_id]  = fields['idCustomField'] || fields[:custom_field_id] || attributes[:custom_field_id]
-      attributes[:model_type]       = fields['modelType'] || fields[:model_type] || attributes[:model_type]
-      # Dropdown custom field items do not have a value, they have an ID that maps to
-      # a different endpoint to get the value
-      attributes[:option_id]       = fields['idValue'] if fields.has_key?('idValue')
-      # value format: { "text": "hello world" }
-      attributes[:value]            = fields['value'] if fields.has_key?('value')
-      self
+      if fields_has_key?(fields, 'value')
+        send('value_will_change!')
+      elsif fields_has_key?(fields, 'idValue')
+        send('option_id_will_change!')
+      end
+
+      initialize_fields(fields)
+    end
+
+    def initialize(fields = {})
+      initialize_fields(fields)
     end
 
     def update!
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
-      @changed_attributes.try(:clear)
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
       client.put("/card/#{model_id}/customField/#{custom_field_id}/item", payload)
@@ -73,6 +74,25 @@ module Trello
         option = CustomFieldOption.from_response client.get(option_endpoint)
         option.value
       end
+    end
+
+    private
+
+    def fields_has_key?(fields, key)
+      fields.key?(key.to_s) || fields.key?(key.to_sym)
+    end
+
+    def initialize_fields(fields)
+      attributes[:id]               = fields['id'] || fields[:id] || attributes[:id]
+      attributes[:model_id]         = fields['idModel'] || fields[:model_id] || attributes[:model_id]
+      attributes[:custom_field_id]  = fields['idCustomField'] || fields[:custom_field_id] || attributes[:custom_field_id]
+      attributes[:model_type]       = fields['modelType'] || fields[:model_type] || attributes[:model_type]
+      # Dropdown custom field items do not have a value, they have an ID that maps to
+      # a different endpoint to get the value
+      attributes[:option_id]       = fields['idValue'] || fields[:idValue] if fields_has_key?(fields, 'idValue')
+      # value format: { "text": "hello world" }
+      attributes[:value]            = fields['value'] || fields[:value] if fields_has_key?(fields, 'value')
+      self
     end
   end
 end
