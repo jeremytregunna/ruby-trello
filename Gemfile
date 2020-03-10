@@ -14,4 +14,5 @@ group :development, :spec do
   gem 'webmock'
   gem 'launchy'
   gem 'pry-byebug'
+  gem 'vcr'
 end
