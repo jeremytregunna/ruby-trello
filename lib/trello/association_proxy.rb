@@ -31,7 +31,7 @@ module Trello
     end
 
     def to_ary
-      proxy_assocation.dup
+      proxy_assocation.target.dup
     end
     alias_method :to_a, :to_ary
 
