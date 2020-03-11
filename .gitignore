@@ -15,3 +15,6 @@ Gemfile.lock
 
 /doc
 /.yardoc
+
+.env
+.byebug_history
