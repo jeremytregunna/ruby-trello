@@ -40,7 +40,11 @@ VCR.configure do |config|
     CGI.parse(URI.parse(interaction.request.uri).query)['token'].first
   end
   config.filter_sensitive_data('set_cookie_dsc') do |interaction|
-    interaction.response.headers['Set-Cookie'].first.scan(/dsc=(\w+)/).flatten.first
+    set_cookie_headers = interaction.response.headers['Set-Cookie']
+
+    if set_cookie_headers
+      set_cookie_headers.first.scan(/dsc=(\w+)/).flatten.first
+    end
   end
 
   uri_without_credentials_matcher = lambda do |match_request, coming_request|
