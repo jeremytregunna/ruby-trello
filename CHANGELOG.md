@@ -1,6 +1,6 @@
 # Changelog
 
-## Next Release
+## v2.2.1
 
 ### Bug Fix
 
