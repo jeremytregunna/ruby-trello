@@ -18,7 +18,7 @@ Seriously, [check it out](http://www.trello.com/).
 ```
 
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
-to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
+to, please just create an issue.
 
 Supports Ruby 2.1.0 or newer.
 
