@@ -50,7 +50,7 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      from_response client.post("/card/#{model_id}/customField/#{custom_field_id}/item", {
+      from_response client.put("/card/#{model_id}/customField/#{custom_field_id}/item", {
         value: value
       })
     end
