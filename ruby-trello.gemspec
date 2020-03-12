@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.rubygems_version  = %q{1.3.5}
   s.summary           = %q{A wrapper around the trello.com API.}
   s.test_files        = Dir.glob("spec/**/*")
+  s.metadata['changelog_uri'] = 'https://github.com/jeremytregunna/ruby-trello/blob/master/CHANGELOG.md'
 
   s.required_ruby_version = '>= 2.1.0'
 
