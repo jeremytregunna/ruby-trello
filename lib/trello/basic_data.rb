@@ -1,10 +1,6 @@
 require 'active_support/inflector'
 
 module Trello
-  module AssociationBuilder
-    autoload :HasMany, 'trello/association_builder/has_many'
-  end
-
   class BasicData
     include ActiveModel::Validations
     include ActiveModel::Dirty

@@ -76,6 +76,14 @@ module Trello
     autoload :OAuthPolicy,     'trello/authorization'
   end
 
+  module AssociationFetcher
+    autoload :HasMany, 'trello/association_fetcher/has_many'
+  end
+
+  module AssociationBuilder
+    autoload :HasMany, 'trello/association_builder/has_many'
+  end
+
   # Version of the Trello API that we use by default.
   API_VERSION = 1
 
