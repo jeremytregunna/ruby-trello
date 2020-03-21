@@ -1,6 +1,10 @@
 require 'active_support/inflector'
 
 module Trello
+  module AssociationBuilder
+    autoload :HasMany, 'trello/association_builder/has_many'
+  end
+
   class BasicData
     include ActiveModel::Validations
     include ActiveModel::Dirty
@@ -85,18 +89,7 @@ module Trello
     end
 
     def self.many(name, opts = {})
-      class_eval do
-        define_method(:"#{name}") do |*args|
-          options   = opts.dup
-          resource  = options.delete(:in)  || self.class.to_s.split("::").last.downcase.pluralize
-          klass     = options.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
-          path = options.delete(:path) || name
-          params    = options.merge(args[0] || {})
-
-          resources = client.find_many(klass, "/#{resource}/#{id}/#{path}", params)
-          MultiAssociation.new(self, resources).proxy
-        end
-      end
+      AssociationBuilder::HasMany.build(self, name, opts)
     end
 
     def self.client

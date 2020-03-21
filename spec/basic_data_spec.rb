@@ -60,15 +60,17 @@ module Trello
     let(:client_double) { double('client') }
     let(:cards) { double('cards') }
 
-    class FakeCard < BasicData
-    end
-    class FakeBoard < BasicData
-      def update_fields(fields)
-        attributes[:id] = fields[:id]
+    around do |example|
+      class FakeCard < BasicData
       end
-    end
+      class FakeBoard < BasicData
+        def update_fields(fields)
+          attributes[:id] = fields[:id]
+        end
+      end
 
-    after(:suite) do
+      example.run
+
       Trello.send(:remove_const, 'FakeBoard')
       Trello.send(:remove_const, 'FakeCard')
     end
