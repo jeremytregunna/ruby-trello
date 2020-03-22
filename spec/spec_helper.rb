@@ -6,10 +6,11 @@ unless defined? Rubinius
   SimpleCov.start
 end
 
-# begin
-#   require 'pry-byebug'
-# rescue LoadError
-# end
+begin
+  require 'pry-byebug'
+rescue StandardError => e
+  puts "Pry load failed: #{e}"
+end
 
 # Set up gems listed in the Gemfile.
 begin
@@ -22,7 +23,7 @@ rescue Bundler::GemNotFound => e
   exit!
 end
 
-Bundler.require(:spec)
+# Bundler.require(:spec)
 
 require 'trello'
 require 'webmock/rspec'
