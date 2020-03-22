@@ -1,6 +1,9 @@
 module Trello
   module AssociationFetcher
     class HasMany
+      autoload :Params, 'trello/association_fetcher/has_many/params'
+      autoload :Fetch, 'trello/association_fetcher/has_many/fetch'
+
       attr_reader :model, :name, :options
 
       def initialize(model, name, options)
@@ -10,14 +13,13 @@ module Trello
       end
 
       def fetch(filter_params)
-        opts      = options.dup
-        resource  = opts.delete(:in)  || model.class.to_s.split("::").last.downcase.pluralize
-        klass     = opts.delete(:via) || Trello.const_get(name.to_s.singularize.camelize)
-        path      = opts.delete(:path) || name
-        params = opts.merge(filter_params || {})
-
-        resources = model.client.find_many(klass, "/#{resource}/#{model.id}/#{path}", params)
-        MultiAssociation.new(model, resources).proxy
+        params = Params.new(
+          association_owner: model,
+          association_name: name,
+          default_filter: options,
+          filter: filter_params 
+        )
+        Fetch.execute(params)
       end
     end
   end
