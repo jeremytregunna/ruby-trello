@@ -15,7 +15,7 @@ module Trello
         end
 
         def execute
-          resources = Trello.client.find_many(owner_class, path, filter_params)
+          resources = client.find_many(association_class, path, filter_params)
 
           MultiAssociation.new(association_owner, resources).proxy
         end
@@ -23,15 +23,15 @@ module Trello
         private
 
         def client
-          Trello.client
+          association_owner.client
         end
 
-        def owner_class
-          params.owner_class
+        def association_class
+          params.association_class
         end
 
         def path
-          params.path
+          params.fetch_path
         end
 
         def filter_params

@@ -4,17 +4,17 @@ RSpec.describe Trello::AssociationFetcher::HasMany::Fetch do
 
   describe '.execute' do
     let(:client) { instance_double(Trello::Client) }
-    let(:owner_class) { double('OwnerClass') }
-    let(:association_owner) { double('association_owner') }
-    let(:path) { '/test' }
+    let(:association_class) { double('Association Class') }
+    let(:association_owner) { double('association_owner', client: client) }
+    let(:fetch_path) { '/test' }
     let(:filter_params) { { a: 1 } }
     let(:resources) { double('resources') }
     let(:result) { double('result') }
 
     let(:params) { instance_double('params',
-      owner_class: owner_class,
+      association_class: association_class,
       association_owner: association_owner,
-      path: path,
+      fetch_path: fetch_path,
       filter_params: filter_params
     ) }
 
@@ -22,7 +22,7 @@ RSpec.describe Trello::AssociationFetcher::HasMany::Fetch do
       allow(Trello).to receive(:client).and_return(client)
       allow(client)
         .to receive(:find_many)
-        .with(owner_class, path, filter_params)
+        .with(association_class, fetch_path, filter_params)
         .and_return(resources)
       allow(Trello::MultiAssociation)
         .to receive(:new)

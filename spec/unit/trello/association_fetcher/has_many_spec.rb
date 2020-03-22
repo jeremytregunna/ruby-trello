@@ -35,7 +35,7 @@ RSpec.describe Trello::AssociationFetcher::HasMany do
         .with(
           association_owner: board,
           association_name: 'cards',
-          default_filter: { filter: :all },
+          association_options: { filter: :all },
           filter: { a: 1 }
         ).and_return(params)
       expect(Trello::AssociationFetcher::HasMany::Fetch)

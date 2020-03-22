@@ -16,7 +16,7 @@ module Trello
         params = Params.new(
           association_owner: model,
           association_name: name,
-          default_filter: options,
+          association_options: options,
           filter: filter_params 
         )
         Fetch.execute(params)
