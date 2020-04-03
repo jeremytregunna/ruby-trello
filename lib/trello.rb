@@ -79,6 +79,7 @@ module Trello
 
   module AssociationFetcher
     autoload :HasMany,            'trello/association_fetcher/has_many'
+    autoload :HasOne,            'trello/association_fetcher/has_one'
   end
 
   module AssociationBuilder
