@@ -83,6 +83,7 @@ module Trello
 
   module AssociationBuilder
     autoload :HasMany,            'trello/association_builder/has_many'
+    autoload :HasOne,            'trello/association_builder/has_one'
   end
 
   # Version of the Trello API that we use by default.
