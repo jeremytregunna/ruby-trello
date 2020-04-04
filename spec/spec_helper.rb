@@ -51,6 +51,10 @@ RSpec.configure do |rspec|
     example.run
     $VERBOSE = verbose
   end
+
+  rspec.failure_color = :magenta
+  rspec.tty = true
+  rspec.color = true
 end
 
 module Helpers
