@@ -2,15 +2,6 @@ require 'spec_helper'
 
 RSpec.describe Trello::AssociationFetcher::HasOne::Params do
 
-        # association_owner
-        # association_restful_name
-        # association_restful_id
-        # association_class
-
-        # opts = options.dup
-        # klass   = opts.delete(:via) || Trello.const_get(name.to_s.camelize)
-        # ident   = opts.delete(:using) || :id
-        # path    = opts.delete(:path)
   let(:params) { Trello::AssociationFetcher::HasOne::Params.new(
     association_owner: association_owner,
     association_name: association_name,
