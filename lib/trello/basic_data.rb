@@ -42,9 +42,10 @@ module Trello
       end
     end
 
-    def self.register_attributes(*names)
+    def self.register_attributes(*names_and_options)
       options = { readonly: [] }
-      options.merge!(names.pop) if names.last.kind_of? Hash
+      options.merge!(names_and_options.pop) if names_and_options.last.kind_of? Hash
+      names = names_and_options
 
       # Defines the attribute getter and setters.
       class_eval do
