@@ -70,6 +70,7 @@ module Trello
   autoload :Webhook,              'trello/webhook'
   autoload :JsonUtils,            'trello/json_utils'
   autoload :AssociationInferTool, 'trello/association_infer_tool'
+  autoload :RegisterAttributes,   'trello/register_attributes'
 
   module Authorization
     autoload :AuthPolicy,         'trello/authorization'

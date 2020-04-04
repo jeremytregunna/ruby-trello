@@ -43,29 +43,11 @@ module Trello
     end
 
     def self.register_attributes(*names_and_options)
-      options = { readonly: [] }
-      options.merge!(names_and_options.pop) if names_and_options.last.kind_of? Hash
-      names = names_and_options
+      has_opts = names_and_options.last.kind_of?(Hash)
+      readonly_attributes = has_opts ? names_and_options.pop[:readonly] : []
+      attributes = names_and_options
 
-      # Defines the attribute getter and setters.
-      class_eval do
-        define_method :attributes do
-          @__attributes ||= names.reduce({}) { |hash, k| hash.merge(k.to_sym => nil) }
-        end
-
-        names.each do |key|
-          define_method(:"#{key}") { @__attributes[key] }
-
-          unless options[:readonly].include?(key.to_sym)
-            define_method :"#{key}=" do |val|
-              send(:"#{key}_will_change!") unless val == @__attributes[key]
-              @__attributes[key] = val
-            end
-          end
-        end
-
-        define_attribute_methods names
-      end
+      RegisterAttributes.execute(self, attributes, readonly_attributes)
     end
 
     def self.one(name, opts = {})
