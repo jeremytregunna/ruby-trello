@@ -55,7 +55,7 @@ RSpec.describe Trello::AssociationFetcher::HasOne::Params do
       let(:association_options) { { path: :organizations } }
 
       it 'return :path directly' do
-        expect(params.association_restful_name).to eq('organizations')
+        expect(params.association_restful_name).to eq(:organizations)
       end
     end
 

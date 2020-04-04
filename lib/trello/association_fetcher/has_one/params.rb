@@ -15,7 +15,7 @@ module Trello
         end
 
         def association_restful_name
-          association_options[:path]&.to_s
+          association_options[:path]
         end
 
         def association_restful_id
