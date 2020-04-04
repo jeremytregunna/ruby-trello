@@ -1,6 +1,9 @@
 module Trello
   module AssociationFetcher
     class HasOne
+      autoload :Params, 'trello/association_fetcher/has_one/params'
+      autoload :Fetch, 'trello/association_fetcher/has_one/fetch'
+
       attr_reader :model, :name, :options
 
       def initialize(model, name, options)
@@ -10,16 +13,12 @@ module Trello
       end
 
       def fetch
-        opts = options.dup
-        klass   = opts.delete(:via) || Trello.const_get(name.to_s.camelize)
-        ident   = opts.delete(:using) || :id
-        path    = opts.delete(:path)
-
-        if path
-          model.client.find(path, model.send(ident))
-        else
-          klass.find(model.send(ident))
-        end
+        params = Params.new(
+          association_owner: model,
+          association_name: name,
+          association_options: options
+        )
+        Fetch.execute(params)
       end
     end
   end
