@@ -57,6 +57,15 @@ RSpec.configure do |rspec|
   rspec.color = true
 end
 
+module IntegrationHelpers
+  def setup_trello
+    Trello.configure do |config|
+      config.developer_public_key = ENV['TRELLO_DEVELOPER_PUBLIC_KEY'] || 'developerpublickey'
+      config.member_token = ENV['TRELLO_MEMBER_TOKEN'] || 'membertoken'
+    end
+  end
+end
+
 module Helpers
   def user_details
     {
