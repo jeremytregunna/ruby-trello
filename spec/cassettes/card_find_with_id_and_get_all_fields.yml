@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/5e9310df53f23017628a8011?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2052.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1586697585979'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Sun, 12 Apr 2020 13:19:46 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Sun, 12 Apr 2020 13:19:46 GMT
+      Content-Length:
+      - '3943'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 15 Apr 2020 13:19:45 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e9310df53f23017628a8011","checkItemStates":[],"closed":false,"dateLastActivity":"2020-04-12T13:18:36.661Z","desc":"","descData":null,"dueReminder":null,"idBoard":"5e70f5bed3f34a49e2f11409","idList":"5e7233a51f3e965484439077","idMembersVoted":[],"idShort":2,"idAttachmentCover":"5e93151deba8456d01eadbbb","idLabels":[],"manualCoverAttachment":true,"name":"test","pos":81919,"shortLink":"Q5kgH5LT","isTemplate":false,"dueComplete":false,"due":"2020-04-26T12:56:00.000Z","email":null,"labels":[],"shortUrl":"https://trello.com/c/Q5kgH5LT","url":"https://trello.com/c/Q5kgH5LT/2-test","cover":{"idAttachment":"5e93151deba8456d01eadbbb","color":null,"idUploadedBackground":null,"size":"normal","brightness":"light","scaled":[{"_id":"5e93151deba8456d01eadbc2","id":"5e93151deba8456d01eadbc2","scaled":false,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e9310df53f23017628a8011%2F70x50%2F77e6f97d19fa56cb77757a9b2d946a41%2Fexcalidraw-202032222926.png","bytes":1821,"height":50,"width":70},{"_id":"5e93151deba8456d01eadbc3","id":"5e93151deba8456d01eadbc3","scaled":false,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e9310df53f23017628a8011%2F250x150%2F77e6f97d19fa56cb77757a9b2d946a41%2Fexcalidraw-202032222926.png","bytes":7466,"height":150,"width":250},{"_id":"5e93151deba8456d01eadbc4","id":"5e93151deba8456d01eadbc4","scaled":true,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e9310df53f23017628a8011%2F149x123%2F77e6f97d19fa56cb77757a9b2d946a41%2Fexcalidraw-202032222926.png","bytes":5413,"height":123,"width":149},{"_id":"5e93151deba8456d01eadbc5","id":"5e93151deba8456d01eadbc5","scaled":true,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e9310df53f23017628a8011%2F300x247%2F77e6f97d19fa56cb77757a9b2d946a41%2Fexcalidraw-202032222926.png","bytes":13732,"height":247,"width":300},{"_id":"5e93151deba8456d01eadbc6","id":"5e93151deba8456d01eadbc6","scaled":true,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e9310df53f23017628a8011%2F600x494%2F77e6f97d19fa56cb77757a9b2d946a41%2Fexcalidraw-202032222926.png","bytes":36419,"height":494,"width":600},{"_id":"5e93151deba8456d01eadbc7","id":"5e93151deba8456d01eadbc7","scaled":true,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e9310df53f23017628a8011%2F729x600%2F77e6f97d19fa56cb77757a9b2d946a41%2Fexcalidraw-202032222926.png","bytes":38061,"height":600,"width":729},{"_id":"5e93151deba8456d01eadbc8","id":"5e93151deba8456d01eadbc8","scaled":true,"url":"https://trello.com/1/cards/5e9310df53f23017628a8011/attachments/5e93151deba8456d01eadbbb/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e70f5bed3f34a49e2f11409%2F5e9310df53f23017628a8011%2F1fc68c42a9beb13b8f3f4b13c5252dbe%2Fexcalidraw-202032222926.png","bytes":42762,"height":600,"width":729}],"edgeColor":"#fbfbfb"},"idMembers":["5e679b808e6e8828784b30e1"],"idChecklists":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":true,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":1,"description":false,"due":"2020-04-26T12:56:00.000Z","dueComplete":false},"subscribed":true}'
+    http_version: null
+  recorded_at: Sun, 12 Apr 2020 13:19:46 GMT
+recorded_with: VCR 5.1.0
