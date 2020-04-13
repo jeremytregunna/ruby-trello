@@ -307,7 +307,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with("/attachments/abcdef123456789123456789", {})
+          .with("/cards/#{card.id}/attachments/abcdef123456789123456789", {})
           .and_return JSON.generate(attachments_details.first)
       end
 

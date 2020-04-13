@@ -186,8 +186,12 @@ module Trello
 
     # Returns a reference to the board this card is part of.
     one :board, path: :boards, using: :board_id
+
     # Returns a reference to the cover image attachment
-    one :cover_image, path: :attachments, using: :cover_image_id
+    def cover_image(params = {})
+      response = client.get("/cards/#{id}/attachments/#{cover_image_id}", params)
+      CoverImage.from_response(response)
+    end
 
     # Returns a list of checklists associated with the card.
     #
