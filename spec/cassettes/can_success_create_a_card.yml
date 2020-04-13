@@ -1,0 +1,99 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/cards?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: UTF-8
+      string: name=Test+Trello%3A%3ACard.create&desc=testing+card+create&idList=5e93bac014d40e501ee46b8d&idMembers=5e679b808e6e8828784b30e1&idLabels=5e93ba987669b2254983d69d%2C5e93ba987669b2254983d69e&pos=top&due=2020-12-22+01%3A59%3A00+UTC&dueComplete=false&idCardSource=5e93ba665c58c44a46cb2ef9&keepFromSource=comments
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Content-Length:
+      - '306'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2052.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1586743335436'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Mon, 13 Apr 2020 02:02:15 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Mon, 13 Apr 2020 02:02:15 GMT
+      Content-Length:
+      - '1422'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e93c827fb102a6f40c5fa2b","checkItemStates":[],"closed":false,"dateLastActivity":"2020-04-13T02:02:15.308Z","desc":"testing
+        card create","descData":{"emoji":{}},"dueReminder":null,"idBoard":"5e93ba98614ac22d22f085c4","idList":"5e93bac014d40e501ee46b8d","idMembersVoted":[],"idShort":3,"idAttachmentCover":null,"idLabels":["5e93ba987669b2254983d69d","5e93ba987669b2254983d69e"],"manualCoverAttachment":false,"name":"Test
+        Trello::Card.create","pos":16384,"shortLink":"iK30ThVk","isTemplate":false,"dueComplete":false,"due":"2020-12-22T01:59:00.000Z","email":null,"shortUrl":"https://trello.com/c/iK30ThVk","url":"https://trello.com/c/iK30ThVk/3-test-trellocardcreate","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light"},"idMembers":["5e679b808e6e8828784b30e1"],"labels":[{"id":"5e93ba987669b2254983d69d","idBoard":"5e93ba98614ac22d22f085c4","name":"","color":"green"},{"id":"5e93ba987669b2254983d69e","idBoard":"5e93ba98614ac22d22f085c4","name":"","color":"orange"}],"attachments":[],"idChecklists":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":true,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":1,"attachments":0,"description":true,"due":"2020-12-22T01:59:00.000Z","dueComplete":false},"subscribed":true,"stickers":[],"limits":{}}'
+    http_version: null
+  recorded_at: Mon, 13 Apr 2020 02:02:15 GMT
+recorded_with: VCR 5.1.0
