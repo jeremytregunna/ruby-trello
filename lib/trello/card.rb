@@ -333,7 +333,7 @@ module Trello
 
     # Is the record valid?
     def valid?
-      name && list_id
+      !(name && list_id).nil?
     end
 
     # Add a comment with the supplied text.

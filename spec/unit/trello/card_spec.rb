@@ -29,4 +29,29 @@ RSpec.describe Trello::Card do
     end
   end
 
+  describe 'valid?' do
+    let(:card) { Trello::Card.new('name' => name, 'idList' => list_id) }
+
+    context 'when name is nil' do
+      let(:name) { nil }
+      let(:list_id) { 1 }
+
+      specify { expect(card.valid?).to eq(false) }
+    end
+
+    context 'when list_id is nil' do
+      let(:name) { 'Card Name' }
+      let(:list_id) { nil }
+
+      specify { expect(card.valid?).to eq(false) }
+    end
+
+    context "when name and list_id both aren't nil" do
+      let(:name) { 'Card' }
+      let(:list_id) { 1 }
+
+      specify { expect(card.valid?).to eq(true) }
+    end
+  end
+
 end
