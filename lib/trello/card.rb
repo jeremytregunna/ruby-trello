@@ -270,10 +270,36 @@ module Trello
       @previously_changed = changes
       # extract only new values to build payload
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
+
+      response = client.put("/cards/#{id}", payload)
+      updated_card = from_response(response)
+
       @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
-      client.put("/cards/#{id}", payload)
+      attributes[:id]                     = updated_card.id
+      attributes[:short_id]               = updated_card.short_id
+      attributes[:name]                   = updated_card.name
+      attributes[:desc]                   = updated_card.desc
+      attributes[:due]                    = updated_card.due
+      attributes[:due_complete]           = updated_card.due_complete
+      attributes[:closed]                 = updated_card.closed
+      attributes[:url]                    = updated_card.url
+      attributes[:short_url]              = updated_card.short_url
+      attributes[:board_id]               = updated_card.board_id
+      attributes[:member_ids]             = updated_card.member_ids
+      attributes[:list_id]                = updated_card.list_id
+      attributes[:pos]                    = updated_card.pos
+      attributes[:labels]                 = updated_card.labels
+      attributes[:card_labels]            = updated_card.card_labels
+      attributes[:last_activity_date]     = updated_card.last_activity_date
+      attributes[:cover_image_id]         = updated_card.cover_image_id
+      attributes[:badges]                 = updated_card.badges
+      attributes[:card_members]           = updated_card.card_members
+      attributes[:source_card_id]         = updated_card.source_card_id
+      attributes[:source_card_properties] = updated_card.source_card_properties
+
+      self
     end
 
     # Delete this card

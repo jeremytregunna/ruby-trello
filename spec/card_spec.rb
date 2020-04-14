@@ -187,6 +187,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.name = expected_new_name
         card.save
@@ -199,7 +200,10 @@ module Trello
           desc: expected_new_desc,
         }
 
-        expect(client).to receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+        expect(client)
+          .to receive(:put).once
+          .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.desc = expected_new_desc
         card.save
@@ -788,6 +792,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.close!
       end
@@ -805,6 +810,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.due = due_date
         card.save
@@ -819,6 +825,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.due_complete = true
         card.save
