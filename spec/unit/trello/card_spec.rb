@@ -6,9 +6,18 @@ RSpec.describe Trello::Card do
     specify { expect(Trello::Card.path_name).to eq('card') }
   end
 
-  describe '.closed?' do
+  describe '#closed?' do
     specify { expect(Trello::Card.new('closed' => true).closed?).to eq(true) }
     specify { expect(Trello::Card.new('closed' => false).closed?).to eq(false) }
+  end
+
+  describe '#close' do
+    let(:card) { Trello::Card.new('closed' => false) }
+
+    it 'can mark card as closed' do
+      card.close
+      expect(card.closed).to eq(true)
+    end
   end
 
 end
