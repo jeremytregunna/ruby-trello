@@ -342,10 +342,12 @@ module Trello
     end
 
     # Add a checklist to this card
-    def add_checklist(checklist)
-      client.post("/cards/#{id}/checklists", {
-        value: checklist.id
-      })
+    def add_checklist(checklist, name: nil, position: nil)
+      payload = { idChecklistSource: checklist.id }
+      payload[:name] = name if name 
+      payload[:pos] = position if position
+
+      client.post("/cards/#{id}/checklists", payload)
     end
 
     # create a new checklist and add it to this card
