@@ -264,8 +264,7 @@ module Trello
     #
     # @raise [Trello::Error] if the card could not be updated.
     #
-    # @return [String] The JSON representation of the updated card returned by
-    #     the Trello API.
+    # @return [Trello::Card] updated self
     def update!
       @previously_changed = changes
       # extract only new values to build payload
