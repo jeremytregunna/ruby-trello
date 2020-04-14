@@ -20,4 +20,13 @@ RSpec.describe Trello::Card do
     end
   end
 
+  describe 'close!' do
+    let(:card) { Trello::Card.new('closed' => false) }
+
+    it 'will call save' do
+      expect(card).to receive(:save)
+      card.close!
+    end
+  end
+
 end
