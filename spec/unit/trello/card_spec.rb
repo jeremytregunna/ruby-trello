@@ -54,4 +54,40 @@ RSpec.describe Trello::Card do
     end
   end
 
+  describe '#move_to_list_on_any_board' do
+    let(:card) { Trello::Card.new(board_id: 'board-aaa') }
+    let(:move_to_list_on_any_board) { card.move_to_list_on_any_board('listid') }
+
+    let(:board) { Trello::Board.new(id: 'board-aaa') }
+    let(:target_list) { Trello::List.new(board_id: target_board_id) }
+
+    before do
+      allow(Trello::List).to receive(:find).with('listid').and_return(target_list)
+      allow(card).to receive(:board).and_return(board)
+    end
+
+    context 'when target list is in the same board' do
+      let(:target_board_id) { 'board-aaa' }
+
+      it 'call #move_to_list on card' do
+        expect(card).to receive(:move_to_list).with('listid')
+
+        move_to_list_on_any_board
+      end
+    end
+
+    context 'when target list is in a different board' do
+      let(:target_board_id) { 'board-bbb' }
+      let(:target_board) { Trello::Board.new(id: 'board-bbb') }
+
+      before { allow(Trello::Board).to receive(:find).with('board-bbb').and_return(target_board) }
+
+      it 'call #move_to_board on card' do
+        expect(card).to receive(:move_to_board).with(target_board, target_list)
+
+        move_to_list_on_any_board
+      end
+    end
+  end
+
 end
