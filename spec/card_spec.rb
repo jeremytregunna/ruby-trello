@@ -510,7 +510,7 @@ module Trello
 
         expect(client)
           .to receive(:post)
-          .with("/cards/abcdef123456789123456789/members", payload)
+          .with("/cards/abcdef123456789123456789/idMembers", payload)
 
         card.add_member(new_member)
       end

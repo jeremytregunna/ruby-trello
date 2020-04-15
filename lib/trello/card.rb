@@ -386,7 +386,7 @@ module Trello
 
     # Add a member to this card
     def add_member(member)
-      client.post("/cards/#{id}/members", {
+      client.post("/cards/#{id}/idMembers", {
         value: member.id
       })
     end
