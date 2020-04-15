@@ -520,7 +520,7 @@ module Trello
 
         expect(client)
           .to receive(:delete)
-          .with("/cards/abcdef123456789123456789/members/#{existing_member.id}")
+          .with("/cards/abcdef123456789123456789/idMembers/#{existing_member.id}")
 
         card.remove_member(existing_member)
       end

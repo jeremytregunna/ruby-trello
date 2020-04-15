@@ -393,7 +393,7 @@ module Trello
 
     # Remove a member from this card
     def remove_member(member)
-      client.delete("/cards/#{id}/members/#{member.id}")
+      client.delete("/cards/#{id}/idMembers/#{member.id}")
     end
 
     # Current authenticated user upvotes a card
