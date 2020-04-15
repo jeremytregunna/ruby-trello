@@ -30,4 +30,16 @@ RSpec.describe 'Trell::Card add and remove attachment' do
       end
     end
   end
+
+  describe '#remove_attachment' do
+    it 'can success remove and attachment on a card' do
+      VCR.use_cassette('can_remove_an_attachment_on_a_card') do
+        card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')
+        attachments = card.attachments
+
+        response = card.remove_attachment(attachments.last)
+        expect(response.code).to eq(200)
+      end
+    end
+  end
 end
