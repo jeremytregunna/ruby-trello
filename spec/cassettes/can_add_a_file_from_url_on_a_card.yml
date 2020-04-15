@@ -1,0 +1,189 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/5e95d1b4f43f9a06497f17f7?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2055.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1586956885846'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Wed, 15 Apr 2020 13:21:25 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Wed, 15 Apr 2020 13:21:25 GMT
+      Content-Length:
+      - '997'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Sat, 18 Apr 2020 13:21:25 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e95d1b4f43f9a06497f17f7","checkItemStates":[],"closed":false,"dateLastActivity":"2020-04-15T13:18:04.471Z","desc":"","descData":null,"dueReminder":null,"idBoard":"5e94f5ded016b22c2437c13c","idList":"5e95d1b07f2ff83927319128","idMembersVoted":[],"idShort":2,"idAttachmentCover":null,"idLabels":[],"manualCoverAttachment":false,"name":"C2","pos":16384,"shortLink":"DeJYDbq0","isTemplate":false,"dueComplete":false,"due":null,"email":null,"labels":[],"shortUrl":"https://trello.com/c/DeJYDbq0","url":"https://trello.com/c/DeJYDbq0/2-c2","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light"},"idMembers":[],"idChecklists":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":1,"description":false,"due":null,"dueComplete":false},"subscribed":false}'
+    http_version: null
+  recorded_at: Wed, 15 Apr 2020 13:21:25 GMT
+- request:
+    method: post
+    uri: https://api.trello.com/1/cards/5e95d1b4f43f9a06497f17f7/attachments?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: UTF-8
+      string: url=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F6%2F6b%2FHello_Web_Series_%2528Wordmark%2529_Logo.png&name=hello.png
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Content-Length:
+      - '126'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2055.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '98'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '298'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '197'
+      X-Server-Time:
+      - '1586956887595'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Wed, 15 Apr 2020 13:21:27 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Wed, 15 Apr 2020 13:21:27 GMT
+      Content-Length:
+      - '2182'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e970a563812b3075bb192f1","bytes":92147,"date":"2020-04-15T13:21:26.794Z","edgeColor":null,"idMember":"5e679b808e6e8828784b30e1","isUpload":true,"mimeType":null,"name":"hello.png","previews":[{"id":"5e970a573812b3075bb1930e","_id":"5e970a573812b3075bb1930e","scaled":false,"url":"https://trello-attachments.s3.amazonaws.com/5e95d1b4f43f9a06497f17f7/70x50/f3c672acdd52be2ccff69bd3127fe575/hello.png","bytes":2380,"height":50,"width":70},{"id":"5e970a573812b3075bb1930f","_id":"5e970a573812b3075bb1930f","scaled":false,"url":"https://trello-attachments.s3.amazonaws.com/5e95d1b4f43f9a06497f17f7/250x150/f3c672acdd52be2ccff69bd3127fe575/hello.png","bytes":12261,"height":150,"width":250},{"id":"5e970a573812b3075bb19310","_id":"5e970a573812b3075bb19310","scaled":true,"url":"https://trello-attachments.s3.amazonaws.com/5e95d1b4f43f9a06497f17f7/149x84/f3c672acdd52be2ccff69bd3127fe575/hello.png","bytes":6486,"height":84,"width":149},{"id":"5e970a573812b3075bb19311","_id":"5e970a573812b3075bb19311","scaled":true,"url":"https://trello-attachments.s3.amazonaws.com/5e95d1b4f43f9a06497f17f7/300x169/f3c672acdd52be2ccff69bd3127fe575/hello.png","bytes":15654,"height":169,"width":300},{"id":"5e970a573812b3075bb19312","_id":"5e970a573812b3075bb19312","scaled":true,"url":"https://trello-attachments.s3.amazonaws.com/5e95d1b4f43f9a06497f17f7/600x338/f3c672acdd52be2ccff69bd3127fe575/hello.png","bytes":38279,"height":338,"width":600},{"id":"5e970a573812b3075bb19313","_id":"5e970a573812b3075bb19313","scaled":true,"url":"https://trello-attachments.s3.amazonaws.com/5e95d1b4f43f9a06497f17f7/1200x675/f3c672acdd52be2ccff69bd3127fe575/hello.png","bytes":102035,"height":675,"width":1200},{"id":"5e970a573812b3075bb19314","_id":"5e970a573812b3075bb19314","scaled":true,"url":"https://trello-attachments.s3.amazonaws.com/5e94f5ded016b22c2437c13c/5e95d1b4f43f9a06497f17f7/9566af90e112b494b57a76091635f882/Hello_Web_Series__28Wordmark_29_Logo.png","bytes":92147,"height":720,"width":1280}],"url":"https://trello-attachments.s3.amazonaws.com/5e94f5ded016b22c2437c13c/5e95d1b4f43f9a06497f17f7/9566af90e112b494b57a76091635f882/Hello_Web_Series__28Wordmark_29_Logo.png","pos":32768,"limits":{}}'
+    http_version: null
+  recorded_at: Wed, 15 Apr 2020 13:21:27 GMT
+recorded_with: VCR 5.1.0
