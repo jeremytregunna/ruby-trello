@@ -57,6 +57,8 @@ RSpec.configure do |rspec|
   rspec.color = true
 end
 
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing
+
 module IntegrationHelpers
   def setup_trello
     Trello.configure do |config|
