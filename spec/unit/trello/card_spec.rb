@@ -90,4 +90,14 @@ RSpec.describe Trello::Card do
     end
   end
 
+  describe '#created_at' do
+    it 'can get created_at from card id' do
+      card = Trello::Card.new('id' => '5e95d1b4f43f9a06497f17f7')
+      expect(card.created_at).to eq(Time.new(2020, 4, 14, 15, 7, 32, '+00:00'))
+
+      card = Trello::Card.new('id' => '5e94ee7df8784d61ee48319e')
+      expect(card.created_at).to eq(Time.new(2020, 4, 13, 22, 58, 05, '+00:00'))
+    end
+  end
+
 end
