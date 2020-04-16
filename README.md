@@ -12,7 +12,7 @@ Seriously, [check it out](http://www.trello.com/).
 [Full API documentation](http://www.rubydoc.info/gems/ruby-trello).
 
 Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
-to, please just create an issue.
+to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/issues/new).
 
 ## Requirements
 
