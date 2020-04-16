@@ -1,7 +1,6 @@
 # Ruby Trello API
 
-[![Stories in Ready](http://badge.waffle.io/jeremytregunna/ruby-trello.png)](http://waffle.io/jeremytregunna/ruby-trello)
-[![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.png)](http://travis-ci.org/jeremytregunna/ruby-trello)
+[![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.svg)](http://travis-ci.org/jeremytregunna/ruby-trello)
 [![security](https://hakiri.io/github/jeremytregunna/ruby-trello/master.svg)](https://hakiri.io/github/jeremytregunna/ruby-trello/master)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
@@ -12,21 +11,23 @@ Seriously, [check it out](http://www.trello.com/).
 
 [Full API documentation](http://www.rubydoc.info/gems/ruby-trello).
 
+Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
+to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/issues/new).
+
+## Requirements
+
+Use the newest version for Ruby 2.5.0 or newer support.
+Use version 2.2.1 or earlier for Ruby 2.1 ~ 2.4 support.
+Use version 1.3.0 or earlier for Ruby 1.9.3 support.
+Use version 1.4.x or earlier for Ruby 2.0.0 support.
+
+Ruby 2.7.0 or newer only works with Rails 2.2.0 or newer.
+
 ## Installation
 
 ```
 # gem install ruby-trello
 ```
-
-Full Disclosure: This library is mostly complete, if you do find anything missing or not functioning as you expect it
-to, please [let us know](https://trello.com/card/spot-a-bug-report-it/4f092b2ee23cb6fe6d1aaabd/17).
-
-Supports Ruby 2.1.0 or newer.
-
-Use version 1.3.0 or earlier for Ruby 1.9.3 support.
-Use version 1.4.x or earlier for Ruby 2.0.0 support.
-
-Ruby 2.7.0 or newer only works with Rails 2.2.0 or newer.
 
 ## Configuration
 
