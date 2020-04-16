@@ -6,10 +6,10 @@ unless defined? Rubinius
   SimpleCov.start
 end
 
-begin
-  require 'pry-byebug'
-rescue LoadError
-end
+# begin
+#   require 'pry-byebug'
+# rescue LoadError
+# end
 
 # Set up gems listed in the Gemfile.
 begin

@@ -13,7 +13,7 @@ group :development, :spec do
   gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :jruby, :mingw]
   gem 'webmock'
   gem 'launchy'
-  gem 'pry-byebug'
+  # gem 'pry-byebug', '3.4.3'
   gem 'vcr'
   gem 'dotenv'
 end
