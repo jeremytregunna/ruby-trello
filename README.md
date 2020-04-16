@@ -16,7 +16,8 @@ to, please just create an issue.
 
 ## Requirements
 
-Use the newest version for Ruby 2.1.0 or newer support.
+Use the newest version for Ruby 2.5.0 or newer support.
+Use version 2.2.1 or earlier for Ruby 2.1 ~ 2.4 support.
 Use version 1.3.0 or earlier for Ruby 1.9.3 support.
 Use version 1.4.x or earlier for Ruby 2.0.0 support.
 
