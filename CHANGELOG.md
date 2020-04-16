@@ -2,6 +2,10 @@
 
 ## v2.2.1
 
+## Security Fix
+
+* [Fix CVE-2020-10663](https://github.com/jeremytregunna/ruby-trello/pull/284)
+
 ### Bug Fix
 
 * [Fix #update_fields](https://github.com/jeremytregunna/ruby-trello/issues/272)
