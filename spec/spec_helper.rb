@@ -1,30 +1,6 @@
-require 'rubygems'
+require 'bundler/setup'
 require 'dotenv/load'
-
-unless defined? Rubinius
-  require 'simplecov'
-  SimpleCov.start
-end
-
-begin
-  require 'pry-byebug'
-rescue StandardError => e
-  puts "Pry load failed: #{e}"
-end
-
-# Set up gems listed in the Gemfile.
-begin
-  ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
-  require 'bundler'
-  Bundler.setup
-rescue Bundler::GemNotFound => e
-  STDERR.puts e.message
-  STDERR.puts 'Try running `bundle install`.'
-  exit!
-end
-
-# Bundler.require(:spec)
-
+require 'pry-byebug'
 require 'trello'
 require 'webmock/rspec'
 require 'stringio'
