@@ -1,10 +1,9 @@
 language: ruby
+cache: bundler
 rvm:
   - 2.5.7
   - 2.6.5
   - 2.7.0
-before_install:
-  - gem install bundler -v '~> 2.0'
 env:
   - ACTIVE_MODEL_VERSION='~> 4.2'
   - ACTIVE_MODEL_VERSION='~> 5.2'
