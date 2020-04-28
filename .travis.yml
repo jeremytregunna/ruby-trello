@@ -11,24 +11,8 @@ env:
   - ACTIVE_MODEL_VERSION='~> 6.0'
 jobs:
   exclude:
-    - rvm: 2.5.7
-      env: ACTIVE_MODEL_VERSION='~> 4.2'
-    - rvm: 2.5.7
-      env: ACTIVE_MODEL_VERSION='~> 5.2'
-    - rvm: 2.5.7
-      env: ACTIVE_MODEL_VERSION='~> 6.0'
-    - rvm: 2.6.5
-      env: ACTIVE_MODEL_VERSION='~> 4.2'
-    - rvm: 2.6.5
-      env: ACTIVE_MODEL_VERSION='~> 5.2'
-    - rvm: 2.6.5
-      env: ACTIVE_MODEL_VERSION='~> 6.0'
     - rvm: 2.7.0
       env: ACTIVE_MODEL_VERSION='~> 4.2'
-    - rvm: 2.7.0
-      env: ACTIVE_MODEL_VERSION='~> 5.2'
-    - rvm: 2.7.0
-      env: ACTIVE_MODEL_VERSION='~> 6.0'
 gemfile: Gemfile
 notifications:
   recipients:
