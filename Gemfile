@@ -7,13 +7,18 @@ end
 gemspec
 
 group :development, :spec do
-  gem 'jruby-openssl', :platforms => :jruby
   gem 'rake'
   gem 'rspec', '~> 3.5.0'
-  gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :jruby, :mingw]
   gem 'webmock'
   gem 'launchy'
-  gem 'pry-byebug', '~> 3.9.0'
   gem 'vcr'
   gem 'dotenv'
+
+  if RUBY_PLATFORM == 'jruby'
+    gem 'jruby-openssl', platforms: :jruby
+    gem 'pry-nav', platforms: :jruby
+  else
+    gem 'pry-byebug', '~> 3.9.0', :platforms => [:mri]
+  end
+  gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :jruby, :mingw]
 end
