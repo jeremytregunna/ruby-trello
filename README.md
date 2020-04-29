@@ -182,3 +182,41 @@ Several ways you can contribute. Documentation, code, tests, feature requests, b
 If you submit a pull request that's accepted, you'll be given commit access to this repository.
 
 Please see the `CONTRIBUTING.md` file for more information.
+
+## Local Development
+
+Init all Gemfile.lock.* files
+
+```bash
+make init
+```
+
+Bundle install for all Ruby versions
+
+```bash
+make bundle:all
+```
+
+Run tests for all Ruby versions
+
+```bash
+make test:all
+```
+
+Run tests for each Ruby versions individual
+
+```bash
+make test:ruby_2_5
+make test:ruby_2_6
+make test:ruby_2_7
+make test:jruby_9_2
+```
+
+Do development for each Ruby versions individual
+
+```bash
+make dev:ruby_2_5
+make dev:ruby_2_6
+make dev:ruby_2_7
+make dev:jruby_9_2
+```
