@@ -4,6 +4,7 @@ rvm:
   - 2.5.7
   - 2.6.5
   - 2.7.0
+  - jruby-head
 env:
   - ACTIVE_MODEL_VERSION='~> 4.2'
   - ACTIVE_MODEL_VERSION='~> 5.2'
