@@ -14,7 +14,7 @@ group :development, :spec do
   gem 'vcr'
   gem 'dotenv'
 
-  if RUBY_PLATFORM == 'jruby'
+  if RUBY_ENGINE == 'jruby'
     gem 'jruby-openssl', platforms: :jruby
     gem 'pry-nav', platforms: :jruby
   else

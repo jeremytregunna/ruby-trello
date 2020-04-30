@@ -5,7 +5,7 @@ require 'webmock/rspec'
 require 'stringio'
 require 'vcr'
 
-require 'pry-byebug' if RUBY_PLATFORM == 'mri'
+require 'pry-byebug' if RUBY_ENGINE != 'jruby'
 
 VCR.configure do |config|
   config.cassette_library_dir = 'spec/cassettes'
