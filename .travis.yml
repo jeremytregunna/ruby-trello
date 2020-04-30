@@ -1,9 +1,9 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.5.7
-  - 2.6.5
-  - 2.7.0
+  - 2.5
+  - 2.6
+  - 2.7
   - jruby-head
 env:
   - ACTIVE_MODEL_VERSION='~> 4.2'
@@ -11,7 +11,7 @@ env:
   - ACTIVE_MODEL_VERSION='~> 6.0'
 jobs:
   exclude:
-    - rvm: 2.7.0
+    - rvm: 2.7
       env: ACTIVE_MODEL_VERSION='~> 4.2'
 gemfile: Gemfile
 notifications:
