@@ -18,3 +18,6 @@ Gemfile.lock
 
 .env
 .byebug_history
+
+Gemfile.lock.*
+.ruby-version
