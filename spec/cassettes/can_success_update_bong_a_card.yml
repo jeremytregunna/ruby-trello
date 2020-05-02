@@ -1,0 +1,191 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/5e94fd9443f25a7263b165d0?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2054.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1586822578685'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Tue, 14 Apr 2020 00:02:58 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Tue, 14 Apr 2020 00:02:58 GMT
+      Content-Length:
+      - '997'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Fri, 17 Apr 2020 00:02:58 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e94fd9443f25a7263b165d0","checkItemStates":[],"closed":false,"dateLastActivity":"2020-04-14T00:02:28.196Z","desc":"","descData":null,"dueReminder":null,"idBoard":"5e94eaf386374970d06e4c89","idList":"5e94eafdf553d46ea525faa7","idMembersVoted":[],"idShort":2,"idAttachmentCover":null,"idLabels":[],"manualCoverAttachment":false,"name":"C1","pos":65535,"shortLink":"xx9My9vC","isTemplate":false,"dueComplete":false,"due":null,"email":null,"labels":[],"shortUrl":"https://trello.com/c/xx9My9vC","url":"https://trello.com/c/xx9My9vC/2-c1","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light"},"idMembers":[],"idChecklists":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":0,"description":false,"due":null,"dueComplete":false},"subscribed":false}'
+    http_version: null
+  recorded_at: Tue, 14 Apr 2020 00:02:58 GMT
+- request:
+    method: put
+    uri: https://api.trello.com/1/cards/5e94fd9443f25a7263b165d0?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: UTF-8
+      string: name=Test+Trello%3A%3ACard.update%21&idList=5e94fa1248c5e41ad0464a7f&desc=testing+card+update%21&idMembers=5e679b808e6e8828784b30e1&idLabels=5e94eaf37669b225494161c7&due=2020-12-22T01%3A59%3A00.000Z&pos=top
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Content-Length:
+      - '206'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2054.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '298'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '98'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '198'
+      X-Server-Time:
+      - '1586822579715'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Tue, 14 Apr 2020 00:02:59 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Tue, 14 Apr 2020 00:02:59 GMT
+      Content-Length:
+      - '1257'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e94fd9443f25a7263b165d0","checkItemStates":[],"closed":false,"dateLastActivity":"2020-04-14T00:02:59.591Z","desc":"testing
+        card update!","descData":{"emoji":{}},"dueReminder":null,"idBoard":"5e94eaf386374970d06e4c89","idList":"5e94fa1248c5e41ad0464a7f","idMembersVoted":[],"idShort":2,"idAttachmentCover":null,"idLabels":["5e94eaf37669b225494161c7"],"manualCoverAttachment":false,"name":"Test
+        Trello::Card.update!","pos":16384,"shortLink":"xx9My9vC","isTemplate":false,"dueComplete":false,"due":"2020-12-22T01:59:00.000Z","email":null,"shortUrl":"https://trello.com/c/xx9My9vC","url":"https://trello.com/c/xx9My9vC/2-test-trellocardupdate","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light"},"idMembers":["5e679b808e6e8828784b30e1"],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":true,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":0,"description":true,"due":"2020-12-22T01:59:00.000Z","dueComplete":false},"subscribed":true,"labels":[{"id":"5e94eaf37669b225494161c7","idBoard":"5e94eaf386374970d06e4c89","name":"","color":"orange"}],"idChecklists":[]}'
+    http_version: null
+  recorded_at: Tue, 14 Apr 2020 00:02:59 GMT
+recorded_with: VCR 5.1.0

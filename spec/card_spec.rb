@@ -187,6 +187,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.name = expected_new_name
         card.save
@@ -199,7 +200,10 @@ module Trello
           desc: expected_new_desc,
         }
 
-        expect(client).to receive(:put).once.with("/cards/abcdef123456789123456789", payload)
+        expect(client)
+          .to receive(:put).once
+          .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.desc = expected_new_desc
         card.save
@@ -307,7 +311,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with("/attachments/abcdef123456789123456789", {})
+          .with("/cards/#{card.id}/attachments/abcdef123456789123456789", {})
           .and_return JSON.generate(attachments_details.first)
       end
 
@@ -506,7 +510,7 @@ module Trello
 
         expect(client)
           .to receive(:post)
-          .with("/cards/abcdef123456789123456789/members", payload)
+          .with("/cards/abcdef123456789123456789/idMembers", payload)
 
         card.add_member(new_member)
       end
@@ -516,7 +520,7 @@ module Trello
 
         expect(client)
           .to receive(:delete)
-          .with("/cards/abcdef123456789123456789/members/#{existing_member.id}")
+          .with("/cards/abcdef123456789123456789/idMembers/#{existing_member.id}")
 
         card.remove_member(existing_member)
       end
@@ -788,6 +792,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.close!
       end
@@ -805,6 +810,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.due = due_date
         card.save
@@ -819,6 +825,7 @@ module Trello
           .to receive(:put)
           .once
           .with("/cards/abcdef123456789123456789", payload)
+          .and_return(payload.to_json)
 
         card.due_complete = true
         card.save

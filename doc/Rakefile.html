@@ -2,146 +2,98 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
 <title>Rakefile - RDoc Documentation</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
-
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
 
 
-<body class="file">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
     <a href="./table_of_contents.html#classes">Classes</a>
     <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </div>
+</div>
 
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
+    <div id="search-section" role="search" class="project-section initially-hidden">
   <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
   </form>
+</div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+  </div>
 
+  
 
   <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./LICENSE.html">LICENSE</a>
-  
-    <li class="file"><a href="./Rakefile.html">Rakefile</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
 
   <ul class="link-list">
   
-    <li><a href="./Trello.html">Trello</a>
+    <li><a href="./CHANGELOG_md.html">CHANGELOG</a>
   
-    <li><a href="./Trello/Action.html">Trello::Action</a>
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
   
-    <li><a href="./Trello/Association.html">Trello::Association</a>
+    <li><a href="./Gemfile.html">Gemfile</a>
   
-    <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
+    <li><a href="./Gemfile_lock.html">Gemfile.lock</a>
   
-    <li><a href="./Trello/Attachment.html">Trello::Attachment</a>
+    <li><a href="./LICENSE.html">LICENSE</a>
   
-    <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
+    <li><a href="./README_md.html">README</a>
   
-    <li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a>
+    <li><a href="./Rakefile.html">Rakefile</a>
   
-    <li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a>
+    <li><a href="./coverage/assets/0_10_2/application_css.html">application.css</a>
   
-    <li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a>
+    <li><a href="./coverage/assets/0_10_2/application_js.html">application.js</a>
   
-    <li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a>
+    <li><a href="./coverage/index_html.html">index.html</a>
   
-    <li><a href="./Trello/BasicData.html">Trello::BasicData</a>
-  
-    <li><a href="./Trello/Board.html">Trello::Board</a>
-  
-    <li><a href="./Trello/Card.html">Trello::Card</a>
-  
-    <li><a href="./Trello/CheckItemState.html">Trello::CheckItemState</a>
-  
-    <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
-  
-    <li><a href="./Trello/Client.html">Trello::Client</a>
-  
-    <li><a href="./Trello/Configuration.html">Trello::Configuration</a>
-  
-    <li><a href="./Trello/Error.html">Trello::Error</a>
-  
-    <li><a href="./Trello/HasActions.html">Trello::HasActions</a>
-  
-    <li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a>
-  
-    <li><a href="./Trello/Item.html">Trello::Item</a>
-  
-    <li><a href="./Trello/Label.html">Trello::Label</a>
-  
-    <li><a href="./Trello/LabelName.html">Trello::LabelName</a>
-  
-    <li><a href="./Trello/List.html">Trello::List</a>
-  
-    <li><a href="./Trello/Member.html">Trello::Member</a>
-  
-    <li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a>
-  
-    <li><a href="./Trello/Notification.html">Trello::Notification</a>
-  
-    <li><a href="./Trello/Organization.html">Trello::Organization</a>
-  
-    <li><a href="./Trello/TInternet.html">Trello::TInternet</a>
-  
-    <li><a href="./Trello/Token.html">Trello::Token</a>
-  
-    <li><a href="./IntegrationTest.html">IntegrationTest</a>
-  
-    <li><a href="./IntegrationTest/Container.html">IntegrationTest::Container</a>
-  
-    <li><a href="./Helpers.html">Helpers</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./String.html">String</a>
+    <li><a href="./ruby-trello_gemspec.html">ruby-trello.gemspec</a>
   
   </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation" class="description">
-  
-<p>require ‘rspec/core/rake_task’</p>
+<main role="main" aria-label="Page Rakefile">
+
+<p>require &#39;rspec/core/rake_task&#39;</p>
 
 <p>RSpec::Core::RakeTask.new</p>
 
@@ -149,14 +101,14 @@
 
 <p>namespace :example do</p>
 
-<pre class="ruby"><span class="ruby-identifier">$LOAD_PATH</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-string">'lib'</span>
+<pre class="ruby"><span class="ruby-identifier">$LOAD_PATH</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-string">&#39;lib&#39;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;addressable/uri&quot;</span>
 <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;trello&quot;</span>
 <span class="ruby-identifier">include</span> <span class="ruby-constant">Trello</span>
 <span class="ruby-identifier">include</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">Authorization</span>
 
 <span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;get a new request token&quot;</span>
-<span class="ruby-identifier">task</span> :<span class="ruby-identifier">get_request_token</span> <span class="ruby-keyword">do</span>
+<span class="ruby-identifier">task</span> <span class="ruby-value">:get_request_token</span> <span class="ruby-keyword">do</span>
   <span class="ruby-identifier">ensure_consumer_credentials</span>
 
   <span class="ruby-ivar">@developer_public_key</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DEVELOPER_PUBLIC_KEY&quot;</span>]
@@ -165,7 +117,7 @@
   <span class="ruby-constant">OAuthPolicy</span>.<span class="ruby-identifier">consumer_credential</span> = <span class="ruby-constant">OAuthCredential</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@developer_public_key</span>, <span class="ruby-ivar">@developer_secret</span>
   <span class="ruby-constant">OAuthPolicy</span>.<span class="ruby-identifier">token</span> = <span class="ruby-keyword">nil</span>
 
-  <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> :<span class="ruby-identifier">get</span>, <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">&quot;https://trello.com/1/OAuthGetRequestToken&quot;</span>)
+  <span class="ruby-identifier">request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:get</span>, <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-string">&quot;https://trello.com/1/OAuthGetRequestToken&quot;</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">TInternet</span>.<span class="ruby-identifier">execute</span> <span class="ruby-constant">OAuthPolicy</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">request</span>)
 
   <span class="ruby-identifier">the_request_token</span> = <span class="ruby-identifier">parse_token</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
@@ -174,7 +126,7 @@
 <span class="ruby-keyword">end</span>
 
 <span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;convert request token to access token&quot;</span>
-<span class="ruby-identifier">task</span> :<span class="ruby-identifier">get_access_token</span>, :<span class="ruby-identifier">request_token_key</span>, :<span class="ruby-identifier">request_token_secret</span>, :<span class="ruby-identifier">oauth_verifier</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+<span class="ruby-identifier">task</span> <span class="ruby-value">:get_access_token</span>, <span class="ruby-value">:request_token_key</span>, <span class="ruby-value">:request_token_secret</span>, <span class="ruby-value">:oauth_verifier</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span>, <span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">ensure_consumer_credentials</span>
   <span class="ruby-ivar">@developer_public_key</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DEVELOPER_PUBLIC_KEY&quot;</span>]
   <span class="ruby-ivar">@developer_secret</span>     = <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;DEVELOPER_SECRET&quot;</span>]
@@ -182,7 +134,7 @@
   <span class="ruby-constant">OAuthPolicy</span>.<span class="ruby-identifier">consumer_credential</span> = <span class="ruby-constant">OAuthCredential</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@developer_public_key</span>, <span class="ruby-ivar">@developer_secret</span>
   <span class="ruby-constant">OAuthPolicy</span>.<span class="ruby-identifier">token</span> = <span class="ruby-constant">OAuthCredential</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">request_token_key</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">request_token_secret</span>
 
-  <span class="ruby-identifier">access_token_request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> :<span class="ruby-identifier">get</span>, <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://trello.com/1/OAuthGetAccessToken?oauth_verifier=#{args.oauth_verifier}&quot;</span>)
+  <span class="ruby-identifier">access_token_request</span> = <span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:get</span>, <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;https://trello.com/1/OAuthGetAccessToken?oauth_verifier=#{args.oauth_verifier}&quot;</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">TInternet</span>.<span class="ruby-identifier">execute</span> <span class="ruby-constant">OAuthPolicy</span>.<span class="ruby-identifier">authorize</span>(<span class="ruby-identifier">access_token_request</span>)
 
   <span class="ruby-identifier">the_access_token</span> = <span class="ruby-identifier">parse_token</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
@@ -190,7 +142,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;key =&gt; #{the_access_token.key}, secret =&gt; #{the_access_token.secret}&quot;</span>
 <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">ensure_consumer_credentials</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">ensure_consumer_credentials</span>
     <span class="ruby-node">%w{PUBLIC_KEY SECRET}</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">fullname</span> = <span class="ruby-node">&quot;DEVELOPER_#{name}&quot;</span>
       <span class="ruby-keyword">unless</span> <span class="ruby-constant">ENV</span>[<span class="ruby-identifier">fullname</span>]
@@ -200,22 +152,22 @@
     <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span>
 
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_token</span>(<span class="ruby-identifier">text</span>)
-  <span class="ruby-identifier">matchdata</span> = <span class="ruby-regexp">%roauth_token=([^&amp;]+)&amp;oauth_token_secret=(.+)/</span>.<span class="ruby-identifier">match</span> <span class="ruby-identifier">text</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">parse_token</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">matchdata</span> = <span class="ruby-regexp">/oauth_token=([^&amp;]+)&amp;oauth_token_secret=(.+)/</span>.<span class="ruby-identifier">match</span> <span class="ruby-identifier">text</span>
 
-  <span class="ruby-identifier">the_request_token</span> = <span class="ruby-constant">OAuthCredential</span>.<span class="ruby-identifier">new</span> *<span class="ruby-identifier">matchdata</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>]
+  <span class="ruby-identifier">the_request_token</span> = <span class="ruby-constant">OAuthCredential</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">*</span><span class="ruby-identifier">matchdata</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>]
 <span class="ruby-keyword">end</span>
 </pre>
 
 <p>end</p>
 
-</div>
+</main>
 
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

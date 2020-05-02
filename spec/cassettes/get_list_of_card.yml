@@ -1,0 +1,188 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/5e946acb3cc40322434c214e?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2054.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1586819520228'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Mon, 13 Apr 2020 23:12:00 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Mon, 13 Apr 2020 23:12:00 GMT
+      Content-Length:
+      - '3098'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Thu, 16 Apr 2020 23:12:00 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e946acb3cc40322434c214e","checkItemStates":[{"id":"[object
+        Object]","idCheckItem":"5e948a1d14d40e501e1163f3","state":"complete"}],"closed":false,"dateLastActivity":"2020-04-13T23:07:59.556Z","desc":"","descData":null,"dueReminder":null,"idBoard":"5e93ba403f1ab3603ba81a09","idList":"5e93ba4fe51ee2602ec671af","idMembersVoted":[],"idShort":2,"idAttachmentCover":"5e94756a8ed68535838d852d","idLabels":[],"manualCoverAttachment":true,"name":"C2-changed","pos":131071,"shortLink":"JyFUXwxF","isTemplate":false,"dueComplete":false,"due":null,"email":null,"labels":[],"shortUrl":"https://trello.com/c/JyFUXwxF","url":"https://trello.com/c/JyFUXwxF/2-c2-changed","cover":{"idAttachment":"5e94756a8ed68535838d852d","color":null,"idUploadedBackground":null,"size":"normal","brightness":"light","scaled":[{"_id":"5e94756b8ed68535838d854f","id":"5e94756b8ed68535838d854f","scaled":false,"url":"https://trello.com/1/cards/5e946acb3cc40322434c214e/attachments/5e94756a8ed68535838d852d/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e946acb3cc40322434c214e%2F70x50%2Fb12163ff3c81a632efff145394b7259f%2Ftest.png","bytes":225,"height":50,"width":70},{"_id":"5e94756b8ed68535838d8550","id":"5e94756b8ed68535838d8550","scaled":false,"url":"https://trello.com/1/cards/5e946acb3cc40322434c214e/attachments/5e94756a8ed68535838d852d/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e946acb3cc40322434c214e%2F250x150%2Fb12163ff3c81a632efff145394b7259f%2Ftest.png","bytes":495,"height":150,"width":250},{"_id":"5e94756b8ed68535838d8551","id":"5e94756b8ed68535838d8551","scaled":true,"url":"https://trello.com/1/cards/5e946acb3cc40322434c214e/attachments/5e94756a8ed68535838d852d/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e946acb3cc40322434c214e%2F149x90%2Fb12163ff3c81a632efff145394b7259f%2Ftest.png","bytes":364,"height":90,"width":149},{"_id":"5e94756b8ed68535838d8552","id":"5e94756b8ed68535838d8552","scaled":true,"url":"https://trello.com/1/cards/5e946acb3cc40322434c214e/attachments/5e94756a8ed68535838d852d/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e946acb3cc40322434c214e%2F171x103%2Fb12163ff3c81a632efff145394b7259f%2Ftest.png","bytes":409,"height":103,"width":171},{"_id":"5e94756b8ed68535838d8553","id":"5e94756b8ed68535838d8553","scaled":true,"url":"https://trello.com/1/cards/5e946acb3cc40322434c214e/attachments/5e94756a8ed68535838d852d/previews/download?backingUrl=https%3A%2F%2Ftrello-attachments.s3.amazonaws.com%2F5e93ba403f1ab3603ba81a09%2F5e946acb3cc40322434c214e%2Ff3de887412d1b4801d1e634b8357ef8b%2Ftest.png","bytes":969,"height":103,"width":171}],"edgeColor":"#242424"},"idMembers":[],"badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"fogbugz":"","checkItems":2,"checkItemsChecked":1,"checkItemsEarliestDue":null,"comments":0,"attachments":1,"description":false,"due":null,"dueComplete":false},"subscribed":false,"idChecklists":["5e948a1a9e2cfd0ef6818e89"]}'
+    http_version: null
+  recorded_at: Mon, 13 Apr 2020 23:12:00 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/lists/5e93ba4fe51ee2602ec671af?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (darwin19.2.0 x86_64) ruby/2.6.5p114
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      Surrogate-Control:
+      - no-store
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Trello-Version:
+      - 1.2054.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '98'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '298'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '198'
+      X-Server-Time:
+      - '1586819520886'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Mon, 13 Apr 2020 23:12:01 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Mon, 13 Apr 2020 23:12:01 GMT
+      Content-Length:
+      - '109'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Thu, 16 Apr 2020 23:12:00 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e93ba4fe51ee2602ec671af","name":"L1","closed":false,"pos":65535,"idBoard":"5e93ba403f1ab3603ba81a09"}'
+    http_version: null
+  recorded_at: Mon, 13 Apr 2020 23:12:01 GMT
+recorded_with: VCR 5.1.0

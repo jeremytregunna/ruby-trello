@@ -2,232 +2,167 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
 <title>module Helpers - RDoc Documentation</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
-
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
 
 
-<body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
     <a href="./table_of_contents.html#classes">Classes</a>
     <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
-
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>spec/spec_helper.rb
-  </ul>
-</nav>
-
-    
   </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
 
   <div id="class-metadata">
     
     
     
+    
     <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
 
-  <ul class="link-list">
+  <ul class="link-list" role="directory">
     
-    <li><a href="#method-i-actions_details">#actions_details</a>
+    <li ><a href="#method-i-actions_details">#actions_details</a>
     
-    <li><a href="#method-i-actions_payload">#actions_payload</a>
+    <li ><a href="#method-i-actions_payload">#actions_payload</a>
     
-    <li><a href="#method-i-attachments_details">#attachments_details</a>
+    <li ><a href="#method-i-attachments_details">#attachments_details</a>
     
-    <li><a href="#method-i-attachments_payload">#attachments_payload</a>
+    <li ><a href="#method-i-attachments_payload">#attachments_payload</a>
     
-    <li><a href="#method-i-boards_details">#boards_details</a>
+    <li ><a href="#method-i-boards_details">#boards_details</a>
     
-    <li><a href="#method-i-boards_payload">#boards_payload</a>
+    <li ><a href="#method-i-boards_payload">#boards_payload</a>
     
-    <li><a href="#method-i-card_payload">#card_payload</a>
+    <li ><a href="#method-i-card_payload">#card_payload</a>
     
-    <li><a href="#method-i-cards_details">#cards_details</a>
+    <li ><a href="#method-i-cards_details">#cards_details</a>
     
-    <li><a href="#method-i-cards_payload">#cards_payload</a>
+    <li ><a href="#method-i-cards_payload">#cards_payload</a>
     
-    <li><a href="#method-i-checklists_details">#checklists_details</a>
+    <li ><a href="#method-i-checklists_details">#checklists_details</a>
     
-    <li><a href="#method-i-checklists_payload">#checklists_payload</a>
+    <li ><a href="#method-i-checklists_payload">#checklists_payload</a>
     
-    <li><a href="#method-i-label_details">#label_details</a>
+    <li ><a href="#method-i-copied_checklists_details">#copied_checklists_details</a>
     
-    <li><a href="#method-i-label_name_details">#label_name_details</a>
+    <li ><a href="#method-i-copied_checklists_payload">#copied_checklists_payload</a>
     
-    <li><a href="#method-i-label_name_payload">#label_name_payload</a>
+    <li ><a href="#method-i-custom_field_item_details">#custom_field_item_details</a>
     
-    <li><a href="#method-i-label_payload">#label_payload</a>
+    <li ><a href="#method-i-custom_field_items_payload">#custom_field_items_payload</a>
     
-    <li><a href="#method-i-lists_details">#lists_details</a>
+    <li ><a href="#method-i-custom_field_option_details">#custom_field_option_details</a>
     
-    <li><a href="#method-i-lists_payload">#lists_payload</a>
+    <li ><a href="#method-i-custom_fields_details">#custom_fields_details</a>
     
-    <li><a href="#method-i-notification_details">#notification_details</a>
+    <li ><a href="#method-i-custom_fields_payload">#custom_fields_payload</a>
     
-    <li><a href="#method-i-notification_payload">#notification_payload</a>
+    <li ><a href="#method-i-label_details">#label_details</a>
     
-    <li><a href="#method-i-organization_details">#organization_details</a>
+    <li ><a href="#method-i-label_name_details">#label_name_details</a>
     
-    <li><a href="#method-i-organization_payload">#organization_payload</a>
+    <li ><a href="#method-i-label_name_payload">#label_name_payload</a>
     
-    <li><a href="#method-i-orgs_details">#orgs_details</a>
+    <li ><a href="#method-i-label_options">#label_options</a>
     
-    <li><a href="#method-i-orgs_payload">#orgs_payload</a>
+    <li ><a href="#method-i-label_payload">#label_payload</a>
     
-    <li><a href="#method-i-token_details">#token_details</a>
+    <li ><a href="#method-i-lists_details">#lists_details</a>
     
-    <li><a href="#method-i-token_payload">#token_payload</a>
+    <li ><a href="#method-i-lists_payload">#lists_payload</a>
     
-    <li><a href="#method-i-user_details">#user_details</a>
+    <li ><a href="#method-i-notification_details">#notification_details</a>
     
-    <li><a href="#method-i-user_payload">#user_payload</a>
+    <li ><a href="#method-i-notification_payload">#notification_payload</a>
+    
+    <li ><a href="#method-i-organization_details">#organization_details</a>
+    
+    <li ><a href="#method-i-organization_payload">#organization_payload</a>
+    
+    <li ><a href="#method-i-orgs_details">#orgs_details</a>
+    
+    <li ><a href="#method-i-orgs_payload">#orgs_payload</a>
+    
+    <li ><a href="#method-i-plugin_data_details">#plugin_data_details</a>
+    
+    <li ><a href="#method-i-plugin_data_payload">#plugin_data_payload</a>
+    
+    <li ><a href="#method-i-token_details">#token_details</a>
+    
+    <li ><a href="#method-i-token_payload">#token_payload</a>
+    
+    <li ><a href="#method-i-user_details">#user_details</a>
+    
+    <li ><a href="#method-i-user_payload">#user_payload</a>
+    
+    <li ><a href="#method-i-webhook_payload">#webhook_payload</a>
+    
+    <li ><a href="#method-i-webhooks_details">#webhooks_details</a>
+    
+    <li ><a href="#method-i-webhooks_payload">#webhooks_payload</a>
     
   </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./LICENSE.html">LICENSE</a>
-  
-    <li class="file"><a href="./Rakefile.html">Rakefile</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Trello.html">Trello</a>
-  
-    <li><a href="./Trello/Action.html">Trello::Action</a>
-  
-    <li><a href="./Trello/Association.html">Trello::Association</a>
-  
-    <li><a href="./Trello/AssociationProxy.html">Trello::AssociationProxy</a>
-  
-    <li><a href="./Trello/Attachment.html">Trello::Attachment</a>
-  
-    <li><a href="./Trello/Authorization.html">Trello::Authorization</a>
-  
-    <li><a href="./Trello/Authorization/BasicAuthPolicy.html">Trello::Authorization::BasicAuthPolicy</a>
-  
-    <li><a href="./Trello/Authorization/Clock.html">Trello::Authorization::Clock</a>
-  
-    <li><a href="./Trello/Authorization/Nonce.html">Trello::Authorization::Nonce</a>
-  
-    <li><a href="./Trello/Authorization/OAuthPolicy.html">Trello::Authorization::OAuthPolicy</a>
-  
-    <li><a href="./Trello/BasicData.html">Trello::BasicData</a>
-  
-    <li><a href="./Trello/Board.html">Trello::Board</a>
-  
-    <li><a href="./Trello/Card.html">Trello::Card</a>
-  
-    <li><a href="./Trello/CheckItemState.html">Trello::CheckItemState</a>
-  
-    <li><a href="./Trello/Checklist.html">Trello::Checklist</a>
-  
-    <li><a href="./Trello/Client.html">Trello::Client</a>
-  
-    <li><a href="./Trello/Configuration.html">Trello::Configuration</a>
-  
-    <li><a href="./Trello/Error.html">Trello::Error</a>
-  
-    <li><a href="./Trello/HasActions.html">Trello::HasActions</a>
-  
-    <li><a href="./Trello/InvalidAccessToken.html">Trello::InvalidAccessToken</a>
-  
-    <li><a href="./Trello/Item.html">Trello::Item</a>
-  
-    <li><a href="./Trello/Label.html">Trello::Label</a>
-  
-    <li><a href="./Trello/LabelName.html">Trello::LabelName</a>
-  
-    <li><a href="./Trello/List.html">Trello::List</a>
-  
-    <li><a href="./Trello/Member.html">Trello::Member</a>
-  
-    <li><a href="./Trello/MultiAssociation.html">Trello::MultiAssociation</a>
-  
-    <li><a href="./Trello/Notification.html">Trello::Notification</a>
-  
-    <li><a href="./Trello/Organization.html">Trello::Organization</a>
-  
-    <li><a href="./Trello/TInternet.html">Trello::TInternet</a>
-  
-    <li><a href="./Trello/Token.html">Trello::Token</a>
-  
-    <li><a href="./IntegrationTest.html">IntegrationTest</a>
-  
-    <li><a href="./IntegrationTest/Container.html">IntegrationTest::Container</a>
-  
-    <li><a href="./Helpers.html">Helpers</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./String.html">String</a>
-  
-  </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="module">module Helpers</h1>
+<main role="main" aria-labelledby="module-Helpers">
+  <h1 id="module-Helpers" class="module">
+    module Helpers
+  </h1>
 
-  <div id="description" class="description">
+  <section class="description">
     
-  </div><!-- description -->
+  </section>
 
-  
-  
   
   <section id="5Buntitled-5D" class="documentation-section">
     
@@ -238,10 +173,11 @@
 
     
 
-    <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
 
     
       <div id="method-i-actions_details" class="method-detail ">
@@ -249,7 +185,9 @@
         <div class="method-heading">
           <span class="method-name">actions_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -257,40 +195,41 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="actions_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 163</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">actions_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 312</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">actions_details</span>
   [{
-    <span class="ruby-string">&quot;id&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee2482134a81a757a08af47&quot;</span>,
-    <span class="ruby-string">&quot;idMemberCreator&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;data&quot;</span>=<span class="ruby-operator">&gt;</span> {
-      <span class="ruby-string">&quot;card&quot;</span>          =<span class="ruby-operator">&gt;</span> {
-        <span class="ruby-string">&quot;id&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee2482134a81a757a08af45&quot;</span>,
-        <span class="ruby-string">&quot;name&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Bytecode outputter&quot;</span>
+    <span class="ruby-string">&#39;id&#39;</span>              <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee2482134a81a757a08af47&#39;</span>,
+    <span class="ruby-string">&#39;idMemberCreator&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;data&#39;</span> <span class="ruby-operator">=&gt;</span> {
+      <span class="ruby-string">&#39;card&#39;</span>          <span class="ruby-operator">=&gt;</span> {
+        <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee2482134a81a757a08af45&#39;</span>,
+        <span class="ruby-string">&#39;name&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Bytecode outputter&#39;</span>
       },
-      <span class="ruby-string">&quot;board&quot;</span>         =<span class="ruby-operator">&gt;</span> {
-        <span class="ruby-string">&quot;id&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ec54f2f73820a0dea0d1f0e&quot;</span>,
-        <span class="ruby-string">&quot;name&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Caribou VM&quot;</span>
+      <span class="ruby-string">&#39;board&#39;</span>         <span class="ruby-operator">=&gt;</span> {
+        <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ec54f2f73820a0dea0d1f0e&#39;</span>,
+        <span class="ruby-string">&#39;name&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Caribou VM&#39;</span>
       },
-      <span class="ruby-string">&quot;list&quot;</span>          =<span class="ruby-operator">&gt;</span> {
-        <span class="ruby-string">&quot;id&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee238b034a81a757a05cda0&quot;</span>,
-        <span class="ruby-string">&quot;name&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Assembler&quot;</span>
+      <span class="ruby-string">&#39;list&#39;</span>          <span class="ruby-operator">=&gt;</span> {
+        <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee238b034a81a757a05cda0&#39;</span>,
+        <span class="ruby-string">&#39;name&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Assembler&#39;</span>
       }
     },
-    <span class="ruby-string">&quot;date&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2012-02-10T11:32:17Z&quot;</span>,
-    <span class="ruby-string">&quot;type&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;createCard&quot;</span>
+    <span class="ruby-string">&#39;date&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2012-02-10T11:32:17Z&#39;</span>,
+    <span class="ruby-string">&#39;type&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;createCard&#39;</span>
   }]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- actions_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- actions_details-method -->
+      </div>
 
     
       <div id="method-i-actions_payload" class="method-detail ">
@@ -298,7 +237,9 @@
         <div class="method-heading">
           <span class="method-name">actions_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -306,21 +247,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="actions_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 186</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">actions_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 335</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">actions_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">actions_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- actions_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- actions_payload-method -->
+      </div>
 
     
       <div id="method-i-attachments_details" class="method-detail ">
@@ -328,7 +270,9 @@
         <div class="method-heading">
           <span class="method-name">attachments_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -336,38 +280,40 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="attachments_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 120</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">attachments_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">attachments_details</span>
   [{
-     <span class="ruby-string">&quot;id&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-     <span class="ruby-string">&quot;name&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;attachment1.png&quot;</span>,
-     <span class="ruby-string">&quot;url&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;http://trello-assets.domain.tld/attachment1.png&quot;</span>,
-     <span class="ruby-string">&quot;bytes&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value">98765</span>,
-     <span class="ruby-string">&quot;idMember&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456781&quot;</span>,
-     <span class="ruby-string">&quot;isUpload&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-     <span class="ruby-string">&quot;date&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2013-02-28T17:12:28.497Z&quot;</span>,
+     <span class="ruby-string">&#39;id&#39;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+     <span class="ruby-string">&#39;name&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;attachment1.png&#39;</span>,
+     <span class="ruby-string">&#39;url&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;http://trello-assets.domain.tld/attachment1.png&#39;</span>,
+     <span class="ruby-string">&#39;bytes&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-value">98765</span>,
+     <span class="ruby-string">&#39;idMember&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456781&#39;</span>,
+     <span class="ruby-string">&#39;isUpload&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+     <span class="ruby-string">&#39;date&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2013-02-28T17:12:28.497Z&#39;</span>,
+     <span class="ruby-string">&#39;previews&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;previews&#39;</span>
    },
    {
-     <span class="ruby-string">&quot;id&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456781&quot;</span>,
-     <span class="ruby-string">&quot;name&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;attachment2.png&quot;</span>,
-     <span class="ruby-string">&quot;url&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;http://trello-assets.domain.tld/attachment2.png&quot;</span>,
-     <span class="ruby-string">&quot;bytes&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-value">89123</span>,
-     <span class="ruby-string">&quot;idMember&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456782&quot;</span>,
-     <span class="ruby-string">&quot;isUpload&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-     <span class="ruby-string">&quot;date&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2013-03-01T14:01:25.212Z&quot;</span>,
+     <span class="ruby-string">&#39;id&#39;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456781&#39;</span>,
+     <span class="ruby-string">&#39;name&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;attachment2.png&#39;</span>,
+     <span class="ruby-string">&#39;url&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;http://trello-assets.domain.tld/attachment2.png&#39;</span>,
+     <span class="ruby-string">&#39;bytes&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-value">89123</span>,
+     <span class="ruby-string">&#39;idMember&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456782&#39;</span>,
+     <span class="ruby-string">&#39;isUpload&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+     <span class="ruby-string">&#39;date&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2013-03-01T14:01:25.212Z&#39;</span>,
    }]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- attachments_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- attachments_details-method -->
+      </div>
 
     
       <div id="method-i-attachments_payload" class="method-detail ">
@@ -375,7 +321,9 @@
         <div class="method-heading">
           <span class="method-name">attachments_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -383,21 +331,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="attachments_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 141</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">attachments_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">attachments_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">attachments_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- attachments_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- attachments_payload-method -->
+      </div>
 
     
       <div id="method-i-boards_details" class="method-detail ">
@@ -405,7 +354,9 @@
         <div class="method-heading">
           <span class="method-name">boards_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -413,28 +364,38 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="boards_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 52</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">boards_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 111</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">boards_details</span>
   [{
-    <span class="ruby-string">&quot;id&quot;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;name&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Test&quot;</span>,
-    <span class="ruby-string">&quot;desc&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;This is a test board&quot;</span>,
-    <span class="ruby-string">&quot;closed&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-    <span class="ruby-string">&quot;idOrganization&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;url&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;https://trello.com/board/test/abcdef123456789123456789&quot;</span>
+    <span class="ruby-string">&#39;id&#39;</span>               <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;name&#39;</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>,
+    <span class="ruby-string">&#39;desc&#39;</span>             <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;This is a test board&#39;</span>,
+    <span class="ruby-string">&#39;closed&#39;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&#39;starred&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&#39;idOrganization&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;url&#39;</span>              <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;https://trello.com/board/test/abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;dateLastActivity&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2012-12-08T18:40:24.314Z&#39;</span>
+  },
+  {
+    <span class="ruby-value">name:</span>            <span class="ruby-string">&#39;Test&#39;</span>,
+    <span class="ruby-value">desc:</span>            <span class="ruby-string">&#39;This is a test board&#39;</span>,
+    <span class="ruby-value">closed:</span>          <span class="ruby-keyword">false</span>,
+    <span class="ruby-value">starred:</span>         <span class="ruby-keyword">false</span>,
+    <span class="ruby-value">organization_id:</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>
   }]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- boards_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- boards_details-method -->
+      </div>
 
     
       <div id="method-i-boards_payload" class="method-detail ">
@@ -442,7 +403,9 @@
         <div class="method-heading">
           <span class="method-name">boards_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -450,21 +413,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="boards_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 63</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">boards_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 131</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">boards_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">boards_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- boards_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- boards_payload-method -->
+      </div>
 
     
       <div id="method-i-card_payload" class="method-detail ">
@@ -472,7 +436,9 @@
         <div class="method-heading">
           <span class="method-name">card_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -480,21 +446,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="card_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 145</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">card_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 294</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">card_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">cards_details</span>.<span class="ruby-identifier">first</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- card_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- card_payload-method -->
+      </div>
 
     
       <div id="method-i-cards_details" class="method-detail ">
@@ -502,7 +469,9 @@
         <div class="method-heading">
           <span class="method-name">cards_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -510,33 +479,55 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="cards_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 99</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">cards_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 201</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cards_details</span>
   [{
-    <span class="ruby-string">&quot;id&quot;</span>                =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;idShort&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;1&quot;</span>,
-    <span class="ruby-string">&quot;name&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Do something awesome&quot;</span>,
-    <span class="ruby-string">&quot;desc&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Awesome things are awesome.&quot;</span>,
-    <span class="ruby-string">&quot;closed&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-    <span class="ruby-string">&quot;idList&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;idBoard&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;idMembers&quot;</span>         =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>],
-    <span class="ruby-string">&quot;url&quot;</span>               =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;pos&quot;</span>               =<span class="ruby-operator">&gt;</span> <span class="ruby-value">12</span>,
-    <span class="ruby-string">&quot;dateLastActivity&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2012-12-07T18:40:24.314Z&quot;</span>
+    <span class="ruby-string">&#39;id&#39;</span>                <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idShort&#39;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;1&#39;</span>,
+    <span class="ruby-string">&#39;name&#39;</span>              <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Do something awesome&#39;</span>,
+    <span class="ruby-string">&#39;desc&#39;</span>              <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Awesome things are awesome.&#39;</span>,
+    <span class="ruby-string">&#39;closed&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&#39;idList&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idBoard&#39;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idAttachmentCover&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idMembers&#39;</span>         <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>],
+    <span class="ruby-string">&#39;labels&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">label_details</span>,
+    <span class="ruby-string">&#39;idLabels&#39;</span>          <span class="ruby-operator">=&gt;</span> [ <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+                             <span class="ruby-string">&#39;bbcdef123456789123456789&#39;</span>,
+                             <span class="ruby-string">&#39;cbcdef123456789123456789&#39;</span>,
+                             <span class="ruby-string">&#39;dbcdef123456789123456789&#39;</span> ],
+    <span class="ruby-string">&#39;url&#39;</span>               <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;https://trello.com/card/board/specify-the-type-and-scope-of-the-jit-in-a-lightweight-spec/abcdef123456789123456789/abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;shortUrl&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;https://trello.com/c/abcdef12&#39;</span>,
+    <span class="ruby-string">&#39;pos&#39;</span>               <span class="ruby-operator">=&gt;</span> <span class="ruby-value">12</span>,
+    <span class="ruby-string">&#39;dateLastActivity&#39;</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2012-12-07T18:40:24.314Z&#39;</span>
+  },
+  {
+    <span class="ruby-value">name:</span>                   <span class="ruby-string">&#39;Do something awesome&#39;</span>,
+    <span class="ruby-value">list_id:</span>                <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-value">desc:</span>                   <span class="ruby-string">&#39;Awesome things are awesome.&#39;</span>,
+    <span class="ruby-value">member_ids:</span>             [<span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>],
+    <span class="ruby-value">card_labels:</span>            [ <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+                            <span class="ruby-string">&#39;bbcdef123456789123456789&#39;</span>,
+                            <span class="ruby-string">&#39;cbcdef123456789123456789&#39;</span>,
+                            <span class="ruby-string">&#39;dbcdef123456789123456789&#39;</span> ],
+    <span class="ruby-value">due:</span>                    <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>,
+    <span class="ruby-value">pos:</span>                    <span class="ruby-value">12</span>,
+    <span class="ruby-value">source_card_id:</span>         <span class="ruby-string">&#39;abcdef1234567891234567890&#39;</span>,
+    <span class="ruby-value">source_card_properties:</span> <span class="ruby-string">&#39;checklist,members&#39;</span>
   }]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- cards_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- cards_details-method -->
+      </div>
 
     
       <div id="method-i-cards_payload" class="method-detail ">
@@ -544,7 +535,9 @@
         <div class="method-heading">
           <span class="method-name">cards_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -552,21 +545,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="cards_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 116</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">cards_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 239</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">cards_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">cards_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- cards_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- cards_payload-method -->
+      </div>
 
     
       <div id="method-i-checklists_details" class="method-detail ">
@@ -574,7 +568,9 @@
         <div class="method-heading">
           <span class="method-name">checklists_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -582,31 +578,38 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="checklists_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 67</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">checklists_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">checklists_details</span>
   [{
-    <span class="ruby-string">&quot;id&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;name&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Test Checklist&quot;</span>,
-    <span class="ruby-string">&quot;desc&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;A marvelous little checklist&quot;</span>,
-    <span class="ruby-string">&quot;closed&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-    <span class="ruby-string">&quot;url&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;https://trello.com/blah/blah&quot;</span>,
-    <span class="ruby-string">&quot;idBoard&quot;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;idList&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;idMembers&quot;</span>  =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>],
-    <span class="ruby-string">&quot;checkItems&quot;</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-string">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;ghijk987654321&quot;</span> }
+    <span class="ruby-string">&#39;id&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;name&#39;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test Checklist&#39;</span>,
+    <span class="ruby-string">&#39;desc&#39;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;A marvelous little checklist&#39;</span>,
+    <span class="ruby-string">&#39;closed&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&#39;pos&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-value">16384</span>,
+    <span class="ruby-string">&#39;url&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;https://trello.com/blah/blah&#39;</span>,
+    <span class="ruby-string">&#39;idBoard&#39;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idCard&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abccardid&#39;</span>,
+    <span class="ruby-string">&#39;idList&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idMembers&#39;</span>  <span class="ruby-operator">=&gt;</span> [<span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>],
+    <span class="ruby-string">&#39;checkItems&#39;</span> <span class="ruby-operator">=&gt;</span> { <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;ghijk987654321&#39;</span> }
+  },
+  {
+    <span class="ruby-value">name:</span>    <span class="ruby-string">&#39;A marvelous little checklist&#39;</span>,
+    <span class="ruby-value">card_id:</span> <span class="ruby-string">&#39;abccardid&#39;</span>
   }]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- checklists_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- checklists_details-method -->
+      </div>
 
     
       <div id="method-i-checklists_payload" class="method-detail ">
@@ -614,7 +617,9 @@
         <div class="method-heading">
           <span class="method-name">checklists_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -622,21 +627,292 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="checklists_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 81</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">checklists_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">checklists_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">checklists_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- checklists_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- checklists_payload-method -->
+      </div>
+
+    
+      <div id="method-i-copied_checklists_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">copied_checklists_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="copied_checklists_details-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">copied_checklists_details</span>
+  [{
+    <span class="ruby-string">&#39;id&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;uvwxyz987654321987654321&#39;</span>,
+    <span class="ruby-string">&#39;name&#39;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test Checklist&#39;</span>,
+    <span class="ruby-string">&#39;desc&#39;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;&#39;</span>,
+    <span class="ruby-string">&#39;closed&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;position&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-value">99999</span>,
+    <span class="ruby-string">&#39;url&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;idBoard&#39;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idList&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;idMembers&#39;</span>  <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&#39;checkItems&#39;</span> <span class="ruby-operator">=&gt;</span> []
+  }]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-copied_checklists_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">copied_checklists_payload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="copied_checklists_payload-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">copied_checklists_payload</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">copied_checklists_details</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-custom_field_item_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_field_item_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_field_item_details-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 508</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">custom_field_item_details</span>
+  {
+    <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdefg1234567&#39;</span>,
+    <span class="ruby-string">&#39;value&#39;</span> <span class="ruby-operator">=&gt;</span> { <span class="ruby-string">&#39;text&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;hello world&#39;</span> },
+    <span class="ruby-string">&#39;idModel&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idCustomField&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;modelType&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;card&#39;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-custom_field_items_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_field_items_payload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_field_items_payload-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 518</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">custom_field_items_payload</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">custom_field_item_details</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-custom_field_option_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_field_option_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_field_option_details-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 499</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">custom_field_option_details</span>
+  {
+    <span class="ruby-string">&#39;_id&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdefgh12345678&#39;</span>,
+    <span class="ruby-string">&#39;value&#39;</span> <span class="ruby-operator">=&gt;</span> {<span class="ruby-string">&#39;text&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Low Priority&#39;</span>},
+    <span class="ruby-string">&#39;color&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;green&#39;</span>,
+    <span class="ruby-string">&#39;pos&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">1</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-custom_fields_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_fields_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_fields_details-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 474</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">custom_fields_details</span>
+  [
+    {
+      <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+      <span class="ruby-string">&#39;name&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Priority&#39;</span>,
+      <span class="ruby-string">&#39;idModel&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abc123&#39;</span>,
+      <span class="ruby-string">&#39;type&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;checkbox&#39;</span>,
+      <span class="ruby-string">&#39;pos&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">123</span>,
+      <span class="ruby-string">&#39;modelType&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;board&#39;</span>
+    },
+    {
+      <span class="ruby-value">id:</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+      <span class="ruby-value">name:</span> <span class="ruby-string">&#39;Priority&#39;</span>,
+      <span class="ruby-value">model_id:</span> <span class="ruby-string">&#39;abc123&#39;</span>,
+      <span class="ruby-value">type:</span> <span class="ruby-string">&#39;checkbox&#39;</span>,
+      <span class="ruby-value">pos:</span> <span class="ruby-value">123</span>,
+      <span class="ruby-value">model_type:</span> <span class="ruby-string">&#39;board&#39;</span>
+    }
+  ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-custom_fields_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_fields_payload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_fields_payload-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 495</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">custom_fields_payload</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">custom_fields_details</span>.<span class="ruby-identifier">first</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-label_details" class="method-detail ">
@@ -644,7 +920,9 @@
         <div class="method-heading">
           <span class="method-name">label_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -652,24 +930,27 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="label_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 272</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">label_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 421</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">label_details</span>
   [
-    {<span class="ruby-string">&quot;color&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;yellow&quot;</span>, <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;iOS&quot;</span>},
-    {<span class="ruby-string">&quot;color&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;purple&quot;</span>, <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Issue or bug&quot;</span>}
+    {<span class="ruby-string">&#39;color&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;yellow&#39;</span>, <span class="ruby-string">&#39;name&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;iOS&#39;</span>, <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>, <span class="ruby-string">&#39;uses&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">3</span>, <span class="ruby-string">&#39;idBoard&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>},
+    {<span class="ruby-string">&#39;color&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;purple&#39;</span>, <span class="ruby-string">&#39;name&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Issue or bug&#39;</span>, <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;bbcdef123456789123456789&#39;</span>, <span class="ruby-string">&#39;uses&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-string">&#39;idBoard&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>},
+    {<span class="ruby-string">&#39;color&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;red&#39;</span>, <span class="ruby-string">&#39;name&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;deploy&#39;</span>, <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;cbcdef123456789123456789&#39;</span>, <span class="ruby-string">&#39;uses&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">2</span>, <span class="ruby-string">&#39;idBoard&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>},
+    {<span class="ruby-string">&#39;color&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;blue&#39;</span>, <span class="ruby-string">&#39;name&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;on hold&#39;</span>, <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;dbcdef123456789123456789&#39;</span>, <span class="ruby-string">&#39;uses&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-value">6</span>, <span class="ruby-string">&#39;idBoard&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>}
   ]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- label_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- label_details-method -->
+      </div>
 
     
       <div id="method-i-label_name_details" class="method-detail ">
@@ -677,7 +958,9 @@
         <div class="method-heading">
           <span class="method-name">label_name_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -685,28 +968,29 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="label_name_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 283</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">label_name_details</span>
-  [
-    {<span class="ruby-string">&quot;yellow&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bug&quot;</span>},
-    {<span class="ruby-string">&quot;red&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;urgent&quot;</span>},
-    {<span class="ruby-string">&quot;green&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;deploy&quot;</span>},
-    {<span class="ruby-string">&quot;blue&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;on hold&quot;</span>},
-    {<span class="ruby-string">&quot;orange&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;new feature&quot;</span>},
-    {<span class="ruby-string">&quot;purple&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;experimental&quot;</span>}
-  ]
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 459</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">label_name_details</span>
+[
+  {<span class="ruby-string">&#39;yellow&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;bug&#39;</span>},
+  {<span class="ruby-string">&#39;red&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;urgent&#39;</span>},
+  {<span class="ruby-string">&#39;green&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;deploy&#39;</span>},
+  {<span class="ruby-string">&#39;blue&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;on hold&#39;</span>},
+  {<span class="ruby-string">&#39;orange&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;new feature&#39;</span>},
+  {<span class="ruby-string">&#39;purple&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;experimental&#39;</span>}
+]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- label_name_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- label_name_details-method -->
+      </div>
 
     
       <div id="method-i-label_name_payload" class="method-detail ">
@@ -714,7 +998,9 @@
         <div class="method-heading">
           <span class="method-name">label_name_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -722,21 +1008,59 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="label_name_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 294</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">label_name_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 470</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">label_name_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">label_name_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- label_name_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- label_name_payload-method -->
+      </div>
+
+    
+      <div id="method-i-label_options" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">label_options</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="label_options-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 430</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">label_options</span>
+  {
+    <span class="ruby-value">name:</span>     <span class="ruby-string">&#39;iOS&#39;</span>,
+    <span class="ruby-value">board_id:</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-value">color:</span>    <span class="ruby-string">&#39;yellow&#39;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-label_payload" class="method-detail ">
@@ -744,7 +1068,9 @@
         <div class="method-heading">
           <span class="method-name">label_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -752,21 +1078,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="label_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 279</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">label_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 438</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">label_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">label_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- label_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- label_payload-method -->
+      </div>
 
     
       <div id="method-i-lists_details" class="method-detail ">
@@ -774,7 +1101,9 @@
         <div class="method-heading">
           <span class="method-name">lists_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -782,27 +1111,37 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="lists_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">lists_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lists_details</span>
   [{
-    <span class="ruby-string">&quot;id&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;name&quot;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;To Do&quot;</span>,
-    <span class="ruby-string">&quot;closed&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-    <span class="ruby-string">&quot;idBoard&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;cards&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">cards_details</span>
-  }]
+    <span class="ruby-string">&#39;id&#39;</span>           <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;name&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;To Do&#39;</span>,
+    <span class="ruby-string">&#39;closed&#39;</span>       <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&#39;idBoard&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;idListSource&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456780&#39;</span>,
+    <span class="ruby-string">&#39;cards&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">cards_details</span>,
+    <span class="ruby-string">&#39;pos&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-value">12</span>
+  },
+  {
+    <span class="ruby-value">name:</span>           <span class="ruby-string">&#39;To Do&#39;</span>,
+    <span class="ruby-value">board_id:</span>       <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-value">pos:</span>            <span class="ruby-value">12</span>,
+    <span class="ruby-value">source_list_id:</span> <span class="ruby-string">&#39;abcdef123456789123456780&#39;</span>
+  }
+  ]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- lists_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- lists_details-method -->
+      </div>
 
     
       <div id="method-i-lists_payload" class="method-detail ">
@@ -810,7 +1149,9 @@
         <div class="method-heading">
           <span class="method-name">lists_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -818,21 +1159,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="lists_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 95</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">lists_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 197</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">lists_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">lists_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- lists_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- lists_payload-method -->
+      </div>
 
     
       <div id="method-i-notification_details" class="method-detail ">
@@ -840,7 +1182,9 @@
         <div class="method-heading">
           <span class="method-name">notification_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -848,38 +1192,39 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="notification_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 190</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">notification_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 339</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notification_details</span>
   {
-    <span class="ruby-string">&quot;id&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4f30d084d5b0f7ab453bee51&quot;</span>,
-    <span class="ruby-string">&quot;unread&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-    <span class="ruby-string">&quot;type&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;commentCard&quot;</span>,
-    <span class="ruby-string">&quot;date&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2012-02-07T07:19:32.393Z&quot;</span>,
-    <span class="ruby-string">&quot;data&quot;</span>            =<span class="ruby-operator">&gt;</span> {
-      <span class="ruby-string">&quot;board&quot;</span>         =<span class="ruby-operator">&gt;</span> {
-        <span class="ruby-string">&quot;id&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-        <span class="ruby-string">&quot;name&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Test&quot;</span>
+    <span class="ruby-string">&#39;id&#39;</span>              <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4f30d084d5b0f7ab453bee51&#39;</span>,
+    <span class="ruby-string">&#39;unread&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">false</span>,
+    <span class="ruby-string">&#39;type&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;commentCard&#39;</span>,
+    <span class="ruby-string">&#39;date&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2012-02-07T07:19:32.393Z&#39;</span>,
+    <span class="ruby-string">&#39;data&#39;</span>            <span class="ruby-operator">=&gt;</span> {
+      <span class="ruby-string">&#39;board&#39;</span>         <span class="ruby-operator">=&gt;</span> {
+        <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+        <span class="ruby-string">&#39;name&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test&#39;</span>
       },
-      <span class="ruby-string">&quot;card&quot;</span>=<span class="ruby-operator">&gt;</span>{
-        <span class="ruby-string">&quot;id&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-        <span class="ruby-string">&quot;name&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Do something awesome&quot;</span>
+      <span class="ruby-string">&#39;card&#39;</span> <span class="ruby-operator">=&gt;</span>{
+        <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+        <span class="ruby-string">&#39;name&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Do something awesome&#39;</span>
       },
-      <span class="ruby-string">&quot;text&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;test&quot;</span>
+      <span class="ruby-string">&#39;text&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;test&#39;</span>
     },
-    <span class="ruby-string">&quot;idMemberCreator&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789012345678&quot;</span>
+    <span class="ruby-string">&#39;idMemberCreator&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789012345678&#39;</span>
   }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- notification_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- notification_details-method -->
+      </div>
 
     
       <div id="method-i-notification_payload" class="method-detail ">
@@ -887,7 +1232,9 @@
         <div class="method-heading">
           <span class="method-name">notification_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -895,21 +1242,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="notification_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 211</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">notification_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 360</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">notification_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">notification_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- notification_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- notification_payload-method -->
+      </div>
 
     
       <div id="method-i-organization_details" class="method-detail ">
@@ -917,7 +1265,9 @@
         <div class="method-heading">
           <span class="method-name">organization_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -925,38 +1275,39 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="organization_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 215</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">organization_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 364</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">organization_details</span>
   {
-      <span class="ruby-string">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee7e59ae582acdec8000291&quot;</span>,
-      <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;publicorg&quot;</span>,
-      <span class="ruby-string">&quot;desc&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;This is a test organization&quot;</span>,
-      <span class="ruby-string">&quot;members&quot;</span> =<span class="ruby-operator">&gt;</span> [{
-          <span class="ruby-string">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee7df3ce582acdec80000b2&quot;</span>,
-          <span class="ruby-string">&quot;username&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;alicetester&quot;</span>,
-          <span class="ruby-string">&quot;fullName&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Alice Tester&quot;</span>
+      <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee7e59ae582acdec8000291&#39;</span>,
+      <span class="ruby-string">&#39;name&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;publicorg&#39;</span>,
+      <span class="ruby-string">&#39;desc&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;This is a test organization&#39;</span>,
+      <span class="ruby-string">&#39;members&#39;</span> <span class="ruby-operator">=&gt;</span> [{
+          <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee7df3ce582acdec80000b2&#39;</span>,
+          <span class="ruby-string">&#39;username&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;alicetester&#39;</span>,
+          <span class="ruby-string">&#39;fullName&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Alice Tester&#39;</span>
       }, {
-          <span class="ruby-string">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee7df74e582acdec80000b6&quot;</span>,
-          <span class="ruby-string">&quot;username&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;davidtester&quot;</span>,
-          <span class="ruby-string">&quot;fullName&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;David Tester&quot;</span>
+          <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee7df74e582acdec80000b6&#39;</span>,
+          <span class="ruby-string">&#39;username&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;davidtester&#39;</span>,
+          <span class="ruby-string">&#39;fullName&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;David Tester&#39;</span>
       }, {
-          <span class="ruby-string">&quot;id&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4ee7e2e1e582acdec8000112&quot;</span>,
-          <span class="ruby-string">&quot;username&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;edtester&quot;</span>,
-          <span class="ruby-string">&quot;fullName&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Ed Tester&quot;</span>
+          <span class="ruby-string">&#39;id&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4ee7e2e1e582acdec8000112&#39;</span>,
+          <span class="ruby-string">&#39;username&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;edtester&#39;</span>,
+          <span class="ruby-string">&#39;fullName&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Ed Tester&#39;</span>
       }]
   }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- organization_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- organization_details-method -->
+      </div>
 
     
       <div id="method-i-organization_payload" class="method-detail ">
@@ -964,7 +1315,9 @@
         <div class="method-heading">
           <span class="method-name">organization_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -972,21 +1325,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="organization_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 236</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">organization_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 385</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">organization_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">organization_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- organization_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- organization_payload-method -->
+      </div>
 
     
       <div id="method-i-orgs_details" class="method-detail ">
@@ -994,7 +1348,9 @@
         <div class="method-heading">
           <span class="method-name">orgs_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -1002,27 +1358,28 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="orgs_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 149</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">orgs_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 298</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">orgs_details</span>
   [{
-    <span class="ruby-string">&quot;id&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;name&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;test&quot;</span>,
-    <span class="ruby-string">&quot;displayName&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Test Organization&quot;</span>,
-    <span class="ruby-string">&quot;desc&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;This is a test organization&quot;</span>,
-    <span class="ruby-string">&quot;url&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;https://trello.com/test&quot;</span>
+    <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;name&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;test&#39;</span>,
+    <span class="ruby-string">&#39;displayName&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test Organization&#39;</span>,
+    <span class="ruby-string">&#39;desc&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;This is a test organization&#39;</span>,
+    <span class="ruby-string">&#39;url&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;https://trello.com/test&#39;</span>
   }]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- orgs_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- orgs_details-method -->
+      </div>
 
     
       <div id="method-i-orgs_payload" class="method-detail ">
@@ -1030,7 +1387,9 @@
         <div class="method-heading">
           <span class="method-name">orgs_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -1038,21 +1397,105 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="orgs_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 159</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">orgs_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 308</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">orgs_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">orgs_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- orgs_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- orgs_payload-method -->
+      </div>
+
+    
+      <div id="method-i-plugin_data_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plugin_data_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="plugin_data_details-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 269</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">plugin_data_details</span>
+  [
+    {
+      <span class="ruby-string">&quot;id&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;abcdef123456789123456779&quot;</span>,
+      <span class="ruby-string">&quot;idPlugin&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;abcdef123456789123456879&quot;</span>,
+      <span class="ruby-string">&quot;scope&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;card&quot;</span>,
+      <span class="ruby-string">&quot;idModel&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;abcdef123456789123446879&quot;</span>,
+      <span class="ruby-string">&quot;value&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;{\&quot;fields\&quot;:{\&quot;plugin_key\&quot;:\&quot;plugin_value\&quot;}}&quot;</span>,
+      <span class="ruby-string">&quot;access&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;shared&quot;</span>
+    },
+    {
+      <span class="ruby-string">&quot;id&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;abcdef123456789123456879&quot;</span>,
+      <span class="ruby-string">&quot;idPlugin&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;abcdef123456789123456779&quot;</span>,
+      <span class="ruby-string">&quot;scope&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;card&quot;</span>,
+      <span class="ruby-string">&quot;idModel&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;abcdef123456789123446579&quot;</span>,
+      <span class="ruby-string">&quot;value&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;{\&quot;fields\&quot;:{\&quot;plugin_key\&quot;:\&quot;plugin_value\&quot;}}&quot;</span>,
+      <span class="ruby-string">&quot;access&quot;</span><span class="ruby-operator">=&gt;</span><span class="ruby-string">&quot;shared&quot;</span>
+    }
+  ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-plugin_data_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plugin_data_payload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="plugin_data_payload-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 290</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">plugin_data_payload</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">plugin_data_details</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-token_details" class="method-detail ">
@@ -1060,7 +1503,9 @@
         <div class="method-heading">
           <span class="method-name">token_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -1068,45 +1513,46 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="token_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 240</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">token_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 389</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">token_details</span>
   {
-    <span class="ruby-string">&quot;id&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;4f2c10c7b3eb95a45b294cd5&quot;</span>,
-    <span class="ruby-string">&quot;idMember&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789123456789&quot;</span>,
-    <span class="ruby-string">&quot;dateCreated&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2012-02-03T16:52:23.661Z&quot;</span>,
-    <span class="ruby-string">&quot;permissions&quot;</span>   =<span class="ruby-operator">&gt;</span> [
+    <span class="ruby-string">&#39;id&#39;</span>            <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;4f2c10c7b3eb95a45b294cd5&#39;</span>,
+    <span class="ruby-string">&#39;idMember&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789123456789&#39;</span>,
+    <span class="ruby-string">&#39;dateCreated&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;2012-02-03T16:52:23.661Z&#39;</span>,
+    <span class="ruby-string">&#39;permissions&#39;</span>   <span class="ruby-operator">=&gt;</span> [
       {
-        <span class="ruby-string">&quot;idModel&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;me&quot;</span>,
-        <span class="ruby-string">&quot;modelType&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Member&quot;</span>,
-        <span class="ruby-string">&quot;read&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-        <span class="ruby-string">&quot;write&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-string">&#39;idModel&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;me&#39;</span>,
+        <span class="ruby-string">&#39;modelType&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Member&#39;</span>,
+        <span class="ruby-string">&#39;read&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+        <span class="ruby-string">&#39;write&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
       },
       {
-        <span class="ruby-string">&quot;idModel&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;*&quot;</span>,
-        <span class="ruby-string">&quot;modelType&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Board&quot;</span>,
-        <span class="ruby-string">&quot;read&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-        <span class="ruby-string">&quot;write&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-string">&#39;idModel&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;*&#39;</span>,
+        <span class="ruby-string">&#39;modelType&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Board&#39;</span>,
+        <span class="ruby-string">&#39;read&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+        <span class="ruby-string">&#39;write&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
       },
       {
-        <span class="ruby-string">&quot;idModel&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;*&quot;</span>,
-        <span class="ruby-string">&quot;modelType&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Organization&quot;</span>,
-        <span class="ruby-string">&quot;read&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-        <span class="ruby-string">&quot;write&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+        <span class="ruby-string">&#39;idModel&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;*&#39;</span>,
+        <span class="ruby-string">&#39;modelType&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Organization&#39;</span>,
+        <span class="ruby-string">&#39;read&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>,
+        <span class="ruby-string">&#39;write&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
       }
     ]
   }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- token_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- token_details-method -->
+      </div>
 
     
       <div id="method-i-token_payload" class="method-detail ">
@@ -1114,7 +1560,9 @@
         <div class="method-heading">
           <span class="method-name">token_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -1122,21 +1570,22 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="token_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 268</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">token_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 417</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">token_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">token_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- token_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- token_payload-method -->
+      </div>
 
     
       <div id="method-i-user_details" class="method-detail ">
@@ -1144,7 +1593,9 @@
         <div class="method-heading">
           <span class="method-name">user_details</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -1152,29 +1603,31 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="user_details-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_details</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 94</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">user_details</span>
   {
-    <span class="ruby-string">&quot;id&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef123456789012345678&quot;</span>,
-    <span class="ruby-string">&quot;fullName&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Test User&quot;</span>,
-    <span class="ruby-string">&quot;username&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;me&quot;</span>,
-    <span class="ruby-string">&quot;avatarHash&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;abcdef1234567890abcdef1234567890&quot;</span>,
-    <span class="ruby-string">&quot;bio&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;a rather dumb user&quot;</span>,
-    <span class="ruby-string">&quot;url&quot;</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;https://trello.com/me&quot;</span>,
-    <span class="ruby-string">&quot;email&quot;</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;johnsmith@example.com&quot;</span>
+    <span class="ruby-string">&#39;id&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef123456789012345678&#39;</span>,
+    <span class="ruby-string">&#39;fullName&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test User&#39;</span>,
+    <span class="ruby-string">&#39;username&#39;</span>   <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;me&#39;</span>,
+    <span class="ruby-string">&#39;intials&#39;</span>    <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;TU&#39;</span>,
+    <span class="ruby-string">&#39;avatarHash&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;abcdef1234567890abcdef1234567890&#39;</span>,
+    <span class="ruby-string">&#39;bio&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;a rather dumb user&#39;</span>,
+    <span class="ruby-string">&#39;url&#39;</span>        <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;https://trello.com/me&#39;</span>,
+    <span class="ruby-string">&#39;email&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;johnsmith@example.com&#39;</span>
   }
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- user_details-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- user_details-method -->
+      </div>
 
     
       <div id="method-i-user_payload" class="method-detail ">
@@ -1182,7 +1635,9 @@
         <div class="method-heading">
           <span class="method-name">user_payload</span><span
             class="method-args">()</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
@@ -1190,33 +1645,146 @@
           
           
           
+          
 
           
           <div class="method-source-code" id="user_payload-source">
-            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 48</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_payload</span>
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">user_payload</span>
   <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">user_details</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- user_payload-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- user_payload-method -->
+      </div>
 
     
-    </section><!-- public-instance-method-details -->
+      <div id="method-i-webhook_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">webhook_payload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="webhook_payload-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 526</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">webhook_payload</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">webhooks_details</span>.<span class="ruby-identifier">first</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-webhooks_details" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">webhooks_details</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="webhooks_details-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 442</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">webhooks_details</span>
+  [
+   {
+     <span class="ruby-string">&#39;id&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;webhookid&#39;</span>,
+     <span class="ruby-string">&#39;description&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;Test webhook&#39;</span>,
+     <span class="ruby-string">&#39;idModel&#39;</span>     <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;1234&#39;</span>,
+     <span class="ruby-string">&#39;callbackURL&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-string">&#39;http://example.org/webhook&#39;</span>,
+     <span class="ruby-string">&#39;active&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-keyword">true</span>
+   },
+   {
+     <span class="ruby-value">description:</span>  <span class="ruby-string">&#39;Test webhook&#39;</span>,
+     <span class="ruby-value">id_model:</span>     <span class="ruby-string">&#39;1234&#39;</span>,
+     <span class="ruby-value">cakkback_url:</span> <span class="ruby-string">&#39;http://example.org/webhook&#39;</span>
+   }
+  ]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-webhooks_payload" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">webhooks_payload</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="webhooks_payload-source">
+            <pre><span class="ruby-comment"># File spec/spec_helper.rb, line 522</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">webhooks_payload</span>
+  <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">webhooks_details</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
   
-  </section><!-- 5Buntitled-5D -->
+  </section>
 
-</div><!-- documentation -->
+</main>
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
