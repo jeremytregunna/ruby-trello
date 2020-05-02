@@ -68,20 +68,7 @@ module Trello
     end
 
     def self.one(name, opts = {})
-      class_eval do
-        define_method(:"#{name}") do |*args|
-          options = opts.dup
-          klass   = options.delete(:via) || Trello.const_get(name.to_s.camelize)
-          ident   = options.delete(:using) || :id
-          path    = options.delete(:path)
-
-          if path
-            client.find(path, self.send(ident))
-          else
-            klass.find(self.send(ident))
-          end
-        end
-      end
+      AssociationBuilder::HasOne.build(self, name, opts)
     end
 
     def self.many(name, opts = {})
