@@ -62,6 +62,7 @@ module Trello
         expect(card.url).to                eq(card_details['url'])
         expect(card.short_url).to          eq(card_details['shortUrl'])
         expect(card.pos).to                eq(card_details['pos'])
+        expect(card.last_activity_date).to be_a(Time)
         expect(card.last_activity_date).to eq(card_details['dateLastActivity'])
       end
 
@@ -888,7 +889,7 @@ module Trello
         end
 
         context "and the field doesn't changed" do
-          let(:fields) { { desc: expected[:desc] } }
+          let(:fields) { { desc: expected['desc'] } }
 
           it "card attributes doesn't changed" do
             card.update_fields(fields)
