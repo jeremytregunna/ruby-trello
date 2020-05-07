@@ -343,7 +343,7 @@ module Trello
       end
 
       it "puts all fields except id" do
-        expected_fields = %w{ name description closed starred idOrganization}.map { |s| s.to_sym }
+        expected_fields = %w{ name desc closed starred idOrganization}.map { |s| s.to_sym }
 
         expect(client).to receive(:put) do |anything, body|
           expect(body.keys).to match expected_fields
@@ -395,7 +395,7 @@ module Trello
           .to receive(:put)
           .with("/boards/#{board.id}/", {
             name: "new name",
-            description: "new description",
+            desc: "new description",
             closed: true,
             starred: true,
             idOrganization: nil })
