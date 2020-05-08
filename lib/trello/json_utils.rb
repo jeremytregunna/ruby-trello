@@ -10,6 +10,10 @@ module Trello
         update_fields parse_json(*args)
       end
 
+      def from_response_v2(*args)
+        initialize_fields parse_json(*args)
+      end
+
       def parse_json(*args)
         self.class.parse_json(*args)
       end

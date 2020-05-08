@@ -897,7 +897,7 @@ module Trello
             expect(card.desc).to eq(expected['desc'])
           end
 
-          it "card hasn't been mark as changed", pending: true do
+          it "card hasn't been mark as changed" do
             card.update_fields(fields)
 
             expect(card.changed?).to be_falsy

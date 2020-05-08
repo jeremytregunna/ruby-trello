@@ -133,25 +133,18 @@ module Trello
 
     # Update the fields of a card.
     #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # a card.
-    #
     # Note that this this method does not save anything new to the Trello API,
     # it just assigns the input attributes to your local object. If you use
     # this method to assign attributes, call `save` or `update!` afterwards if
     # you want to persist your changes to Trello.
     #
     # @param [Hash] fields
-    # @option fields [String] :id
-    # @option fields [String] :short_id
     # @option fields [String] :name The new name of the card.
     # @option fields [String] :desc A string with a length from 0 to
     #     16384.
     # @option fields [Date] :due A date, or `nil`.
     # @option fields [Boolean] :due_complete
     # @option fields [Boolean] :closed
-    # @option fields [String] :url
-    # @option fields [String] :short_url
     # @option fields [String] :board_id
     # @option fields [String] :member_ids A comma-separated list of objectIds
     #     (24-character hex strings).
@@ -162,8 +155,6 @@ module Trello
     # @option fields [String] :card_labels A comma-separated list of
     #     objectIds (24-character hex strings).
     # @option fields [Object] :cover_image_id
-    # @option fields [Object] :badges
-    # @option fields [Object] :card_members
     # @option fields [String] :source_card_id
     # @option fields [Array]  :source_card_properties
     #
@@ -173,11 +164,10 @@ module Trello
         name desc due due_complete closed
         board_id member_ids list_id pos
         card_labels cover_image_id
+        source_card_id source_card_properties
       ].each do |key|
-        send("#{key}_will_change!") if fields_has_key?(fields, key)
+        send("#{key}=", parse_writable_fields(fields, key))
       end
-
-      initialize_fields(fields)
     end
 
     def initialize(fields = {})
@@ -242,7 +232,7 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      from_response client.post("/cards", {
+      from_response_v2 client.post("/cards", {
         name:   name,
         desc:   desc,
         idList: list_id,
@@ -271,7 +261,7 @@ module Trello
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
 
       response = client.put("/cards/#{id}", payload)
-      updated_card = from_response(response)
+      updated_card = from_response_v2(response)
 
       @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
