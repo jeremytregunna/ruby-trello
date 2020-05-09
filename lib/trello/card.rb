@@ -504,8 +504,10 @@ module Trello
     end
 
     def parse_writable_fields(fields, key)
+      fields ||= {}
       gem_version_key = key.to_sym
       api_version_key = SYMBOL_TO_STRING[gem_version_key]
+
       if fields.key?(api_version_key)
         fields[api_version_key]
       elsif fields.key?(gem_version_key)
@@ -516,8 +518,10 @@ module Trello
     end
 
     def parse_readonly_fields(fields, key)
+      fields ||= {}
       gem_version_key = key.to_sym
       api_version_key = SYMBOL_TO_STRING[gem_version_key]
+
       if fields.key?(api_version_key)
         fields[api_version_key]
       else
