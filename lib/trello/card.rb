@@ -496,10 +496,10 @@ module Trello
         attributes[attr_key] = parse_writable_fields(fields, attr_key)
       end
 
-      attributes[:last_activity_date] = Time.iso8601(attributes[:last_activity_date]) rescue nil if attributes[:last_activity_date]
+      attributes[:last_activity_date] = serialize_time(attributes[:last_activity_date])
       attributes[:labels] = (attributes[:labels] || []).map { |label| label.kind_of?(Trello::Label) ? label : Trello::Label.new(label) }
       attributes[:due_complete] ||= false
-      attributes[:due] = attributes[:due].is_a?(String) ? (Time.iso8601(attributes[:due]) rescue nil) : attributes[:due]
+      attributes[:due] = serialize_time(attributes[:due])
       self
     end
 
@@ -523,6 +523,12 @@ module Trello
       api_version_key = SYMBOL_TO_STRING[gem_version_key]
 
       fields[api_version_key] || attributes[gem_version_key]
+    end
+
+    def serialize_time(time)
+      return time unless time.is_a?(String)
+
+      Time.iso8601(time) rescue nil
     end
 
   end
