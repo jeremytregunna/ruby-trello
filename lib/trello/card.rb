@@ -497,7 +497,7 @@ module Trello
       end
 
       attributes[:last_activity_date] = serialize_time(attributes[:last_activity_date])
-      attributes[:labels] = (attributes[:labels] || []).map { |label| label.kind_of?(Trello::Label) ? label : Trello::Label.new(label) }
+      attributes[:labels] = serialize_labels(attributes[:labels])
       attributes[:due_complete] ||= false
       attributes[:due] = serialize_time(attributes[:due])
       self
@@ -531,5 +531,13 @@ module Trello
       Time.iso8601(time) rescue nil
     end
 
+    def serialize_labels(labels)
+      labels ||= []
+      labels.map do |label|
+        next label if label.is_a?(Trello::Label)
+
+        Trello::Label.new(label)
+      end
+    end
   end
 end
