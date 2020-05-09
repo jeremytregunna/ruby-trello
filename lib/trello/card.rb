@@ -522,11 +522,7 @@ module Trello
       gem_version_key = key.to_sym
       api_version_key = SYMBOL_TO_STRING[gem_version_key]
 
-      if fields.key?(api_version_key)
-        fields[api_version_key]
-      else
-        attributes[gem_version_key]
-      end
+      fields[api_version_key] || attributes[gem_version_key]
     end
 
   end
