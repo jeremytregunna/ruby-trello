@@ -1,10 +1,17 @@
 # Changelog
 
-## v2.2.1
+## Next Release
 
-## Security Fix
+* [Fix "Trello::Board#update! fail to update description"](https://github.com/jeremytregunna/ruby-trello/pull/289)
 
-* [Fix CVE-2020-10663](https://github.com/jeremytregunna/ruby-trello/pull/284)
+## v2.3.0
+
+Security, bug fixes, refactoring, testing.
+* Addresses [Fix CVE-2020-10663](https://github.com/jeremytregunna/ruby-trello/pull/284)
+* Refactors Trello::BasicData.many and Trello::BasicData.one
+* Refactors Trello::BasicData.register_attributes
+* Adds more testing around Trello::Card
+* Fixes compatibility with JRuby
 
 ### Bug Fix
 
