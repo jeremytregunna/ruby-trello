@@ -269,8 +269,11 @@ module Trello
         expect(board.closed?).to be_falsy
       end
     end
-    it "is not starred" do
-      expect(board).not_to be_starred
+
+    describe '#starred?' do
+      it "returns the starred attribute" do
+        expect(board.starred?).to be_falsy
+      end
     end
 
     describe "#update_fields" do
