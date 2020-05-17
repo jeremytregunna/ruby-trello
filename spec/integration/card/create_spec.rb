@@ -46,5 +46,39 @@ RSpec.describe 'Trell::Card.create' do
     end
   end
 
+  it 'can success create card when "due" is a Time' do
+    VCR.use_cassette('can_success_create_a_card_when_due_is_time') do
+      card = Trello::Card.create(
+        name: 'Test Trello::Card.create 2',
+        list_id: '5e93bac014d40e501ee46b8d',
+        due: Time.new(2020, 12, 22, 1, 59, 0, '+00:00'),
+        due_complete: false
+      )
+      expect(card).to be_a(Trello::Card)
+
+      expect(card.id).not_to be_nil
+      expect(card.name).to eq('Test Trello::Card.create 2')
+      expect(card.list_id).to eq('5e93bac014d40e501ee46b8d')
+      expect(card.due).to eq(Time.new(2020, 12, 22, 1, 59, 0, '+00:00'))
+    end
+  end
+
+  it 'can success create card when "due" is a DateTime' do
+    VCR.use_cassette('can_success_create_a_card_when_due_is_datetime') do
+      card = Trello::Card.create(
+        name: 'Test Trello::Card.create 3',
+        list_id: '5e93bac014d40e501ee46b8d',
+        due: DateTime.new(2020, 12, 22, 1, 59, 0, '+00:00'),
+        due_complete: false
+      )
+      expect(card).to be_a(Trello::Card)
+
+      expect(card.id).not_to be_nil
+      expect(card.name).to eq('Test Trello::Card.create 3')
+      expect(card.list_id).to eq('5e93bac014d40e501ee46b8d')
+      expect(card.due).to eq(Time.new(2020, 12, 22, 1, 59, 0, '+00:00'))
+    end
+  end
+
 end
 
