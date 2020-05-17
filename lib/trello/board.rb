@@ -77,7 +77,7 @@ module Trello
 
       fields = {
         name: attributes[:name],
-        description: attributes[:description],
+        desc: attributes[:description],
         closed: attributes[:closed],
         starred: attributes[:starred],
         idOrganization: attributes[:organization_id]
