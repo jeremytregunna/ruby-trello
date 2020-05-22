@@ -31,6 +31,53 @@ module Trello
       end
     end
 
+    describe '.create' do
+      before { allow(Board).to receive(:client).and_return(client) }
+
+      it 'will call create on client with correct parameters' do
+        expect(client).to receive(:create).with(
+          :board,
+          {
+            'name' => 'Board Name',
+            'defaultLabels' => true,
+            'defaultLists' => true,
+            'desc' => 'description...',
+            'idOrganization' => 11111,
+            'idBoardSource' => 22222,
+            'keepFromSource' => true,
+            'powerUps' => 'all',
+            'prefs_permissionLevel' => 'org',
+            'prefs_voting' => 'org',
+            'prefs_comments' => 'org',
+            'prefs_invitations' => 'admins',
+            'prefs_selfJoin' => true,
+            'prefs_cardCovers' => true,
+            'prefs_background' => 'orange',
+            'prefs_cardAging' => 'pirate'
+          }
+        )
+
+        Board.create(
+          name: 'Board Name',
+          use_default_labels: true,
+          use_default_lists: true,
+          description: 'description...',
+          organization_id: 11111,
+          source_board_id: 22222,
+          keep_cards_from_source: true,
+          power_ups: 'all',
+          visibility_level: 'org',
+          voting_permission_level: 'org',
+          comment_permission_level: 'org',
+          invitation_permission_level: 'admins',
+          self_join_permission_level: true,
+          enable_card_covers: true,
+          background_color: 'orange',
+          card_aging_type: 'pirate'
+        )
+      end
+    end
+
     context "self.all" do
       let(:client) { Trello.client }
 

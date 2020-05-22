@@ -41,13 +41,28 @@ module Trello
       end
 
       def create(fields)
-        data = {
-          'name'   => fields[:name],
-          'desc'   => fields[:description],
-          'closed' => fields[:closed] || false,
-          'starred' => fields[:starred] || false }
-        data.merge!('idOrganization' => fields[:organization_id]) if fields[:organization_id]
-        data.merge!('prefs' => fields[:prefs]) if fields[:prefs]
+        mapper = {
+          name: 'name',
+          use_default_labels: 'defaultLabels',
+          use_default_lists: 'defaultLists',
+          description: 'desc',
+          organization_id: 'idOrganization',
+          source_board_id: 'idBoardSource',
+          keep_cards_from_source: 'keepFromSource',
+          power_ups: 'powerUps',
+          visibility_level: 'prefs_permissionLevel',
+          voting_permission_level: 'prefs_voting',
+          comment_permission_level: 'prefs_comments',
+          invitation_permission_level: 'prefs_invitations',
+          self_join_permission_level: 'prefs_selfJoin',
+          enable_card_covers: 'prefs_cardCovers',
+          background_color: 'prefs_background',
+          card_aging_type: 'prefs_cardAging'
+        }
+        data = {}
+        mapper.each do |attr, api_field|
+          data[api_field] = fields[attr] if fields.key?(attr)
+        end
         client.create(:board, data)
       end
 
