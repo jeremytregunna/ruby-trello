@@ -26,7 +26,7 @@ module Trello
                         :card_aging_type,
       readonly: [
         :id, :url, :last_activity_date, :description_data, :enterprise_id, :pinned,
-        :short_url
+        :short_url, :prefs
       ]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
@@ -220,13 +220,13 @@ module Trello
 
     def initialize_fields(fields)
       %i[
-        id url description_data enterprise_id pinned short_url
+        id url description_data enterprise_id pinned short_url prefs
       ].each do |attr_key|
         attributes[attr_key] = parse_readonly_fields(fields, attr_key)
       end
 
       %i[
-        name description closed starred organization_id prefs last_activity_date
+        name description closed starred organization_id last_activity_date
       ].each do |attr_key|
         attributes[attr_key] = parse_writable_fields(fields, attr_key)
       end

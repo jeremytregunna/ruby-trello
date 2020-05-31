@@ -371,7 +371,7 @@ RSpec.describe 'Trello::Board#new' do
     context 'with Ruby-like data' do
       let(:data) { { prefs: { 'permissionLevel' => 'org' } } }
 
-      it "won't parse from data[:prefs]" do
+      it 'will parse from data[:prefs]' do
         expect(board.prefs).to eq({ 'permissionLevel' => 'org' })
       end
     end
