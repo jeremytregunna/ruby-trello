@@ -97,22 +97,26 @@ module Trello
     end
 
     def update!
-      fail "Cannot save new instance." unless self.id
+      fail "Cannot save new instance." unless id
 
       @previously_changed = changes
+
+      payload = Hash[
+        changes.map do |key, values|
+          if SYMBOL_TO_STRING.keys.include?(key.to_sym)
+            [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]]
+          elsif MAP_PREFS_ATTRIBUTE.keys.include?(key.to_sym)
+            [:"prefs/#{MAP_PREFS_ATTRIBUTE[key.to_sym]}", values[1]]
+          end
+        end
+      ]
+
+      from_response_v2 client.put("/boards/#{id}/", payload)
+
       @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
-      fields = {
-        name: attributes[:name],
-        desc: attributes[:description],
-        closed: attributes[:closed],
-        starred: attributes[:starred],
-        idOrganization: attributes[:organization_id]
-      }
-      fields.merge!(flat_prefs)
-
-      from_response client.put("/boards/#{self.id}/", fields)
+      self
     end
 
     def update_fields(fields)
