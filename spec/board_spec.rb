@@ -393,17 +393,6 @@ module Trello
         }.to raise_error(Trello::ConfigurationError)
       end
 
-      it "puts all fields except id" do
-        expected_fields = %w{ name desc closed starred idOrganization}.map { |s| s.to_sym }
-
-        expect(client).to receive(:put) do |anything, body|
-          expect(body.keys).to match expected_fields
-          any_board_json
-        end
-
-        Board.new('id' => "xxx").save
-      end
-
       it "mutates the current instance" do
         allow(client)
           .to receive(:put)
@@ -425,35 +414,6 @@ module Trello
       end
 
       it "saves OR updates depending on whether or not it has an id set"
-    end
-
-    describe '#update!' do
-      let(:client) { Trello.client }
-
-      let(:any_board_json) do
-        JSON.generate(boards_details.first)
-      end
-
-      it "puts basic attributes" do
-        board = Board.new 'id' => "board_id"
-
-        board.name        = "new name"
-        board.description = "new description"
-        board.closed      = true
-        board.starred     = true
-
-        expect(client)
-          .to receive(:put)
-          .with("/boards/#{board.id}/", {
-            name: "new name",
-            desc: "new description",
-            closed: true,
-            starred: true,
-            idOrganization: nil })
-          .and_return any_board_json
-
-        board.update!
-      end
     end
 
     describe "Repository" do
