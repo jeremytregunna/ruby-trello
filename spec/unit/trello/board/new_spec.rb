@@ -259,20 +259,20 @@ RSpec.describe 'Trello::Board#new' do
     end
   end
 
-  describe 'parse #self_join_permission_level (writable)' do
+  describe 'parse #enable_self_join (writable)' do
     context 'with Trello API respone data' do
-      let(:data) { { 'prefs' => { 'selfJoin' => 'org' } } }
+      let(:data) { { 'prefs' => { 'selfJoin' => true } } }
 
       it "parse from data['prefs']['selfJoin']" do
-        expect(board.self_join_permission_level).to eq('org')
+        expect(board.enable_self_join).to eq(true)
       end
     end
 
     context 'with Ruby-like data' do
-      let(:data) { { self_join_permission_level: 'org' } }
+      let(:data) { { enable_self_join: true } }
 
-      it 'parse from data[:self_join_permission_level]' do
-        expect(board.self_join_permission_level).to eq('org')
+      it 'parse from data[:enable_self_join]' do
+        expect(board.enable_self_join).to eq(true)
       end
     end
   end

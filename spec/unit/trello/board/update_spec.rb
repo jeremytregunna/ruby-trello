@@ -70,13 +70,13 @@ RSpec.describe 'Trello::Board#update!' do
     board.update!
   end
 
-  it 'can update self_join_permission_level through client' do
-    board.self_join_permission_level = 'org'
+  it 'can update enable_self_join through client' do
+    board.enable_self_join = true
 
     expect(client)
       .to receive(:put)
       .with('/boards/abc123/', {
-        'prefs/selfJoin': 'org'
+        'prefs/selfJoin': true
       })
 
     board.update!
@@ -166,7 +166,7 @@ RSpec.describe 'Trello::Board#update!' do
     board.closed = true
     board.organization_id = 123
     board.visibility_level = 'org'
-    board.self_join_permission_level = 'org'
+    board.enable_self_join = true
     board.enable_card_covers = true
     board.invitation_permission_level = 'org'
     board.voting_permission_level = 'org'
@@ -182,7 +182,7 @@ RSpec.describe 'Trello::Board#update!' do
         closed: true,
         idOrganization: 123,
         'prefs/permissionLevel': 'org',
-        'prefs/selfJoin': 'org',
+        'prefs/selfJoin': true,
         'prefs/cardCovers': true,
         'prefs/invitations': 'org',
         'prefs/voting': 'org',

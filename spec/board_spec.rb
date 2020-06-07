@@ -70,7 +70,7 @@ module Trello
           voting_permission_level: 'org',
           comment_permission_level: 'org',
           invitation_permission_level: 'admins',
-          self_join_permission_level: true,
+          enable_self_join: true,
           enable_card_covers: true,
           background_color: 'orange',
           card_aging_type: 'pirate'

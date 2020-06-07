@@ -21,7 +21,7 @@ module Trello
                         :organization_id, :prefs, :last_activity_date, :description_data,
                         :enterprise_id, :pinned, :short_url,
                         :visibility_level, :voting_permission_level, :comment_permission_level,
-                        :invitation_permission_level, :self_join_permission_level,
+                        :invitation_permission_level, :enable_self_join,
                         :enable_card_covers, :background_color, :background_image,
                         :card_aging_type,
       readonly: [
@@ -63,7 +63,7 @@ module Trello
           voting_permission_level: 'prefs_voting',
           comment_permission_level: 'prefs_comments',
           invitation_permission_level: 'prefs_invitations',
-          self_join_permission_level: 'prefs_selfJoin',
+          enable_self_join: 'prefs_selfJoin',
           enable_card_covers: 'prefs_cardCovers',
           background_color: 'prefs_background',
           card_aging_type: 'prefs_cardAging'
@@ -237,7 +237,7 @@ module Trello
 
       %i[
         visibility_level voting_permission_level comment_permission_level
-        invitation_permission_level self_join_permission_level
+        invitation_permission_level enable_self_join
         enable_card_covers background_color background_image
         card_aging_type
       ].each do |attr_key|
@@ -271,7 +271,7 @@ module Trello
       voting_permission_level: :voting,
       comment_permission_level: :comments,
       invitation_permission_level: :invitations,
-      self_join_permission_level: :selfJoin,
+      enable_self_join: :selfJoin,
       enable_card_covers: :cardCovers,
       background_color: :background,
       background_image: :backgroundImage,
