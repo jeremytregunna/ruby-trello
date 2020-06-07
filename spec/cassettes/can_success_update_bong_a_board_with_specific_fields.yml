@@ -49,18 +49,18 @@ http_interactions:
       Access-Control-Expose-Headers:
       - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
         x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
-      X-Rate-Limit-Api-Key-Interval-Ms:
-      - '10000'
-      X-Rate-Limit-Api-Key-Max:
-      - '300'
-      X-Rate-Limit-Api-Key-Remaining:
-      - '299'
       X-Rate-Limit-Api-Token-Interval-Ms:
       - '10000'
       X-Rate-Limit-Api-Token-Max:
       - '100'
       X-Rate-Limit-Api-Token-Remaining:
       - '99'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
       X-Rate-Limit-Member-Interval-Ms:
       - '10000'
       X-Rate-Limit-Member-Max:
@@ -68,43 +68,44 @@ http_interactions:
       X-Rate-Limit-Member-Remaining:
       - '199'
       X-Server-Time:
-      - '1591502311094'
+      - '1591502685562'
       Content-Type:
       - application/json; charset=utf-8
       Vary:
       - Accept-Encoding
       Expires:
-      - Sun, 07 Jun 2020 03:58:31 GMT
+      - Sun, 07 Jun 2020 04:04:45 GMT
       Cache-Control:
       - max-age=0, no-cache, no-store
       Pragma:
       - no-cache
       Date:
-      - Sun, 07 Jun 2020 03:58:31 GMT
+      - Sun, 07 Jun 2020 04:04:45 GMT
       Content-Length:
-      - '919'
+      - '941'
       Connection:
       - keep-alive
       Set-Cookie:
-      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 10 Jun 2020 03:58:31 GMT; Secure
+      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 10 Jun 2020 04:04:45 GMT; Secure
     body:
       encoding: UTF-8
-      string: '{"id":"5e93ba403f1ab3603ba81a09","name":"IT 1","desc":"","descData":{"emoji":{}},"closed":false,"idOrganization":"5e93ba154634282b6df23bcc","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/0zx7ive1/it-1","shortUrl":"https://trello.com/b/0zx7ive1","prefs":{"permissionLevel":"private","hideVotes":false,"voting":"members","comments":"members","invitations":"members","selfJoin":true,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"blue","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#0079BF","backgroundBottomColor":"#0079BF","backgroundTopColor":"#0079BF","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
+      string: '{"id":"5e93ba403f1ab3603ba81a09","name":"IT 1","desc":"This is a test
+        board called IT 1","descData":{"emoji":{}},"closed":false,"idOrganization":"5eb427016b5a464a74803f1c","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/0zx7ive1/it-1","shortUrl":"https://trello.com/b/0zx7ive1","prefs":{"permissionLevel":"org","hideVotes":false,"voting":"org","comments":"org","invitations":"members","selfJoin":false,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"green","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#519839","backgroundBottomColor":"#519839","backgroundTopColor":"#519839","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
     http_version: null
-  recorded_at: Sun, 07 Jun 2020 03:58:31 GMT
+  recorded_at: Sun, 07 Jun 2020 04:04:45 GMT
 - request:
     method: put
     uri: https://api.trello.com/1/boards/5e93ba403f1ab3603ba81a09/?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: UTF-8
-      string: name=IT+1+-+Changed&desc=This+is+a+test+board+called+IT+1&idOrganization=5eb427016b5a464a74803f1c&prefs%2FpermissionLevel=org&prefs%2FselfJoin=false&prefs%2Fvoting=org&prefs%2Fcomments=org&prefs%2Fbackground=green
+      string: name=IT+1+-+Changed&prefs%2Fcomments=members
     headers:
       Accept:
       - "*/*"
       User-Agent:
       - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
       Content-Length:
-      - '213'
+      - '44'
       Content-Type:
       - application/x-www-form-urlencoded
       Accept-Encoding:
@@ -164,29 +165,29 @@ http_interactions:
       X-Rate-Limit-Member-Remaining:
       - '198'
       X-Server-Time:
-      - '1591502312176'
+      - '1591502686430'
       Content-Type:
       - application/json; charset=utf-8
       Vary:
       - Accept-Encoding
       Expires:
-      - Sun, 07 Jun 2020 03:58:32 GMT
+      - Sun, 07 Jun 2020 04:04:46 GMT
       Cache-Control:
       - max-age=0, no-cache, no-store
       Pragma:
       - no-cache
       Date:
-      - Sun, 07 Jun 2020 03:58:32 GMT
+      - Sun, 07 Jun 2020 04:04:46 GMT
       Content-Length:
-      - '959'
+      - '963'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
       string: '{"id":"5e93ba403f1ab3603ba81a09","name":"IT 1 - Changed","desc":"This
-        is a test board called IT 1","descData":{"emoji":{}},"closed":false,"idOrganization":"5eb427016b5a464a74803f1c","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/0zx7ive1/it-1-changed","shortUrl":"https://trello.com/b/0zx7ive1","prefs":{"permissionLevel":"org","hideVotes":false,"voting":"org","comments":"org","invitations":"members","selfJoin":false,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"green","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#519839","backgroundBottomColor":"#519839","backgroundTopColor":"#519839","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
+        is a test board called IT 1","descData":{"emoji":{}},"closed":false,"idOrganization":"5eb427016b5a464a74803f1c","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/0zx7ive1/it-1-changed","shortUrl":"https://trello.com/b/0zx7ive1","prefs":{"permissionLevel":"org","hideVotes":false,"voting":"org","comments":"members","invitations":"members","selfJoin":false,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"green","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#519839","backgroundBottomColor":"#519839","backgroundTopColor":"#519839","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
     http_version: null
-  recorded_at: Sun, 07 Jun 2020 03:58:32 GMT
+  recorded_at: Sun, 07 Jun 2020 04:04:46 GMT
 - request:
     method: get
     uri: https://api.trello.com/1/boards/5e93ba403f1ab3603ba81a09?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
@@ -236,48 +237,48 @@ http_interactions:
       Access-Control-Expose-Headers:
       - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
         x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
-      X-Rate-Limit-Api-Token-Interval-Ms:
-      - '10000'
-      X-Rate-Limit-Api-Token-Max:
-      - '100'
-      X-Rate-Limit-Api-Token-Remaining:
-      - '97'
       X-Rate-Limit-Api-Key-Interval-Ms:
       - '10000'
       X-Rate-Limit-Api-Key-Max:
       - '300'
       X-Rate-Limit-Api-Key-Remaining:
       - '297'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '97'
       X-Rate-Limit-Member-Interval-Ms:
       - '10000'
       X-Rate-Limit-Member-Max:
       - '200'
       X-Rate-Limit-Member-Remaining:
-      - '197'
+      - '196'
       X-Server-Time:
-      - '1591502312934'
+      - '1591502687296'
       Content-Type:
       - application/json; charset=utf-8
       Vary:
       - Accept-Encoding
       Expires:
-      - Sun, 07 Jun 2020 03:58:33 GMT
+      - Sun, 07 Jun 2020 04:04:47 GMT
       Cache-Control:
       - max-age=0, no-cache, no-store
       Pragma:
       - no-cache
       Date:
-      - Sun, 07 Jun 2020 03:58:33 GMT
+      - Sun, 07 Jun 2020 04:04:47 GMT
       Content-Length:
-      - '959'
+      - '963'
       Connection:
       - keep-alive
       Set-Cookie:
-      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 10 Jun 2020 03:58:32 GMT; Secure
+      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 10 Jun 2020 04:04:47 GMT; Secure
     body:
       encoding: UTF-8
       string: '{"id":"5e93ba403f1ab3603ba81a09","name":"IT 1 - Changed","desc":"This
-        is a test board called IT 1","descData":{"emoji":{}},"closed":false,"idOrganization":"5eb427016b5a464a74803f1c","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/0zx7ive1/it-1-changed","shortUrl":"https://trello.com/b/0zx7ive1","prefs":{"permissionLevel":"org","hideVotes":false,"voting":"org","comments":"org","invitations":"members","selfJoin":false,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"green","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#519839","backgroundBottomColor":"#519839","backgroundTopColor":"#519839","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
+        is a test board called IT 1","descData":{"emoji":{}},"closed":false,"idOrganization":"5eb427016b5a464a74803f1c","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/0zx7ive1/it-1-changed","shortUrl":"https://trello.com/b/0zx7ive1","prefs":{"permissionLevel":"org","hideVotes":false,"voting":"org","comments":"members","invitations":"members","selfJoin":false,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"green","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#519839","backgroundBottomColor":"#519839","backgroundTopColor":"#519839","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
     http_version: null
-  recorded_at: Sun, 07 Jun 2020 03:58:33 GMT
+  recorded_at: Sun, 07 Jun 2020 04:04:47 GMT
 recorded_with: VCR 5.1.0
