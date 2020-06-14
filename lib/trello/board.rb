@@ -120,17 +120,21 @@ module Trello
     end
 
     def update_fields(fields)
-      attributes[:id]              = fields['id'] || fields[:id]                          if fields['id']   || fields[:id]
-      attributes[:name]            = fields['name'] || fields[:name]                      if fields['name'] || fields[:name]
-      attributes[:description]     = fields['desc'] || fields[:desc]                      if fields['desc'] || fields[:desc]
-      attributes[:closed]          = fields['closed']                                     if fields.has_key?('closed')
-      attributes[:closed]          = fields[:closed]                                      if fields.has_key?(:closed)
-      attributes[:starred]         = fields['starred']                                    if fields.has_key?('starred')
-      attributes[:starred]         = fields[:starred]                                     if fields.has_key?(:starred)
-      attributes[:url]             = fields['url']                                        if fields['url']
-      attributes[:organization_id] = fields['idOrganization'] || fields[:organization_id] if fields['idOrganization'] || fields[:organization_id]
-      attributes[:prefs]           = fields['prefs'] || fields[:prefs] || {}
-      attributes[:last_activity_date] = Time.iso8601(fields['dateLastActivity']) rescue nil
+      %i[
+        name description closed starred organization_id
+      ].each do |attr_key|
+        send("#{attr_key}=", parse_writable_fields(fields, attr_key))
+      end
+
+      %i[
+        visibility_level voting_permission_level comment_permission_level
+        invitation_permission_level enable_self_join
+        enable_card_covers background_color background_image
+        card_aging_type
+      ].each do |attr_key|
+        send("#{attr_key}=", parse_prefs_fields(fields, attr_key))
+      end
+
       self
     end
 
