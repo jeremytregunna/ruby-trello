@@ -23,11 +23,17 @@ module Trello
                         :visibility_level, :voting_permission_level, :comment_permission_level,
                         :invitation_permission_level, :enable_self_join,
                         :enable_card_covers, :background_color, :background_image,
-                        :card_aging_type,
+                        :card_aging_type, :use_default_labels, :use_default_lists, :source_board_id,
+                        :keep_cards_from_source, :power_ups, :subscribed,
       readonly: [
         :id, :url, :last_activity_date, :description_data, :enterprise_id, :pinned,
         :short_url, :prefs
-      ]
+      ],
+      create_only: [
+        :use_default_labels, :use_default_lists, :source_board_id,
+        :keep_cards_from_source, :power_ups
+      ],
+      update_only: [:subscribed]
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
@@ -50,29 +56,7 @@ module Trello
       end
 
       def create(fields)
-        mapper = {
-          name: 'name',
-          use_default_labels: 'defaultLabels',
-          use_default_lists: 'defaultLists',
-          description: 'desc',
-          organization_id: 'idOrganization',
-          source_board_id: 'idBoardSource',
-          keep_cards_from_source: 'keepFromSource',
-          power_ups: 'powerUps',
-          visibility_level: 'prefs_permissionLevel',
-          voting_permission_level: 'prefs_voting',
-          comment_permission_level: 'prefs_comments',
-          invitation_permission_level: 'prefs_invitations',
-          enable_self_join: 'prefs_selfJoin',
-          enable_card_covers: 'prefs_cardCovers',
-          background_color: 'prefs_background',
-          card_aging_type: 'prefs_cardAging'
-        }
-        data = {}
-        mapper.each do |attr, api_field|
-          data[api_field] = fields[attr] if fields.key?(attr)
-        end
-        client.create(:board, data)
+        client.create(:board, fields)
       end
 
       # @return [Array<Trello::Board>] all boards for the current user
@@ -110,14 +94,21 @@ module Trello
       payload = {}
 
       %i[
-        name description organization_id
-        visibility_level voting_permission_level
+        name organization_id visibility_level voting_permission_level
         comment_permission_level invitation_permission_level
         enable_self_join enable_card_covers
         background_color card_aging_type
+        use_default_labels use_default_lists
+        source_board_id keep_cards_from_source
+        power_ups
       ].each do |attr_name|
-        payload[mapper[attr_name]] = send(attr_name)
+        attr_value = send(attr_name)
+        next unless attr_value
+
+        payload[mapper[attr_name]] = attr_value
       end
+
+      payload[mapper[:description]] = description
 
       post('/boards', payload)
     end
@@ -129,8 +120,8 @@ module Trello
 
       payload = Hash[
         changes.map do |key, values|
-          if SYMBOL_TO_STRING.keys.include?(key.to_sym)
-            [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]]
+          if MAP_ATTRIBUTE.keys.include?(key.to_sym)
+            [MAP_ATTRIBUTE[key.to_sym].to_sym, values[1]]
           elsif MAP_PREFS_ATTRIBUTE.keys.include?(key.to_sym)
             [:"prefs/#{MAP_PREFS_ATTRIBUTE[key.to_sym]}", values[1]]
           end
@@ -146,9 +137,7 @@ module Trello
     end
 
     def update_fields(fields)
-      %i[
-        name description closed starred organization_id
-      ].each do |attr_key|
+      writable_attributes.each do |attr_key|
         send("#{attr_key}=", parse_writable_fields(fields, attr_key))
       end
 
@@ -253,15 +242,11 @@ module Trello
     private
 
     def initialize_fields(fields)
-      %i[
-        id url description_data enterprise_id pinned short_url prefs
-      ].each do |attr_key|
+      readonly_attributes.each do |attr_key|
         attributes[attr_key] = parse_readonly_fields(fields, attr_key)
       end
 
-      %i[
-        name description closed starred organization_id last_activity_date
-      ].each do |attr_key|
+      writable_attributes.each do |attr_key|
         attributes[attr_key] = parse_writable_fields(fields, attr_key)
       end
 
@@ -280,7 +265,7 @@ module Trello
       self
     end
 
-    SYMBOL_TO_STRING = {
+    MAP_ATTRIBUTE = {
       id: :id,
       name: :name,
       description: :desc,
@@ -293,7 +278,12 @@ module Trello
       starred: :starred,
       organization_id: :idOrganization,
       prefs: :prefs,
-      last_activity_date: :dateLastActivity
+      last_activity_date: :dateLastActivity,
+      use_default_labels: :defaultLabels,
+      use_default_lists: :defaultLists,
+      source_board_id: :idBoardSource,
+      keep_cards_from_source: :keepFromSource,
+      power_ups: :powerUps
     }
 
     MAP_PREFS_ATTRIBUTE = {
@@ -312,7 +302,7 @@ module Trello
       fields = (fields || {}).transform_keys(&:to_sym)
 
       gem_version_key = key.to_sym
-      api_version_key = SYMBOL_TO_STRING[gem_version_key]
+      api_version_key = MAP_ATTRIBUTE[gem_version_key]
 
       if fields.key?(api_version_key)
         fields[api_version_key]
@@ -327,7 +317,7 @@ module Trello
       fields = (fields || {}).transform_keys(&:to_sym)
 
       gem_version_key = key.to_sym
-      api_version_key = SYMBOL_TO_STRING[gem_version_key]
+      api_version_key = MAP_ATTRIBUTE[gem_version_key]
 
       if fields.key?(api_version_key)
         fields[api_version_key]

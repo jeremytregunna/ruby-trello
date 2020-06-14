@@ -35,29 +35,7 @@ module Trello
       before { allow(Board).to receive(:client).and_return(client) }
 
       it 'will call create on client with correct parameters' do
-        expect(client).to receive(:create).with(
-          :board,
-          {
-            'name' => 'Board Name',
-            'defaultLabels' => true,
-            'defaultLists' => true,
-            'desc' => 'description...',
-            'idOrganization' => 11111,
-            'idBoardSource' => 22222,
-            'keepFromSource' => true,
-            'powerUps' => 'all',
-            'prefs_permissionLevel' => 'org',
-            'prefs_voting' => 'org',
-            'prefs_comments' => 'org',
-            'prefs_invitations' => 'admins',
-            'prefs_selfJoin' => true,
-            'prefs_cardCovers' => true,
-            'prefs_background' => 'orange',
-            'prefs_cardAging' => 'pirate'
-          }
-        )
-
-        Board.create(
+        params = {
           name: 'Board Name',
           use_default_labels: true,
           use_default_lists: true,
@@ -74,7 +52,11 @@ module Trello
           enable_card_covers: true,
           background_color: 'orange',
           card_aging_type: 'pirate'
-        )
+        }
+
+        expect(client).to receive(:create).with(:board, params)
+
+        Board.create(params)
       end
     end
 
@@ -381,7 +363,7 @@ module Trello
 
       it "creates a new board with whatever attributes are supplied " do
         expected_attributes = { name: "Any new board name", description: "Any new board desription" }
-        sent_attributes = { name: expected_attributes[:name], desc: expected_attributes[:description] }
+        sent_attributes = { 'name' => expected_attributes[:name], 'desc' => expected_attributes[:description] }
 
         expect(client)
           .to receive(:post)
