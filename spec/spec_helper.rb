@@ -8,6 +8,7 @@ require 'vcr'
 require 'pry-byebug' if RUBY_ENGINE != 'jruby'
 
 VCR.configure do |config|
+  config.default_cassette_options = { match_requests_on: %i[uri method body] }
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
 
