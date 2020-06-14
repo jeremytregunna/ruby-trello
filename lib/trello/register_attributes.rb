@@ -4,6 +4,8 @@ module Trello
       def execute(model_klass, names, readonly_names)
         names ||= []
         readonly_names ||= []
+        assign_writable_attributes(model_klass, names, readonly_names)
+        assign_readonly_attributes(model_klass, readonly_names)
 
         define_method_attributes(model_klass, names)
         define_getters(model_klass, names)
@@ -12,6 +14,15 @@ module Trello
       end
 
       private
+
+      def assign_writable_attributes(model_klass, names, readonly_names)
+        writable_attributes = names - readonly_names
+        model_klass.instance_variable_set(:@writable_attributes, writable_attributes)
+      end
+
+      def assign_readonly_attributes(model_klass, readonly_names)
+        model_klass.instance_variable_set(:@readonly_attributes, readonly_names)
+      end
 
       def define_method_attributes(model_klass, names)
         model_klass.class_eval do

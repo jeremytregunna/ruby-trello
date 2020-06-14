@@ -50,6 +50,22 @@ module Trello
       RegisterAttributes.execute(self, attributes, readonly_attributes)
     end
 
+    def self.writable_attributes
+      @writable_attributes || []
+    end
+
+    def self.readonly_attributes
+      @readonly_attributes || []
+    end
+
+    def writable_attributes
+      self.class.writable_attributes
+    end
+
+    def readonly_attributes
+      self.class.readonly_attributes
+    end
+
     def self.one(name, opts = {})
       AssociationBuilder::HasOne.build(self, name, opts)
     end
