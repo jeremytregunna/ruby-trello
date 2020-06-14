@@ -1,11 +1,13 @@
 module Trello
   class RegisterAttributes
     class << self
-      def execute(model_klass, names, readonly_names)
-        names ||= []
-        readonly_names ||= []
-        assign_writable_attributes(model_klass, names, readonly_names)
-        assign_readonly_attributes(model_klass, readonly_names)
+      def execute(model_klass, options)
+        names = options[:names] || []
+        readonly_names = options[:readonly] || []
+        create_only_names = options[:create_only] || []
+        update_only_names = options[:update_only] || []
+
+        record_attributes(model_klass, names, readonly_names, create_only_names, update_only_names)
 
         define_method_attributes(model_klass, names)
         define_getters(model_klass, names)
@@ -15,13 +17,15 @@ module Trello
 
       private
 
-      def assign_writable_attributes(model_klass, names, readonly_names)
+      def record_attributes(model_klass, names, readonly_names, create_only_names, update_only_names)
         writable_attributes = names - readonly_names
         model_klass.instance_variable_set(:@writable_attributes, writable_attributes)
-      end
 
-      def assign_readonly_attributes(model_klass, readonly_names)
         model_klass.instance_variable_set(:@readonly_attributes, readonly_names)
+
+        model_klass.instance_variable_set(:@create_only_attributes, create_only_names)
+
+        model_klass.instance_variable_set(:@update_only_attributes, update_only_names)
       end
 
       def define_method_attributes(model_klass, names)

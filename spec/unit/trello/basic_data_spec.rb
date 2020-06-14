@@ -17,10 +17,18 @@ RSpec.describe Trello::BasicData do
     it 'call execute on RegisterAttributes' do
       expect(Trello::RegisterAttributes)
         .to receive(:execute)
-        .with(Trello::FakeCard, [:id, :name, :desc], [:id, :name])
+        .with(Trello::FakeCard,
+          names: [:id, :name, :desc],
+          readonly: [:id, :name],
+          create_only: [:enable],
+          update_only: [:color]
+        )
 
       Trello::FakeCard.class_eval do
-        register_attributes :id, :name, :desc, readonly: [:id, :name]
+        register_attributes :id, :name, :desc,
+          readonly: [:id, :name],
+          create_only: [:enable],
+          update_only: [:color]
       end
     end
   end

@@ -43,11 +43,18 @@ module Trello
     end
 
     def self.register_attributes(*names_and_options)
-      has_opts = names_and_options.last.kind_of?(Hash)
-      readonly_attributes = has_opts ? names_and_options.pop[:readonly] : []
-      attributes = names_and_options
+      options = {}
+      options = names_and_options.pop if names_and_options.last.is_a?(Hash)
 
-      RegisterAttributes.execute(self, attributes, readonly_attributes)
+      names = names_and_options
+
+      RegisterAttributes.execute(
+        self,
+        names: names,
+        readonly: options[:readonly],
+        create_only: options[:create_only],
+        update_only: options[:update_only]
+      )
     end
 
     def self.writable_attributes
@@ -58,12 +65,28 @@ module Trello
       @readonly_attributes || []
     end
 
+    def self.create_only_attributes
+      @create_only_attributes
+    end
+
+    def self.update_only_attributes
+      @update_only_attributes
+    end
+
     def writable_attributes
       self.class.writable_attributes
     end
 
     def readonly_attributes
       self.class.readonly_attributes
+    end
+
+    def create_only_attributes
+      self.class.create_only_attributes
+    end
+
+    def update_only_attributes
+      self.class.update_only_attributes
     end
 
     def self.one(name, opts = {})

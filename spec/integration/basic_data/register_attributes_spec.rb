@@ -19,7 +19,9 @@ RSpec.describe 'Trello::BasicData.register_attributes' do
         register_attributes :id,
                             :name,
                             :description,
-                            readonly: [:id]
+                            readonly: [:id],
+                            create_only: [:enable],
+                            update_only: [:color]
 
         def initialize(fields={})
         end
@@ -33,7 +35,17 @@ RSpec.describe 'Trello::BasicData.register_attributes' do
 
     it 'will record all read-only attributes' do
       expect(Trello::FakeBoard.readonly_attributes).to eq([:id])
-      expect(Trello::FakeBoard.new.writable_attributes).to eq([:name, :description])
+      expect(Trello::FakeBoard.new.readonly_attributes).to eq([:id])
+    end
+
+    it 'will record all create-only attributes' do
+      expect(Trello::FakeBoard.create_only_attributes).to eq([:enable])
+      expect(Trello::FakeBoard.new.create_only_attributes).to eq([:enable])
+    end
+
+    it 'will record all update-only attributes' do
+      expect(Trello::FakeBoard.update_only_attributes).to eq([:color])
+      expect(Trello::FakeBoard.new.update_only_attributes).to eq([:color])
     end
   end
 
