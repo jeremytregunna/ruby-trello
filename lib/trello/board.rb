@@ -88,12 +88,38 @@ module Trello
     def save
       return update! if id
 
-      fields = { name: name }
-      fields.merge!(desc: description) if description
-      fields.merge!(idOrganization: organization_id) if organization_id
-      fields.merge!(flat_prefs)
+      mapper = {
+        name: 'name',
+        use_default_labels: 'defaultLabels',
+        use_default_lists: 'defaultLists',
+        description: 'desc',
+        organization_id: 'idOrganization',
+        source_board_id: 'idBoardSource',
+        keep_cards_from_source: 'keepFromSource',
+        power_ups: 'powerUps',
+        visibility_level: 'prefs_permissionLevel',
+        voting_permission_level: 'prefs_voting',
+        comment_permission_level: 'prefs_comments',
+        invitation_permission_level: 'prefs_invitations',
+        enable_self_join: 'prefs_selfJoin',
+        enable_card_covers: 'prefs_cardCovers',
+        background_color: 'prefs_background',
+        card_aging_type: 'prefs_cardAging'
+      }
 
-      from_response(client.post("/boards", fields))
+      payload = {}
+
+      %i[
+        name description organization_id
+        visibility_level voting_permission_level
+        comment_permission_level invitation_permission_level
+        enable_self_join enable_card_covers
+        background_color card_aging_type
+      ].each do |attr_name|
+        payload[mapper[attr_name]] = send(attr_name)
+      end
+
+      post('/boards', payload)
     end
 
     def update!
@@ -357,6 +383,10 @@ module Trello
       attributes[:prefs].inject({}) do |hash, (pref, v)|
         hash.merge("prefs#{separator}#{pref}" => v)
       end
+    end
+
+    def post(path, body)
+      from_response_v2 client.post(path, body)
     end
   end
 end
