@@ -5,14 +5,14 @@ http_interactions:
     uri: https://api.trello.com/1/boards?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: UTF-8
-      string: name=IT+99&idOrganization=5e93ba154634282b6df23bcc&desc=testing+board+create
+      string: name=IT+100&idOrganization=5e93ba154634282b6df23bcc&prefs_permissionLevel=org&prefs_voting=org&prefs_comments=org&prefs_invitations=members&prefs_selfJoin=false&prefs_cardCovers=false&prefs_background=grey&defaultLabels=false&defaultLists=false&idBoardSource=5e94eaf386374970d06e4c89&keepFromSource=cards&desc=testing+board+create
     headers:
       Accept:
       - "*/*"
       User-Agent:
       - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
       Content-Length:
-      - '76'
+      - '330'
       Content-Type:
       - application/x-www-form-urlencoded
       Accept-Encoding:
@@ -53,18 +53,18 @@ http_interactions:
       Access-Control-Expose-Headers:
       - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
         x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
-      X-Rate-Limit-Api-Token-Interval-Ms:
-      - '10000'
-      X-Rate-Limit-Api-Token-Max:
-      - '100'
-      X-Rate-Limit-Api-Token-Remaining:
-      - '99'
       X-Rate-Limit-Api-Key-Interval-Ms:
       - '10000'
       X-Rate-Limit-Api-Key-Max:
       - '300'
       X-Rate-Limit-Api-Key-Remaining:
       - '299'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
       X-Rate-Limit-Member-Interval-Ms:
       - '10000'
       X-Rate-Limit-Member-Max:
@@ -72,27 +72,26 @@ http_interactions:
       X-Rate-Limit-Member-Remaining:
       - '199'
       X-Server-Time:
-      - '1592155999528'
+      - '1592155696298'
       Content-Type:
       - application/json; charset=utf-8
       Vary:
       - Accept-Encoding
       Expires:
-      - Sun, 14 Jun 2020 17:33:19 GMT
+      - Sun, 14 Jun 2020 17:28:16 GMT
       Cache-Control:
       - max-age=0, no-cache, no-store
       Pragma:
       - no-cache
       Date:
-      - Sun, 14 Jun 2020 17:33:19 GMT
+      - Sun, 14 Jun 2020 17:28:16 GMT
       Content-Length:
-      - '945'
+      - '916'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"id":"5ee65f5fa64d6f2a7aee514c","name":"IT 99","desc":"testing board
-        create","descData":null,"closed":false,"idOrganization":"5e93ba154634282b6df23bcc","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/s0ETUJD5/it-99","shortUrl":"https://trello.com/b/s0ETUJD5","prefs":{"permissionLevel":"private","hideVotes":false,"voting":"disabled","comments":"members","invitations":"members","selfJoin":true,"cardCovers":true,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"blue","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#0079BF","backgroundBottomColor":"#0079BF","backgroundTopColor":"#0079BF","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""},"limits":{}}'
+      string: '{"id":"5ee65e305081b1306530df45","name":"IT 100","desc":"","descData":null,"closed":false,"idOrganization":"5e93ba154634282b6df23bcc","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/GkoW5NpN/it-100","shortUrl":"https://trello.com/b/GkoW5NpN","prefs":{"permissionLevel":"org","hideVotes":false,"voting":"org","comments":"org","invitations":"members","selfJoin":false,"cardCovers":false,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"grey","backgroundImage":null,"backgroundImageScaled":null,"backgroundTile":false,"backgroundBrightness":"dark","backgroundColor":"#838C91","backgroundBottomColor":"#838C91","backgroundTopColor":"#838C91","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""},"limits":{}}'
     http_version: null
-  recorded_at: Sun, 14 Jun 2020 17:33:19 GMT
+  recorded_at: Sun, 14 Jun 2020 17:28:16 GMT
 recorded_with: VCR 5.1.0

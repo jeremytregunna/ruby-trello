@@ -103,7 +103,7 @@ module Trello
         power_ups
       ].each do |attr_name|
         attr_value = send(attr_name)
-        next unless attr_value
+        next if attr_value.in?([nil, ''])
 
         payload[mapper[attr_name]] = attr_value
       end
