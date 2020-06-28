@@ -42,6 +42,10 @@ module Trello
       end
     end
 
+    def self.register_attr(name, options = {})
+      RegisterAttr.execute(self, name, options)
+    end
+
     def self.register_attributes(*names_and_options)
       options = {}
       options = names_and_options.pop if names_and_options.last.is_a?(Hash)

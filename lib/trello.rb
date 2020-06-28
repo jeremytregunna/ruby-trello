@@ -71,6 +71,7 @@ module Trello
   autoload :JsonUtils,            'trello/json_utils'
   autoload :AssociationInferTool, 'trello/association_infer_tool'
   autoload :RegisterAttributes,   'trello/register_attributes'
+  autoload :RegisterAttr,         'trello/register_attr'
 
   module Authorization
     autoload :AuthPolicy,         'trello/authorization'
