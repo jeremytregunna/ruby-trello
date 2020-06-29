@@ -42,6 +42,15 @@ module Trello
       end
     end
 
+    def self.schema(&block)
+      @schema ||= Schema.new
+      return @schema unless block_given?
+
+      @schema.instance_eval(&block)
+
+      @schema
+    end
+
     def self.register_attr(name, options = {})
       RegisterAttr.execute(self, name, options)
     end

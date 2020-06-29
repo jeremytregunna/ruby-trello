@@ -2,6 +2,40 @@ require 'spec_helper'
 
 RSpec.describe Trello::BasicData do
 
+  describe '.schema' do
+    around do |example|
+      module Trello
+        class FakeCard < BasicData
+        end
+      end
+
+      example.run
+
+      Trello.send(:remove_const, 'FakeCard')
+    end
+
+    it 'call instance_eval on a schema instance' do
+      expect_any_instance_of(Trello::Schema).to receive(:instance_eval)
+
+      Trello::FakeCard.class_eval do
+        schema do
+          'PlaceHolder'
+        end
+      end
+    end
+
+    it 'return the @schema if it exist' do
+      Trello::FakeCard.class_eval do
+        schema do
+          'PlaceHolder'
+        end
+      end
+
+      expect(Trello::Schema).not_to receive(:new)
+      expect(Trello::FakeCard.schema).to be_a(Trello::Schema)
+    end
+  end
+
   describe '.register_attr' do
     around do |example|
       module Trello
