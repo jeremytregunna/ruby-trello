@@ -1,5 +1,7 @@
 module Trello
   class Schema
+    autoload :AttributeBuilder, 'trello/schema/attribute_builder'
+
     attr_reader :attrs
 
     def initialize
@@ -7,7 +9,7 @@ module Trello
     end
 
     def attribute(name, options={})
-      @attrs[name.to_sym] = Attribute.new(name, options)
+      @attrs[name.to_sym] = AttributeBuilder.build(name, options)
       self
     end
   end
