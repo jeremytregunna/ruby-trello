@@ -233,4 +233,29 @@ RSpec.describe Trello::Attribute do
     end
   end
 
+  describe '#build_payload' do
+    let(:name) { :description }
+    let(:options) { nil }
+    let(:custom_core) { double('Trello::Attribute::Core::Custom') }
+    let(:custom_serializer) { double('Trello::Attribute::Serializer::Custom') }
+    let(:passin_attributes) { { name: 'John', descriptoin: 'desc...' } }
+    let(:passin_payload) { { 'name' => 'John' } }
+
+    before do
+      allow(attribute).to receive(:core).and_return(custom_core)
+      allow(attribute).to receive(:serializer).and_return(custom_serializer)
+    end
+
+    it 'generate attbiutes by call custom_core.build_payload' do
+      expect(custom_core).to receive(:build_payload).with(
+        attributes: passin_attributes,
+        payload: passin_payload,
+        serializer: custom_serializer
+      ).and_return({ 'name' => 'John', 'description' => 'desc...' })
+
+      payload = attribute.build_payload(passin_attributes, passin_payload)
+      expect(payload).to eq({ 'name' => 'John', 'description' => 'desc...' })
+    end
+  end
+
 end

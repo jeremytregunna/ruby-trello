@@ -24,6 +24,14 @@ module Trello
       )
     end
 
+    def build_payload(attributes, payload)
+      core.build_payload(
+        attributes: attributes,
+        payload: payload,
+        serializer: serializer
+      )
+    end
+
     def core
       return Core::Default unless options[:core]
 
