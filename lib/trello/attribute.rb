@@ -16,6 +16,14 @@ module Trello
       @options = options || {}
     end
 
+    def build_attributes(params, attributes)
+      core.build_attributes(
+        params: params,
+        attributes: attributes,
+        serializer: serializer
+      )
+    end
+
     def core
       return Core::Default unless options[:core]
 
