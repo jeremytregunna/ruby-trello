@@ -1,15 +1,7 @@
 module Trello
   class Schema
     module Attribute
-      class Default
-
-        attr_reader :name, :options, :serializer
-
-        def initialize(name:, options:, serializer:)
-          @name = name.to_sym
-          @options = options || {}
-          @serializer = serializer
-        end
+      class Default < Base
 
         def build_attributes(params, attributes)
           attributes ||= {}
@@ -18,27 +10,21 @@ module Trello
           attributes
         end
 
+        def build_payload_for_create(attributes, payload)
+          build_payload(attributes, payload)
+        end
+
+        def build_payload_for_update(attributes, payload)
+          build_payload(attributes, payload)
+        end
+
+        private
+
         def build_payload(attributes, payload)
           payload ||= {}
           value = attributes[name] || params[name.to_s]
           payload[remote_key] = serializer.serialize(value)
           payload
-        end
-
-        def readonly?
-          options[:readonly] == true
-        end
-
-        def update_only?
-          options[:update_only] == true
-        end
-
-        def create_only?
-          options[:create_only] == true
-        end
-
-        def remote_key
-          options[:remote_key] || name.to_s
         end
 
       end

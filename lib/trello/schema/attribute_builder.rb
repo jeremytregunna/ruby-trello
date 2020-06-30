@@ -1,6 +1,7 @@
 module Trello
   class Schema
     module Attribute
+      autoload :Base, 'trello/schema/attribute/base'
       autoload :Default, 'trello/schema/attribute/default'
     end
 
