@@ -147,10 +147,20 @@ RSpec.describe 'Trello::Schema::Attribute::Base' do
     let(:serializer) { double('serializer') }
 
     context 'when explict pass in remote_key' do
-      let(:options) { { remote_key: 'dateCreateUTC' } }
+      context 'and remote_key is a string' do
+        let(:options) { { remote_key: 'dateCreateUTC' } }
 
-      it 'directly return the remote_key' do
-        expect(attribute.remote_key).to eq('dateCreateUTC')
+        it 'directly return the stringify remote_key' do
+          expect(attribute.remote_key).to eq('dateCreateUTC')
+        end
+      end
+
+      context 'and remote_key is a symbol' do
+        let(:options) { { remote_key: :dateCreateUTC } }
+
+        it 'directly return the stringify remote_key' do
+          expect(attribute.remote_key).to eq('dateCreateUTC')
+        end
       end
     end
 

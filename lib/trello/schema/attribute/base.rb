@@ -36,7 +36,7 @@ module Trello
         end
 
         def remote_key
-          options[:remote_key] || name.to_s
+          (options[:remote_key] || name).to_s
         end
 
       end
