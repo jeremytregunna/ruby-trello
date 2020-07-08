@@ -7,8 +7,8 @@ module Trello
             value
           end
 
-          def deserialize(value)
-            value
+          def deserialize(value, default)
+            value || default
           end
         end
       end

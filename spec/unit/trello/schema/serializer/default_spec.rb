@@ -10,7 +10,8 @@ RSpec.describe 'Trello::Schema::Serializer::Default' do
 
   describe '.deserialize' do
     it 'directly return the value' do
-      expect(Trello::Schema::Serializer::Default.deserialize('John')).to eq('John')
+      expect(Trello::Schema::Serializer::Default.deserialize('John', nil)).to eq('John')
+      expect(Trello::Schema::Serializer::Default.deserialize(nil, 'John')).to eq('John')
     end
   end
 

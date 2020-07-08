@@ -6,7 +6,7 @@ module Trello
         def build_attributes(params, attributes)
           attributes ||= {}
           value = params[remote_key] || params[name]
-          attributes[name] = serializer.deserialize(value)
+          attributes[name] = serializer.deserialize(value, default)
           attributes
         end
 
@@ -18,7 +18,7 @@ module Trello
           value = attributes[name] || attributes[name.to_s]
           return payload if value.nil?
 
-          payload[remote_key] = serializer.serialize(value, default)
+          payload[remote_key] = serializer.serialize(value)
           payload
         end
 
@@ -28,7 +28,7 @@ module Trello
           return payload unless attributes.key?(name)
 
           value = attributes[name] || params[name.to_s]
-          payload[remote_key] = serializer.serialize(value, default)
+          payload[remote_key] = serializer.serialize(value)
           payload
         end
 

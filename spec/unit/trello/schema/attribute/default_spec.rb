@@ -8,11 +8,12 @@ RSpec.describe 'Trello::Schema::Attribute::Default' do
     let(:name) { :date_create_utc }
     let(:options) { {} }
     let(:serializer) { double('serializer') }
+    let(:default) { nil }
 
     before do
       allow(serializer)
         .to receive(:deserialize)
-        .with('2020-02-20 00:00:00')
+        .with('2020-02-20 00:00:00', default)
         .and_return(Time.new(2020, 2, 20))
     end
 
@@ -44,7 +45,7 @@ RSpec.describe 'Trello::Schema::Attribute::Default' do
     before do
       allow(serializer)
         .to receive(:serialize)
-        .with(Time.new(2020, 2, 20), default)
+        .with(Time.new(2020, 2, 20))
         .and_return('2020-02-20 00:00:00')
     end
 
@@ -98,7 +99,7 @@ RSpec.describe 'Trello::Schema::Attribute::Default' do
     before do
       allow(serializer)
         .to receive(:serialize)
-        .with(Time.new(2020, 2, 20), default)
+        .with(Time.new(2020, 2, 20))
         .and_return('2020-02-20 00:00:00')
     end
 
