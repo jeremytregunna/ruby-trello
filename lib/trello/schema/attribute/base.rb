@@ -41,6 +41,17 @@ module Trello
           options[:primary_key] 
         end
 
+        def for_action?(action)
+          case action
+          when :create
+            create_only? || (!update_only? && !readonly? && !primary_key?)
+          when :update
+            update_only? || primary_key? || (!create_only? && !readonly?)
+          else
+            false
+          end
+        end
+
         def remote_key
           (options[:remote_key] || name).to_s
         end

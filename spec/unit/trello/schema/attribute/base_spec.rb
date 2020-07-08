@@ -163,6 +163,93 @@ RSpec.describe 'Trello::Schema::Attribute::Base' do
     end
   end
 
+  describe '#for_action?' do
+    let(:name) { :name }
+    let(:serializer) { Trello::Schema::Serializer::Default }
+
+    context 'when it is a primary_key' do
+      let(:options) { { primary_key: true } }
+
+      context 'pass in :create' do
+        it 'return false' do
+          expect(attribute.for_action?(:create)).to eq(false)
+        end
+      end
+
+      context 'pass in :update' do
+        it 'return true' do
+          expect(attribute.for_action?(:update)).to eq(true)
+        end
+      end
+    end
+
+    context 'when it is a update_only attribute' do
+      let(:options) { { update_only: true } }
+
+      context 'pass in :create' do
+        it 'return false' do
+          expect(attribute.for_action?(:create)).to eq(false)
+        end
+      end
+
+      context 'pass in :update' do
+        it 'return true' do
+          expect(attribute.for_action?(:update)).to eq(true)
+        end
+      end
+    end
+
+    context 'when it is a create_only attribute' do
+      let(:options) { { create_only: true } }
+
+      context 'pass in :create' do
+        it 'return true' do
+          expect(attribute.for_action?(:create)).to eq(true)
+        end
+      end
+
+      context 'pass in :update' do
+        it 'return false' do
+          expect(attribute.for_action?(:update)).to eq(false)
+        end
+      end
+    end
+
+    context 'when it is a readonly attribute' do
+      context 'and it is a primary_key' do
+        let(:options) { { readonly: true, primary_key: true } }
+
+        context 'pass in :create' do
+          it 'return false' do
+            expect(attribute.for_action?(:create)).to eq(false)
+          end
+        end
+
+        context 'pass in :update' do
+          it 'return true' do
+            expect(attribute.for_action?(:update)).to eq(true)
+          end
+        end
+      end
+
+      context 'and it is not a primary_key' do
+        let(:options) { { readonly: true } }
+
+        context 'pass in :create' do
+          it 'return false' do
+            expect(attribute.for_action?(:create)).to eq(false)
+          end
+        end
+
+        context 'pass in :update' do
+          it 'return false' do
+            expect(attribute.for_action?(:update)).to eq(false)
+          end
+        end
+      end
+    end
+  end
+
   describe '#remote_key' do
     let(:name) { :date_create_utc }
     let(:serializer) { double('serializer') }
