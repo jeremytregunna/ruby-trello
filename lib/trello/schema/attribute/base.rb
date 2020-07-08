@@ -39,6 +39,12 @@ module Trello
           (options[:remote_key] || name).to_s
         end
 
+        def default
+          return nil unless options.key?(:default)
+
+          options[:default]
+        end
+
       end
     end
   end

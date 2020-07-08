@@ -173,6 +173,27 @@ RSpec.describe 'Trello::Schema::Attribute::Base' do
     end
   end
 
+  describe '#default' do
+    let(:name) { :closed }
+    let(:serializer) { double('serializer') }
+
+    context 'when explicit pass in default' do
+      let(:options) { { default: false } }
+
+      it 'directly return the default value' do
+        expect(attribute.default).to eq(false)
+      end
+    end
+
+    context 'when does not explict pass in default' do
+      let(:options) { {} }
+
+      it 'return nil' do
+        expect(attribute.default).to eq(nil)
+      end
+    end
+  end
+
   describe '#build_attributes' do
     let(:name) { :date_create_utc }
     let(:serializer) { double('serializer') }
