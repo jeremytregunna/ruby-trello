@@ -11,19 +11,20 @@ module Trello
         end
 
         def build_payload_for_create(attributes, payload)
-          build_payload(attributes, payload)
+          payload ||= {}
+          return payload unless attributes.key?(name)
+
+          value = attributes[name] || attributes[name.to_s]
+          return payload if value.nil?
+
+          payload[remote_key] = serializer.serialize(value, default)
+          payload
         end
 
         def build_payload_for_update(attributes, payload)
-          build_payload(attributes, payload)
-        end
-
-        private
-
-        def build_payload(attributes, payload)
           payload ||= {}
           value = attributes[name] || params[name.to_s]
-          payload[remote_key] = serializer.serialize(value)
+          payload[remote_key] = serializer.serialize(value, default)
           payload
         end
 
