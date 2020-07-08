@@ -12,6 +12,7 @@ module Trello
 
         def build_payload_for_create(attributes, payload)
           payload ||= {}
+          return payload unless for_action?(:create)
           return payload unless attributes.key?(name)
 
           value = attributes[name] || attributes[name.to_s]
@@ -23,6 +24,9 @@ module Trello
 
         def build_payload_for_update(attributes, payload)
           payload ||= {}
+          return payload unless for_action?(:update)
+          return payload unless attributes.key?(name)
+
           value = attributes[name] || params[name.to_s]
           payload[remote_key] = serializer.serialize(value, default)
           payload
