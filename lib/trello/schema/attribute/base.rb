@@ -35,6 +35,12 @@ module Trello
           options[:create_only] == true
         end
 
+        def primary_key?
+          return false unless options.key?(:primary_key)
+
+          options[:primary_key] 
+        end
+
         def remote_key
           (options[:remote_key] || name).to_s
         end

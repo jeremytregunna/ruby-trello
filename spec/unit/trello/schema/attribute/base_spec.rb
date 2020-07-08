@@ -25,6 +25,27 @@ RSpec.describe 'Trello::Schema::Attribute::Base' do
     end
   end
 
+  describe '#primary_key?' do
+    let(:name) { :name }
+    let(:serializer) { Trello::Schema::Serializer::Default }
+
+    context 'when explict pass primary_key' do
+      let(:options) { { primary_key: true } }
+
+      it 'direct return the primary_key value' do
+        expect(attribute.primary_key?).to eq(true)
+      end
+    end
+
+    context 'when does not explict pass primary_key' do
+      let(:options) { nil }
+
+      it 'return false' do
+        expect(attribute.primary_key?).to eq(false)
+      end
+    end
+  end
+
   describe '#readlonly?' do
     let(:name) { :name }
     let(:serializer) { Trello::Schema::Serializer::Default }
