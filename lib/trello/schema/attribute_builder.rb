@@ -3,6 +3,7 @@ module Trello
     module Attribute
       autoload :Base, 'trello/schema/attribute/base'
       autoload :Default, 'trello/schema/attribute/default'
+      autoload :BoardPref, 'trello/schema/attribute/board_pref'
     end
 
     module Serializer
