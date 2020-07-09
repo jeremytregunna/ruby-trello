@@ -9,9 +9,10 @@ RSpec.describe 'BasicData#schema' do
           attribute :id, readonly: true, primary_key: true
           attribute :name
           attribute :description, remote_key: :desc
-          attribute :last_activity_date, readonly: true, remote_key: :dateLastActivity
+          attribute :last_activity_date, readonly: true, remote_key: :dateLastActivity, serializer: 'Time'
           attribute :keep_cards_from_source, create_only: true, remote_key: :keepFromSource
           attribute :subscribed, update_only: true, default: true
+          attribute :visibility_level, remote_key: 'permissionLevel', class_name: 'BoardPref'
         end
       end
     end
@@ -41,7 +42,7 @@ RSpec.describe 'BasicData#schema' do
   }}
 
   it 'will create 6 attributes' do
-    expect(attributes.count).to eq(6)
+    expect(attributes.count).to eq(7)
   end
 
   it 'can success parse readonly primary key :id' do
@@ -118,6 +119,38 @@ RSpec.describe 'BasicData#schema' do
     expect(attribute.build_attributes({'id' => 1, 'subscribed' => true}, {})).to eq({subscribed: true})
     expect(attribute.build_payload_for_create({ id: 1, subscribed: true }, {})).to eq({})
     expect(attribute.build_payload_for_update({ id: 1, subscribed: true }, {})).to eq({ 'subscribed' => true })
+  end
+
+  it 'can success parse attribute :last_activity_date with specific serializer' do
+    attribute = attributes[:last_activity_date]
+    expect(attribute.name).to eq(:last_activity_date)
+    expect(attribute.primary_key?).to eq(false)
+    expect(attribute.readonly?).to eq(true)
+    expect(attribute.remote_key).to eq('dateLastActivity')
+    expect(attribute.for_action?(:create)).to eq(false)
+    expect(attribute.for_action?(:update)).to eq(false)
+    expect(attribute.default).to eq(nil)
+    expect(attribute.build_attributes({id: 1, last_activity_date: Time.new(2020, 1, 1)}, {})).to eq({last_activity_date: Time.new(2020, 1, 1)})
+    expect(attribute.build_attributes({id: 1}, {})).to eq({last_activity_date: nil})
+    expect(attribute.build_attributes({'id' => 1, 'dateLastActivity' => Time.new(2020, 1, 1)}, {})).to eq({last_activity_date: Time.new(2020, 1, 1)})
+    expect(attribute.build_payload_for_create({ id: 1, last_activity_date: Time.new(2020, 1, 1) }, {})).to eq({})
+    expect(attribute.build_payload_for_update({ id: 1, last_activity_date: Time.new(2020, 1, 1) }, {})).to eq({})
+  end
+
+  it 'can success parse attribute :visibility_level with specific class_name' do
+    attribute = attributes[:visibility_level]
+    expect(attribute.name).to eq(:visibility_level)
+    expect(attribute.primary_key?).to eq(false)
+    expect(attribute.readonly?).to eq(false)
+    expect(attribute.remote_key).to eq('permissionLevel')
+    expect(attribute.for_action?(:create)).to eq(true)
+    expect(attribute.for_action?(:update)).to eq(true)
+    expect(attribute.default).to eq(nil)
+    expect(attribute.build_attributes({id: 1, visibility_level: 'org'}, {})).to eq({visibility_level: 'org'})
+    expect(attribute.build_attributes({id: 1}, {})).to eq({visibility_level: nil})
+    expect(attribute.build_attributes({'id' => 1, 'prefs' => { 'permissionLevel' => 'org' }}, {})).to eq({visibility_level: 'org'})
+    expect(attribute.build_payload_for_create({ id: 1, visibility_level: 'org' }, {})).to eq({ 'prefs_permissionLevel' => 'org' })
+    expect(attribute.build_payload_for_update({ id: 1, visibility_level: 'org' }, {})).to eq({ 'prefs/permissionLevel' => 'org' })
   end
 
 end
