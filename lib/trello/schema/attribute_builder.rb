@@ -8,6 +8,7 @@ module Trello
 
     module Serializer
       autoload :Default, 'trello/schema/serializer/default'
+      autoload :Time, 'trello/schema/serializer/time'
     end
 
     class AttributeBuilder
