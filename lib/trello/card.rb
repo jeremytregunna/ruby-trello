@@ -133,25 +133,18 @@ module Trello
 
     # Update the fields of a card.
     #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # a card.
-    #
     # Note that this this method does not save anything new to the Trello API,
     # it just assigns the input attributes to your local object. If you use
     # this method to assign attributes, call `save` or `update!` afterwards if
     # you want to persist your changes to Trello.
     #
     # @param [Hash] fields
-    # @option fields [String] :id
-    # @option fields [String] :short_id
     # @option fields [String] :name The new name of the card.
     # @option fields [String] :desc A string with a length from 0 to
     #     16384.
     # @option fields [Date] :due A date, or `nil`.
     # @option fields [Boolean] :due_complete
     # @option fields [Boolean] :closed
-    # @option fields [String] :url
-    # @option fields [String] :short_url
     # @option fields [String] :board_id
     # @option fields [String] :member_ids A comma-separated list of objectIds
     #     (24-character hex strings).
@@ -162,8 +155,6 @@ module Trello
     # @option fields [String] :card_labels A comma-separated list of
     #     objectIds (24-character hex strings).
     # @option fields [Object] :cover_image_id
-    # @option fields [Object] :badges
-    # @option fields [Object] :card_members
     # @option fields [String] :source_card_id
     # @option fields [Array]  :source_card_properties
     #
@@ -173,11 +164,10 @@ module Trello
         name desc due due_complete closed
         board_id member_ids list_id pos
         card_labels cover_image_id
+        source_card_id source_card_properties
       ].each do |key|
-        send("#{key}_will_change!") if fields_has_key?(fields, key)
+        send("#{key}=", parse_writable_fields(fields, key))
       end
-
-      initialize_fields(fields)
     end
 
     def initialize(fields = {})
@@ -242,7 +232,7 @@ module Trello
       # If we have an id, just update our fields.
       return update! if id
 
-      from_response client.post("/cards", {
+      from_response_v2 client.post("/cards", {
         name:   name,
         desc:   desc,
         idList: list_id,
@@ -271,7 +261,7 @@ module Trello
       payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
 
       response = client.put("/cards/#{id}", payload)
-      updated_card = from_response(response)
+      updated_card = from_response_v2(response)
 
       @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
@@ -491,31 +481,63 @@ module Trello
     end
 
     def initialize_fields(fields)
-      attributes[:id]                     = fields[SYMBOL_TO_STRING[:id]] || attributes[:id]
-      attributes[:short_id]               = fields[SYMBOL_TO_STRING[:short_id]] || attributes[:short_id]
-      attributes[:name]                   = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
-      attributes[:desc]                   = fields[SYMBOL_TO_STRING[:desc]] || fields[:desc] || attributes[:desc]
-      attributes[:due]                    = Time.iso8601(fields[SYMBOL_TO_STRING[:due]]) rescue nil if fields.has_key?(SYMBOL_TO_STRING[:due])
-      attributes[:due]                    = fields[:due] if fields.has_key?(:due)
-      attributes[:due_complete]           = fields[SYMBOL_TO_STRING[:due_complete]] if fields.has_key?(SYMBOL_TO_STRING[:due_complete])
-      attributes[:due_complete]           ||= false
-      attributes[:closed]                 = fields[SYMBOL_TO_STRING[:closed]] if fields.has_key?(SYMBOL_TO_STRING[:closed])
-      attributes[:url]                    = fields[SYMBOL_TO_STRING[:url]] || attributes[:url]
-      attributes[:short_url]              = fields[SYMBOL_TO_STRING[:short_url]] || attributes[:short_url]
-      attributes[:board_id]               = fields[SYMBOL_TO_STRING[:board_id]] || attributes[:board_id]
-      attributes[:member_ids]             = fields[SYMBOL_TO_STRING[:member_ids]] || fields[:member_ids] || attributes[:member_ids]
-      attributes[:list_id]                = fields[SYMBOL_TO_STRING[:list_id]] || fields[:list_id] || attributes[:list_id]
-      attributes[:pos]                    = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
-      attributes[:labels]                 = (fields[SYMBOL_TO_STRING[:labels]] || []).map { |lbl| Trello::Label.new(lbl) }.presence || attributes[:labels].presence || []
-      attributes[:card_labels]            = fields[SYMBOL_TO_STRING[:card_labels]] || fields[:card_labels] || attributes[:card_labels]
-      attributes[:last_activity_date]     = Time.iso8601(fields[SYMBOL_TO_STRING[:last_activity_date]]) rescue nil if fields.has_key?(SYMBOL_TO_STRING[:last_activity_date])
-      attributes[:cover_image_id]         = fields[SYMBOL_TO_STRING[:cover_image_id]] || attributes[:cover_image_id]
-      attributes[:badges]                 = fields[SYMBOL_TO_STRING[:badges]] || attributes[:badges]
-      attributes[:card_members]           = fields[SYMBOL_TO_STRING[:card_members]] || attributes[:card_members]
-      attributes[:source_card_id]         = fields[SYMBOL_TO_STRING[:source_card_id]] || fields[:source_card_id] || attributes[:source_card_id]
-      attributes[:source_card_properties] = fields[SYMBOL_TO_STRING[:source_card_properties]] || fields[:source_card_properties] || attributes[:source_card_properties]
+      %i[
+        id short_id url short_url last_activity_date
+        badges card_members
+      ].each do |attr_key|
+        attributes[attr_key] = parse_readonly_fields(fields, attr_key)
+      end
+
+      %i[
+        name desc due due_complete closed board_id
+        member_ids list_id pos labels card_labels
+        cover_image_id source_card_id source_card_properties
+      ].each do |attr_key|
+        attributes[attr_key] = parse_writable_fields(fields, attr_key)
+      end
+
+      attributes[:last_activity_date] = serialize_time(attributes[:last_activity_date])
+      attributes[:labels] = serialize_labels(attributes[:labels])
+      attributes[:due_complete] ||= false
+      attributes[:due] = serialize_time(attributes[:due])
       self
     end
 
+    def parse_writable_fields(fields, key)
+      fields ||= {}
+      gem_version_key = key.to_sym
+      api_version_key = SYMBOL_TO_STRING[gem_version_key]
+
+      if fields.key?(api_version_key)
+        fields[api_version_key]
+      elsif fields.key?(gem_version_key)
+        fields[gem_version_key]
+      else
+        attributes[gem_version_key]
+      end
+    end
+
+    def parse_readonly_fields(fields, key)
+      fields ||= {}
+      gem_version_key = key.to_sym
+      api_version_key = SYMBOL_TO_STRING[gem_version_key]
+
+      fields[api_version_key] || attributes[gem_version_key]
+    end
+
+    def serialize_time(time)
+      return time unless time.is_a?(String)
+
+      Time.iso8601(time) rescue nil
+    end
+
+    def serialize_labels(labels)
+      labels ||= []
+      labels.map do |label|
+        next label if label.is_a?(Trello::Label)
+
+        Trello::Label.new(label)
+      end
+    end
   end
 end
