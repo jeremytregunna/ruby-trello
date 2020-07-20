@@ -1,0 +1,187 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/5e93ba98614ac22d22f085c4?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Surrogate-Control:
+      - no-store
+      X-Trello-Version:
+      - 1.2092.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1589732004268'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Sun, 17 May 2020 16:13:24 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Sun, 17 May 2020 16:13:24 GMT
+      Content-Length:
+      - '2783'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 20 May 2020 16:13:24 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e93ba98614ac22d22f085c4","name":"IT 2","desc":"","descData":null,"closed":false,"idOrganization":"5e93ba154634282b6df23bcc","idEnterprise":null,"pinned":false,"url":"https://trello.com/b/y1TF9GTa/it-2","shortUrl":"https://trello.com/b/y1TF9GTa","labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""},"prefs":{"permissionLevel":"org","hideVotes":false,"voting":"disabled","comments":"members","invitations":"members","selfJoin":true,"cardCovers":true,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"background":"5e9093e2134e6987494c7ca8","backgroundImage":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/2300ad88b61e46629c4063e0095bf986/photo-1586462175816-c0e709898f01","backgroundImageScaled":[{"width":140,"height":93,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":256,"height":171,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":480,"height":320,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":960,"height":640,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":1024,"height":683,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x683/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":2048,"height":1366,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1366/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":1280,"height":854,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x854/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":1920,"height":1280,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":2400,"height":1600,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":2560,"height":1707,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/2300ad88b61e46629c4063e0095bf986/photo-1586462175816-c0e709898f01"}],"backgroundTile":false,"backgroundBrightness":"light","backgroundBottomColor":"#92d3ca","backgroundTopColor":"#d9e3eb","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true}}'
+    http_version: null
+  recorded_at: Sun, 17 May 2020 16:13:24 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/boards/5e93ba98614ac22d22f085c4/customFields?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      X-Xss-Protection:
+      - 1; mode=block
+      Surrogate-Control:
+      - no-store
+      X-Trello-Version:
+      - 1.2092.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '298'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '98'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '198'
+      X-Server-Time:
+      - '1589732005252'
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Accept-Encoding
+      Expires:
+      - Sun, 17 May 2020 16:13:25 GMT
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Pragma:
+      - no-cache
+      Date:
+      - Sun, 17 May 2020 16:13:25 GMT
+      Content-Length:
+      - '244'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Wed, 20 May 2020 16:13:25 GMT; Secure
+    body:
+      encoding: UTF-8
+      string: '[{"id":"5ec160f6dafd0828fda1f6dd","idModel":"5e93ba98614ac22d22f085c4","modelType":"board","fieldGroup":"574711123837b10e68537ae0b8d82ab14afeaacb282da6fec0fbfd9992cfe8f3","display":{"cardFront":true},"name":"Point","pos":16384,"type":"number"}]'
+    http_version: null
+  recorded_at: Sun, 17 May 2020 16:13:25 GMT
+recorded_with: VCR 5.1.0
