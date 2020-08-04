@@ -54,7 +54,9 @@ module Trello
     end
 
     def self.register_attrs
-      RegisterAttrs.execute(self)
+      schema.attrs.values.each do |attribute|
+        attribute.register(self)
+      end
     end
 
     def self.register_attr(name, options = {})
