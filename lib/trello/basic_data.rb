@@ -48,13 +48,13 @@ module Trello
 
       @schema.instance_eval(&block)
 
-      register_attrs(schema)
+      register_attrs
 
       @schema
     end
 
-    def self.register_attrs(schema)
-      RegisterAttrs.execute(self, schema)
+    def self.register_attrs
+      RegisterAttrs.execute(self)
     end
 
     def self.register_attr(name, options = {})

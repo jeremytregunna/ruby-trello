@@ -72,6 +72,7 @@ module Trello
   autoload :AssociationInferTool, 'trello/association_infer_tool'
   autoload :RegisterAttributes,   'trello/register_attributes'
   autoload :RegisterAttr,         'trello/register_attr'
+  autoload :RegisterAttrs,        'trello/register_attrs'
   autoload :Schema,               'trello/schema'
 
   module Authorization

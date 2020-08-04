@@ -49,6 +49,25 @@ RSpec.describe Trello::BasicData do
     end
   end
 
+  describe '.register_attrs' do
+    around do |example|
+      module Trello
+        class FakeCard < BasicData
+        end
+      end
+
+      example.run
+
+      Trello.send(:remove_const, 'FakeCard')
+    end
+
+    it 'call execute on RegisterAttrs' do
+      expect(Trello::RegisterAttrs).to receive(:execute).with(Trello::FakeCard)
+
+      Trello::FakeCard.register_attrs
+    end
+  end
+
   describe '.register_attr' do
     around do |example|
       module Trello
@@ -116,7 +135,7 @@ RSpec.describe Trello::BasicData do
     let(:association_options) { { test: 'test' } }
 
     it 'call build on AssociationBuilder::HasMany' do
-      expect(AssociationBuilder::HasMany)
+      expect(Trello::AssociationBuilder::HasMany)
         .to receive(:build)
         .with(Trello::BasicData, association_name, association_options)
 
@@ -129,7 +148,7 @@ RSpec.describe Trello::BasicData do
     let(:association_options) { { path: 'test' } }
 
     it 'call build on AssociationBuilder::HasOne' do
-      expect(AssociationBuilder::HasOne)
+      expect(Trello::AssociationBuilder::HasOne)
         .to receive(:build)
         .with(Trello::BasicData, association_name, association_options)
 
