@@ -62,6 +62,9 @@ module Trello
           options[:default]
         end
 
+        def register(model_klass)
+          AttributeRegistration.register(model_klass, self)
+        end
       end
     end
   end

@@ -332,4 +332,18 @@ RSpec.describe 'Trello::Schema::Attribute::Base' do
     end
   end
 
+  describe '#register' do
+    let(:name) { :date_create_utc }
+    let(:serializer) { double('serializer') }
+    let(:options) { nil }
+
+    let(:board_klass) { double('Trello::Board') }
+
+    it 'call register on AttributeRegistration' do
+      expect(Trello::Schema::AttributeRegistration).to receive(:register).with(board_klass, attribute)
+
+      attribute.register(board_klass)
+    end
+  end
+
 end

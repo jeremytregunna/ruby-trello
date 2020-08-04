@@ -12,6 +12,7 @@ module Trello
     end
 
     autoload :AttributeBuilder, 'trello/schema/attribute_builder'
+    autoload :AttributeRegistration, 'trello/schema/attribute_registration'
 
     attr_reader :attrs
 
