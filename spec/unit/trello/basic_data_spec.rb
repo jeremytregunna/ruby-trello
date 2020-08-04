@@ -84,37 +84,6 @@ RSpec.describe Trello::BasicData do
     end
   end
 
-  describe '.register_attr' do
-    around do |example|
-      module Trello
-        class FakeCard < BasicData
-        end
-      end
-
-      example.run
-
-      Trello.send(:remove_const, 'FakeCard')
-    end
-
-    it 'call execute on RegisterAttr' do
-      expect(Trello::RegisterAttr)
-        .to receive(:execute)
-        .with(Trello::FakeCard,
-          :last_activity_date,
-          readonly: true,
-          serialize: :time,
-          remote_key: 'dateLastActivity'
-        )
-
-      Trello::FakeCard.class_eval do
-        register_attr :last_activity_date,
-                      readonly: true,
-                      serialize: :time,
-                      remote_key: 'dateLastActivity'
-      end
-    end
-  end
-
   describe '.register_attributes' do
     around do |example|
       module Trello
