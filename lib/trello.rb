@@ -73,7 +73,6 @@ module Trello
   autoload :RegisterAttributes,   'trello/register_attributes'
   autoload :RegisterAttr,         'trello/register_attr'
   autoload :Schema,               'trello/schema'
-  autoload :Attribute,            'trello/attribute'
 
   module Authorization
     autoload :AuthPolicy,         'trello/authorization'

@@ -1,16 +1,5 @@
 module Trello
   class Schema
-    module Attribute
-      autoload :Base, 'trello/schema/attribute/base'
-      autoload :Default, 'trello/schema/attribute/default'
-      autoload :BoardPref, 'trello/schema/attribute/board_pref'
-    end
-
-    module Serializer
-      autoload :Default, 'trello/schema/serializer/default'
-      autoload :Time, 'trello/schema/serializer/time'
-    end
-
     class AttributeBuilder
       class << self
         def build(name, options = {})
