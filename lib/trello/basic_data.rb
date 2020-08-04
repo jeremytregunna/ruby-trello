@@ -48,7 +48,13 @@ module Trello
 
       @schema.instance_eval(&block)
 
+      register_attrs(schema)
+
       @schema
+    end
+
+    def self.register_attrs(schema)
+      RegisterAttrs.execute(self, schema)
     end
 
     def self.register_attr(name, options = {})
@@ -146,6 +152,10 @@ module Trello
 
     def client
       @client ||= self.class.client
+    end
+
+    def schema
+      self.class.schema
     end
   end
 end

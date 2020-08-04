@@ -14,8 +14,21 @@ RSpec.describe Trello::BasicData do
       Trello.send(:remove_const, 'FakeCard')
     end
 
+    before { allow(Trello::FakeCard).to receive(:register_attrs) }
+
     it 'call instance_eval on a schema instance' do
       expect_any_instance_of(Trello::Schema).to receive(:instance_eval)
+
+      Trello::FakeCard.class_eval do
+        schema do
+          'PlaceHolder'
+        end
+      end
+    end
+
+    it 'call register_attrs on model' do
+      allow_any_instance_of(Trello::Schema).to receive(:instance_eval)
+      expect(Trello::FakeCard).to receive(:register_attrs)
 
       Trello::FakeCard.class_eval do
         schema do
