@@ -50,7 +50,7 @@ RSpec.describe 'Trello::Board#new' do
     end
 
     context 'with Ruby-like data' do
-      let(:data) { { desc: 'Board Name' } }
+      let(:data) { { description: 'Board Name' } }
 
       it 'parse from data[:desc]' do
         expect(board.description).to eq('Board Name')
@@ -70,8 +70,8 @@ RSpec.describe 'Trello::Board#new' do
     context 'with Ruby-like data' do
       let(:data) { { description_data: 'description data...' } }
 
-      it "won't parse from data[:description_data]" do
-        expect(board.description_data).to eq(nil)
+      it "will parse from data[:description_data]" do
+        expect(board.description_data).to eq('description data...')
       end
     end
   end
@@ -124,8 +124,8 @@ RSpec.describe 'Trello::Board#new' do
     context 'with Ruby-like data' do
       let(:data) { { enterprise_id: 'abc123' } }
 
-      it "won't parse from data[:enterprise_id]" do
-        expect(board.enterprise_id).to eq(nil)
+      it "will parse from data[:enterprise_id]" do
+        expect(board.enterprise_id).to eq('abc123')
       end
     end
   end
@@ -178,8 +178,8 @@ RSpec.describe 'Trello::Board#new' do
     context 'with Ruby-like data' do
       let(:data) { { short_url: 'https://trello.com/b/y1TF9GTa' } }
 
-      it "won't parse from data[:short_url]" do
-        expect(board.short_url).to eq(nil)
+      it "parse from data[:short_url]" do
+        expect(board.short_url).to eq('https://trello.com/b/y1TF9GTa')
       end
     end
   end
@@ -297,20 +297,10 @@ RSpec.describe 'Trello::Board#new' do
 
   describe 'parse #background_color (writable)' do
     context 'with Trello API respone data' do
-      context 'when using default background' do
-        let(:data) { { 'prefs' => { 'background' => 'blue' } } }
+      let(:data) { { 'prefs' => { 'background' => 'blue' } } }
 
-        it "parse from data['prefs']['background']" do
-          expect(board.background_color).to eq('blue')
-        end
-      end
-
-      context 'when using a cutom backgroud' do
-        let(:data) { { 'prefs' => { 'background' => 'abc123' } } }
-
-        it "parse from data['prefs']['background'] and return nil" do
-          expect(board.background_color).to eq(nil)
-        end
+      it "parse from data['prefs']['background']" do
+        expect(board.background_color).to eq('blue')
       end
     end
 

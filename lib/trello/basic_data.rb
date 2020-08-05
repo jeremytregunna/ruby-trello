@@ -159,5 +159,11 @@ module Trello
     def attributes
       @__attributes ||= ActiveSupport::HashWithIndifferentAccess.new
     end
+
+    private
+
+    def attributes=(attrs)
+      @__attributes = attrs
+    end
   end
 end

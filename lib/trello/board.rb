@@ -17,23 +17,45 @@ module Trello
   # @!attribute [r] prefs
   #   @return [Hash] A 24-character hex string
   class Board < BasicData
-    register_attributes :id, :name, :description, :closed, :starred, :url,
-                        :organization_id, :prefs, :last_activity_date, :description_data,
-                        :enterprise_id, :pinned, :short_url,
-                        :visibility_level, :voting_permission_level, :comment_permission_level,
-                        :invitation_permission_level, :enable_self_join,
-                        :enable_card_covers, :background_color, :background_image,
-                        :card_aging_type, :use_default_labels, :use_default_lists, :source_board_id,
-                        :keep_cards_from_source, :power_ups, :subscribed,
-      readonly: [
-        :id, :url, :last_activity_date, :description_data, :enterprise_id, :pinned,
-        :short_url, :prefs
-      ],
-      create_only: [
-        :use_default_labels, :use_default_lists, :source_board_id,
-        :keep_cards_from_source, :power_ups
-      ],
-      update_only: [:subscribed]
+    schema do
+      attribute :id, readonly: true, primary_key: true
+
+      # Readonly
+      attribute :starred, readonly: true
+      attribute :pinned, readonly: true
+      attribute :url, readonly: true
+      attribute :short_url, readonly: true, remote_key: 'shortUrl'
+      attribute :prefs, readonly: true
+      attribute :last_activity_date, readonly: true, remote_key: 'dateLastActivity'
+      attribute :description_data, readonly: true, remote_key: 'descData'
+      attribute :enterprise_id, readonly: true, remote_key: 'idEnterprise'
+
+      # Writable
+      attribute :name
+      attribute :description, remote_key: 'desc'
+      attribute :organization_id, remote_key: 'idOrganization'
+      attribute :visibility_level, remote_key: 'permissionLevel', class_name: 'BoardPref'
+      attribute :voting_permission_level, remote_key: 'voting', class_name: 'BoardPref'
+      attribute :comment_permission_level, remote_key: 'comments', class_name: 'BoardPref'
+      attribute :invitation_permission_level, remote_key: 'invitations', class_name: 'BoardPref'
+      attribute :enable_self_join, remote_key: 'selfJoin', class_name: 'BoardPref'
+      attribute :enable_card_covers, remote_key: 'cardCovers', class_name: 'BoardPref'
+      attribute :background_color, remote_key: 'background', class_name: 'BoardPref'
+      attribute :background_image, remote_key: 'backgroundImage', class_name: 'BoardPref'
+      attribute :card_aging_type, remote_key: 'cardAging', class_name: 'BoardPref'
+
+      # Writable but for create only
+      attribute :use_default_labels, create_only: true, remote_key: 'defaultLabels'
+      attribute :use_default_lists, create_only: true, remote_key: 'defaultLists'
+      attribute :source_board_id, create_only: true, remote_key: 'idBoardSource'
+      attribute :keep_cards_from_source, create_only: true, remote_key: 'keepFromSource'
+      attribute :power_ups, create_only: true, remote_key: 'powerUps'
+
+      # Writable but for update only
+      attribute :closed, update_only: true
+      attribute :subscribed, update_only: true
+    end
+
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
@@ -242,137 +264,11 @@ module Trello
     private
 
     def initialize_fields(fields)
-      readonly_attributes.each do |attr_key|
-        attributes[attr_key] = parse_readonly_fields(fields, attr_key)
+      schema.attrs.each do |_, attribute|
+        self.attributes = attribute.build_attributes(fields, attributes)
       end
 
-      writable_attributes.each do |attr_key|
-        attributes[attr_key] = parse_writable_fields(fields, attr_key)
-      end
-
-      %i[
-        visibility_level voting_permission_level comment_permission_level
-        invitation_permission_level enable_self_join
-        enable_card_covers background_color background_image
-        card_aging_type
-      ].each do |attr_key|
-        attributes[attr_key] = parse_prefs_fields(fields, attr_key)
-      end
-
-      attributes[:last_activity_date] = serialize_time(attributes[:last_activity_date])
-      attributes[:prefs] ||= {}
-      attributes[:background_color] = serialize_background_color(attributes[:background_color])
       self
-    end
-
-    MAP_ATTRIBUTE = {
-      id: :id,
-      name: :name,
-      description: :desc,
-      description_data: :descData,
-      enterprise_id: :idEnterprise,
-      pinned: :pinned,
-      url: :url,
-      short_url: :shortUrl,
-      closed: :closed,
-      starred: :starred,
-      organization_id: :idOrganization,
-      prefs: :prefs,
-      last_activity_date: :dateLastActivity,
-      use_default_labels: :defaultLabels,
-      use_default_lists: :defaultLists,
-      source_board_id: :idBoardSource,
-      keep_cards_from_source: :keepFromSource,
-      power_ups: :powerUps
-    }
-
-    MAP_PREFS_ATTRIBUTE = {
-      visibility_level: :permissionLevel,
-      voting_permission_level: :voting,
-      comment_permission_level: :comments,
-      invitation_permission_level: :invitations,
-      enable_self_join: :selfJoin,
-      enable_card_covers: :cardCovers,
-      background_color: :background,
-      background_image: :backgroundImage,
-      card_aging_type: :cardAging
-    }
-
-    def parse_writable_fields(fields, key)
-      fields = (fields || {}).transform_keys(&:to_sym)
-
-      gem_version_key = key.to_sym
-      api_version_key = MAP_ATTRIBUTE[gem_version_key]
-
-      if fields.key?(api_version_key)
-        fields[api_version_key]
-      elsif fields.key?(gem_version_key)
-        fields[gem_version_key]
-      else
-        attributes[gem_version_key]
-      end
-    end
-
-    def parse_readonly_fields(fields, key)
-      fields = (fields || {}).transform_keys(&:to_sym)
-
-      gem_version_key = key.to_sym
-      api_version_key = MAP_ATTRIBUTE[gem_version_key]
-
-      if fields.key?(api_version_key)
-        fields[api_version_key]
-      else
-        attributes[gem_version_key]
-      end
-    end
-
-    def parse_prefs_fields(fields, key)
-      fields = (fields || {}).transform_keys(&:to_sym)
-      preferences = (prefs || {}).transform_keys(&:to_sym)
-
-      gem_version_key = key.to_sym
-      api_version_key = MAP_PREFS_ATTRIBUTE[gem_version_key]
-
-      if preferences.key?(api_version_key)
-        preferences[api_version_key]
-      elsif fields.key?(gem_version_key)
-        fields[gem_version_key]
-      else
-        attributes[gem_version_key]
-      end
-    end
-
-    def serialize_time(time)
-      return time unless time.is_a?(String)
-
-      Time.iso8601(time) rescue nil
-    end
-
-    def serialize_background_color(color)
-      default_colors = %w[blue orange green red purple pink lime sky grey]
-      return color if default_colors.include?(color.to_s)
-    end
-
-    # On creation
-    # https://trello.com/docs/api/board/#post-1-boards
-    # - permissionLevel
-    # - voting
-    # - comments
-    # - invitations
-    # - selfJoin
-    # - cardCovers
-    # - background
-    # - cardAging
-    #
-    # On update
-    # https://trello.com/docs/api/board/#put-1-boards-board-id
-    # Same as above plus:
-    # - calendarFeedEnabled
-    def flat_prefs
-      separator = id ? "/" : "_"
-      attributes[:prefs].inject({}) do |hash, (pref, v)|
-        hash.merge("prefs#{separator}#{pref}" => v)
-      end
     end
 
     def post(path, body)
