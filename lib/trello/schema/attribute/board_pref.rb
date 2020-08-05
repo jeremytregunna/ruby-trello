@@ -4,10 +4,17 @@ module Trello
       class BoardPref < Base
 
         def build_attributes(params, attributes)
-          attributes ||= {}
-          value = (params['prefs'] && params['prefs'][remote_key]) || params[name]
-          attributes[name] = serializer.deserialize(value, default)
-          attributes
+          attrs = attributes.with_indifferent_access
+          params = params.with_indifferent_access
+
+          value = if params.key?(:prefs)
+                    params[:prefs][remote_key]
+                  else
+                    params[name]
+                  end
+
+          attrs[name] = serializer.deserialize(value, default)
+          attrs
         end
 
         def build_payload_for_create(attributes, payload)
@@ -15,7 +22,7 @@ module Trello
           return payload unless for_action?(:create)
           return payload unless attributes.key?(name)
 
-          value = attributes[name] || attributes[name.to_s]
+          value = attributes[name]
           return payload if value.nil?
 
           payload["prefs_#{remote_key}"] = serializer.serialize(value)
@@ -27,7 +34,7 @@ module Trello
           return payload unless for_action?(:update)
           return payload unless attributes.key?(name)
 
-          value = attributes[name] || params[name.to_s]
+          value = attributes[name]
           payload["prefs/#{remote_key}"] = serializer.serialize(value)
           payload
         end

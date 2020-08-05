@@ -14,26 +14,94 @@ RSpec.describe 'Trello::Schema::Attribute::BoardPref' do
     before do
       allow(serializer)
         .to receive(:deserialize)
-        .with('org', default)
-        .and_return('org')
+        .with(raw_value, default)
+        .and_return(deserialize_result)
     end
 
     let(:build_attributes) { attribute.build_attributes(params, attributes) }
     let(:attributes) { { name: 'John' } }
 
-    context 'when target key in params is string' do
-      let(:params) { { 'prefs' => { 'permissionLevel' => 'org' } } }
+    context 'when prefs and name key are both missing' do
+      let(:raw_value) { nil }
+      let(:deserialize_result) { nil }
+      let(:params) { {} }
 
-      it 'fetch and deserialize that value and set to attributes with symbolize name' do
-        expect(build_attributes).to eq({ name: 'John', visibility_level: 'org' })
+      it 'deserialize and set the attribute to nil' do
+        expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: nil })
       end
     end
 
-    context 'when target key in params is symbol' do
-      let(:params) { { visibility_level: 'org' } }
+    context "when params's key prefs exits" do
+      context 'and target key is missing' do
+        let(:raw_value) { nil }
+        let(:deserialize_result) { nil }
+        let(:params) { { 'prefs' => {} } }
 
-      it 'get and deserialize that value and set to attributes with symbolize name' do
-        expect(build_attributes).to eq({ name: 'John', visibility_level: 'org' })
+        it 'deserialize and set the attribute to nil' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: nil })
+        end
+      end
+
+      context 'and target value is nil' do
+        let(:raw_value) { nil }
+        let(:deserialize_result) { nil }
+        let(:params) { { 'prefs' => { 'permissionLevel' => nil } } }
+
+        it 'deserialize and set the attribute to nil' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: nil })
+        end
+      end
+
+      context 'and target value is false' do
+        let(:raw_value) { false }
+        let(:deserialize_result) { false }
+        let(:params) { { 'prefs' => { 'permissionLevel' => false } } }
+
+        it 'deserialize and set the attribute to false' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: false })
+        end
+      end
+
+      context 'and target value is not nil or false' do
+        let(:raw_value) { 'org' }
+        let(:deserialize_result) { 'org' }
+        let(:params) { { 'prefs' => { 'permissionLevel' => 'org' } } }
+
+        it 'deserialize and set the attribute' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: 'org' })
+        end
+      end
+    end
+
+    context "when params's key prefs does not exits" do
+      context 'and target value is nil' do
+        let(:raw_value) { nil }
+        let(:deserialize_result) { nil }
+        let(:params) { { visibility_level: nil } }
+
+        it 'get and deserialize that value and set to attributes with symbolize name' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: nil })
+        end
+      end
+
+      context 'and target value is false' do
+        let(:raw_value) { false }
+        let(:deserialize_result) { false }
+        let(:params) { { visibility_level: false } }
+
+        it 'get and deserialize that value and set to attributes with symbolize name' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: false })
+        end
+      end
+
+      context 'and target value is not nil or false ' do
+        let(:raw_value) { 'org' }
+        let(:deserialize_result) { 'org' }
+        let(:params) { { visibility_level: 'org' } }
+
+        it 'get and deserialize that value and set to attributes with symbolize name' do
+          expect(build_attributes).to match_hash_with_indifferent_access({ name: 'John', visibility_level: 'org' })
+        end
       end
     end
   end
