@@ -81,6 +81,59 @@ RSpec.describe 'Trello::Schema::Attribute::Default' do
     end
   end
 
+
+  describe '#build_pending_update_attributes' do
+    let(:name) { :date_create_utc }
+    let(:options) { { remote_key: 'dateCreateUTC' } }
+    let(:serializer) { double('serializer') }
+    let(:default) { nil }
+
+    before do
+      allow(serializer)
+        .to receive(:deserialize)
+        .with(raw_value, default)
+        .and_return(deserialize_result)
+    end
+
+    let(:build_pending_update_attributes) { attribute.build_pending_update_attributes(params, attributes) }
+    let(:attributes) { { name: 'John' } }
+
+    context 'when remote_key and target key is missing' do
+      let(:raw_value) { false }
+      let(:deserialize_result) { false }
+      let(:params) { {} }
+
+      it "won't set any value to pending update attributes" do
+        expect(build_pending_update_attributes).to match_hash_with_indifferent_access({ name: 'John' })
+      end
+    end
+
+    context 'when remote_key exists' do
+      let(:raw_value) { false }
+      let(:deserialize_result) { false }
+      let(:params) { { 'dateCreateUTC': raw_value } }
+
+      it 'will set the value to pending update attributes' do
+        expect(build_pending_update_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: raw_value }
+        )
+      end
+    end
+
+    context 'when target key exists' do
+      let(:raw_value) { false }
+      let(:deserialize_result) { false }
+      let(:params) { { date_create_utc: raw_value } }
+
+      it 'will set the value to pending update attributes' do
+        expect(build_pending_update_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: raw_value }
+        )
+      end
+    end
+  end
+
+
   describe '#build_payload_for_create' do
     let(:name) { :date_create_utc }
     let(:serializer) { double('serializer') }

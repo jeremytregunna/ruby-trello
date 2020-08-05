@@ -17,6 +17,14 @@ module Trello
           attrs
         end
 
+        def build_pending_update_attributes(params, attributes)
+          params = params.with_indifferent_access
+
+          return attributes unless params.key?(remote_key) || params.key?(name)
+
+          build_attributes(params, attributes)
+        end
+
         def build_payload_for_create(attributes, payload)
           payload ||= {}
           return payload unless for_action?(:create)
