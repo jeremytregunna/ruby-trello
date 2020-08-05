@@ -15,6 +15,14 @@ module Trello
           raise 'Need override'
         end
 
+        def build_pending_update_attributes(params, attributes)
+          params = params.with_indifferent_access
+
+          return attributes unless params.key?(remote_key) || params.key?(name)
+
+          build_attributes(params, attributes)
+        end
+
         def build_payload_for_create(attributes, payload)
           raise 'Need override'
         end
