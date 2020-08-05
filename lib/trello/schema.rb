@@ -17,11 +17,11 @@ module Trello
     attr_reader :attrs
 
     def initialize
-      @attrs = {}
+      @attrs = ActiveSupport::HashWithIndifferentAccess.new
     end
 
     def attribute(name, options={})
-      @attrs[name.to_sym] = AttributeBuilder.build(name, options)
+      @attrs[name] = AttributeBuilder.build(name, options)
       self
     end
   end

@@ -6,33 +6,77 @@ RSpec.describe 'Trello::Schema::Attribute::Default' do
 
   describe '#build_attributes' do
     let(:name) { :date_create_utc }
-    let(:options) { {} }
+    let(:options) { { remote_key: 'dateCreateUTC' } }
     let(:serializer) { double('serializer') }
     let(:default) { nil }
 
     before do
       allow(serializer)
         .to receive(:deserialize)
-        .with('2020-02-20 00:00:00', default)
-        .and_return(Time.new(2020, 2, 20))
+        .with(raw_value, default)
+        .and_return(deserialize_result)
     end
 
     let(:build_attributes) { attribute.build_attributes(params, attributes) }
     let(:attributes) { { name: 'John' } }
 
     context 'when target key in params is string' do
-      let(:params) { { 'date_create_utc' => '2020-02-20 00:00:00' } }
+      let(:raw_value) { '2020-02-20 00:00:00' }
+      let(:deserialize_result) { Time.new(2020, 2, 20) }
+      let(:params) { { 'date_create_utc' => raw_value } }
 
-      it 'get and deserialize that value and set to attributes with symbolize name' do
-        expect(build_attributes).to eq({ name: 'John', date_create_utc: Time.new(2020, 2, 20) })
+      it 'get and deserialize that value and set to attributes' do
+        expect(build_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: Time.new(2020, 2, 20) }
+        )
       end
     end
 
     context 'when target key in params is symbol' do
-      let(:params) { { date_create_utc: '2020-02-20 00:00:00' } }
+      let(:raw_value) { '2020-02-20 00:00:00' }
+      let(:deserialize_result) { Time.new(2020, 2, 20) }
+      let(:params) { { date_create_utc: raw_value } }
 
-      it 'get and deserialize that value and set to attributes with symbolize name' do
-        expect(build_attributes).to eq({ name: 'John', date_create_utc: Time.new(2020, 2, 20) })
+      it 'get and deserialize that value and set to attributes' do
+        expect(build_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: Time.new(2020, 2, 20) }
+        )
+      end
+    end
+
+    context 'when value under remote_key is nil' do
+      let(:raw_value) { nil }
+      let(:deserialize_result) { nil }
+      let(:params) { { 'dateCreateUTC': raw_value } }
+
+      it 'get and deserialize that value and set to attributes' do
+        expect(build_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: nil }
+        )
+      end
+    end
+
+    context 'when value under name key is nil' do
+      let(:raw_value) { nil }
+      let(:deserialize_result) { nil }
+      let(:params) { { date_create_utc: raw_value } }
+
+      it 'get and deserialize that value and set to attributes' do
+        expect(build_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: nil }
+        )
+      end
+    end
+
+    context 'when value under remote_key is false' do
+      let(:raw_value) { false }
+      let(:deserialize_result) { false }
+      let(:params) { { 'dateCreateUTC': raw_value } }
+
+      it 'get and deserialize that value and set to attributes' do
+        expect(build_attributes).to match_hash_with_indifferent_access(
+          { name: 'John', date_create_utc: false }
+        )
       end
     end
   end

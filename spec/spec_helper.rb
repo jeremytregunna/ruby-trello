@@ -70,6 +70,26 @@ module IntegrationHelpers
   end
 end
 
+RSpec::Matchers.define :match_hash_with_indifferent_access do |expected|
+  match do |actual|
+    actual.with_indifferent_access == expected.with_indifferent_access
+  end
+
+  failure_message do |actual|
+    <<~EOF
+    expected: #{expected}
+         got: #{actual}
+    EOF
+  end
+
+  failure_message_when_negated do |actual|
+    <<~EOF
+    expected: value != #{expected}
+         got:          #{actual}
+    EOF
+  end
+end
+
 module Helpers
   def user_details
     {

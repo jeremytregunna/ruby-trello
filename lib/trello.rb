@@ -3,6 +3,8 @@ require 'json'
 require 'logger'
 require 'active_model'
 require 'addressable/uri'
+require "active_support/core_ext/hash/indifferent_access"
+
 
 # Ruby wrapper around the Trello[http://trello.com] API
 #

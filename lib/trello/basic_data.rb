@@ -155,5 +155,9 @@ module Trello
     def schema
       self.class.schema
     end
+
+    def attributes
+      @__attributes ||= ActiveSupport::HashWithIndifferentAccess.new
+    end
   end
 end
