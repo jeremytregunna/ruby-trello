@@ -94,43 +94,11 @@ module Trello
     def save
       return update! if id
 
-      mapper = {
-        name: 'name',
-        use_default_labels: 'defaultLabels',
-        use_default_lists: 'defaultLists',
-        description: 'desc',
-        organization_id: 'idOrganization',
-        source_board_id: 'idBoardSource',
-        keep_cards_from_source: 'keepFromSource',
-        power_ups: 'powerUps',
-        visibility_level: 'prefs_permissionLevel',
-        voting_permission_level: 'prefs_voting',
-        comment_permission_level: 'prefs_comments',
-        invitation_permission_level: 'prefs_invitations',
-        enable_self_join: 'prefs_selfJoin',
-        enable_card_covers: 'prefs_cardCovers',
-        background_color: 'prefs_background',
-        card_aging_type: 'prefs_cardAging'
-      }
-
       payload = {}
 
-      %i[
-        name organization_id visibility_level voting_permission_level
-        comment_permission_level invitation_permission_level
-        enable_self_join enable_card_covers
-        background_color card_aging_type
-        use_default_labels use_default_lists
-        source_board_id keep_cards_from_source
-        power_ups
-      ].each do |attr_name|
-        attr_value = send(attr_name)
-        next if attr_value.in?([nil, ''])
-
-        payload[mapper[attr_name]] = attr_value
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_create(attributes, payload)
       end
-
-      payload[mapper[:description]] = description
 
       post('/boards', payload)
     end

@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe 'Trello::Board' do
 
   context 'when id exists' do
-    let(:board) { Board.new(id: 1) }
+    let(:board) { Trello::Board.new(id: 1) }
 
     it 'call #update! on board' do
       expect(board).to receive(:update!)
@@ -13,7 +13,7 @@ RSpec.describe 'Trello::Board' do
   end
 
   context 'when id does not exist' do
-    let(:board) { Board.new(
+    let(:board) { Trello::Board.new(
       name: 'IT 1',
       description: 'description ...',
       organization_id: 1111,
