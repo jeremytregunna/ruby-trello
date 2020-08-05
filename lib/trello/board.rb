@@ -159,17 +159,14 @@ module Trello
     end
 
     def update_fields(fields)
-      writable_attributes.each do |attr_key|
-        send("#{attr_key}=", parse_writable_fields(fields, attr_key))
+      attrs = {}
+
+      schema.attrs.each do |_, attribute|
+        attrs = attribute.build_pending_update_attributes(fields, attrs)
       end
 
-      %i[
-        visibility_level voting_permission_level comment_permission_level
-        invitation_permission_level enable_self_join
-        enable_card_covers background_color background_image
-        card_aging_type
-      ].each do |attr_key|
-        send("#{attr_key}=", parse_prefs_fields(fields, attr_key))
+      attrs.each do |name, value|
+        send("#{name}=", value)
       end
 
       self
