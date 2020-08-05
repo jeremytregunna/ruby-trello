@@ -140,15 +140,12 @@ module Trello
 
       @previously_changed = changes
 
-      payload = Hash[
-        changes.map do |key, values|
-          if MAP_ATTRIBUTE.keys.include?(key.to_sym)
-            [MAP_ATTRIBUTE[key.to_sym].to_sym, values[1]]
-          elsif MAP_PREFS_ATTRIBUTE.keys.include?(key.to_sym)
-            [:"prefs/#{MAP_PREFS_ATTRIBUTE[key.to_sym]}", values[1]]
-          end
-        end
-      ]
+      payload = {}
+      changed_attrs = attributes.select {|name, _| changed.include?(name.to_s)}
+
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_update(changed_attrs, payload)
+      end
 
       from_response_v2 client.put("/boards/#{id}/", payload)
 
