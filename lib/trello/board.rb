@@ -25,7 +25,7 @@ module Trello
       attribute :pinned, readonly: true
       attribute :url, readonly: true
       attribute :short_url, readonly: true, remote_key: 'shortUrl'
-      attribute :prefs, readonly: true
+      attribute :prefs, readonly: true, default: {}
       attribute :last_activity_date, readonly: true, remote_key: 'dateLastActivity', serializer: 'Time'
       attribute :description_data, readonly: true, remote_key: 'descData'
       attribute :enterprise_id, readonly: true, remote_key: 'idEnterprise'
