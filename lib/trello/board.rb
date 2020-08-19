@@ -17,8 +17,45 @@ module Trello
   # @!attribute [r] prefs
   #   @return [Hash] A 24-character hex string
   class Board < BasicData
-    register_attributes :id, :name, :description, :closed, :starred, :url, :organization_id, :prefs, :last_activity_date,
-      readonly: [ :id, :url, :last_activity_date ]
+    schema do
+      attribute :id, readonly: true, primary_key: true
+
+      # Readonly
+      attribute :starred, readonly: true
+      attribute :pinned, readonly: true
+      attribute :url, readonly: true
+      attribute :short_url, readonly: true, remote_key: 'shortUrl'
+      attribute :prefs, readonly: true, default: {}
+      attribute :last_activity_date, readonly: true, remote_key: 'dateLastActivity', serializer: 'Time'
+      attribute :description_data, readonly: true, remote_key: 'descData'
+      attribute :enterprise_id, readonly: true, remote_key: 'idEnterprise'
+
+      # Writable
+      attribute :name
+      attribute :description, remote_key: 'desc'
+      attribute :organization_id, remote_key: 'idOrganization'
+      attribute :visibility_level, remote_key: 'permissionLevel', class_name: 'BoardPref'
+      attribute :voting_permission_level, remote_key: 'voting', class_name: 'BoardPref'
+      attribute :comment_permission_level, remote_key: 'comments', class_name: 'BoardPref'
+      attribute :invitation_permission_level, remote_key: 'invitations', class_name: 'BoardPref'
+      attribute :enable_self_join, remote_key: 'selfJoin', class_name: 'BoardPref'
+      attribute :enable_card_covers, remote_key: 'cardCovers', class_name: 'BoardPref'
+      attribute :background_color, remote_key: 'background', class_name: 'BoardPref'
+      attribute :background_image, remote_key: 'backgroundImage', class_name: 'BoardPref'
+      attribute :card_aging_type, remote_key: 'cardAging', class_name: 'BoardPref'
+
+      # Writable but for create only
+      attribute :use_default_labels, create_only: true, remote_key: 'defaultLabels'
+      attribute :use_default_lists, create_only: true, remote_key: 'defaultLists'
+      attribute :source_board_id, create_only: true, remote_key: 'idBoardSource'
+      attribute :keep_cards_from_source, create_only: true, remote_key: 'keepFromSource'
+      attribute :power_ups, create_only: true, remote_key: 'powerUps'
+
+      # Writable but for update only
+      attribute :closed, update_only: true
+      attribute :subscribed, update_only: true
+    end
+
     validates_presence_of :id, :name
     validates_length_of   :name,        in: 1..16384
     validates_length_of   :description, maximum: 16384
@@ -41,14 +78,7 @@ module Trello
       end
 
       def create(fields)
-        data = {
-          'name'   => fields[:name],
-          'desc'   => fields[:description],
-          'closed' => fields[:closed] || false,
-          'starred' => fields[:starred] || false }
-        data.merge!('idOrganization' => fields[:organization_id]) if fields[:organization_id]
-        data.merge!('prefs' => fields[:prefs]) if fields[:prefs]
-        client.create(:board, data)
+        client.create(:board, fields)
       end
 
       # @return [Array<Trello::Board>] all boards for the current user
@@ -57,48 +87,53 @@ module Trello
       end
     end
 
+    def initialize(fields = {})
+      initialize_fields(fields)
+    end
+
     def save
       return update! if id
 
-      fields = { name: name }
-      fields.merge!(desc: description) if description
-      fields.merge!(idOrganization: organization_id) if organization_id
-      fields.merge!(flat_prefs)
+      payload = {}
 
-      from_response(client.post("/boards", fields))
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_create(attributes, payload)
+      end
+
+      post('/boards', payload)
     end
 
     def update!
-      fail "Cannot save new instance." unless self.id
+      fail "Cannot save new instance." unless id
 
       @previously_changed = changes
+
+      payload = {}
+      changed_attrs = attributes.select {|name, _| changed.include?(name.to_s)}
+
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_update(changed_attrs, payload)
+      end
+
+      from_response_v2 client.put("/boards/#{id}/", payload)
+
       @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
 
-      fields = {
-        name: attributes[:name],
-        desc: attributes[:description],
-        closed: attributes[:closed],
-        starred: attributes[:starred],
-        idOrganization: attributes[:organization_id]
-      }
-      fields.merge!(flat_prefs)
-
-      from_response client.put("/boards/#{self.id}/", fields)
+      self
     end
 
     def update_fields(fields)
-      attributes[:id]              = fields['id'] || fields[:id]                          if fields['id']   || fields[:id]
-      attributes[:name]            = fields['name'] || fields[:name]                      if fields['name'] || fields[:name]
-      attributes[:description]     = fields['desc'] || fields[:desc]                      if fields['desc'] || fields[:desc]
-      attributes[:closed]          = fields['closed']                                     if fields.has_key?('closed')
-      attributes[:closed]          = fields[:closed]                                      if fields.has_key?(:closed)
-      attributes[:starred]         = fields['starred']                                    if fields.has_key?('starred')
-      attributes[:starred]         = fields[:starred]                                     if fields.has_key?(:starred)
-      attributes[:url]             = fields['url']                                        if fields['url']
-      attributes[:organization_id] = fields['idOrganization'] || fields[:organization_id] if fields['idOrganization'] || fields[:organization_id]
-      attributes[:prefs]           = fields['prefs'] || fields[:prefs] || {}
-      attributes[:last_activity_date] = Time.iso8601(fields['dateLastActivity']) rescue nil
+      attrs = {}
+
+      schema.attrs.each do |_, attribute|
+        attrs = attribute.build_pending_update_attributes(fields, attrs)
+      end
+
+      attrs.each do |name, value|
+        send("#{name}=", value)
+      end
+
       self
     end
 
@@ -190,26 +225,16 @@ module Trello
 
     private
 
-    # On creation
-    # https://trello.com/docs/api/board/#post-1-boards
-    # - permissionLevel
-    # - voting
-    # - comments
-    # - invitations
-    # - selfJoin
-    # - cardCovers
-    # - background
-    # - cardAging
-    #
-    # On update
-    # https://trello.com/docs/api/board/#put-1-boards-board-id
-    # Same as above plus:
-    # - calendarFeedEnabled
-    def flat_prefs
-      separator = id ? "/" : "_"
-      attributes[:prefs].inject({}) do |hash, (pref, v)|
-        hash.merge("prefs#{separator}#{pref}" => v)
+    def initialize_fields(fields)
+      schema.attrs.each do |_, attribute|
+        self.attributes = attribute.build_attributes(fields, attributes)
       end
+
+      self
+    end
+
+    def post(path, body)
+      from_response_v2 client.post(path, body)
     end
   end
 end

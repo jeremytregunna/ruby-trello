@@ -31,6 +31,35 @@ module Trello
       end
     end
 
+    describe '.create' do
+      before { allow(Board).to receive(:client).and_return(client) }
+
+      it 'will call create on client with correct parameters' do
+        params = {
+          name: 'Board Name',
+          use_default_labels: true,
+          use_default_lists: true,
+          description: 'description...',
+          organization_id: 11111,
+          source_board_id: 22222,
+          keep_cards_from_source: true,
+          power_ups: 'all',
+          visibility_level: 'org',
+          voting_permission_level: 'org',
+          comment_permission_level: 'org',
+          invitation_permission_level: 'admins',
+          enable_self_join: true,
+          enable_card_covers: true,
+          background_color: 'orange',
+          card_aging_type: 'pirate'
+        }
+
+        expect(client).to receive(:create).with(:board, params)
+
+        Board.create(params)
+      end
+    end
+
     context "self.all" do
       let(:client) { Trello.client }
 
@@ -276,57 +305,6 @@ module Trello
       end
     end
 
-    describe "#update_fields" do
-      it "does not set any fields when the fields argument is empty" do
-        expected = {
-         'id' => "id",
-         'name' => "name",
-         'desc' => "desc",
-         'closed' => false,
-         'starred' => false,
-         'url' => "url",
-         'idOrganization' => "org_id"
-        }
-
-        board = Board.new(expected)
-        board.client = client
-
-        board.update_fields({})
-
-        expected.each_pair do |key, value|
-          if board.respond_to?(key)
-            expect(board.send(key)).to eq value
-          end
-        end
-
-        expect(board.description).to eq expected['desc']
-        expect(board.organization_id).to eq expected['idOrganization']
-      end
-
-      it "initializes all fields from response-like formatted hash" do
-        board_details = boards_details.first
-        board = Board.new(board_details)
-        expect(board.id).to                 eq board_details['id']
-        expect(board.name).to               eq board_details['name']
-        expect(board.description).to        eq board_details['desc']
-        expect(board.closed).to             eq board_details['closed']
-        expect(board.starred).to            eq board_details['starred']
-        expect(board.organization_id).to    eq board_details['idOrganization']
-        expect(board.url).to                eq board_details['url']
-        expect(board.last_activity_date).to eq board_details['dateLastActivity']
-      end
-
-      it "initializes all fields from options-like formatted hash" do
-        board_details = boards_details[1]
-        board = Board.new(board_details)
-        expect(board.name).to            eq board_details[:name]
-        expect(board.description).to     eq board_details[:desc]
-        expect(board.closed).to          eq board_details[:closed]
-        expect(board.starred).to         eq board_details[:starred]
-        expect(board.organization_id).to eq board_details[:organization_id]
-      end
-    end
-
     describe "#save" do
       let(:client) { Trello.client }
 
@@ -344,17 +322,6 @@ module Trello
         expect {
           Board.new.save
         }.to raise_error(Trello::ConfigurationError)
-      end
-
-      it "puts all fields except id" do
-        expected_fields = %w{ name desc closed starred idOrganization}.map { |s| s.to_sym }
-
-        expect(client).to receive(:put) do |anything, body|
-          expect(body.keys).to match expected_fields
-          any_board_json
-        end
-
-        Board.new('id' => "xxx").save
       end
 
       it "mutates the current instance" do
@@ -380,35 +347,6 @@ module Trello
       it "saves OR updates depending on whether or not it has an id set"
     end
 
-    describe '#update!' do
-      let(:client) { Trello.client }
-
-      let(:any_board_json) do
-        JSON.generate(boards_details.first)
-      end
-
-      it "puts basic attributes" do
-        board = Board.new 'id' => "board_id"
-
-        board.name        = "new name"
-        board.description = "new description"
-        board.closed      = true
-        board.starred     = true
-
-        expect(client)
-          .to receive(:put)
-          .with("/boards/#{board.id}/", {
-            name: "new name",
-            desc: "new description",
-            closed: true,
-            starred: true,
-            idOrganization: nil })
-          .and_return any_board_json
-
-        board.update!
-      end
-    end
-
     describe "Repository" do
       include Helpers
 
@@ -425,7 +363,7 @@ module Trello
 
       it "creates a new board with whatever attributes are supplied " do
         expected_attributes = { name: "Any new board name", description: "Any new board desription" }
-        sent_attributes = { name: expected_attributes[:name], desc: expected_attributes[:description] }
+        sent_attributes = { 'name' => expected_attributes[:name], 'desc' => expected_attributes[:description] }
 
         expect(client)
           .to receive(:post)

@@ -8,6 +8,7 @@ require 'vcr'
 require 'pry-byebug' if RUBY_ENGINE != 'jruby'
 
 VCR.configure do |config|
+  config.default_cassette_options = { match_requests_on: %i[uri method body] }
   config.cassette_library_dir = 'spec/cassettes'
   config.hook_into :webmock
 
@@ -66,6 +67,26 @@ module IntegrationHelpers
       config.developer_public_key = ENV['TRELLO_DEVELOPER_PUBLIC_KEY'] || 'developerpublickey'
       config.member_token = ENV['TRELLO_MEMBER_TOKEN'] || 'membertoken'
     end
+  end
+end
+
+RSpec::Matchers.define :match_hash_with_indifferent_access do |expected|
+  match do |actual|
+    actual.with_indifferent_access == expected.with_indifferent_access
+  end
+
+  failure_message do |actual|
+    <<~EOF
+    expected: #{expected}
+         got: #{actual}
+    EOF
+  end
+
+  failure_message_when_negated do |actual|
+    <<~EOF
+    expected: value != #{expected}
+         got:          #{actual}
+    EOF
   end
 end
 

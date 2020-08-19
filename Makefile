@@ -16,8 +16,7 @@ bundle:
 dev:
 	@${RUN} ruby_2_6 bash
 test:
-	@${RUN} ruby_2_6 bundle exec rspec spec
-
+	@${RUN} ruby_2_6 bundle exec rspec $(filter-out $@,$(MAKECMDGOALS))
 dev\:ruby_2_5:
 	@${RUN} ruby_2_5 bash
 test\:ruby_2_5:
@@ -40,3 +39,5 @@ test\:all:
 	@${RUN} ruby_2_6 bundle exec rspec spec
 	@${RUN} ruby_2_7 bundle exec rspec spec
 	@${RUN} jruby_9_2 bundle exec rspec spec
+%:
+	@:
