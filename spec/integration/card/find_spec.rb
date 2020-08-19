@@ -49,7 +49,6 @@ RSpec.describe 'Trello::Card#find' do
       expect(card.url).to be_nil
       expect(card.short_url).to be_nil
       expect(card.due).to be_nil
-      expect(card.due_complete).to eq(false)
       expect(card.closed).to be_nil
       expect(card.board_id).to be_nil
       expect(card.member_ids).to be_nil
@@ -60,6 +59,7 @@ RSpec.describe 'Trello::Card#find' do
       expect(card.cover_image_id).to be_nil # only exist when the care use a custom cover image
       expect(card.badges).to be_nil
       expect(card.source_card_id).to be_nil # it's params only work for create card
+      expect(card.due_complete).to be_nil
       expect(card.source_card_properties).to be_nil # it's params only work for creae card
     end
   end
