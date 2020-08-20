@@ -52,6 +52,7 @@ module Trello
   autoload :Attachment,           'trello/attachment'
   autoload :CoverImage,           'trello/cover_image'
   autoload :BasicData,            'trello/basic_data'
+  autoload :BasicDataAlpha,       'trello/basic_data_alpha'
   autoload :Board,                'trello/board'
   autoload :Card,                 'trello/card'
   autoload :Checklist,            'trello/checklist'
