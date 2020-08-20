@@ -6,7 +6,7 @@ module Trello
 
     let(:board) { client.find(:board, 'abcdef123456789123456789') }
     let(:client) { Client.new }
-    let(:member) { Member.new(user_payload) }
+    let(:member) { Member.new(JSON.parse(user_payload)) }
 
     before do
       allow(client)
@@ -199,7 +199,7 @@ module Trello
       it "adds a member to the board as a normal user (default)" do
         expect(client)
           .to receive(:put)
-          .with("/boards/abcdef123456789123456789/members/id", type: :normal)
+          .with("/boards/abcdef123456789123456789/members/#{member.id}", type: :normal)
 
         board.add_member(member)
       end
@@ -207,7 +207,7 @@ module Trello
       it "adds a member to the board as an admin" do
         expect(client)
           .to receive(:put)
-          .with("/boards/abcdef123456789123456789/members/id", type: :admin)
+          .with("/boards/abcdef123456789123456789/members/#{member.id}", type: :admin)
 
         board.add_member(member, :admin)
       end
@@ -222,7 +222,7 @@ module Trello
       it "removes a member from the board" do
         expect(client)
           .to receive(:delete)
-          .with("/boards/abcdef123456789123456789/members/id")
+          .with("/boards/abcdef123456789123456789/members/#{member.id}")
 
         board.remove_member(member)
       end
