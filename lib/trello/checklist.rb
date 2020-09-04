@@ -31,11 +31,6 @@ module Trello
     validates_presence_of :id
     validates_length_of :name, in: 1..16384
 
-    # Check if the checklist is currently active.
-    def closed?
-      closed
-    end
-
     # Return a list of items on the checklist.
     def items
       check_items.map do |item_fields|
