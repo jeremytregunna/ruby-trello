@@ -20,7 +20,7 @@ module Trello
       it "delegates to Trello.client#find" do
         expect(client)
           .to receive(:find)
-          .with(:checklist, 'abcdef123456789123456789', {})
+          .with('checklist', 'abcdef123456789123456789', {})
 
         Checklist.find('abcdef123456789123456789')
       end
@@ -35,41 +35,43 @@ module Trello
 
       it 'creates a new record and saves it on Trello', refactor: true do
         payload = {
-            name: 'Test Checklist',
-            desc: '',
-            card_id: cards_details.first['id']
+          name: 'Test Checklist',
+          card_id: '5e94fd9443f25a7263b165d0'
         }
 
-        attributes = checklists_details.first.merge(payload).except("idBoard")
-        result = JSON.generate(attributes)
+        result = JSON.generate(payload)
 
-
-        expected_payload = {name: "Test Checklist", idCard: cards_details.first['id']}
+        expected_payload = {
+          'name' => 'Test Checklist',
+          'idCard' => '5e94fd9443f25a7263b165d0'
+        }
 
         expect(client)
           .to receive(:post)
           .with("/checklists", expected_payload)
           .and_return result
 
-        checklist = Checklist.create(attributes)
+        checklist = Checklist.create(payload)
 
         expect(checklist).to be_a Checklist
       end
 
       it 'initializes all fields from response-like hash' do
-        checklist_details = checklists_details.first
-        checklist = Checklist.new(checklist_details)
-        expect(checklist.id).to          eq checklist_details['id']
-        expect(checklist.name).to        eq checklist_details['name']
-        expect(checklist.description).to eq checklist_details['desc']
-        expect(checklist.closed).to      eq checklist_details['closed']
-        expect(checklist.position).to    eq checklist_details['pos']
-        expect(checklist.url).to         eq checklist_details['url']
-        expect(checklist.board_id).to    eq checklist_details['idBoard']
-        expect(checklist.card_id).to     eq checklist_details['idCard']
-        expect(checklist.list_id).to     eq checklist_details['idList']
-        expect(checklist.member_ids).to  eq checklist_details['idMembers']
-        expect(checklist.check_items).to eq checklist_details['checkItems']
+        checklist = Checklist.new(
+          'id'         => 'abcdef123456789123456789',
+          'name'       => 'Test Checklist',
+          'pos'        => 16384,
+          'idBoard'    => 'abcdef123456789123456789',
+          'idCard'     => 'abccardid',
+          'checkItems' => { 'id' => 'ghijk987654321' }
+        )
+
+        expect(checklist.id).to          eq 'abcdef123456789123456789'
+        expect(checklist.name).to        eq 'Test Checklist'
+        expect(checklist.position).to    eq 16384
+        expect(checklist.board_id).to    eq 'abcdef123456789123456789'
+        expect(checklist.card_id).to     eq 'abccardid'
+        expect(checklist.check_items).to eq({ 'id' => 'ghijk987654321' })
       end
 
       it 'initializes required fields from options-like hash' do
@@ -113,7 +115,7 @@ module Trello
         result = JSON.generate(checklists_details.first)
         expect(client)
           .to receive(:put)
-          .once.with(expected_resource, payload)
+          .once.with(expected_resource, {'name' => expected_new_name})
           .and_return result
 
         checklist.name = expected_new_name
@@ -132,7 +134,7 @@ module Trello
         expect(client)
           .to receive(:put)
           .once
-          .with(expected_resource, payload)
+          .with(expected_resource, {'pos' => expected_new_position})
           .and_return result
 
         checklist.position = expected_new_position
@@ -197,19 +199,6 @@ module Trello
       end
     end
 
-    context "list" do
-      before do
-        allow(client)
-          .to receive(:get)
-          .with("/lists/abcdef123456789123456789", {})
-          .and_return JSON.generate(lists_details.first)
-      end
-
-      it 'has a list' do
-        expect(checklist.list).to_not be_nil
-      end
-    end
-
     context "making a copy" do
       let(:client) { Trello.client }
       let(:copy_options) { { :name => checklist.name, :idCard => checklist.card_id } }
@@ -218,7 +207,7 @@ module Trello
       before(:each) do
         allow(client)
           .to receive(:post)
-          .with("/checklists", copy_options)
+          .with("/checklists", copy_options.stringify_keys)
           .and_return JSON.generate(copied_checklists_details.first)
 
         allow(checklist)
@@ -271,15 +260,10 @@ module Trello
         expected = {
           'id' => 'id',
           'name' => 'name',
-          'desc' => 'description',
-          'closed' => 'closed',
-          'url' => 'url',
           'checkItems' => 'check_items',
           'pos' => 'position',
           'idBoard' => 'board_id',
           'idCard' => 'card_id',
-          'idList' => 'list_id',
-          'idMembers' => 'member_ids'
         }
 
         checklist = Checklist.new(expected)

@@ -5,77 +5,35 @@ module Trello
   #   @return [String]
   # @!attribute [rw] name
   #   @return [String]
-  # @!attribute [r] description
-  #   @return [String]
-  # @!attribute [r] closed
-  #   @return [Boolean]
   # @!attribute [rw] position
   #   @return [Object]
-  # @!attribute [r] url
-  #   @return [String]
   # @!attribute [r] check_items
   #   @return [Object]
   # @!attribute [r] board_id
   #   @return [String] A 24-character hex string
-  # @!attribute [r] list_id
-  #   @return [String] A 24-character hex string
-  # @!attribute [r] member_ids
-  #   @return [Array<String>] An array of 24-character hex strings
-  class Checklist < BasicData
-    register_attributes :id, :name, :description, :closed, :position, :url, :check_items, :board_id, :list_id, :card_id, :member_ids,
-                        readonly: [:id, :description, :closed, :url, :check_items, :board_id, :list_id, :card_id, :member_ids]
-    validates_presence_of :id, :board_id, :list_id
+  class Checklist < BasicDataAlpha
+    schema do
+      attribute :id, readonly: true, primary_key: true
+
+      # Readonly
+      attribute :check_items, readonly: true, remote_key: 'checkItems'
+      attribute :board_id, readonly: true, remote_key: 'idBoard'
+
+      # Writable
+      attribute :name
+      attribute :position, remote_key: 'pos'
+
+      # Writable but for update only
+      attribute :card_id, create_only: true, remote_key: 'idCard'
+      attribute :source_checklist_id, create_only: true, remote_key: 'idChecklistSource'
+    end
+
+    validates_presence_of :id
     validates_length_of :name, in: 1..16384
-
-    class << self
-      # Locate a specific checklist by its id.
-      def find(id, params = {})
-        client.find(:checklist, id, params)
-      end
-
-      def create(options)
-        client.create(:checklist,
-                      'name' => options[:name],
-                      'idCard'  => options[:card_id])
-      end
-    end
-
-    # Update the fields of a checklist.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # a checklist.
-    def update_fields(fields)
-      attributes[:id] = fields['id'] || attributes[:id]
-      attributes[:name] = fields['name'] || fields[:name] || attributes[:name]
-      attributes[:description] = fields['desc'] || attributes[:description]
-      attributes[:closed] = fields['closed'] if fields.has_key?('closed')
-      attributes[:url] = fields['url'] || attributes[:url]
-      attributes[:check_items] = fields['checkItems'] if fields.has_key?('checkItems')
-      attributes[:position] = fields['pos'] || attributes[:position]
-      attributes[:board_id] = fields['idBoard'] || attributes[:board_id]
-      attributes[:card_id] = fields['idCard'] || fields[:card_id] || attributes[:card_id]
-      attributes[:list_id] = fields['idList'] || attributes[:list_id]
-      attributes[:member_ids] = fields['idMembers'] || attributes[:member_ids]
-      self
-    end
 
     # Check if the checklist is currently active.
     def closed?
       closed
-    end
-
-    # Save a record.
-    def save
-      return update! if id
-
-      from_response(client.post("/checklists", {
-        name: name,
-        idCard: card_id
-      }))
-    end
-
-    def update!
-      from_response(client.put("/checklists/#{id}", {name: name, pos: position}))
     end
 
     # Return a list of items on the checklist.
@@ -90,17 +48,6 @@ module Trello
 
     # Return a reference to the card the checklist is on.
     one :card, path: :checklists, using: :card_id
-
-    # Return a reference to the list the checklist is on.
-    one :list, path: :lists, using: :list_id
-
-    # Return a list of members active in this checklist.
-    def members
-      members = member_ids.map do |member_id|
-        Member.find(member_id)
-      end
-      MultiAssociation.new(self, members).proxy
-    end
 
     # Add an item to the checklist
     def add_item(name, checked = false, position = 'bottom')
