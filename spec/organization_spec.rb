@@ -47,14 +47,15 @@ module Trello
           'id' => 'id',
           'name' => 'name',
           'displayName' => 'display_name',
+          'descData' => 'desc_data',
+          'website' => 'website',
+          'teamType' => 'team_type',
           'desc' => 'description',
           'url' => 'url',
-          'invited' => 'invited',
-          'website' => 'website',
           'logoHash' => 'logo_hash',
-          'billableMemberCount' => 'billable_member_count',
-          'activeBillableMemberCount' => 'active_billable_member_count',
-          'memberships' => 'memberships'
+          'logoUrl' => 'logo_url',
+          'products' => 'products',
+          'powerUps' => 'power_ups'
         }
 
         organization = Organization.new(expected)
