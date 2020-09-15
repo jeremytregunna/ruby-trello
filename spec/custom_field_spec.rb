@@ -30,7 +30,7 @@ module Trello
         expect(custom_field.id).to          eq(custom_field_details['id'])
         expect(custom_field.name).to        eq(custom_field_details['name'])
         expect(custom_field.type).to        eq(custom_field_details['type'])
-        expect(custom_field.pos).to         eq(custom_field_details['pos'])
+        expect(custom_field.position).to    eq(custom_field_details['pos'])
         expect(custom_field.model_id).to    eq(custom_field_details['idModel'])
         expect(custom_field.model_type).to  eq(custom_field_details['modelType'])
       end
@@ -41,7 +41,7 @@ module Trello
         expect(custom_field.id).to          eq(custom_field_details[:id])
         expect(custom_field.name).to        eq(custom_field_details[:name])
         expect(custom_field.type).to        eq(custom_field_details[:type])
-        expect(custom_field.pos).to         eq(custom_field_details[:pos])
+        expect(custom_field.position).to    eq(custom_field_details[:pos])
         expect(custom_field.model_id).to    eq(custom_field_details[:model_id])
         expect(custom_field.model_type).to  eq(custom_field_details[:model_type])
       end
@@ -54,25 +54,36 @@ module Trello
         expect(custom_field.errors).to include(:id)
         expect(custom_field.errors).to include(:model_id)
         expect(custom_field.errors).to include(:model_type)
-        expect(custom_field.errors).to include(:pos)
+        expect(custom_field.errors).to include(:position)
         expect(custom_field.errors).to include(:type)
       end
 
       it 'creates a new record and saves it on Trello', refactor: true do
         test_payload = {
-          name: 'Test Custom Field'
+          name: 'Test Custom Field',
+          type: 'checkbox',
+          model_id: 'abc123',
+          model_type: 'board',
+          position: 123,
+          filed_group: nil
         }
 
-        result = JSON.generate(custom_fields_details.first.merge(test_payload))
-        expected_payload = {name: 'Test Custom Field', type: 'checkbox', idModel: 'abc123',
-                            modelType: 'board', pos: 123, fieldGroup: nil}
+        result = JSON.generate(test_payload)
+
+        expected_payload = {
+          'name' => 'Test Custom Field',
+          'pos' => 123,
+          'idModel' => 'abc123',
+          'modelType' => 'board',
+          'type' => 'checkbox'
+        }
 
         expect(client)
           .to receive(:post)
           .with('/customFields', expected_payload)
           .and_return result
 
-        custom_field = CustomField.create(custom_fields_details[1].merge(test_payload))
+        custom_field = CustomField.create(test_payload)
         expect(custom_field).to be_a CustomField
       end
     end
@@ -102,11 +113,12 @@ module Trello
       it 'correctly updates custom field name' do
         expected_new_name = 'Test Name'
 
-        payload = { name: expected_new_name }
+        payload = { 'name' => expected_new_name }
 
         expect(client)
           .to receive(:put).once
           .with('/customFields/abcdef123456789123456789', payload)
+          .and_return(JSON.generate(payload))
 
         custom_field.name = expected_new_name
         custom_field.save
@@ -135,7 +147,7 @@ module Trello
       end
 
       it 'gets its position' do
-        expect(custom_field.pos).to_not be_nil
+        expect(custom_field.position).to_not be_nil
       end
     end
 
@@ -196,7 +208,7 @@ module Trello
           expect(custom_field.model_id).to eq custom_field_detail['idModel']
           expect(custom_field.model_type).to eq custom_field_detail['modelType']
           expect(custom_field.name).to eq custom_field_detail['name']
-          expect(custom_field.pos).to eq custom_field_detail['pos']
+          expect(custom_field.position).to eq custom_field_detail['pos']
           expect(custom_field.type).to eq custom_field_detail['type']
         end
       end
@@ -227,7 +239,7 @@ module Trello
             expect(custom_field.name).to eq(custom_field_detail['name'])
           end
 
-          it "custom field hasn't been mark as changed", pending: true do
+          it "custom field hasn't been mark as changed" do
             custom_field.update_fields(fields)
 
             expect(custom_field.changed?).to be_falsy
@@ -244,7 +256,7 @@ module Trello
             expect(custom_field.model_id).to eq custom_field_detail['idModel']
             expect(custom_field.model_type).to eq custom_field_detail['modelType']
             expect(custom_field.name).to eq custom_field_detail['name']
-            expect(custom_field.pos).to eq custom_field_detail['pos']
+            expect(custom_field.position).to eq custom_field_detail['pos']
             expect(custom_field.type).to eq custom_field_detail['type']
           end
 

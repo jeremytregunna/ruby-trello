@@ -4,6 +4,7 @@ module Trello
       autoload :Base, 'trello/schema/attribute/base'
       autoload :Default, 'trello/schema/attribute/default'
       autoload :BoardPref, 'trello/schema/attribute/board_pref'
+      autoload :CustomFieldDisplay, 'trello/schema/attribute/custom_field_display'
     end
 
     module Serializer

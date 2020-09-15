@@ -17,37 +17,36 @@ module Trello
   #   @return [String]
   # @!attribute options
   #   @return [Array<Hash>]
-  class CustomField < BasicData
-    register_attributes :id, :model_id, :model_type, :field_group, :name, :pos, :type
-    validates_presence_of :id, :model_id, :model_type, :name, :type, :pos
+  class CustomField < BasicDataAlpha
 
-    SYMBOL_TO_STRING = {
-      id:          'id',
-      name:        'name',
-      model_id:    'idModel',
-      model_type:  'modelType',
-      field_group: 'fieldGroup',
-      type:        'type',
-      pos:         'pos'
-    }
+    schema do
+      # Readonly
+      attribute :id, readonly: true, primary_key: true
+      attribute :field_group, readonly: true, remote_key: 'fieldGroup'
+
+      # Writable
+      attribute :name
+      attribute :position, remote_key: 'pos'
+      attribute :enable_display_on_card, remote_key: 'cardFront', class_name: 'CustomFieldDisplay'
+
+      # Writable but for create only
+      attribute :model_id, remote_key: 'idModel', create_only: true
+      attribute :model_type, remote_key: 'modelType', create_only: true
+      attribute :type, create_only: true
+      attribute :checkbox_options, remote_key: 'options', create_only: true
+    end
+
+    validates_presence_of :id, :model_id, :model_type, :name, :type, :position
 
     class << self
       # Find a custom field by its id.
       def find(id, params = {})
         client.find('customFields', id, params)
       end
+    end
 
-      # Create a new custom field and save it on Trello.
-      def create(options)
-        client.create('customFields',
-          'name'       => options[:name],
-          'idModel'    => options[:model_id],
-          'modelType'  => options[:model_type],
-          'fieldGroup' => options[:field_group],
-          'type'       => options[:type],
-          'pos'        => options[:pos]
-        )
-      end
+    def collection_name
+      'customFields'
     end
 
     # References Board where this custom field is located
@@ -56,43 +55,6 @@ module Trello
 
     # If type == 'list'
     many :custom_field_options, path: 'options'
-
-    def update_fields(fields)
-      send('name_will_change!') if fields_has_key?(fields, :name)
-      send('pos_will_change!') if fields_has_key?(fields, :pos)
-
-      initialize_fields(fields)
-    end
-
-    def initialize(fields = {})
-      initialize_fields(fields)
-    end
-
-    # Saves a record.
-    def save
-      # If we have an id, just update our fields.
-      return update! if id
-
-      from_response client.post("/customFields", {
-        name:       name,
-        idModel:    model_id,
-        modelType:  model_type,
-        type:       type,
-        pos:        pos,
-        fieldGroup: field_group
-      })
-    end
-
-    # Update an existing custom field.
-    def update!
-      @previously_changed = changes
-      # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      client.put("/customFields/#{id}", payload)
-    end
 
     # Delete this custom field
     # Also deletes all associated values across all cards
@@ -109,23 +71,6 @@ module Trello
     # Will also clear it from individual cards that have this option selected
     def delete_option(option_id)
       client.delete("/customFields/#{id}/options/#{option_id}")
-    end
-
-    private
-
-    def fields_has_key?(fields, key)
-      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
-    end
-
-    def initialize_fields(fields)
-      attributes[:id]          = fields[SYMBOL_TO_STRING[:id]] || fields[:id] || attributes[:id]
-      attributes[:name]        = fields[SYMBOL_TO_STRING[:name]] || fields[:name] || attributes[:name]
-      attributes[:model_id]    = fields[SYMBOL_TO_STRING[:model_id]] || fields[:model_id] || attributes[:model_id]
-      attributes[:model_type]  = fields[SYMBOL_TO_STRING[:model_type]] || fields[:model_type] || attributes[:model_type]
-      attributes[:field_group] = fields[SYMBOL_TO_STRING[:field_group]] || fields[:field_group] || attributes[:field_group]
-      attributes[:type]        = fields[SYMBOL_TO_STRING[:type]] || fields[:type] || attributes[:type]
-      attributes[:pos]         = fields[SYMBOL_TO_STRING[:pos]] || fields[:pos] || attributes[:pos]
-      self
     end
   end
 end
