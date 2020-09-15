@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.trello.com/1/customFields?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: UTF-8
+      string: name=Started&pos=bottom&display_cardFront=true&idModel=5e93ba98614ac22d22f085c4&modelType=board&type=checkbox
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux-gnu x86_64) ruby/2.6.6p146
+      Content-Length:
+      - '109'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      X-Trello-Version:
+      - 1.2226.1
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '200'
+      X-Rate-Limit-Member-Remaining:
+      - '199'
+      X-Server-Time:
+      - '1600187851143'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 15 Sep 2020 16:37:31 GMT
+      X-Envoy-Upstream-Service-Time:
+      - '159'
+      Expect-Ct:
+      - report-uri="https://web-security-reports.services.atlassian.com/expect-ct-report/trello-edge",
+        max-age=86400
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Server:
+      - globaledge-envoy
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"5f60edcbe0610f8811951cae","idModel":"5e93ba98614ac22d22f085c4","modelType":"board","fieldGroup":"7ae784a6a8a8d5ce76571242f8f5c1d1bd895bc0b1f894d8829b4f3510ff7108","display":{"cardFront":true},"name":"Started","pos":49152,"type":"checkbox","limits":{"customFieldOptions":{"perField":{"status":"ok","disableAt":50,"warnAt":45}}}}'
+    http_version: null
+  recorded_at: Tue, 15 Sep 2020 16:37:31 GMT
+recorded_with: VCR 5.1.0
