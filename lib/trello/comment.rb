@@ -9,29 +9,30 @@ module Trello
   #   @return [Datetime]
   # @!attribute [r] member_creator_id
   #   @return [String]
-  class Comment < BasicData
-    register_attributes :action_id, :text, :date, :member_creator_id,
-      readonly: [ :action_id, :text, :date, :member_creator_id ]
+  class Comment < BasicDataAlpha
+
+    schema do
+      # Readonly
+      attribute :id, readonly: true, primary_key: true
+      attribute :member_creator_id, readonly: true, remote_key: 'idMemberCreator'
+      attribute :data, readonly: true
+      attribute :type, readonly: true
+      attribute :date, readonly: true, serializer: 'Time'
+      attribute :limits, readonly: true
+      attribute :app_creator, readonly: true, remote_key: 'appCreator'
+      attribute :display, readonly: true
+
+      # Writable
+      attribute :text, update_only: true
+    end
+
     validates_presence_of :action_id, :text, :date, :member_creator_id
     validates_length_of   :text,        in: 1..16384
 
     class << self
-      # Locate a specific action and return a new Comment object.
       def find(action_id)
-        client.find(:action, action_id, filter: commentCard)
+        client.find(:action, action_id)
       end
-    end
-
-    # Update the attributes of a Comment
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # a Comment.
-    def update_fields(fields)
-      attributes[:action_id]          = fields['id'] || attributes[:action_id]
-      attributes[:text]               = fields['data']['text'] || attributes[:text]
-      attributes[:date]               = Time.iso8601(fields['date']) if fields.has_key?('date')
-      attributes[:member_creator_id]  = fields['idMemberCreator'] || attributes[:member_creator_id]
-      self
     end
 
     # Returns the board this comment is located
@@ -54,7 +55,6 @@ module Trello
       ruta = "/actions/#{action_id}"
       client.delete(ruta)
     end
-
 
     # Returns the member who created the comment.
     one :member_creator, via: Member, path: :members, using: :member_creator_id
