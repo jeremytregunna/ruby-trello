@@ -131,8 +131,7 @@ module Trello
           'id' => 'id',
           'type' => 'type',
           'data' => 'data',
-          'idMemberCreator' => 'member_creator_id',
-          'member' => 'member_participant'
+          'idMemberCreator' => 'member_creator_id'
         }
 
         action = Action.new(expected)
