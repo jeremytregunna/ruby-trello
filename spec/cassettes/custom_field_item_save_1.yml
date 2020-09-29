@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: put
-    uri: https://api.trello.com/1/card/5e679be5d53dfa748f41d775/customField/5e68e8e87c16bf75894df21a/item?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    uri: https://api.trello.com/1/cards/5e679be5d53dfa748f41d775/customField/5e68e8e87c16bf75894df21a/item?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: UTF-8
       string: value[text]=cool

@@ -80,5 +80,9 @@ module Trello
     def post(path, body)
       from_response_v2 client.post(path, body)
     end
+
+    def put(path, body)
+      from_response_v2 client.put(path, body)
+    end
   end
 end

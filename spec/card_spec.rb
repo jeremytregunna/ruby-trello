@@ -367,17 +367,26 @@ module Trello
 
         expect(client)
           .to receive(:put)
-          .with("/card/abcdef123456789123456789/customField/abcdef123456789123456789/item", params)
+          .with("/cards/abcdef123456789123456789/customField/abcdef123456789123456789/item", params)
 
         card.custom_field_items.last.remove
       end
 
       it "updates a custom field value" do
-        payload = { value: { text: 'Test Text' } }
+        payload = { 'value' => { 'text' => 'Test Text' } }
 
         expect(client)
           .to receive(:put)
-          .with("/card/abcdef123456789123456789/customField/abcdef123456789123456789/item", payload)
+          .with("/cards/abcdef123456789123456789/customField/abcdef123456789123456789/item", payload)
+          .and_return(JSON.generate({
+            "id" => "5e68e885e4baf545ec8ce7ba",
+            "value" => {
+              "text" => "Test Text"
+            },
+            "idCustomField" => "abcdef123456789123456789",
+            "idModel" => "abcdef123456789123456789",
+            "modelType" => "card"
+          }))
 
         text_custom_field = card.custom_field_items.last
         text_custom_field.value = { text: 'Test Text' }

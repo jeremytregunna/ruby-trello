@@ -1,9 +1,18 @@
 module Trello
   # A custom field item contains the value for a custom field on a particular card.
   #
-  class CustomFieldItem < BasicData
-    register_attributes :id, :model_id, :model_type, :custom_field_id, :value, :option_id,
-                        readonly: [ :id, :custom_field_id, :model_id, :model_type, :option_id ]
+  class CustomFieldItem < BasicDataAlpha
+
+    schema do
+      attribute :id, readonly: true, primary_key: true
+      attribute :model_id, readonly: true, remote_key: 'idModel'
+      attribute :model_type, readonly: true, remote_key: 'modelType'
+      attribute :custom_field_id, readonly: true, remote_key: 'idCustomField'
+      attribute :option_id, readonly: true, remote_key: 'idValue'
+
+      attribute :value
+    end
+
     validates_presence_of :id, :model_id, :custom_field_id
 
     # References the card with this custom field value
@@ -12,53 +21,30 @@ module Trello
     # References the parent custom field that this item is an instance of
     one :custom_field, path: 'customFields', using: :custom_field_id
 
-    # Update the fields of a custom field item.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # an item state.
-    def update_fields(fields)
-      if fields_has_key?(fields, 'value')
-        send('value_will_change!')
-      elsif fields_has_key?(fields, 'idValue')
-        send('option_id_will_change!')
-      end
-
-      initialize_fields(fields)
-    end
-
-    def initialize(fields = {})
-      initialize_fields(fields)
-    end
-
-    def update!
-      @previously_changed = changes
-      # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [key.to_sym, values[1]] }]
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      client.put("/card/#{model_id}/customField/#{custom_field_id}/item", payload)
-    end
-
-    # Saves a record.
-    #
-    # @raise [Trello::Error] if the card could not be saved
-    #
-    # @return [String] The JSON representation of the saved custom field item returned by
-    # the Trello API.
     def save
-      # If we have an id, just update our fields.
       return update! if id
 
-      from_response client.put("/card/#{model_id}/customField/#{custom_field_id}/item", {
-        value: value
-      })
+      payload = {}
+
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_create(attributes, payload)
+      end
+
+      put(element_path, payload)
+    end
+
+    def collection_path
+      "/cards/#{model_id}/#{collection_name}"
+    end
+
+    def element_path
+      "/cards/#{model_id}/customField/#{custom_field_id}/item"
     end
 
     # You can't "delete" a custom field item, you can only clear the value
     def remove
       params = { value: {} }
-      client.put("/card/#{model_id}/customField/#{custom_field_id}/item", params)
+      client.put(element_path, params)
     end
 
     # Type is saved at the CustomField level
@@ -74,25 +60,6 @@ module Trello
         option = CustomFieldOption.from_response client.get(option_endpoint)
         option.value
       end
-    end
-
-    private
-
-    def fields_has_key?(fields, key)
-      fields.key?(key.to_s) || fields.key?(key.to_sym)
-    end
-
-    def initialize_fields(fields)
-      attributes[:id]               = fields['id'] || fields[:id] || attributes[:id]
-      attributes[:model_id]         = fields['idModel'] || fields[:model_id] || attributes[:model_id]
-      attributes[:custom_field_id]  = fields['idCustomField'] || fields[:custom_field_id] || attributes[:custom_field_id]
-      attributes[:model_type]       = fields['modelType'] || fields[:model_type] || attributes[:model_type]
-      # Dropdown custom field items do not have a value, they have an ID that maps to
-      # a different endpoint to get the value
-      attributes[:option_id]       = fields['idValue'] || fields[:idValue] if fields_has_key?(fields, 'idValue')
-      # value format: { "text": "hello world" }
-      attributes[:value]            = fields['value'] || fields[:value] if fields_has_key?(fields, 'value')
-      self
     end
   end
 end

@@ -140,7 +140,7 @@ module Trello
           it 'custom field item does set the changed fields' do
             text_item.update_fields(fields)
 
-            expect(text_item.value).to eq( { number: '42' } )
+            expect(text_item.value).to eq( { 'number' => '42' } )
           end
 
           it 'card has been mark as changed' do
@@ -159,7 +159,7 @@ module Trello
             expect(text_item.value).to eq(text_field_details['value'])
           end
 
-          it "custom field item hasn't been mark as changed", pending: true do
+          it "custom field item hasn't been mark as changed" do
             text_item.update_fields(fields)
 
             expect(text_item.changed?).to be_falsy
