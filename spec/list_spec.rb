@@ -249,5 +249,27 @@ module Trello
         end
       end
     end
+
+    describe '#move_to_board' do
+      let(:board) { Trello::Board.new(id: 'someid') }
+      context 'given the destination board parameter is a Trello::Board instance' do
+        it 'moves to the destination board' do
+          expect(client)
+            .to receive(:put)
+            .with("/lists/#{list.id}/idBoard", value: 'someid')
+
+          list.move_to_board(board)
+        end
+      end
+      context 'given the destination board parameter is an id string' do
+        it 'moves to the destination board' do
+          expect(client)
+            .to receive(:put)
+            .with("/lists/#{list.id}/idBoard", value: 'someid')
+
+          list.move_to_board(board.id)
+        end
+      end
+    end
   end
 end

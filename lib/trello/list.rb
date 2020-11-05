@@ -101,6 +101,13 @@ module Trello
        })
     end
 
+    # Move list to another board. Accepts a `Trello::Board` or an id string.
+    def move_to_board(board)
+      board = board.id unless board.is_a?(String)
+
+      client.put("/lists/#{id}/idBoard", value: board)
+    end
+
     # Archives all the cards of the list
     def archive_all_cards
       client.post("/lists/#{id}/archiveAllCards")

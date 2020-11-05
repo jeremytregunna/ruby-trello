@@ -3,6 +3,7 @@
 ## Next Release
 
 * [Fix "Trello::Board#update! fail to update description"](https://github.com/jeremytregunna/ruby-trello/pull/289)
+* [Add `Trello::List#move_to_board`](https://github.com/jeremytregunna/ruby-trello/pull/297)
 
 ## v2.3.0
 
