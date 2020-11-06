@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 require 'oauth'
 require 'json'
 require 'logger'
 require 'active_model'
 require 'addressable/uri'
-require "active_support/core_ext/hash/indifferent_access"
+require 'active_support/core_ext/hash/indifferent_access'
 
-
-# Ruby wrapper around the Trello[http://trello.com] API
+# Ruby wrapper around the [Trello] API
 #
-# First, set up your key information. You can get this information by {clicking here}[https://trello.com/1/appKey/generate].
+# First, set up your key information. You can get this information by [clicking here][trello-app-key].
 #
 # You can get the key by going to this url in your browser:
 # https://trello.com/1/authorize?key=TRELLO_CONSUMER_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never
@@ -37,7 +38,11 @@ require "active_support/core_ext/hash/indifferent_access"
 #
 # And so much more. Consult the rest of the documentation for more information.
 #
-# Feel free to {peruse and participate in our Trello board}[https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd]. It's completely open to the public.
+# Feel free to [peruse and participate in our Trello board][ruby-trello-board]. It's completely open to the public.
+#
+# [trello]: http://trello.com
+# [trello-app-key]: https://trello.com/app-key
+# [ruby-trello-board]: https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd
 module Trello
   autoload :Error,                'trello/error'
   autoload :Action,               'trello/action'
@@ -83,12 +88,12 @@ module Trello
 
   module AssociationFetcher
     autoload :HasMany,            'trello/association_fetcher/has_many'
-    autoload :HasOne,            'trello/association_fetcher/has_one'
+    autoload :HasOne,             'trello/association_fetcher/has_one'
   end
 
   module AssociationBuilder
     autoload :HasMany,            'trello/association_builder/has_many'
-    autoload :HasOne,            'trello/association_builder/has_one'
+    autoload :HasOne,             'trello/association_builder/has_one'
   end
 
   # Version of the Trello API that we use by default.

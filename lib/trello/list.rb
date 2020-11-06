@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Trello
   # A List is a container which holds cards. Lists are items on a board.
   #
@@ -12,9 +14,9 @@ module Trello
   # @!attribute [rw] pos
   #   @return [Object]
   class List < BasicData
-    register_attributes :id, :name, :closed, :board_id, :pos, :source_list_id, readonly: [ :id, :board_id ]
+    register_attributes :id, :name, :closed, :board_id, :pos, :source_list_id, readonly: %i[id board_id]
     validates_presence_of :id, :name, :board_id
-    validates_length_of   :name, in: 1..16384
+    validates_length_of   :name, in: 1..16_384
 
     include HasActions
 
@@ -43,7 +45,7 @@ module Trello
     def update_fields(fields)
       attributes[:id]             = fields['id'] || attributes[:id]
       attributes[:name]           = fields['name'] || fields[:name] || attributes[:name]
-      attributes[:closed]         = fields['closed'] if fields.has_key?('closed')
+      attributes[:closed]         = fields['closed'] if fields.key?('closed')
       attributes[:board_id]       = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
       attributes[:pos]            = fields['pos'] || fields[:pos] || attributes[:pos]
       attributes[:source_list_id] = fields['idListSource'] || fields[:source_list_id] || attributes[:source_list_id]
@@ -53,7 +55,7 @@ module Trello
     def save
       return update! if id
 
-      from_response client.post("/lists", {
+      from_response client.post('/lists', {
         name: name,
         closed: closed || false,
         idBoard: board_id,
@@ -99,6 +101,13 @@ module Trello
         idBoard: other_list.board_id,
         idList: other_list.id
        })
+    end
+
+    # Move list to another board. Accepts a `Trello::Board` or an id string.
+    def move_to_board(board)
+      board = board.id unless board.is_a?(String)
+
+      client.put("/lists/#{id}/idBoard", value: board)
     end
 
     # Archives all the cards of the list
