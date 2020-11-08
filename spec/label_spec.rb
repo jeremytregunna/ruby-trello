@@ -20,7 +20,7 @@ module Trello
       it "delegates to Trello.client#find" do
         expect(client)
           .to receive(:find)
-          .with(:label, 'abcdef123456789123456789', {})
+          .with('label', 'abcdef123456789123456789', {})
 
         Label.find('abcdef123456789123456789')
       end
@@ -43,7 +43,6 @@ module Trello
         expect(label.color).to    eq details['color']
         expect(label.name).to     eq details['name']
         expect(label.id).to       eq details['id']
-        expect(label.uses).to     eq details['uses']
         expect(label.board_id).to eq details['idBoard']
       end
 
@@ -71,14 +70,16 @@ module Trello
 
         result = JSON.generate(cards_details.first.merge(payload.merge(idBoard: boards_details.first['id'])))
 
-        expected_payload = {name: "Test Label", color: nil, idBoard: "abcdef123456789123456789" }
+        expected_payload = {'name' => 'Test Label', 'color' => 'yellow', 'idBoard' => 'abcdef123456789123456789' }
 
-        expect(client)
+        expect(Label.client)
           .to receive(:post)
-          .with("/labels", expected_payload)
+          .with('/labels', expected_payload)
           .and_return result
 
-        label = Label.create(label_details.first.merge(payload.merge(board_id: boards_details.first['id'])))
+        params = label_details.first.merge(payload.merge(board_id: boards_details.first['id']))
+        params.delete('id')
+        label = Label.create params
 
         expect(label).to be_a Label
       end
@@ -89,13 +90,19 @@ module Trello
         expected_new_name = "xxx"
 
         payload = {
-          name: expected_new_name,
+          'name' => expected_new_name,
         }
 
         expect(client)
           .to receive(:put)
           .once
           .with("/labels/abcdef123456789123456789", payload)
+          .and_return({
+            "id" => "abcdef123456789123456789",
+            "idBoard" => "5e70f5bed3f34a49e2f11409",
+            "name" => "xxx",
+            "color" => "purple"
+          }.to_json)
 
         label.name = expected_new_name
         label.save
@@ -105,13 +112,19 @@ module Trello
         expected_new_color = "purple"
 
         payload = {
-          color: expected_new_color,
+          'color' => expected_new_color
         }
 
         expect(client)
           .to receive(:put)
           .once
           .with("/labels/abcdef123456789123456789", payload)
+          .and_return({
+            "id" => "abcdef123456789123456789",
+            "idBoard" => "5e70f5bed3f34a49e2f11409",
+            "name" => "",
+            "color" => "purple"
+          }.to_json)
 
         label.color = expected_new_color
         label.save
@@ -121,25 +134,18 @@ module Trello
         %w(green yellow orange red purple blue sky lime pink black).each do |color|
           allow(client)
             .to receive(:put)
-            .with("/labels/abcdef123456789123456789", {color: color})
-            .and_return "not important"
+            .with("/labels/abcdef123456789123456789", {'color' => color})
+            .and_return({
+              "id" => "abcdef123456789123456789",
+              "idBoard" => "5e70f5bed3f34a49e2f11409",
+              "name" => "",
+              "color" => color
+            }.to_json)
 
           label.color = color
           label.save
           expect(label.errors).to be_empty
         end
-      end
-
-      it "throws an error when trying to update a label with an unknown colour" do
-        allow(client)
-          .to receive(:put)
-          .with("/labels/abcdef123456789123456789", {})
-          .and_return "not important"
-
-        label.color = 'mauve'
-        label.save
-
-        expect(label.errors.full_messages.to_sentence).to eq("Label color 'mauve' does not exist")
       end
     end
 
@@ -160,10 +166,6 @@ module Trello
 
       it "gets its name" do
         expect(label.name).to_not be_nil
-      end
-
-      it "gets its usage" do
-        expect(label.uses).to_not be_nil
       end
 
       it "gets its color" do
@@ -188,8 +190,7 @@ module Trello
           'id' => 'id',
           'name' => 'name',
           'color' => 'color',
-          'idBoard' => 'board_id',
-          'uses' => 'uses'
+          'idBoard' => 'board_id'
         }
 
         label = Label.new(expected)
@@ -207,8 +208,7 @@ module Trello
         'id' => 'id',
         'name' => 'name',
         'color' => 'color',
-        'idBoard' => 'board_id',
-        'uses' => 'uses'
+        'idBoard' => 'board_id'
       }}
       let(:label) { Label.new(label_detail) }
 
@@ -222,7 +222,6 @@ module Trello
           expect(label.name).to eq label_detail['name']
           expect(label.color).to eq label_detail['color']
           expect(label.board_id).to eq label_detail['idBoard']
-          expect(label.uses).to eq label_detail['uses']
         end
       end
 
@@ -252,7 +251,7 @@ module Trello
             expect(label.name).to eq(label_detail['name'])
           end
 
-          it "label hasn't been mark as changed", pending: true do
+          it "label hasn't been mark as changed" do
             label.update_fields(fields)
 
             expect(label.changed?).to be_falsy
@@ -269,7 +268,6 @@ module Trello
             expect(label.name).to eq label_detail['name']
             expect(label.color).to eq label_detail['color']
             expect(label.board_id).to eq label_detail['idBoard']
-            expect(label.uses).to eq label_detail['uses']
           end
 
           it "label hasn't been mark as changed" do

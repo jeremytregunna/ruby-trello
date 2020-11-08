@@ -644,12 +644,10 @@ module Trello
         expect(labels[0].id).to       eq('abcdef123456789123456789')
         expect(labels[0].board_id).to eq('abcdef123456789123456789')
         expect(labels[0].name).to     eq('iOS')
-        expect(labels[0].uses).to     eq(3)
         expect(labels[1].color).to    eq('purple')
         expect(labels[1].id).to       eq('bbcdef123456789123456789')
         expect(labels[1].board_id).to eq('abcdef123456789123456789')
         expect(labels[1].name).to     eq('Issue or bug')
-        expect(labels[1].uses).to     eq(1)
       end
 
       it "includes label ids list" do

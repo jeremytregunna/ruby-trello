@@ -6,121 +6,30 @@ module Trello
   #   @return [String]
   # @!attribute [rw] color
   #   @return [String]
-  class Label < BasicData
-    register_attributes :id, :name, :board_id, :uses,
-      readonly: [ :id, :uses, :board_id ]
+  class Label < BasicDataAlpha
+
+    schema do
+      # Readonly
+      attribute :id, readonly: true, primary_key: true
+
+      # Writable
+      attribute :name
+      attribute :color
+
+      # Writable but for create only
+      attribute :board_id, create_only: true, remote_key: 'idBoard'
+    end
+
     validates_presence_of :id, :board_id, :name
-    validates_length_of   :name,        in: 1..16384
-
-    SYMBOL_TO_STRING = {
-      id: 'id',
-      name: 'name',
-      board_id: 'idBoard',
-      color: 'color',
-      uses: 'uses'
-    }
-
-    class << self
-      VALID_LABEL_COLOURS = %w{green yellow orange red purple blue sky lime pink black} << ''
-
-      # Find a specific label by its id.
-      def find(id, params = {})
-        client.find(:label, id, params)
-      end
-
-      # Create a new label and save it on Trello.
-      def create(options)
-        client.create(:label,
-          'name' => options[:name],
-          'idBoard' => options[:board_id],
-          'color'   => options[:color],
-        )
-      end
-
-      # Label colours
-      def label_colours
-        VALID_LABEL_COLOURS
-      end
-    end
-
-    define_attribute_methods [:color]
-
-    def color
-      @__attributes[:color]
-    end
-
-    def color= colour
-      unless Label.label_colours.include? colour
-        errors.add(:label, "color '#{colour}' does not exist")
-        return Trello.logger.warn "The label colour '#{colour}' does not exist."
-      end
-
-      self.send(:"color_will_change!") unless colour == @__attributes[:color]
-      @__attributes[:color] = colour
-    end
-
-    # Update the fields of a label.
-    #
-    # Supply a hash of stringkeyed data retrieved from the Trello API representing
-    # a label.
-    def update_fields(fields)
-      send('name_will_change!') if fields_has_key?(fields, :name)
-      send('color_will_change!') if fields_has_key?(fields, :color)
-
-      initialize_fields(fields)
-    end
-
-    def initialize(fields = {})
-      initialize_fields(fields)
-    end
+    validates_length_of :name, in: 1..16384
 
     # Returns a reference to the board this label is currently connected.
     one :board, path: :boards, using: :board_id
-
-    # Saves a record.
-    def save
-      # If we have an id, just update our fields.
-      return update! if id
-
-      from_response client.post("/labels", {
-        name:   name,
-        color:   color,
-        idBoard: board_id,
-      })
-    end
-
-    # Update an existing record.
-    # Warning, this updates all fields using values already in memory. If
-    # an external resource has updated these fields, you should refresh!
-    # this object before making your changes, and before updating the record.
-    def update!
-      @previously_changed = changes
-      # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      client.put("/labels/#{id}", payload)
-    end
 
     # Delete this label
     def delete
       client.delete("/labels/#{id}")
     end
 
-    private
-
-    def fields_has_key?(fields, key)
-      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
-    end
-
-    def initialize_fields(fields)
-      attributes[:id] = fields['id'] || attributes[:id]
-      attributes[:name]  = fields['name'] || fields[:name] || attributes[:name]
-      attributes[:color] = fields['color'] || fields[:color] || attributes[:color]
-      attributes[:board_id] = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
-      attributes[:uses] = fields['uses'] if fields.has_key?('uses')
-      self
-    end
   end
 end
