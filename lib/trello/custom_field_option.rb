@@ -1,22 +1,39 @@
 module Trello
   # A custom field option contains the individual items in a custom field dropdown menu.
   #
-  class CustomFieldOption < BasicData
-    register_attributes :id, :value, :pos, :color,
-                        readonly: [:id]
+  class CustomFieldOption < BasicDataAlpha
+
+    schema do
+      # Readonly
+      attribute :id, remote_key: '_id', readonly: true, primary_key: true
+      attribute :custom_field_id, remote_key: 'idCustomField', readonly: true
+
+      # Writable but for create only
+      attribute :value, create_only: true
+      attribute :color, create_only: true
+      attribute :position, remote_key: 'pos', create_only: true
+    end
+
     validates_presence_of :id, :value
 
-    # Update the fields of a custom field option.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # an item state.
-    def update_fields(fields)
-      attributes[:id]               = fields['_id'] || fields[:id] || attributes[:id]
-      attributes[:color]            = fields['color'] || fields[:color] || attributes[:color]
-      attributes[:pos]              = fields['pos'] || fields[:pos] || attributes[:pos]
-      # value format: { "text": "hello world" }
-      attributes[:value]            = fields['value'] || fields[:value] || attributes[:value]
-      self
+    def self.find(id, params = {})
+      params = params.with_indifferent_access
+      custom_field_id = params.delete(:custom_field_id)
+      return if custom_field_id.nil?
+
+      from_response client.get("/customFields/#{custom_field_id}/options/#{id}")
+    end
+
+    def delete
+      client.delete(element_path)
+    end
+
+    def collection_path
+      "/customFields/#{custom_field_id}/options"
+    end
+
+    def element_path
+      "/customFields/#{custom_field_id}/options/#{id}"
     end
   end
 end

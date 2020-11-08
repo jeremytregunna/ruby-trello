@@ -27,8 +27,8 @@ module Trello
         expect(option.value).to eq custom_field_option_details['value']
       end
 
-      it 'gets its pos' do
-        expect(option.pos).to eq custom_field_option_details['pos']
+      it 'gets its position' do
+        expect(option.position).to eq custom_field_option_details['pos']
       end
     end
 
