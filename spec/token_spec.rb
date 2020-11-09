@@ -69,20 +69,19 @@ module Trello
 
     describe "#update_fields" do
       it "does not set any fields when the fields argument is empty" do
-        expected = {
-          'id' => 'id',
-          'idMember' => 'member_id',
-          'permissions' => 'permissions',
-          'webhooks' => 'webhooks'
-        }
-
-        token = Token.new(expected)
+        token = Token.new({
+          'id' => 'aaa',
+          'idMember' => 'ccc',
+          'permissions' => {},
+          'webhooks' => []
+        })
 
         token.update_fields({})
 
-        expected.each do |key, value|
-          expect(token.send(value)).to eq expected[key]
-        end
+        expect(token.id).to eq('aaa')
+        expect(token.member_id).to eq('ccc')
+        expect(token.permissions).to eq({})
+        expect(token.webhooks).to eq([])
       end
     end
   end
