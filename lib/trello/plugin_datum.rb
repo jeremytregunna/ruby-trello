@@ -3,32 +3,27 @@ module Trello
   #
   # @!attribute id
   #   @return [String]
-  # @!attribute idPlugin
+  # @!attribute plugin_id
   #   @return [String]
   # @!attribute scope
   #   @return [String]
-  # @!attribute idModel
+  # @!attribute model_id
   #   @return [String]
   # @!attribute value
   #   @return [String]
   # @!attribute access
   #   @return [String]
-    class PluginDatum < BasicData
-    # Update the fields of a plugin.
-    register_attributes :id, :idPlugin, :scope, :idModel, :value, :access
+  class PluginDatum < BasicDataAlpha
 
-
-    # Supply a hash of stringkeyed data retrieved from the Trello API representing
-    # an attachment.
-    def update_fields(fields)
-      attributes[:id]        = fields['id'] || attributes[:id]
-      attributes[:idPlugin]  = fields['idPlugin'] || attributes[:idPlugin]
-      attributes[:scope]     = fields['scope'] || attributes[:scope]
-      attributes[:value]     = JSON.parse(fields['value']).presence if fields.has_key?('value')
-      attributes[:idModel]   = fields['idModel'] || attributes[:idModel]
-      attributes[:access]    = fields['access'] || attributes[:access]
-      self
+    schema do
+      attribute :id, readonly: true
+      attribute :plugin_id, readonly: true, remote_key: 'idPlugin'
+      attribute :scope, readonly: true
+      attribute :model_id, readonly: true, remote_key: 'idModel'
+      attribute :value, readonly: true, remote_key: 'value'
+      attribute :access, readonly: true
     end
+
   end
 
 end
