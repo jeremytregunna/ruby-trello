@@ -101,7 +101,7 @@ module Trello
         payload = attribute.build_payload_for_update(changed_attrs, payload)
       end
 
-      from_response_v2 client.put(element_path, payload)
+      from_response client.put(element_path, payload)
 
       @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
       changes_applied if respond_to?(:changes_applied)
@@ -184,11 +184,11 @@ module Trello
     end
 
     def post(path, body)
-      from_response_v2 client.post(path, body)
+      from_response client.post(path, body)
     end
 
     def put(path, body)
-      from_response_v2 client.put(path, body)
+      from_response client.put(path, body)
     end
   end
 end

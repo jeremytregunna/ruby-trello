@@ -5,7 +5,7 @@ RSpec.describe 'Trello::Board#update!' do
   let(:client) { Trello.client }
   let(:board) { Trello::Board.new(id: 'abc123') }
 
-  before { allow(board).to receive(:from_response_v2) }
+  before { allow(board).to receive(:from_response) }
 
   it 'can update name through client' do
     board.name = 'Board 1'
