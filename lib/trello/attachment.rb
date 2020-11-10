@@ -17,7 +17,7 @@ module Trello
   #   @return [Boolean]
   # @!attribute mime_type
   #   @return [String]
-  class Attachment < BasicDataAlpha
+  class Attachment < BasicData
     schema do
       # Readonly
       attribute :id, readonly: true, primary_key: true

@@ -10,7 +10,7 @@ module Trello
   #   @return [Object]
   # @!attribute [r] webhooks
   #   @return [Object]
-  class Token < BasicDataAlpha
+  class Token < BasicData
 
     schema do
       # Readonly

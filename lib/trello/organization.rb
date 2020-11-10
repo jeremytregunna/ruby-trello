@@ -11,7 +11,7 @@ module Trello
   #   @return [String]
   # @!attribute [r] url
   #   @return [String]
-  class Organization < BasicDataAlpha
+  class Organization < BasicData
     schema do
       # Readonly
       attribute :id, readonly: true, primary_key: true

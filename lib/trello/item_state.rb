@@ -7,7 +7,7 @@ module Trello
   #   @return [Object]
   # @!attribute [r] item_id
   #   @return [String]
-  class CheckItemState < BasicDataAlpha
+  class CheckItemState < BasicData
     schema do
       #Readonly
       attribute :id, remote_key: 'idCheckItem', readonly: true, primary_key: true

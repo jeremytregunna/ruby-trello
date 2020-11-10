@@ -1,7 +1,7 @@
 module Trello
   # A custom field item contains the value for a custom field on a particular card.
   #
-  class CustomFieldItem < BasicDataAlpha
+  class CustomFieldItem < BasicData
 
     schema do
       attribute :id, readonly: true, primary_key: true

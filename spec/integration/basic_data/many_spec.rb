@@ -10,6 +10,10 @@ module Trello
         class FakeCard < BasicData
         end
         class FakeBoard < BasicData
+          schema do
+            attribute :id
+          end
+
           def update_fields(fields)
             attributes[:id] = fields[:id]
           end

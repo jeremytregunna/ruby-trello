@@ -83,95 +83,6 @@ module Trello
 
     include HasActions
 
-    class << self
-      # Find a specific card by its id.
-      #
-      # @raise [Trello::Error] if the card could not be found.
-      #
-      # @return [Trello::Card]
-      def find(id, params = {})
-        client.find(:card, id, params)
-      end
-
-      # Create a new card and save it on Trello.
-      #
-      # If using source_card_id to duplicate a card, make sure to save
-      # the source card to Trello before calling this method to assure
-      # the correct data is used in the duplication.
-      #
-      # @param [Hash] options
-      # @option options [String] :name The name of the new card.
-      # @option options [String] :list_id ID of the list that the card should
-      #     be added to.
-      # @option options [String] :desc A string with a
-      #     length from 0 to 16384.
-      # @option options [String] :member_ids A comma-separated list of
-      #     objectIds (24-character hex strings).
-      # @option options [String] :card_labels A comma-separated list of
-      #     objectIds (24-character hex strings).
-      # @option options [Date] :due A date, or `nil`.
-      # @option options [String] :pos A position. `"top"`, `"bottom"`, or a
-      #     positive number. Defaults to `"bottom"`.
-      # @option options [String] :source_card_id ID of the card to copy
-      # @option options [String] :source_card_properties A single, or array of,
-      #     string properties to copy from source card.
-      #     `"all"`, `"checklists"`, `"due"`, `"members"`, or `nil`.
-      #     Defaults to `"all"`.
-      #
-      # @raise [Trello::Error] if the card could not be created.
-      #
-      # @return [Trello::Card]
-      def create(fields)
-        client.create(:card, fields)
-      end
-    end
-
-    # Update the fields of a card.
-    #
-    # Note that this this method does not save anything new to the Trello API,
-    # it just assigns the input attributes to your local object. If you use
-    # this method to assign attributes, call `save` or `update!` afterwards if
-    # you want to persist your changes to Trello.
-    #
-    # @param [Hash] fields
-    # @option fields [String] :name The new name of the card.
-    # @option fields [String] :desc A string with a length from 0 to
-    #     16384.
-    # @option fields [Date] :due A date, or `nil`.
-    # @option fields [Boolean] :due_complete
-    # @option fields [Boolean] :closed
-    # @option fields [String] :board_id
-    # @option fields [String] :member_ids A comma-separated list of objectIds
-    #     (24-character hex strings).
-    # @option fields [String] :pos A position. `"top"`, `"bottom"`, or a
-    #     positive number. Defaults to `"bottom"`.
-    # @option fields [Array]  :labels An Array of Trello::Label objects
-    #     derived from the JSON response
-    # @option fields [String] :card_labels A comma-separated list of
-    #     objectIds (24-character hex strings).
-    # @option fields [Object] :cover_image_id
-    # @option fields [String] :source_card_id
-    # @option fields [Array]  :source_card_properties
-    #
-    # @return [Trello::Card] self
-    def update_fields(fields)
-      attrs = {}
-
-      schema.attrs.each do |_, attribute|
-        attrs = attribute.build_pending_update_attributes(fields, attrs)
-      end
-
-      attrs.each do |name, value|
-        send("#{name}=", value)
-      end
-
-      self
-    end
-
-    def initialize(fields = {})
-      initialize_fields(fields)
-    end
-
     # Returns a reference to the board this card is part of.
     one :board, path: :boards, using: :board_id
 
@@ -218,54 +129,6 @@ module Trello
     # @return [Array<Trello::Member>]
     def voters
       Member.from_response client.get("/cards/#{id}/membersVoted")
-    end
-
-    # Saves a record.
-    #
-    # @raise [Trello::Error] if the card could not be saved
-    #
-    # @return [String] The JSON representation of the saved card returned by
-    #     the Trello API.
-    def save
-      # If we have an id, just update our fields.
-      return update! if id
-
-      payload = {}
-
-      schema.attrs.each do |_, attribute|
-        payload = attribute.build_payload_for_create(attributes, payload)
-      end
-
-      post('/cards', payload)
-    end
-
-    # Update an existing record.
-    #
-    # Warning: this updates all fields using values already in memory. If
-    # an external resource has updated these fields, you should refresh!
-    # this object before making your changes, and before updating the record.
-    #
-    # @raise [Trello::Error] if the card could not be updated.
-    #
-    # @return [Trello::Card] updated self
-    def update!
-      fail "Cannot save new instance." unless id
-
-      @previously_changed = changes
-
-      payload = {}
-      changed_attrs = attributes.select {|name, _| changed.include?(name.to_s)}
-
-      schema.attrs.each do |_, attribute|
-        payload = attribute.build_payload_for_update(changed_attrs, payload)
-      end
-
-      from_response_v2 client.put("/cards/#{id}", payload)
-
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      self
     end
 
     # Delete this card
@@ -453,20 +316,5 @@ module Trello
       @me ||= Member.find(:me)
     end
 
-    def fields_has_key?(fields, key)
-      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
-    end
-
-    def initialize_fields(fields)
-      schema.attrs.each do |_, attribute|
-        self.attributes = attribute.build_attributes(fields, attributes)
-      end
-
-      self
-    end
-
-    def post(path, body)
-      from_response_v2 client.post(path, body)
-    end
   end
 end

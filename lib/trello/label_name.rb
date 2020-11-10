@@ -1,7 +1,7 @@
 module Trello
 
   # A colored Label attached to a card
-  class LabelName < BasicDataAlpha
+  class LabelName < BasicData
     schema do
       attribute :yellow, readonly: true
       attribute :red, readonly: true

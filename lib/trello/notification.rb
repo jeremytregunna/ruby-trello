@@ -12,7 +12,7 @@ module Trello
   #   @return [Object]
   # @!attribute [r] creator_id,
   #   @return [String]
-  class Notification < BasicDataAlpha
+  class Notification < BasicData
 
     schema do
       # Readonly

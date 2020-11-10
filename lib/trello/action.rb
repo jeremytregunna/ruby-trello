@@ -13,7 +13,7 @@ module Trello
   #   @return [String]
   # @!attribute [r] member_participant
   #   @return [Object]
-  class Action < BasicDataAlpha
+  class Action < BasicData
 
     schema do
       # Readonly

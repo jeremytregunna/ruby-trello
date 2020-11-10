@@ -25,7 +25,7 @@ module Trello
       it "delegates to Trello.client#find" do
         expect(client)
           .to receive(:find)
-          .with(:card, 'abcdef123456789123456789', {})
+          .with('card', 'abcdef123456789123456789', {})
 
         Card.find('abcdef123456789123456789')
       end

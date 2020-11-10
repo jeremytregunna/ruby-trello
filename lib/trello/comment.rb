@@ -9,7 +9,7 @@ module Trello
   #   @return [Datetime]
   # @!attribute [r] member_creator_id
   #   @return [String]
-  class Comment < BasicDataAlpha
+  class Comment < BasicData
 
     schema do
       # Readonly

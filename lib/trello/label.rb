@@ -6,7 +6,7 @@ module Trello
   #   @return [String]
   # @!attribute [rw] color
   #   @return [String]
-  class Label < BasicDataAlpha
+  class Label < BasicData
 
     schema do
       # Readonly

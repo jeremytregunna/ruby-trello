@@ -21,7 +21,7 @@ module Trello
       it "delegates to client#find" do
         expect(client)
           .to receive(:find)
-          .with(:board, 'abcdef123456789123456789', {})
+          .with('board', 'abcdef123456789123456789', {})
 
         Board.find('abcdef123456789123456789')
       end
@@ -54,7 +54,7 @@ module Trello
           card_aging_type: 'pirate'
         }
 
-        expect(client).to receive(:create).with(:board, params)
+        expect(client).to receive(:create).with('board', params)
 
         Board.create(params)
       end
@@ -335,7 +335,7 @@ module Trello
         expected_resource_id = "xxx_board_id_xxx"
 
         expect(client).to receive(:put) do |path, anything|
-          expect(path).to match(/#{expected_resource_id}\/\z/)
+          expect(path).to match(/#{expected_resource_id}\z/)
           any_board_json
         end
 

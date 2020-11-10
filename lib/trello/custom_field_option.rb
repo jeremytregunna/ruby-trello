@@ -1,7 +1,7 @@
 module Trello
   # A custom field option contains the individual items in a custom field dropdown menu.
   #
-  class CustomFieldOption < BasicDataAlpha
+  class CustomFieldOption < BasicData
 
     schema do
       # Readonly

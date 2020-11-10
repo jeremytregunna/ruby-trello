@@ -11,7 +11,7 @@ module Trello
   #   @return [Object]
   # @!attribute [r] board_id
   #   @return [String] A 24-character hex string
-  class Checklist < BasicDataAlpha
+  class Checklist < BasicData
     schema do
       attribute :id, readonly: true, primary_key: true
 

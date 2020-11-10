@@ -17,7 +17,7 @@ module Trello
   #   @return [String]
   # @!attribute [r] url
   #   @return [String]
-  class Member < BasicDataAlpha
+  class Member < BasicData
     schema do
       # readonly
       attribute :id, readonly: true, primary_key: true
@@ -53,7 +53,6 @@ module Trello
       attribute :avatar_source, remote_key: 'avatarSource'
     end
 
-    # register_attributes :id, :username, :email, :full_name, :initials, :avatar_id, :bio, :url, readonly: [ :id, :username, :avatar_id, :url ]
     validates_presence_of :id, :username
     validates_length_of   :full_name, minimum: 4
     validates_length_of   :bio,       maximum: 16384

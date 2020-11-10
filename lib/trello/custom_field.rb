@@ -17,7 +17,7 @@ module Trello
   #   @return [String]
   # @!attribute options
   #   @return [Array<Hash>]
-  class CustomField < BasicDataAlpha
+  class CustomField < BasicData
 
     schema do
       # Readonly

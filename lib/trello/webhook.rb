@@ -11,7 +11,7 @@ module Trello
   #   @return [String]
   # @!attribute [r] active
   #   @return [Boolean]
-  class Webhook < BasicDataAlpha
+  class Webhook < BasicData
 
     schema do
       # Readonly

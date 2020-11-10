@@ -13,7 +13,7 @@ module Trello
   #   @return [String]
   # @!attribute access
   #   @return [String]
-  class PluginDatum < BasicDataAlpha
+  class PluginDatum < BasicData
 
     schema do
       attribute :id, readonly: true

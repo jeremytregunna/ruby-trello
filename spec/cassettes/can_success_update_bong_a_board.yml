@@ -94,7 +94,7 @@ http_interactions:
   recorded_at: Sun, 07 Jun 2020 03:58:31 GMT
 - request:
     method: put
-    uri: https://api.trello.com/1/boards/5e93ba403f1ab3603ba81a09/?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    uri: https://api.trello.com/1/boards/5e93ba403f1ab3603ba81a09?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: UTF-8
       string: name=IT+1+-+Changed&desc=This+is+a+test+board+called+IT+1&idOrganization=5eb427016b5a464a74803f1c&prefs%2FpermissionLevel=org&prefs%2FselfJoin=false&prefs%2Fvoting=org&prefs%2Fcomments=org&prefs%2Fbackground=green

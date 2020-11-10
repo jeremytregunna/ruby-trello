@@ -52,7 +52,6 @@ module Trello
   autoload :Attachment,           'trello/attachment'
   autoload :CoverImage,           'trello/cover_image'
   autoload :BasicData,            'trello/basic_data'
-  autoload :BasicDataAlpha,       'trello/basic_data_alpha'
   autoload :Board,                'trello/board'
   autoload :Card,                 'trello/card'
   autoload :Checklist,            'trello/checklist'
@@ -78,7 +77,6 @@ module Trello
   autoload :Webhook,              'trello/webhook'
   autoload :JsonUtils,            'trello/json_utils'
   autoload :AssociationInferTool, 'trello/association_infer_tool'
-  autoload :RegisterAttributes,   'trello/register_attributes'
   autoload :Schema,               'trello/schema'
 
   module Authorization

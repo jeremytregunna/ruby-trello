@@ -11,7 +11,7 @@ module Trello
   #   @return [Object]
   # @!attribute [r] pos
   #   @return [Object]
-  class Item < BasicDataAlpha
+  class Item < BasicData
 
     schema do
       # Readonly

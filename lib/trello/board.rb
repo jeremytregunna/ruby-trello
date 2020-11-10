@@ -63,78 +63,10 @@ module Trello
     include HasActions
 
     class << self
-      # Finds a board.
-      #
-      # @param [String] id Either the board's short ID (an alphanumeric string,
-      #     found e.g. in the board's URL) or its long ID (a 24-character hex
-      #     string.)
-      # @param [Hash] params
-      #
-      # @raise  [Trello::Board] if a board with the given ID could not be found.
-      #
-      # @return [Trello::Board]
-      def find(id, params = {})
-        client.find(:board, id, params)
-      end
-
-      def create(fields)
-        client.create(:board, fields)
-      end
-
       # @return [Array<Trello::Board>] all boards for the current user
       def all
         from_response client.get("/members/#{Member.find(:me).username}/boards")
       end
-    end
-
-    def initialize(fields = {})
-      initialize_fields(fields)
-    end
-
-    def save
-      return update! if id
-
-      payload = {}
-
-      schema.attrs.each do |_, attribute|
-        payload = attribute.build_payload_for_create(attributes, payload)
-      end
-
-      post('/boards', payload)
-    end
-
-    def update!
-      fail "Cannot save new instance." unless id
-
-      @previously_changed = changes
-
-      payload = {}
-      changed_attrs = attributes.select {|name, _| changed.include?(name.to_s)}
-
-      schema.attrs.each do |_, attribute|
-        payload = attribute.build_payload_for_update(changed_attrs, payload)
-      end
-
-      from_response_v2 client.put("/boards/#{id}/", payload)
-
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      self
-    end
-
-    def update_fields(fields)
-      attrs = {}
-
-      schema.attrs.each do |_, attribute|
-        attrs = attribute.build_pending_update_attributes(fields, attrs)
-      end
-
-      attrs.each do |name, value|
-        send("#{name}=", value)
-      end
-
-      self
     end
 
     # @return [Boolean]
@@ -223,18 +155,5 @@ module Trello
       "/boards/#{id}"
     end
 
-    private
-
-    def initialize_fields(fields)
-      schema.attrs.each do |_, attribute|
-        self.attributes = attribute.build_attributes(fields, attributes)
-      end
-
-      self
-    end
-
-    def post(path, body)
-      from_response_v2 client.post(path, body)
-    end
   end
 end

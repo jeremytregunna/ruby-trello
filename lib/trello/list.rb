@@ -13,7 +13,7 @@ module Trello
   #   @return [String] A 24-character hex string
   # @!attribute [rw] pos
   #   @return [Object]
-  class List < BasicDataAlpha
+  class List < BasicData
     schema do
       # Readonly
       attribute :id, readonly: true, primary_key: true

@@ -12,7 +12,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'name' => 'Board 1'
       })
 
@@ -24,7 +24,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'desc' => 'description ...'
       })
 
@@ -36,7 +36,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'closed' => true
       })
 
@@ -51,7 +51,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'idOrganization' => 123
       })
 
@@ -63,7 +63,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/permissionLevel' => 'org'
       })
 
@@ -75,7 +75,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/selfJoin' => true
       })
 
@@ -87,7 +87,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/cardCovers' => true
       })
 
@@ -102,7 +102,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/invitations' => 'org'
       })
 
@@ -114,7 +114,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/voting' => 'org'
       })
 
@@ -126,7 +126,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/comments' => 'org'
       })
 
@@ -138,7 +138,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/background' => 'blue'
       })
 
@@ -150,7 +150,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'prefs/cardAging' => 'pirate'
       })
 
@@ -176,7 +176,7 @@ RSpec.describe 'Trello::Board#update!' do
 
     expect(client)
       .to receive(:put)
-      .with('/boards/abc123/', {
+      .with('/boards/abc123', {
         'name' => 'Board 1',
         'desc' => 'description ...',
         'closed' => true,
