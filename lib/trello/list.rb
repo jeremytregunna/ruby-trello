@@ -13,6 +13,10 @@ module Trello
   #   @return [String] A 24-character hex string
   # @!attribute [rw] pos
   #   @return [Object]
+  # @!attribute [w] source_list_id
+  #   @return [String]
+  # @!attribute [w] subscribed
+  #   @return [Boolean]
   class List < BasicData
     schema do
       # Readonly

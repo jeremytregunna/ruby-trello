@@ -1,14 +1,24 @@
 module Trello
   # A Comment is a string with a creation date; it resides inside a Card and belongs to a User.
   #
-  # @!attribute [r] action_id
+  # @!attribute [r] id
   #   @return [String]
-  # @!attribute [r] text
+  # @!attribute [w] text
   #   @return [String]
   # @!attribute [r] date
   #   @return [Datetime]
   # @!attribute [r] creator_id
   #   @return [String]
+  # @!attribute [r] data
+  #   @return [Hash]
+  # @!attribute [r] type
+  #   @return [String]
+  # @!attribute [r] limits
+  #   @return [Hash]
+  # @!attribute [r] app_creator
+  #   @return [String]
+  # @!attribute [r] display
+  #   @return [Hash]
   class Comment < BasicData
 
     schema do

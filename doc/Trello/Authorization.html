@@ -1,118 +1,144 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Trello::Authorization
+  
+    &mdash; Documentation by YARD 0.9.25
+  
+</title>
 
-<title>module Trello::Authorization - RDoc Documentation</title>
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "../";
-  var index_rel_prefix = "../";
+  pathId = "Trello::Authorization";
+  relpath = '../';
 </script>
 
-<script src="../js/navigation.js" defer></script>
-<script src="../js/search.js" defer></script>
-<script src="../js/search_index.js" defer></script>
-<script src="../js/searcher.js" defer></script>
-<script src="../js/darkfish.js" defer></script>
 
-<link href="../css/fonts.css" rel="stylesheet">
-<link href="../css/rdoc.css" rel="stylesheet">
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-
-
-<body id="top" role="document" class="module">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="../index.html" rel="home">Home</a>
-  </h2>
-
-  <div id="table-of-contents-navigation">
-    <a href="../table_of_contents.html#pages">Pages</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
-
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (A)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Trello.html" title="Trello (module)">Trello</a></span></span>
+     &raquo; 
+    <span class="title">Authorization</span>
+  
 </div>
 
-  </div>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
 
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Trello::Authorization
+  
+  
+  
+</h1>
+<div class="box_info">
   
 
-  <div id="class-metadata">
-    
-    
-    
-    
-    
-  </div>
-</nav>
-
-<main role="main" aria-labelledby="module-Trello::Authorization">
-  <h1 id="module-Trello::Authorization" class="module">
-    module Trello::Authorization
-  </h1>
-
-  <section class="description">
-    
-  </section>
+  
+  
+  
+  
+  
 
   
-  <section id="5Buntitled-5D" class="documentation-section">
-    
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="Client.html" title="Trello::Client (class)">Client</a></span></dd>
+  </dl>
+  
 
-    
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/trello.rb<span class="defines">,<br />
+  lib/trello/authorization.rb</span>
+</dd>
+  </dl>
+  
+</div>
 
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
     
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Authorization/BasicAuthPolicy.html" title="Trello::Authorization::BasicAuthPolicy (class)">BasicAuthPolicy</a></span>, <span class='object_link'><a href="Authorization/Clock.html" title="Trello::Authorization::Clock (class)">Clock</a></span>, <span class='object_link'><a href="Authorization/Nonce.html" title="Trello::Authorization::Nonce (class)">Nonce</a></span>, <span class='object_link'><a href="Authorization/OAuthCredential.html" title="Trello::Authorization::OAuthCredential (class)">OAuthCredential</a></span>, <span class='object_link'><a href="Authorization/OAuthPolicy.html" title="Trello::Authorization::OAuthPolicy (class)">OAuthPolicy</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
       
-        <dt id="AuthPolicy">AuthPolicy
-        
-        <dd>
-        
+        <dt id="AuthPolicy-constant" class="">AuthPolicy =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>do</span>
+  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_attrs'>attrs</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_authorize'>authorize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Trello.html" title="Trello (module)">Trello</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Trello.html#ConfigurationError-constant" title="Trello::ConfigurationError (constant)">ConfigurationError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Trello has not been configured to make authorized requests.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre></dd>
       
-        <dt id="OAuthCredential">OAuthCredential
-        
-        <dd>
-        
-      
-      </dl>
-    </section>
-    
-
-    
-
-    
-  </section>
-
-</main>
+    </dl>
+  
 
 
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
 
+
+
+
+
+
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Nov 10 16:31:45 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.25 (ruby-2.6.6).
+</div>
+
+    </div>
+  </body>
+</html>

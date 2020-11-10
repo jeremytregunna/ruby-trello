@@ -17,6 +17,48 @@ module Trello
   #   @return [String]
   # @!attribute [r] url
   #   @return [String]
+  # @!attribute [r] prefs
+  #   @return [Hash]
+  # @!attribute [r] activity_blocked
+  #   @return [Boolean]
+  # @!attribute [r] bio_data
+  #   @return [Hash]
+  # @!attribute [r] confirmed
+  #   @return [Boolean]
+  # @!attribute [r] enterprise_id
+  #   @return [String]
+  # @!attribute [r] deactivated_enterprise_ids
+  #   @return [String]
+  # @!attribute [r] referrer_member_id
+  #   @return [String]
+  # @!attribute [r] admin_orgs_perm_id
+  #   @return [String]
+  # @!attribute [r] member_type
+  #   @return [String]
+  # @!attribute [r] non_public
+  #   @return [Hash]
+  # @!attribute [r] non_public_available
+  #   @return [Hash]
+  # @!attribute [r] products
+  #   @return [Array]
+  # @!attribute [r] status
+  #   @return [String]
+  # @!attribute [r] board_ids
+  #   @return [Array<String>]
+  # @!attribute [r] organization_ids
+  #   @return [Array<String>]
+  # @!attribute [r] admin_enterprise_ids
+  #   @return [Array<String>]
+  # @!attribute [r] limits
+  #   @return [Hash]
+  # @!attribute [r] login_types
+  #   @return [Array<String>]
+  # @!attribute [r] marketing_opt_in
+  #   @return [Hash]
+  # @!attribute [r] pinned_board_ids
+  #   @return [String]
+  # @!attribute [w] avatar_source
+  #   @return [String]
   class Member < BasicData
     schema do
       # readonly
@@ -29,7 +71,7 @@ module Trello
       attribute :bio_data, readonly: true, remote_key: 'bioData'
       attribute :confirmed, readonly: true
       attribute :enterprise_id, readonly: true, remote_key: 'idEnterprise'
-      attribute :deactivated_enterprised_ids, readonly: true, remote_key: 'idEnterprisesDeactivated'
+      attribute :deactivated_enterprise_ids, readonly: true, remote_key: 'idEnterprisesDeactivated'
       attribute :referrer_member_id, readonly: true, remote_key: 'idMemberReferrer'
       attribute :admin_orgs_perm_id, readonly: true, remote_key: 'idPremOrgsAdmin'
       attribute :member_type, readonly: true, remote_key: 'memberType'
@@ -41,7 +83,7 @@ module Trello
       attribute :organization_ids, readonly: true, remote_key: 'idOrganizations'
       attribute :admin_enterprise_ids, readonly: true, remote_key: 'idEnterprisesAdmin'
       attribute :limits, readonly: true
-      attribute :login_type, readonly: true, remote_key: 'loginTypes'
+      attribute :login_types, readonly: true, remote_key: 'loginTypes'
       attribute :marketing_opt_in, readonly: true, remote_key: 'marketingOptIn'
       attribute :pinned_board_ids, readonly: true, remote_key: 'idBoardsPinned'
 

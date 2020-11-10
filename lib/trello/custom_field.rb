@@ -1,22 +1,24 @@
 module Trello
   # A Custom Field can be activated on a board. Values are stored at the card level.
   #
-  # @!attribute id
+  # @!attribute [r] id
   #   @return [String]
-  # @!attribute model_id
+  # @!attribute [rw] model_id
   #   @return [String]
-  # @!attribute model_type
+  # @!attribute [rw] model_type
   #   @return [String]
-  # @!attribute field_group
+  # @!attribute [r] field_group
   #   @return [String]
-  # @!attribute name
+  # @!attribute [rw] name
   #   @return [String]
-  # @!attribute pos
+  # @!attribute [rw] position
   #   @return [Float]
-  # @!attribute type
+  # @!attribute [rw] type
   #   @return [String]
-  # @!attribute options
+  # @!attribute [rw] checkbox_options
   #   @return [Array<Hash>]
+  # @!attribute [w] enable_display_on_card
+  #   @return [Boolean]
   class CustomField < BasicData
 
     schema do

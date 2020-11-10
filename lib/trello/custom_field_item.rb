@@ -1,6 +1,18 @@
 module Trello
   # A custom field item contains the value for a custom field on a particular card.
   #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] model_id
+  #   @return [String]
+  # @!attribute [r] model_type
+  #   @return [String]
+  # @!attribute [r] custom_field_id
+  #   @return [String]
+  # @!attribute [r] option_id
+  #   @return [String]
+  # @!attribute [rw] value
+  #   @return [Hash]
   class CustomFieldItem < BasicData
 
     schema do
@@ -48,7 +60,6 @@ module Trello
     end
 
     # Type is saved at the CustomField level
-    # Can equally be derived from :value, with a little parsing work: {"number": 42}
     def type
       custom_field.type
     end

@@ -4,18 +4,60 @@ module Trello
   #
   # @!attribute [r] id
   #   @return [String]
-  # @!attribute [r] name
-  #   @return [String]
-  # @!attribute [rw] description
-  #   @return [String]
-  # @!attribute [rw] closed
+  # @!attribute [r] starred
+  #   @return [Boolean]
+  # @!attribute [r] pinned
   #   @return [Boolean]
   # @!attribute [r] url
   #   @return [String]
-  # @!attribute [rw] organization_id
-  #   @return [String] A 24-character hex string
+  # @!attribute [r] short_url
+  #   @return [String]
   # @!attribute [r] prefs
-  #   @return [Hash] A 24-character hex string
+  #   @return [Hash]
+  # @!attribute [r] last_activity_date
+  #   @return [Datetime]
+  # @!attribute [r] description_data
+  #   @return [Datetime]
+  # @!attribute [r] enterprise_id
+  #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] description
+  #   @return [String]
+  # @!attribute [rw] organization_id
+  #   @return [String]
+  # @!attribute [rw] visibility_level
+  #   @return [String]
+  # @!attribute [rw] voting_permission_level
+  #   @return [String]
+  # @!attribute [rw] comment_permission_level
+  #   @return [String]
+  # @!attribute [rw] invitation_permission_level
+  #   @return [String]
+  # @!attribute [rw] enable_self_join
+  #   @return [Boolean]
+  # @!attribute [rw] enable_card_covers
+  #   @return [Boolean]
+  # @!attribute [rw] background_color
+  #   @return [String]
+  # @!attribute [rw] background_image
+  #   @return [String]
+  # @!attribute [rw] card_aging_type
+  #   @return [String]
+  # @!attribute [w] use_default_labels
+  #   @return [Boolean]
+  # @!attribute [w] use_default_lists
+  #   @return [Boolean]
+  # @!attribute [w] source_board_id
+  #   @return [String]
+  # @!attribute [w] keep_cards_from_source
+  #   @return [String]
+  # @!attribute [w] power_ups
+  #   @return [String]
+  # @!attribute [rw] closed
+  #   @return [Boolean]
+  # @!attribute [w] subscribed
+  #   @return [Boolean]
   class Board < BasicData
     schema do
       attribute :id, readonly: true, primary_key: true

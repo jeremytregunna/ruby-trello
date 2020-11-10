@@ -5,12 +5,16 @@ module Trello
   #   @return [String]
   # @!attribute [r] description
   #   @return [String]
-  # @!attribute [r] id_model
+  # @!attribute [r] model_id
   #   @return [String] A 24-character hex string
   # @!attribute [r] callback_url
   #   @return [String]
   # @!attribute [r] active
   #   @return [Boolean]
+  # @!attribute [r] consecutive_failures
+  #   @return [Integer]
+  # @!attribute [r] first_consecutive_fail_date
+  #   @return [Datetime]
   class Webhook < BasicData
 
     schema do

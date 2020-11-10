@@ -1,6 +1,16 @@
 module Trello
   # A custom field option contains the individual items in a custom field dropdown menu.
   #
+  # @!attribute [r] id
+  #   @return [String]
+  # @!attribute [r] custom_field_id
+  #   @return [String]
+  # @!attribute [rw] value
+  #   @return [Hash]
+  # @!attribute [rw] color
+  #   @return [String]
+  # @!attribute [rw] position
+  #   @return [Float]
   class CustomFieldOption < BasicData
 
     schema do

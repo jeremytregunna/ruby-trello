@@ -5,8 +5,6 @@ module Trello
   #   @return [String]
   # @!attribute [r] state
   #   @return [Object]
-  # @!attribute [r] item_id
-  #   @return [String]
   class CheckItemState < BasicData
     schema do
       #Readonly

@@ -1,760 +1,1078 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Trello
+  
+    &mdash; Documentation by YARD 0.9.25
+  
+</title>
 
-<title>module Trello - RDoc Documentation</title>
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-  var index_rel_prefix = "./";
+  pathId = "Trello";
+  relpath = '';
 </script>
 
-<script src="./js/navigation.js" defer></script>
-<script src="./js/search.js" defer></script>
-<script src="./js/search_index.js" defer></script>
-<script src="./js/searcher.js" defer></script>
-<script src="./js/darkfish.js" defer></script>
 
-<link href="./css/fonts.css" rel="stylesheet">
-<link href="./css/rdoc.css" rel="stylesheet">
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-
-
-<body id="top" role="document" class="module">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="./index.html" rel="home">Home</a>
-  </h2>
-
-  <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
-
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (T)</a> &raquo;
+    
+    
+    <span class="title">Trello</span>
+  
 </div>
 
-  </div>
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Trello
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
 
   
 
-  <div id="class-metadata">
-    
-    
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
-
-  <ul class="link-list">
   
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/trello.rb<span class="defines">,<br />
+  lib/trello/net.rb,<br /> lib/trello/card.rb,<br /> lib/trello/item.rb,<br /> lib/trello/list.rb,<br /> lib/trello/board.rb,<br /> lib/trello/error.rb,<br /> lib/trello/label.rb,<br /> lib/trello/token.rb,<br /> lib/trello/action.rb,<br /> lib/trello/client.rb,<br /> lib/trello/member.rb,<br /> lib/trello/schema.rb,<br /> lib/trello/comment.rb,<br /> lib/trello/webhook.rb,<br /> lib/trello/checklist.rb,<br /> lib/trello/attachment.rb,<br /> lib/trello/basic_data.rb,<br /> lib/trello/item_state.rb,<br /> lib/trello/json_utils.rb,<br /> lib/trello/label_name.rb,<br /> lib/trello/association.rb,<br /> lib/trello/cover_image.rb,<br /> lib/trello/has_actions.rb,<br /> lib/trello/custom_field.rb,<br /> lib/trello/notification.rb,<br /> lib/trello/organization.rb,<br /> lib/trello/plugin_datum.rb,<br /> lib/trello/authorization.rb,<br /> lib/trello/configuration.rb,<br /> lib/trello/association_proxy.rb,<br /> lib/trello/custom_field_item.rb,<br /> lib/trello/multi_association.rb,<br /> lib/trello/custom_field_option.rb,<br /> lib/trello/schema/attribute/base.rb,<br /> lib/trello/association_infer_tool.rb,<br /> lib/trello/schema/serializer/time.rb,<br /> lib/trello/schema/attribute/default.rb,<br /> lib/trello/schema/attribute_builder.rb,<br /> lib/trello/schema/serializer/labels.rb,<br /> lib/trello/schema/serializer/default.rb,<br /> lib/trello/schema/serializer/webhooks.rb,<br /> lib/trello/association_builder/has_one.rb,<br /> lib/trello/association_fetcher/has_one.rb,<br /> lib/trello/schema/attribute/board_pref.rb,<br /> lib/trello/association_builder/has_many.rb,<br /> lib/trello/association_fetcher/has_many.rb,<br /> lib/trello/schema/attribute_registration.rb,<br /> lib/trello/association_fetcher/has_one/fetch.rb,<br /> lib/trello/association_fetcher/has_many/fetch.rb,<br /> lib/trello/association_fetcher/has_one/params.rb,<br /> lib/trello/association_fetcher/has_many/params.rb,<br /> lib/trello/schema/attribute/custom_field_display.rb</span>
+</dd>
+  </dl>
   
-    <li><a class="include" href="Helpers.html">Helpers</a>
-  
-  
-  
-    <li><a class="include" href="Trello/JsonUtils.html">Trello::JsonUtils</a>
-  
-  
-  </ul>
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
     
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
+<p>Ruby wrapper around the [Trello] API</p>
 
-  <ul class="link-list" role="directory">
-    
-    <li ><a href="#method-c-auth_policy">::auth_policy</a>
-    
-    <li ><a href="#method-c-authorize_url">::authorize_url</a>
-    
-    <li ><a href="#method-c-client">::client</a>
-    
-    <li ><a href="#method-c-configuration">::configuration</a>
-    
-    <li ><a href="#method-c-configure">::configure</a>
-    
-    <li ><a href="#method-c-logger">::logger</a>
-    
-    <li ><a href="#method-c-logger-3D">::logger=</a>
-    
-    <li ><a href="#method-c-new">::new</a>
-    
-    <li ><a href="#method-c-open_authorization_url">::open_authorization_url</a>
-    
-    <li ><a href="#method-c-open_public_key_url">::open_public_key_url</a>
-    
-    <li ><a href="#method-c-open_url">::open_url</a>
-    
-    <li ><a href="#method-c-public_key_url">::public_key_url</a>
-    
-    <li ><a href="#method-c-reset-21">::reset!</a>
-    
-    <li ><a href="#method-i-example_class">#example_class</a>
-    
-    <li ><a href="#method-i-mock_client_and_association">#mock_client_and_association</a>
-    
-  </ul>
-</div>
-
-  </div>
-</nav>
-
-<main role="main" aria-labelledby="module-Trello">
-  <h1 id="module-Trello" class="module">
-    module Trello
-  </h1>
-
-  <section class="description">
-    
-<p>Ruby wrapper around the <a href="http://trello.com">Trello</a> API</p>
-
-<p>First, set up your key information. You can get this information by <a href="https://trello.com/1/appKey/generate">clicking here</a>.</p>
+<p>First, set up your key information. You can get this information by [clicking <a href="trello-app-key">here]</a>.</p>
 
 <p>You can get the key by going to this url in your browser: <a href="https://trello.com/1/authorize?key=TRELLO_CONSUMER_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never">trello.com/1/authorize?key=TRELLO_CONSUMER_KEY_FROM_ABOVE&name=MyApp&response_type=token&scope=read,write,account&expiration=never</a> Only request the permissions you need; i.e., scope=read if you only need read, or scope=write if you only need write. Comma separate scopes you need. If you want your token to expire after 30 days, drop the &amp;expiration=never. Then run the following code, where KEY denotes the key returned from the url above:</p>
 
-<p><a href="Trello.html#method-c-configure"><code>Trello.configure</code></a> do |config|</p>
+<p>Trello.configure do |config|</p>
 
-<pre class="ruby"><span class="ruby-identifier">config</span>.<span class="ruby-identifier">consumer_key</span> = <span class="ruby-constant">TRELLO_CONSUMER_KEY</span>
-<span class="ruby-identifier">config</span>.<span class="ruby-identifier">consumer_secret</span> = <span class="ruby-constant">TRELLO_CONSUMER_SECRET</span>
-<span class="ruby-identifier">config</span>.<span class="ruby-identifier">oauth_token</span> = <span class="ruby-constant">TRELLO_OAUTH_TOKEN</span>
-<span class="ruby-identifier">config</span>.<span class="ruby-identifier">oauth_token_secret</span> = <span class="ruby-constant">TRELLO_OAUTH_TOKEN_SECRET</span>
-</pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_consumer_key'>consumer_key</span> <span class='op'>=</span> <span class='const'>TRELLO_CONSUMER_KEY</span>
+<span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_consumer_secret'>consumer_secret</span> <span class='op'>=</span> <span class='const'>TRELLO_CONSUMER_SECRET</span>
+<span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_oauth_token'>oauth_token</span> <span class='op'>=</span> <span class='const'>TRELLO_OAUTH_TOKEN</span>
+<span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_oauth_token_secret'>oauth_token_secret</span> <span class='op'>=</span> <span class='const'>TRELLO_OAUTH_TOKEN_SECRET</span>
+</code></pre>
 
 <p>end</p>
 
-<p>All the calls this library make to <a href="Trello.html"><code>Trello</code></a> require authentication using these keys. Be sure to protect them.</p>
+<p>All the calls this library make to Trello require authentication using these keys. Be sure to protect them.</p>
 
 <p>So lets say you want to get information about the user <strong>bobtester</strong>. We can do something like this:</p>
 
-<pre class="ruby"><span class="ruby-identifier">bob</span> = <span class="ruby-constant">Member</span>.<span class="ruby-identifier">find</span>(<span class="ruby-string">&quot;bobtester&quot;</span>)
-<span class="ruby-comment"># Print out his name</span>
-<span class="ruby-identifier">puts</span> <span class="ruby-identifier">bob</span>.<span class="ruby-identifier">full_name</span> <span class="ruby-comment"># &quot;Bob Tester&quot;</span>
-<span class="ruby-comment"># Print his bio</span>
-<span class="ruby-identifier">puts</span> <span class="ruby-identifier">bob</span>.<span class="ruby-identifier">bio</span> <span class="ruby-comment"># A wonderfully delightful test user</span>
-<span class="ruby-comment"># How about a list of his boards?</span>
-<span class="ruby-identifier">bob</span>.<span class="ruby-identifier">boards</span>
-</pre>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bob'>bob</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Trello/Member.html" title="Trello::Member (class)">Member</a></span></span><span class='period'>.</span><span class='id identifier rubyid_find'><span class='object_link'><a href="Trello/Member.html#find-class_method" title="Trello::Member.find (method)">find</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bobtester</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='comment'># Print out his name
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_bob'>bob</span><span class='period'>.</span><span class='id identifier rubyid_full_name'>full_name</span> <span class='comment'># &quot;Bob Tester&quot;
+</span><span class='comment'># Print his bio
+</span><span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_bob'>bob</span><span class='period'>.</span><span class='id identifier rubyid_bio'>bio</span> <span class='comment'># A wonderfully delightful test user
+</span><span class='comment'># How about a list of his boards?
+</span><span class='id identifier rubyid_bob'>bob</span><span class='period'>.</span><span class='id identifier rubyid_boards'>boards</span>
+</code></pre>
 
 <p>And so much more. Consult the rest of the documentation for more information.</p>
 
-<p>Feel free to <a href="https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd">peruse and participate in our Trello board</a>. It&#39;s completely open to the public.</p>
+<p>Feel free to [peruse and participate in our Trello <a href="ruby-trello-board">board]</a>. It&#39;s completely open to the public.</p>
 
-  </section>
+<p>[trello]: <a href="http://trello.com">trello.com</a> [trello-app-key]: <a href="https://trello.com/app-key">trello.com/app-key</a> [ruby-trello-board]: <a href="https://trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd">trello.com/board/ruby-trello/4f092b2ee23cb6fe6d1aaabd</a></p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Trello/AssociationBuilder.html" title="Trello::AssociationBuilder (module)">AssociationBuilder</a></span>, <span class='object_link'><a href="Trello/AssociationFetcher.html" title="Trello::AssociationFetcher (module)">AssociationFetcher</a></span>, <span class='object_link'><a href="Trello/Authorization.html" title="Trello::Authorization (module)">Authorization</a></span>, <span class='object_link'><a href="Trello/HasActions.html" title="Trello::HasActions (module)">HasActions</a></span>, <span class='object_link'><a href="Trello/JsonUtils.html" title="Trello::JsonUtils (module)">JsonUtils</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Trello/Action.html" title="Trello::Action (class)">Action</a></span>, <span class='object_link'><a href="Trello/Association.html" title="Trello::Association (class)">Association</a></span>, <span class='object_link'><a href="Trello/AssociationInferTool.html" title="Trello::AssociationInferTool (class)">AssociationInferTool</a></span>, <span class='object_link'><a href="Trello/AssociationProxy.html" title="Trello::AssociationProxy (class)">AssociationProxy</a></span>, <span class='object_link'><a href="Trello/Attachment.html" title="Trello::Attachment (class)">Attachment</a></span>, <span class='object_link'><a href="Trello/BasicData.html" title="Trello::BasicData (class)">BasicData</a></span>, <span class='object_link'><a href="Trello/Board.html" title="Trello::Board (class)">Board</a></span>, <span class='object_link'><a href="Trello/Card.html" title="Trello::Card (class)">Card</a></span>, <span class='object_link'><a href="Trello/CheckItemState.html" title="Trello::CheckItemState (class)">CheckItemState</a></span>, <span class='object_link'><a href="Trello/Checklist.html" title="Trello::Checklist (class)">Checklist</a></span>, <span class='object_link'><a href="Trello/Client.html" title="Trello::Client (class)">Client</a></span>, <span class='object_link'><a href="Trello/Comment.html" title="Trello::Comment (class)">Comment</a></span>, <span class='object_link'><a href="Trello/Configuration.html" title="Trello::Configuration (class)">Configuration</a></span>, <span class='object_link'><a href="Trello/CoverImage.html" title="Trello::CoverImage (class)">CoverImage</a></span>, <span class='object_link'><a href="Trello/CustomField.html" title="Trello::CustomField (class)">CustomField</a></span>, <span class='object_link'><a href="Trello/CustomFieldItem.html" title="Trello::CustomFieldItem (class)">CustomFieldItem</a></span>, <span class='object_link'><a href="Trello/CustomFieldOption.html" title="Trello::CustomFieldOption (class)">CustomFieldOption</a></span>, <span class='object_link'><a href="Trello/Error.html" title="Trello::Error (class)">Error</a></span>, <span class='object_link'><a href="Trello/Item.html" title="Trello::Item (class)">Item</a></span>, <span class='object_link'><a href="Trello/Label.html" title="Trello::Label (class)">Label</a></span>, <span class='object_link'><a href="Trello/LabelName.html" title="Trello::LabelName (class)">LabelName</a></span>, <span class='object_link'><a href="Trello/List.html" title="Trello::List (class)">List</a></span>, <span class='object_link'><a href="Trello/Member.html" title="Trello::Member (class)">Member</a></span>, <span class='object_link'><a href="Trello/MultiAssociation.html" title="Trello::MultiAssociation (class)">MultiAssociation</a></span>, <span class='object_link'><a href="Trello/Notification.html" title="Trello::Notification (class)">Notification</a></span>, <span class='object_link'><a href="Trello/Organization.html" title="Trello::Organization (class)">Organization</a></span>, <span class='object_link'><a href="Trello/PluginDatum.html" title="Trello::PluginDatum (class)">PluginDatum</a></span>, <span class='object_link'><a href="Trello/Request.html" title="Trello::Request (class)">Request</a></span>, <span class='object_link'><a href="Trello/Response.html" title="Trello::Response (class)">Response</a></span>, <span class='object_link'><a href="Trello/Schema.html" title="Trello::Schema (class)">Schema</a></span>, <span class='object_link'><a href="Trello/TInternet.html" title="Trello::TInternet (class)">TInternet</a></span>, <span class='object_link'><a href="Trello/Token.html" title="Trello::Token (class)">Token</a></span>, <span class='object_link'><a href="Trello/Webhook.html" title="Trello::Webhook (class)">Webhook</a></span>
+    
+  
+</p>
 
   
-  <section id="5Buntitled-5D" class="documentation-section">
-    
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
 
-    
-
-    
-    <section class="constants-list">
-      <header>
-        <h3>Constants</h3>
-      </header>
-      <dl>
+    <dl class="constants">
       
-        <dt id="API_VERSION">API_VERSION
-        
-        <dd><p>Version of the <a href="Trello.html"><code>Trello</code></a> API that we use by default.</p>
-        
-      
-        <dt id="ConfigurationError">ConfigurationError
-        
-        <dd><p>This error is thrown when your client has not been configured</p>
-        
-      
-        <dt id="InvalidAccessToken">InvalidAccessToken
-        
-        <dd><p>This specific error is thrown when your access token is invalid. You should get a new one.</p>
-        
-      
-        <dt id="Request">Request
-        
-        <dd>
-        
-      
-        <dt id="Response">Response
-        
-        <dd>
-        
-      
-      </dl>
-    </section>
+        <dt id="API_VERSION-constant" class="">API_VERSION =
+          <div class="docstring">
+  <div class="discussion">
     
+<p>Version of the Trello API that we use by default.</p>
 
-    
 
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-    
-      <div id="method-c-auth_policy" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">auth_policy</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="auth_policy-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 121</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">auth_policy</span>; <span class="ruby-identifier">client</span>.<span class="ruby-identifier">auth_policy</span>; <span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-authorize_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">authorize_url</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Url to token for making authorized requests to the <a href="Trello.html"><code>Trello</code></a> API</p>
-
-<p>@param [String, read] contents the contents to reverse @param options [Hash] Repository information to update @option options [String] :name Name of the application @option options [String] :key Application key @option options [String] :response_type &#39;token&#39; @option options [String] :callback_method &#39;postMessage&#39; or &#39;fragment&#39; @option options [String] :return_url URL the token should be returned to @option options [String] :scope Comma-separated list of one or more of &#39;read&#39;, &#39;write&#39;, &#39;account&#39; @option options [String] :expiration &#39;1hour&#39;, &#39;1day&#39;, &#39;30days&#39;, &#39;never&#39; @see <a href="https://developers.trello.com/authorize">developers.trello.com/authorize</a></p>
-          
-          
-
-          
-          <div class="method-source-code" id="authorize_url-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 141</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">authorize_url</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">params</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:key</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">developer_public_key</span> <span class="ruby-keyword">or</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&#39;Please configure your Trello public key&#39;</span>
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;Ruby Trello&#39;</span>
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:scope</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;read,write,account&#39;</span>
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:expiration</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;never&#39;</span>
-  <span class="ruby-identifier">params</span>[<span class="ruby-value">:response_type</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;token&#39;</span>
-  <span class="ruby-identifier">uri</span> = <span class="ruby-constant">Addressable</span><span class="ruby-operator">::</span><span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-string">&#39;https://trello.com/1/authorize&#39;</span>
-  <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">query_values</span> = <span class="ruby-identifier">params</span>
-  <span class="ruby-identifier">uri</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-client" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">client</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="client-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 108</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">client</span>
-  <span class="ruby-ivar">@client</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Client</span>.<span class="ruby-identifier">new</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-configuration" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">configuration</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="configuration-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 122</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">configuration</span>; <span class="ruby-identifier">client</span>.<span class="ruby-identifier">configuration</span>; <span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-configure" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">configure</span><span
-            class="method-args">(&amp;block)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="configure-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 112</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">configure</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
-  <span class="ruby-identifier">reset!</span>
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">configure</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-logger" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">logger</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="logger-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 100</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">logger</span>
-  <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">STDOUT</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-logger-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">logger=</span><span
-            class="method-args">(logger)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="logger-3D-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 104</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">logger=</span>(<span class="ruby-identifier">logger</span>)
-  <span class="ruby-ivar">@logger</span> = <span class="ruby-identifier">logger</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File spec/json_utils_spec.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;name&#39;</span>]
-  <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;description&#39;</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-open_authorization_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">open_authorization_url</span><span
-            class="method-args">(options = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Visit the <a href="Trello.html"><code>Trello</code></a> authorized token page</p>
-
-<p>@see <a href="https://developers.trello.com/authorize">developers.trello.com/authorize</a></p>
-          
-          
-
-          
-          <div class="method-source-code" id="open_authorization_url-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 164</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">open_authorization_url</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">open_url</span> <span class="ruby-identifier">authorize_url</span>(<span class="ruby-identifier">options</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-open_public_key_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">open_public_key_url</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Visit the <a href="Trello.html"><code>Trello</code></a> API public key page</p>
-
-<p>@see <a href="https://trello.com/app-key">trello.com/app-key</a></p>
-          
-          
-
-          
-          <div class="method-source-code" id="open_public_key_url-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 157</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">open_public_key_url</span>
-  <span class="ruby-identifier">open_url</span> <span class="ruby-identifier">public_key_url</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-open_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">open_url</span><span
-            class="method-args">(url)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>@private</p>
-          
-          
-
-          
-          <div class="method-source-code" id="open_url-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 169</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">open_url</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">require</span> <span class="ruby-string">&#39;launchy&#39;</span>
-  <span class="ruby-constant">Launchy</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">url</span>.<span class="ruby-identifier">to_s</span>)
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">LoadError</span>
-  <span class="ruby-identifier">warn</span> <span class="ruby-string">&#39;Please install the launchy gem to open the url automatically.&#39;</span>
-  <span class="ruby-identifier">url</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-public_key_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">public_key_url</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Url to <a href="Trello.html"><code>Trello</code></a> API public key page</p>
-          
-          
-
-          
-          <div class="method-source-code" id="public_key_url-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 125</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">public_key_url</span>
-  <span class="ruby-string">&#39;https://trello.com/app-key&#39;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-reset-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">reset!</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="reset-21-source">
-            <pre><span class="ruby-comment"># File lib/trello.rb, line 117</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">reset!</span>
-  <span class="ruby-ivar">@client</span> = <span class="ruby-keyword">nil</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
+  </div>
+</div>
+<div class="tags">
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
 
+</div>
+        </dt>
+        <dd><pre class="code"><span class='int'>1</span></pre></dd>
+      
+        <dt id="InvalidAccessToken-constant" class="">InvalidAccessToken =
+          <div class="docstring">
+  <div class="discussion">
     
-      <div id="method-i-example_class" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">example_class</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
+<p>This specific error is thrown when your access token is invalid. You should get a new one.</p>
 
-        <div class="method-description">
-          
-          
-          
-          
 
-          
-          <div class="method-source-code" id="example_class-source">
-            <pre><span class="ruby-comment"># File spec/json_utils_spec.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">example_class</span>
-  <span class="ruby-ivar">@example_class</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">include</span> <span class="ruby-constant">Trello</span><span class="ruby-operator">::</span><span class="ruby-constant">JsonUtils</span>
-
-    <span class="ruby-identifier">attr_accessor</span> <span class="ruby-value">:name</span>, <span class="ruby-value">:description</span>
-
-    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">options</span> = {})
-      <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;name&#39;</span>]
-      <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">options</span>[<span class="ruby-string">&#39;description&#39;</span>]
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-mock_client_and_association" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mock_client_and_association</span><span
-            class="method-args">(klass:, resource:, id:, path:, params:)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="mock_client_and_association-source">
-            <pre><span class="ruby-comment"># File spec/integration/basic_data/many_spec.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">mock_client_and_association</span>(<span class="ruby-value">klass:</span>, <span class="ruby-value">resource:</span>, <span class="ruby-value">id:</span>, <span class="ruby-value">path:</span>, <span class="ruby-value">params:</span>)
-  <span class="ruby-identifier">resources</span> = <span class="ruby-identifier">double</span>(<span class="ruby-string">&#39;resources&#39;</span>)
-  <span class="ruby-identifier">allow</span>(<span class="ruby-constant">FakeBoard</span>).<span class="ruby-identifier">to</span> <span class="ruby-identifier">receive</span>(<span class="ruby-value">:client</span>).<span class="ruby-identifier">and_return</span>(<span class="ruby-identifier">client_double</span>)
-  <span class="ruby-identifier">allow_any_instance_of</span>(<span class="ruby-constant">FakeBoard</span>).<span class="ruby-identifier">to</span> <span class="ruby-identifier">receive</span>(<span class="ruby-value">:client</span>).<span class="ruby-identifier">and_return</span>(<span class="ruby-identifier">client_double</span>)
-  <span class="ruby-identifier">allow</span>(<span class="ruby-identifier">client_double</span>).<span class="ruby-identifier">to</span> <span class="ruby-identifier">receive</span>(<span class="ruby-value">:find_many</span>).<span class="ruby-identifier">with</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-node">&quot;/#{resource}/#{id}/#{path}&quot;</span>, <span class="ruby-identifier">params</span>).<span class="ruby-identifier">and_return</span>(<span class="ruby-identifier">resources</span>)
-  <span class="ruby-identifier">allow</span>(<span class="ruby-constant">MultiAssociation</span>).<span class="ruby-identifier">to</span> <span class="ruby-identifier">receive</span>(<span class="ruby-value">:new</span>).<span class="ruby-identifier">with</span>(<span class="ruby-constant">FakeBoard</span>, <span class="ruby-identifier">resources</span>).<span class="ruby-identifier">and_return</span>(<span class="ruby-identifier">double</span>(<span class="ruby-string">&#39;association&#39;</span>, <span class="ruby-value">proxy:</span> <span class="ruby-identifier">cards</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
+  </div>
+</div>
+<div class="tags">
   
-  </section>
 
-</main>
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Trello/Error.html" title="Trello::Error (class)">Error</a></span></span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="ConfigurationError-constant" class="">ConfigurationError =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>This error is thrown when your client has not been configured</p>
 
 
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
+  </div>
+</div>
+<div class="tags">
+  
 
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Trello/Error.html" title="Trello::Error (class)">Error</a></span></span><span class='rparen'>)</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#auth_policy-class_method" title="auth_policy (class method)">.<strong>auth_policy</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#authorize_url-class_method" title="authorize_url (class method)">.<strong>authorize_url</strong>(options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Url to token for making authorized requests to the Trello API.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client-class_method" title="client (class method)">.<strong>client</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configuration-class_method" title="configuration (class method)">.<strong>configuration</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#configure-class_method" title="configure (class method)">.<strong>configure</strong>(&amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logger-class_method" title="logger (class method)">.<strong>logger</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logger=-class_method" title="logger= (class method)">.<strong>logger=</strong>(logger)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_authorization_url-class_method" title="open_authorization_url (class method)">.<strong>open_authorization_url</strong>(options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Visit the Trello authorized token page.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_public_key_url-class_method" title="open_public_key_url (class method)">.<strong>open_public_key_url</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Visit the Trello API public key page.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#open_url-class_method" title="open_url (class method)">.<strong>open_url</strong>(url)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#public_key_url-class_method" title="public_key_url (class method)">.<strong>public_key_url</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Url to Trello API public key page.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset!-class_method" title="reset! (class method)">.<strong>reset!</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="auth_policy-class_method">
+  
+    .<strong>auth_policy</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 128</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_auth_policy'>auth_policy</span><span class='semicolon'>;</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_auth_policy'>auth_policy</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="authorize_url-class_method">
+  
+    .<strong>authorize_url</strong>(options = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Url to token for making authorized requests to the Trello API</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Repository information to update</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:name</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Name of the application</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:key</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Application key</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:response_type</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>&#39;token&#39;</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:callback_method</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>&#39;postMessage&#39; or &#39;fragment&#39;</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:return_url</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>URL the token should be returned to</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:scope</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>Comma-separated list of one or more of &#39;read&#39;, &#39;write&#39;, &#39;account&#39;</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:expiration</span>
+          <span class="type">(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'>
+<p>&#39;1hour&#39;, &#39;1day&#39;, &#39;30days&#39;, &#39;never&#39;</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/authorize" target="_parent" title="https://developers.trello.com/authorize">https://developers.trello.com/authorize</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_authorize_url'>authorize_url</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:key</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='id identifier rubyid_configuration'>configuration</span><span class='period'>.</span><span class='id identifier rubyid_developer_public_key'>developer_public_key</span> <span class='kw'>or</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Please configure your Trello public key</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ruby Trello</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:scope</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>read,write,account</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:expiration</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>never</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:response_type</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>token</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_uri'>uri</span> <span class='op'>=</span> <span class='const'>Addressable</span><span class='op'>::</span><span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://trello.com/1/authorize</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_uri'>uri</span><span class='period'>.</span><span class='id identifier rubyid_query_values'>query_values</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span>
+  <span class='id identifier rubyid_uri'>uri</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="client-class_method">
+  
+    .<strong>client</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_client'>client</span>
+  <span class='ivar'>@client</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="Trello/Client.html" title="Trello::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Trello/Client.html#initialize-instance_method" title="Trello::Client#initialize (method)">new</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configuration-class_method">
+  
+    .<strong>configuration</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configuration'>configuration</span><span class='semicolon'>;</span> <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_configuration'>configuration</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="configure-class_method">
+  
+    .<strong>configure</strong>(&amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_reset!'>reset!</span>
+  <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_configure'>configure</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logger-class_method">
+  
+    .<strong>logger</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 107</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logger'>logger</span>
+  <span class='ivar'>@logger</span> <span class='op'>||=</span> <span class='const'>Logger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>STDOUT</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="logger=-class_method">
+  
+    .<strong>logger=</strong>(logger)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_logger='>logger=</span><span class='lparen'>(</span><span class='id identifier rubyid_logger'>logger</span><span class='rparen'>)</span>
+  <span class='ivar'>@logger</span> <span class='op'>=</span> <span class='id identifier rubyid_logger'>logger</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="open_authorization_url-class_method">
+  
+    .<strong>open_authorization_url</strong>(options = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Visit the Trello authorized token page</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://developers.trello.com/authorize" target="_parent" title="https://developers.trello.com/authorize">https://developers.trello.com/authorize</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_open_authorization_url'>open_authorization_url</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_open_url'>open_url</span> <span class='id identifier rubyid_authorize_url'>authorize_url</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="open_public_key_url-class_method">
+  
+    .<strong>open_public_key_url</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Visit the Trello API public key page</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><a href="https://trello.com/app-key" target="_parent" title="https://trello.com/app-key">https://trello.com/app-key</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_open_public_key_url'>open_public_key_url</span>
+  <span class='id identifier rubyid_open_url'>open_url</span> <span class='id identifier rubyid_public_key_url'>public_key_url</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="open_url-class_method">
+  
+    .<strong>open_url</strong>(url)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+175
+176
+177
+178
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 175</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_open_url'>open_url</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>launchy</span><span class='tstring_end'>&#39;</span></span>
+  <span class='const'>Launchy</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'>LoadError</span>
+  <span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Please install the launchy gem to open the url automatically.</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_url'>url</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="public_key_url-class_method">
+  
+    .<strong>public_key_url</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Url to Trello API public key page</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 132</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_public_key_url'>public_key_url</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://trello.com/app-key</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reset!-class_method">
+  
+    .<strong>reset!</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset!'>reset!</span>
+  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Nov 10 16:31:45 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.25 (ruby-2.6.6).
+</div>
+
+    </div>
+  </body>
+</html>

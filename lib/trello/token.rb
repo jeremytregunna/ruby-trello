@@ -2,9 +2,13 @@ module Trello
 
   # @!attribute [r] id
   #   @return [String]
+  # @!attribute [r] identifier
+  #   @return [String]
   # @!attribute [r] member_id
   #   @return [String]
   # @!attribute [r] created_at
+  #   @return [Datetime]
+  # @!attribute [r] expires_at
   #   @return [Datetime]
   # @!attribute [r] permissions
   #   @return [Object]

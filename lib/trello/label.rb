@@ -6,6 +6,10 @@ module Trello
   #   @return [String]
   # @!attribute [rw] color
   #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] board_id
+  #   @return [String]
   class Label < BasicData
 
     schema do

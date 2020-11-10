@@ -11,6 +11,32 @@ module Trello
   #   @return [String]
   # @!attribute [r] url
   #   @return [String]
+  # @!attribute [r] team_type
+  #   @return [String]
+  # @!attribute [r] desc_data
+  #   @return [String]
+  # @!attribute [r] logo_hash
+  #   @return [String]
+  # @!attribute [r] logo_url
+  #   @return [String]
+  # @!attribute [r] power_ups
+  #   @return [Array]
+  # @!attribute [r] website
+  #   @return [String]
+  # @!attribute [w] google_app_domain
+  #   @return [String]
+  # @!attribute [w] google_app_version
+  #   @return [String]
+  # @!attribute [w] enable_add_external_members
+  #   @return [Boolean]
+  # @!attribute [w] private_board_creation_permission_level
+  #   @return [String]
+  # @!attribute [w] organization_visible_board_creation_permission_level
+  #   @return [String]
+  # @!attribute [w] public_board_creation_permission_level
+  #   @return [String]
+  # @!attribute [w] visibility_level
+  #   @return [String]
   class Organization < BasicData
     schema do
       # Readonly

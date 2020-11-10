@@ -10,8 +10,18 @@ module Trello
   #   @return [Datetime]
   # @!attribute [rw] data
   #   @return [Object]
-  # @!attribute [r] creator_id,
+  # @!attribute [r] creator_id
   #   @return [String]
+  # @!attribute [r] creator_app
+  #   @return [String]
+  # @!attribute [r] action_id
+  #   @return [String]
+  # @!attribute [r] is_reactable
+  #   @return [Boolean]
+  # @!attribute [r] read_at
+  #   @return [Datetime]
+  # @!attribute [r] reactions
+  #   @return [Array]
   class Notification < BasicData
 
     schema do

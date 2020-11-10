@@ -1,22 +1,34 @@
 module Trello
   # A file or url that is linked to a Trello card
   #
-  # @!attribute id
+  # @!attribute [r] id
   #   @return [String]
-  # @!attribute name
-  #   @return [String]
-  # @!attribute url
-  #   @return [String]
-  # @!attribute pos
+  # @!attribute [r] position
   #   @return [Float]
-  # @!attribute bytes
+  # @!attribute [r] bytes
   #   @return [Fixnum]
-  # @!attribute date
-  #   @return [Datetime]
-  # @!attribute is_upload
-  #   @return [Boolean]
-  # @!attribute mime_type
+  # @!attribute [r] member_id
   #   @return [String]
+  # @!attribute [r] date
+  #   @return [Datetime]
+  # @!attribute [r] is_upload
+  #   @return [Boolean]
+  # @!attribute [r] previews
+  #   @return [Array]
+  # @!attribute [r] file_name
+  #   @return [String]
+  # @!attribute [r] edge_color
+  #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] url
+  #   @return [String]
+  # @!attribute [rw] mime_type
+  #   @return [String]
+  # @!attribute [w] file
+  #   @return [String]
+  # @!attribute [w] set_as_cover
+  #   @return [Boolean]
   class Attachment < BasicData
     schema do
       # Readonly

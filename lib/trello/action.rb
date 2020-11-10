@@ -3,16 +3,22 @@ module Trello
   #
   # @!attribute [r] id
   #   @return [String]
-  # @!attribute [r] type
+  # @!attribute [r] creator_id
   #   @return [String]
   # @!attribute [r] data
   #   @return [Hash]
+  # @!attribute [r] type
+  #   @return [String]
   # @!attribute [r] date
   #   @return [Datetime]
-  # @!attribute [r] creator_id
+  # @!attribute [r] limits
+  #   @return [Hash]
+  # @!attribute [r] app_creator
   #   @return [String]
-  # @!attribute [r] member_participant
-  #   @return [Object]
+  # @!attribute [r] display
+  #   @return [Hash]
+  # @!attribute [w] text
+  #   @return [String]
   class Action < BasicData
 
     schema do

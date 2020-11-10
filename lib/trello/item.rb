@@ -5,12 +5,22 @@ module Trello
   #   @return [String]
   # @!attribute [r] name
   #   @return [String]
+  # @!attribute [r] name_data
+  #   @return [String]
   # @!attribute [r] type
   #   @return [Object]
   # @!attribute [r] state
   #   @return [Object]
-  # @!attribute [r] pos
+  # @!attribute [r] position
   #   @return [Object]
+  # @!attribute [r] due_date
+  #   @return [Datetime]
+  # @!attribute [r] member_id
+  #   @return [String]
+  # @!attribute [r] checklist_id
+  #   @return [String]
+  # @!attribute [w] checked
+  #   @return [Boolean]
   class Item < BasicData
 
     schema do
