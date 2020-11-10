@@ -1,11 +1,12 @@
 # Changelog
 
-## Next Release
+## v3.0.0
 
 * [Fix "Trello::Board#update! fail to update description"](https://github.com/jeremytregunna/ruby-trello/pull/289)
 * [Add `Trello::List#move_to_board`](https://github.com/jeremytregunna/ruby-trello/pull/297)
 * Use schema to handle attribute register work
 * Standardize all data models' initialize/save/update!/update_fields process.
+* [Breaking] some data model's attribute names changes, check each data model for details
 
 ## v2.3.0
 
