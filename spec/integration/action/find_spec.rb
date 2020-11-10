@@ -11,7 +11,7 @@ RSpec.describe 'Trello::Action#find' do
       expect(action).to be_a(Trello::Action)
 
       expect(action.id).to eq('5f60f07958388d26dc063c30')
-      expect(action.member_creator_id).not_to be_nil
+      expect(action.creator_id).not_to be_nil
       expect(action.data).not_to be_nil
       expect(action.type).not_to be_nil
       expect(action.date).not_to be_nil

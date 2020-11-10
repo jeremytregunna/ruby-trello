@@ -7,14 +7,14 @@ module Trello
   #   @return [String]
   # @!attribute [r] date
   #   @return [Datetime]
-  # @!attribute [r] member_creator_id
+  # @!attribute [r] creator_id
   #   @return [String]
   class Comment < BasicData
 
     schema do
       # Readonly
       attribute :id, readonly: true, primary_key: true
-      attribute :member_creator_id, readonly: true, remote_key: 'idMemberCreator'
+      attribute :creator_id, readonly: true, remote_key: 'idMemberCreator'
       attribute :data, readonly: true
       attribute :type, readonly: true
       attribute :date, readonly: true, serializer: 'Time'
@@ -26,7 +26,7 @@ module Trello
       attribute :text, update_only: true
     end
 
-    validates_presence_of :action_id, :text, :date, :member_creator_id
+    validates_presence_of :action_id, :text, :date, :creator_id
     validates_length_of   :text,        in: 1..16384
 
     class << self
@@ -57,6 +57,6 @@ module Trello
     end
 
     # Returns the member who created the comment.
-    one :member_creator, via: Member, path: :members, using: :member_creator_id
+    one :member_creator, via: Member, path: :members, using: :creator_id
   end
 end
