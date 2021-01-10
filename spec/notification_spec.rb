@@ -82,7 +82,7 @@ module Trello
           .with("/members/#{user_details['id']}", {})
           .and_return user_payload
 
-        expect(notification.member_creator.id).to eq user_details['id']
+        expect(notification.creator.id).to eq user_details['id']
       end
     end
 
@@ -115,7 +115,7 @@ module Trello
       end
 
       it "gets the member creator id" do
-        expect(notification.member_creator_id).to eq notification_details['idMemberCreator']
+        expect(notification.creator_id).to eq notification_details['idMemberCreator']
       end
     end
 
@@ -127,7 +127,7 @@ module Trello
           'type' => 'type',
           'date' => 'date',
           'data' => 'data',
-          'idMemberCreator' => 'member_creator_id'
+          'idMemberCreator' => 'creator_id'
         }
 
         notification = Notification.new(expected)

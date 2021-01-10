@@ -1,547 +1,2429 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-<meta charset="UTF-8">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Trello::List
+  
+    &mdash; Documentation by YARD 0.9.25
+  
+</title>
 
-<title>class Trello::List - RDoc Documentation</title>
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "../";
-  var index_rel_prefix = "../";
+  pathId = "Trello::List";
+  relpath = '../';
 </script>
 
-<script src="../js/navigation.js" defer></script>
-<script src="../js/search.js" defer></script>
-<script src="../js/search_index.js" defer></script>
-<script src="../js/searcher.js" defer></script>
-<script src="../js/darkfish.js" defer></script>
 
-<link href="../css/fonts.css" rel="stylesheet">
-<link href="../css/rdoc.css" rel="stylesheet">
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-
-
-<body id="top" role="document" class="class">
-<nav role="navigation">
-  <div id="project-navigation">
-    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
-  <h2>
-    <a href="../index.html" rel="home">Home</a>
-  </h2>
-
-  <div id="table-of-contents-navigation">
-    <a href="../table_of_contents.html#pages">Pages</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </div>
-</div>
-
-    <div id="search-section" role="search" class="project-section initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <div id="search-field-wrapper">
-      <input id="search-field" role="combobox" aria-label="Search"
-             aria-autocomplete="list" aria-controls="search-results"
-             type="text" name="search" placeholder="Search" spellcheck="false"
-             title="Type to search, Up and Down to navigate, Enter to load">
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
     </div>
 
-    <ul id="search-results" aria-label="Search Results"
-        aria-busy="false" aria-expanded="false"
-        aria-atomic="false" class="initially-hidden"></ul>
-  </form>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (L)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Trello.html" title="Trello (module)">Trello</a></span></span>
+     &raquo; 
+    <span class="title">List</span>
+  
 </div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Trello::List
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></li>
+          
+            <li class="next">Trello::List</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/trello/list.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A List is a container which holds cards. Lists are items on a board.</p>
+
 
   </div>
-
+</div>
+<div class="tags">
   
 
-  <div id="class-metadata">
-    
-    <div id="parent-class-section" class="nav-section">
-  <h3>Parent</h3>
-
-  
-  <p class="link"><a href="BasicData.html">Trello::BasicData</a>
-  
 </div>
 
-    <div id="includes-section" class="nav-section">
-  <h3>Included Modules</h3>
 
-  <ul class="link-list">
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#board_id-instance_method" title="#board_id (instance method)">#<strong>board_id</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
   
   
-    <li><a class="include" href="HasActions.html">Trello::HasActions</a>
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
   
   
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A 24-character hex string.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#closed-instance_method" title="#closed (instance method)">#<strong>closed</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#id-instance_method" title="#id (instance method)">#<strong>id</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pos-instance_method" title="#pos (instance method)">#<strong>pos</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#source_list_id=-instance_method" title="#source_list_id= (instance method)">#<strong>source_list_id</strong>  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+      <span class="note title writeonly">writeonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#subscribed=-instance_method" title="#subscribed= (instance method)">#<strong>subscribed</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+      <span class="note title writeonly">writeonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+    
   </ul>
-</div>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="BasicData.html#client-instance_method" title="Trello::BasicData#client (method)">#client</a></span></p>
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find-class_method" title="find (class method)">.<strong>find</strong>(id, params = {})  &#x21d2; Object </a>
+    
 
     
-    <!-- Method Quickref -->
-<div id="method-list-section" class="nav-section">
-  <h3>Methods</h3>
+  </span>
+  
+  
+  
+  
+  
+  
+  
 
-  <ul class="link-list" role="directory">
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Finds a specific list, given an id.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-    <li ><a href="#method-c-create">::create</a>
+      <a href="#archive_all_cards-instance_method" title="#archive_all_cards (instance method)">#<strong>archive_all_cards</strong>  &#x21d2; Object </a>
     
-    <li ><a href="#method-c-find">::find</a>
+
     
-    <li ><a href="#method-i-archive_all_cards">#archive_all_cards</a>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Archives all the cards of the list.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-    <li ><a href="#method-i-close">#close</a>
+      <a href="#close-instance_method" title="#close (instance method)">#<strong>close</strong>  &#x21d2; Object </a>
     
-    <li ><a href="#method-i-close-21">#close!</a>
+
     
-    <li ><a href="#method-i-closed-3F">#closed?</a>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-    <li ><a href="#method-i-move_all_cards">#move_all_cards</a>
+      <a href="#close!-instance_method" title="#close! (instance method)">#<strong>close!</strong>  &#x21d2; Object </a>
     
-    <li ><a href="#method-i-save">#save</a>
+
     
-    <li ><a href="#method-i-update-21">#update!</a>
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
     
-    <li ><a href="#method-i-update_fields">#update_fields</a>
+      <a href="#closed%3F-instance_method" title="#closed? (instance method)">#<strong>closed?</strong>  &#x21d2; Boolean </a>
     
-  </ul>
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Check if the list is not active anymore.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#move_all_cards-instance_method" title="#move_all_cards (instance method)">#<strong>move_all_cards</strong>(other_list)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#move_to_board-instance_method" title="#move_to_board (instance method)">#<strong>move_to_board</strong>(board)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Move list to another board.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#request_prefix-instance_method" title="#request_prefix (instance method)">#<strong>request_prefix</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="HasActions.html#actions-instance_method" title="Trello::HasActions#actions (method)">#actions</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="BasicData.html#==-instance_method" title="Trello::BasicData#== (method)">#==</a></span>, <span class='object_link'><a href="BasicData.html#attributes-instance_method" title="Trello::BasicData#attributes (method)">#attributes</a></span>, <span class='object_link'><a href="BasicData.html#client-class_method" title="Trello::BasicData.client (method)">client</a></span>, <span class='object_link'><a href="BasicData.html#collection_name-instance_method" title="Trello::BasicData#collection_name (method)">#collection_name</a></span>, <span class='object_link'><a href="BasicData.html#collection_path-instance_method" title="Trello::BasicData#collection_path (method)">#collection_path</a></span>, <span class='object_link'><a href="BasicData.html#create-class_method" title="Trello::BasicData.create (method)">create</a></span>, <span class='object_link'><a href="BasicData.html#element_name-instance_method" title="Trello::BasicData#element_name (method)">#element_name</a></span>, <span class='object_link'><a href="BasicData.html#element_path-instance_method" title="Trello::BasicData#element_path (method)">#element_path</a></span>, <span class='object_link'><a href="BasicData.html#hash-instance_method" title="Trello::BasicData#hash (method)">#hash</a></span>, <span class='object_link'><a href="BasicData.html#initialize-instance_method" title="Trello::BasicData#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="BasicData.html#many-class_method" title="Trello::BasicData.many (method)">many</a></span>, <span class='object_link'><a href="BasicData.html#one-class_method" title="Trello::BasicData.one (method)">one</a></span>, <span class='object_link'><a href="BasicData.html#parse-class_method" title="Trello::BasicData.parse (method)">parse</a></span>, <span class='object_link'><a href="BasicData.html#parse_many-class_method" title="Trello::BasicData.parse_many (method)">parse_many</a></span>, <span class='object_link'><a href="BasicData.html#path_name-class_method" title="Trello::BasicData.path_name (method)">path_name</a></span>, <span class='object_link'><a href="BasicData.html#refresh!-instance_method" title="Trello::BasicData#refresh! (method)">#refresh!</a></span>, <span class='object_link'><a href="BasicData.html#register_attrs-class_method" title="Trello::BasicData.register_attrs (method)">register_attrs</a></span>, <span class='object_link'><a href="BasicData.html#save-class_method" title="Trello::BasicData.save (method)">save</a></span>, <span class='object_link'><a href="BasicData.html#save-instance_method" title="Trello::BasicData#save (method)">#save</a></span>, <span class='object_link'><a href="BasicData.html#schema-class_method" title="Trello::BasicData.schema (method)">schema</a></span>, <span class='object_link'><a href="BasicData.html#schema-instance_method" title="Trello::BasicData#schema (method)">#schema</a></span>, <span class='object_link'><a href="BasicData.html#update!-instance_method" title="Trello::BasicData#update! (method)">#update!</a></span>, <span class='object_link'><a href="BasicData.html#update_fields-instance_method" title="Trello::BasicData#update_fields (method)">#update_fields</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="JsonUtils.html" title="Trello::JsonUtils (module)">JsonUtils</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="JsonUtils.html#included-class_method" title="Trello::JsonUtils.included (method)">included</a></span></p>
+
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="BasicData.html#initialize-instance_method" title="Trello::BasicData#initialize (method)">Trello::BasicData</a></span></p>
+  
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="board_id-instance_method">
+  
+    #<strong>board_id</strong>  &#x21d2; <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns A 24-character hex string.</p>
+
 
   </div>
-</nav>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>A 24-character hex string</p>
+</div>
+      
+    </li>
+  
+</ul>
 
-<main role="main" aria-labelledby="class-Trello::List">
-  <h1 id="class-Trello::List" class="class">
-    class Trello::List
-  </h1>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <section class="description">
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
+
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-<p>A <a href="List.html"><code>List</code></a> is a container which holds cards. Lists are items on a board.</p>
-
-<p>@!attribute [r] id</p>
-
-<pre class="ruby"><span class="ruby-ivar">@return</span> [<span class="ruby-constant">String</span>]
-</pre>
-
-<p>@!attribute [rw] name</p>
-
-<pre class="ruby"><span class="ruby-ivar">@return</span> [<span class="ruby-constant">String</span>]
-</pre>
-
-<p>@!attribute [rw] closed</p>
-
-<pre class="ruby"><span class="ruby-ivar">@return</span> [<span class="ruby-constant">Boolean</span>]
-</pre>
-
-<p>@!attribute [r] board_id</p>
-
-<pre>@return [String] A 24-character hex string</pre>
-
-<p>@!attribute [rw] pos</p>
-
-<pre class="ruby"><span class="ruby-ivar">@return</span> [<span class="ruby-constant">Object</span>]
-</pre>
-
-  </section>
+      
+      <span id="closed=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="closed-instance_method">
+  
+    #<strong>closed</strong>  &#x21d2; <tt>Boolean</tt> 
+  
 
   
-  <section id="5Buntitled-5D" class="documentation-section">
-    
 
-    
-
-    
-
-    
-
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-    
-      <div id="method-c-create" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">create</span><span
-            class="method-args">(options)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:list</span>,
-      <span class="ruby-string">&#39;name&#39;</span>         <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>],
-      <span class="ruby-string">&#39;idBoard&#39;</span>      <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:board_id</span>],
-      <span class="ruby-string">&#39;pos&#39;</span>          <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pos</span>],
-      <span class="ruby-string">&#39;idListSource&#39;</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:source_list_id</span>])
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-c-find" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find</span><span
-            class="method-args">(id, params = {})</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Finds a specific list, given an id.</p>
-
-<p>@param [id] id the list&#39;s ID on <a href="../Trello.html"><code>Trello</code></a> (24-character hex string). @param [Hash] params</p>
-          
-          
-
-          
-          <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 26</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">find</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span> = {})
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">find</span>(<span class="ruby-value">:list</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">params</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
+</h3><div class="docstring">
+  <div class="discussion">
     
-      <div id="method-i-archive_all_cards" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">archive_all_cards</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
-          
-          <p>Archives all the cards of the list</p>
-          
-          
-
-          
-          <div class="method-source-code" id="archive_all_cards-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 105</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">archive_all_cards</span>
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/lists/#{id}/archiveAllCards&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-close" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">close</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">close</span>
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">closed</span> = <span class="ruby-keyword">true</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-close-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">close!</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="close-21-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 82</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">close!</span>
-  <span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">save</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-closed-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">closed?</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Check if the list is not active anymore.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="closed-3F-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 74</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">closed?</span>
-  <span class="ruby-identifier">closed</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-move_all_cards" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">move_all_cards</span><span
-            class="method-args">(other_list)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="move_all_cards-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 97</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">move_all_cards</span>(<span class="ruby-identifier">other_list</span>)
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-node">&quot;/lists/#{id}/moveAllCards&quot;</span>, {
-    <span class="ruby-value">idBoard:</span> <span class="ruby-identifier">other_list</span>.<span class="ruby-identifier">board_id</span>,
-    <span class="ruby-value">idList:</span> <span class="ruby-identifier">other_list</span>.<span class="ruby-identifier">id</span>
-   })
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-save" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">save</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 53</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">save</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">update!</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">id</span>
-
-  <span class="ruby-identifier">from_response</span> <span class="ruby-identifier">client</span>.<span class="ruby-identifier">post</span>(<span class="ruby-string">&quot;/lists&quot;</span>, {
-    <span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>,
-    <span class="ruby-value">closed:</span> <span class="ruby-identifier">closed</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>,
-    <span class="ruby-value">idBoard:</span> <span class="ruby-identifier">board_id</span>,
-    <span class="ruby-value">pos:</span> <span class="ruby-identifier">pos</span>,
-    <span class="ruby-value">idListSource:</span> <span class="ruby-identifier">source_list_id</span>
-  })
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-update-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">update!</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="update-21-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 65</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update!</span>
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">put</span>(<span class="ruby-node">&quot;/lists/#{id}&quot;</span>, {
-    <span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>,
-    <span class="ruby-value">closed:</span> <span class="ruby-identifier">closed</span>,
-    <span class="ruby-value">pos:</span> <span class="ruby-identifier">pos</span>
-  })
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-      <div id="method-i-update_fields" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">update_fields</span><span
-            class="method-args">(fields)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Updates the fields of a list.</p>
-
-<p>Supply a hash of string keyed data retrieved from the <a href="../Trello.html"><code>Trello</code></a> API representing a <a href="List.html"><code>List</code></a>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="update_fields-source">
-            <pre><span class="ruby-comment"># File lib/trello/list.rb, line 43</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_fields</span>(<span class="ruby-identifier">fields</span>)
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]             = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;id&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:id</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]           = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;name&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:name</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:closed</span>]         = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;closed&#39;</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-string">&#39;closed&#39;</span>)
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:board_id</span>]       = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;idBoard&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:board_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:board_id</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:pos</span>]            = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;pos&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:pos</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:pos</span>]
-  <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:source_list_id</span>] = <span class="ruby-identifier">fields</span>[<span class="ruby-string">&#39;idListSource&#39;</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">:source_list_id</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">attributes</span>[<span class="ruby-value">:source_list_id</span>]
-  <span class="ruby-keyword">self</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-        </div>
-
-        
-
-        
-      </div>
-
-    
-    </section>
+  </div>
+</div>
+<div class="tags">
   
-  </section>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
-</main>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
-<footer id="validator-badges" role="contentinfo">
-  <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
-</footer>
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
 
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="id-instance_method">
+  
+    #<strong>id</strong>  &#x21d2; <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
+
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    #<strong>name</strong>  &#x21d2; <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
+
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="pos=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="pos-instance_method">
+  
+    #<strong>pos</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
+
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="source_list_id=-instance_method">
+  
+    #<strong>source_list_id=</strong>(value)  &#x21d2; <tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>  <span class="extras">(writeonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
+
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="subscribed=-instance_method">
+  
+    #<strong>subscribed=</strong>(value)  &#x21d2; <tt>Boolean</tt>  <span class="extras">(writeonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 20</span>
+
+<span class='kw'>class</span> <span class='const'><span class='object_link'><a href="" title="Trello::List (class)">List</a></span></span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="BasicData.html" title="Trello::BasicData (class)">BasicData</a></span></span>
+  <span class='id identifier rubyid_schema'>schema</span> <span class='kw'>do</span>
+    <span class='comment'># Readonly
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>readonly:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>primary_key:</span> <span class='kw'>true</span>
+
+    <span class='comment'># Writable
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:pos</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:board_id</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idBoard</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for create only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:source_list_id</span><span class='comma'>,</span> <span class='label'>create_only:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>remote_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>idListSource</span><span class='tstring_end'>&#39;</span></span>
+
+    <span class='comment'># Writable but for update only
+</span>    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:closed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:subscribed</span><span class='comma'>,</span> <span class='label'>update_only:</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_validates_presence_of'>validates_presence_of</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='symbol'>:name</span><span class='comma'>,</span> <span class='symbol'>:board_id</span>
+  <span class='id identifier rubyid_validates_length_of'>validates_length_of</span>   <span class='symbol'>:name</span><span class='comma'>,</span> <span class='label'>in:</span> <span class='int'>1</span><span class='op'>..</span><span class='int'>16_384</span>
+
+  <span class='id identifier rubyid_include'>include</span> <span class='const'><span class='object_link'><a href="HasActions.html" title="Trello::HasActions (module)">HasActions</a></span></span>
+
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='comment'># Finds a specific list, given an id.
+</span>    <span class='comment'>#
+</span>    <span class='comment'># @param [id] id the list&#39;s ID on Trello (24-character hex string).
+</span>    <span class='comment'># @param [Hash] params
+</span>    <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if the list is not active anymore.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+    <span class='id identifier rubyid_closed'>closed</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+    <span class='id identifier rubyid_close'>close</span>
+    <span class='id identifier rubyid_save'>save</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Return the board the list is connected to.
+</span>  <span class='id identifier rubyid_one'>one</span> <span class='symbol'>:board</span><span class='comma'>,</span> <span class='label'>path:</span> <span class='symbol'>:boards</span><span class='comma'>,</span> <span class='label'>using:</span> <span class='symbol'>:board_id</span>
+
+  <span class='comment'># Returns all the cards on this list.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># The options hash may have a filter key which can have its value set as any
+</span>  <span class='comment'># of the following values:
+</span>  <span class='comment'>#    :filter =&gt; [ :none, :open, :closed, :all ] # default :open
+</span>  <span class='id identifier rubyid_many'>many</span> <span class='symbol'>:cards</span><span class='comma'>,</span> <span class='label'>filter:</span> <span class='symbol'>:open</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+      <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+      <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+     <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Move list to another board. Accepts a `Trello::Board` or an id string.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Archives all the cards of the list
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+    <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># :nodoc:
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="find-class_method">
+  
+    .<strong>find</strong>(id, params = {})  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Finds a specific list, given an id.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="#id-instance_method" title="Trello::List#id (method)">id</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the list&#39;s ID on Trello (24-character hex string).</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='symbol'>:list</span><span class='comma'>,</span> <span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="archive_all_cards-instance_method">
+  
+    #<strong>archive_all_cards</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Archives all the cards of the list</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_archive_all_cards'>archive_all_cards</span>
+  <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/archiveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="close-instance_method">
+  
+    #<strong>close</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_closed'>closed</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="close!-instance_method">
+  
+    #<strong>close!</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_close!'>close!</span>
+  <span class='id identifier rubyid_close'>close</span>
+  <span class='id identifier rubyid_save'>save</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="closed?-instance_method">
+  
+    #<strong>closed?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Check if the list is not active anymore.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_closed?'>closed?</span>
+  <span class='id identifier rubyid_closed'>closed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="move_all_cards-instance_method">
+  
+    #<strong>move_all_cards</strong>(other_list)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_move_all_cards'>move_all_cards</span><span class='lparen'>(</span><span class='id identifier rubyid_other_list'>other_list</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_post'>post</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/moveAllCards</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span>
+    <span class='label'>idBoard:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_board_id'>board_id</span><span class='comma'>,</span>
+    <span class='label'>idList:</span> <span class='id identifier rubyid_other_list'>other_list</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span>
+   <span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="move_to_board-instance_method">
+  
+    #<strong>move_to_board</strong>(board)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Move list to another board. Accepts a `Trello::Board` or an id string.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_move_to_board'>move_to_board</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_board'>board</span> <span class='op'>=</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='kw'>unless</span> <span class='id identifier rubyid_board'>board</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_put'>put</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/idBoard</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>value:</span> <span class='id identifier rubyid_board'>board</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="request_prefix-instance_method">
+  
+    #<strong>request_prefix</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/trello/list.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_request_prefix'>request_prefix</span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/lists/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Nov 10 16:31:50 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.25 (ruby-2.6.6).
+</div>
+
+    </div>
+  </body>
+</html>

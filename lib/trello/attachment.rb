@@ -1,40 +1,53 @@
 module Trello
   # A file or url that is linked to a Trello card
   #
-  # @!attribute id
+  # @!attribute [r] id
   #   @return [String]
-  # @!attribute name
-  #   @return [String]
-  # @!attribute url
-  #   @return [String]
-  # @!attribute pos
+  # @!attribute [r] position
   #   @return [Float]
-  # @!attribute bytes
+  # @!attribute [r] bytes
   #   @return [Fixnum]
-  # @!attribute date
-  #   @return [Datetime]
-  # @!attribute is_upload
-  #   @return [Boolean]
-  # @!attribute mime_type
+  # @!attribute [r] member_id
   #   @return [String]
+  # @!attribute [r] date
+  #   @return [Datetime]
+  # @!attribute [r] is_upload
+  #   @return [Boolean]
+  # @!attribute [r] previews
+  #   @return [Array]
+  # @!attribute [r] file_name
+  #   @return [String]
+  # @!attribute [r] edge_color
+  #   @return [String]
+  # @!attribute [rw] name
+  #   @return [String]
+  # @!attribute [rw] url
+  #   @return [String]
+  # @!attribute [rw] mime_type
+  #   @return [String]
+  # @!attribute [w] file
+  #   @return [String]
+  # @!attribute [w] set_as_cover
+  #   @return [Boolean]
   class Attachment < BasicData
-    register_attributes :name, :id, :pos, :url, :bytes, :member_id, :date, :is_upload, :mime_type, :previews
-    # Update the fields of an attachment.
-    #
-    # Supply a hash of stringkeyed data retrieved from the Trello API representing
-    # an attachment.
-    def update_fields(fields)
-      attributes[:name]      = fields['name'] || attributes[:name]
-      attributes[:id]        = fields['id'] || attributes[:id]
-      attributes[:pos]       = fields['pos'] || attributes[:pos]
-      attributes[:url]       = fields['url'] || attributes[:url]
-      attributes[:bytes]     = fields['bytes'].to_i || attributes[:bytes]
-      attributes[:member_id] = fields['idMember'] || attributes[:member_id]
-      attributes[:date]      = Time.parse(fields['date']).presence || attributes[:date]
-      attributes[:is_upload] = fields['isUpload'] if fields.has_key?('isUpload')
-      attributes[:mime_type] = fields['mimeType'] || attributes[:mime_type]
-      attributes[:previews]  = fields['previews'] if fields.has_key?('previews')
-      self
+    schema do
+      # Readonly
+      attribute :id, readonly: true, primary_key: true
+      attribute :position, readonly: true, remote_key: 'pos'
+      attribute :bytes, readonly: true
+      attribute :member_id, remote_key: 'idMember', readonly: true
+      attribute :date, serializer: 'Time', readonly: true
+      attribute :is_upload, remote_key: 'isUpload', readonly: true
+      attribute :previews, readonly: true
+      attribute :file_name, remote_key: 'fileName', readonly: true
+      attribute :edge_color, remote_key: 'edgeColor', readonly: true
+
+      # Writable but create only
+      attribute :name, create_only: true
+      attribute :url, create_only: true
+      attribute :mime_type, remote_key: 'mimeType', create_only: true
+      attribute :file, create_only: true
+      attribute :set_as_cover, remote_key: 'setCover', create_only: true
     end
   end
 end

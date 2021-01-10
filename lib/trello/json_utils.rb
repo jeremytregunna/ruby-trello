@@ -7,10 +7,6 @@ module Trello
 
     module InstanceMethods
       def from_response(*args)
-        update_fields parse_json(*args)
-      end
-
-      def from_response_v2(*args)
         initialize_fields parse_json(*args)
       end
 

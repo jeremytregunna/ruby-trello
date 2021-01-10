@@ -6,7 +6,7 @@ module Trello
 
     let(:board) { client.find(:board, 'abcdef123456789123456789') }
     let(:client) { Client.new }
-    let(:member) { Member.new(user_payload) }
+    let(:member) { Member.new(JSON.parse(user_payload)) }
 
     before do
       allow(client)
@@ -21,7 +21,7 @@ module Trello
       it "delegates to client#find" do
         expect(client)
           .to receive(:find)
-          .with(:board, 'abcdef123456789123456789', {})
+          .with('board', 'abcdef123456789123456789', {})
 
         Board.find('abcdef123456789123456789')
       end
@@ -54,7 +54,7 @@ module Trello
           card_aging_type: 'pirate'
         }
 
-        expect(client).to receive(:create).with(:board, params)
+        expect(client).to receive(:create).with('board', params)
 
         Board.create(params)
       end
@@ -162,12 +162,10 @@ module Trello
         expect(labels[2].id).to  eq('cbcdef123456789123456789')
         expect(labels[2].board_id).to  eq('abcdef123456789123456789')
         expect(labels[2].name).to  eq('deploy')
-        expect(labels[2].uses).to  eq(2)
         expect(labels[3].color).to  eq('blue')
         expect(labels[3].id).to  eq('dbcdef123456789123456789')
         expect(labels[3].board_id).to  eq('abcdef123456789123456789')
         expect(labels[3].name).to  eq('on hold')
-        expect(labels[3].uses).to  eq(6)
       end
 
       it "passes the label limit" do
@@ -199,7 +197,7 @@ module Trello
       it "adds a member to the board as a normal user (default)" do
         expect(client)
           .to receive(:put)
-          .with("/boards/abcdef123456789123456789/members/id", type: :normal)
+          .with("/boards/abcdef123456789123456789/members/#{member.id}", type: :normal)
 
         board.add_member(member)
       end
@@ -207,7 +205,7 @@ module Trello
       it "adds a member to the board as an admin" do
         expect(client)
           .to receive(:put)
-          .with("/boards/abcdef123456789123456789/members/id", type: :admin)
+          .with("/boards/abcdef123456789123456789/members/#{member.id}", type: :admin)
 
         board.add_member(member, :admin)
       end
@@ -222,7 +220,7 @@ module Trello
       it "removes a member from the board" do
         expect(client)
           .to receive(:delete)
-          .with("/boards/abcdef123456789123456789/members/id")
+          .with("/boards/abcdef123456789123456789/members/#{member.id}")
 
         board.remove_member(member)
       end
@@ -337,7 +335,7 @@ module Trello
         expected_resource_id = "xxx_board_id_xxx"
 
         expect(client).to receive(:put) do |path, anything|
-          expect(path).to match(/#{expected_resource_id}\/\z/)
+          expect(path).to match(/#{expected_resource_id}\z/)
           any_board_json
         end
 

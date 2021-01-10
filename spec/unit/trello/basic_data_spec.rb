@@ -84,37 +84,6 @@ RSpec.describe Trello::BasicData do
     end
   end
 
-  describe '.register_attributes' do
-    around do |example|
-      module Trello
-        class FakeCard < BasicData
-        end
-      end
-
-      example.run
-
-      Trello.send(:remove_const, 'FakeCard')
-    end
-
-    it 'call execute on RegisterAttributes' do
-      expect(Trello::RegisterAttributes)
-        .to receive(:execute)
-        .with(Trello::FakeCard,
-          names: [:id, :name, :desc],
-          readonly: [:id, :name],
-          create_only: [:enable],
-          update_only: [:color]
-        )
-
-      Trello::FakeCard.class_eval do
-        register_attributes :id, :name, :desc,
-          readonly: [:id, :name],
-          create_only: [:enable],
-          update_only: [:color]
-      end
-    end
-  end
-
   describe '.many' do
     let(:association_name) { 'cards' }
     let(:association_options) { { test: 'test' } }

@@ -29,8 +29,8 @@ RSpec.describe 'Trell::Card.create' do
       expect(card.due).to eq(Time.new(2020, 12, 22, 1, 59, 0, '+00:00'))
       expect(card.due_complete).to eq(false)
       expect(card.pos).not_to be_nil
-      expect(card.source_card_id).to eq('5e93ba665c58c44a46cb2ef9')
-      expect(card.source_card_properties).to eq('comments')
+      # expect(card.source_card_id).to eq('5e93ba665c58c44a46cb2ef9')
+      # expect(card.source_card_properties).to eq('comments')
 
       expect(card.id).not_to be_nil
       expect(card.short_id).not_to be_nil

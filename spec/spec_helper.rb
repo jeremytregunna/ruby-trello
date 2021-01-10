@@ -365,20 +365,7 @@ module Helpers
     {
         'id' => '4ee7e59ae582acdec8000291',
         'name' => 'publicorg',
-        'desc' => 'This is a test organization',
-        'members' => [{
-            'id' => '4ee7df3ce582acdec80000b2',
-            'username' => 'alicetester',
-            'fullName' => 'Alice Tester'
-        }, {
-            'id' => '4ee7df74e582acdec80000b6',
-            'username' => 'davidtester',
-            'fullName' => 'David Tester'
-        }, {
-            'id' => '4ee7e2e1e582acdec8000112',
-            'username' => 'edtester',
-            'fullName' => 'Ed Tester'
-        }]
+        'desc' => 'This is a test organization'
     }
   end
 

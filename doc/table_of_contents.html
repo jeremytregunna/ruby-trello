@@ -39,9 +39,9 @@
 
       <li><a href="CHANGELOG_md.html#label-Changelog">Changelog</a>
 
-      <li><a href="CHANGELOG_md.html#label-v2.2.1">v2.2.1</a>
+      <li><a href="CHANGELOG_md.html#label-Next+Release">Next Release</a>
 
-      <li><a href="CHANGELOG_md.html#label-Security+Fix">Security Fix</a>
+      <li><a href="CHANGELOG_md.html#label-v2.3.0">v2.3.0</a>
 
       <li><a href="CHANGELOG_md.html#label-Bug+Fix">Bug Fix</a>
 
@@ -170,6 +170,11 @@
   
   <li class="file">
     <a href="coverage/index_html.html">index.html</a>
+
+  </li>
+  
+  <li class="file">
+    <a href="ruby-trello_gemspec.html">ruby-trello.gemspec</a>
 
   </li>
   
@@ -475,7 +480,77 @@
   </li>
 
   <li class="class">
-    <a href="Trello/RegisterAttributes.html">Trello::RegisterAttributes</a>
+    <a href="Trello/Schema.html">Trello::Schema</a>
+
+  </li>
+
+  <li class="module">
+    <a href="Trello/Schema/Attribute.html">Trello::Schema::Attribute</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Attribute/Base.html">Trello::Schema::Attribute::Base</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Attribute/BoardPref.html">Trello::Schema::Attribute::BoardPref</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Attribute/CustomAttribute.html">Trello::Schema::Attribute::CustomAttribute</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Attribute/CustomFieldDisplay.html">Trello::Schema::Attribute::CustomFieldDisplay</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Attribute/Default.html">Trello::Schema::Attribute::Default</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/AttributeBuilder.html">Trello::Schema::AttributeBuilder</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/AttributeRegistration.html">Trello::Schema::AttributeRegistration</a>
+
+  </li>
+
+  <li class="module">
+    <a href="Trello/Schema/Serializer.html">Trello::Schema::Serializer</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Serializer/CustomSerializer.html">Trello::Schema::Serializer::CustomSerializer</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Serializer/Default.html">Trello::Schema::Serializer::Default</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Serializer/Labels.html">Trello::Schema::Serializer::Labels</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Serializer/Time.html">Trello::Schema::Serializer::Time</a>
+
+  </li>
+
+  <li class="class">
+    <a href="Trello/Schema/Serializer/Webhooks.html">Trello::Schema::Serializer::Webhooks</a>
 
   </li>
 
@@ -510,14 +585,14 @@
     <span class="container">Trello</span>
 
   <li class="method">
-    <a href="Trello/Authorization/OAuthPolicy.html#method-c-authorize">::authorize</a>
-    &mdash;
-    <span class="container">Trello::Authorization::OAuthPolicy</span>
-
-  <li class="method">
     <a href="Trello/Authorization/BasicAuthPolicy.html#method-c-authorize">::authorize</a>
     &mdash;
     <span class="container">Trello::Authorization::BasicAuthPolicy</span>
+
+  <li class="method">
+    <a href="Trello/Authorization/OAuthPolicy.html#method-c-authorize">::authorize</a>
+    &mdash;
+    <span class="container">Trello::Authorization::OAuthPolicy</span>
 
   <li class="method">
     <a href="Trello.html#method-c-authorize_url">::authorize_url</a>
@@ -535,14 +610,19 @@
     <span class="container">Trello::AssociationBuilder::HasOne</span>
 
   <li class="method">
-    <a href="Trello.html#method-c-client">::client</a>
+    <a href="Trello/Schema/AttributeBuilder.html#method-c-build">::build</a>
     &mdash;
-    <span class="container">Trello</span>
+    <span class="container">Trello::Schema::AttributeBuilder</span>
 
   <li class="method">
     <a href="Trello/BasicData.html#method-c-client">::client</a>
     &mdash;
     <span class="container">Trello::BasicData</span>
+
+  <li class="method">
+    <a href="Trello.html#method-c-client">::client</a>
+    &mdash;
+    <span class="container">Trello</span>
 
   <li class="method">
     <a href="Trello/Configuration.html#method-c-configurable_attributes">::configurable_attributes</a>
@@ -560,44 +640,29 @@
     <span class="container">Trello</span>
 
   <li class="method">
-    <a href="Trello/Label.html#method-c-create">::create</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
-
-  <li class="method">
-    <a href="Trello/List.html#method-c-create">::create</a>
-    &mdash;
-    <span class="container">Trello::List</span>
-
-  <li class="method">
-    <a href="Trello/CustomField.html#method-c-create">::create</a>
-    &mdash;
-    <span class="container">Trello::CustomField</span>
-
-  <li class="method">
-    <a href="Trello/Card.html#method-c-create">::create</a>
-    &mdash;
-    <span class="container">Trello::Card</span>
-
-  <li class="method">
-    <a href="Trello/Board.html#method-c-create">::create</a>
-    &mdash;
-    <span class="container">Trello::Board</span>
-
-  <li class="method">
-    <a href="Trello/Webhook.html#method-c-create">::create</a>
-    &mdash;
-    <span class="container">Trello::Webhook</span>
-
-  <li class="method">
     <a href="Trello/BasicData.html#method-c-create">::create</a>
     &mdash;
     <span class="container">Trello::BasicData</span>
 
   <li class="method">
-    <a href="Trello/Checklist.html#method-c-create">::create</a>
+    <a href="Trello/Schema/Serializer/Default.html#method-c-deserialize">::deserialize</a>
     &mdash;
-    <span class="container">Trello::Checklist</span>
+    <span class="container">Trello::Schema::Serializer::Default</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Labels.html#method-c-deserialize">::deserialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Labels</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Time.html#method-c-deserialize">::deserialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Time</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Webhooks.html#method-c-deserialize">::deserialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Webhooks</span>
 
   <li class="method">
     <a href="Trello/AssociationFetcher/HasMany/Fetch.html#method-c-execute">::execute</a>
@@ -615,24 +680,14 @@
     <span class="container">Trello::TInternet</span>
 
   <li class="method">
-    <a href="Trello/RegisterAttributes.html#method-c-execute">::execute</a>
+    <a href="Trello/Action.html#method-c-find">::find</a>
     &mdash;
-    <span class="container">Trello::RegisterAttributes</span>
+    <span class="container">Trello::Action</span>
 
   <li class="method">
-    <a href="Trello/Checklist.html#method-c-find">::find</a>
+    <a href="Trello/BasicData.html#method-c-find">::find</a>
     &mdash;
-    <span class="container">Trello::Checklist</span>
-
-  <li class="method">
-    <a href="Trello/CustomField.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::CustomField</span>
-
-  <li class="method">
-    <a href="Trello/List.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::List</span>
+    <span class="container">Trello::BasicData</span>
 
   <li class="method">
     <a href="Trello/Comment.html#method-c-find">::find</a>
@@ -640,14 +695,24 @@
     <span class="container">Trello::Comment</span>
 
   <li class="method">
+    <a href="Trello/CustomField.html#method-c-find">::find</a>
+    &mdash;
+    <span class="container">Trello::CustomField</span>
+
+  <li class="method">
+    <a href="Trello/CustomFieldOption.html#method-c-find">::find</a>
+    &mdash;
+    <span class="container">Trello::CustomFieldOption</span>
+
+  <li class="method">
+    <a href="Trello/List.html#method-c-find">::find</a>
+    &mdash;
+    <span class="container">Trello::List</span>
+
+  <li class="method">
     <a href="Trello/Member.html#method-c-find">::find</a>
     &mdash;
     <span class="container">Trello::Member</span>
-
-  <li class="method">
-    <a href="Trello/Notification.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::Notification</span>
 
   <li class="method">
     <a href="Trello/Organization.html#method-c-find">::find</a>
@@ -660,44 +725,14 @@
     <span class="container">Trello::Token</span>
 
   <li class="method">
-    <a href="Trello/Webhook.html#method-c-find">::find</a>
+    <a href="Trello/JsonUtils.html#method-c-included">::included</a>
     &mdash;
-    <span class="container">Trello::Webhook</span>
-
-  <li class="method">
-    <a href="Trello/BasicData.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::BasicData</span>
-
-  <li class="method">
-    <a href="Trello/Action.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::Action</span>
-
-  <li class="method">
-    <a href="Trello/Board.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::Board</span>
-
-  <li class="method">
-    <a href="Trello/Card.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::Card</span>
-
-  <li class="method">
-    <a href="Trello/Label.html#method-c-find">::find</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
+    <span class="container">Trello::JsonUtils</span>
 
   <li class="method">
     <a href="IntegrationTest.html#method-c-included">::included</a>
     &mdash;
     <span class="container">IntegrationTest</span>
-
-  <li class="method">
-    <a href="Trello/JsonUtils.html#method-c-included">::included</a>
-    &mdash;
-    <span class="container">Trello::JsonUtils</span>
 
   <li class="method">
     <a href="Trello/AssociationInferTool.html#method-c-infer_class_on_name">::infer_class_on_name</a>
@@ -708,11 +743,6 @@
     <a href="Trello/AssociationInferTool.html#method-c-infer_restful_resource_on_class">::infer_restful_resource_on_class</a>
     &mdash;
     <span class="container">Trello::AssociationInferTool</span>
-
-  <li class="method">
-    <a href="Trello/Label.html#method-c-label_colours">::label_colours</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
 
   <li class="method">
     <a href="Trello.html#method-c-logger">::logger</a>
@@ -730,79 +760,9 @@
     <span class="container">Trello::BasicData</span>
 
   <li class="method">
-    <a href="Trello/AssociationFetcher/HasOne/Params.html#method-c-new">::new</a>
+    <a href="Trello/Association.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">Trello::AssociationFetcher::HasOne::Params</span>
-
-  <li class="method">
-    <a href="Trello/Authorization/BasicAuthPolicy.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::Authorization::BasicAuthPolicy</span>
-
-  <li class="method">
-    <a href="Trello/AssociationFetcher/HasOne/Fetch.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::AssociationFetcher::HasOne::Fetch</span>
-
-  <li class="method">
-    <a href="Trello/AssociationFetcher/HasOne.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::AssociationFetcher::HasOne</span>
-
-  <li class="method">
-    <a href="Trello/Authorization/OAuthPolicy.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::Authorization::OAuthPolicy</span>
-
-  <li class="method">
-    <a href="Trello/Card.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::Card</span>
-
-  <li class="method">
-    <a href="Trello/Configuration.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::Configuration</span>
-
-  <li class="method">
-    <a href="Trello/BasicData.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::BasicData</span>
-
-  <li class="method">
-    <a href="Trello/AssociationFetcher/HasMany/Params.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::AssociationFetcher::HasMany::Params</span>
-
-  <li class="method">
-    <a href="Trello/Error.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::Error</span>
-
-  <li class="method">
-    <a href="Trello/CustomField.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::CustomField</span>
-
-  <li class="method">
-    <a href="Trello/Label.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
-
-  <li class="method">
-    <a href="Trello/AssociationFetcher/HasMany/Fetch.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello::AssociationFetcher::HasMany::Fetch</span>
-
-  <li class="method">
-    <a href="Trello.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Trello</span>
-
-  <li class="method">
-    <a href="Object.html#method-c-new">::new</a>
-    &mdash;
-    <span class="container">Object</span>
+    <span class="container">Trello::Association</span>
 
   <li class="method">
     <a href="Trello/AssociationFetcher/HasMany.html#method-c-new">::new</a>
@@ -810,9 +770,29 @@
     <span class="container">Trello::AssociationFetcher::HasMany</span>
 
   <li class="method">
-    <a href="Trello/Association.html#method-c-new">::new</a>
+    <a href="Trello/AssociationFetcher/HasMany/Fetch.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">Trello::Association</span>
+    <span class="container">Trello::AssociationFetcher::HasMany::Fetch</span>
+
+  <li class="method">
+    <a href="Trello/AssociationFetcher/HasMany/Params.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::AssociationFetcher::HasMany::Params</span>
+
+  <li class="method">
+    <a href="Trello/AssociationFetcher/HasOne.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::AssociationFetcher::HasOne</span>
+
+  <li class="method">
+    <a href="Trello/AssociationFetcher/HasOne/Fetch.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::AssociationFetcher::HasOne::Fetch</span>
+
+  <li class="method">
+    <a href="Trello/AssociationFetcher/HasOne/Params.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::AssociationFetcher::HasOne::Params</span>
 
   <li class="method">
     <a href="Trello/AssociationProxy.html#method-c-new">::new</a>
@@ -820,9 +800,34 @@
     <span class="container">Trello::AssociationProxy</span>
 
   <li class="method">
+    <a href="Trello/Authorization/BasicAuthPolicy.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Authorization::BasicAuthPolicy</span>
+
+  <li class="method">
+    <a href="Trello/Authorization/OAuthPolicy.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Authorization::OAuthPolicy</span>
+
+  <li class="method">
+    <a href="Trello/BasicData.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
     <a href="Trello/Client.html#method-c-new">::new</a>
     &mdash;
     <span class="container">Trello::Client</span>
+
+  <li class="method">
+    <a href="Trello/Configuration.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Configuration</span>
+
+  <li class="method">
+    <a href="Trello/Error.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Error</span>
 
   <li class="method">
     <a href="Trello/MultiAssociation.html#method-c-new">::new</a>
@@ -830,9 +835,39 @@
     <span class="container">Trello::MultiAssociation</span>
 
   <li class="method">
-    <a href="Trello/CustomFieldItem.html#method-c-new">::new</a>
+    <a href="Trello/Schema.html#method-c-new">::new</a>
     &mdash;
-    <span class="container">Trello::CustomFieldItem</span>
+    <span class="container">Trello::Schema</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
+    <a href="Trello/Schema/AttributeBuilder.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Schema::AttributeBuilder</span>
+
+  <li class="method">
+    <a href="Trello/Schema/AttributeRegistration.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::Schema::AttributeRegistration</span>
+
+  <li class="method">
+    <a href="Object.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Object</span>
+
+  <li class="method">
+    <a href="Trello/FakeBoard.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello::FakeBoard</span>
+
+  <li class="method">
+    <a href="Trello.html#method-c-new">::new</a>
+    &mdash;
+    <span class="container">Trello</span>
 
   <li class="method">
     <a href="Trello/Authorization/Nonce.html#method-c-next">::next</a>
@@ -880,7 +915,12 @@
     <span class="container">Trello</span>
 
   <li class="method">
-    <a href="Trello/BasicData.html#method-c-register_attributes">::register_attributes</a>
+    <a href="Trello/Schema/AttributeRegistration.html#method-c-register">::register</a>
+    &mdash;
+    <span class="container">Trello::Schema::AttributeRegistration</span>
+
+  <li class="method">
+    <a href="Trello/BasicData.html#method-c-register_attrs">::register_attrs</a>
     &mdash;
     <span class="container">Trello::BasicData</span>
 
@@ -895,9 +935,34 @@
     <span class="container">Trello::BasicData</span>
 
   <li class="method">
+    <a href="Trello/BasicData.html#method-c-schema">::schema</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
     <a href="Trello/Action.html#method-c-search">::search</a>
     &mdash;
     <span class="container">Trello::Action</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Default.html#method-c-serialize">::serialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Default</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Labels.html#method-c-serialize">::serialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Labels</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Time.html#method-c-serialize">::serialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Time</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Serializer/Webhooks.html#method-c-serialize">::serialize</a>
+    &mdash;
+    <span class="container">Trello::Schema::Serializer::Webhooks</span>
 
   <li class="method">
     <a href="IntegrationTest/Container.html#method-c-set">::set</a>
@@ -1020,6 +1085,16 @@
     <span class="container">Helpers</span>
 
   <li class="method">
+    <a href="Trello/Schema.html#method-i-attribute">#attribute</a>
+    &mdash;
+    <span class="container">Trello::Schema</span>
+
+  <li class="method">
+    <a href="Trello/BasicData.html#method-i-attributes">#attributes</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
     <a href="Trello/Configuration.html#method-i-attributes-3D">#attributes=</a>
     &mdash;
     <span class="container">Trello::Configuration</span>
@@ -1030,14 +1105,14 @@
     <span class="container">Trello::Client</span>
 
   <li class="method">
-    <a href="Trello/Authorization/OAuthPolicy.html#method-i-authorize">#authorize</a>
-    &mdash;
-    <span class="container">Trello::Authorization::OAuthPolicy</span>
-
-  <li class="method">
     <a href="Trello/Authorization/BasicAuthPolicy.html#method-i-authorize">#authorize</a>
     &mdash;
     <span class="container">Trello::Authorization::BasicAuthPolicy</span>
+
+  <li class="method">
+    <a href="Trello/Authorization/OAuthPolicy.html#method-i-authorize">#authorize</a>
+    &mdash;
+    <span class="container">Trello::Authorization::OAuthPolicy</span>
 
   <li class="method">
     <a href="Trello/Member.html#method-i-avatar_url">#avatar_url</a>
@@ -1050,11 +1125,6 @@
     <span class="container">Trello::Configuration</span>
 
   <li class="method">
-    <a href="Trello/Notification.html#method-i-board">#board</a>
-    &mdash;
-    <span class="container">Trello::Notification</span>
-
-  <li class="method">
     <a href="Trello/Action.html#method-i-board">#board</a>
     &mdash;
     <span class="container">Trello::Action</span>
@@ -1063,6 +1133,11 @@
     <a href="Trello/Comment.html#method-i-board">#board</a>
     &mdash;
     <span class="container">Trello::Comment</span>
+
+  <li class="method">
+    <a href="Trello/Notification.html#method-i-board">#board</a>
+    &mdash;
+    <span class="container">Trello::Notification</span>
 
   <li class="method">
     <a href="Trello/Organization.html#method-i-boards">#boards</a>
@@ -1080,14 +1155,84 @@
     <span class="container">Helpers</span>
 
   <li class="method">
-    <a href="Trello/Comment.html#method-i-card">#card</a>
+    <a href="Trello/Schema/AttributeBuilder.html#method-i-build">#build</a>
     &mdash;
-    <span class="container">Trello::Comment</span>
+    <span class="container">Trello::Schema::AttributeBuilder</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-build_attributes">#build_attributes</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/BoardPref.html#method-i-build_attributes">#build_attributes</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::BoardPref</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/CustomFieldDisplay.html#method-i-build_attributes">#build_attributes</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::CustomFieldDisplay</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Default.html#method-i-build_attributes">#build_attributes</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Default</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-build_payload_for_create">#build_payload_for_create</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/BoardPref.html#method-i-build_payload_for_create">#build_payload_for_create</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::BoardPref</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/CustomFieldDisplay.html#method-i-build_payload_for_create">#build_payload_for_create</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::CustomFieldDisplay</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Default.html#method-i-build_payload_for_create">#build_payload_for_create</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Default</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-build_payload_for_update">#build_payload_for_update</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/BoardPref.html#method-i-build_payload_for_update">#build_payload_for_update</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::BoardPref</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/CustomFieldDisplay.html#method-i-build_payload_for_update">#build_payload_for_update</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::CustomFieldDisplay</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Default.html#method-i-build_payload_for_update">#build_payload_for_update</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Default</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-build_pending_update_attributes">#build_pending_update_attributes</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
 
   <li class="method">
     <a href="Trello/Action.html#method-i-card">#card</a>
     &mdash;
     <span class="container">Trello::Action</span>
+
+  <li class="method">
+    <a href="Trello/Comment.html#method-i-card">#card</a>
+    &mdash;
+    <span class="container">Trello::Comment</span>
 
   <li class="method">
     <a href="Trello/Notification.html#method-i-card">#card</a>
@@ -1150,19 +1295,9 @@
     <span class="container">Trello::List</span>
 
   <li class="method">
-    <a href="Trello/List.html#method-i-closed-3F">#closed?</a>
-    &mdash;
-    <span class="container">Trello::List</span>
-
-  <li class="method">
     <a href="Trello/Board.html#method-i-closed-3F">#closed?</a>
     &mdash;
     <span class="container">Trello::Board</span>
-
-  <li class="method">
-    <a href="Trello/Checklist.html#method-i-closed-3F">#closed?</a>
-    &mdash;
-    <span class="container">Trello::Checklist</span>
 
   <li class="method">
     <a href="Trello/Card.html#method-i-closed-3F">#closed?</a>
@@ -1170,14 +1305,34 @@
     <span class="container">Trello::Card</span>
 
   <li class="method">
-    <a href="Trello/Label.html#method-i-color">#color</a>
+    <a href="Trello/List.html#method-i-closed-3F">#closed?</a>
     &mdash;
-    <span class="container">Trello::Label</span>
+    <span class="container">Trello::List</span>
 
   <li class="method">
-    <a href="Trello/Label.html#method-i-color-3D">#color=</a>
+    <a href="Trello/BasicData.html#method-i-collection_name">#collection_name</a>
     &mdash;
-    <span class="container">Trello::Label</span>
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
+    <a href="Trello/CustomField.html#method-i-collection_name">#collection_name</a>
+    &mdash;
+    <span class="container">Trello::CustomField</span>
+
+  <li class="method">
+    <a href="Trello/BasicData.html#method-i-collection_path">#collection_path</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
+    <a href="Trello/CustomFieldItem.html#method-i-collection_path">#collection_path</a>
+    &mdash;
+    <span class="container">Trello::CustomFieldItem</span>
+
+  <li class="method">
+    <a href="Trello/CustomFieldOption.html#method-i-collection_path">#collection_path</a>
+    &mdash;
+    <span class="container">Trello::CustomFieldOption</span>
 
   <li class="method">
     <a href="Trello/Item.html#method-i-complete-3F">#complete?</a>
@@ -1240,6 +1395,11 @@
     <span class="container">Trello::CustomField</span>
 
   <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-create_only-3F">#create_only?</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
     <a href="Trello/Configuration.html#method-i-credentials">#credentials</a>
     &mdash;
     <span class="container">Trello::Configuration</span>
@@ -1270,9 +1430,9 @@
     <span class="container">Helpers</span>
 
   <li class="method">
-    <a href="Trello/Webhook.html#method-i-delete">#delete</a>
+    <a href="Trello/Schema/Attribute/Base.html#method-i-default">#default</a>
     &mdash;
-    <span class="container">Trello::Webhook</span>
+    <span class="container">Trello::Schema::Attribute::Base</span>
 
   <li class="method">
     <a href="Trello/Card.html#method-i-delete">#delete</a>
@@ -1300,9 +1460,19 @@
     <span class="container">Trello::CustomField</span>
 
   <li class="method">
+    <a href="Trello/CustomFieldOption.html#method-i-delete">#delete</a>
+    &mdash;
+    <span class="container">Trello::CustomFieldOption</span>
+
+  <li class="method">
     <a href="Trello/Label.html#method-i-delete">#delete</a>
     &mdash;
     <span class="container">Trello::Label</span>
+
+  <li class="method">
+    <a href="Trello/Webhook.html#method-i-delete">#delete</a>
+    &mdash;
+    <span class="container">Trello::Webhook</span>
 
   <li class="method">
     <a href="Trello/Checklist.html#method-i-delete_checklist_item">#delete_checklist_item</a>
@@ -1313,6 +1483,26 @@
     <a href="Trello/CustomField.html#method-i-delete_option">#delete_option</a>
     &mdash;
     <span class="container">Trello::CustomField</span>
+
+  <li class="method">
+    <a href="Trello/BasicData.html#method-i-element_name">#element_name</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
+    <a href="Trello/BasicData.html#method-i-element_path">#element_path</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
+    <a href="Trello/CustomFieldItem.html#method-i-element_path">#element_path</a>
+    &mdash;
+    <span class="container">Trello::CustomFieldItem</span>
+
+  <li class="method">
+    <a href="Trello/CustomFieldOption.html#method-i-element_path">#element_path</a>
+    &mdash;
+    <span class="container">Trello::CustomFieldOption</span>
 
   <li class="method">
     <a href="Trello/BasicData.html#method-i-eql-3F">#eql?</a>
@@ -1330,14 +1520,14 @@
     <span class="container">Trello</span>
 
   <li class="method">
-    <a href="Trello/AssociationFetcher/HasOne/Fetch.html#method-i-execute">#execute</a>
-    &mdash;
-    <span class="container">Trello::AssociationFetcher::HasOne::Fetch</span>
-
-  <li class="method">
     <a href="Trello/AssociationFetcher/HasMany/Fetch.html#method-i-execute">#execute</a>
     &mdash;
     <span class="container">Trello::AssociationFetcher::HasMany::Fetch</span>
+
+  <li class="method">
+    <a href="Trello/AssociationFetcher/HasOne/Fetch.html#method-i-execute">#execute</a>
+    &mdash;
+    <span class="container">Trello::AssociationFetcher::HasOne::Fetch</span>
 
   <li class="method">
     <a href="Trello/AssociationFetcher/HasMany.html#method-i-fetch">#fetch</a>
@@ -1375,6 +1565,11 @@
     <span class="container">Trello::Client</span>
 
   <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-for_action-3F">#for_action?</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
     <a href="Trello/JsonUtils/ClassMethods.html#method-i-from_json">#from_json</a>
     &mdash;
     <span class="container">Trello::JsonUtils::ClassMethods</span>
@@ -1388,11 +1583,6 @@
     <a href="Trello/JsonUtils/ClassMethods.html#method-i-from_response">#from_response</a>
     &mdash;
     <span class="container">Trello::JsonUtils::ClassMethods</span>
-
-  <li class="method">
-    <a href="Trello/JsonUtils/InstanceMethods.html#method-i-from_response_v2">#from_response_v2</a>
-    &mdash;
-    <span class="container">Trello::JsonUtils::InstanceMethods</span>
 
   <li class="method">
     <a href="Trello/Client.html#method-i-get">#get</a>
@@ -1430,14 +1620,14 @@
     <span class="container">String</span>
 
   <li class="method">
-    <a href="Hash.html#method-i-jsoned_into">#jsoned_into</a>
-    &mdash;
-    <span class="container">Hash</span>
-
-  <li class="method">
     <a href="Array.html#method-i-jsoned_into">#jsoned_into</a>
     &mdash;
     <span class="container">Array</span>
+
+  <li class="method">
+    <a href="Hash.html#method-i-jsoned_into">#jsoned_into</a>
+    &mdash;
+    <span class="container">Hash</span>
 
   <li class="method">
     <a href="Helpers.html#method-i-label_details">#label_details</a>
@@ -1510,19 +1700,14 @@
     <span class="container">Trello::Action</span>
 
   <li class="method">
-    <a href="Trello/Organization.html#method-i-members">#members</a>
-    &mdash;
-    <span class="container">Trello::Organization</span>
-
-  <li class="method">
-    <a href="Trello/Checklist.html#method-i-members">#members</a>
-    &mdash;
-    <span class="container">Trello::Checklist</span>
-
-  <li class="method">
     <a href="Trello/Card.html#method-i-members">#members</a>
     &mdash;
     <span class="container">Trello::Card</span>
+
+  <li class="method">
+    <a href="Trello/Organization.html#method-i-members">#members</a>
+    &mdash;
+    <span class="container">Trello::Organization</span>
 
   <li class="method">
     <a href="Trello/AssociationProxy.html#method-i-method_missing">#method_missing</a>
@@ -1640,6 +1825,11 @@
     <span class="container">Trello::Client</span>
 
   <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-primary_key-3F">#primary_key?</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
     <a href="Trello/AssociationProxy.html#method-i-proxy_assocation">#proxy_assocation</a>
     &mdash;
     <span class="container">Trello::AssociationProxy</span>
@@ -1650,9 +1840,29 @@
     <span class="container">Trello::Client</span>
 
   <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-readonly-3F">#readonly?</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
     <a href="Trello/BasicData.html#method-i-refresh-21">#refresh!</a>
     &mdash;
     <span class="container">Trello::BasicData</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-register">#register</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
+
+  <li class="method">
+    <a href="Trello/Schema/AttributeRegistration.html#method-i-register">#register</a>
+    &mdash;
+    <span class="container">Trello::Schema::AttributeRegistration</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-remote_key">#remote_key</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
 
   <li class="method">
     <a href="Trello/CustomFieldItem.html#method-i-remove">#remove</a>
@@ -1685,49 +1895,19 @@
     <span class="container">Trello::Card</span>
 
   <li class="method">
+    <a href="Trello/BasicData.html#method-i-save">#save</a>
+    &mdash;
+    <span class="container">Trello::BasicData</span>
+
+  <li class="method">
     <a href="Trello/CustomFieldItem.html#method-i-save">#save</a>
     &mdash;
     <span class="container">Trello::CustomFieldItem</span>
 
   <li class="method">
-    <a href="Trello/Webhook.html#method-i-save">#save</a>
+    <a href="Trello/BasicData.html#method-i-schema">#schema</a>
     &mdash;
-    <span class="container">Trello::Webhook</span>
-
-  <li class="method">
-    <a href="Trello/Checklist.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::Checklist</span>
-
-  <li class="method">
-    <a href="Trello/Label.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
-
-  <li class="method">
-    <a href="Trello/Card.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::Card</span>
-
-  <li class="method">
-    <a href="Trello/Member.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::Member</span>
-
-  <li class="method">
-    <a href="Trello/CustomField.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::CustomField</span>
-
-  <li class="method">
-    <a href="Trello/List.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::List</span>
-
-  <li class="method">
-    <a href="Trello/Board.html#method-i-save">#save</a>
-    &mdash;
-    <span class="container">Trello::Board</span>
+    <span class="container">Trello::BasicData</span>
 
   <li class="method">
     <a href="IntegrationHelpers.html#method-i-setup_trello">#setup_trello</a>
@@ -1765,74 +1945,9 @@
     <span class="container">Trello::CustomFieldItem</span>
 
   <li class="method">
-    <a href="Trello/Checklist.html#method-i-update-21">#update!</a>
+    <a href="Trello/BasicData.html#method-i-update-21">#update!</a>
     &mdash;
-    <span class="container">Trello::Checklist</span>
-
-  <li class="method">
-    <a href="Trello/CustomFieldItem.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::CustomFieldItem</span>
-
-  <li class="method">
-    <a href="Trello/Label.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
-
-  <li class="method">
-    <a href="Trello/Member.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::Member</span>
-
-  <li class="method">
-    <a href="Trello/CustomField.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::CustomField</span>
-
-  <li class="method">
-    <a href="Trello/List.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::List</span>
-
-  <li class="method">
-    <a href="Trello/Webhook.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::Webhook</span>
-
-  <li class="method">
-    <a href="Trello/Card.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::Card</span>
-
-  <li class="method">
-    <a href="Trello/Board.html#method-i-update-21">#update!</a>
-    &mdash;
-    <span class="container">Trello::Board</span>
-
-  <li class="method">
-    <a href="Trello/Comment.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Comment</span>
-
-  <li class="method">
-    <a href="Trello/LabelName.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::LabelName</span>
-
-  <li class="method">
-    <a href="Trello/CustomFieldItem.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::CustomFieldItem</span>
-
-  <li class="method">
-    <a href="Trello/Board.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Board</span>
-
-  <li class="method">
-    <a href="Trello/Card.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Card</span>
+    <span class="container">Trello::BasicData</span>
 
   <li class="method">
     <a href="Trello/BasicData.html#method-i-update_fields">#update_fields</a>
@@ -1840,84 +1955,19 @@
     <span class="container">Trello::BasicData</span>
 
   <li class="method">
-    <a href="Trello/Attachment.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Attachment</span>
-
-  <li class="method">
     <a href="Trello/FakeBoard.html#method-i-update_fields">#update_fields</a>
     &mdash;
     <span class="container">Trello::FakeBoard</span>
 
   <li class="method">
-    <a href="Trello/Webhook.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Webhook</span>
-
-  <li class="method">
-    <a href="Trello/PluginDatum.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::PluginDatum</span>
-
-  <li class="method">
-    <a href="Trello/Organization.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Organization</span>
-
-  <li class="method">
-    <a href="Trello/Checklist.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Checklist</span>
-
-  <li class="method">
-    <a href="Trello/Notification.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Notification</span>
-
-  <li class="method">
-    <a href="Trello/Member.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Member</span>
-
-  <li class="method">
-    <a href="Trello/List.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::List</span>
-
-  <li class="method">
-    <a href="Trello/Label.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Label</span>
-
-  <li class="method">
-    <a href="Trello/CustomField.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::CustomField</span>
-
-  <li class="method">
-    <a href="Trello/CheckItemState.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::CheckItemState</span>
-
-  <li class="method">
-    <a href="Trello/Item.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Item</span>
-
-  <li class="method">
-    <a href="Trello/CustomFieldOption.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::CustomFieldOption</span>
-
-  <li class="method">
-    <a href="Trello/Action.html#method-i-update_fields">#update_fields</a>
-    &mdash;
-    <span class="container">Trello::Action</span>
-
-  <li class="method">
     <a href="Trello/Checklist.html#method-i-update_item_state">#update_item_state</a>
     &mdash;
     <span class="container">Trello::Checklist</span>
+
+  <li class="method">
+    <a href="Trello/Schema/Attribute/Base.html#method-i-update_only-3F">#update_only?</a>
+    &mdash;
+    <span class="container">Trello::Schema::Attribute::Base</span>
 
   <li class="method">
     <a href="Trello/Card.html#method-i-upvote">#upvote</a>
@@ -1965,7 +2015,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.2.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.1.2.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

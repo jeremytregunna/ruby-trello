@@ -3,20 +3,40 @@ module Trello
   #
   # @!attribute [r] id
   #   @return [String]
-  # @!attribute [r] type
+  # @!attribute [r] creator_id
   #   @return [String]
   # @!attribute [r] data
   #   @return [Hash]
+  # @!attribute [r] type
+  #   @return [String]
   # @!attribute [r] date
   #   @return [Datetime]
-  # @!attribute [r] member_creator_id
+  # @!attribute [r] limits
+  #   @return [Hash]
+  # @!attribute [r] app_creator
   #   @return [String]
-  # @!attribute [r] member_participant
-  #   @return [Object]
+  # @!attribute [r] display
+  #   @return [Hash]
+  # @!attribute [w] text
+  #   @return [String]
   class Action < BasicData
-    register_attributes :id, :type, :data, :date, :member_creator_id, :member_participant,
-      readonly: [ :id, :type, :data, :date, :member_creator_id, :member_participant ]
-    validates_presence_of :id, :type, :date, :member_creator_id
+
+    schema do
+      # Readonly
+      attribute :id, readonly: true, primary_key: true
+      attribute :creator_id, readonly: true, remote_key: 'idMemberCreator'
+      attribute :data, readonly: true
+      attribute :type, readonly: true
+      attribute :date, readonly: true, serializer: 'Time'
+      attribute :limits, readonly: true
+      attribute :app_creator, readonly: true, remote_key: 'appCreator'
+      attribute :display, readonly: true
+
+      # Writable
+      attribute :text, update_only: true
+    end
+
+    validates_presence_of :id, :type, :date, :creator_id
 
     class << self
       # Locate a specific action and return a new Action object.
@@ -31,20 +51,6 @@ module Trello
           result[key] = klass.from_json(data)
         end
       end
-    end
-
-    # Update the attributes of an action
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # an Action.
-    def update_fields(fields)
-      attributes[:id]                 = fields['id'] || attributes[:id]
-      attributes[:type]               = fields['type'] || attributes[:type]
-      attributes[:data]               = fields['data'] || attributes[:data]
-      attributes[:date]               = Time.iso8601(fields['date']) rescue nil if fields.has_key?('date')
-      attributes[:member_creator_id]  = fields['idMemberCreator'] || attributes[:member_creator_id]
-      attributes[:member_participant] = fields['member'] || attributes[:member_participant]
-      self
     end
 
     # Returns the board this action occurred on.

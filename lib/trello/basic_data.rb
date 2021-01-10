@@ -59,53 +59,6 @@ module Trello
       end
     end
 
-    def self.register_attributes(*names_and_options)
-      options = {}
-      options = names_and_options.pop if names_and_options.last.is_a?(Hash)
-
-      names = names_and_options
-
-      RegisterAttributes.execute(
-        self,
-        names: names,
-        readonly: options[:readonly],
-        create_only: options[:create_only],
-        update_only: options[:update_only]
-      )
-    end
-
-    def self.writable_attributes
-      @writable_attributes || []
-    end
-
-    def self.readonly_attributes
-      @readonly_attributes || []
-    end
-
-    def self.create_only_attributes
-      @create_only_attributes
-    end
-
-    def self.update_only_attributes
-      @update_only_attributes
-    end
-
-    def writable_attributes
-      self.class.writable_attributes
-    end
-
-    def readonly_attributes
-      self.class.readonly_attributes
-    end
-
-    def create_only_attributes
-      self.class.create_only_attributes
-    end
-
-    def update_only_attributes
-      self.class.update_only_attributes
-    end
-
     def self.one(name, opts = {})
       AssociationBuilder::HasOne.build(self, name, opts)
     end
@@ -118,16 +71,72 @@ module Trello
       Trello.client
     end
 
-    register_attributes :id, readonly: [ :id ]
-
     attr_writer :client
 
     def initialize(fields = {})
-      update_fields(fields)
+      initialize_fields(fields)
+    end
+
+    def save
+      return update! if id
+
+      payload = {}
+
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_create(attributes, payload)
+      end
+
+      post(collection_path, payload)
+    end
+
+    def update!
+      fail "Cannot save new instance." unless id
+
+      @previously_changed = changes
+
+      payload = {}
+      changed_attrs = attributes.select {|name, _| changed.include?(name.to_s)}
+
+      schema.attrs.each do |_, attribute|
+        payload = attribute.build_payload_for_update(changed_attrs, payload)
+      end
+
+      from_response client.put(element_path, payload)
+
+      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
+      changes_applied if respond_to?(:changes_applied)
+
+      self
     end
 
     def update_fields(fields)
-      raise NotImplementedError, "#{self.class} does not implement update_fields."
+      attrs = {}
+
+      schema.attrs.each do |_, attribute|
+        attrs = attribute.build_pending_update_attributes(fields, attrs)
+      end
+
+      attrs.each do |name, value|
+        send("#{name}=", value)
+      end
+
+      self
+    end
+
+    def collection_path
+      "/#{collection_name}"
+    end
+
+    def element_path
+      "/#{collection_name}/#{id}"
+    end
+
+    def collection_name
+      @collection_path ||= ActiveSupport::Inflector.pluralize(element_name)
+    end
+
+    def element_name
+      @element_name ||= model_name.element
     end
 
     # Refresh the contents of our object.
@@ -164,6 +173,22 @@ module Trello
 
     def attributes=(attrs)
       @__attributes = attrs
+    end
+
+    def initialize_fields(fields)
+      schema.attrs.each do |_, attribute|
+        self.attributes = attribute.build_attributes(fields, attributes)
+      end
+
+      self
+    end
+
+    def post(path, body)
+      from_response client.post(path, body)
+    end
+
+    def put(path, body)
+      from_response client.put(path, body)
     end
   end
 end

@@ -25,7 +25,7 @@ module Trello
       it "delegates to Trello.client#find" do
         expect(client)
           .to receive(:find)
-          .with(:card, 'abcdef123456789123456789', {})
+          .with('card', 'abcdef123456789123456789', {})
 
         Card.find('abcdef123456789123456789')
       end
@@ -63,7 +63,7 @@ module Trello
         expect(card.short_url).to          eq(card_details['shortUrl'])
         expect(card.pos).to                eq(card_details['pos'])
         expect(card.last_activity_date).to be_a(Time)
-        expect(card.last_activity_date).to eq(card_details['dateLastActivity'])
+        expect(card.last_activity_date).to eq(Time.iso8601(card_details['dateLastActivity']))
       end
 
       it 'properly initializes all fields from options-like formatted hash' do
@@ -74,7 +74,7 @@ module Trello
         expect(card.desc).to                   eq(card_details[:desc])
         expect(card.member_ids).to             eq(card_details[:member_ids])
         expect(card.card_labels).to            eq(card_details[:card_labels])
-        expect(card.due).to                    eq(card_details[:due])
+        expect(card.due).to                    eq(card_details[:due].to_time)
         expect(card.pos).to                    eq(card_details[:pos])
         expect(card.source_card_id).to         eq(card_details[:source_card_id])
         expect(card.source_card_properties).to eq(card_details[:source_card_properties])
@@ -97,17 +97,18 @@ module Trello
           card_labels: "abcdef123456789123456789"
         }
 
-        result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
-
-        expected_payload = {name: "Test Card", desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: "abcdef123456789123456789", pos: nil, due: nil, dueComplete: false, idCardSource: nil, keepFromSource: 'all'}
+        expected_payload = {
+          'name' => "Test Card",
+          'idList' => "abcdef123456789123456789",
+          'idLabels' => "abcdef123456789123456789",
+        }
 
         expect(client)
           .to receive(:post)
           .with("/cards", expected_payload)
-          .and_return result
+          .and_return JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
-        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+        card = Card.create(payload.merge(list_id: lists_details.first['id']))
 
         expect(card).to be_a Card
       end
@@ -119,15 +120,17 @@ module Trello
 
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
-        expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, dueComplete: false, idCardSource: cards_details.first['id'], keepFromSource: 'all'}
+        expected_payload = {
+          'idList' => "abcdef123456789123456789",
+          'idCardSource' => cards_details.first['id'],
+        }
 
         expect(client)
           .to receive(:post)
           .with("/cards", expected_payload)
           .and_return result
 
-        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+        card = Card.create(payload.merge(list_id: lists_details.first['id']))
 
         expect(card).to be_a Card
       end
@@ -140,15 +143,18 @@ module Trello
 
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
-        expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, dueComplete: false, idCardSource: cards_details.first['id'], keepFromSource: ['due', 'checklists']}
+        expected_payload = {
+          'idList' => "abcdef123456789123456789",
+          'idCardSource' => cards_details.first['id'],
+          'keepFromSource' => ['due', 'checklists']
+        }
 
         expect(client)
           .to receive(:post)
           .with("/cards", expected_payload)
           .and_return result
 
-        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+        card = Card.create(payload.merge(list_id: lists_details.first['id']))
 
         expect(card).to be_a Card
       end
@@ -161,15 +167,17 @@ module Trello
 
         result = JSON.generate(cards_details.first.merge(payload.merge(idList: lists_details.first['id'])))
 
-        expected_payload = {name: nil, desc: nil, idList: "abcdef123456789123456789",
-                            idMembers: nil, idLabels: nil, pos: nil, due: nil, dueComplete: false, idCardSource: cards_details.first['id'], keepFromSource: nil}
+        expected_payload = {
+          'idList' => "abcdef123456789123456789",
+          'idCardSource' => cards_details.first['id'],
+        }
 
         expect(client)
           .to receive(:post)
           .with("/cards", expected_payload)
           .and_return result
 
-        card = Card.create(cards_details.first.merge(payload.merge(list_id: lists_details.first['id'])))
+        card = Card.create(payload.merge(list_id: lists_details.first['id']))
 
         expect(card).to be_a Card
       end
@@ -181,7 +189,7 @@ module Trello
         expected_new_name = "xxx"
 
         payload = {
-          name: expected_new_name,
+          'name' => expected_new_name,
         }
 
         expect(client)
@@ -198,7 +206,7 @@ module Trello
         expected_new_desc = "xxx"
 
         payload = {
-          desc: expected_new_desc,
+          'desc' => expected_new_desc,
         }
 
         expect(client)
@@ -359,17 +367,26 @@ module Trello
 
         expect(client)
           .to receive(:put)
-          .with("/card/abcdef123456789123456789/customField/abcdef123456789123456789/item", params)
+          .with("/cards/abcdef123456789123456789/customField/abcdef123456789123456789/item", params)
 
         card.custom_field_items.last.remove
       end
 
       it "updates a custom field value" do
-        payload = { value: { text: 'Test Text' } }
+        payload = { 'value' => { 'text' => 'Test Text' } }
 
         expect(client)
           .to receive(:put)
-          .with("/card/abcdef123456789123456789/customField/abcdef123456789123456789/item", payload)
+          .with("/cards/abcdef123456789123456789/customField/abcdef123456789123456789/item", payload)
+          .and_return(JSON.generate({
+            "id" => "5e68e885e4baf545ec8ce7ba",
+            "value" => {
+              "text" => "Test Text"
+            },
+            "idCustomField" => "abcdef123456789123456789",
+            "idModel" => "abcdef123456789123456789",
+            "modelType" => "card"
+          }))
 
         text_custom_field = card.custom_field_items.last
         text_custom_field.value = { text: 'Test Text' }
@@ -627,12 +644,10 @@ module Trello
         expect(labels[0].id).to       eq('abcdef123456789123456789')
         expect(labels[0].board_id).to eq('abcdef123456789123456789')
         expect(labels[0].name).to     eq('iOS')
-        expect(labels[0].uses).to     eq(3)
         expect(labels[1].color).to    eq('purple')
         expect(labels[1].id).to       eq('bbcdef123456789123456789')
         expect(labels[1].board_id).to eq('abcdef123456789123456789')
         expect(labels[1].name).to     eq('Issue or bug')
-        expect(labels[1].uses).to     eq(1)
       end
 
       it "includes label ids list" do
@@ -692,18 +707,18 @@ module Trello
 
         first_plugin = card.plugin_data.first
         expect(first_plugin.id).to eq plugin_data_details[0]["id"]
-        expect(first_plugin.idPlugin).to eq plugin_data_details[0]["idPlugin"]
+        expect(first_plugin.plugin_id).to eq plugin_data_details[0]["idPlugin"]
         expect(first_plugin.scope).to eq plugin_data_details[0]["scope"]
-        expect(first_plugin.idModel).to eq plugin_data_details[0]["idModel"]
-        expect(first_plugin.value).to eq JSON.parse plugin_data_details[0]["value"]
+        expect(first_plugin.model_id).to eq plugin_data_details[0]["idModel"]
+        expect(first_plugin.value).to eq plugin_data_details[0]["value"]
         expect(first_plugin.access).to eq plugin_data_details[0]["access"]
 
         second_plugin = card.plugin_data[1]
         expect(second_plugin.id).to eq plugin_data_details[1]["id"]
-        expect(second_plugin.idPlugin).to eq plugin_data_details[1]["idPlugin"]
+        expect(second_plugin.plugin_id).to eq plugin_data_details[1]["idPlugin"]
         expect(second_plugin.scope).to eq plugin_data_details[1]["scope"]
-        expect(second_plugin.idModel).to eq plugin_data_details[1]["idModel"]
-        expect(second_plugin.value).to eq JSON.parse plugin_data_details[1]["value"]
+        expect(second_plugin.model_id).to eq plugin_data_details[1]["idModel"]
+        expect(second_plugin.value).to eq plugin_data_details[1]["value"]
         expect(second_plugin.access).to eq plugin_data_details[1]["access"]
 
       end
@@ -787,7 +802,7 @@ module Trello
 
     describe "#close!" do
       it "updates the close attribute to true and saves the list" do
-        payload = { closed: true }
+        payload = { 'closed' => true }
 
         expect(client)
           .to receive(:put)
@@ -804,7 +819,7 @@ module Trello
         due_date = Time.now
 
         payload = {
-          due: due_date,
+          'due' => due_date.strftime('%FT%T.%LZ'),
         }
 
         expect(client)
@@ -817,21 +832,6 @@ module Trello
         card.save
 
         expect(card.due).to_not be_nil
-
-        payload = {
-          dueComplete: true
-        }
-
-        expect(client)
-          .to receive(:put)
-          .once
-          .with("/cards/abcdef123456789123456789", payload)
-          .and_return(payload.to_json)
-
-        card.due_complete = true
-        card.save
-
-        expect(card.due_complete).to be true
       end
     end
 

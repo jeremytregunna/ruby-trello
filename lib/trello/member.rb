@@ -17,8 +17,84 @@ module Trello
   #   @return [String]
   # @!attribute [r] url
   #   @return [String]
+  # @!attribute [r] prefs
+  #   @return [Hash]
+  # @!attribute [r] activity_blocked
+  #   @return [Boolean]
+  # @!attribute [r] bio_data
+  #   @return [Hash]
+  # @!attribute [r] confirmed
+  #   @return [Boolean]
+  # @!attribute [r] enterprise_id
+  #   @return [String]
+  # @!attribute [r] deactivated_enterprise_ids
+  #   @return [String]
+  # @!attribute [r] referrer_member_id
+  #   @return [String]
+  # @!attribute [r] admin_orgs_perm_id
+  #   @return [String]
+  # @!attribute [r] member_type
+  #   @return [String]
+  # @!attribute [r] non_public
+  #   @return [Hash]
+  # @!attribute [r] non_public_available
+  #   @return [Hash]
+  # @!attribute [r] products
+  #   @return [Array]
+  # @!attribute [r] status
+  #   @return [String]
+  # @!attribute [r] board_ids
+  #   @return [Array<String>]
+  # @!attribute [r] organization_ids
+  #   @return [Array<String>]
+  # @!attribute [r] admin_enterprise_ids
+  #   @return [Array<String>]
+  # @!attribute [r] limits
+  #   @return [Hash]
+  # @!attribute [r] login_types
+  #   @return [Array<String>]
+  # @!attribute [r] marketing_opt_in
+  #   @return [Hash]
+  # @!attribute [r] pinned_board_ids
+  #   @return [String]
+  # @!attribute [w] avatar_source
+  #   @return [String]
   class Member < BasicData
-    register_attributes :id, :username, :email, :full_name, :initials, :avatar_id, :bio, :url, readonly: [ :id, :username, :avatar_id, :url ]
+    schema do
+      # readonly
+      attribute :id, readonly: true, primary_key: true
+      attribute :email, readonly: true
+      attribute :avatar_id, readonly: true, remote_key: 'avatarHash'
+      attribute :url, readonly: true
+      attribute :prefs, readonly: true
+      attribute :activity_blocked, readonly: true, remote_key: 'activityBlocked'
+      attribute :bio_data, readonly: true, remote_key: 'bioData'
+      attribute :confirmed, readonly: true
+      attribute :enterprise_id, readonly: true, remote_key: 'idEnterprise'
+      attribute :deactivated_enterprise_ids, readonly: true, remote_key: 'idEnterprisesDeactivated'
+      attribute :referrer_member_id, readonly: true, remote_key: 'idMemberReferrer'
+      attribute :admin_orgs_perm_id, readonly: true, remote_key: 'idPremOrgsAdmin'
+      attribute :member_type, readonly: true, remote_key: 'memberType'
+      attribute :non_public, readonly: true, remote_key: 'nonPublic'
+      attribute :non_public_available, readonly: true, remote_key: 'nonPublicAvailable'
+      attribute :products, readonly: true
+      attribute :status, readonly: true
+      attribute :board_ids, readonly: true, remote_key: 'idBoards'
+      attribute :organization_ids, readonly: true, remote_key: 'idOrganizations'
+      attribute :admin_enterprise_ids, readonly: true, remote_key: 'idEnterprisesAdmin'
+      attribute :limits, readonly: true
+      attribute :login_types, readonly: true, remote_key: 'loginTypes'
+      attribute :marketing_opt_in, readonly: true, remote_key: 'marketingOptIn'
+      attribute :pinned_board_ids, readonly: true, remote_key: 'idBoardsPinned'
+
+      # writable
+      attribute :username
+      attribute :full_name, remote_key: 'fullName'
+      attribute :initials
+      attribute :bio
+      attribute :avatar_source, remote_key: 'avatarSource'
+    end
+
     validates_presence_of :id, :username
     validates_length_of   :full_name, minimum: 4
     validates_length_of   :bio,       maximum: 16384
@@ -32,22 +108,6 @@ module Trello
       def find(id_or_username, params = {})
         client.find(:member, id_or_username, params)
       end
-    end
-
-    # Update the fields of a member.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # an Member.
-    def update_fields(fields)
-      attributes[:id]        = fields['id'] || attributes[:id]
-      attributes[:full_name] = fields['fullName'] || attributes[:full_name]
-      attributes[:email]     = fields['email'] || attributes[:email]
-      attributes[:username]  = fields['username'] || attributes[:username]
-      attributes[:initials]  = fields['initials'] || attributes[:initials]
-      attributes[:avatar_id] = fields['avatarHash'] || attributes[:avatar_id]
-      attributes[:bio]       = fields['bio'] || attributes[:bio]
-      attributes[:url]       = fields['url'] || attributes[:url]
-      self
     end
 
     # Retrieve a URL to the avatar.
@@ -89,21 +149,6 @@ module Trello
 
     # Returns a list of notifications for the user
     many :notifications
-
-    def save
-      @previously_changed = changes
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      return update! if id
-    end
-
-    def update!
-      from_response client.put(request_prefix, {
-        fullName: full_name,
-        bio: bio
-      })
-    end
 
     # :nodoc:
     def request_prefix

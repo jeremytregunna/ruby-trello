@@ -43,136 +43,45 @@ module Trello
   #   @return [Array<String>] Array of strings
 
   class Card < BasicData
-    register_attributes :id, :short_id, :name, :desc, :due, :due_complete, :closed, :url, :short_url,
-      :board_id, :member_ids, :list_id, :pos, :last_activity_date, :labels, :card_labels,
-      :cover_image_id, :badges, :card_members, :source_card_id, :source_card_properties,
-      readonly: [ :id, :short_id, :url, :short_url, :last_activity_date, :badges, :card_members ]
+    schema do
+      # readonly
+      attribute :id, readonly: true, primary_key: true
+      attribute :short_id, readonly: true, remote_key: 'idShort'
+      attribute :url, readonly: true
+      attribute :short_url, readonly: true, remote_key: 'shortUrl'
+      attribute :last_activity_date, readonly: true, remote_key: 'dateLastActivity', serializer: 'Time'
+      attribute :labels, readonly: true, default: [], serializer: 'Labels'
+      attribute :badges, readonly: true
+      attribute :card_members, readonly: true, remote_key: 'members'
+
+      # Writable
+      attribute :name
+      attribute :desc
+      attribute :due, serializer: 'Time'
+      attribute :due_complete, remote_key: 'dueComplete'
+      attribute :member_ids, remote_key: 'idMembers'
+      attribute :list_id, remote_key: 'idList'
+      attribute :pos
+      attribute :card_labels, remote_key: 'idLabels'
+
+      # Writable but for create only
+      attribute :source_card_id, create_only: true, remote_key: 'idCardSource'
+      attribute :keep_from_source, create_only: true, remote_key: 'keepFromSource'
+
+      # Writable but for update only
+      attribute :closed, update_only: true
+      attribute :board_id, update_only: true, remote_key: 'idBoard'
+      attribute :cover_image_id, update_only: true, remote_key: 'idAttachmentCover'
+
+      # Deprecated
+      attribute :source_card_properties, create_only: true, remote_key: 'keepFromSource'
+    end
+
     validates_presence_of :id, :name, :list_id
     validates_length_of   :name, in: 1..16384
     validates_length_of   :desc, in: 0..16384
 
     include HasActions
-
-    SYMBOL_TO_STRING = {
-      id: 'id',
-      short_id: 'idShort',
-      name: 'name',
-      desc: 'desc',
-      due: 'due',
-      due_complete: 'dueComplete',
-      closed: 'closed',
-      url: 'url',
-      short_url: 'shortUrl',
-      board_id: 'idBoard',
-      member_ids: 'idMembers',
-      cover_image_id: 'idAttachmentCover',
-      list_id: 'idList',
-      pos: 'pos',
-      last_activity_date: 'dateLastActivity',
-      card_labels: 'idLabels',
-      labels: 'labels',
-      badges: 'badges',
-      card_members: 'members',
-      source_card_id: "idCardSource",
-      source_card_properties: "keepFromSource"
-    }
-
-    class << self
-      # Find a specific card by its id.
-      #
-      # @raise [Trello::Error] if the card could not be found.
-      #
-      # @return [Trello::Card]
-      def find(id, params = {})
-        client.find(:card, id, params)
-      end
-
-      # Create a new card and save it on Trello.
-      #
-      # If using source_card_id to duplicate a card, make sure to save
-      # the source card to Trello before calling this method to assure
-      # the correct data is used in the duplication.
-      #
-      # @param [Hash] options
-      # @option options [String] :name The name of the new card.
-      # @option options [String] :list_id ID of the list that the card should
-      #     be added to.
-      # @option options [String] :desc A string with a
-      #     length from 0 to 16384.
-      # @option options [String] :member_ids A comma-separated list of
-      #     objectIds (24-character hex strings).
-      # @option options [String] :card_labels A comma-separated list of
-      #     objectIds (24-character hex strings).
-      # @option options [Date] :due A date, or `nil`.
-      # @option options [String] :pos A position. `"top"`, `"bottom"`, or a
-      #     positive number. Defaults to `"bottom"`.
-      # @option options [String] :source_card_id ID of the card to copy
-      # @option options [String] :source_card_properties A single, or array of,
-      #     string properties to copy from source card.
-      #     `"all"`, `"checklists"`, `"due"`, `"members"`, or `nil`.
-      #     Defaults to `"all"`.
-      #
-      # @raise [Trello::Error] if the card could not be created.
-      #
-      # @return [Trello::Card]
-      def create(options)
-        client.create(:card,
-          'name' => options[:name],
-          'idList' => options[:list_id],
-          'desc'   => options[:desc],
-          'idMembers' => options[:member_ids],
-          'idLabels' => options[:card_labels],
-          'due' => options[:due],
-          'due_complete' => options[:due_complete] || false,
-          'pos' => options[:pos],
-          'idCardSource' => options[:source_card_id],
-          'keepFromSource' => options.key?(:source_card_properties) ? options[:source_card_properties] : 'all'
-        )
-      end
-    end
-
-    # Update the fields of a card.
-    #
-    # Note that this this method does not save anything new to the Trello API,
-    # it just assigns the input attributes to your local object. If you use
-    # this method to assign attributes, call `save` or `update!` afterwards if
-    # you want to persist your changes to Trello.
-    #
-    # @param [Hash] fields
-    # @option fields [String] :name The new name of the card.
-    # @option fields [String] :desc A string with a length from 0 to
-    #     16384.
-    # @option fields [Date] :due A date, or `nil`.
-    # @option fields [Boolean] :due_complete
-    # @option fields [Boolean] :closed
-    # @option fields [String] :board_id
-    # @option fields [String] :member_ids A comma-separated list of objectIds
-    #     (24-character hex strings).
-    # @option fields [String] :pos A position. `"top"`, `"bottom"`, or a
-    #     positive number. Defaults to `"bottom"`.
-    # @option fields [Array]  :labels An Array of Trello::Label objects
-    #     derived from the JSON response
-    # @option fields [String] :card_labels A comma-separated list of
-    #     objectIds (24-character hex strings).
-    # @option fields [Object] :cover_image_id
-    # @option fields [String] :source_card_id
-    # @option fields [Array]  :source_card_properties
-    #
-    # @return [Trello::Card] self
-    def update_fields(fields)
-      %i[
-        name desc due due_complete closed
-        board_id member_ids list_id pos
-        card_labels cover_image_id
-        source_card_id source_card_properties
-      ].each do |key|
-        send("#{key}=", parse_writable_fields(fields, key))
-      end
-    end
-
-    def initialize(fields = {})
-      initialize_fields(fields)
-    end
 
     # Returns a reference to the board this card is part of.
     one :board, path: :boards, using: :board_id
@@ -220,75 +129,6 @@ module Trello
     # @return [Array<Trello::Member>]
     def voters
       Member.from_response client.get("/cards/#{id}/membersVoted")
-    end
-
-    # Saves a record.
-    #
-    # @raise [Trello::Error] if the card could not be saved
-    #
-    # @return [String] The JSON representation of the saved card returned by
-    #     the Trello API.
-    def save
-      # If we have an id, just update our fields.
-      return update! if id
-
-      from_response_v2 client.post("/cards", {
-        name:   name,
-        desc:   desc,
-        idList: list_id,
-        idMembers: member_ids,
-        idLabels: card_labels,
-        pos: pos,
-        due: due,
-        dueComplete: due_complete,
-        idCardSource: source_card_id,
-        keepFromSource: source_card_properties
-      })
-    end
-
-    # Update an existing record.
-    #
-    # Warning: this updates all fields using values already in memory. If
-    # an external resource has updated these fields, you should refresh!
-    # this object before making your changes, and before updating the record.
-    #
-    # @raise [Trello::Error] if the card could not be updated.
-    #
-    # @return [Trello::Card] updated self
-    def update!
-      @previously_changed = changes
-      # extract only new values to build payload
-      payload = Hash[changes.map { |key, values| [SYMBOL_TO_STRING[key.to_sym].to_sym, values[1]] }]
-
-      response = client.put("/cards/#{id}", payload)
-      updated_card = from_response_v2(response)
-
-      @changed_attributes.clear if @changed_attributes.respond_to?(:clear)
-      changes_applied if respond_to?(:changes_applied)
-
-      attributes[:id]                     = updated_card.id
-      attributes[:short_id]               = updated_card.short_id
-      attributes[:name]                   = updated_card.name
-      attributes[:desc]                   = updated_card.desc
-      attributes[:due]                    = updated_card.due
-      attributes[:due_complete]           = updated_card.due_complete
-      attributes[:closed]                 = updated_card.closed
-      attributes[:url]                    = updated_card.url
-      attributes[:short_url]              = updated_card.short_url
-      attributes[:board_id]               = updated_card.board_id
-      attributes[:member_ids]             = updated_card.member_ids
-      attributes[:list_id]                = updated_card.list_id
-      attributes[:pos]                    = updated_card.pos
-      attributes[:labels]                 = updated_card.labels
-      attributes[:card_labels]            = updated_card.card_labels
-      attributes[:last_activity_date]     = updated_card.last_activity_date
-      attributes[:cover_image_id]         = updated_card.cover_image_id
-      attributes[:badges]                 = updated_card.badges
-      attributes[:card_members]           = updated_card.card_members
-      attributes[:source_card_id]         = updated_card.source_card_id
-      attributes[:source_card_properties] = updated_card.source_card_properties
-
-      self
     end
 
     # Delete this card
@@ -476,68 +316,5 @@ module Trello
       @me ||= Member.find(:me)
     end
 
-    def fields_has_key?(fields, key)
-      fields.key?(SYMBOL_TO_STRING[key]) || fields.key?(key)
-    end
-
-    def initialize_fields(fields)
-      %i[
-        id short_id url short_url last_activity_date
-        badges card_members
-      ].each do |attr_key|
-        attributes[attr_key] = parse_readonly_fields(fields, attr_key)
-      end
-
-      %i[
-        name desc due due_complete closed board_id
-        member_ids list_id pos labels card_labels
-        cover_image_id source_card_id source_card_properties
-      ].each do |attr_key|
-        attributes[attr_key] = parse_writable_fields(fields, attr_key)
-      end
-
-      attributes[:last_activity_date] = serialize_time(attributes[:last_activity_date])
-      attributes[:labels] = serialize_labels(attributes[:labels])
-      attributes[:due_complete] ||= false
-      attributes[:due] = serialize_time(attributes[:due])
-      self
-    end
-
-    def parse_writable_fields(fields, key)
-      fields ||= {}
-      gem_version_key = key.to_sym
-      api_version_key = SYMBOL_TO_STRING[gem_version_key]
-
-      if fields.key?(api_version_key)
-        fields[api_version_key]
-      elsif fields.key?(gem_version_key)
-        fields[gem_version_key]
-      else
-        attributes[gem_version_key]
-      end
-    end
-
-    def parse_readonly_fields(fields, key)
-      fields ||= {}
-      gem_version_key = key.to_sym
-      api_version_key = SYMBOL_TO_STRING[gem_version_key]
-
-      fields[api_version_key] || attributes[gem_version_key]
-    end
-
-    def serialize_time(time)
-      return time unless time.is_a?(String)
-
-      Time.iso8601(time) rescue nil
-    end
-
-    def serialize_labels(labels)
-      labels ||= []
-      labels.map do |label|
-        next label if label.is_a?(Trello::Label)
-
-        Trello::Label.new(label)
-      end
-    end
   end
 end

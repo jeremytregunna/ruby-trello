@@ -95,7 +95,7 @@ http_interactions:
   recorded_at: Sun, 17 May 2020 14:54:20 GMT
 - request:
     method: put
-    uri: https://api.trello.com/1/boards/5ec146e4f6a9bc121bc5b0b6/?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    uri: https://api.trello.com/1/boards/5ec146e4f6a9bc121bc5b0b6?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: UTF-8
       string: name=IT+99&desc=testing+board+create+%28changed%29&closed=false&starred&idOrganization=5e93ba154634282b6df23bcc&prefs%2FpermissionLevel=private&prefs%2FhideVotes=false&prefs%2Fvoting=disabled&prefs%2Fcomments=members&prefs%2Finvitations=members&prefs%2FselfJoin=true&prefs%2FcardCovers=true&prefs%2FisTemplate=false&prefs%2FcardAging=regular&prefs%2FcalendarFeedEnabled=false&prefs%2Fbackground=blue&prefs%2FbackgroundImage&prefs%2FbackgroundImageScaled&prefs%2FbackgroundTile=false&prefs%2FbackgroundBrightness=dark&prefs%2FbackgroundColor=%230079BF&prefs%2FbackgroundBottomColor=%230079BF&prefs%2FbackgroundTopColor=%230079BF&prefs%2FcanBePublic=true&prefs%2FcanBeEnterprise=true&prefs%2FcanBeOrg=true&prefs%2FcanBePrivate=true&prefs%2FcanInvite=true

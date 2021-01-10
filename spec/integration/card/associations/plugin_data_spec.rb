@@ -11,7 +11,7 @@ RSpec.describe 'Trello::Card#plugin_data' do
       plugin_data = card.plugin_data
       expect(plugin_data.count).to be > 0
       expect(plugin_data[0]).to be_a(Trello::PluginDatum)
-      expect(plugin_data[0].idModel).to eq(card.id)
+      expect(plugin_data[0].model_id).to eq(card.id)
     end
   end
 

@@ -20,7 +20,7 @@ module Trello
       it "delegates to Trello.client#find" do
         expect(client)
           .to receive(:find)
-          .with(:webhook, '1234', {})
+          .with('webhook', '1234', {})
 
         Webhook.find('1234')
       end
@@ -43,7 +43,7 @@ module Trello
         webhook = Webhook.new(webhook_details)
         expect(webhook.id).to           eq webhook_details['id']
         expect(webhook.description).to  eq webhook_details['description']
-        expect(webhook.id_model).to     eq webhook_details['idModel']
+        expect(webhook.model_id).to     eq webhook_details['idModel']
         expect(webhook.callback_url).to eq webhook_details['callbackURL']
         expect(webhook.active).to       eq webhook_details['active']
       end
@@ -52,7 +52,7 @@ module Trello
         webhook_details = webhooks_details[1]
         webhook = Webhook.new(webhook_details)
         expect(webhook.description).to  eq webhook_details[:description]
-        expect(webhook.id_model).to     eq webhook_details[:id_model]
+        expect(webhook.model_id).to     eq webhook_details[:model_id]
         expect(webhook.callback_url).to eq webhook_details[:callback_url]
       end
 
@@ -62,14 +62,21 @@ module Trello
         webhook = webhooks_details.first
         result = JSON.generate(webhook)
 
-        expected_payload = {description: webhook[:description], idModel: webhook[:idModel], callbackURL: webhook[:callbackURL]}
+        expected_payload = {
+          'description' => webhook['description'],
+          'idModel' => webhook['idModel'],
+          'callbackURL' => webhook['callbackURL'],
+          'active' => webhook['active']
+        }
 
         expect(client)
           .to receive(:post)
           .with("/webhooks", expected_payload)
           .and_return result
 
-        webhook = Webhook.create(webhooks_details.first)
+        params = webhooks_details.first
+        params.delete('id')
+        webhook = Webhook.create(params)
 
         expect(webhook.class).to be Webhook
       end
@@ -79,12 +86,21 @@ module Trello
       it "updating description does a put on the correct resource with the correct value" do
         expected_new_description = "xxx"
 
-        expected_payload = {description: expected_new_description, idModel: webhook.id_model, callbackURL: webhook.callback_url, active: webhook.active}
+        expected_payload = { 'description' => expected_new_description}
 
         expect(client)
           .to receive(:put)
           .once
           .with("/webhooks/#{webhook.id}", expected_payload)
+          .and_return({
+            'id' => webhook.id,
+            'idModel' => webhook.model_id,
+            'description' => 'xxx',
+            'callbackURL' => webhook.callback_url,
+            'active' => webhook.active,
+            'consecutiveFailures' => webhook.consecutive_failures,
+            'firstConsecutiveFailDate' => webhook.first_consecutive_fail_date
+          }.to_json)
 
         webhook.description = expected_new_description
         webhook.save
@@ -112,7 +128,7 @@ module Trello
         expected = {
           'id' => 'id',
           'description' => 'description',
-          'idModel' => 'id_model',
+          'idModel' => 'model_id',
           'callbackURL' => 'callback_url',
           'active' => 'active'
         }

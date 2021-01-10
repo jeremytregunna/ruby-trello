@@ -10,33 +10,40 @@ module Trello
   #   @return [Datetime]
   # @!attribute [rw] data
   #   @return [Object]
-  # @!attribute [r] member_creator_id,
+  # @!attribute [r] creator_id
   #   @return [String]
+  # @!attribute [r] creator_app
+  #   @return [String]
+  # @!attribute [r] action_id
+  #   @return [String]
+  # @!attribute [r] is_reactable
+  #   @return [Boolean]
+  # @!attribute [r] read_at
+  #   @return [Datetime]
+  # @!attribute [r] reactions
+  #   @return [Array]
   class Notification < BasicData
-    register_attributes :id, :unread, :type, :date, :data, :member_creator_id,
-      read_only: [ :id, :unread, :type, :date, :member_creator_id ]
-    validates_presence_of :id, :type, :date, :member_creator_id
 
-    class << self
-      # Locate a notification by its id
-      def find(id, params = {})
-        client.find(:notification, id, params)
-      end
+    schema do
+      # Readonly
+      attribute :id, read_only: true
+      attribute :type, read_only: true
+      attribute :date, read_only: true
+      attribute :data, read_only: true
+      attribute :creator_app, read_only: true, remote_key: 'appCreator'
+      attribute :creator_id, read_only: true, remote_key: 'idMemberCreator'
+      attribute :action_id, read_only: true, remote_key: 'idAction'
+      attribute :is_reactable, read_only: true, remote_key: 'isReactable'
+      attribute :unread, read_only: true
+      attribute :read_at, read_only: true, remote_key: 'dateRead'
+      attribute :reactions, read_only: true
     end
 
-    def update_fields(fields)
-      attributes[:id]                = fields['id'] || attributes[:id]
-      attributes[:unread]            = fields['unread'] if fields.has_key?('unread')
-      attributes[:type]              = fields['type'] || attributes[:type]
-      attributes[:date]              = fields['date'] || attributes[:date]
-      attributes[:data]              = fields['data'] || attributes[:data]
-      attributes[:member_creator_id] = fields['idMemberCreator'] || attributes[:member_creator_id]
-      self
-    end
+    validates_presence_of :id, :type, :date, :creator_id
 
     alias :unread? :unread
 
-    one :member_creator, path: :members, via: Member, using: :member_creator_id
+    one :creator, path: :members, via: Member, using: :creator_id
 
     def board
       Board.from_response client.get("/notifications/#{id}/board")

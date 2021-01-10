@@ -95,7 +95,7 @@ http_interactions:
   recorded_at: Sun, 07 Jun 2020 04:04:45 GMT
 - request:
     method: put
-    uri: https://api.trello.com/1/boards/5e93ba403f1ab3603ba81a09/?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    uri: https://api.trello.com/1/boards/5e93ba403f1ab3603ba81a09?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
     body:
       encoding: UTF-8
       string: name=IT+1+-+Changed&prefs%2Fcomments=members

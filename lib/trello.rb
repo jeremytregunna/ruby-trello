@@ -77,7 +77,6 @@ module Trello
   autoload :Webhook,              'trello/webhook'
   autoload :JsonUtils,            'trello/json_utils'
   autoload :AssociationInferTool, 'trello/association_infer_tool'
-  autoload :RegisterAttributes,   'trello/register_attributes'
   autoload :Schema,               'trello/schema'
 
   module Authorization
@@ -136,7 +135,6 @@ module Trello
 
   # Url to token for making authorized requests to the Trello API
   #
-  # @param [String, #read] contents the contents to reverse
   # @param options [Hash] Repository information to update
   # @option options [String] :name Name of the application
   # @option options [String] :key Application key

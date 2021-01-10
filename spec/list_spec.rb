@@ -84,11 +84,10 @@ module Trello
         result = JSON.generate(payload)
 
         expected_payload = {
-          name: 'Test List',
-          closed: false,
-          idBoard: 'abcdef123456789123456789',
-          pos: 42,
-          idListSource: 'abcdef123456789'
+          'name' => 'Test List',
+          'pos' => 42,
+          'idBoard' => 'abcdef123456789123456789',
+          'idListSource' => 'abcdef123456789'
         }
 
         expect(client)
@@ -105,15 +104,14 @@ module Trello
         expected_new_name = 'xxx'
 
         payload = {
-          name: expected_new_name,
-          closed: false,
-          pos: list.pos
+          'name' => expected_new_name
         }
 
         expect(client)
           .to receive(:put)
           .once
           .with('/lists/abcdef123456789123456789', payload)
+          .and_return({}.to_s)
 
         list.name = expected_new_name
         list.save
@@ -122,15 +120,14 @@ module Trello
       it 'updates position' do
         new_position = 42
         payload = {
-          name: list.name,
-          closed: list.closed,
-          pos: new_position
+          'pos' => new_position
         }
 
         expect(client)
           .to receive(:put)
           .once
           .with('/lists/abcdef123456789123456789', payload)
+          .and_return({}.to_s)
 
         list.pos = new_position
         list.save
@@ -220,10 +217,9 @@ module Trello
           .to receive(:put)
           .once
           .with('/lists/abcdef123456789123456789', {
-            name: list.name,
-            closed: true,
-            pos: list.pos
+            'closed' => true
           })
+          .and_return({}.to_s)
 
         list.close!
       end

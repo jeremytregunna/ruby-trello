@@ -13,8 +13,28 @@ module Trello
   #   @return [String] A 24-character hex string
   # @!attribute [rw] pos
   #   @return [Object]
+  # @!attribute [w] source_list_id
+  #   @return [String]
+  # @!attribute [w] subscribed
+  #   @return [Boolean]
   class List < BasicData
-    register_attributes :id, :name, :closed, :board_id, :pos, :source_list_id, readonly: %i[id board_id]
+    schema do
+      # Readonly
+      attribute :id, readonly: true, primary_key: true
+
+      # Writable
+      attribute :name
+      attribute :pos
+      attribute :board_id, remote_key: 'idBoard'
+
+      # Writable but for create only
+      attribute :source_list_id, create_only: true, remote_key: 'idListSource'
+
+      # Writable but for update only
+      attribute :closed, update_only: true
+      attribute :subscribed, update_only: true
+    end
+
     validates_presence_of :id, :name, :board_id
     validates_length_of   :name, in: 1..16_384
 
@@ -28,48 +48,6 @@ module Trello
       def find(id, params = {})
         client.find(:list, id, params)
       end
-
-      def create(options)
-        client.create(:list,
-            'name'         => options[:name],
-            'idBoard'      => options[:board_id],
-            'pos'          => options[:pos],
-            'idListSource' => options[:source_list_id])
-      end
-    end
-
-    # Updates the fields of a list.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # a List.
-    def update_fields(fields)
-      attributes[:id]             = fields['id'] || attributes[:id]
-      attributes[:name]           = fields['name'] || fields[:name] || attributes[:name]
-      attributes[:closed]         = fields['closed'] if fields.key?('closed')
-      attributes[:board_id]       = fields['idBoard'] || fields[:board_id] || attributes[:board_id]
-      attributes[:pos]            = fields['pos'] || fields[:pos] || attributes[:pos]
-      attributes[:source_list_id] = fields['idListSource'] || fields[:source_list_id] || attributes[:source_list_id]
-      self
-    end
-
-    def save
-      return update! if id
-
-      from_response client.post('/lists', {
-        name: name,
-        closed: closed || false,
-        idBoard: board_id,
-        pos: pos,
-        idListSource: source_list_id
-      })
-    end
-
-    def update!
-      client.put("/lists/#{id}", {
-        name: name,
-        closed: closed,
-        pos: pos
-      })
     end
 
     # Check if the list is not active anymore.

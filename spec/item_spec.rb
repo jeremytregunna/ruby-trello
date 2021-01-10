@@ -31,7 +31,7 @@ module Trello
     end
 
     it 'knows its pos' do
-      expect(item.pos).to eq details['pos']
+      expect(item.position).to eq details['pos']
     end
 
     describe '#complete?' do
@@ -59,7 +59,7 @@ module Trello
           'name' => 'name',
           'type' => 'type',
           'state' => 'state',
-          'pos' => 'pos'
+          'pos' => 'position'
         }
 
         item = Item.new(expected)

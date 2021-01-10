@@ -5,26 +5,18 @@ module Trello
   #   @return [String]
   # @!attribute [r] state
   #   @return [Object]
-  # @!attribute [r] item_id
-  #   @return [String]
   class CheckItemState < BasicData
-    register_attributes :id, :state, :item_id, readonly: [ :id, :state, :item_id ]
-    validates_presence_of :id, :item_id
-
-    # Update the fields of an item state.
-    #
-    # Supply a hash of string keyed data retrieved from the Trello API representing
-    # an item state.
-    def update_fields(fields)
-      attributes[:id]      = fields['id'] || attributes[:id]
-      attributes[:state]   = fields['state'] || attributes[:state]
-      attributes[:item_id] = fields['idCheckItem'] || attributes[:item_id]
-      self
+    schema do
+      #Readonly
+      attribute :id, remote_key: 'idCheckItem', readonly: true, primary_key: true
+      attribute :state
     end
+
+    validates_presence_of :id
 
     # Return the item this state belongs to.
     def item
-      Item.find(item_id)
+      Item.find(id)
     end
   end
 end
