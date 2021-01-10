@@ -209,6 +209,7 @@ Run tests for each Ruby versions individual
 make test:ruby_2_5
 make test:ruby_2_6
 make test:ruby_2_7
+make test:ruby_3_0
 make test:jruby_9_2
 ```
 
@@ -218,5 +219,12 @@ Do development for each Ruby versions individual
 make dev:ruby_2_5
 make dev:ruby_2_6
 make dev:ruby_2_7
+make dev:ruby_3_0
 make dev:jruby_9_2
+```
+
+Recreate all Gemfile.lock.*
+
+```bash
+make gemfile:refresh
 ```
