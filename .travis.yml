@@ -4,11 +4,13 @@ rvm:
   - 2.5
   - 2.6
   - 2.7
+  - 3.0
   - jruby-9.2
 env:
   - ACTIVE_MODEL_VERSION='~> 4.2'
   - ACTIVE_MODEL_VERSION='~> 5.2'
   - ACTIVE_MODEL_VERSION='~> 6.0'
+  - ACTIVE_MODEL_VERSION='~> 6.1'
 jobs:
   exclude:
     - rvm: 2.7
