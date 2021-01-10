@@ -6,6 +6,17 @@ init:
 	touch Gemfile.lock.ruby_2_7
 	touch Gemfile.lock.ruby_3_0
 	touch Gemfile.lock.jruby
+gemfile\:refresh:
+	rm Gemfile.lock.ruby_2_5
+	rm Gemfile.lock.ruby_2_6
+	rm Gemfile.lock.ruby_2_7
+	rm Gemfile.lock.ruby_3_0
+	rm Gemfile.lock.jruby
+	touch Gemfile.lock.ruby_2_5
+	touch Gemfile.lock.ruby_2_6
+	touch Gemfile.lock.ruby_2_7
+	touch Gemfile.lock.ruby_3_0
+	touch Gemfile.lock.jruby
 bundle\:all:
 	@${RUN} ruby_2_5 bundle install
 	@${RUN} ruby_2_6 bundle install
