@@ -7,6 +7,7 @@
 * Use schema to handle attribute register work
 * Standardize all data models' initialize/save/update!/update_fields process.
 * [Breaking] some data model's attribute names changes, check each data model for details
+* Support Ruby 3 (ActiveModel >= 6)
 
 ## v2.3.0
 
