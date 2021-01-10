@@ -15,6 +15,10 @@ jobs:
   exclude:
     - rvm: 2.7
       env: ACTIVE_MODEL_VERSION='~> 4.2'
+    - rvm: 3.0
+      env: ACTIVE_MODEL_VERSION='~> 4.2'
+    - rvm: 3.0
+      env: ACTIVE_MODEL_VERSION='~> 5.2'
 gemfile: Gemfile
 notifications:
   recipients:
