@@ -37,6 +37,18 @@ services:
       BUNDLE_PATH: /bundle
     working_dir: /app
 
+  ruby_3_0:
+    image: ruby:3.0.0
+    tmpfs:
+      - /tmp
+    volumes:
+      - .:/app:cached
+      - bundle_ruby_3_0:/bundle
+      - ./Gemfile.lock.ruby_3_0:/app/Gemfile.lock
+    environment:
+      BUNDLE_PATH: /bundle
+    working_dir: /app
+
   jruby_9_2:
     image: jruby:9.2.11.1
     tmpfs:
@@ -54,3 +66,4 @@ volumes:
   bundle_ruby_2_5:
   bundle_ruby_2_6:
   bundle_ruby_2_7:
+  bundle_ruby_3_0:
