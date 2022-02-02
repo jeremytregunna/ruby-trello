@@ -41,7 +41,10 @@ module Trello
 
     class << self
       def find(action_id)
-        client.find(:action, action_id)
+        response = client.get("/actions/#{action_id}")
+        self.parse response do |data|
+          data.client = client
+        end
       end
     end
 
