@@ -36,7 +36,7 @@ module Trello
       attribute :text, update_only: true
     end
 
-    validates_presence_of :action_id, :text, :date, :creator_id
+    validates_presence_of :id, :text, :date, :creator_id
     validates_length_of   :text,        in: 1..16384
 
     class << self
@@ -47,22 +47,22 @@ module Trello
 
     # Returns the board this comment is located
     def board
-      Board.from_response client.get("/actions/#{action_id}/board")
+      Board.from_response client.get("/actions/#{id}/board")
     end
 
     # Returns the card the comment is located
     def card
-      Card.from_response client.get("/actions/#{action_id}/card")
+      Card.from_response client.get("/actions/#{id}/card")
     end
 
     # Returns the list the comment is located
     def list
-      List.from_response client.get("/actions/#{action_id}/list")
+      List.from_response client.get("/actions/#{id}/list")
     end
 
     # Deletes the comment from the card
     def delete
-      ruta = "/actions/#{action_id}"
+      ruta = "/actions/#{id}"
       client.delete(ruta)
     end
 
