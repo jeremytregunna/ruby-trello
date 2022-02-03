@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require_relative "./command_helper"
+
+first_option = ARGV[0]
+rest_options = (ARGV[1..-1] || []).join(" ")
+
+case first_option
+when "ruby_2_5", "ruby 2.5", "2.5"
+  system! "docker compose run --rm ruby_2_5  bundle #{rest_options}"
+when "ruby_2_6", "ruby 2.6", "2.6"
+  system! "docker compose run --rm ruby_2_6  bundle #{rest_options}"
+when "ruby_2_7", "ruby 2.7", "2.7"
+  system! "docker compose run --rm ruby_2_7  bundle #{rest_options}"
+when "ruby_3_0", "ruby 3.0", "3.0"
+  system! "docker compose run --rm ruby_3_0  bundle #{rest_options}"
+when "ruby_3_1", "ruby 3.1", "3.1"
+  system! "docker compose run --rm ruby_3_1  bundle #{rest_options}"
+when "jruby_9_2", "jruby", "jruby 9.2", "9.2"
+  system! "docker compose run --rm jruby_9_2 bundle #{rest_options}"
+when "all"
+  system! "docker compose run --rm ruby_2_5  bundle #{rest_options}"
+  system! "docker compose run --rm ruby_2_6  bundle #{rest_options}"
+  system! "docker compose run --rm ruby_2_7  bundle #{rest_options}"
+  system! "docker compose run --rm ruby_3_0  bundle #{rest_options}"
+  system! "docker compose run --rm ruby_3_1  bundle #{rest_options}"
+  system! "docker compose run --rm jruby_9_2 bundle #{rest_options}"
+else
+  options = ARGV.join(" ")
+
+  system! "docker compose run --rm ruby_3_1  bundle #{options}"
+end

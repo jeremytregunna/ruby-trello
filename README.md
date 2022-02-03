@@ -188,46 +188,47 @@ Please see the `CONTRIBUTING.md` file for more information.
 
 ## Local Development
 
-Init all Gemfile.lock.* files
+Check available commands with:
 
 ```bash
-make init
+dev/help
 ```
 
-Bundle install for all Ruby versions
+### Some examples:
+
+Setup containers and Gemfiles
 
 ```bash
-make bundle:all
+dev/setup
+dev/setup 2.7
+dev/setup 3.0
+dev/setup 3.1
+dev/setup all
 ```
 
-Run tests for all Ruby versions
+Run tests
 
 ```bash
-make test:all
+dev/rspec
+dev/rspec 2.7
+dev/rspec 3.0
+dev/rspec 3.1
+dev/rspec all
+
+dev/rspec spec/some_spec.rb
+dev/rspec 2.7 spec/some_spec.rb
+dev/rspec 3.0 spec/some_spec.rb
+dev/rspec 3.1 spec/some_spec.rb
+dev/rspec all spec/some_spec.rb
 ```
 
-Run tests for each Ruby versions individual
+Bash
 
 ```bash
-make test:ruby_2_5
-make test:ruby_2_6
-make test:ruby_2_7
-make test:ruby_3_0
-make test:jruby_9_2
-```
-
-Do development for each Ruby versions individual
-
-```bash
-make dev:ruby_2_5
-make dev:ruby_2_6
-make dev:ruby_2_7
-make dev:ruby_3_0
-make dev:jruby_9_2
-```
-
-Recreate all Gemfile.lock.*
-
-```bash
-make gemfile:refresh
+dev/bash
+dev/bash 2.5
+dev/bash 2.6
+dev/bash 2.7
+dev/bash 3.0
+dev/bash 3.1
 ```
