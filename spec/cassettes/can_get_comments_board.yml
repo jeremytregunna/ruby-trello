@@ -1,0 +1,109 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/actions/61faa73dd180eb86947af0fd/board?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.0.0p0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      X-Trello-Version:
+      - 1.111614.0
+      X-Trello-Environment:
+      - Production
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Sat, 05 Feb 2022 16:00:16 GMT; Secure
+      - preAuthProps=s%3A5e679b808e6e8828784b30e1%3AisEnterpriseAdmin%3Dfalse.oSQJRIF9RziQFo1wvRya3fIryaPvbkhBP%2F03d0%2F%2FuwE;
+        Path=/; HttpOnly
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '375'
+      X-Rate-Limit-Member-Remaining:
+      - '374'
+      X-Server-Time:
+      - '1643817616469'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 02 Feb 2022 16:00:16 GMT
+      X-Envoy-Upstream-Service-Time:
+      - '112'
+      Expect-Ct:
+      - report-uri="https://web-security-reports.services.atlassian.com/expect-ct-report/trello-edge",
+        max-age=86400
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Atl-Traceid:
+      - 8927791bbd7ca38c
+      Report-To:
+      - '{"group": "endpoint-1", "max_age": 600, "endpoints": [{"url": "https://dj9s4kmieytgz.cloudfront.net"}],
+        "include_subdomains": true}'
+      Nel:
+      - '{"report_to": "endpoint-1", "max_age": 600, "include_subdomains": true, "failure_fraction":
+        0.001}'
+      Server:
+      - globaledge-envoy
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"5e93ba98614ac22d22f085c4","name":"IT 2","desc":"","descData":null,"closed":false,"dateClosed":null,"idOrganization":"5e93ba154634282b6df23bcc","shortLink":"y1TF9GTa","powerUps":[],"dateLastActivity":"2022-02-02T15:46:05.569Z","idTags":[],"datePluginDisable":null,"creationMethod":null,"idBoardSource":null,"idMemberCreator":"5e679b808e6e8828784b30e1","idEnterprise":null,"pinned":false,"starred":true,"url":"https://trello.com/b/y1TF9GTa/it-2","shortUrl":"https://trello.com/b/y1TF9GTa","enterpriseOwned":false,"premiumFeatures":["additionalBoardBackgrounds","additionalStickers","customBoardBackgrounds","customEmoji","customStickers","plugins"],"ixUpdate":"121","limits":{"attachments":{"perBoard":{"status":"ok","disableAt":36000,"warnAt":28800},"perCard":{"status":"ok","disableAt":1000,"warnAt":800}},"boards":{"totalMembersPerBoard":{"status":"ok","disableAt":1600,"warnAt":1280},"totalAccessRequestsPerBoard":{"status":"ok","disableAt":4000,"warnAt":3200}},"cards":{"openPerBoard":{"status":"ok","disableAt":5000,"warnAt":4000},"openPerList":{"status":"ok","disableAt":5000,"warnAt":4000},"totalPerBoard":{"status":"ok","disableAt":2000000,"warnAt":1600000},"totalPerList":{"status":"ok","disableAt":1000000,"warnAt":800000}},"checklists":{"perBoard":{"status":"ok","disableAt":1800000,"warnAt":1440000},"perCard":{"status":"ok","disableAt":500,"warnAt":400}},"checkItems":{"perChecklist":{"status":"ok","disableAt":200,"warnAt":160}},"customFields":{"perBoard":{"status":"ok","disableAt":50,"warnAt":40}},"customFieldOptions":{"perField":{"status":"ok","disableAt":50,"warnAt":40}},"labels":{"perBoard":{"status":"ok","disableAt":1000,"warnAt":800}},"lists":{"openPerBoard":{"status":"ok","disableAt":500,"warnAt":400},"totalPerBoard":{"status":"ok","disableAt":3000,"warnAt":2400}},"stickers":{"perCard":{"status":"ok","disableAt":70,"warnAt":56}},"reactions":{"perAction":{"status":"ok","disableAt":900,"warnAt":720},"uniquePerAction":{"status":"ok","disableAt":17,"warnAt":14}}},"memberships":[{"id":"5e93ba98614ac22d22f085c5","idMember":"5e679b808e6e8828784b30e1","memberType":"admin","unconfirmed":false,"deactivated":false}],"subscribed":false,"dateLastView":"2022-02-02T15:51:08.226Z","templateGallery":null,"prefs":{"permissionLevel":"org","hideVotes":false,"voting":"disabled","comments":"members","invitations":"members","selfJoin":true,"cardCovers":true,"isTemplate":false,"cardAging":"regular","calendarFeedEnabled":false,"hiddenPluginBoardButtons":[],"background":"5e9093e2134e6987494c7ca8","backgroundImage":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/2300ad88b61e46629c4063e0095bf986/photo-1586462175816-c0e709898f01","backgroundImageScaled":[{"width":140,"height":93,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/140x93/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":256,"height":171,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/256x171/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":480,"height":320,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/480x320/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":960,"height":640,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/960x640/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":1024,"height":683,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1024x683/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":1280,"height":854,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x854/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":1920,"height":1280,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1920x1280/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":2048,"height":1366,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2048x1366/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":2400,"height":1600,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/08d5092270be6b5bb40247b7a7f5a924/photo-1586462175816-c0e709898f01.jpg"},{"width":2560,"height":1707,"url":"https://trello-backgrounds.s3.amazonaws.com/SharedBackground/original/2300ad88b61e46629c4063e0095bf986/photo-1586462175816-c0e709898f01"}],"backgroundTile":false,"backgroundBrightness":"light","backgroundBottomColor":"#92d3ca","backgroundTopColor":"#d9e3eb","canBePublic":true,"canBeEnterprise":true,"canBeOrg":true,"canBePrivate":true,"canInvite":true},"labelNames":{"green":"","yellow":"","orange":"","red":"","purple":"","blue":"","sky":"","lime":"","pink":"","black":""}}'
+  recorded_at: Wed, 02 Feb 2022 16:00:16 GMT
+recorded_with: VCR 6.0.0

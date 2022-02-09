@@ -25,11 +25,11 @@ bundle\:all:
 	@${RUN} jruby_9_2 bundle install
 
 bundle:
-	@${RUN} ruby_2_6 bundle install
+	@${RUN} ruby_3_0 bundle install
 dev:
-	@${RUN} ruby_2_6 bash
+	@${RUN} ruby_3_0 bash
 test:
-	@${RUN} ruby_2_6 bundle exec rspec $(filter-out $@,$(MAKECMDGOALS))
+	@${RUN} ruby_3_0 bundle exec rspec $(filter-out $@,$(MAKECMDGOALS))
 dev\:ruby_2_5:
 	@${RUN} ruby_2_5 bash
 test\:ruby_2_5:

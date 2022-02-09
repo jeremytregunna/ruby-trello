@@ -1,0 +1,331 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/actions/61faa73dd180eb86947af0fd?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.0.0p0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      X-Trello-Version:
+      - 1.111614.0
+      X-Trello-Environment:
+      - Production
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Sat, 05 Feb 2022 16:17:21 GMT; Secure
+      - preAuthProps=s%3A5e679b808e6e8828784b30e1%3AisEnterpriseAdmin%3Dfalse.oSQJRIF9RziQFo1wvRya3fIryaPvbkhBP%2F03d0%2F%2FuwE;
+        Path=/; HttpOnly
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '375'
+      X-Rate-Limit-Member-Remaining:
+      - '374'
+      X-Server-Time:
+      - '1643818641053'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 02 Feb 2022 16:17:21 GMT
+      X-Envoy-Upstream-Service-Time:
+      - '99'
+      Expect-Ct:
+      - report-uri="https://web-security-reports.services.atlassian.com/expect-ct-report/trello-edge",
+        max-age=86400
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Atl-Traceid:
+      - b49e26c74840dba3
+      Report-To:
+      - '{"group": "endpoint-1", "max_age": 600, "endpoints": [{"url": "https://dj9s4kmieytgz.cloudfront.net"}],
+        "include_subdomains": true}'
+      Nel:
+      - '{"report_to": "endpoint-1", "max_age": 600, "include_subdomains": true, "failure_fraction":
+        0.001}'
+      Server:
+      - globaledge-envoy
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"61faa73dd180eb86947af0fd","idMemberCreator":"5e679b808e6e8828784b30e1","data":{"text":"why
+        I can''t get action","textData":{"emoji":{}},"card":{"id":"5f4f98b06183211be96855cb","name":"Test
+        Trello::Card.create","idShort":6,"shortLink":"JlpJt3gF"},"board":{"id":"5e93ba98614ac22d22f085c4","name":"IT
+        2","shortLink":"y1TF9GTa"},"list":{"id":"5e93bac014d40e501ee46b8d","name":"L1"}},"type":"commentCard","date":"2022-02-02T15:46:05.589Z","appCreator":null,"limits":{"reactions":{"perAction":{"status":"ok","disableAt":900,"warnAt":720},"uniquePerAction":{"status":"ok","disableAt":17,"warnAt":14}}},"display":{"translationKey":"action_comment_on_card","entities":{"contextOn":{"type":"translatable","translationKey":"action_on","hideIfContext":true,"idContext":"5f4f98b06183211be96855cb"},"card":{"type":"card","hideIfContext":true,"id":"5f4f98b06183211be96855cb","shortLink":"JlpJt3gF","text":"Test
+        Trello::Card.create"},"comment":{"type":"comment","text":"why I can''t get
+        action"},"memberCreator":{"type":"member","id":"5e679b808e6e8828784b30e1","username":"hoppertest","text":"Hopper
+        Test"}}},"memberCreator":{"id":"5e679b808e6e8828784b30e1","activityBlocked":false,"avatarHash":null,"avatarUrl":null,"fullName":"Hopper
+        Test","idMemberReferrer":null,"initials":"HT","nonPublic":{},"nonPublicAvailable":true,"username":"hoppertest"}}'
+  recorded_at: Wed, 02 Feb 2022 16:17:21 GMT
+- request:
+    method: delete
+    uri: https://api.trello.com/1/actions/61faa73dd180eb86947af0fd?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.0.0p0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      X-Trello-Version:
+      - 1.111614.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '98'
+      X-Rate-Limit-Action-Interval-Ms:
+      - '3600000'
+      X-Rate-Limit-Action-Max:
+      - '15000'
+      X-Rate-Limit-Action-Remaining:
+      - '14999'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '298'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '375'
+      X-Rate-Limit-Member-Remaining:
+      - '373'
+      Set-Cookie:
+      - preAuthProps=s%3A5e679b808e6e8828784b30e1%3AisEnterpriseAdmin%3Dfalse.oSQJRIF9RziQFo1wvRya3fIryaPvbkhBP%2F03d0%2F%2FuwE;
+        Path=/; HttpOnly
+      X-Server-Time:
+      - '1643818641840'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 02 Feb 2022 16:17:21 GMT
+      X-Envoy-Upstream-Service-Time:
+      - '140'
+      Expect-Ct:
+      - report-uri="https://web-security-reports.services.atlassian.com/expect-ct-report/trello-edge",
+        max-age=86400
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Atl-Traceid:
+      - 8ffdb0eeb6ff1cda
+      Report-To:
+      - '{"group": "endpoint-1", "max_age": 600, "endpoints": [{"url": "https://dj9s4kmieytgz.cloudfront.net"}],
+        "include_subdomains": true}'
+      Nel:
+      - '{"report_to": "endpoint-1", "max_age": 600, "include_subdomains": true, "failure_fraction":
+        0.001}'
+      Server:
+      - globaledge-envoy
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"_value":null}
+
+'
+  recorded_at: Wed, 02 Feb 2022 16:17:21 GMT
+- request:
+    method: get
+    uri: https://api.trello.com/1/actions/61faa73dd180eb86947af0fd?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*"
+      User-Agent:
+      - rest-client/2.1.0 (linux x86_64) ruby/3.0.0p0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Host:
+      - api.trello.com
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, proxy-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Trello-Version:
+      - 1.111614.0
+      X-Trello-Environment:
+      - Production
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Sat, 05 Feb 2022 16:17:22 GMT; Secure
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '97'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '297'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '375'
+      X-Rate-Limit-Member-Remaining:
+      - '372'
+      Content-Type:
+      - text/plain; charset=utf-8
+      Content-Length:
+      - '37'
+      Date:
+      - Wed, 02 Feb 2022 16:17:22 GMT
+      X-Envoy-Upstream-Service-Time:
+      - '86'
+      Expect-Ct:
+      - report-uri="https://web-security-reports.services.atlassian.com/expect-ct-report/trello-edge",
+        max-age=86400
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Atl-Traceid:
+      - f0fa637a7466a1af
+      Report-To:
+      - '{"group": "endpoint-1", "max_age": 600, "endpoints": [{"url": "https://dj9s4kmieytgz.cloudfront.net"}],
+        "include_subdomains": true}'
+      Nel:
+      - '{"report_to": "endpoint-1", "max_age": 600, "include_subdomains": true, "failure_fraction":
+        0.001}'
+      Server:
+      - globaledge-envoy
+    body:
+      encoding: UTF-8
+      string: The requested resource was not found.
+  recorded_at: Wed, 02 Feb 2022 16:17:22 GMT
+recorded_with: VCR 6.0.0
