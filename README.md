@@ -16,7 +16,16 @@ to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/
 
 ## Requirements
 
-Use the newest version for Ruby 2.5.0 or newer support. (Ruby 3 only works with ActiveModel 6 for now.)
+| Ruby  \  ActiveModel | 4.2 | 5.2 | 6.0 | 6.1 | 7.0 |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 2.5 | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 2.6 | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 2.7 | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 3.0 | ❌ | ❌ | ✅ | ✅ | ✅ |
+| 3.1 | ❌ | ❌ | ✅ | ✅ | ✅ |
+| jRuby 9.3 | ✅ | ✅ | ✅ | ✅ | ❌ |
+
+Use the newest version for Ruby 2.5.0 or newer support.
 
 Use version 2.2.1 or earlier for Ruby 2.1 ~ 2.4 support.
 
