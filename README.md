@@ -188,47 +188,41 @@ Please see the `CONTRIBUTING.md` file for more information.
 
 ## Local Development
 
+Use [matrixeval-ruby](https://github.com/MatrixEval/matrixeval-ruby) to test code againsts different ruby and active_model versions on local.
+
 Check available commands with:
 
 ```bash
-dev/help
+matrixeval --help
+# Or
+meval --help
 ```
 
 ### Some examples:
 
-Setup containers and Gemfiles
+Generate MatrixEval config file
 
 ```bash
-dev/setup
-dev/setup 2.7
-dev/setup 3.0
-dev/setup 3.1
-dev/setup all
+matrixeval init
+```
+
+Run bundle install
+
+```bash
+matrixeval --all bundle install
 ```
 
 Run tests
 
 ```bash
-dev/rspec
-dev/rspec 2.7
-dev/rspec 3.0
-dev/rspec 3.1
-dev/rspec all
-
-dev/rspec spec/some_spec.rb
-dev/rspec 2.7 spec/some_spec.rb
-dev/rspec 3.0 spec/some_spec.rb
-dev/rspec 3.1 spec/some_spec.rb
-dev/rspec all spec/some_spec.rb
+matrixeval --all rspec
+matrixeval --ruby 3.0 rspec spec/a_spec.rb
+matrixeval --ruby 3.0 --active_model 7.0 rspec
 ```
 
 Bash
 
 ```bash
-dev/bash
-dev/bash 2.5
-dev/bash 2.6
-dev/bash 2.7
-dev/bash 3.0
-dev/bash 3.1
+matrixeval bash
+matrixeval --ruby 3.0 --active_model 7.0 bash
 ```
