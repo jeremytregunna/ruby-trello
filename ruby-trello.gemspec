@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{ruby-trello}
-  s.version           = "3.0.0"
+  s.version           = "3.1.0"
   s.platform          = Gem::Platform::RUBY
   s.license           = 'MIT'
 
