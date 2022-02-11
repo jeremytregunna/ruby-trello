@@ -1,6 +1,5 @@
 # Ruby Trello API
 
-[![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.svg)](http://travis-ci.org/jeremytregunna/ruby-trello)
 [![Ruby](https://github.com/jeremytregunna/ruby-trello/actions/workflows/main.yml/badge.svg)](https://github.com/jeremytregunna/ruby-trello/actions/workflows/main.yml)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
