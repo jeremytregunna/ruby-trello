@@ -1,7 +1,6 @@
 # Ruby Trello API
 
-[![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.svg)](http://travis-ci.org/jeremytregunna/ruby-trello)
-[![security](https://hakiri.io/github/jeremytregunna/ruby-trello/master.svg)](https://hakiri.io/github/jeremytregunna/ruby-trello/master)
+[![Ruby](https://github.com/jeremytregunna/ruby-trello/actions/workflows/main.yml/badge.svg)](https://github.com/jeremytregunna/ruby-trello/actions/workflows/main.yml)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
 This library implements the [Trello](http://www.trello.com/) [API](https://developers.trello.com/).
@@ -16,7 +15,16 @@ to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/
 
 ## Requirements
 
-Use the newest version for Ruby 2.5.0 or newer support. (Ruby 3 only works with ActiveModel 6 for now.)
+| Ruby  \  ActiveModel | 4.2 | 5.2 | 6.0 | 6.1 | 7.0 |
+| ---- | ---- | ---- | ---- | ---- | ---- |
+| 2.5 | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 2.6 | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 2.7 | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 3.0 | ❌ | ❌ | ✅ | ✅ | ✅ |
+| 3.1 | ❌ | ❌ | ✅ | ✅ | ✅ |
+| jRuby 9.3 | ✅ | ✅ | ✅ | ✅ | ❌ |
+
+Use the newest version for Ruby 2.5.0 or newer support.
 
 Use version 2.2.1 or earlier for Ruby 2.1 ~ 2.4 support.
 
@@ -188,46 +196,41 @@ Please see the `CONTRIBUTING.md` file for more information.
 
 ## Local Development
 
-Init all Gemfile.lock.* files
+Use [matrixeval-ruby](https://github.com/MatrixEval/matrixeval-ruby) to test code againsts different ruby and active_model versions on local.
+
+Check available commands with:
 
 ```bash
-make init
+matrixeval --help
+# Or
+meval --help
 ```
 
-Bundle install for all Ruby versions
+### Some examples:
+
+Generate MatrixEval config file
 
 ```bash
-make bundle:all
+matrixeval init
 ```
 
-Run tests for all Ruby versions
+Run bundle install
 
 ```bash
-make test:all
+matrixeval --all bundle install
 ```
 
-Run tests for each Ruby versions individual
+Run tests
 
 ```bash
-make test:ruby_2_5
-make test:ruby_2_6
-make test:ruby_2_7
-make test:ruby_3_0
-make test:jruby_9_2
+matrixeval --all rspec
+matrixeval --ruby 3.0 rspec spec/a_spec.rb
+matrixeval --ruby 3.0 --active_model 7.0 rspec
 ```
 
-Do development for each Ruby versions individual
+Bash
 
 ```bash
-make dev:ruby_2_5
-make dev:ruby_2_6
-make dev:ruby_2_7
-make dev:ruby_3_0
-make dev:jruby_9_2
-```
-
-Recreate all Gemfile.lock.*
-
-```bash
-make gemfile:refresh
+matrixeval bash
+matrixeval --ruby 3.0 --active_model 7.0 bash
 ```

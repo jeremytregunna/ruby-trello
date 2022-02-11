@@ -7,6 +7,7 @@ end
 gemspec
 
 group :development, :spec do
+  gem 'matrixeval-ruby'
   gem 'rake'
   gem 'rspec', '~> 3.5.0'
   gem 'webmock'
