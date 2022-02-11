@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.1.0
+
+- [Test against Ruby 3.1 and Rails 7](https://github.com/jeremytregunna/ruby-trello/pull/304)
+- [Fix a bug of `Trello::Comment.find`](https://github.com/jeremytregunna/ruby-trello/pull/302)
+- Change CI from Travis to GitHub Action
+- Test all matrix combinations with matrixeval-ruby on local
+
 ## v3.0.0
 
 * [Fix "Trello::Board#update! fail to update description"](https://github.com/jeremytregunna/ruby-trello/pull/289)
