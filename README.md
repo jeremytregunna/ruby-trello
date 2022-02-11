@@ -1,7 +1,6 @@
 # Ruby Trello API
 
 [![Build Status](https://secure.travis-ci.org/jeremytregunna/ruby-trello.svg)](http://travis-ci.org/jeremytregunna/ruby-trello)
-[![security](https://hakiri.io/github/jeremytregunna/ruby-trello/master.svg)](https://hakiri.io/github/jeremytregunna/ruby-trello/master)
 [![Code Climate](https://codeclimate.com/github/jeremytregunna/ruby-trello/badges/gpa.svg)](https://codeclimate.com/github/jeremytregunna/ruby-trello)
 
 This library implements the [Trello](http://www.trello.com/) [API](https://developers.trello.com/).
