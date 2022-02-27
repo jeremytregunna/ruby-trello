@@ -20,5 +20,6 @@ Gemfile.lock
 .byebug_history
 
 Gemfile.lock.*
-.matrixeval/docker-compose.yml
+.matrixeval/docker-compose
 .matrixeval/Gemfile.lock.*
+.matrixeval/gemfile_locks

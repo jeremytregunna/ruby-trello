@@ -1,14 +1,15 @@
-version: 0.2
+version: 0.4
+project_name: ruby-trello
 target: ruby
 parallel_workers: number_of_processors
 # commands:
 #   - ps
 #   - top
 #   - an_additional_command
+# mounts:
+#   - /a/path/need/to/mount:/a/path/mount/to
 matrix:
   ruby:
-    # mounts:
-    #   - /a/path/need/to/mount:/a/path/mount/to
     variants:
       - key: 2.5
         container:
