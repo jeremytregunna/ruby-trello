@@ -19,32 +19,32 @@ jobs:
           - 2.5
           - 2.6
           - 2.7
-          - 3.0
+          - '3.0'
           - 3.1
           - jruby
         active_model:
           - 4.2
           - 5.2
-          - 6.0
+          - '6.0'
           - 6.1
-          - 7.0
+          - '7.0'
         exclude:
           - ruby: 2.5
-            active_model: 7.0
+            active_model: '7.0'
           - ruby: 2.6
-            active_model: 7.0
+            active_model: '7.0'
           - ruby: 2.7
             active_model: 4.2
-          - ruby: 3.0
+          - ruby: '3.0'
             active_model: 4.2
-          - ruby: 3.0
+          - ruby: '3.0'
             active_model: 5.2
           - ruby: 3.1
             active_model: 4.2
           - ruby: 3.1
             active_model: 5.2
           - ruby: jruby
-            active_model: 7.0
+            active_model: '7.0'
 
     env:
       ACTIVE_MODEL_VERSION: "~> ${{ matrix.active_model }}.0"
