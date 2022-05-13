@@ -4,7 +4,7 @@ module Trello
 
   class TInternet
     class << self
-      require "rest_client"
+      require "faraday"
 
       def execute(request)
         try_execute request
@@ -16,23 +16,30 @@ module Trello
         begin
           if request
             result = execute_core request
-            Response.new(200, {}, result)
+            response_body = if [200, 201].include? result.status
+              result
+            else
+              result.body
+            end
+            Response.new(result.status, {}, response_body)
           end
-        rescue RestClient::Exception => e
-          raise if !e.respond_to?(:http_code) || e.http_code.nil?
-          Response.new(e.http_code, {}, e.http_body)
+        rescue Faraday::Error => e
+          raise if !e.respond_to?(:status) || e.status.nil?
+          Response.new(e.status, {}, e.body)
         end
       end
 
       def execute_core(request)
-        RestClient.proxy = ENV['HTTP_PROXY'] if ENV['HTTP_PROXY']
-        RestClient::Request.execute(
-          method: request.verb,
-          url: request.uri.to_s,
+        conn = Faraday.new(
+          request.uri.to_s,
           headers: request.headers,
-          payload: request.body,
-          timeout: 10
+          proxy: ENV['HTTP_PROXY'],
+          request: { timeout: 10 }
         )
+
+        conn.send(request.verb) do |req|
+          req.body = request.body
+        end
       end
     end
   end
