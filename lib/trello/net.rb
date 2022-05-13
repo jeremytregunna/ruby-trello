@@ -16,16 +16,11 @@ module Trello
         begin
           if request
             result = execute_core request
-            response_body = if [200, 201].include? result.status
-              result
-            else
-              result.body
-            end
-            Response.new(result.status, {}, response_body)
+            Response.new(200, {}, result)
           end
         rescue Faraday::Error => e
-          raise if !e.respond_to?(:status) || e.status.nil?
-          Response.new(e.status, {}, e.body)
+          raise if !e.respond_to?(:response) || e.response.nil? || e.response[:status].nil?
+          Response.new(e.response[:status], {}, e.response[:body])
         end
       end
 
@@ -35,7 +30,10 @@ module Trello
           headers: request.headers,
           proxy: ENV['HTTP_PROXY'],
           request: { timeout: 10 }
-        )
+        ) do |faraday|
+          faraday.response :raise_error
+          faraday.request :json
+        end
 
         conn.send(request.verb) do |req|
           req.body = request.body

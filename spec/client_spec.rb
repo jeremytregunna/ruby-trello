@@ -17,7 +17,7 @@ describe Client do
       .to receive(:authorize) { |request| request }
   end
 
-  describe "and how it handles Faraday exceptions" do
+  describe "and how it handles Faraday errors" do
     context "with Faraday::Error sans HTTP code" do
       let(:faraday_error_without_http_code) { Faraday::Error.new }
 
@@ -33,10 +33,10 @@ describe Client do
     end
 
     context "with Faraday::Error that contains HTTP code" do
-      let(:response_with_error_status) { double "A fake 500 response",
-                                              code: 500,
-                                              body: "500 error response"}
-      let(:faraday_error_with_http_code) { Faraday::Error.new(double("500 error response", {:code => 500, :body => "500 error response"}))}
+      let(:response_with_non_200_status) { double "A fake 404 response",
+                                              code: 404,
+                                              body: "404 error response"}
+      let(:faraday_error_with_http_code) { Faraday::Error.new(double("404 error response", {:code => 404, :body => "404 error response"}))}
 
       before do
         allow(TInternet)
@@ -48,28 +48,7 @@ describe Client do
 
         expect(TInternet)
           .to receive(:try_execute)
-          .and_return(response_with_error_status)
-
-        expect { client.get "/xxx" }.to raise_error do |error|
-          expect(error).to be_a(Error)
-          expect(error.message).to eq("500 error response")
-          expect(error.status_code).to eq(500)
-        end
-      end
-    end
-  end
-
-  describe "and how it handles 4xx errors" do
-    context "with 404 HTTP code" do
-      let(:response_with_error_status) { double "A fake 404 response",
-                                              code: 404,
-                                              body: "404 error response"}
-
-      it "returns Response" do
-
-        expect(TInternet)
-          .to receive(:try_execute)
-          .and_return(response_with_error_status)
+          .and_return(response_with_non_200_status)
 
         expect { client.get "/xxx" }.to raise_error do |error|
           expect(error).to be_a(Error)
