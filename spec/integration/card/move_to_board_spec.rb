@@ -11,7 +11,7 @@ RSpec.describe 'Trello::Card#move_to_board' do
       card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')
       response = card.move_to_board(board)
 
-      expect(response.code).to eq(200)
+      expect(response.status).to eq(200)
       body = JSON.parse(response.body)
       expect(body['id']).to eq('5e95d1b4f43f9a06497f17f7')
       expect(body['idBoard']).to eq('5e94ee7357ac8a3edc2b2145')
@@ -26,7 +26,7 @@ RSpec.describe 'Trello::Card#move_to_board' do
       card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')
       response = card.move_to_board(board, list)
 
-      expect(response.code).to eq(200)
+      expect(response.status).to eq(200)
       body = JSON.parse(response.body)
       expect(body['id']).to eq('5e95d1b4f43f9a06497f17f7')
       expect(body['idBoard']).to eq('5e94f5ded016b22c2437c13c')

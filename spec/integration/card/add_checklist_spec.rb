@@ -11,7 +11,7 @@ RSpec.describe 'Trell::Card#add_checklist' do
       card = Trello::Card.find('5e93ba665c58c44a46cb2ef9')
       response = card.add_checklist(checklist, name: 'ToDo2', position: 'top')
 
-      expect(response.code).to eq(200)
+      expect(response.status).to eq(200)
       body = JSON.parse(response.body)
       expect(body['name']).to eq('ToDo2')
     end
@@ -23,7 +23,7 @@ RSpec.describe 'Trell::Card#add_checklist' do
       card = Trello::Card.find('5e93ba665c58c44a46cb2ef9')
       response = card.add_checklist(checklist)
 
-      expect(response.code).to eq(200)
+      expect(response.status).to eq(200)
       body = JSON.parse(response.body)
       expect(body['idCard']).to eq(card.id)
       expect(body['name']).to eq(checklist.name)

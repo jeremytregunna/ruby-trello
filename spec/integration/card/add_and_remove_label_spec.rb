@@ -13,7 +13,7 @@ RSpec.describe 'Trell::Card add and remove label' do
         label.name = 'label name' # For past name valiation
 
         response = card.add_label(label)
-        expect(response.code).to eq(200)
+        expect(response.status).to eq(200)
         body = JSON.parse(response.body)
         expect(body.first).to eq('5e94f5de7669b2254978bd14')
       end
@@ -28,7 +28,7 @@ RSpec.describe 'Trell::Card add and remove label' do
         label.name = 'label name' # For past name valiation
 
         response = card.remove_label(label)
-        expect(response.code).to eq(200)
+        expect(response.status).to eq(200)
       end
     end
   end

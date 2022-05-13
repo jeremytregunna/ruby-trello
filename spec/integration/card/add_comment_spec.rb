@@ -10,7 +10,7 @@ RSpec.describe 'Trell::Card#add_comment' do
       card = Trello::Card.find('5e93ba665c58c44a46cb2ef9')
       response = card.add_comment('Hello, world!')
 
-      expect(response.code).to eq(200)
+      expect(response.status).to eq(200)
       body = JSON.parse(response.body)
       expect(body['type']).to eq('commentCard')
       expect(body['data']['text']).to eq('Hello, world!')

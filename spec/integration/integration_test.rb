@@ -25,16 +25,16 @@ module IntegrationTest
         @welcome_board        = ENV["WELCOME_BOARD"]
         @access_token_key     = ENV["ACCESS_TOKEN_KEY"]
         @access_token_secret  = ENV["ACCESS_TOKEN_SECRET"]
-        
+
         WebMock.disable!
-      end    
+      end
     end
   end
 
   protected
 
   def get(uri)
-    require "rest_client"
-    RestClient.get uri.to_s
+    require "faraday"
+    Faraday.new(url: uri.to_s).get
   end
 end
