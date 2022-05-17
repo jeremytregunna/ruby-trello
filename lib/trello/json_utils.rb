@@ -32,8 +32,8 @@ module Trello
       #   thing.a == 42
       #   thing.b == "foo"
       #
-      def from_response(data, encoding = 'UTF-8')
-        from_json(parse_json(data, encoding))
+      def from_response(response, encoding = 'UTF-8')
+        from_json(parse_json(response, encoding))
       end
 
       def from_json(json)
@@ -48,7 +48,13 @@ module Trello
       end
 
       def parse_json(data, encoding = 'UTF-8')
-        Trello.http_client.parse_json(data, encoding)
+        # Trello.http_client.parse_json(data, encoding)
+        case data
+        when Trello::Response
+          JSON.parse(data.body.force_encoding(encoding))
+        else
+          JSON.parse(data.force_encoding(encoding))
+        end
       rescue JSON::ParserError => json_error
         if json_error.message =~ /model not found/
           Trello.logger.error "Could not find that record."

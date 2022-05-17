@@ -9,7 +9,7 @@ RSpec.describe 'Trello::Card#delete' do
     VCR.use_cassette('can_success_delete_card') do
       card = Trello::Card.find('5e95b664ace3621af695aeb0')
       response = card.delete
-      expect(response.status).to eq(200)
+      expect(response.code).to eq(200)
     end
   end
 

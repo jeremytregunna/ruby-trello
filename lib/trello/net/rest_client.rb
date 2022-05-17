@@ -11,17 +11,13 @@ module Trello
           try_execute request
         end
 
-        def parse_json(data, encoding)
-          JSON.parse(data.force_encoding(encoding))
-        end
-
         private
 
         def try_execute(request)
           begin
             if request
               result = execute_core request
-              Response.new(200, {}, result)
+              Response.new(200, {}, result.body)
             end
           rescue RestClient::Exception => e
             raise if !e.respond_to?(:http_code) || e.http_code.nil?

@@ -11,7 +11,7 @@ RSpec.describe 'Trello::Board#add_member' do
       card = Trello::Board.find('5e93ba98614ac22d22f085c4')
       response = card.add_member(member)
 
-      expect(response.status).to eq(200)
+      expect(response.code).to eq(200)
       body = JSON.parse(response.body)
       expect(body['id']).to eq('5e93ba98614ac22d22f085c4')
       expect(body['members'][0]['username']).to eq('wokenqingtian')

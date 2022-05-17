@@ -99,7 +99,7 @@ module Trello
         raise Error.new(response.body, response.code)
       end
 
-      response.body
+      response
     end
 
     def auth_policy_class

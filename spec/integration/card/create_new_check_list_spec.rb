@@ -10,7 +10,7 @@ RSpec.describe 'Trell::Card#create_new_checklist' do
       card = Trello::Card.find('5e93ba665c58c44a46cb2ef9')
       response = card.create_new_checklist('ToDo')
 
-      expect(response.status).to eq(200)
+      expect(response.code).to eq(200)
       body = JSON.parse(response.body)
       expect(body['name']).to eq('ToDo')
       expect(body['idCard']).to eq(card.id)

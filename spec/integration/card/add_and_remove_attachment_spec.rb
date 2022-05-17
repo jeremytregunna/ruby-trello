@@ -12,7 +12,7 @@ RSpec.describe 'Trell::Card add and remove attachment' do
         file = File.new('spec/integration/card/add_and_remove_attachment_spec.rb', 'r')
 
         response = card.add_attachment(file)
-        expect(response.status).to eq(200)
+        expect(response.code).to eq(200)
         body = JSON.parse(response.body)
         expect(body['name']).to eq('add_and_remove_attachment_spec.rb')
       end
@@ -24,7 +24,7 @@ RSpec.describe 'Trell::Card add and remove attachment' do
         file_url = 'https://upload.wikimedia.org/wikipedia/en/6/6b/Hello_Web_Series_%28Wordmark%29_Logo.png'
 
         response = card.add_attachment(file_url, 'hello.png')
-        expect(response.status).to eq(200)
+        expect(response.code).to eq(200)
         body = JSON.parse(response.body)
         expect(body['name']).to eq('hello.png')
       end
@@ -38,7 +38,7 @@ RSpec.describe 'Trell::Card add and remove attachment' do
         attachments = card.attachments
 
         response = card.remove_attachment(attachments.last)
-        expect(response.status).to eq(200)
+        expect(response.code).to eq(200)
       end
     end
   end

@@ -11,7 +11,7 @@ RSpec.describe 'Trello::Card#remove_member' do
       card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')
       response = card.remove_member(member)
 
-      expect(response.status).to eq(200)
+      expect(response.code).to eq(200)
       body = JSON.parse(response.body)
       expect(body).to be_a(Array)
     end
