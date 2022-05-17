@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'json', '>= 2.3.0'
   s.add_dependency 'oauth',       '>= 0.4.5'
 
-  s.add_development_dependency 'rest-client', '>= 2.0.0'
-  s.add_development_dependency 'faraday', '>= 1.8.0'
+  s.add_development_dependency 'rest-client', '>= 1.8.0'
+  s.add_development_dependency 'faraday', '>= 2.0.0'
 end
