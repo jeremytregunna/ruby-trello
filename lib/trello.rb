@@ -127,6 +127,8 @@ module Trello
 
   def self.http_client
     @http_client ||= begin
+      # No client has been set explicitly. Try to load each supported client.
+      # The first one that loads successfully will be used.
       client = HTTP_CLIENTS.each do |key, client|
         begin
           require key
@@ -144,7 +146,12 @@ module Trello
 
   def self.http_client=(http_client)
     if HTTP_CLIENTS.include?(http_client)
-      @http_client = HTTP_CLIENTS[http_client]
+      begin
+        require http_client
+        @http_client = HTTP_CLIENTS[http_client]
+      rescue LoadError
+        raise ConfigurationError, "Trello tried to use #{http_client}, but that gem is not installed"
+      end
     else
       raise ArgumentError, "Unsupported HTTP client: #{http_client}"
     end
