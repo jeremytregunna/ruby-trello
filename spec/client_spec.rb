@@ -22,7 +22,7 @@ describe Client do
       let(:faraday_error_without_http_code) { Faraday::Error.new }
 
       before do
-        allow(TInternet)
+        allow(Trello::TFaraday::TInternet)
           .to receive(:execute_core)
           .and_raise(faraday_error_without_http_code)
       end
@@ -46,7 +46,7 @@ describe Client do
 
       it "raises Error" do
 
-        expect(TInternet)
+        expect(Trello::TFaraday::TInternet)
           .to receive(:try_execute)
           .and_return(response_with_non_200_status)
 

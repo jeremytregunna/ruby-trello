@@ -11,6 +11,10 @@ module Trello
           try_execute request
         end
 
+        def parse_json(data, encoding)
+          JSON.parse(data.force_encoding(encoding))
+        end
+
         private
 
         def try_execute(request)

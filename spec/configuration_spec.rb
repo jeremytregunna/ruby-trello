@@ -23,10 +23,10 @@ describe Trello::Configuration do
     expect(configuration.http_client).to eq 'faraday'
   end
 
-  it "only allows http_client to be set to one of SUPPORTED_HTTP_CLIENTS" do
-    Trello::Configuration::SUPPORTED_HTTP_CLIENTS.each do |http_client|
-      configuration.http_client = http_client
-      expect(configuration.http_client).to eq http_client
+  it "only allows http_client to be set to one of Trello::HTTP_CLIENTS" do
+    Trello::HTTP_CLIENTS.each do |key, _client|
+      configuration.http_client = key
+      expect(configuration.http_client).to eq key
     end
   end
 

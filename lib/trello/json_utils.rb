@@ -16,7 +16,6 @@ module Trello
     end
 
     module ClassMethods
-      require "faraday"
       # Public - Decodes some JSON text in the receiver, and marshals it into a class specified
       # in _obj_.
       #
@@ -49,12 +48,7 @@ module Trello
       end
 
       def parse_json(data, encoding = 'UTF-8')
-        case data
-        when Faraday::Response
-          JSON.parse(data.body.force_encoding(encoding))
-        else
-          JSON.parse(data.force_encoding(encoding))
-        end
+        Trello.http_client.parse_json(data, encoding)
       rescue JSON::ParserError => json_error
         if json_error.message =~ /model not found/
           Trello.logger.error "Could not find that record."
