@@ -8,13 +8,7 @@ module Trello
       :oauth_token,
       :oauth_token_secret,
       :callback,
-      :return_url,
-      :http_client
-    ]
-
-    SUPPORTED_HTTP_CLIENTS = [
-      'faraday',
-      'rest-client'
+      :return_url
     ]
 
     attr_accessor *CONFIGURABLE_ATTRIBUTES
@@ -55,7 +49,7 @@ module Trello
     end
 
     def http_client
-      Trello.http_client
+      Trello::HTTP_CLIENTS.find { |k, v| v == Trello.http_client }[0]
     end
 
     private

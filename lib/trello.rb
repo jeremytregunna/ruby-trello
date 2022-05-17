@@ -79,6 +79,14 @@ module Trello
   autoload :AssociationInferTool, 'trello/association_infer_tool'
   autoload :Schema,               'trello/schema'
 
+  module TFaraday
+    autoload :TInternet,          'trello/net/faraday'
+  end
+
+  module TRestClient
+    autoload :TInternet,          'trello/net/rest_client'
+  end
+
   module Authorization
     autoload :AuthPolicy,         'trello/authorization'
     autoload :BasicAuthPolicy,    'trello/authorization'
@@ -112,21 +120,26 @@ module Trello
     @logger = logger
   end
 
+  HTTP_CLIENTS = {
+    'faraday' => Trello::TFaraday::TInternet,
+    'rest-client' => Trello::TRestClient::TInternet
+  }
+
   def self.http_client
     @http_client ||= begin
       require 'faraday'
-      'faraday'
+      HTTP_CLIENTS['faraday']
     rescue LoadError
       require 'rest-client'
-      'rest-client'
+      HTTP_CLIENTS['rest-client']
     rescue LoadError
       raise ConfigurationError, 'Trello requires either faraday or rest-client installed'
     end
   end
 
   def self.http_client=(http_client)
-    if Trello::Configuration::SUPPORTED_HTTP_CLIENTS.include?(http_client)
-      @http_client = http_client
+    if HTTP_CLIENTS.include?(http_client)
+      @http_client = HTTP_CLIENTS[http_client]
     else
       raise ArgumentError, "Unsupported HTTP client: #{http_client}"
     end
@@ -143,6 +156,7 @@ module Trello
 
   def self.reset!
     @client = nil
+    @http_client = nil
   end
 
   def self.auth_policy; client.auth_policy; end
