@@ -112,6 +112,26 @@ module Trello
     @logger = logger
   end
 
+  def self.http_client
+    @http_client ||= begin
+      require 'faraday'
+      'faraday'
+    rescue LoadError
+      require 'rest-client'
+      'rest-client'
+    rescue LoadError
+      raise ConfigurationError, 'Trello requires either faraday or rest-client installed'
+    end
+  end
+
+  def self.http_client=(http_client)
+    if Trello::Configuration::SUPPORTED_HTTP_CLIENTS.include?(http_client)
+      @http_client = http_client
+    else
+      raise ArgumentError, "Unsupported HTTP client: #{http_client}"
+    end
+  end
+
   def self.client
     @client ||= Client.new
   end

@@ -19,6 +19,23 @@ describe Trello::Configuration do
     end
   end
 
+  it "has a default http_client of faraday" do
+    expect(configuration.http_client).to eq 'faraday'
+  end
+
+  it "only allows http_client to be set to one of SUPPORTED_HTTP_CLIENTS" do
+    Trello::Configuration::SUPPORTED_HTTP_CLIENTS.each do |http_client|
+      configuration.http_client = http_client
+      expect(configuration.http_client).to eq http_client
+    end
+  end
+
+  it "raises an error if an invalid http_client is set" do
+    expect {
+      configuration.http_client = :invalid_http_client
+    }.to raise_error(ArgumentError)
+  end
+
   it 'has a callback (for oauth)' do
     callback = -> { 'foobar' }
     configuration.callback = callback

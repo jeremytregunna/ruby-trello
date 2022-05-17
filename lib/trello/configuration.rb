@@ -8,7 +8,13 @@ module Trello
       :oauth_token,
       :oauth_token_secret,
       :callback,
-      :return_url
+      :return_url,
+      :http_client
+    ]
+
+    SUPPORTED_HTTP_CLIENTS = [
+      'faraday',
+      'rest-client'
     ]
 
     attr_accessor *CONFIGURABLE_ATTRIBUTES
@@ -42,6 +48,14 @@ module Trello
 
     def basic?
       developer_public_key && member_token
+    end
+
+    def http_client=(http_client)
+      Trello.http_client = http_client.to_s
+    end
+
+    def http_client
+      Trello.http_client
     end
 
     private
