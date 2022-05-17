@@ -127,13 +127,18 @@ module Trello
 
   def self.http_client
     @http_client ||= begin
-      require 'faraday'
-      HTTP_CLIENTS['faraday']
-    rescue LoadError
-      require 'rest-client'
-      HTTP_CLIENTS['rest-client']
-    rescue LoadError
-      raise ConfigurationError, 'Trello requires either faraday or rest-client installed'
+      client = HTTP_CLIENTS.each do |key, client|
+        begin
+          require key
+          break client
+        rescue LoadError
+          next
+        end
+      end
+
+      raise ConfigurationError, 'Trello requires either faraday or rest-client installed' unless client
+
+      client
     end
   end
 
