@@ -1,4 +1,6 @@
 require "spec_helper"
+require "rest-client"
+require "faraday"
 
 include Trello
 include Trello::Authorization
@@ -15,6 +17,53 @@ describe Client do
 
     allow(auth_policy)
       .to receive(:authorize) { |request| request }
+  end
+
+  describe "and how it handles RestClient exceptions" do
+
+    before do
+      Trello.http_client = 'rest-client'
+    end
+
+    context "with RestClient::Exception sans HTTP code" do
+      let(:rc_exception_without_http_code) { RestClient::Exception.new }
+
+      before do
+        allow(Trello::TRestClient::TInternet)
+          .to receive(:execute_core)
+          .and_raise(rc_exception_without_http_code)
+      end
+
+      it "bubbles up RestClient::Exception errors that don't contain an HTTP code" do
+        expect { client.get "/xxx" }.to raise_error rc_exception_without_http_code
+      end
+    end
+
+    context "with RestClient::Exception that contains HTTP code" do
+      let(:response_with_non_200_status) { double "A fake 404 response",
+                                              code: 404,
+                                              body: "404 error response"}
+      let(:rc_exception_with_http_code) { RestClient::Exception.new(double("404 error response", {:code => 404, :body => "404 error response"}))}
+
+      before do
+        allow(Trello::TRestClient::TInternet)
+          .to receive(:execute_core)
+          .and_raise(rc_exception_with_http_code)
+      end
+
+      it "raises Error" do
+
+        expect(Trello::TRestClient::TInternet)
+          .to receive(:try_execute)
+          .and_return(response_with_non_200_status)
+
+        expect { client.get "/xxx" }.to raise_error do |error|
+          expect(error).to be_a(Error)
+          expect(error.message).to eq("404 error response")
+          expect(error.status_code).to eq(404)
+        end
+      end
+    end
   end
 
   describe "and how it handles Faraday errors" do
@@ -39,7 +88,7 @@ describe Client do
       let(:faraday_error_with_http_code) { Faraday::Error.new(double("404 error response", {:code => 404, :body => "404 error response"}))}
 
       before do
-        allow(TInternet)
+        allow(Trello::TFaraday::TInternet)
           .to receive(:execute_core)
           .and_raise(faraday_error_with_http_code)
       end
