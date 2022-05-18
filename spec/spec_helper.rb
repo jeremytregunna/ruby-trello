@@ -59,6 +59,14 @@ RSpec.configure do |rspec|
   rspec.color = true
 end
 
+Trello::HTTP_CLIENTS.each do |key, _client|
+  RSpec.shared_context "using #{key}" do
+    before do
+      Trello.http_client = key
+    end
+  end
+end
+
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 module IntegrationHelpers
