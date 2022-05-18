@@ -19,10 +19,6 @@ describe Trello::Configuration do
     end
   end
 
-  it "has a default http_client of faraday" do
-    expect(configuration.http_client).to eq 'faraday'
-  end
-
   it "only allows http_client to be set to one of Trello::HTTP_CLIENTS" do
     Trello::HTTP_CLIENTS.each do |key, _client|
       configuration.http_client = key

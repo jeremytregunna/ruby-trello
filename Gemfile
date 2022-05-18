@@ -15,6 +15,9 @@ group :development, :spec do
   gem 'vcr'
   gem 'dotenv'
 
+  gem 'faraday', '~> 2.0'
+  gem 'rest-client', '>= 1.8.0'
+
   if RUBY_ENGINE == 'jruby'
     gem 'jruby-openssl', platforms: :jruby
     gem 'pry-nav', platforms: :jruby
