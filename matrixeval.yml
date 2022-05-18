@@ -57,6 +57,7 @@ matrix:
       - key: faraday
         env:
           HTTP_CLIENT_GEM: "faraday"
+        default: true
       - key: rest-client
         env:
           HTTP_CLIENT_GEM: "rest-client"
