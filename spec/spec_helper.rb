@@ -74,7 +74,7 @@ module IntegrationHelpers
     Trello.configure do |config|
       config.developer_public_key = ENV['TRELLO_DEVELOPER_PUBLIC_KEY'] || 'developerpublickey'
       config.member_token = ENV['TRELLO_MEMBER_TOKEN'] || 'membertoken'
-      config.http_client = ENV['HTTP_CLIENT_GEM'] || 'faraday'
+      config.http_client = ENV['HTTP_CLIENT_GEM'] || 'rest-client'
     end
   end
 end

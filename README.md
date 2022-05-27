@@ -87,7 +87,19 @@ end
 
 All the calls this library makes to Trello require authentication using these keys. Be sure to protect them.
 
-#### Usage
+#### HTTP Client
+
+By default, ruby-trello uses [rest-client](https://rubygems.org/gems/rest-client) for network calls. You can configure ruby-trello to use either rest-client or [faraday](https://rubygems.org/gems/faraday), depending on your project's needs. In the next major version, ruby-trello will not require either gem in the gemspec and will default to faraday if both are present.
+
+```ruby
+Trello.configure do |config|
+  config.http_client = 'rest-client'
+  # OR
+  config.http_client = 'faraday'
+end
+```
+
+## Usage
 
 So let's say you want to get information about the user *bobtester*. We can do something like this:
 
@@ -103,7 +115,7 @@ puts bob.bio # A wonderfully delightful test user
 # How about a list of his boards?
 bob.boards
 
-# And then to read the lists of the first board do : 
+# And then to read the lists of the first board do :
 bob.boards.first.lists
 ```
 
@@ -130,10 +142,10 @@ pp Trello::Card.find( card_id ).checklists
 
 ##### Changing a checkbox state
 ```ruby
-# First get your checklist id 
+# First get your checklist id
 checklist = Trello::Checklist.find( checklist_id )
 
-# At this point, there is no more ids. To get your checklist item, 
+# At this point, there is no more ids. To get your checklist item,
 # you have to know it's position (same as in the trello interface).
 # Let's take the first
 checklist_item = checklist.items.first

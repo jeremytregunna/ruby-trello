@@ -121,6 +121,8 @@ module Trello
     @logger = logger
   end
 
+  # The order in which we will try the http clients
+  HTTP_CLIENT_PRIORITY = %w(rest-client faraday)
   HTTP_CLIENTS = {
     'faraday' => Trello::TFaraday::TInternet,
     'rest-client' => Trello::TRestClient::TInternet
@@ -130,16 +132,16 @@ module Trello
     @http_client ||= begin
       # No client has been set explicitly. Try to load each supported client.
       # The first one that loads successfully will be used.
-      client = HTTP_CLIENTS.each do |key, client|
+      client = HTTP_CLIENT_PRIORITY.each do |key|
         begin
           require key
-          break client
+          break HTTP_CLIENTS[key]
         rescue LoadError
           next
         end
       end
 
-      raise ConfigurationError, 'Trello requires either faraday or rest-client installed' unless client
+      raise ConfigurationError, 'Trello requires either rest-client or faraday installed' unless client
 
       client
     end

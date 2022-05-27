@@ -67,8 +67,13 @@ describe Client do
   end
 
   describe "and how it handles Faraday errors" do
+
+    before do
+      Trello.http_client = 'faraday'
+    end
+
     context "with Faraday::Error sans HTTP code" do
-      let(:faraday_error_without_http_code) { Faraday::Error.new }
+      let(:faraday_error_without_http_code) { Faraday::Error.new("Test error") }
 
       before do
         allow(Trello::TFaraday::TInternet)

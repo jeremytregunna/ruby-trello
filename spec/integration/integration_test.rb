@@ -34,7 +34,7 @@ module IntegrationTest
   protected
 
   def get(uri)
-    require "faraday"
-    Faraday.new(url: uri.to_s).get
+    require "rest-client"
+    RestClient.get uri.to_s
   end
 end
