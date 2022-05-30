@@ -19,6 +19,19 @@ describe Trello::Configuration do
     end
   end
 
+  it "only allows http_client to be set to one of Trello::HTTP_CLIENTS" do
+    Trello::HTTP_CLIENTS.each do |key, _client|
+      configuration.http_client = key
+      expect(configuration.http_client).to eq key
+    end
+  end
+
+  it "raises an error if an invalid http_client is set" do
+    expect {
+      configuration.http_client = :invalid_http_client
+    }.to raise_error(ArgumentError)
+  end
+
   it 'has a callback (for oauth)' do
     callback = -> { 'foobar' }
     configuration.callback = callback

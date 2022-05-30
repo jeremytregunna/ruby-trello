@@ -72,12 +72,21 @@ module Trello
   autoload :Organization,         'trello/organization'
   autoload :PluginDatum,          'trello/plugin_datum'
   autoload :Request,              'trello/net'
+  autoload :Response,             'trello/net'
   autoload :TInternet,            'trello/net'
   autoload :Token,                'trello/token'
   autoload :Webhook,              'trello/webhook'
   autoload :JsonUtils,            'trello/json_utils'
   autoload :AssociationInferTool, 'trello/association_infer_tool'
   autoload :Schema,               'trello/schema'
+
+  module TFaraday
+    autoload :TInternet,          'trello/net/faraday'
+  end
+
+  module TRestClient
+    autoload :TInternet,          'trello/net/rest_client'
+  end
 
   module Authorization
     autoload :AuthPolicy,         'trello/authorization'
@@ -112,6 +121,45 @@ module Trello
     @logger = logger
   end
 
+  # The order in which we will try the http clients
+  HTTP_CLIENT_PRIORITY = %w(rest-client faraday)
+  HTTP_CLIENTS = {
+    'faraday' => Trello::TFaraday::TInternet,
+    'rest-client' => Trello::TRestClient::TInternet
+  }
+
+  def self.http_client
+    @http_client ||= begin
+      # No client has been set explicitly. Try to load each supported client.
+      # The first one that loads successfully will be used.
+      client = HTTP_CLIENT_PRIORITY.each do |key|
+        begin
+          require key
+          break HTTP_CLIENTS[key]
+        rescue LoadError
+          next
+        end
+      end
+
+      raise ConfigurationError, 'Trello requires either rest-client or faraday installed' unless client
+
+      client
+    end
+  end
+
+  def self.http_client=(http_client)
+    if HTTP_CLIENTS.include?(http_client)
+      begin
+        require http_client
+        @http_client = HTTP_CLIENTS[http_client]
+      rescue LoadError
+        raise ConfigurationError, "Trello tried to use #{http_client}, but that gem is not installed"
+      end
+    else
+      raise ArgumentError, "Unsupported HTTP client: #{http_client}"
+    end
+  end
+
   def self.client
     @client ||= Client.new
   end
@@ -123,6 +171,7 @@ module Trello
 
   def self.reset!
     @client = nil
+    @http_client = nil
   end
 
   def self.auth_policy; client.auth_policy; end

@@ -59,6 +59,14 @@ RSpec.configure do |rspec|
   rspec.color = true
 end
 
+Trello::HTTP_CLIENTS.each do |key, _client|
+  RSpec.shared_context "using #{key}" do
+    before do
+      Trello.http_client = key
+    end
+  end
+end
+
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 module IntegrationHelpers
@@ -66,6 +74,7 @@ module IntegrationHelpers
     Trello.configure do |config|
       config.developer_public_key = ENV['TRELLO_DEVELOPER_PUBLIC_KEY'] || 'developerpublickey'
       config.member_token = ENV['TRELLO_MEMBER_TOKEN'] || 'membertoken'
+      config.http_client = ENV['HTTP_CLIENT_GEM'] || 'rest-client'
     end
   end
 end

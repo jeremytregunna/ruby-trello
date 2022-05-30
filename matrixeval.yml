@@ -37,21 +37,30 @@ matrix:
   active_model:
     variants:
       - key: 4.2
-        env: 
+        env:
           ACTIVE_MODEL_VERSION: "~> 4.2.0"
       - key: 5.2
-        env: 
+        env:
           ACTIVE_MODEL_VERSION: "~> 5.2.0"
       - key: 6.0
-        env: 
+        env:
           ACTIVE_MODEL_VERSION: "~> 6.0.0"
       - key: 6.1
-        env: 
+        env:
           ACTIVE_MODEL_VERSION: "~> 6.1.0"
         default: true
       - key: 7.0
-        env: 
+        env:
           ACTIVE_MODEL_VERSION: "~> 7.0.0"
+  http_client_gem:
+    variants:
+      - key: faraday
+        env:
+          HTTP_CLIENT_GEM: "faraday"
+        default: true
+      - key: rest-client
+        env:
+          HTTP_CLIENT_GEM: "rest-client"
 exclude:
   - ruby: 2.5
     active_model: 7.0

@@ -44,6 +44,14 @@ module Trello
       developer_public_key && member_token
     end
 
+    def http_client=(http_client)
+      Trello.http_client = http_client.to_s
+    end
+
+    def http_client
+      Trello::HTTP_CLIENTS.find { |k, v| v == Trello.http_client }[0]
+    end
+
     private
 
     def oauth_credentials

@@ -28,6 +28,9 @@ jobs:
           - '6.0'
           - '6.1'
           - '7.0'
+        http_client_gem:
+          - 'rest-client'
+          - 'faraday'
         exclude:
           - ruby: '2.5'
             active_model: '7.0'
@@ -48,6 +51,7 @@ jobs:
 
     env:
       ACTIVE_MODEL_VERSION: "~> ${{ matrix.active_model }}.0"
+      HTTP_CLIENT_GEM: "${{ matrix.http_client_gem }}"
 
     steps:
       - uses: actions/checkout@v2
