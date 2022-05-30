@@ -1,5 +1,9 @@
 # Changelog
 
+## v3.2.0
+
+- [Allow use of either rest-client of faraday](https://github.com/jeremytregunna/ruby-trello/pull/307)
+
 ## v3.1.0
 
 - [Test against Ruby 3.1 and Rails 7](https://github.com/jeremytregunna/ruby-trello/pull/304)
