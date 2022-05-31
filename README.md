@@ -89,13 +89,13 @@ All the calls this library makes to Trello require authentication using these ke
 
 #### HTTP Client
 
-By default, ruby-trello uses [rest-client](https://rubygems.org/gems/rest-client) for network calls. You can configure ruby-trello to use either rest-client or [faraday](https://rubygems.org/gems/faraday), depending on your project's needs. In the next major version, ruby-trello will not require either gem in the gemspec and will default to faraday if both are present.
+ruby-trello requires either [rest-client](https://rubygems.org/gems/rest-client) or [faraday](https://rubygems.org/gems/faraday) to be present for network calls. You can configure ruby-trello to use either one, depending on your project's needs. If both are present, ruby-trello defaults to using faraday.
 
 ```ruby
 Trello.configure do |config|
-  config.http_client = 'rest-client'
-  # OR
   config.http_client = 'faraday'
+  # OR
+  config.http_client = 'rest-client'
 end
 ```
 
