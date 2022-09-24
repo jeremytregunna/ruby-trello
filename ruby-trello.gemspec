@@ -18,10 +18,11 @@ Gem::Specification.new do |s|
   s.test_files        = Dir.glob("spec/**/*")
   s.metadata['changelog_uri'] = 'https://github.com/jeremytregunna/ruby-trello/blob/master/CHANGELOG.md'
 
-  s.required_ruby_version = '>= 2.1.0'
+  s.required_ruby_version = '>= 2.7.0'
 
-  s.add_dependency 'activemodel', '>= 3.2.0'
+  s.add_dependency 'activemodel', '>= 6.0.0'
   s.add_dependency 'addressable', '~> 2.3'
   s.add_dependency 'json', '>= 2.3.0'
-  s.add_dependency 'oauth',       '>= 0.4.5'
+  s.add_dependency 'oauth', '>= 0.4.5'
+  s.add_dependency 'faraday', '~> 2.0'
 end
