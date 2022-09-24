@@ -21,6 +21,8 @@ group :development, :spec do
     gem 'faraday', '~> 2.0'
   end
 
+  gem 'rest-client', '>= 1.8.0'
+
   if RUBY_ENGINE == 'jruby'
     gem 'jruby-openssl', platforms: :jruby
     gem 'pry-nav', platforms: :jruby

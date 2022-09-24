@@ -122,7 +122,7 @@ module Trello
   end
 
   # The order in which we will try the http clients
-  HTTP_CLIENT_PRIORITY = %w(rest-client faraday)
+  HTTP_CLIENT_PRIORITY = %w(faraday rest-client)
   HTTP_CLIENTS = {
     'faraday' => Trello::TFaraday::TInternet,
     'rest-client' => Trello::TRestClient::TInternet
@@ -141,7 +141,7 @@ module Trello
         end
       end
 
-      raise ConfigurationError, 'Trello requires either rest-client or faraday installed' unless client
+      raise ConfigurationError, 'Trello requires either faraday or rest-client installed' unless client
 
       client
     end
