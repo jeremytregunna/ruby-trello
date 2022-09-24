@@ -1,6 +1,6 @@
 # Changelog
 
-## Next release
+## v4.0.0 - 2022-09-24
 
 - [Remove rest-client dependency in the gemspec and default to faraday](https://github.com/jeremytregunna/ruby-trello/pull/308)
 - [Drop support for Ruby < 2.7 and Rails < 6](https://github.com/jeremytregunna/ruby-trello/pull/310)
