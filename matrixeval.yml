@@ -11,12 +11,6 @@ parallel_workers: number_of_processors
 matrix:
   ruby:
     variants:
-      - key: 2.5
-        container:
-          image: ruby:2.5.9
-      - key: 2.6
-        container:
-          image: ruby:2.6.9
       - key: 2.7
         container:
           image: ruby:2.7.5
@@ -27,21 +21,13 @@ matrix:
       - key: 3.1
         container:
           image: ruby:3.1.0
-          env:
-            PATH: "/opt/jruby/bin:/app/bin:/bundle/bin:$PATH"
-      - key: jruby-9.3
-        container:
-          image: jruby:9.3
-          env:
-            PATH: "/opt/jruby/bin:/app/bin:/bundle/bin:$PATH"
+      # - key: jruby-9.3
+      #   container:
+      #     image: jruby:9.3
+      #     env:
+      #       PATH: "/opt/jruby/bin:/app/bin:/bundle/bin:$PATH"
   active_model:
     variants:
-      - key: 4.2
-        env:
-          ACTIVE_MODEL_VERSION: "~> 4.2.0"
-      - key: 5.2
-        env:
-          ACTIVE_MODEL_VERSION: "~> 5.2.0"
       - key: 6.0
         env:
           ACTIVE_MODEL_VERSION: "~> 6.0.0"
@@ -62,19 +48,5 @@ matrix:
         env:
           HTTP_CLIENT_GEM: "rest-client"
 exclude:
-  - ruby: 2.5
-    active_model: 7.0
-  - ruby: 2.6
-    active_model: 7.0
-  - ruby: 2.7
-    active_model: 4.2
-  - ruby: 3.0
-    active_model: 4.2
-  - ruby: 3.0
-    active_model: 5.2
-  - ruby: 3.1
-    active_model: 4.2
-  - ruby: 3.1
-    active_model: 5.2
-  - ruby: jruby-9.3
-    active_model: 7.0
+  # - ruby: jruby-9.3
+  #   active_model: 7.0

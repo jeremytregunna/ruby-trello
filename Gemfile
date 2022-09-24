@@ -15,19 +15,8 @@ group :development, :spec do
   gem 'vcr'
   gem 'dotenv'
 
-  if RUBY_VERSION  < '2.6.0'
-    gem 'faraday', '~> 1.0'
-  else
-    gem 'faraday', '~> 2.0'
-  end
-
   gem 'rest-client', '>= 1.8.0'
 
-  if RUBY_ENGINE == 'jruby'
-    gem 'jruby-openssl', platforms: :jruby
-    gem 'pry-nav', platforms: :jruby
-  else
-    gem 'pry-byebug', '~> 3.9.0', :platforms => [:mri]
-  end
-  gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :jruby, :mingw]
+  gem 'pry-byebug', '~> 3.9.0', :platforms => [:mri]
+  gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :mingw]
 end

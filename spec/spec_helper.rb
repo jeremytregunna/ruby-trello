@@ -4,8 +4,7 @@ require 'trello'
 require 'webmock/rspec'
 require 'stringio'
 require 'vcr'
-
-require 'pry-byebug' if RUBY_ENGINE != 'jruby'
+require 'pry-byebug'
 
 VCR.configure do |config|
   config.default_cassette_options = { match_requests_on: %i[uri method body] }
