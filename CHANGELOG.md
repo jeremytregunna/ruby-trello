@@ -1,5 +1,9 @@
 # Changelog
 
+## Next release
+
+- [Remove rest-client dependency in the gemspec and default to faraday](https://github.com/jeremytregunna/ruby-trello/pull/308)
+
 ## v3.2.0
 
 - [Allow use of either rest-client of faraday](https://github.com/jeremytregunna/ruby-trello/pull/307)
