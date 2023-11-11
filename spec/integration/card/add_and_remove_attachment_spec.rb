@@ -7,7 +7,8 @@ RSpec.describe 'Trell::Card add and remove attachment' do
 
   describe '#add_attachment' do
     it 'can success add an attachment(file) on a card' do
-      VCR.use_cassette('can_add_a_file_on_a_card') do
+      cassette_name = Trello.http_client == "rest-client" ? "can_add_a_file_on_a_card" : "can_add_a_file_on_a_card_with_farady"
+      VCR.use_cassette(cassette_name) do
         card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')
         file = File.new('spec/integration/card/add_and_remove_attachment_spec.rb', 'r')
 

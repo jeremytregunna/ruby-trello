@@ -734,7 +734,7 @@ module Trello
 
         allow(client)
           .to receive(:post)
-          .with("/cards/abcdef123456789123456789/attachments", { file: f, name: ''  })
+          .with("/cards/abcdef123456789123456789/attachments", { file: instance_of(Multipart::Post::UploadIO), name: ''  })
           .and_return "not important"
 
         card.add_attachment(f)

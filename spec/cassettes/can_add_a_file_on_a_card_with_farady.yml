@@ -1,0 +1,244 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.trello.com/1/cards/5e95d1b4f43f9a06497f17f7?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 11 Nov 2023 18:18:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '1053'
+      X-Dns-Prefetch-Control:
+      - 'off'
+      Expect-Ct:
+      - max-age=0
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      X-Trello-Version:
+      - 1.242759.0
+      X-Trello-Environment:
+      - Production
+      Set-Cookie:
+      - dsc=set_cookie_dsc; Path=/; Expires=Sat, 25 Nov 2023 18:18:11 GMT; Secure;
+        SameSite=None
+      - preAuthProps=s%3A5e679b808e6e8828784b30e1%3AisEnterpriseAdmin%3Dfalse.Pfv1AFghhSOM0MLjFpWB8CaOPcNRIjt%2FmCZysEK4KNY;
+        Path=/; HttpOnly
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '99'
+      X-Rate-Limit-Db-Query-Time-Interval-Ms:
+      - '600000'
+      X-Rate-Limit-Db-Query-Time-Max:
+      - '7200000'
+      X-Rate-Limit-Db-Query-Time-Remaining:
+      - '7199990'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '299'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '375'
+      X-Rate-Limit-Member-Remaining:
+      - '374'
+      X-Server-Time:
+      - '1699726691750'
+      Server:
+      - AtlassianEdge
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Atl-Traceid:
+      - 5442e51c04ce42f5aa01bfb53445cc31
+      Report-To:
+      - '{"endpoints": [{"url": "https://dz8aopenkvv6s.cloudfront.net"}], "group":
+        "endpoint-1", "include_subdomains": true, "max_age": 600}'
+      Nel:
+      - '{"failure_fraction": 0.001, "include_subdomains": true, "max_age": 600, "report_to":
+        "endpoint-1"}'
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+    body:
+      encoding: UTF-8
+      string: '{"id":"5e95d1b4f43f9a06497f17f7","badges":{"attachmentsByType":{"trello":{"board":0,"card":0}},"location":false,"votes":0,"viewingMemberVoted":false,"subscribed":false,"start":null,"fogbugz":"","checkItems":0,"checkItemsChecked":0,"checkItemsEarliestDue":null,"comments":0,"attachments":3,"description":false,"due":null,"dueComplete":false},"checkItemStates":[],"closed":false,"dueComplete":false,"dateLastActivity":"2023-11-11T18:14:08.574Z","desc":"","descData":null,"due":null,"dueReminder":null,"email":null,"idBoard":"5e94f5ded016b22c2437c13c","idChecklists":[],"idList":"5e95d1b07f2ff83927319128","idMembers":[],"idMembersVoted":[],"idShort":2,"idAttachmentCover":"","labels":[],"idLabels":[],"manualCoverAttachment":false,"name":"C2","pos":16384,"shortLink":"DeJYDbq0","shortUrl":"https://trello.com/c/DeJYDbq0","start":null,"subscribed":false,"url":"https://trello.com/c/DeJYDbq0/2-c2","cover":{"idAttachment":null,"color":null,"idUploadedBackground":null,"size":"normal","brightness":"light","idPlugin":null},"isTemplate":false,"cardRole":null}'
+  recorded_at: Sat, 11 Nov 2023 18:18:11 GMT
+- request:
+    method: post
+    uri: https://api.trello.com/1/cards/5e95d1b4f43f9a06497f17f7/attachments?key=DEVELOPER_PUBLIC_KEY&token=MEMBER_TOKEN
+    body:
+      encoding: UTF-8
+      string: "-------------RubyMultipartPost-045b3ab4e226f744d8d7119fa63ad0fb\r\nContent-Disposition:
+        form-data; name=\"file\"; filename=\"add_and_remove_attachment_spec.rb\"\r\nContent-Length:
+        1672\r\nContent-Type: application/x-ruby\r\nContent-Transfer-Encoding: binary\r\n\r\nrequire
+        'spec_helper'\n\nRSpec.describe 'Trell::Card add and remove attachment' do\n
+        \ include IntegrationHelpers\n\n  before { setup_trello }\n\n  describe '#add_attachment'
+        do\n    it 'can success add an attachment(file) on a card', focus: true do\n
+        \     cassette_name = Trello.http_client == \"rest-client\" ? \"can_add_a_file_on_a_card\"
+        : \"can_add_a_file_on_a_card_with_farady\"\n      VCR.use_cassette(cassette_name)
+        do\n        card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')\n        file
+        = File.new('spec/integration/card/add_and_remove_attachment_spec.rb', 'r')\n\n
+        \       response = card.add_attachment(file)\n        expect(response.code).to
+        eq(200)\n        body = JSON.parse(response.body)\n        expect(body['name']).to
+        eq('add_and_remove_attachment_spec.rb')\n      end\n    end\n\n    it 'can
+        success add and attachment(url) on a card' do\n      VCR.use_cassette('can_add_a_file_from_url_on_a_card')
+        do\n        card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')\n        file_url
+        = 'https://upload.wikimedia.org/wikipedia/en/6/6b/Hello_Web_Series_%28Wordmark%29_Logo.png'\n\n
+        \       response = card.add_attachment(file_url, 'hello.png')\n        expect(response.code).to
+        eq(200)\n        body = JSON.parse(response.body)\n        expect(body['name']).to
+        eq('hello.png')\n      end\n    end\n  end\n\n  describe '#remove_attachment'
+        do\n    it 'can success remove and attachment on a card' do\n      VCR.use_cassette('can_remove_an_attachment_on_a_card')
+        do\n        card = Trello::Card.find('5e95d1b4f43f9a06497f17f7')\n        attachments
+        = card.attachments\n\n        response = card.remove_attachment(attachments.last)\n
+        \       expect(response.code).to eq(200)\n      end\n    end\n  end\nend\n\r\n-------------RubyMultipartPost-045b3ab4e226f744d8d7119fa63ad0fb\r\nContent-Disposition:
+        form-data; name=\"name\"\r\n\r\n\r\n-------------RubyMultipartPost-045b3ab4e226f744d8d7119fa63ad0fb--\r\n"
+    headers:
+      User-Agent:
+      - Faraday v2.3.0
+      Content-Type:
+      - multipart/form-data; boundary=-----------RubyMultipartPost-045b3ab4e226f744d8d7119fa63ad0fb
+      Content-Length:
+      - '2104'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 11 Nov 2023 18:18:14 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '451'
+      X-Dns-Prefetch-Control:
+      - 'off'
+      Expect-Ct:
+      - max-age=0
+      X-Frame-Options:
+      - DENY
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Surrogate-Control:
+      - no-store
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00
+      X-Trello-Version:
+      - 1.242759.0
+      X-Trello-Environment:
+      - Production
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - Authorization, Accept, Content-Type
+      Access-Control-Expose-Headers:
+      - x-rate-limit-api-key-interval-ms, x-rate-limit-api-key-max, x-rate-limit-api-key-remaining,
+        x-rate-limit-api-token-interval-ms, x-rate-limit-api-token-max, x-rate-limit-api-token-remaining
+      X-Rate-Limit-Api-Token-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Token-Max:
+      - '100'
+      X-Rate-Limit-Api-Token-Remaining:
+      - '98'
+      X-Rate-Limit-Db-Query-Time-Interval-Ms:
+      - '600000'
+      X-Rate-Limit-Db-Query-Time-Max:
+      - '7200000'
+      X-Rate-Limit-Db-Query-Time-Remaining:
+      - '7199990'
+      X-Rate-Limit-Api-Key-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Api-Key-Max:
+      - '300'
+      X-Rate-Limit-Api-Key-Remaining:
+      - '298'
+      X-Rate-Limit-Member-Interval-Ms:
+      - '10000'
+      X-Rate-Limit-Member-Max:
+      - '375'
+      X-Rate-Limit-Member-Remaining:
+      - '373'
+      Set-Cookie:
+      - preAuthProps=s%3A5e679b808e6e8828784b30e1%3AisEnterpriseAdmin%3Dfalse.Pfv1AFghhSOM0MLjFpWB8CaOPcNRIjt%2FmCZysEK4KNY;
+        Path=/; HttpOnly
+      X-Server-Time:
+      - '1699726694377'
+      Server:
+      - AtlassianEdge
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Atl-Traceid:
+      - c52c43e2b82d4915bb527fc58f3153bc
+      Report-To:
+      - '{"endpoints": [{"url": "https://dz8aopenkvv6s.cloudfront.net"}], "group":
+        "endpoint-1", "include_subdomains": true, "max_age": 600}'
+      Nel:
+      - '{"failure_fraction": 0.001, "include_subdomains": true, "max_age": 600, "report_to":
+        "endpoint-1"}'
+      Strict-Transport-Security:
+      - max-age=63072000; preload
+    body:
+      encoding: UTF-8
+      string: '{"id":"654fc566366a6de141e759d8","bytes":1672,"date":"2023-11-11T18:18:14.070Z","edgeColor":null,"idMember":"5e679b808e6e8828784b30e1","isUpload":true,"mimeType":"application/x-ruby","name":"add_and_remove_attachment_spec.rb","previews":[],"url":"https://trello.com/1/cards/5e95d1b4f43f9a06497f17f7/attachments/654fc566366a6de141e759d8/download/add_and_remove_attachment_spec.rb","pos":81920,"fileName":"add_and_remove_attachment_spec.rb","limits":{}}'
+  recorded_at: Sat, 11 Nov 2023 18:18:14 GMT
+recorded_with: VCR 6.1.0
