@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.1.0 - 2023-11-12
+
+- [Fix #add_attachment multipart upload with Faraday](https://github.com/jeremytregunna/ruby-trello/pull/312)
+
 ## v4.0.0 - 2022-09-24
 
 - [Remove rest-client dependency in the gemspec and default to faraday](https://github.com/jeremytregunna/ruby-trello/pull/308)
