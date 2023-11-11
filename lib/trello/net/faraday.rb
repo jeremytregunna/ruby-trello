@@ -4,11 +4,21 @@ module Trello
       class << self
         begin
           require 'faraday'
+          require 'faraday/multipart'
+          require 'mime/types'
         rescue LoadError
         end
 
         def execute(request)
           try_execute request
+        end
+
+        def multipart_file(file)
+          Faraday::Multipart::FilePart.new(
+            file,
+            content_type(file),
+            filename(file)
+          )
         end
 
         private
@@ -33,6 +43,7 @@ module Trello
             request: { timeout: 10 }
           ) do |faraday|
             faraday.response :raise_error
+            faraday.request :multipart
             faraday.request :json
           end
 
@@ -40,6 +51,26 @@ module Trello
             req.body = request.body
           end
         end
+
+        def content_type(file)
+          return file.content_type if file.respond_to?(:content_type)
+
+          mime = MIME::Types.type_for file.path
+          if mime.empty?
+            'text/plain'
+          else
+            mime[0].content_type
+          end
+        end
+
+        def filename(file)
+          if file.respond_to?(:original_filename)
+            file.original_filename
+          else
+            File.basename(file.path)
+          end
+        end
+
       end
     end
   end

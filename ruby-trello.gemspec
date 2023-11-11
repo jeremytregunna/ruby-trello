@@ -25,4 +25,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'json', '>= 2.3.0'
   s.add_dependency 'oauth', '>= 0.4.5'
   s.add_dependency 'faraday', '~> 2.0'
+  s.add_dependency 'faraday-multipart', '~> 1.0'
+  s.add_dependency('mime-types', '>= 3.0', '< 4.0')
 end

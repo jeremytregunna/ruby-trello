@@ -273,7 +273,7 @@ module Trello
       # Is it a file object or a string (url)?
       if attachment.respond_to?(:path) && attachment.respond_to?(:read)
         client.post("/cards/#{id}/attachments", {
-            file: attachment,
+            file: Trello::TInternet.multipart_file(attachment),
             name: name
           })
       else

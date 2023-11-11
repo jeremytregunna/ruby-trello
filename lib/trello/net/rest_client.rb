@@ -11,6 +11,10 @@ module Trello
           try_execute request
         end
 
+        def multipart_file(file)
+          file
+        end
+
         private
 
         def try_execute(request)
