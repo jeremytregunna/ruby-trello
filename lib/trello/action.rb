@@ -54,23 +54,23 @@ module Trello
     end
 
     # Returns the board this action occurred on.
-    def board
-      Board.from_response client.get("/actions/#{id}/board")
+    def board(params = {})
+      Board.from_response client.get("/actions/#{id}/board", params)
     end
 
     # Returns the card the action occurred on.
-    def card
-      Card.from_response client.get("/actions/#{id}/card")
+    def card(params = {})
+      Card.from_response client.get("/actions/#{id}/card", params)
     end
 
     # Returns the list the action occurred on.
-    def list
-      List.from_response client.get("/actions/#{id}/list")
+    def list(params = {})
+      List.from_response client.get("/actions/#{id}/list", params)
     end
 
     # Returns the list the action occurred on.
-    def member_creator
-      Member.from_response client.get("/actions/#{id}/memberCreator")
+    def member_creator(params = {})
+      Member.from_response client.get("/actions/#{id}/memberCreator", params)
     end
   end
 end
