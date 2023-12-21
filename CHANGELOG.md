@@ -1,5 +1,9 @@
 # Changelog
 
+## v4.2.0 - 2023-12-22
+
+- [Support query parameters for most model GET like methods](https://github.com/jeremytregunna/ruby-trello/pull/314)
+
 ## v4.1.0 - 2023-11-12
 
 - [Fix #add_attachment multipart upload with Faraday](https://github.com/jeremytregunna/ruby-trello/pull/312)
