@@ -70,7 +70,7 @@ module Trello
 
         allow(client)
           .to receive(:get)
-          .with("/members/testuser/boards")
+          .with("/members/testuser/boards", {})
           .and_return boards_payload
       end
 

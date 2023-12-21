@@ -15,11 +15,12 @@ to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/
 
 ## Requirements
 
-| Ruby  \  ActiveModel | 6.0 | 6.1 | 7.0 |
+| Ruby  \  ActiveModel | 6.0 | 6.1 | 7.0 | 7.1 |
 | ---- | ---- | ---- | ---- |
-| 2.7 | ✅ | ✅ | ✅ |
-| 3.0 | ✅ | ✅ | ✅ |
-| 3.1 | ✅ | ✅ | ✅ |
+| 2.7 | ✅ | ✅ | ✅ | ✅ |
+| 3.0 | ✅ | ✅ | ✅ | ✅ |
+| 3.1 | ✅ | ✅ | ✅ | ✅ |
+| 3.2 | ✅ | ✅ | ✅ | ✅ |
 
 - Use the newest version for Ruby 2.7.0 or newer support.
 - Use version 3.2.0 or earlier for Ruby 2.5 ~ 2.6 support.

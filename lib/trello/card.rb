@@ -105,8 +105,8 @@ module Trello
     # List of custom field values on the card, only the ones that have been set
     many :custom_field_items, path: 'customFieldItems'
 
-    def check_item_states
-      states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates")
+    def check_item_states(params = {})
+      states = CheckItemState.from_response client.get("/cards/#{self.id}/checkItemStates", params)
       MultiAssociation.new(self, states).proxy
     end
 
@@ -116,8 +116,8 @@ module Trello
     # Returns a list of members who are assigned to this card.
     #
     # @return [Array<Trello::Member>]
-    def members
-      members = Member.from_response client.get("/cards/#{self.id}/members")
+    def members(params = {})
+      members = Member.from_response client.get("/cards/#{self.id}/members", params)
       MultiAssociation.new(self, members).proxy
     end
 
@@ -127,8 +127,8 @@ module Trello
     # accuracy over network performance
     #
     # @return [Array<Trello::Member>]
-    def voters
-      Member.from_response client.get("/cards/#{id}/membersVoted")
+    def voters(params = {})
+      Member.from_response client.get("/cards/#{id}/membersVoted", params)
     end
 
     # Delete this card
@@ -285,8 +285,8 @@ module Trello
     end
 
     # Retrieve a list of attachments
-    def attachments
-      attachments = Attachment.from_response client.get("/cards/#{id}/attachments")
+    def attachments(params = {})
+      attachments = Attachment.from_response client.get("/cards/#{id}/attachments", params)
       MultiAssociation.new(self, attachments).proxy
     end
 
@@ -301,8 +301,9 @@ module Trello
     end
 
     # Retrieve a list of comments
-    def comments
-      comments = Comment.from_response client.get("/cards/#{id}/actions", filter: "commentCard")
+    def comments(params = {})
+      params[:filter] ||= "commentCard"
+      comments = Comment.from_response client.get("/cards/#{id}/actions", params)
     end
 
     # Find the creation date

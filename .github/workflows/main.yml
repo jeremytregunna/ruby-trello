@@ -19,10 +19,12 @@ jobs:
           - '2.7'
           - '3.0'
           - '3.1'
+          - '3.2'
         active_model:
           - '6.0'
           - '6.1'
           - '7.0'
+          - '7.1'
         http_client_gem:
           - 'rest-client'
           - 'faraday'

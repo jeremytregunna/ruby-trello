@@ -15,7 +15,7 @@ module Trello
 
       allow(client)
         .to receive(:get)
-        .with('/organizations/4ee7e59ae582acdec8000291/boards/all')
+        .with('/organizations/4ee7e59ae582acdec8000291/boards', {})
         .and_return boards_payload
     end
 

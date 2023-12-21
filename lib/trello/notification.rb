@@ -45,24 +45,24 @@ module Trello
 
     one :creator, path: :members, via: Member, using: :creator_id
 
-    def board
-      Board.from_response client.get("/notifications/#{id}/board")
+    def board(params = {})
+      Board.from_response client.get("/notifications/#{id}/board", params)
     end
 
-    def list
-      List.from_response client.get("/notifications/#{id}/list")
+    def list(params = {})
+      List.from_response client.get("/notifications/#{id}/list", params)
     end
 
-    def card
-      Card.from_response client.get("/notifications/#{id}/card")
+    def card(params = {})
+      Card.from_response client.get("/notifications/#{id}/card", params)
     end
 
-    def member
-      Member.from_response client.get("/notifications/#{id}/member")
+    def member(params = {})
+      Member.from_response client.get("/notifications/#{id}/member", params)
     end
 
-    def organization
-      Organization.from_response client.get("/notifications/#{id}/organization")
+    def organization(params = {})
+      Organization.from_response client.get("/notifications/#{id}/organization", params)
     end
   end
 end

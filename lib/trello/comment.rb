@@ -49,18 +49,18 @@ module Trello
     end
 
     # Returns the board this comment is located
-    def board
-      Board.from_response client.get("/actions/#{id}/board")
+    def board(params = {})
+      Board.from_response client.get("/actions/#{id}/board", params)
     end
 
     # Returns the card the comment is located
-    def card
-      Card.from_response client.get("/actions/#{id}/card")
+    def card(params = {})
+      Card.from_response client.get("/actions/#{id}/card", params)
     end
 
     # Returns the list the comment is located
-    def list
-      List.from_response client.get("/actions/#{id}/list")
+    def list(params = {})
+      List.from_response client.get("/actions/#{id}/list", params)
     end
 
     # Deletes the comment from the card

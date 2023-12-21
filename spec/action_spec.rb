@@ -71,7 +71,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with('/actions/4ee2482134a81a757a08af47/board')
+          .with('/actions/4ee2482134a81a757a08af47/board', {})
           .and_return payload
       end
 
@@ -87,7 +87,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with('/actions/4ee2482134a81a757a08af47/card')
+          .with('/actions/4ee2482134a81a757a08af47/card', {})
           .and_return payload
       end
 
@@ -102,7 +102,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with('/actions/4ee2482134a81a757a08af47/list')
+          .with('/actions/4ee2482134a81a757a08af47/list', {})
           .and_return payload
       end
 
@@ -116,7 +116,7 @@ module Trello
       before do
         allow(client)
           .to receive(:get)
-          .with('/actions/4ee2482134a81a757a08af47/memberCreator')
+          .with('/actions/4ee2482134a81a757a08af47/memberCreator', {})
           .and_return user_payload
       end
 

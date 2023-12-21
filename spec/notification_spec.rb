@@ -37,7 +37,7 @@ module Trello
       it "can retrieve the board" do
         allow(client)
           .to receive(:get)
-          .with("/notifications/#{notification_details['id']}/board")
+          .with("/notifications/#{notification_details['id']}/board", {})
           .and_return JSON.generate(boards_details.first)
 
         expect(notification.board.id).to eq boards_details.first['id']
@@ -48,7 +48,7 @@ module Trello
       it "can retrieve the list" do
         allow(client)
           .to receive(:get)
-          .with("/notifications/#{notification_details['id']}/list")
+          .with("/notifications/#{notification_details['id']}/list", {})
           .and_return JSON.generate(lists_details.first)
 
         expect(notification.list.id).to eq lists_details.first['id']
@@ -59,7 +59,7 @@ module Trello
       it "can retrieve the card" do
         allow(client)
           .to receive(:get)
-          .with("/notifications/#{notification_details['id']}/card")
+          .with("/notifications/#{notification_details['id']}/card", {})
           .and_return JSON.generate(cards_details.first)
 
         expect(notification.card.id).to eq cards_details.first['id']
@@ -70,7 +70,7 @@ module Trello
       it "can retrieve the member" do
         allow(client)
           .to receive(:get)
-          .with("/notifications/#{notification_details['id']}/member")
+          .with("/notifications/#{notification_details['id']}/member", {})
           .and_return user_payload
 
         expect(notification.member.id).to eq user_details['id']
@@ -90,7 +90,7 @@ module Trello
       it "can retrieve the organization" do
         allow(client)
           .to receive(:get)
-          .with("/notifications/#{notification_details['id']}/organization")
+          .with("/notifications/#{notification_details['id']}/organization", {})
           .and_return JSON.generate(orgs_details.first)
 
         expect(notification.organization.id).to eq orgs_details.first['id']
