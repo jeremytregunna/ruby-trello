@@ -77,8 +77,8 @@ module Trello
     end
 
     # Returns a list of boards under this organization.
-    def boards
-      boards = Board.from_response client.get("/organizations/#{id}/boards/all")
+    def boards(params = {})
+      boards = Board.from_response client.get("/organizations/#{id}/boards", params)
       MultiAssociation.new(self, boards).proxy
     end
 
