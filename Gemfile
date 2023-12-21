@@ -17,6 +17,6 @@ group :development, :spec do
 
   gem 'rest-client', '>= 1.8.0'
 
-  gem 'pry-byebug', '~> 3.9.0', :platforms => [:mri]
+  gem 'pry-byebug', '~> 3.10.1', :platforms => [:mri]
   gem 'simplecov', :require => false, :platforms => [:mri, :mri_18, :mri_19, :mingw]
 end
