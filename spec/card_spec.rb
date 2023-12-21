@@ -511,7 +511,7 @@ module Trello
 
         allow(client)
           .to receive(:get)
-          .with("/cards/abcdef123456789123456789/members")
+          .with("/cards/abcdef123456789123456789/members", {})
           .and_return user_payload
       end
 
@@ -597,7 +597,7 @@ module Trello
         no_voters = JSON.generate([])
         expect(client)
           .to receive(:get)
-          .with("/cards/#{card.id}/membersVoted")
+          .with("/cards/#{card.id}/membersVoted", {})
           .and_return(no_voters)
 
         card.voters
@@ -606,7 +606,7 @@ module Trello
         voters = JSON.generate([user_details])
         expect(client)
           .to receive(:get)
-          .with("/cards/#{card.id}/membersVoted")
+          .with("/cards/#{card.id}/membersVoted", {})
           .and_return(voters)
 
         expect(card.voters.first).to be_kind_of Trello::Member
@@ -750,7 +750,7 @@ module Trello
 
         allow(client)
           .to receive(:get)
-          .with("/cards/abcdef123456789123456789/attachments")
+          .with("/cards/abcdef123456789123456789/attachments", {})
           .and_return attachments_payload
 
         expect(card.board).to_not be_nil
@@ -779,7 +779,7 @@ module Trello
 
         allow(client)
           .to receive(:get)
-          .with("/cards/abcdef123456789123456789/attachments")
+          .with("/cards/abcdef123456789123456789/attachments", {})
           .and_return attachments_payload
 
         card.remove_attachment(card.attachments.first)
