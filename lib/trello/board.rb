@@ -106,8 +106,8 @@ module Trello
 
     class << self
       # @return [Array<Trello::Board>] all boards for the current user
-      def all
-        from_response client.get("/members/#{Member.find(:me).username}/boards")
+      def all(params = {})
+        from_response client.get("/members/#{Member.find(:me).username}/boards", params)
       end
     end
 
