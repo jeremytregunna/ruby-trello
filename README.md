@@ -16,7 +16,7 @@ to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/
 ## Requirements
 
 | Ruby  \  ActiveModel | 6.0 | 6.1 | 7.0 | 7.1 |
-| ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- | ---- |
 | 2.7 | ✅ | ✅ | ✅ | ✅ |
 | 3.0 | ✅ | ✅ | ✅ | ✅ |
 | 3.1 | ✅ | ✅ | ✅ | ✅ |
