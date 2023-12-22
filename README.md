@@ -31,7 +31,7 @@ to, please just [create an issue](https://github.com/jeremytregunna/ruby-trello/
 ## Installation
 
 ```
-# gem install ruby-trello
+gem install ruby-trello
 ```
 
 ## Configuration
