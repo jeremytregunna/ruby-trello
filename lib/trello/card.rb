@@ -303,7 +303,7 @@ module Trello
     # Retrieve a list of comments
     def comments(params = {})
       params[:filter] ||= "commentCard"
-      comments = Comment.from_response client.get("/cards/#{id}/actions", params)
+      Comment.from_response client.get("/cards/#{id}/actions", params)
     end
 
     # Find the creation date
